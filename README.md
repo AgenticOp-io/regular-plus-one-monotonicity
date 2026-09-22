@@ -9,14 +9,16 @@ Private research repo (AgenticOp-io): extend
 
 | Item | State |
 |---|---|
-| Easy regime (factor gaps via BIM) | proved — `notes/proof-easy-regime.md` |
-| Reduction (+1 ⇒ full mono) | proved — `notes/proof-reduction.md` |
+| Easy regime (factor gaps via BIM) | **proved** — `notes/proof-easy-regime.md` |
+| Reduction (+1 ⇒ full mono) | **proved** — `notes/proof-reduction.md` |
 | Bottleneck diagnosis | done — `notes/bottleneck.md` |
-| Attack plan to \(o(\sqrt{n})\) | **active** — `notes/attack-n-half.md` |
 | Lemma L1 (cite Thm 6) | recorded — `notes/lemma-L1-citation.md` |
-| Lemma L2 (patch Gao Thm 10) | draft — `notes/lemma-L2-draft.md` |
-| Lemma L4 (η schedule) | proved (conditional on η form) |
-| Full +1 for \(d=o(\sqrt{n})\) | **open** (needs L2) |
+| Lemma L2 / Thms A–B (patch Cor 15 & moments) | **proved** — `notes/lemma-L2-proof.md` |
+| Lemma L4 (η schedule) | **proved** — `notes/attack-n-half.md` |
+| Main +1 theorem for \(d=o(\sqrt{n}/\log^3 n)\) | **proved (cond. on Thm 6)** — `notes/main-theorem.md` |
+| +1 for all \(d\) / full conjecture | open |
+
+See `notes/STATUS.md` for the live board.
 
 ## Layout
 
@@ -35,5 +37,5 @@ python src/config_probes.py
 
 ## Next concrete step
 
-Line-by-line diff of Gao arXiv:2104.11850 Theorem 10 against
-arXiv:2012.01492 Theorem 6 → finish Lemma L2.
+Polish for arXiv: expand Gao §3.4–3.5 into an appendix, then convert
+`notes/main-theorem.md` + `lemma-L2-proof.md` into LaTeX.
