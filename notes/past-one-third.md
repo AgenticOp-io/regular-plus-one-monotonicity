@@ -1,40 +1,57 @@
-# Past \(1/3\): corrected architecture
+# Contiguity blocked; next rate from BIM path exponents
 
-## Hard barriers (proved accounting)
+## Hybrid contiguity — dead
 
-| Engine | Binding constraint | Ceiling |
+Comparing hybrid \(H=G\cup R_q\) to nested ER on \(G^*_0\) at retention
+\(r=(1+\varepsilon)/(1+\varepsilon_0)\) gives \(\chi^2=\Theta(dn)\) between the two
+inhomogeneous Bernoulli measures. Contiguity fails; do not chase TV of hybrid to ER.
+
+## Where the \(1/8\) comes from (BIM)
+
+| Object | Relative error | Source |
 |---|---|---|
-| BIM upper B2 + switching | \(\eta=O(\varepsilon)\) and \(\eta=\Omega(\sqrt{\log n/(\varepsilon d)})\) | \(\varepsilon=\Omega((\log n/d)^{1/3})\) |
-| BIM lower + residual degree conc. | \(\eta\ll\varepsilon\) and \(\eta=\Omega(\sqrt{\log n/(\varepsilon d)})\) | \(\varepsilon=\Omega((\log n/d)^{1/3})\) |
-| GIM Thm 2.6 structure | \(\xi\Delta\gg n/\log n\) | \(\xi=\omega(n/(d\log n))\); **incompatible with Chernoff for all \(d<n\)** |
-| GIM degree tails alone | \(e^{-\Omega(\xi^4\Delta)}\) (loose) or \(\xi^2d\) (Chernoff) | upgrading tails does **not** remove the structural block |
+| Degrees in \(F\setminus K\) | \(\sqrt{\log n/\delta}\) | Lemma 5.3 G1 (Chernoff-optimal) |
+| Paths from a vertex (upper) | \((\log n/\delta)^{1/4}\) | Lemma 5.1 with \(\lambda=(\cdots)^{1/4}\) |
+| Paths \(x\)–\(y\) (lower) | \((\log n/\delta)^{1/4}\) | Theorem 6.1 |
+| Paths \(x\)–\(y\) (upper) | \((\log n/\delta)^{1/8}\) | Lemma 7.1 via \(\lambda=(\eta/C_0)^2\) |
 
-So Conjecture Q needs BIM process Conjecture 1.3, or a coupling outside deletion/addition+B2.
+Lemma 7.1 forces \(\lambda=O(\eta^2)\) through the truncation-set size \(|B|\) bound.
+That square-root degradation turns the natural \(1/4\) into the schedule’s \(1/8\).
 
-## Dead ends recorded
+## Rate dictionary
 
-- **GIM Freedman / \(\xi^2d\) tails:** structural hypothesis \(\xi d\gg n/\log n\) forces \(\xi\gg n/(d\log n)\). Chernoff \(\sqrt{(\log n)/d}\) never meets this (\(d\gg n^2/\mathrm{polylog}\) impossible).
-- **B2 residual as “defect”:** with switching-optimal \(\eta\), residual average degree \(\asymp\sqrt{d\log n/\varepsilon}\). At Chernoff this is \(\asymp d^{3/4}\mathrm{polylog}\), **worse** than perfect \(1/3\)-sandwich defect \(d^{2/3}\).
-
-## Live architectures
-
-### A. Process conjecture ⇒ Chernoff (proved implication)
-BIM Conjecture 1.3 + ordinary ER degree Chernoff ⇒ Conjecture Q.
-(Written as Theorem in `paper/main.tex`.)
-
-### B. Window reduction (proved reduction)
-For \(d\ge n^{\sigma}\), Conjecture Q ⇔ final-window coupling from
-\(\varepsilon=(log n/d)^{1/3}\) down to Chernoff \(\sqrt{(\log n)/d}\).
-The hard surplus-degree range is only
+If two-sided path error is \(O((\log n/\delta)^{\alpha})\), B2 with absolute \(C_0\) gives
 \[
-\sqrt{d\log n}\;\le\;\delta\;\le\;d^{2/3}(\log n)^{1/3}.
+\Bigl(\frac{\log n}{\varepsilon d}\Bigr)^{\alpha}=O(\varepsilon)
+\quad\Rightarrow\quad
+\varepsilon=\Omega\Bigl(\Bigl(\frac{\log n}{d}\Bigr)^{1/(1+1/\alpha)?}\Bigr)
 \]
-(Written as Theorem in `paper/main.tex`.)
+wait: \((\log n/(\varepsilon d))^{\alpha}=O(\varepsilon)\) ⇒ \(\log n/(\varepsilon d)=O(\varepsilon^{1/\alpha})\)
+⇒ \(\varepsilon^{1+1/\alpha}=\Omega(\log n/d)\) ⇒
+\[
+\varepsilon=\Omega\Bigl(\Bigl(\frac{\log n}{d}\Bigr)^{1/(1+1/\alpha)}\Bigr)
+=\Omega\Bigl(\Bigl(\frac{\log n}{d}\Bigr)^{\alpha/(\alpha+1)}\Bigr).
+\]
 
-### C. Attack the final window
-Under the BIM coupling at rate \(1/3\), study the residual
-\(R=G^*_0\setminus G\) (degree \(\asymp d^{2/3}\)) and thin it to surplus
-\(\asymp\sqrt{d\log n}\) without exposing edges of \(G\).
+| \(\alpha\) | Rate \(\alpha/(\alpha+1)\) | Status |
+|---|---|---|
+| \(1/8\) | \(1/9\) | proved (current Thm quant) |
+| \(1/4\) | \(1/5\) | **conditional on fixing Lemma 7.1** |
+| \(1/2\) | \(1/3\) | Hypothesis P (process-optimal) |
 
-## Recommended next build
-Prove a **one-sided final-window lemma**: given \(G\subset G^*_0\sim G(n,(1+\varepsilon_0)d/n)\) from the \(1/3\)-sandwich, construct \(H\sim G(n,(1+\varepsilon_C)d/n)\) with \(G\subset H\) by dependent thinning of \(G^*_0\setminus G\).
+## Target Theorem (rate \(1/5\))
+
+**Hypothesis U.** For \(\delta\ge C\log n\), two-vertex \((F\setminus K,K)\)-alternating path
+upper counts hold at relative error \(O((\log n/\delta)^{1/4})\)
+(same scale as Theorem 6.1 lower bounds / Lemma 5.1).
+
+**Then:** quantitative sandwich at \(\varepsilon=C(\log n/d)^{1/5}\) for all \(d\ge C\log n\).
+
+## How to prove Hypothesis U
+
+Avoid Lemma 7.1’s \(\lambda=\eta^2\) truncation. Options:
+1. Couple the two-vertex upper bound to the one-vertex upper bound (Lemma 5.1) plus
+   a lower-bound correction from Theorem 6.1 at \(\lambda=\eta\).
+2. Apply Kim–Vu polynomial concentration directly to the two-vertex path polynomial
+   at the \(1/4\) scale (as BIM §8 does for \(\delta\ge n^{\sigma}\)).
+3. Freedman martingale along the path exploration with variance proxy \(\delta^{\ell}d^{\ell}/n\).
