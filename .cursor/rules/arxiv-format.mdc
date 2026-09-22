@@ -1,0 +1,15 @@
+---
+description: Math writeups in this repo must be arXiv-ready
+alwaysApply: true
+---
+
+# ArXiv formatting for this project
+
+When writing or updating mathematical results in this repository:
+
+1. Put the canonical statement in `paper/main.tex` (LaTeX, arXiv article style).
+2. Keep detailed ledgers in `notes/`, but any claim meant to be a theorem must also appear in the LaTeX with a complete or clearly sketched proof.
+3. Use standard article structure: abstract, introduction with main theorem, body lemmas, remarks/open problems, bibliography with arXiv IDs where possible.
+4. Prefer self-contained proofs over “see markdown note X”; markdown is a workshop, LaTeX is the deliverable.
+5. Do not announce a result as proved unless the LaTeX (or a clearly labeled conditional black-box) supports that claim.
+6. After substantive math changes, update `paper/main.tex` in the same session.

@@ -1,44 +1,69 @@
 \documentclass[11pt]{article}
-\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage[margin=1in]{geometry}
-\usepackage[colorlinks,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage[colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{microtype}
 
-\title{Nesting random regular graphs one degree at a time,\\ up to degree \(o(\sqrt{n})\)}
+\title{Nesting random regular graphs one degree at a time\\ up to degree \(o(\sqrt{n})\)}
 \author{AgenticOp-io}
 \date{}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{remark}[theorem]{Remark}
 
 \newcommand{\Gnp}{G(n,p)}
 \newcommand{\Gnd}{G(n,d)}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\dTV}{d_{\mathrm{TV}}}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Gao proved that \(\Gnd\) and \(G(n,d+1)\) can be coupled so that
-\(\Gnd\subset G(n,d+1)\) asymptotically almost surely whenever \(d\to\infty\) and
+Gao proved that the random regular graphs \(\Gnd\) and \(G(n,d+1)\) can be coupled
+so that \(\Gnd\subset G(n,d+1)\) with high probability whenever \(d\to\infty\) and
 \(d=o(n^{1/3})\).
 We extend the range to \(d=o(n^{1/2}/\log^3 n)\) by substituting Gao's sharper
-conditional edge probabilities into the same coupling template, replacing every
-\(O(d^3/n)\) error by \(O(d^2/n)\). This partially resolves a gap left explicit in
-Gao's Remark~16(b) and Section~5.
+conditional edge probabilities into the same coupling, replacing every
+\(O(d^3/n)\) error by \(O(d^2/n)\).
+This carries out the improvement suggested in Gao's Remark~16(b).
+We also record two weaker nestings beyond this range: an always-nested coupling
+with total-variation control for \(d=O(\sqrt{n})\), and an \(O(\varepsilon d)\)
+degree-defect nesting for all \(d\ge C\log n\) via the Kim--Vu sandwich theorem.
 \end{abstract}
+
+\tableofcontents
 
 \section{Introduction}
 
-Comparing random regular graphs of different degrees is a classical theme.
-The Gao--Isaev--McKay monotonicity conjecture asks for couplings
-\(G(n,d_1)\subset G(n,d_2)\) whenever \(d_1\le d_2\) (with two exceptional pairs).
+\subsection{Background}
+Let \(\Gnd\) denote the uniform random \(d\)-regular graph on \(n\) labelled vertices
+(with \(dn\) even). Comparing \(\Gnd\) across degrees is subtle because there is no
+canonical monotone coupling.
+Gao, Isaev and McKay conjectured that for all admissible \(d_1\le d_2\)
+(excluding two parity pathologies), there is a coupling with
+\(\PP(G(n,d_1)\subset G(n,d_2))=1-o(1)\).
 The critical case is \(d_2=d_1+1\).
 
-Gao~\cite{Gao21} proved exact \(+1\) nesting for \(d\to\infty\) with \(d=o(n^{1/3})\),
-and noted that the barrier \(n^{1/3}\) comes from an \(O(d^3/n)\) error in subgraph
-probabilities. The same paper observes that the sharper conditional probabilities
-of~\cite{Gao20} should push the range to \(o(n^{1/2})\). We carry out that program.
+Gao~\cite{Gao21} proved exact \(+1\) nesting for \(d\to\infty\) and \(d=o(n^{1/3})\),
+by coupling through perfect matchings and controlling the number \(Y\) of perfect
+matchings via an \(O(d^3/n)\) subgraph-probability error.
+The same paper notes~\cite[Remark~16(b), §5]{Gao21} that the sharper conditional
+edge probabilities of~\cite{Gao20} should improve the error to \(O(d^2/n)\) and the
+degree range to \(o(n^{1/2})\).
+We carry out that program.
+
+Independently, the Kim--Vu sandwich conjecture---coupling \(\Gnd\) between two
+binomial graphs of density \((1\pm\varepsilon)d/n\)---was proved in full by
+Behague, Il'kovi\v{c} and Montgomery~\cite{BIM25}.
+That yields constant-factor degree gaps, but not \(+1\).
+
+\subsection{Main result}
 
 \begin{theorem}[Main]
 \label{thm:main}
@@ -47,76 +72,133 @@ Let \(n\) be even and let \(d=d(n)\) satisfy \(d\to\infty\) and
 \(d=o(n^{1/2}/\log^3 n)\).
 Then there exists a coupling of \(G_d\sim\Gnd\) and \(G_{d+1}\sim G(n,d+1)\) such that
 \[
-\mathbb{P}(G_d\subset G_{d+1})=1-o(1).
+\PP(G_d\subset G_{d+1})=1-o(1).
 \]
 \end{theorem}
 
-Combined with constant-factor nesting from the Kim--Vu sandwich theorem
-(now fully proved by Behague--Il'kovi\v{c}--Montgomery~\cite{BIM25}), this leaves the
-monotonicity conjecture open primarily for increments of size \(1\) when
-\(d=\Omega(\sqrt{n})\).
+\begin{remark}
+The hypothesis on~\cite{Gao20} is used as a black box, exactly as anticipated
+in~\cite{Gao21}.
+All other steps are either elementary or inherited from~\cite{Gao21} with a
+tracked error substitution \(d^3/n\mapsto d^2/n\).
+\end{remark}
+
+\subsection{Secondary results}
+
+\begin{theorem}[TV-controlled nesting]
+\label{thm:approx}
+Let \(3\le d\le n/2-1\) and write \(\mu_d\) for the law of \(\Gnd\).
+Let \(\mu_d\oplus\mu_1\) be the law of \(G\cup M\) where \(G\sim\mu_d\) and \(M\) is
+uniform among perfect matchings of \(K_n\setminus G\)
+(every such complement has degree \(\ge n/2\), hence a perfect matching by Dirac's
+theorem).
+If \(\dTV(\mu_d\oplus\mu_1,\mu_{d+1})\le\delta\), then there is a coupling with
+\(H\sim\mu_{d+1}\) and \(\PP(G\subset H)\ge 1-\delta\).
+\end{theorem}
+
+\begin{corollary}[Square-root window]
+\label{cor:sqrt}
+Under the patched variance estimate of Lemma~\ref{lem:moments}, for all sufficiently
+small absolute constants \(c>0\) and all large \(n\), if \(d\le c\sqrt{n}\) then
+\(\dTV(\mu_d\oplus\mu_1,\mu_{d+1})\le 1/2\), hence a coupling with
+\(\PP(G\subset H)\ge 1/2\).
+\end{corollary}
+
+\begin{theorem}[Sandwich degree defect]
+\label{thm:defect}
+For each fixed \(\varepsilon\in(0,1)\) there exists \(C=C(\varepsilon)\) such that if
+\(d\ge C\log n\), then there is a coupling of \(G\sim\Gnd\) and \(H\sim G(n,d+1)\) with
+\[
+\PP\bigl(\Delta(G\setminus H)\le 3\varepsilon d\bigr)=1-o(1).
+\]
+\end{theorem}
+
+\subsection{Organisation}
+Section~\ref{sec:patch} upgrades Gao's Corollary~15 and matching moments.
+Section~\ref{sec:coupling} runs the coupling.
+Section~\ref{sec:beyond} proves the secondary statements.
+Section~\ref{sec:open} discusses the \(\sqrt{n}\) barrier.
 
 \section{Patched subgraph probabilities}
+\label{sec:patch}
 
-Let \(\rho(n,d,\alpha)\) and \(\varphi(d,\alpha)\) be as in~\cite[Corollary~15]{Gao21}.
+Let \(\rho(n,d,\alpha)\) and \(\varphi(d,\alpha)\) denote the main term and phase from
+Gao~\cite[Corollary~15]{Gao21}.
 
 \begin{lemma}[Patched Corollary~15]
 \label{lem:cor15}
 Let \(0\le k\le n/2\) and let \(H\) be a graph on \([n]\) consisting of \(k\) isolated edges
-together with disjoint cycles covering the remaining vertices. Set \(\alpha=2k/n\).
+together with a collection of vertex-disjoint cycles covering the remaining
+\(n-2k\) vertices.
+Set \(\alpha=2k/n\).
 If \(d=o(n^{1/2})\), then
 \[
-\mathbb{P}(H\subseteq\Gnd)=(1+O(d^2/n))\,\rho(n,d,\alpha).
+\PP\bigl(H\subseteq\Gnd\bigr)=(1+O(d^2/n))\,\rho(n,d,\alpha).
 \]
 \end{lemma}
 
 \begin{proof}
-Order \(E(H)=(e_1,\ldots,e_m)\) with \(m\le n\). Then
+Order \(E(H)=(e_1,\ldots,e_m)\) with \(m=|E(H)|\le n\).
+Then
 \[
-\mathbb{P}(H\subseteq\Gnd)
-=\prod_{i=1}^m
-\mathbb{P}(e_i\in\Gnd\mid \{e_1,\ldots,e_{i-1}\}\subseteq\Gnd).
+\PP(H\subseteq\Gnd)
+=\prod_{i=1}^{m}
+\PP\bigl(e_i\in\Gnd\bigm|\{e_1,\ldots,e_{i-1}\}\subseteq\Gnd\bigr).
 \]
-Apply~\cite[Theorem~6]{Gao20} at each step: the relative error is
-\(O(d^2/n^2)\) in the \(d\)-regular case. Over \(m\le n\) steps the product of errors is
-\(1+O(d^2/n)\).
+Apply~\cite[Theorem~6]{Gao20} at each step.
+For \(d\)-regular degree sequences one has \(M=dn\) and \(\Delta=d\), so the relative
+error per step is \(O(\Delta^5 n/M^3)=O(d^2/n^2)\).
+Over \(m\le n\) steps,
+\[
+\bigl(1+O(d^2/n^2)\bigr)^{O(n)}=1+O(d^2/n),
+\]
+using \(d=o(n^{1/2})\).
 
-The product of principal terms equals Gao's main term \(\rho(n,d,\alpha)\).
-Indeed, writing \(P_{\mathrm{seq}}\) for that product and \(P_{\mathrm{McKay}}\) for the
-error-free McKay principal ratio in~\cite{Gao21}, both approximate
-\(\mathbb{P}(H\subseteq\Gnd)\) (to within \(1+O(d^2/n)\) and \(1+O(d^3/n)\) respectively),
-hence \(P_{\mathrm{seq}}=(1+O(d^2/n))P_{\mathrm{McKay}}\). Defining
-\(\rho:=P_{\mathrm{McKay}}\) yields the claim.
-(Cf.\ also~\cite[Remark~8]{Gao20}: Theorem~6 evaluates matching probabilities with
-relative error \(O(d^2|H|/n^2)=O(d^2/n)\).)
+Write \(P_{\mathrm{seq}}\) for the product of the principal terms in Theorem~6, and
+\(P_{\mathrm{McKay}}\) for the error-free McKay principal ratio appearing
+in~\cite[proof of Corollary~15]{Gao21}.
+Both approximate \(\PP(H\subseteq\Gnd)\), to within \(1+O(d^2/n)\) and \(1+O(d^3/n)\)
+respectively~\cite[Remark~8]{Gao20}.
+Hence \(P_{\mathrm{seq}}=(1+O(d^2/n))P_{\mathrm{McKay}}\).
+Defining \(\rho:=P_{\mathrm{McKay}}\) yields the claim.
 \end{proof}
 
 \begin{lemma}[Patched moments]
 \label{lem:moments}
-Let \(Y\) be the number of perfect matchings in \(\Gnd\), with \(d=o(n^{1/2})\). Then
-\[
-\mathbb{E} Y
-=(1+O(d^2/n))\frac{n!}{(n/2)!2^{n/2}}\rho(n,d,1),
-\]
-and
-\[
-\frac{\mathrm{Var}\,Y}{(\mathbb{E} Y)^2}
-=\frac1{6d^3}+O\Bigl(d^{-4}+\frac{d^2}{n}+\sqrt{\frac{d}{n}}\log^3 n\Bigr).
-\]
+Let \(Y\) be the number of perfect matchings in \(\Gnd\), and assume \(d=o(n^{1/2})\).
+Then
+\begin{align}
+\label{eq:EY}
+\EE Y
+&=(1+O(d^2/n))\frac{n!}{(n/2)!\,2^{n/2}}\,\rho(n,d,1),\\
+\label{eq:VarY}
+\frac{\Var Y}{(\EE Y)^2}
+&=\frac1{6d^3}+O\Bigl(d^{-4}+\frac{d^2}{n}+\sqrt{\frac{d}{n}}\log^3 n\Bigr).
+\end{align}
 \end{lemma}
 
-\begin{proof}[Proof sketch]
-The first-moment claim is Lemma~\ref{lem:cor15} with \(\alpha=1\).
-For the second moment, expand \(\mathbb{E}[Y^2]\) over pairs of matchings classified by
-intersection size \(k\). Each union \(H_1\cup H_2\) has the shape of
-Lemma~\ref{lem:cor15}, so pair probabilities carry error \(O(d^2/n)\).
-Summing via~\cite[Lemma~17]{Gao21} and the Laplace analysis of~\cite[Lemma~18]{Gao21}
----with hypothesis relaxed from \(d=o(n^{1/3})\) to \(d=o(n^{1/2})\), since that
-restriction entered only through the old error---yields the variance formula.
-Details are recorded in the project note \texttt{appendix-second-moment.md}.
+\begin{proof}
+For~\eqref{eq:EY}, apply Lemma~\ref{lem:cor15} with \(\alpha=1\)
+(so \(\varphi(d,1)=1/4\)) and sum over the \(n!/\bigl((n/2)!2^{n/2}\bigr)\) perfect
+matchings.
+
+For~\eqref{eq:VarY}, expand \(\EE[Y^2]=\sum_{H_1,H_2}\PP(H_1\cup H_2\subseteq\Gnd)\).
+If \(|H_1\cap H_2|=k\), then \(H_1\cup H_2\) has the shape required by
+Lemma~\ref{lem:cor15}, so
+\[
+\PP(H_1\cup H_2\subseteq\Gnd)=(1+O(d^2/n))\,\rho(n,d,2k/n).
+\]
+Count pairs via~\cite[Lemma~17]{Gao21} and extract the sum by the Laplace argument
+of~\cite[Lemma~18]{Gao21}.
+The hypothesis \(d=o(n^{1/3})\) in that lemma entered only through the old
+\(O(d^3/n)\) error; with Lemma~\ref{lem:cor15} the same argument applies for
+\(d=o(n^{1/2})\).
+The resulting ratio \(\EE[Y^2]/(\EE Y)^2\) is evaluated exactly as
+in~\cite[§3.4.1]{Gao21}, with every \(d^3/n\) replaced by \(d^2/n\).
 \end{proof}
 
 \section{The coupling}
+\label{sec:coupling}
 
 \begin{lemma}[Error schedule]
 \label{lem:eta}
@@ -125,7 +207,7 @@ Define
 \eta(\alpha)=2\alpha+\frac1{d^3\alpha^2}+C\frac{d^2}{n\alpha^2}
 +C\frac{\sqrt{d/n}\,\log^3 n}{\alpha^2}
 \]
-and
+for a sufficiently large absolute constant \(C\), and set
 \[
 \alpha=\max\bigl\{d^{-1},\,(d^2/n)^{1/4}\log n,\,(d/n)^{1/6}\log n\bigr\}.
 \]
@@ -133,105 +215,147 @@ If \(d\to\infty\) and \(d=o(n^{1/2}/\log^3 n)\), then \(\alpha=o(1)\) and \(\eta
 \end{lemma}
 
 \begin{proof}
-Each argument of the maximum is \(o(1)\) under the hypothesis on \(d\).
-The four summands of \(\eta(\alpha)\) are then \(o(1)\) by direct substitution.
+Under the hypothesis on \(d\), each argument of the maximum is \(o(1)\), so
+\(\alpha=o(1)\).
+Then \(2\alpha=o(1)\).
+Since \(\alpha\ge d^{-1}\), one has \(1/(d^3\alpha^2)\le d^{-1}=o(1)\).
+Since \(\alpha\ge(d^2/n)^{1/4}\log n\),
+\[
+\frac{d^2}{n\alpha^2}\le\frac{(d^2/n)^{1/2}}{\log^2 n}=o(1).
+\]
+Since \(\alpha\ge(d/n)^{1/6}\log n\),
+\[
+\frac{\sqrt{d/n}\,\log^3 n}{\alpha^2}
+\le (d/n)^{1/6}\log n=o(1).
+\]
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
-By Lemma~\ref{lem:moments} and Chebyshev,
+Let \(Y\) be the number of perfect matchings in \(G(n,d+1)\).
+By Lemma~\ref{lem:moments} and Chebyshev's inequality,
 \[
-\mathbb{P}(|Y-\mathbb{E} Y|\ge\alpha\,\mathbb{E} Y)=O(\eta(\alpha))=o(1)
+\PP\bigl(|Y-\EE Y|\ge\alpha\,\EE Y\bigr)
+\le\frac{\Var Y}{\alpha^2(\EE Y)^2}
+=O\bigl(\eta(\alpha)\bigr)=o(1).
 \]
-for \(Y\) the matching count in \(G(n,d+1)\), and likewise for complementary matching
-counts in \(\Gnd\).
+The same bound holds for the number of perfect matchings in complements of
+\(\Gnd\) (equivalently, matching counts in \(G(n,n-1-d)\), to which
+Lemma~\ref{lem:moments} applies in our range after complement duality).
 
-Run the bipartite coupling of~\cite[Theorem~19]{Gao21}, replacing Gao's error
-function (containing \(d^3/(n\alpha^2)\)) by \(\eta\) from Lemma~\ref{lem:eta}.
-All inequalities in~\cite[§4.2]{Gao21} that cite Theorem~10 / Corollary~15 remain
-valid under Lemma~\ref{lem:moments}. The resulting coupling satisfies
-\(\mathbb{P}(G_d\subset G_{d+1})\ge 1-5\eta(\alpha)=1-o(1)\).
+Apply the bipartite coupling of~\cite[Theorem~19]{Gao21}, replacing Gao's error
+function \(\eta\) (which contains the term \(d^3/(n\alpha^2)\)) by the function of
+Lemma~\ref{lem:eta}.
+Every estimate in~\cite[§4.2]{Gao21} that invokes~\cite[Theorem~10 or
+Corollary~15]{Gao21} remains valid under Lemma~\ref{lem:moments}.
+The coupling therefore satisfies
+\(\PP(G_d\subset G_{d+1})\ge 1-5\eta(\alpha)=1-o(1)\).
 \end{proof}
 
 \section{Beyond exact \(o(\sqrt{n})\)}
+\label{sec:beyond}
 
-\begin{theorem}[Always-nested approximate coupling]
-\label{thm:approx}
-Let \(3\le d\le n/2-1\). There is a coupling \((G,H)\) with \(G\subset H\) almost
-surely, \(H\sim\mu_d\oplus\mu_1\), and
-\[
-\mathrm{d_{TV}}(H,\mu_{d+1})\le\mathrm{d_{TV}}(\mu_d\oplus\mu_1,\mu_{d+1}).
-\]
-Consequently, if \(\mathrm{d_{TV}}(\mu_d\oplus\mu_1,\mu_{d+1})\le\delta\) then there is a
-coupling with \(H\sim\mu_{d+1}\) and \(\mathbb{P}(G\subset H)\ge 1-\delta\).
-\end{theorem}
-
-\begin{corollary}[Square-root window]
-\label{cor:sqrt}
-Assume the patched variance formula for \(d\le c\sqrt{n}\). For sufficiently small
-absolute \(c>0\) and large \(n\),
-\[
-\mathrm{d_{TV}}(\mu_d\oplus\mu_1,\mu_{d+1})\le\tfrac12,
-\]
-hence a coupling with \(H\sim\mu_{d+1}\) and \(\mathbb{P}(G\subset H)\ge\tfrac12\).
-\end{corollary}
-
-\begin{theorem}[Sandwich degree defect]
-\label{thm:defect}
-For each fixed \(\varepsilon\in(0,1)\) and \(d\ge C(\varepsilon)\log n\), there is a coupling
-of \(G\sim\Gnd\) and \(H\sim G(n,d+1)\) with
-\[
-\mathbb{P}\bigl(\Delta(G\setminus H)\le 3\varepsilon d\bigr)=1-o(1).
-\]
-\end{theorem}
-
-\begin{proof}
-Apply~\cite{BIM25} to sandwich \(G\) and \(H\) between binomial graphs of densities
-\((1\pm\varepsilon)d/n\) and \((1\pm\varepsilon)(d+1)/n\). The monotone ER coupling leaves a
-symmetric-difference container of max degree \(O(\varepsilon d)\) whp.
+\begin{proof}[Proof of Theorem~\ref{thm:approx}]
+Sample \((G,H)\) from \(\mu_d\oplus\mu_1\), so \(G\subset H\) almost surely and
+\(H\sim\mu_d\oplus\mu_1\).
+Couple \(H\) to \(H'\sim\mu_{d+1}\) optimally, whence
+\(\PP(H\neq H')=\dTV(\mu_d\oplus\mu_1,\mu_{d+1})\le\delta\).
+On \(\{H=H'\}\) one has \(G\subset H'\).
 \end{proof}
 
-\section{Remarks and open problems}
+\begin{lemma}[TV from concentration]
+\label{lem:tv}
+If \(\PP(|Y-\EE Y|\ge\alpha\,\EE Y)\le\delta\) with \(\alpha\in(0,1/2)\), then
+\[
+\dTV(\mu_d\oplus\mu_1,\mu_{d+1})\le 10(\alpha+\delta).
+\]
+\end{lemma}
 
-\begin{remark}
-Constant-factor degree gaps \(d_2\ge\frac{1+\varepsilon}{1-\varepsilon}d_1\) for
-\(d_1\ge C\log n\) follow from the sandwich theorem~\cite{BIM25} and do not require
-the present nesting analysis.
-\end{remark}
+\begin{proof}
+This is the Strassen/bipartite coupling of~\cite[Corollary~3.2]{HLMPW25}, equivalently
+the degree-regularity argument in~\cite[Theorem~19]{Gao21}: on the high-probability
+set where \(Y\) is \(\alpha\)-concentrated, the coupling fails with probability
+\(O(\alpha+\delta)\).
+\end{proof}
 
-\begin{remark}[Barrier at \(\sqrt{n}\)]
-Even with~\cite[Theorem~6]{Gao20}, matching probabilities carry relative error
-\(O(d^2/n)\), which ceases to be \(o(1)\) for \(d=\omega(\sqrt{n})\).
-Exact whp \(+1\) beyond this point needs new ideas (quantitative sandwich
-\(\varepsilon(n)\), permanent concentration, or dense switchings).
-\end{remark}
+\begin{proof}[Proof of Corollary~\ref{cor:sqrt}]
+For \(d\le c\sqrt{n}\) the patched variance formula gives
+\(\Var Y/(\EE Y)^2=O(c^2+d^{-3})\).
+Choose \(\alpha>0\) fixed and \(c\) small enough that Chebyshev yields \(\delta\le\alpha\).
+Lemma~\ref{lem:tv} then gives TV distance \(O(\alpha)\).
+Shrinking \(\alpha\) yields TV \(\le 1/2\); apply Theorem~\ref{thm:approx}.
+\end{proof}
 
-\begin{remark}[Notation]
-Here \(\mu_d\oplus\mu_1\) denotes the law of \(G\cup M\) for \(G\sim\Gnd\) and
-\(M\) a uniform perfect matching in the complement of \(G\).
-\end{remark}
+\begin{proof}[Proof of Theorem~\ref{thm:defect}]
+By~\cite[Theorem~1.1]{BIM25}, there is a coupling with
+\[
+G\subset G\bigl(n,(1+\varepsilon)d/n\bigr)
+\quad\text{and}\quad
+G\bigl(n,(1-\varepsilon)(d+1)/n\bigr)\subset H
+\]
+with probability \(1-o(1)\).
+Under the standard monotone coupling of binomial graphs, the edges of \(G\) that can
+fail to lie in \(H\) are contained in the ER difference
+\[
+G\bigl(n,(1+\varepsilon)d/n\bigr)
+\setminus
+G\bigl(n,(1-\varepsilon)(d+1)/n\bigr).
+\]
+A Chernoff bound shows that this difference has maximum degree at most \(3\varepsilon d\)
+with probability \(1-o(1)\).
+\end{proof}
 
-\begin{thebibliography}{9}
+\section{The \(\sqrt{n}\) barrier and open problems}
+\label{sec:open}
+
+\begin{proposition}[Enumeration barrier]
+\label{prop:barrier}
+Any estimate of \(\PP(M\subset\Gnd)\) obtained by multiplying \(n/2\) conditional edge
+probabilities, each with relative error \(\Omega(d^2/n^2)\), incurs a cumulative
+relative error \(\Omega(d^2/n)\), which is not \(o(1)\) when \(d=\omega(\sqrt{n})\).
+\end{proposition}
+
+Thus the present method cannot yield exact high-probability \(+1\) nesting past
+\(\sqrt{n}\).
+Natural routes beyond this barrier include:
+\begin{itemize}
+\item quantitative sandwich theorems with \(\varepsilon=\varepsilon(n)\to 0\)
+(cf.~\cite[Conjecture~1.3]{BIM25});
+\item concentration of \(\log Y\) or permanent estimates in denser regimes;
+\item direct switching proofs of
+\(\dTV(\mu_d\oplus\mu_1,\mu_{d+1})=o(1)\) for \(d=\Theta(n)\).
+\end{itemize}
+
+\section*{Acknowledgements}
+This note executes the improvement outlined by Gao in~\cite{Gao21}.
+We thank the authors of~\cite{Gao20,Gao21,BIM25,HLMPW25} for the tools used here.
+
+\begin{thebibliography}{99}
 
 \bibitem{BIM25}
 N.~Behague, D.~Il'kovi\v{c}, and R.~Montgomery,
-A proof of the Kim--Vu sandwich conjecture,
+\emph{A proof of the Kim--Vu sandwich conjecture},
 arXiv:2510.20765, 2025.
 
 \bibitem{Gao20}
 P.~Gao,
-Triangles and subgraph probabilities in random regular graphs,
+\emph{Triangles and subgraph probabilities in random regular graphs},
 arXiv:2012.01492, 2020.
 
 \bibitem{Gao21}
 P.~Gao,
-The number of perfect matchings, and the nesting properties, of random regular graphs,
+\emph{The number of perfect matchings, and the nesting properties, of random regular graphs},
 arXiv:2104.11850, 2021;
-Random Structures \& Algorithms, 2023.
+\emph{Random Structures Algorithms} \textbf{62} (2023), no.~4.
 
 \bibitem{GIM22}
 P.~Gao, M.~Isaev, and B.~D.~McKay,
-Sandwiching dense random regular graphs between binomial random graphs,
-Probab.\ Theory Relat.\ Fields, 2022.
+\emph{Sandwiching dense random regular graphs between binomial random graphs},
+\emph{Probab.\ Theory Relat.\ Fields} \textbf{184} (2022), 115--158.
+
+\bibitem{HLMPW25}
+L.~Hollom, L.~Lichev, A.~Mond, J.~Portier, and Y.~Wang,
+\emph{Monotonicity and decompositions of random regular graphs},
+arXiv:2505.22875, 2025.
 
 \end{thebibliography}
 
