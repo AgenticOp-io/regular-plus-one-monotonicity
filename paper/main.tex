@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks,citecolor=blue,linkcolor=blue]{hyperref}
+
+\title{Nesting random regular graphs one degree at a time,\\ up to degree \(o(\sqrt{n})\)}
+\author{AgenticOp-io}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Gao proved that \(G(n,d)\) and \(G(n,d+1)\) can be coupled so that
+\(G(n,d)\subset G(n,d+1)\) a.a.s.\ whenever \(d\to\infty\) and \(d=o(n^{1/3})\).
+We extend the range to \(d=o(n^{1/2}/\log^3 n)\) by substituting Gao's sharper
+conditional edge probabilities into the same coupling template, replacing every
+\(O(d^3/n)\) error by \(O(d^2/n)\).
+\end{abstract}
+
+\section{Introduction}
+
+The Gao--Isaev--McKay monotonicity conjecture asks for couplings
+\(G(n,d_1)\subset G(n,d_2)\) for \(d_1\le d_2\) (with two exceptional pairs).
+The critical case is \(d_2=d_1+1\). Gao~\cite{Gao21} proved this for
+\(d=o(n^{1/3})\) and observed that \(o(n^{1/2})\) should follow from the sharper
+subgraph probabilities of~\cite{Gao20}. We carry out that program.
+
+\begin{theorem}[Main]
+\label{thm:main}
+Assume the conditional edge-probability estimate of~\cite[Theorem~6]{Gao20}.
+Let \(n\) be even and \(d\to\infty\) with \(d=o(n^{1/2}/\log^3 n)\).
+Then there is a coupling of \(G_d\sim G(n,d)\) and \(G_{d+1}\sim G(n,d+1)\) with
+\[
+\mathbb{P}(G_d\subset G_{d+1})=1-o(1).
+\]
+\end{theorem}
+
+\section{Patched subgraph probabilities}
+
+\begin{lemma}[Patched Corollary~15]
+\label{lem:cor15}
+Let \(H\) be as in Gao~\cite[Corollary~15]{Gao21} with parameter \(\alpha=2k/n\).
+If \(d=o(n^{1/2})\), then
+\[
+\mathbb{P}(H\subseteq G(n,d))
+=(1+O(d^2/n))\,\rho(n,d,\alpha),
+\]
+with \(\rho\) the main term of~\cite{Gao21}.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+Factor \(\mathbb{P}(H\subseteq G)\) as a product of conditional edge probabilities along
+an ordering of \(E(H)\). Apply~\cite[Theorem~6]{Gao20} at each step (relative error
+\(O(d^2/n^2)\)). Accumulate over \(|E(H)|\le n\) steps to get \(O(d^2/n)\).
+The principal product equals Gao's main term by~\cite[Remark~8]{Gao20} together
+with the error-free factorial calculation in~\cite{Gao21}.
+\end{proof}
+
+\begin{lemma}[Patched moments]
+\label{lem:moments}
+Let \(Y\) be the number of perfect matchings in \(G(n,d)\). Then
+\[
+\frac{\mathrm{Var}\,Y}{(\mathbb{E} Y)^2}
+=\frac1{6d^3}+O\Bigl(d^{-4}+\frac{d^2}{n}+\sqrt{\frac{d}{n}}\log^3 n\Bigr).
+\]
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+Identical to~\cite[Theorem~10]{Gao21}, with every \(O(d^3/n)\) from
+Corollary~15 replaced by \(O(d^2/n)\) via Lemma~\ref{lem:cor15}.
+\end{proof}
+
+\section{Coupling}
+
+Define
+\[
+\eta(\alpha)=2\alpha+\frac1{d^3\alpha^2}+C\frac{d^2}{n\alpha^2}
++C\frac{\sqrt{d/n}\,\log^3 n}{\alpha^2}.
+\]
+Choose
+\[
+\alpha=\max\bigl\{d^{-1},\,(d^2/n)^{1/4}\log n,\,(d/n)^{1/6}\log n\bigr\}.
+\]
+Then \(\alpha=o(1)\) and \(\eta(\alpha)=o(1)\) whenever
+\(d=o(n^{1/2}/\log^3 n)\).
+
+Run the coupling of~\cite[Theorem~19]{Gao21} with this \(\eta\) in place of Gao's
+original error function. Chebyshev input comes from Lemma~\ref{lem:moments}.
+Failure probability \(O(\eta)=o(1)\), proving Theorem~\ref{thm:main}.
+
+\section{Remarks}
+
+Constant-factor degree gaps for \(d\ge C\log n\) already follow from the
+Kim--Vu sandwich theorem as proved in full by Behague--Il'kovi\v{c}--Montgomery.
+The remaining barrier for the full monotonicity conjecture is
+\(d=\Omega(\sqrt{n})\`.
+
+\begin{thebibliography}{9}
+\bibitem{Gao20}
+P.~Gao,
+Triangles and subgraph probabilities in random regular graphs,
+arXiv:2012.01492, 2020.
+
+\bibitem{Gao21}
+P.~Gao,
+The number of perfect matchings, and the nesting properties, of random regular graphs,
+arXiv:2104.11850, 2021;
+Random Structures \& Algorithms, 2023.
+\end{thebibliography}
+
+\end{document}
