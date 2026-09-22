@@ -27,7 +27,10 @@ python src/experiments.py
 python src/config_probes.py
 ```
 
-## Limit of the method
+## Policy
 
-Exact whp +1 stops at \(\sqrt{n}\) because cumulative matching-probability error is
-\(\Omega(d^2/n)\). Past that, only defective / approximate nestings are obtained here.
+Math deliverables are arXiv-formatted in `paper/main.tex`
+(see `.cursor/rules/arxiv-format.mdc`).
+
+Strategic note: the exact-+1 method is complete through \(o(\sqrt{n})\); further
+range needs a **new** enabling theorem (`notes/extend-vs-new.md`).
