@@ -1,28 +1,26 @@
 # Status board
 
-## Proven in this repo
+## Publishable claims (strongest first)
 
-| Result | File |
-|---|---|
-| Easy regime (factor gaps via BIM) | `proof-easy-regime.md` |
-| Reduction (+1 ⇒ full mono, even n) | `proof-reduction.md` |
-| Lemma L4 (η_new schedule) | `attack-n-half.md` |
-| Theorem A (patched Cor 15) | `lemma-L2-proof.md` |
-| Main-term identification | `main-term-identification.md` |
-| Theorem B + Lemma 18′ (moments) | `lemma-L2-proof.md`, `appendix-second-moment.md` |
-| Main +1 theorem \(d=o(\sqrt{n}/\log^3 n)\) | `main-theorem.md` |
-| LaTeX draft | `../paper/main.tex` |
+| Claim | Range | File |
+|---|---|---|
+| Exact +1 whp | \(d=o(\sqrt{n}/\log^3 n)\) | `main-theorem.md`, `paper/main.tex` |
+| Always-nested + TV≤1/2 | \(d\le c\sqrt{n}\) | `medium-regime-theorems.md`, `strongest-theorems.md` |
+| Degree defect \(O(\varepsilon d)\) | \(d\ge C\log n\) | `medium-regime-theorems.md` Thm T5′ |
+| Easy factor-gap nesting | \(d_2\ge\rho d_1\), \(d_1\ge C\log n\) | `proof-easy-regime.md` |
 
-## Next frontier
+## Supporting proofs
 
 | Item | File |
 |---|---|
-| Barrier at \(\sqrt{n}\) + attack options B1–B5 | `beyond-sqrt-n.md` |
-| Recommended: defective +1 for \(n^{1/2}\le d\le n^{2/3}\) | `beyond-sqrt-n.md` §B1 |
+| Patched Cor 15 / moments | `lemma-L2-proof.md`, `appendix-second-moment.md` |
+| Main-term ID | `main-term-identification.md` |
+| η schedule | `attack-n-half.md` |
+| TV⇐ concentration | `medium-regime-theorems.md` Thm T1 |
+| Barrier at √n | `beyond-sqrt-n.md`, `medium-regime-theorems.md` |
 
-## Black boxes
+## Truly open
 
-| Item | Source |
-|---|---|
-| Conditional edge probs Thm 6 | Gao arXiv:2012.01492 |
-| Coupling template Thm 19 | Gao arXiv:2104.11850 |
+- Exact whp +1 for \(d=\omega(\sqrt{n})\)
+- Full Gao–Isaev–McKay conjecture
+- Process sandwich / quantitative \(\varepsilon(n)\)

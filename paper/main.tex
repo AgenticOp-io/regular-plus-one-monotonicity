@@ -152,19 +152,62 @@ valid under Lemma~\ref{lem:moments}. The resulting coupling satisfies
 \(\mathbb{P}(G_d\subset G_{d+1})\ge 1-5\eta(\alpha)=1-o(1)\).
 \end{proof}
 
+\section{Beyond exact \(o(\sqrt{n})\)}
+
+\begin{theorem}[Always-nested approximate coupling]
+\label{thm:approx}
+Let \(3\le d\le n/2-1\). There is a coupling \((G,H)\) with \(G\subset H\) almost
+surely, \(H\sim\mu_d\oplus\mu_1\), and
+\[
+\mathrm{d_{TV}}(H,\mu_{d+1})\le\mathrm{d_{TV}}(\mu_d\oplus\mu_1,\mu_{d+1}).
+\]
+Consequently, if \(\mathrm{d_{TV}}(\mu_d\oplus\mu_1,\mu_{d+1})\le\delta\) then there is a
+coupling with \(H\sim\mu_{d+1}\) and \(\mathbb{P}(G\subset H)\ge 1-\delta\).
+\end{theorem}
+
+\begin{corollary}[Square-root window]
+\label{cor:sqrt}
+Assume the patched variance formula for \(d\le c\sqrt{n}\). For sufficiently small
+absolute \(c>0\) and large \(n\),
+\[
+\mathrm{d_{TV}}(\mu_d\oplus\mu_1,\mu_{d+1})\le\tfrac12,
+\]
+hence a coupling with \(H\sim\mu_{d+1}\) and \(\mathbb{P}(G\subset H)\ge\tfrac12\).
+\end{corollary}
+
+\begin{theorem}[Sandwich degree defect]
+\label{thm:defect}
+For each fixed \(\varepsilon\in(0,1)\) and \(d\ge C(\varepsilon)\log n\), there is a coupling
+of \(G\sim\Gnd\) and \(H\sim G(n,d+1)\) with
+\[
+\mathbb{P}\bigl(\Delta(G\setminus H)\le 3\varepsilon d\bigr)=1-o(1).
+\]
+\end{theorem}
+
+\begin{proof}
+Apply~\cite{BIM25} to sandwich \(G\) and \(H\) between binomial graphs of densities
+\((1\pm\varepsilon)d/n\) and \((1\pm\varepsilon)(d+1)/n\). The monotone ER coupling leaves a
+symmetric-difference container of max degree \(O(\varepsilon d)\) whp.
+\end{proof}
+
 \section{Remarks and open problems}
 
 \begin{remark}
 Constant-factor degree gaps \(d_2\ge\frac{1+\varepsilon}{1-\varepsilon}d_1\) for
 \(d_1\ge C\log n\) follow from the sandwich theorem~\cite{BIM25} and do not require
-the present work.
+the present nesting analysis.
 \end{remark}
 
 \begin{remark}[Barrier at \(\sqrt{n}\)]
 Even with~\cite[Theorem~6]{Gao20}, matching probabilities carry relative error
 \(O(d^2/n)\), which ceases to be \(o(1)\) for \(d=\omega(\sqrt{n})\).
-New ideas are needed beyond this threshold (defective couplings, quantitative
-sandwich \(\varepsilon(n)\), or permanent concentration in the dense regime).
+Exact whp \(+1\) beyond this point needs new ideas (quantitative sandwich
+\(\varepsilon(n)\), permanent concentration, or dense switchings).
+\end{remark}
+
+\begin{remark}[Notation]
+Here \(\mu_d\oplus\mu_1\) denotes the law of \(G\cup M\) for \(G\sim\Gnd\) and
+\(M\) a uniform perfect matching in the complement of \(G\).
 \end{remark}
 
 \begin{thebibliography}{9}
