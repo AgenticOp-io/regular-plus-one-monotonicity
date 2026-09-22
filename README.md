@@ -37,5 +37,5 @@ python src/config_probes.py
 
 ## Next concrete step
 
-Polish for arXiv: expand Gao §3.4–3.5 into an appendix, then convert
-`notes/main-theorem.md` + `lemma-L2-proof.md` into LaTeX.
+Attack **defective +1** for \(n^{1/2}\le d\le n^{2/3}\) (`notes/beyond-sqrt-n.md`).
+Optional: compile `paper/main.tex` and submit a note.
