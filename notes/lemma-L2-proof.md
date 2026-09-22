@@ -208,11 +208,9 @@ truncation/tail estimates on large-\(k\) contributions and is unchanged. ∎
 
 ## Honesty box
 
-- Theorem A Step 4 relies on Gao (2012.01492) Remark 8 for the identification
-  “Theorem 6 main term = classical McKay main term.” We do **not** re-expand the
-  full \(\bar\phi\)-product into \(\varphi(d,\alpha)\) from scratch; that algebra is already in
-  Gao (2104.11850) proof of Cor 15 and is error-term-independent.
-- Theorem B’s second-moment series manipulations are cited as identical to Gao §3.4–3.5
-  rather than recopied page-for-page. A fully self-contained appendix can paste those
-  expansions verbatim with the error substitution.
+- Theorem A Step 4 is strengthened in `main-term-identification.md`
+  (both main terms named; ratio \(1+O(d^2/n)\)).
+- Theorem B’s series algebra: see `appendix-second-moment.md`, including
+  **Lemma 18′** with range relaxed to \(d=o(n^{1/2})\).
 - External black box: arXiv:2012.01492 Theorem 6.
+- Beyond \(\sqrt{n}\): see `beyond-sqrt-n.md`.
