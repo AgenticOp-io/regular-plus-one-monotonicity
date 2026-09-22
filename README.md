@@ -2,40 +2,32 @@
 
 # Regular +1 Monotonicity
 
-Private research repo (AgenticOp-io): extend
-\(G(n,d)\subset G(n,d+1)\) from Gao’s \(d=o(n^{1/3})\) to \(d=o(\sqrt{n})\).
+Private AgenticOp-io research repo: nest \(G(n,d)\subset G(n,d+1)\).
 
-## Current status
+## Main results
 
-| Item | State |
-|---|---|
-| Easy regime (factor gaps via BIM) | **proved** — `notes/proof-easy-regime.md` |
-| Reduction (+1 ⇒ full mono) | **proved** — `notes/proof-reduction.md` |
-| Bottleneck diagnosis | done — `notes/bottleneck.md` |
-| Lemma L1 (cite Thm 6) | recorded — `notes/lemma-L1-citation.md` |
-| Lemma L2 / Thms A–B (patch Cor 15 & moments) | **proved** — `notes/lemma-L2-proof.md` |
-| Lemma L4 (η schedule) | **proved** — `notes/attack-n-half.md` |
-| Main +1 theorem for \(d=o(\sqrt{n}/\log^3 n)\) | **proved (cond. on Thm 6)** — `notes/main-theorem.md` |
-| +1 for all \(d\) / full conjecture | open |
+1. **Exact +1** for \(d=o(\sqrt{n}/\log^3 n)\) (assumes Gao arXiv:2012.01492 Thm 6).
+2. **Always-nested coupling** with \(\mathrm{d_{TV}}\le 1/2\) for \(d\le c\sqrt{n}\).
+3. **Degree-defect** \(\Delta(G\setminus H)=O(\varepsilon d)\) for all \(d\ge C\log n\) via sandwich.
 
-See `notes/STATUS.md` for the live board.
+See `notes/strongest-theorems.md` and `paper/main.tex`.
 
 ## Layout
 
 ```
-notes/     mathematical writeups
-src/       small-n and schedule experiments
-paper/     paper outline
+notes/     proofs and status
+src/       experiments
+paper/     LaTeX draft
 ```
 
-## Run experiments
+## Run
 
 ```bash
 python src/experiments.py
 python src/config_probes.py
 ```
 
-## Next concrete step
+## Limit of the method
 
-Attack **defective +1** for \(n^{1/2}\le d\le n^{2/3}\) (`notes/beyond-sqrt-n.md`).
-Optional: compile `paper/main.tex` and submit a note.
+Exact whp +1 stops at \(\sqrt{n}\) because cumulative matching-probability error is
+\(\Omega(d^2/n)\). Past that, only defective / approximate nestings are obtained here.
