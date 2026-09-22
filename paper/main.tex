@@ -664,6 +664,7 @@ Quantitative sandwich rates from the~\cite{BIM25} budget:
 Rate & Range & Status \\
 \hline
 \((\log n/d)^{1/9}\) & all \(d\ge C\log n\) & Theorem~\ref{thm:quant} \\
+\((\log n/d)^{1/5}\) & all \(d\ge C\log n\) & Theorem~\ref{thm:quant-fifth} (via Conjecture~\ref{conj:U}) \\
 \((\log n/d)^{1/3}\) & \(d\ge n^{\sigma}\) & Theorem~\ref{thm:quant-third} (process-optimal) \\
 \((\log n/d)^{1/2}\) & all \(d\ge C\log n\) & Conjecture~\ref{conj:Q} \\
 \hline
@@ -676,6 +677,11 @@ forces \(\eta=\Omega(\sqrt{\log n/(\varepsilon d)})\) with \(\eta\ll\varepsilon\
 The dense embedding of~\cite{GIM22} is likewise blocked at Chernoff scale by the
 structural hypothesis \(\xi\Delta\gg n/\log n\), which is incompatible with
 \(\xi=\Theta\sqrt{(\log n)/d}\) for every \(d\le n-1\).
+The exponent \(1/9\) is an artefact of the
+\((\log n/\delta)^{1/8}\) two-vertex path upper bound in~\cite[Lemma~7.1]{BIM25};
+Conjecture~\ref{conj:U} restores the natural \((\log n/\delta)^{1/4}\) scale already
+present in~\cite[Lemma~5.1, Theorem~6.1]{BIM25} and upgrades the global rate to
+\(1/5\).
 
 \begin{proof}[Proof of Theorem~\ref{thm:process-to-Q}]
 Let \((G_i)_{0\le i\le\binom{n}{2}}\) be the random graph process on \([n]\), and let
@@ -824,8 +830,15 @@ Theorem~\ref{thm:hybrid} gives a one-sided Chernoff-scale container with correct
 marginals and degree variance, but \(H\) is not asserted to be distributed as
 \(G(n,(1+\varepsilon)d/n)\): edges inside \(G\) are rigidly dependent through the regular
 constraint.
-Contiguity of \(H\) to \(G(n,(1+\varepsilon)d/n)\) (or TV distance \(o(1)\)) would finish the
-upper half of Conjecture~\ref{conj:Q} for \(d\ge n^{\sigma}\).
+
+Moreover, a direct contiguity attack fails. Comparing \(H\) to the nested binomial
+obtained by retaining each edge of \(G^*_0\) independently with probability
+\(r=(1+\varepsilon)/(1+\varepsilon_0)\) yields a \(\chi^2\) divergence of order
+\(\Theta(dn)\) between the two inhomogeneous Bernoulli measures on \(G^*_0\)
+(hybrid probabilities \(1\) on \(E(G)\) and \(q\) on \(E(R)\), versus constant \(r\) on all of
+\(E(G^*_0)\)). Thus \(H\) is not contiguous to this nested ER model, and upgrading
+Theorem~\ref{thm:hybrid} to the upper half of Conjecture~\ref{conj:Q} requires a
+different identification (or the process conjecture).
 \end{remark}
 
 \begin{remark}[Matching room]
@@ -838,6 +851,56 @@ If those matchings can be extracted and the resulting
 increment form of Conjecture~\ref{conj:Q} follows in the polynomial regime.
 \end{remark}
 
+\begin{conjecture}[Two-vertex path upper bound at scale \(1/4\)]
+\label{conj:U}
+There exists an absolute constant \(C_U\) such that the following holds.
+In the setting of~\cite[Lemma~7.1]{BIM25} with \(\delta=2m/n\ge C_U\log n\), with
+probability \(1-o(n^{-10})\), for all distinct \(x,y\in[n]\) and all
+\(\ell\in[\tfrac12\log n,\,10\log n]\), the number of
+\((F\setminus K,K)\)-alternating \(x,y\)-paths of length \(2\ell\) is at most
+\[
+\Bigl(1+C_U\Bigl(\frac{\log n}{\delta}\Bigr)^{1/4}\Bigr)\frac{d^\ell\delta^\ell}{n}.
+\]
+\end{conjecture}
+
+\noindent
+(This matches the error scale already proved for one-vertex upper counts
+in~\cite[Lemma~5.1]{BIM25} and for two-vertex lower counts
+in~\cite[Theorem~6.1]{BIM25}. The weaker schedule
+\((\log n/\delta)^{1/8}\) in~\cite[Lemma~7.1]{BIM25} arises from a truncation
+argument imposing \(\lambda=\Theta(\eta^2)\).)
+
+\begin{theorem}[Rate \(1/5\) from Conjecture~\ref{conj:U}]
+\label{thm:quant-fifth}
+Assume Conjecture~\ref{conj:U}.
+Then there exists an absolute constant \(C_5\) such that whenever
+\(d\ge C_5\log n\) and
+\[
+\varepsilon\ge C_5\Bigl(\frac{\log n}{d}\Bigr)^{1/5},
+\]
+there is a coupling \((G_*,G,G^*)\) as in Theorem~\ref{thm:quant} at this
+\(\varepsilon\).
+\end{theorem}
+
+\begin{proof}
+Set \(\varepsilon=C_5(\log n/d)^{1/5}\) with \(C_5\) large, and run the deletion-process
+reduction of~\cite[§3]{BIM25} with absolute switching constant \(C_0\) and
+\[
+\eta_m:=C_0\max\Bigl\{\frac{\mu}{\log n},\Bigl(\frac{n\log n}{m}\Bigr)^{1/4}\Bigr\},
+\qquad\mu=\varepsilon/100.
+\]
+At the stopping scale \(m\ge R=\lfloor\varepsilon dn/8\rfloor\) one has
+\((n\log n/m)^{1/4}=O((\log n/(\varepsilon d))^{1/4})=O(\varepsilon)\) by the choice of
+\(\varepsilon\), so \(\eta_m=O(\varepsilon)\).
+Conjecture~\ref{conj:U} supplies the two-vertex upper path bound at this
+\(\eta_m\); the matching lower bound is~\cite[Theorem~6.1]{BIM25} at
+\(\lambda=\Theta(\eta_m)\).
+Hence~\cite[Theorem~4.1]{BIM25} applies, and the B2 estimate reduces to
+\(C_0\mu=O(\varepsilon)\) together with
+\(C_0(\log n/(\varepsilon d))^{1/4}=O(\varepsilon)\), both of which hold.
+The lower sandwich at the same rate is unchanged.
+\end{proof}
+
 \section*{Acknowledgements}
 The exact \(+1\) range \(o(\sqrt{n})\) executes the improvement outlined by Gao
 in~\cite{Gao21}.
@@ -847,7 +910,8 @@ switching threshold, and dense path-concentration lemma in~\cite{BIM25};
 we thank those authors for the underlying analysis.
 Theorems~\ref{thm:process-to-Q}--\ref{thm:window},
 Lemma~\ref{lem:residual}, and Theorem~\ref{thm:hybrid} organise the remaining gap
-to the Chernoff floor.
+to the Chernoff floor; Theorem~\ref{thm:quant-fifth} records the next rate
+available from a one-exponent improvement in path upper bounds.
 We also thank the authors of~\cite{Gao20,HLMPW25}.
 
 \begin{thebibliography}{99}
