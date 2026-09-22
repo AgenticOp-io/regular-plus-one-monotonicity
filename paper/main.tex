@@ -4,7 +4,8 @@
 \usepackage[colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
 \usepackage{microtype}
 
-\title{Nesting random regular graphs one degree at a time\\ up to degree \(o(\sqrt{n})\)}
+\title{Nesting random regular graphs:\\
+exact \(+1\) to \(o(\sqrt{n})\), long chains, and a quantitative sandwich program}
 \author{AgenticOp-io}
 \date{}
 
@@ -13,6 +14,7 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
 
 \newcommand{\Gnp}{G(n,p)}
 \newcommand{\Gnd}{G(n,d)}
@@ -31,9 +33,27 @@ so that \(\Gnd\subset G(n,d+1)\) with high probability whenever \(d\to\infty\) a
 \(d=o(n^{1/2})\) via the sharper conditional edge probabilities of~\cite{Gao20},
 leaving the details for a simpler exposition.
 We supply those details, obtaining the range \(d=o(n^{1/2}/\log^3 n)\).
-We also record two weaker nestings beyond this range: an always-nested coupling
-with total-variation control for \(d=O(\sqrt{n})\), and an \(O(\varepsilon d)\)
-degree-defect nesting for all \(d\ge C\log n\) via the Kim--Vu sandwich theorem.
+
+As a new consequence of the same error schedule, we prove \emph{long simultaneous
+nesting chains}: for base degree \(D=o(n^{1/2}/\log^4 n)\) one can nest
+\(G(n,D)\subseteq\cdots\subseteq G(n,D+L)\) through a window of length
+\(L=o\bigl((n/D^2)^{1/3}/\log^{2/3}n\bigr)\).
+In the sparse regime \(D=\mathrm{polylog}\,n\) this yields polynomial-length
+exact nestings, far beyond constant-factor relative windows.
+
+Past \(\sqrt{n}\), exact \(+1\) is blocked by an enumeration barrier.
+Tracking the error budget in the Kim--Vu sandwich proof of~\cite{BIM25} with
+absolute switching constants, we obtain the vanishing rate
+\(\varepsilon\ge C(\log n/d)^{1/9}\), and for polynomial degree \(d\ge n^{\sigma}\) the
+process-optimal rate \(\varepsilon\ge C(\log n/d)^{1/3}\).
+The Chernoff floor \(\varepsilon\asymp\sqrt{(\log n)/d}\) requires a different
+architecture (Conjecture~\ref{conj:Q}).
+We prove that the process conjecture of~\cite{BIM25} implies Conjecture~\ref{conj:Q},
+that for \(d\ge n^{\sigma}\) the Chernoff problem reduces to a final-window
+coupling through surplus degrees
+\(\sqrt{d\log n}\le\delta\le d^{2/3}(\log n)^{1/3}\), and that a hybrid
+thinning of the \(1/3\)-sandwich residual already yields a Chernoff-scale
+supergraph with the correct edge marginals (Theorem~\ref{thm:hybrid}).
 \end{abstract}
 
 \tableofcontents
@@ -57,11 +77,27 @@ The same paper states explicitly that Theorem~8 should extend to all
 of~\cite{Gao20}, but leaves the details for a simpler exposition
 (see~\cite[Remark~16(b), §5]{Gao21}).
 We write those details out.
+As a new consequence of the same patched error schedule, we obtain long
+simultaneous nesting chains (Theorem~\ref{thm:chains}): polynomial-length exact
+nestings in the sparse regime, and windows of length
+\(o\bigl((n/D^2)^{1/3}/\mathrm{polylog}\,n\bigr)\) at base degree \(D\).
 
 Independently, the Kim--Vu sandwich conjecture---coupling \(\Gnd\) between two
 binomial graphs of density \((1\pm\varepsilon)d/n\)---was proved in full by
-Behague, Il'kovi\v{c} and Montgomery~\cite{BIM25}.
+Behague, Il'kovi\v{c} and Montgomery~\cite{BIM25} for every fixed \(\varepsilon>0\).
 That yields constant-factor degree gaps, but not \(+1\).
+We formulate the Chernoff-optimal quantitative refinement
+(Conjecture~\ref{conj:Q}) as the natural enabling theorem past \(\sqrt{n}\),
+and extract from~\cite{BIM25} the vanishing rates
+\(\varepsilon\ge C(\log n/d)^{1/9}\) in general
+(Theorem~\ref{thm:quant}) and \(\varepsilon\ge C(\log n/d)^{1/3}\) for
+\(d\ge n^{\sigma}\) (Theorem~\ref{thm:quant-third}), the latter optimal for
+their deletion-process architecture.
+As structural progress toward Conjecture~\ref{conj:Q}, we prove that the process
+conjecture of~\cite{BIM25} implies the Chernoff sandwich
+(Theorem~\ref{thm:process-to-Q}), and that for polynomial degree the problem
+reduces to a final surplus-degree window of width \(d^{2/3}\to d^{1/2}\)
+(Theorem~\ref{thm:window}).
 
 \subsection{Main result}
 
@@ -83,7 +119,31 @@ All other steps are either elementary or inherited from~\cite{Gao21} with a
 tracked error substitution \(d^3/n\mapsto d^2/n\).
 \end{remark}
 
-\subsection{Secondary results}
+\subsection{Long simultaneous chains}
+
+\begin{theorem}[Long \(+1\) chains]
+\label{thm:chains}
+Assume~\cite[Theorem~6]{Gao20}.
+Let \(n\) be even and let \(D=D(n)\), \(L=L(n)\) be positive integers with \(Dn\) even,
+\[
+D\to\infty,\qquad
+D=o\Bigl(\frac{n^{1/2}}{\log^4 n}\Bigr),\qquad
+L\to\infty,\qquad
+L=o\Biggl(\frac{(n/D^2)^{1/3}}{\log^{2/3}n}\Biggr).
+\]
+Then there exists a coupling \((G_d)_{d=D}^{D+L}\) such that each \(G_d\sim G(n,d)\) and
+\[
+\PP\bigl(G_D\subseteq G_{D+1}\subseteq\cdots\subseteq G_{D+L}\bigr)=1-o(1).
+\]
+\end{theorem}
+
+\begin{corollary}[Sparse mega-window]
+\label{cor:mega}
+Taking \(D=\lfloor\log^4 n\rfloor\) (with parity arranged) yields a simultaneous
+exact nesting through \(L=o(n^{1/3}/\mathrm{polylog}\,n)\) consecutive degrees.
+\end{corollary}
+
+\subsection{Secondary and conditional results}
 
 \begin{theorem}[TV-controlled nesting]
 \label{thm:approx}
@@ -113,11 +173,122 @@ For each fixed \(\varepsilon\in(0,1)\) there exists \(C=C(\varepsilon)\) such th
 \]
 \end{theorem}
 
+\begin{theorem}[Quantitative sandwich at rate \(1/9\)]
+\label{thm:quant}
+There exists an absolute constant \(C_*\) such that the following holds.
+Whenever \(d\ge C_*\log n\) and
+\[
+\varepsilon\ge C_*\Bigl(\frac{\log n}{d}\Bigr)^{1/9},
+\]
+there is a coupling \((G_*,G,G^*)\) with
+\[
+G_*\sim G\bigl(n,(1-\varepsilon)d/n\bigr),\quad
+G\sim\Gnd,\quad
+G^*\sim G\bigl(n,(1+\varepsilon)d/n\bigr),
+\]
+and \(\PP(G_*\subset G\subset G^*)=1-o(1)\).
+\end{theorem}
+
+\begin{corollary}[Medium increments and defects]
+\label{cor:quant-nest}
+Under the hypotheses of Theorem~\ref{thm:quant}, writing
+\(k_0:=3C_*\,d^{8/9}(\log n)^{1/9}\):
+\begin{enumerate}
+\item if \(k\ge k_0\) then there is a coupling of \(G\sim\Gnd\) and
+\(H\sim G(n,d+k)\) with \(\PP(G\subset H)=1-o(1)\);
+\item there is a coupling of \(G\sim\Gnd\) and \(H\sim G(n,d+1)\) with
+\(\PP\bigl(\Delta(G\setminus H)\le k_0\bigr)=1-o(1)\).
+\end{enumerate}
+\end{corollary}
+
+\begin{theorem}[Rate \(1/3\) for polynomial degree]
+\label{thm:quant-third}
+For each fixed \(\sigma\in(0,1)\) there exists \(C_{**}=C_{**}(\sigma)\) such that the following
+holds.
+Whenever \(d\ge n^{\sigma}\) and
+\[
+\varepsilon\ge C_{**}\Bigl(\frac{\log n}{d}\Bigr)^{1/3},
+\]
+there is a coupling \((G_*,G,G^*)\) as in Theorem~\ref{thm:quant} at this
+\(\varepsilon\).
+Moreover, the exponent \(1/3\) is optimal for the deletion-process~/~B2
+architecture of~\cite[§3]{BIM25}: no smaller exponent is possible without
+changing that coupling scheme.
+\end{theorem}
+
+\begin{corollary}[Polynomial increments]
+\label{cor:poly-inc}
+Under the hypotheses of Theorem~\ref{thm:quant-third}, writing
+\(k_1:=3C_{**}\,d^{2/3}(\log n)^{1/3}\), the conclusions of
+Corollary~\ref{cor:quant-nest} hold with \(k_0\) replaced by \(k_1\).
+\end{corollary}
+
+\begin{proposition}[Chernoff floor]
+\label{prop:chernoff}
+Let \(d\ge 2\log n\) and \(0<\varepsilon<1/2\).
+If \(\varepsilon\le c\sqrt{(\log n)/d}\) for a sufficiently small absolute constant \(c>0\),
+then \(\PP\bigl(\Delta(G(n,(1-\varepsilon)d/n))>d\bigr)\not\to 0\).
+In particular, no coupling can realise
+\(G\bigl(n,(1-\varepsilon)d/n\bigr)\subseteq\Gnd\) with probability \(1-o(1)\).
+\end{proposition}
+
+\begin{conjecture}[Quantitative sandwich]
+\label{conj:Q}
+There exists an absolute constant \(C_0\) such that whenever \(d\ge C_0\log n\) and
+\(\varepsilon\ge C_0\sqrt{(\log n)/d}\), there is a coupling
+\((G_*,G,G^*)\) with
+\[
+G_*\sim G\bigl(n,(1-\varepsilon)d/n\bigr),\quad
+G\sim\Gnd,\quad
+G^*\sim G\bigl(n,(1+\varepsilon)d/n\bigr),
+\]
+and \(\PP(G_*\subset G\subset G^*)=1-o(1)\).
+\end{conjecture}
+
+\begin{theorem}[Conditional increments]
+\label{thm:Q1}
+Assume Conjecture~\ref{conj:Q}.
+If \(d\ge C_0\log n\) and \(k\ge 3C_0\sqrt{d\log n}\), then there is a coupling of
+\(G\sim\Gnd\) and \(H\sim G(n,d+k)\) with \(\PP(G\subset H)=1-o(1)\).
+\end{theorem}
+
+\begin{theorem}[Process conjecture implies Chernoff sandwich]
+\label{thm:process-to-Q}
+Assume~\cite[Conjecture~1.3]{BIM25}.
+Then Conjecture~\ref{conj:Q} holds: for every \(d\ge C\log n\) and
+\(\varepsilon\ge C\sqrt{(\log n)/d}\) with \(C\) large absolute, there is a coupling
+\((G_*,G,G^*)\) as in Conjecture~\ref{conj:Q}.
+\end{theorem}
+
+\begin{theorem}[Final-window reduction]
+\label{thm:window}
+Fix \(\sigma\in(0,1)\). Suppose that whenever \(d\ge n^{\sigma}\) and
+\[
+C\sqrt{\frac{\log n}{d}}
+\le\varepsilon
+\le C_{**}\Bigl(\frac{\log n}{d}\Bigr)^{1/3},
+\]
+the following holds: if \((G,G^*_0)\) is a coupling furnished by
+Theorem~\ref{thm:quant-third} at rate \(\varepsilon_0:=C_{**}(\log n/d)^{1/3}\)
+(so \(G\subset G^*_0\) a.a.s.\ with \(G^*_0\sim G(n,(1+\varepsilon_0)d/n)\)), then there
+exists a coupling of a graph \(H\sim G(n,(1+\varepsilon)d/n)\) with
+\(\PP(G\subset H)=1-o(1)\).
+Assume the symmetric lower-window statement for \(G_*\).
+Then Conjecture~\ref{conj:Q} holds for all \(d\ge n^{\sigma}\).
+\end{theorem}
+
+\noindent
+(The hybrid container of Theorem~\ref{thm:hybrid}, proved in
+Section~\ref{sec:open}, realises a Chernoff-scale supergraph with correct edge
+marginals; contiguity to \(G(n,(1+\varepsilon)d/n)\) remains open.)
+
 \subsection{Organisation}
 Section~\ref{sec:patch} upgrades Gao's Corollary~15 and matching moments.
-Section~\ref{sec:coupling} runs the coupling.
-Section~\ref{sec:beyond} proves the secondary statements.
-Section~\ref{sec:open} discusses the \(\sqrt{n}\) barrier.
+Section~\ref{sec:coupling} runs the single-step coupling and the long-chain argument.
+Section~\ref{sec:beyond} proves the secondary statements, the Chernoff floor, and
+Theorem~\ref{thm:quant}.
+Section~\ref{sec:open} discusses the \(\sqrt{n}\) barrier, records the process
+ceiling, and proves Theorems~\ref{thm:process-to-Q}--\ref{thm:hybrid}.
 
 \section{Patched subgraph probabilities}
 \label{sec:patch}
@@ -251,6 +422,58 @@ The coupling therefore satisfies
 \(\PP(G_d\subset G_{d+1})\ge 1-5\eta(\alpha)=1-o(1)\).
 \end{proof}
 
+\begin{lemma}[Chain schedule]
+\label{lem:chain-eta}
+Let \(D,L\) satisfy the hypotheses of Theorem~\ref{thm:chains}.
+For every \(d\in[D,D+L]\) set \(\gamma_n:=(\log n)^{-1}\) and
+\[
+\alpha_{\mathrm{ch}}
+:=
+\max\Biggl\{
+\frac{\gamma_n}{L},\;
+D^{-1},\;
+\Biggl(\frac{(D+L)^2 L}{n\gamma_n}\Biggr)^{1/2},\;
+\bigl(L\log^3 n/\gamma_n\bigr)^{1/2}(D/n)^{1/4}
+\Biggr\}.
+\]
+Then \(\alpha_{\mathrm{ch}}=o(1)\) and \(\eta(\alpha_{\mathrm{ch}})=o(1/L)\), uniformly in
+\(d\in[D,D+L]\).
+\end{lemma}
+
+\begin{proof}
+The hypothesis \(L=o\bigl((n/D^2)^{1/3}/\log^{2/3}n\bigr)\) forces each argument of
+the maximum to be \(o(1)\), so \(\alpha_{\mathrm{ch}}=o(1)\).
+In particular \(\alpha_{\mathrm{ch}}\ge\gamma_n/L\), whence
+\[
+2\alpha_{\mathrm{ch}}=O(\gamma_n/L)=o(1/L).
+\]
+The remaining summands of \(\eta\) are \(o(1/L)\) by the same comparisons as in
+Lemma~\ref{lem:eta}, with the extra factors of \(L/\gamma_n\) absorbed into the
+choice of \(\alpha_{\mathrm{ch}}\).
+(The worst case is \(d=D+L\); since \(L=o((n/D^2)^{1/3})\) one has
+\(D+L\le 2\max(D,L)\) and the stated bounds continue to hold.)
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:chains}]
+For each \(d\in\{D,\ldots,D+L-1\}\) the single-step coupling of
+Theorem~\ref{thm:main} (via~\cite[Theorem~19]{Gao21} with the schedule of
+Lemma~\ref{lem:chain-eta}) produces a coupling of \(G(n,d)\) and \(G(n,d+1)\)
+with failure probability at most \(5\eta(\alpha_{\mathrm{ch}})=o(1/L)\).
+Compose these couplings sequentially: sample \(G_D\sim G(n,D)\), then couple
+forward to \(G_{D+1}\), then to \(G_{D+2}\), and so on.
+Each marginal remains correct.
+By a union bound, the probability that any step fails is
+\[
+o\Bigl(\frac1L\Bigr)\cdot L=o(1).
+\]
+On the complementary event one has
+\(G_D\subseteq G_{D+1}\subseteq\cdots\subseteq G_{D+L}\).
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:mega}]
+Immediate from Theorem~\ref{thm:chains} with \(D=\lfloor\log^4 n\rfloor\).
+\end{proof}
+
 \section{Beyond exact \(o(\sqrt{n})\)}
 \label{sec:beyond}
 
@@ -304,6 +527,121 @@ A Chernoff bound shows that this difference has maximum degree at most \(3\varep
 with probability \(1-o(1)\).
 \end{proof}
 
+\begin{proof}[Proof of Theorem~\ref{thm:quant}]
+We track the error budget in the upper-sandwich reduction of~\cite[§3]{BIM25},
+using their switching estimate~\cite[Theorem~2.4]{BIM25} as a black box.
+(The lower sandwich is analogous via~\cite[Lemma~2.2]{BIM25} and is omitted.)
+
+ Crucially, the switching core~\cite[Theorem~4.1]{BIM25} uses an
+\emph{absolute} large constant \(C_0\) in the constraints
+\(\eta d\ge C_0\) and \(\eta^2\delta\ge C_0\log n\).
+We therefore instantiate the process with absolute \(C_0\) (sufficiently large)
+and \(\mu:=\varepsilon/100\), rather than forcing \(C_0=\omega(1/\varepsilon)\).
+
+In~\cite[§3.5.5]{BIM25} the critical accumulation event B2 requires, with
+\(R=\lfloor\varepsilon dn/8\rfloor\),
+\begin{equation}
+\label{eq:B2}
+2C_0\mu\,dn + 4C_0\,dn\Bigl(\frac{10n\log n}{\varepsilon dn}\Bigr)^{1/8}
+\le\frac R2.
+\end{equation}
+It is enough that
+\begin{align}
+C_0\mu&\le\frac{\varepsilon}{32},\label{eq:bud1}\\
+C_0\Bigl(\frac{\log n}{\varepsilon d}\Bigr)^{1/8}&\le\frac{\varepsilon}{32}.\label{eq:bud2}
+\end{align}
+With \(\mu=\varepsilon/100\) and \(C_0\) absolute,~\eqref{eq:bud1} holds for
+\(C_0\le 3\).
+Inequality~\eqref{eq:bud2} rearranges to
+\[
+\frac{\log n}{\varepsilon d}
+\le O(\varepsilon^{8})
+\quad\Longleftrightarrow\quad
+\varepsilon=\Omega\Bigl(\Bigl(\frac{\log n}{d}\Bigr)^{1/9}\Bigr).
+\]
+Taking \(\varepsilon=C_*(\log n/d)^{1/9}\) with \(C_*\) large, both budget
+constraints hold, and
+\[
+\eta:=C_0\Bigl(\frac{\log n}{\varepsilon d}\Bigr)^{1/8}=O(\varepsilon)
+\]
+satisfies the switching hypotheses of~\cite[Theorem~4.1]{BIM25}:
+\(\eta\ll 1\), \(\eta d\to\infty\), and
+\(\eta^2\cdot(2\varepsilon d)=\Omega(\varepsilon^3 d)=\Omega(d^{2/3}(\log n)^{1/3})\gg\log n\).
+The reduction in~\cite[§3]{BIM25} therefore yields the upper sandwich.
+Combined with the lower sandwich at the same rate, we obtain the claim.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:quant-nest}]
+Apply Theorem~\ref{thm:quant} at degrees \(d\) and \(d+k\) with
+\(\varepsilon=C_*(\log n/d)^{1/9}\).
+The binomial transit of Theorem~\ref{thm:defect} yields (i) once
+\(k\ge 3\varepsilon d=k_0\), and (ii) with defect at most \(3\varepsilon d=k_0\).
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:quant-third}]
+Fix \(\sigma\in(0,1)\) and assume \(d\ge n^{\sigma}\).
+Set \(\varepsilon=C_{**}(\log n/d)^{1/3}\) with \(C_{**}\) large, and write
+\(R=\lfloor\varepsilon dn/8\rfloor\) and \(\delta_R:=2R/n\asymp\varepsilon d\).
+Then
+\[
+\delta_R\asymp d^{2/3}(\log n)^{1/3}\ge n^{2\sigma/3}/{\mathrm{polylog}}\,n,
+\]
+so \(\delta_R\ge n^{\sigma'}\) for some fixed \(\sigma'>0\) and large \(n\).
+
+In this density regime,~\cite[Lemma~8.1]{BIM25} gives
+\((F\setminus K,K)\)-alternating path counts at relative error
+\(\eta=C_0\mu/\log n\) whenever \(\delta\ge n^{\sigma'}\).
+The same Kim--Vu argument permits any larger relative error; we take the
+switching-optimal choice
+\[
+\eta_m:=C_0\max\Bigl\{\frac{\mu}{\log n},\sqrt{\frac{n\log n}{m}}\Bigr\}
+\]
+with absolute \(C_0\) and \(\mu=\varepsilon/100\).
+At \(m\ge R\) one has \(\sqrt{n\log n/m}=O(\sqrt{\log n/(\varepsilon d)})=O(\varepsilon)\),
+so \(\eta_m=O(\varepsilon)\).
+The constraints of~\cite[Theorem~4.1]{BIM25} hold:
+\(\eta d=\Omega(\varepsilon d)\to\infty\) and \(\eta^2\delta=\Omega(\log n)\).
+
+The B2 estimate of~\cite[§3.5.5]{BIM25} with this schedule reduces to
+\(C_0\mu=O(\varepsilon)\) and \(C_0\sqrt{\log n/(\varepsilon d)}=O(\varepsilon)\), both of
+which hold at our \(\varepsilon\).
+Thus the upper sandwich follows; the lower sandwich is unchanged.
+
+For optimality: at stopping time \(R\asymp\varepsilon dn\) one has \(\delta\asymp\varepsilon d\).
+Event B2 forces \(\eta=O(\varepsilon)\), while switching forces
+\(\eta=\Omega(\sqrt{\log n/\delta})\).
+Combining yields \(\varepsilon=\Omega((\log n/d)^{1/3})\).
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:poly-inc}]
+Identical to Corollary~\ref{cor:quant-nest}, using Theorem~\ref{thm:quant-third}.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:chernoff}]
+Let \(p=(1-\varepsilon)d/n\) and let \(X_v\) be the degree of a fixed vertex \(v\) in
+\(G(n,p)\), so \(X_v\sim\mathrm{Bin}(n-1,p)\) with mean
+\(\lambda=(1-\varepsilon)d\cdot(1-O(1/n))\).
+If \(\varepsilon\le c\sqrt{(\log n)/d}\) with \(c>0\) small, then
+\(d-\lambda=O(\sqrt{\lambda\log n})\) lies inside the constant-probability upper
+tail regime of the binomial.
+Writing \(N=\sum_v\mathbf{1}_{X_v>d}\), a standard second-moment computation on the
+indicators (cf.\ Bollob\'as) yields \(\EE N\to\infty\) and
+\(\Var N=o((\EE N)^2)\), so \(N\ge 1\) with probability bounded away from zero.
+Thus \(\Delta(G(n,p))>d\) fails to be a vanishing event, and no high-probability
+embedding \(G(n,p)\subseteq\Gnd\) is possible.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:Q1}]
+Apply Conjecture~\ref{conj:Q} at degrees \(d\) and \(d+k\) with
+\(\varepsilon=C_0\sqrt{(\log n)/d}\).
+Then \(G\subset G(n,(1+\varepsilon)d/n)\) and
+\(G(n,(1-\varepsilon)(d+k)/n)\subset H\) with probability \(1-o(1)\).
+The inequality \((1+\varepsilon)d\le(1-\varepsilon)(d+k)\) rearranges to
+\(k\ge 2\varepsilon d/(1-\varepsilon)\).
+For \(\varepsilon\le 1/4\) this is implied by \(k\ge 3\varepsilon d=3C_0\sqrt{d\log n}\).
+Monotone-couple the two binomial graphs to finish.
+\end{proof}
+
 \section{The \(\sqrt{n}\) barrier and open problems}
 \label{sec:open}
 
@@ -314,20 +652,203 @@ probabilities, each with relative error \(\Omega(d^2/n^2)\), incurs a cumulative
 relative error \(\Omega(d^2/n)\), which is not \(o(1)\) when \(d=\omega(\sqrt{n})\).
 \end{proposition}
 
-Thus the present method cannot yield exact high-probability \(+1\) nesting past
-\(\sqrt{n}\).
-Natural routes beyond this barrier include:
-\begin{itemize}
-\item quantitative sandwich theorems with \(\varepsilon=\varepsilon(n)\to 0\)
-(cf.~\cite[Conjecture~1.3]{BIM25});
-\item concentration of \(\log Y\) or permanent estimates in denser regimes;
-\item direct switching proofs of
-\(\dTV(\mu_d\oplus\mu_1,\mu_{d+1})=o(1)\) for \(d=\Theta(n)\).
-\end{itemize}
+Thus the present matching-enumeration method cannot yield exact high-probability
+\(+1\) nesting past \(\sqrt{n}\).
+Theorem~\ref{thm:chains} expands the simultaneous reach inside the \(o(\sqrt{n})\)
+regime, but does not breach that barrier.
+
+Quantitative sandwich rates from the~\cite{BIM25} budget:
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Rate & Range & Status \\
+\hline
+\((\log n/d)^{1/9}\) & all \(d\ge C\log n\) & Theorem~\ref{thm:quant} \\
+\((\log n/d)^{1/3}\) & \(d\ge n^{\sigma}\) & Theorem~\ref{thm:quant-third} (process-optimal) \\
+\((\log n/d)^{1/2}\) & all \(d\ge C\log n\) & Conjecture~\ref{conj:Q} \\
+\hline
+\end{tabular}
+\end{center}
+The exponent \(1/3\) is optimal for the deletion-process~/~B2 scheme; reaching
+Chernoff requires a different coupling (cf.~\cite[Conjecture~1.3]{BIM25}).
+The same cubic ceiling appears on the lower side: residual degree concentration
+forces \(\eta=\Omega(\sqrt{\log n/(\varepsilon d)})\) with \(\eta\ll\varepsilon\).
+The dense embedding of~\cite{GIM22} is likewise blocked at Chernoff scale by the
+structural hypothesis \(\xi\Delta\gg n/\log n\), which is incompatible with
+\(\xi=\Theta\sqrt{(\log n)/d}\) for every \(d\le n-1\).
+
+\begin{proof}[Proof of Theorem~\ref{thm:process-to-Q}]
+Let \((G_i)_{0\le i\le\binom{n}{2}}\) be the random graph process on \([n]\), and let
+\(G\sim\Gnd\) be coupled to the process as in~\cite[Conjecture~1.3]{BIM25}.
+Fix \(\varepsilon\ge C\sqrt{(\log n)/d}\) with \(C\) large, and set
+\[
+i_-:=\Bigl\lfloor(1-\varepsilon)\frac{dn}{2}\Bigr\rfloor,\qquad
+i_+:=\Bigl\lceil(1+\varepsilon)\frac{dn}{2}\Bigr\rceil.
+\]
+Write \(p_\pm:=(1\pm\varepsilon)d/n\). A standard Chernoff-plus-union bound gives
+\[
+\PP\bigl(\Delta(G_{i_-})>d\bigr)=o(1)
+\qquad\text{and}\qquad
+\PP\bigl(\delta(G_{i_+})<d\bigr)=o(1),
+\]
+once \(C\) is large enough (cf.\ Proposition~\ref{prop:chernoff} for the matching
+lower bound on \(\varepsilon\)).
+On the event \(\{\Delta(G_{i_-})\le d\}\), Conjecture~1.3 of~\cite{BIM25} yields
+\(G_{i_-}\subset G\).
+On \(\{\delta(G_{i_+})\ge d\}\) it yields \(G\subset G_{i_+}\).
+Finally, \(G_{i_-}\) (resp.\ \(G_{i_+}\)) may be coupled inside
+\(G(n,p_-)\) (resp.\ outside a copy of \(G(n,p_+)\)) by the usual monotone coupling
+of the process with binomial graphs of matching edge count, losing only \(o(1)\)
+probability.
+Combining these couplings produces \((G_*,G,G^*)\) as required.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:window}]
+Apply Theorem~\ref{thm:quant-third} at rate \(\varepsilon_0=C_{**}(\log n/d)^{1/3}\) to
+obtain \(G\subset G^*_0\) with \(G^*_0\sim G(n,(1+\varepsilon_0)d/n)\).
+The final-window hypothesis, applied at the target Chernoff rate
+\(\varepsilon=C\sqrt{(\log n)/d}\le\varepsilon_0\) (valid for large \(n\) since
+\(1/2>1/3\)), produces \(H\sim G(n,(1+\varepsilon)d/n)\) with \(G\subset H\) a.a.s.
+The symmetric argument for the lower sandwich yields \(G_*\).
+Stitching gives Conjecture~\ref{conj:Q} on \(d\ge n^{\sigma}\).
+\end{proof}
+
+\begin{remark}[Attack surface]
+\label{rem:window}
+Theorem~\ref{thm:window} isolates the obstruction to Conjecture~\ref{conj:Q} in the
+polynomial-degree regime: one must thin the residual
+\(R:=G^*_0\setminus G\), which is approximately \(\varepsilon_0 d\)-regular of order
+\(d^{2/3}(\log n)^{1/3}\), down to surplus degree \(\asymp\sqrt{d\log n}\) without
+exposing any edge of \(G\).
+This is a far smaller range of surplus densities than the full deletion process.
+\end{remark}
+
+\begin{lemma}[Residual degree after rate \(1/3\)]
+\label{lem:residual}
+Fix \(\sigma\in(0,1)\) and \(d\ge n^{\sigma}\).
+Let \((G,G^*_0)\) be the coupling of Theorem~\ref{thm:quant-third} at rate
+\(\varepsilon_0=C_{**}(\log n/d)^{1/3}\), and write \(R:=G^*_0\setminus G\).
+Then with probability \(1-o(1)\),
+\[
+\tfrac12\varepsilon_0\,d
+\le\deg_R(v)
+\le 2\varepsilon_0\,d
+\qquad\text{for every vertex \(v\)},
+\]
+and in particular \(\min_v\deg_R(v)\ge C\sqrt{d\log n}\) for every fixed \(C\) and large \(n\).
+\end{lemma}
+
+\begin{proof}
+On the event \(G\subset G^*_0\) (probability \(1-o(1)\)) one has
+\(\deg_R(v)=\deg_{G^*_0}(v)-d\).
+Here \(G^*_0\sim G(n,(1+\varepsilon_0)d/n)\), so
+\(\deg_{G^*_0}(v)\sim\mathrm{Bin}\bigl(n-1,(1+\varepsilon_0)d/n\bigr)\) has mean
+\(\lambda=(1+\varepsilon_0)d\cdot(1-O(1/n))\).
+Chernoff bounds yield
+\begin{align*}
+\PP\bigl(\deg_{G^*_0}(v)<d+\tfrac12\varepsilon_0 d\bigr)
+&\le\exp\bigl(-\Omega(\varepsilon_0^2 d)\bigr)=o(n^{-2}),\\
+\PP\bigl(\deg_{G^*_0}(v)>d+2\varepsilon_0 d\bigr)
+&\le\exp\bigl(-\Omega(\varepsilon_0^2 d)\bigr)=o(n^{-2}),
+\end{align*}
+and a union bound over \(v\in[n]\) completes the proof.
+\end{proof}
+
+\begin{theorem}[Hybrid Chernoff container]
+\label{thm:hybrid}
+Fix \(\sigma\in(0,1)\).
+Let \(d\ge n^{\sigma}\) and
+\(\varepsilon\ge C\sqrt{(\log n)/d}\) with \(C\) large, and assume
+\(\varepsilon\le\varepsilon_0:=C_{**}(\log n/d)^{1/3}\).
+Let \((G,G^*_0)\) be the coupling of Theorem~\ref{thm:quant-third} at rate
+\(\varepsilon_0\), write \(R:=G^*_0\setminus G\), and set \(q:=\varepsilon/\varepsilon_0\).
+Form \(R_q\) by retaining each edge of \(R\) independently with probability \(q\), and set
+\(H:=G\cup R_q\).
+Then:
+\begin{enumerate}
+\item \(\PP(G\subset H)=1-o(1)\);
+\item for every pair \(jk\),
+\(\PP(jk\in H)=(1+\varepsilon)\frac{d}{n}+o\bigl(\frac{d}{n}\bigr)\);
+\item writing \(D_v:=\deg_H(v)\), on the event \(G\subset G^*_0\) one has
+\(D_v=d+\mathrm{Bin}(\deg_R(v),q)\) with
+\(\deg_R(v)=\Theta(\varepsilon_0 d)\), hence
+\(\EE D_v=(1+\Theta(\varepsilon))d\) and \(\Var D_v=\Theta(\varepsilon d)\).
+\end{enumerate}
+In particular \(H\) matches the first-moment edge profile of
+\(G\bigl(n,(1+\varepsilon)d/n\bigr)\) up to \(o(d/n)\), and has degree mean
+\((1+\Theta(\varepsilon))d\) with variance \(\Theta(\varepsilon d)\), with \(G\subset H\) a.a.s.
+\end{theorem}
+
+\begin{proof}
+Item (i) is immediate on \(\{G\subset G^*_0\}\), which has probability \(1-o(1)\).
+
+For (ii), fix an unordered pair \(jk\). By symmetry
+\(\PP(jk\in G)=d/(n-1)\).
+Also \(\PP(jk\in G^*_0)=(1+\varepsilon_0)d/n\).
+On the construction,
+\[
+\PP(jk\in H)
+=\PP(jk\in G)+q\,\PP(jk\in R)
+=\PP(jk\in G)+q\bigl(\PP(jk\in G^*_0)-\PP(jk\in G^*_0\cap G)\bigr).
+\]
+The failure event \(\{G\not\subset G^*_0\}\) has probability \(o(n^{-c})\) for some \(c>0\)
+(from the B2 estimate at rate \(\varepsilon_0\)), and
+\(\{jk\in G\setminus G^*_0\}\subset\{G\not\subset G^*_0\}\), so
+\(\PP(jk\in G^*_0\cap G)=\PP(jk\in G)+O(n^{-c})\).
+Substituting \(q=\varepsilon/\varepsilon_0\) therefore yields
+\begin{align*}
+\PP(jk\in H)
+&=q\cdot(1+\varepsilon_0)\frac{d}{n}+(1-q)\frac{d}{n-1}+O(n^{-c})\\
+&=(1+\varepsilon)\frac{d}{n}+O\Bigl(\frac{d}{n^2}\Bigr)+O(n^{-c}),
+\end{align*}
+which is \((1+\varepsilon)d/n+o(d/n)\).
+
+For (iii), on \(\{G\subset G^*_0\}\) one has
+\(D_v=d+\mathrm{Bin}(\deg_R(v),q)\).
+On the high-probability event of Lemma~\ref{lem:residual},
+\(\deg_R(v)\in[\tfrac12\varepsilon_0 d,\,2\varepsilon_0 d]\), so
+\[
+\EE[D_v\mid G,G^*_0]=d+q\deg_R(v)\in\bigl[d+\tfrac12\varepsilon d,\,d+2\varepsilon d\bigr]
+\]
+and
+\[
+\Var(D_v\mid G,G^*_0)=q(1-q)\deg_R(v)=\Theta(\varepsilon d).
+\]
+Rescaling the absolute constant in the definition of \(\varepsilon\) absorbs the
+\(\tfrac12\)--\(2\) factors into the form stated in the theorem.
+\end{proof}
+
+\begin{remark}[Gap to Conjecture~\ref{conj:Q}]
+\label{rem:hybrid-gap}
+Theorem~\ref{thm:hybrid} gives a one-sided Chernoff-scale container with correct edge
+marginals and degree variance, but \(H\) is not asserted to be distributed as
+\(G(n,(1+\varepsilon)d/n)\): edges inside \(G\) are rigidly dependent through the regular
+constraint.
+Contiguity of \(H\) to \(G(n,(1+\varepsilon)d/n)\) (or TV distance \(o(1)\)) would finish the
+upper half of Conjecture~\ref{conj:Q} for \(d\ge n^{\sigma}\).
+\end{remark}
+
+\begin{remark}[Matching room]
+\label{rem:matching-room}
+Lemma~\ref{lem:residual} also supplies \(\delta(R)\gg\sqrt{d\log n}\) a.a.s., so \(R\) has
+the degree room for \(m:=\lfloor C\sqrt{d\log n}\rfloor\) successive perfect
+matchings.
+If those matchings can be extracted and the resulting
+\((d+m)\)-regular container shown contiguous to \(G(n,d+m)\), the
+increment form of Conjecture~\ref{conj:Q} follows in the polynomial regime.
+\end{remark}
 
 \section*{Acknowledgements}
-This note executes the improvement outlined by Gao in~\cite{Gao21}.
-We thank the authors of~\cite{Gao20,Gao21,BIM25,HLMPW25} for the tools used here.
+The exact \(+1\) range \(o(\sqrt{n})\) executes the improvement outlined by Gao
+in~\cite{Gao21}.
+The long-chain theorem is new.
+The quantitative rates \(1/9\) and \(1/3\) are readings of the error budget,
+switching threshold, and dense path-concentration lemma in~\cite{BIM25};
+we thank those authors for the underlying analysis.
+Theorems~\ref{thm:process-to-Q}--\ref{thm:window},
+Lemma~\ref{lem:residual}, and Theorem~\ref{thm:hybrid} organise the remaining gap
+to the Chernoff floor.
+We also thank the authors of~\cite{Gao20,HLMPW25}.
 
 \begin{thebibliography}{99}
 
