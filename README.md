@@ -1,32 +1,39 @@
+# README
+
 # Regular +1 Monotonicity
 
-Attack on the Gao–Isaev–McKay monotonicity conjecture for random regular graphs:
-couple \(G(n,d)\subset G(n,d+1)\) with high probability.
+Private research repo (AgenticOp-io): extend
+\(G(n,d)\subset G(n,d+1)\) from Gao’s \(d=o(n^{1/3})\) to \(d=o(\sqrt{n})\).
 
-## Goal
+## Current status
 
-**Conjecture (critical case).** For even \(n\) and \(3\le d\le n-3\) with \(dn\) even,
-there exists a coupling of \(G\sim G(n,d)\) and \(H\sim G(n,d+1)\) such that
-\(\mathbb{P}(G\subset H)=1-o(1)\).
-
-## Status
-
-| Piece | Status |
+| Item | State |
 |---|---|
-| Regime map of known results | `notes/regime-map.md` |
-| Easy regime (constant-factor degree gap) via Kim–Vu sandwich | **proved in-repo** — `notes/proof-easy-regime.md` |
-| Reduction: full monotonicity ⇐ iterated +1 | **proved in-repo** — `notes/proof-reduction.md` |
-| +1 via matching extension / TV distance | **in progress** — `notes/proof-plus-one-attack.md` |
-| Small-n experiments | `src/experiments.py` |
+| Easy regime (factor gaps via BIM) | proved — `notes/proof-easy-regime.md` |
+| Reduction (+1 ⇒ full mono) | proved — `notes/proof-reduction.md` |
+| Bottleneck diagnosis | done — `notes/bottleneck.md` |
+| Attack plan to \(o(\sqrt{n})\) | **active** — `notes/attack-n-half.md` |
+| Lemma L1 (cite Thm 6) | recorded — `notes/lemma-L1-citation.md` |
+| Lemma L2 (patch Gao Thm 10) | draft — `notes/lemma-L2-draft.md` |
+| Lemma L4 (η schedule) | proved (conditional on η form) |
+| Full +1 for \(d=o(\sqrt{n})\) | **open** (needs L2) |
 
-## References
+## Layout
 
-1. Kim–Vu (2004), Sandwiching random graphs.
-2. Gao–Isaev–McKay, sandwich papers + monotonicity conjecture.
-3. Behague–Ilʼkovič–Montgomery (2025), full Kim–Vu proof [arXiv:2510.20765].
-4. Hollom–Lichev–Mond–Portier–Wang (2025), monotonicity and decompositions [arXiv:2505.22875].
+```
+notes/     mathematical writeups
+src/       small-n and schedule experiments
+paper/     paper outline
+```
 
-## Working rule
+## Run experiments
 
-Never claim a regime is new unless it is absent from the regime map.
-Prefer defective / approximate statements before exact inclusion.
+```bash
+python src/experiments.py
+python src/config_probes.py
+```
+
+## Next concrete step
+
+Line-by-line diff of Gao arXiv:2104.11850 Theorem 10 against
+arXiv:2012.01492 Theorem 6 → finish Lemma L2.
