@@ -1,26 +1,32 @@
 # Status board
 
-## Publishable claims (strongest first)
+## Rate ladder (quantitative sandwich)
 
-| Claim | Range | File |
+```
+fixed ε  <<  1/9 (all d)  <<  1/3 (d≥n^σ)  <<  hybrid Chernoff container  <<  1/2 ER Chernoff
+              PROVED           PROVED         PROVED (marginals)           OPEN (contiguity)
+                                                   │
+                              process Conj 1.3 ════╧══⇒ Q   (PROVED implication)
+                              window d^{2/3}→d^{1/2}       (PROVED reduction)
+```
+
+## Publishable claims
+
+| Claim | Strength | Where |
 |---|---|---|
-| Exact +1 whp | \(d=o(\sqrt{n}/\log^3 n)\) | `main-theorem.md`, `paper/main.tex` |
-| Always-nested + TV≤1/2 | \(d\le c\sqrt{n}\) | `medium-regime-theorems.md`, `strongest-theorems.md` |
-| Degree defect \(O(\varepsilon d)\) | \(d\ge C\log n\) | `medium-regime-theorems.md` Thm T5′ |
-| Easy factor-gap nesting | \(d_2\ge\rho d_1\), \(d_1\ge C\log n\) | `proof-easy-regime.md` |
+| Quant.\ sandwich \(1/9\) | all \(d\ge C\log n\) | Thm quant |
+| Quant.\ sandwich \(1/3\) | \(d\ge n^{\sigma}\) | Thm quant-third |
+| Process ⇒ Chernoff Q | conditional | Thm process-to-Q |
+| Window reduction | Q ⇔ final window | Thm window |
+| Residual degree room | \(\delta(R)\asymp\varepsilon_0 d\) | Lem residual |
+| Hybrid Chernoff container | \(G\subset H\), correct marginals at Chernoff \(\varepsilon\) | Thm hybrid |
 
-## Supporting proofs
+## Ceiling / dead ends
 
-| Item | File |
-|---|---|
-| Patched Cor 15 / moments | `lemma-L2-proof.md`, `appendix-second-moment.md` |
-| Main-term ID | `main-term-identification.md` |
-| η schedule | `attack-n-half.md` |
-| TV⇐ concentration | `medium-regime-theorems.md` Thm T1 |
-| Barrier at √n | `beyond-sqrt-n.md`, `medium-regime-theorems.md` |
+- BIM B2 cannot beat \(1/3\) (either side)
+- GIM structure incompatible with Chernoff for all \(d<n\)
+- B2-residual defect at Chernoff worse than perfect \(1/3\)
 
-## Truly open
+## Next
 
-- Exact whp +1 for \(d=\omega(\sqrt{n})\)
-- Full Gao–Isaev–McKay conjecture
-- Process sandwich / quantitative \(\varepsilon(n)\)
+Contiguity of hybrid \(H=G\cup R_q\) to \(G(n,(1+\varepsilon)d/n)\).
