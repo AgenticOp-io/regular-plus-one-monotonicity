@@ -3,20 +3,18 @@
 ## Rate ladder
 
 ```
-1/9 (all d)  <<  1/5 (all d, via Conj U)  <<  1/3 (d≥n^σ)  <<  1/2 Chernoff
-  PROVED         CONDITIONAL                  PROVED            OPEN
-                                                    │
-                               process Conj 1.3 ════╧══⇒ Q
-                               window reduction          PROVED
-                               hybrid marginals          PROVED (not contiguous)
+1/9 (all d)  <<  1/5 (d≥n^τ)  <<  1/3 (d≥n^σ)  <<  1/2 Chernoff
+  PROVED         PROVED            PROVED            OPEN
+                 (+ Conj U → all d)
 ```
 
-## Dead ends
+## Process / Chernoff architecture
 
-- Hybrid \(H\) contiguous to ER: χ² = Θ(dn)
-- GIM Freedman tails: structural ξΔ ≫ n/log n blocks Chernoff
-- B2 residual as defect: worse than perfect 1/3
+- process Conj 1.3 ⇒ Q: PROVED implication
+- window reduction: PROVED
+- hybrid marginals: PROVED (χ² blocks contiguity to ER)
 
 ## Live next
 
-Prove Conjecture U (two-vertex path upper at (log n/δ)^{1/4}) → unconditional 1/5.
+Prove Conjecture U in the medium window C log n ≤ δ ≤ n^σ → global 1/5.
+Then Hypothesis P (α=1/2) → global 1/3.
