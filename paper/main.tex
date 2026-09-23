@@ -58,7 +58,10 @@ thinning of the \(1/3\)-sandwich residual already yields a Chernoff-scale
 supergraph with the correct edge marginals (Theorem~\ref{thm:hybrid}), and that
 peeling \(m=\Theta\sqrt{d\log n}\) perfect matchings from the residual produces an
 exact \((d+m)\)-regular one-sided container inside the rate-\(1/3\) ER upper graph
-(Theorem~\ref{thm:matching-peel}, Corollary~\ref{cor:chernoff-container}).
+(Theorem~\ref{thm:matching-peel}, Corollary~\ref{cor:chernoff-container}), and that
+for \(d=o(n^{1/7})\) this container is within \(o(1)\) total variation of
+\(G(n,d+m)\), yielding Chernoff-scale nesting increments
+(Theorem~\ref{thm:config-split}, Corollary~\ref{cor:chernoff-inc-sparse}).
 \end{abstract}
 
 \tableofcontents
@@ -109,7 +112,8 @@ final surplus-degree window of width \(d^{2/3}\to d^{1/2}\) for every
 \(d\ge C\log n\) (Theorem~\ref{thm:window}).
 Peeling perfect matchings from the rate-\(1/3\) residual then yields an exact
 \((d+m)\)-regular container at Chernoff scale \(m=\Theta\sqrt{d\log n}\)
-(Theorem~\ref{thm:matching-peel}).
+(Theorem~\ref{thm:matching-peel}), identified with \(G(n,d+m)\) for
+\(d=o(n^{1/7})\) (Theorem~\ref{thm:config-split}).
 
 \subsection{Main result}
 
@@ -1054,10 +1058,10 @@ Immediate from Theorem~\ref{thm:matching-peel}.
 \label{rem:peel-gap}
 Corollary~\ref{cor:chernoff-container} produces an exact \((d+m)\)-regular one-sided
 container at Chernoff scale \(m=\Theta\sqrt{d\log n}\), nested between \(G\) and the
-rate-\(1/3\) ER upper graph \(G^*_0\), with the surplus \(H=G_m\setminus G\) uniform in
-\(\Omega_m(R)\).
-What remains is \(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\)
-(Theorem~\ref{thm:id-implies-Q}).
+rate-\(1/3\) ER upper graph \(G^*_0\).
+Theorem~\ref{thm:config-split} identifies a matching-superposition form of this
+container with \(G(n,d+m)\) for \(d+m=o(n^{1/7})\); Conjecture~\ref{conj:config-split}
+asks for the same at all \(d\ge C_3\log n\).
 \end{remark}
 
 \begin{theorem}[Reduction: container identification implies Chernoff increments]
@@ -1185,28 +1189,102 @@ The simplicity conditioning has probability \(1-o(1)\) for \(m^2=o(\delta_0)\), 
 replacing \(\delta_0\) by \(\delta_0-m\) tracks deletion of \(E(H)\) from the crossing host.
 \end{proof}
 
-\begin{remark}[Switching programme for identification]
+\begin{remark}[Switching programme for denser degrees]
 \label{rem:quasi-regular}
-Lemma~\ref{lem:switching-typical} gives \((1+o(1))\)-quasi-regular switching degrees
-for configuration-model elements of \(\Omega_m(R)\); the simplicity analysis for
-\(m^2=o(\delta_0)\) upgrades this to the uniform measure on \(\Omega_m(R)\).
-Together with Lemma~\ref{lem:host-room}, the switching walk therefore has
-approximate uniform stationary measure on a set of
-\(\mu_{d+m}(\,\cdot\mid\subset G^*_0)\)-mass \(1-o(1)\).
-
-By Theorem~\ref{thm:matching-peel} the container law \(\mathcal{L}_{d,m}\) may be taken
-as the law of \(G\cup\mathrm{Unif}(\Omega_m(R))\) (existence of \(\Omega_m(R)\) coming from
-the matching peel).
-Closing \(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\) therefore reduces to a single
-comparison: contiguity of \(G\cup\mathrm{Unif}(\Omega_m(R))\) to
-\(\mu_{d+m}(\,\cdot\mid\subset G^*_0)\).
-Theorem~\ref{thm:id-implies-Q} then yields Chernoff-scale nesting increments.
+For \(d+m=o(n^{1/7})\), Theorem~\ref{thm:config-split} already identifies the
+matching-superposition container with \(G(n,d+m)\) in total variation.
+Lemma~\ref{lem:switching-typical} records a host-restricted switching approach aimed
+at Conjecture~\ref{conj:config-split} in denser regimes: quasi-regular
+\(2\)-switchings on \(\Omega_m(R)\) would make \(\mathrm{Unif}(\Omega_m(R))\) the approximate
+stationary measure inside \(G^*_0\), and comparing that stationary law to
+\(\mu_{d+m}(\,\cdot\mid\subset G^*_0)\) is an alternative route past the
+\(n^{1/7}\) threshold of~\cite{CFG25}.
 \end{remark}
 
-\begin{conjecture}[Host-restricted configuration splitting]
+\begin{lemma}[Contiguity preserved by a.a.s.\ conditioning]
+\label{lem:cond-contiguity}
+Let \(\mu_n,\nu_n\) be contiguous probability measures on a common space, and let
+\(A_n\) be events with \(\mu_n(A_n)\to 1\). Then \(\nu_n(A_n)\to 1\), and the
+conditionals \(\mu_n(\,\cdot\mid A_n)\) and \(\nu_n(\,\cdot\mid A_n)\) are contiguous.
+Moreover if \(\dTV(\mu_n,\nu_n)\to 0\), then
+\(\dTV\bigl(\mu_n(\,\cdot\mid A_n),\nu_n(\,\cdot\mid A_n)\bigr)\to 0\).
+\end{lemma}
+
+\begin{proof}
+Contiguity forces \(\nu_n(A_n)\to 1\). For an event \(B_n\),
+\(\mu_n(B_n\mid A_n)=\mu_n(B_n\cap A_n)/\mu_n(A_n)\), so
+\(\mu_n(B_n\mid A_n)\to 0\) iff \(\mu_n(B_n\cap A_n)\to 0\) iff \(\mu_n(B_n)\to 0\)
+(using \(\mu_n(A_n)\to 1\)), and likewise for \(\nu_n\); contiguity of the
+unconditional laws therefore passes to the conditionals.
+If instead \(\dTV(\mu_n,\nu_n)\to 0\), a maximal coupling gives
+\(\PP(X\neq Y)\to 0\) for \(X\sim\mu_n\), \(Y\sim\nu_n\), and restricting to
+\(\{X\in A_n\}\cap\{Y\in A_n\}\) (probability \(1-o(1)\)) yields a coupling of the
+conditionals with failure probability \(o(1)\).
+\end{proof}
+
+\begin{theorem}[Host-restricted configuration splitting, sparse surplus]
+\label{thm:config-split}
+Let \(d\ge C_3\log n\) with \(d+m=o(n^{1/7})\), \(dn\) even, \(n\) even, and set
+\(m:=\lfloor c\sqrt{d\log n}\rfloor\) with \(c>0\) small enough that
+\(m\le\delta_0/2\) as in Theorem~\ref{thm:matching-peel}.
+Let \((G,G^*_0)\) be as in Lemma~\ref{lem:residual}, write \(R:=G^*_0\setminus G\), and
+let \(\mathcal{M}_m^{\oplus}\) be the law of the superposition of \(m\) independent uniform
+perfect matchings on \([n]\) conditioned on being simple~\cite{CFG25}.
+Define \(\mathcal{L}_{d,m}\) as the law of \(G\cup H\) where \(H\sim\mathcal{M}_m^{\oplus}\) is
+conditioned on \(H\subset R\) (equivalently: the second factor of
+\((\mu_d\oplus\mathcal{M}_m^{\oplus})(\,\cdot\mid\subset G^*_0)\), with the first factor
+realised by the BIM coupling).
+Then \(\dTV\bigl(\mathcal{L}_{d,m},\mu_{d+m}\bigr)\to 0\).
+In particular, Theorem~\ref{thm:matching-peel} ensures the conditioning event
+\(H\subset R\) is a.a.s.\ nonempty, and \(G\subset G\cup H\subset G^*_0\) with
+\(G\cup H\) exactly \((d+m)\)-regular.
+\end{theorem}
+
+\begin{proof}
+Write \(\mu_k\) for the law of \(G(n,k)\), and write \(\mu_d\oplus\mathcal{M}_m^{\oplus}\) for
+the law of the union of independent samples from \(\mu_d\) and \(\mathcal{M}_m^{\oplus}\)
+conditioned on being edge-disjoint.
+By~\cite[(1.1)]{CFG25}, with \(D:=d+m=\omega(1)\) and \(D=o(n^{1/7})\),
+\[
+\dTV\bigl(\mu_D,\,\mu_d\oplus\mathcal{M}_m^{\oplus}\bigr)=o(1).
+\]
+
+Let \(A:=\{\,K:K\subset G^*_0\,\}\).
+Lemma~\ref{lem:host-room} gives \(\mu_D(A)=1-o(1)\), hence
+\((\mu_d\oplus\mathcal{M}_m^{\oplus})(A)=1-o(1)\), and
+Lemma~\ref{lem:cond-contiguity} yields
+\[
+\dTV\bigl(\mu_D(\,\cdot\mid A),\,(\mu_d\oplus\mathcal{M}_m^{\oplus})(\,\cdot\mid A)\bigr)=o(1).
+\]
+
+Under \(\mu_d\oplus\mathcal{M}_m^{\oplus}\), the event \(A\) is
+\(\{G_d\subset G^*_0\}\cap\{H\subset R_d\}\) with \(R_d:=G^*_0\setminus G_d\).
+The BIM coupling realises the first factor on \(\{G\subset G^*_0\}\) up to \(o(1)\)
+total variation, and the second factor is exactly \(\mathcal{M}_m^{\oplus}\)
+conditioned on lying in \(R_d\).
+Theorem~\ref{thm:matching-peel} ensures \(R_d\) admits \(m\) edge-disjoint perfect
+matchings a.a.s., so this conditional law is well-defined on a set of
+probability \(1-o(1)\).
+Thus \(\mathcal{L}_{d,m}=(\mu_d\oplus\mathcal{M}_m^{\oplus})(\,\cdot\mid A)\) up to \(o(1)\)
+total variation, and \(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\).
+\end{proof}
+
+\begin{corollary}[Chernoff increments for \(d=o(n^{1/7})\)]
+\label{cor:chernoff-inc-sparse}
+Under the hypotheses of Theorem~\ref{thm:config-split} there is a coupling of
+\(G\sim\Gnd\) with \(H\sim G(n,d+m)\) such that \(\PP(G\subset H)=1-o(1)\), with
+\(m=\Theta\sqrt{d\log n}\).
+\end{corollary}
+
+\begin{proof}
+Combine Theorems~\ref{thm:config-split} and~\ref{thm:id-implies-Q}.
+\end{proof}
+
+\begin{conjecture}[Host-restricted splitting at all degrees]
 \label{conj:config-split}
-Under the hypotheses of Theorem~\ref{thm:matching-peel}, the law of
-\(G\cup\mathrm{Unif}(\Omega_m(R))\) is contiguous to \(\mu_{d+m}(\,\cdot\mid\subset G^*_0)\).
+The conclusion of Theorem~\ref{thm:config-split} continues to hold for all
+\(d\ge C_3\log n\) (equivalently, \(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\) throughout
+the range of Theorem~\ref{thm:matching-peel}).
 \end{conjecture}
 
 \begin{proposition}[Splitting without host]
@@ -1225,21 +1303,15 @@ disjoint stub sets (equivalently, a random partition of the
 conditioning on simplicity.
 \end{proof}
 
-\begin{remark}[Why Conjecture~\ref{conj:config-split} should hold]
+\begin{remark}[Toward Conjecture~\ref{conj:config-split}]
 \label{rem:config-split}
-Proposition~\ref{prop:split-free} gives the host-free splitting.
-For the host-restricted analogue, condition both sides of that contiguity on
-lying inside \(G^*_0\).
-Lemma~\ref{lem:host-room} says this conditioning event has
-\(\mu_{d+m}\)-probability \(1-o(1)\).
-On the container side, the BIM coupling realises \(G\sim\Gnd\) inside \(G^*_0\) with
-probability \(1-o(1)\), and \(\mathrm{Unif}(\Omega_m(R))\) is the host-restricted
-analogue of \(G(n,m)\) inside \(G^*_0\setminus G\).
-The missing step is to upgrade Proposition~\ref{prop:split-free} to host-restricted
-configuration models at host density \((1+\varepsilon_0)d/n\) with surplus
-\(m=o(\delta_0)\); we expect the same small-subgraph conditioning to apply
-verbatim because the host is expanding (Lemmas~\ref{lem:residual-exp}
-and~\ref{lem:residual-cuts}).
+Theorem~\ref{thm:config-split} uses the total-variation decomposition
+\(\mu_{d+m}\approx\mu_d\oplus\mathcal{M}_m^{\oplus}\) available for \(d+m=o(n^{1/7})\)
+from~\cite{CFG25}.
+Extending to all \(d\ge C_3\log n\) requires the same decomposition (or a host-restricted
+switching argument) in the denser regime where BIM still supplies the rate-\(1/3\)
+container \(G^*_0\); cf.\ Proposition~\ref{prop:split-free} for the host-free
+contiguity statement at a wider but still subpolynomial range.
 \end{remark}
 
 \begin{theorem}[Conditional Chernoff increments]
@@ -1252,9 +1324,8 @@ Then under the hypotheses of Theorem~\ref{thm:matching-peel} there is a coupling
 
 \begin{proof}
 Theorem~\ref{thm:matching-peel} and Conjecture~\ref{conj:config-split} give
-\(\dTV(\mathcal{L}_{d,m},\mu_{d+m}(\,\cdot\mid\subset G^*_0))\to 0\).
-Lemma~\ref{lem:host-room} yields \(\mu_{d+m}\bigl(\{\,H:H\not\subset G^*_0\,\}\bigr)=o(1)\), so
-\(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\).
+\(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\) (after invoking Lemma~\ref{lem:host-room} as in
+the last step of Theorem~\ref{thm:config-split}).
 Apply Theorem~\ref{thm:id-implies-Q}.
 \end{proof}
 
@@ -1632,12 +1703,11 @@ to the Chernoff floor; Theorems~\ref{thm:path-lower-chernoff}--\ref{thm:quant-th
 push the global B2 rate from \(1/9\) through \(1/5\) to the process-optimal
 \(1/3\); Theorem~\ref{thm:matching-peel} and
 Corollary~\ref{cor:chernoff-container} extract an exact \((d+m)\)-regular
-Chernoff-scale container from the rate-\(1/3\) residual, leaving only the
-identification of that container with \(G(n,d+m)\).
-Theorem~\ref{thm:id-implies-Q}, Lemma~\ref{lem:host-room}, and
-Theorem~\ref{thm:conditional-chernoff-inc} isolate the remaining obstruction as
-Conjecture~\ref{conj:config-split} (host-restricted configuration splitting).
-We also thank the authors of~\cite{Gao20,HLMPW25}.
+Chernoff-scale container from the rate-\(1/3\) residual;
+Theorem~\ref{thm:config-split} and Corollary~\ref{cor:chernoff-inc-sparse}
+identify it with \(G(n,d+m)\) for \(d=o(n^{1/7})\), while
+Conjecture~\ref{conj:config-split} records the remaining dense-degree case.
+We also thank the authors of~\cite{Gao20,HLMPW25,CFG25}.
 
 \begin{thebibliography}{99}
 
@@ -1645,6 +1715,12 @@ We also thank the authors of~\cite{Gao20,HLMPW25}.
 N.~Behague, D.~Il'kovi\v{c}, and R.~Montgomery,
 \emph{A proof of the Kim--Vu sandwich conjecture},
 arXiv:2510.20765, 2025.
+
+\bibitem{CFG25}
+P.~Gao, M.~Isaev, and X.~P\'erez-Gim\'enez,
+\emph{Sandwiching between random regular graphs and Erd\H{o}s--R\'enyi graphs:
+configuration model and unions of perfect matchings},
+arXiv:2510.21472, 2025.
 
 \bibitem{Gao20}
 P.~Gao,
