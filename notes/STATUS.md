@@ -33,6 +33,7 @@ PROVED  PROVED  PROVED   PROVED                            OPEN (d>n^{2/7})
 
 Host-restricted total variation is open (Conjecture config-split).
 Two-switches do not close it: Proposition switch-barrier.
+The conditional way past the chain ceiling is a fourth-moment bound on perfect-matching counts: that would move Chernoff nesting from \(n^{2/7}\) to \(n^{4/13}/(\log n)^{5/13}\) (Theorem fourth-chains). The bound is assumed there, not proved.
 A sandwich coupling does not put uniform G(n,d+m) inside the upper graph
 already built at degree d (Proposition host-gap). Free flatness counts
 factors of the complement, not of the residual.
