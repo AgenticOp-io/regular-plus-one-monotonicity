@@ -227,3 +227,54 @@ Query: simplify d^(1/2)*d^(2/3)/n
 simplify | sqrt(d) × d^(2/3)/n
 [Result]
 d^(7/6)/n
+
+
+Query: simplify (n^(1/8))^8/n
+[Input interpretation]
+simplify | (n^(1/8))^8/n
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: simplify (n^(2/7))^8/n
+[Input interpretation]
+simplify | (n^(2/7))^8/n
+[Result]
+n^(9/7)
+
+
+Query: simplify n/(n^(2/7))^2
+[Input interpretation]
+simplify | n/(n^(2/7))^2
+[Result]
+n^(3/7)
+
+
+Query: simplify (4/13)-(2/7)
+[Input interpretation]
+simplify | 4/13 - 2/7
+[Result]
+2/91
+[Quotient and Remainder]
+2 = (0) × 91 + 2
+[Decimal approximation]
+0.0219780219780219780219780219780219780219780219780219780219780219...
+[Repeating decimal]
+0.021978^_ (period 6)
+
+
+Query: simplify (2/7)-(1/8)
+[Input interpretation]
+simplify | 2/7 - 1/8
+[Result]
+9/56
+[Quotient and Remainder]
+9 = (0) × 56 + 9
+[Decimal approximation]
+0.1607142857142857142857142857142857142857142857142857142857142857...
+[Repeating decimal]
+0.160714285^_ (period 6)
+[Percent decrease]
+2/7 - 1/8 = 9/56 is 43.75% smaller than 2/7.

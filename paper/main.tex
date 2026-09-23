@@ -96,6 +96,10 @@ simultaneous nesting chains (Theorem~\ref{thm:chains}). The window length is
 \(o(v(D)^{-1/3})\), where \(v(D)\) is the patched relative variance of the
 perfect-matching count. This reaches degrees up to \(o(\sqrt{n})\),
 with Chernoff-scale increments up to \(o(n^{2/7}/(\log n)^{3/7})\).
+A Gaussian fourth-moment bound on the matching count would move that window to
+\(o(n^{4/13}/(\log n)^{5/13})\) (Theorem~\ref{thm:fourth-chains}).
+The factor \(1+O(d^2/n)\) in the subgraph probabilities does not resolve a moment of
+that size past \(o(n^{1/8})\) (Proposition~\ref{prop:moment-precision}).
 
 Independently, the Kim--Vu sandwich conjecture---coupling \(\Gnd\) between two
 binomial graphs of density \((1\pm\varepsilon)d/n\)---was proved in full by
@@ -280,6 +284,69 @@ For the second, the threshold substitution \(D=n^{4/13}/(\log n)^{5/13}\) produc
 because \((4/13)\cdot(13/10)=2/5\) and \((5/13)\cdot(13/10)=1/2\).
 A little-o hypothesis makes the product \(o(1)\). A union bound over the \(m\) steps
 yields the chain.
+\end{proof}
+
+\begin{proposition}[Moment precision]
+\label{prop:moment-precision}
+The factor \(1+O(d^2/n)\) in the proof of Lemma~\ref{lem:cor15} determines each
+ratio \(\EE[Y^k]/(\EE Y)^k\), for fixed \(k\), only up to an additive uncertainty
+\(O(d^2/n)\).
+That uncertainty is \(o(d^{-6})\) only for \(d=o(n^{1/8})\).
+For \(\omega(n^{1/8})=d=o(n^{1/2})\) it is larger than both \(d^{-6}\) and
+\((d^2/n)^2\).
+In particular it is larger than \(v(d)^2\) throughout the range where
+Theorem~\ref{thm:fourth-chains} would improve on Corollary~\ref{cor:chernoff-chains}.
+\end{proposition}
+
+\begin{proof}
+The proof of Lemma~\ref{lem:cor15} estimates \(\PP(H\subseteq\Gnd)\) for a graph \(H\)
+with \(m\) edges by a product of \(m\) conditional probabilities.
+Each factor carries a relative error \(O(d^2/n^2)\) by~\cite[Theorem~6]{Gao20}.
+The union of \(k\) perfect matchings has \(m=O(n)\) edges, and
+\[
+\bigl(1+O(d^2/n^2)\bigr)^{O(n)}=1+O(d^2/n)
+\]
+whenever \(d=o(n^{1/2})\).
+Thus every summand in \(\EE[Y^k]\) is known up to a multiplicative factor \(1+O(d^2/n)\),
+and so is \(\EE[Y^k]/(\EE Y)^k\).
+Whenever that ratio is \(1+o(1)\), the multiplicative uncertainty is an additive
+uncertainty \(O(d^2/n)\).
+Lemma~\ref{lem:moments} puts the second-moment ratio in this class.
+A fourth-moment bound of size \(O(v(d)^2)\) would put the centered moment in the
+same class.
+
+The centered moment expands as
+\[
+\frac{\EE[(Y-\EE Y)^4]}{(\EE Y)^4}
+=
+\frac{\EE[Y^4]}{(\EE Y)^4}
+-4\frac{\EE[Y^3]}{(\EE Y)^3}
++6\frac{\EE[Y^2]}{(\EE Y)^2}
+-3.
+\]
+The constant terms cancel, and the same cancellation does not apply to the
+\(O(d^2/n)\) errors: their coefficients are not asserted to be equal.
+The combination is therefore known only up to an additive \(O(d^2/n)\).
+
+A bound \(\EE[(Y-\EE Y)^4]\le K(\Var Y)^2\) is a statement at scale \(v(d)^2\), since
+\(\Var Y/(\EE Y)^2=O(v(d))\).
+Now \(v(d)^2\le 2d^{-6}+2(d^2/n)^2\).
+The identity \((n^{1/8})^8/n=1\) shows that \(d^2/n=o(d^{-6})\) if and only if
+\(d=o(n^{1/8})\).
+For \(d=o(n^{1/2})\) one has \(n/d^2\to\infty\), hence
+\(d^2/n=\omega((d^2/n)^2)\).
+At \(d=n^{2/7}\) the two comparisons are
+\((n^{2/7})^8/n=n^{9/7}\) and \(n/(n^{2/7})^2=n^{3/7}\).
+Thus for \(\omega(n^{1/8})=d=o(n^{1/2})\) the uncertainty is \(\omega(v(d)^2)\).
+
+Theorem~\ref{thm:fourth-chains} needs the fourth-moment bound on an interval of
+degrees reaching \(n^{4/13}/(\log n)^{5/13}\).
+Since \(1/8<2/7<4/13\), that interval meets the region
+\(\omega(n^{1/8})=d=o(n^{1/2})\), where Lemma~\ref{lem:cor15} does not resolve a
+quantity of size \(v(d)^2\).
+On \(d=o(n^{1/8})\) the uncertainty is fine enough to see a scale \(d^{-6}\), but
+there \(v(d)\asymp d^{-3}\) and Corollary~\ref{cor:chernoff-chains} already follows
+from Chebyshev's inequality.
 \end{proof}
 
 \subsection{Secondary and conditional results}
@@ -1587,6 +1654,8 @@ Conjecture~\ref{conj:config-split} stays open.
 The conditional route past the second-moment ceiling is Theorem~\ref{thm:fourth-chains}:
 a Gaussian fourth-moment bound on perfect-matching counts would move the Chernoff
 window from \(n^{2/7}\) to \(n^{4/13}\).
+Proposition~\ref{prop:moment-precision} shows that the factor \(1+O(d^2/n)\) in
+Lemma~\ref{lem:cor15} is too coarse to certify that bound on this range.
 \end{remark}
 
 \begin{lemma}[Contiguity preserved by a.a.s.\ conditioning]
