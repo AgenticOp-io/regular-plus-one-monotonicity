@@ -1089,6 +1089,37 @@ Rescaling the absolute constant in the definition of \(\varepsilon\) absorbs the
 \(\tfrac12\)--\(2\) factors into the form stated in the theorem.
 \end{proof}
 
+\begin{corollary}[Sharp Chernoff degrees]
+\label{cor:hybrid-sharp}
+Suppose \(d/\log n\to\infty\) and \(C\sqrt{(\log n)/d}\le\varepsilon\le\varepsilon_0\), with
+\(C\) large and \(\varepsilon_0\) as in Theorem~\ref{thm:hybrid}.
+Let \(H\) be the hybrid graph of that theorem. Then with probability \(1-o(1)\),
+\[
+\deg_H(v)=d+(1+o(1))\varepsilon d
+\qquad\text{for every vertex \(v\).}
+\]
+\end{corollary}
+
+\begin{proof}
+Lemma~\ref{lem:residual-sharp} gives \(\deg_R(v)=(1+o(1))\varepsilon_0 d\) simultaneously
+for every \(v\). On \(\{G\subset G^*_0\}\) one has
+\(D_v=d+\mathrm{Bin}(\deg_R(v),q)\) with \(q=\varepsilon/\varepsilon_0\), so the conditional mean is
+\(d+(1+o(1))\varepsilon d\).
+The conditional variance is \(\Theta(\varepsilon d)\). Set
+\(t:=(12\varepsilon d\log n)^{1/2}\).
+A Chernoff bound yields
+\(\PP(|D_v-\EE[D_v\mid R]|\ge t\mid R)\le 2n^{-2}\) on the sharp degree event:
+there \(q\deg_R(v)\le 2\varepsilon d\) for large \(n\), so
+\(t^2/(3q\deg_R(v))\ge 2\log n\).
+A union bound over \(v\) costs \(o(1)\).
+The ratio of this deviation to the surplus is
+\[
+\frac{t}{\varepsilon d}
+=\Theta\Biggl(\Bigl(\frac{\log n}{d}\Bigr)^{1/4}\Biggr)=o(1),
+\]
+since \(d/\log n\to\infty\). Therefore \(D_v=d+(1+o(1))\varepsilon d\).
+\end{proof}
+
 \begin{remark}[Gap to Conjecture~\ref{conj:Q}]
 \label{rem:hybrid-gap}
 Theorem~\ref{thm:hybrid} gives a one-sided Chernoff-scale container with correct edge
