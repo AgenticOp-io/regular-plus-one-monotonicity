@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 .venv/
+.wolfram-appid
 *.aux
 *.log
 *.pdf

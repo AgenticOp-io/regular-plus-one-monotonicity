@@ -1,5 +1,31 @@
 # Theorem C — long simultaneous +1 chains
 
+## Correction (chain schedule)
+
+The length \(L=o((n/D^2)^{1/3}/\mathrm{polylog})\) is not proved.
+The schedule treated \(\alpha\ge c/L\) as if it implied \(2\alpha=O(1/L)\).
+The deviation is a maximum, so that inequality runs the wrong way.
+
+The patched relative variance, after Lemma laplace, is
+\[
+v(D)=D^{-3}+D^2/n.
+\]
+The odd part of the intersection-size expansion sums to zero against the
+Gaussian weight, and the remaining truncation error \(O(d/n)\) is absorbed in
+\(O(d^2/n)\). Chebyshev balances at failure \(v(D)^{1/3}\), so the proved window is
+\(L=o(v(D)^{-1/3})\). Consequences:
+
+- \(v\ge D^{-3}\) forces \(L=o(D)\). No polynomial window at polylog degree.
+- Longest window: \(L=o(n^{1/5})\) at \(D=\lfloor n^{1/5}\rfloor\).
+- Chernoff blocks \(m=\Theta\sqrt{D\log n}\) require
+  \(\omega(\log n)=D=o(n^{2/7}/(\log n)^{3/7})\).
+
+The notes below record the withdrawn schedule.
+
+---
+
+# Withdrawn draft
+
 ## Statement
 
 **Theorem C.**

@@ -1,0 +1,23 @@
+---
+description: Check identities with Wolfram before a proof is finalized
+alwaysApply: true
+---
+
+# Verify math before finalizing a proof
+
+A theorem, lemma, corollary, or exponent threshold in `paper/main.tex` is not finalized until every new closed-form step has been checked. The manuscript stays local. Only the identity goes out.
+
+## Wolfram
+
+1. Extract each new identity: a simplification, a series coefficient, an exponent comparison, or a threshold substitution. One identity per query.
+2. Run `python scripts/wolfram_check.py --append notes/wolfram-checks.md "the identity"`.
+3. The app id comes from `WOLFRAM_APPID` or from `.wolfram-appid` in the repo root. Never commit the id, never print it, and never put it in a note or a query.
+4. Read the plaintext pods. If Wolfram returns a partial expansion, send that reduced form back with the domain made explicit (for example `n>1`) and require an equality result before accepting it.
+5. If a pod disagrees with the draft, do not finalize. Correct the statement, or leave the claim as a conjecture.
+6. Record the query and the plaintext result in `notes/wolfram-checks.md`.
+
+## Other sources
+
+7. When Wolfram returns no result, recompute the same identity with exact rational arithmetic and record that fallback in `notes/wolfram-checks.md`. Do not replace the failed check with a looser bound.
+8. A citation of a published theorem needs the arXiv id or journal reference already in `paper/main.tex`, plus the theorem number. A search snippet is not a proof.
+9. Do not send proof prose, theorem names, or the paper file in a query.
