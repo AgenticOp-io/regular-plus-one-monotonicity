@@ -278,3 +278,12 @@ simplify | 2/7 - 1/8
 0.160714285^_ (period 6)
 [Percent decrease]
 2/7 - 1/8 = 9/56 is 43.75% smaller than 2/7.
+
+
+Query: simplify Integrate[x^(-11/10), {x, D, Infinity}] for D>0
+[Input interpretation]
+simplify | integral_D^∞ x^(-11/10) dx | assuming D>0
+[Computation result]
+simplify | integral_D^∞ x^(-11/10) dx | assuming D>0 = {10/D^(1/10), D}
+[Result]
+10/D^(1/10)

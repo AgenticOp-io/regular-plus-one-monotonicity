@@ -45,6 +45,10 @@ The term \(1/(6D^3)\) alone forces \(L=o(D)\). Chernoff-scale windows
 \(L=\Theta\sqrt{D\log n}\) are then available for
 \(\omega(\log n)=D=o\bigl(n^{2/7}/(\log n)^{3/7}\bigr)\)
 (Corollary~\ref{cor:chernoff-chains}).
+For \(D\le n^{1/10}\) the same nesting extends from any \(D\to\infty\) up to
+degree \(\lfloor n^{1/10}\rfloor\), because the total-variation cost
+\(O(d^{-11/10})\) of~\cite[Corollary~3.2]{HLMPW25} is summable
+(Corollary~\ref{cor:summable}).
 
 Past \(\sqrt{n}\), exact \(+1\) is blocked by an enumeration barrier.
 Tracking the error budget in the Kim--Vu sandwich proof of~\cite{BIM25} with
@@ -96,6 +100,9 @@ simultaneous nesting chains (Theorem~\ref{thm:chains}). The window length is
 \(o(v(D)^{-1/3})\), where \(v(D)\) is the patched relative variance of the
 perfect-matching count. This reaches degrees up to \(o(\sqrt{n})\),
 with Chernoff-scale increments up to \(o(n^{2/7}/(\log n)^{3/7})\).
+Inside \(D\le n^{1/10}\), the total-variation steps of~\cite[Corollary~3.2]{HLMPW25}
+are summable, so the same chain runs from any \(D\to\infty\) all the way to
+\(\lfloor n^{1/10}\rfloor\) (Corollary~\ref{cor:summable}).
 A Gaussian fourth-moment bound on the matching count would move that window to
 \(o(n^{4/13}/(\log n)^{5/13})\) (Theorem~\ref{thm:fourth-chains}).
 The factor \(1+O(d^2/n)\) in the subgraph probabilities does not resolve a moment of
@@ -227,6 +234,37 @@ because \((2/7)\cdot(7/6)=1/3\) and \((3/7)\cdot(7/6)=1/2\).
 A big-O bound at that threshold leaves a constant Chebyshev cost and the union bound does not tend to zero.
 Thus \(m=o(v(D)^{-1/3})\). Theorem~\ref{thm:chains} with \(L:=m\) yields the chain
 \(G_D\subseteq\cdots\subseteq G_{D+m}\).
+\end{proof}
+
+\begin{corollary}[Summable chains up to \(n^{1/10}\)]
+\label{cor:summable}
+Let \(n\) be even and let \(D=D(n)\) satisfy \(D\to\infty\) and \(D\le n^{1/10}\).
+Then there is a coupling \((G_d)_{d=D}^{M}\) with \(M=\lfloor n^{1/10}\rfloor\),
+each \(G_d\sim G(n,d)\), and
+\[
+\PP\bigl(G_D\subseteq G_{D+1}\subseteq\cdots\subseteq G_M\bigr)=1-o(1).
+\]
+\end{corollary}
+
+\begin{proof}
+\cite[Corollary~3.2]{HLMPW25} supplies, for every \(d\in[3,n^{1/10}]\),
+\[
+\dTV(\mu_d\oplus\mu_1,\mu_{d+1})\le C_1 d^{-11/10}
+\]
+with \(C_1\) absolute.
+Theorem~\ref{thm:approx} turns each such bound into a coupling of \(G(n,d)\) with
+\(G(n,d+1)\) whose failure probability is at most \(C_1 d^{-11/10}\).
+Compose these couplings from \(d=D\) through \(d=M-1\).
+The union bound is at most
+\[
+\sum_{d=D}^{M-1} C_1 d^{-11/10}
+\le
+C_1\int_{D-1}^{\infty} x^{-11/10}\,dx
+=
+10\,C_1(D-1)^{-1/10}
+\]
+for \(D\ge 2\), since \(\int_D^\infty x^{-11/10}\,dx=10 D^{-1/10}\).
+The hypothesis \(D\to\infty\) sends the bound to \(0\).
 \end{proof}
 
 \begin{theorem}[Fourth-moment chains]
