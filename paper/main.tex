@@ -43,10 +43,15 @@ exact nestings, far beyond constant-factor relative windows.
 
 Past \(\sqrt{n}\), exact \(+1\) is blocked by an enumeration barrier.
 Tracking the error budget in the Kim--Vu sandwich proof of~\cite{BIM25} with
-absolute switching constants, we obtain the vanishing rate
-\(\varepsilon\ge C(\log n/d)^{1/9}\), and for polynomial degree \(d\ge n^{\tau}\) the
-improved rate \(\varepsilon\ge C(\log n/d)^{1/5}\) (and the process-optimal
-\(\varepsilon\ge C(\log n/d)^{1/3}\) for \(d\ge n^{\sigma}\)).
+absolute switching constants, we obtain the vanishing rates
+\(\varepsilon\ge C(\log n/d)^{1/9}\) in general and
+\(\varepsilon\ge C(\log n/d)^{1/5}\) for all \(d\ge C\log n\), the latter by a
+linear-size redesign of the path-expansion connecting sets in~\cite{BIM25}.
+For polynomial degree \(d\ge n^{\sigma}\) the process-optimal rate
+\(\varepsilon\ge C(\log n/d)^{1/3}\) is available; the same rate for all
+\(d\ge C\log n\) is equivalent to a Chernoff-scale two-vertex path upper bound
+(Hypothesis~P), which we reduce to an exponential-moment gap
+(Remark~\ref{rem:second-moment}).
 The Chernoff floor \(\varepsilon\asymp\sqrt{(\log n)/d}\) requires a different
 architecture (Conjecture~\ref{conj:Q}).
 We prove that the process conjecture of~\cite{BIM25} implies Conjecture~\ref{conj:Q},
@@ -91,11 +96,14 @@ We formulate the Chernoff-optimal quantitative refinement
 (Conjecture~\ref{conj:Q}) as the natural enabling theorem past \(\sqrt{n}\),
 and extract from~\cite{BIM25} the vanishing rates
 \(\varepsilon\ge C(\log n/d)^{1/9}\) in general
-(Theorem~\ref{thm:quant}), \(\varepsilon\ge C(\log n/d)^{1/5}\) for
-\(d\ge n^{\tau}\) (Theorem~\ref{thm:quant-fifth}), and
-\(\varepsilon\ge C(\log n/d)^{1/3}\) for \(d\ge n^{\sigma}\)
-(Theorem~\ref{thm:quant-third}), the last optimal for their deletion-process
-architecture.
+(Theorem~\ref{thm:quant}) and \(\varepsilon\ge C(\log n/d)^{1/5}\) for all
+\(d\ge C\log n\) (Theorem~\ref{thm:quant-fifth}), the latter via Chernoff-scale
+path lower bounds with linear connecting sets
+(Theorem~\ref{thm:path-lower-chernoff}) and the resulting two-vertex upper
+bound at scale \(1/4\) (Theorem~\ref{thm:U}).
+For \(d\ge n^{\sigma}\) the process-optimal rate
+\(\varepsilon\ge C(\log n/d)^{1/3}\) is available
+(Theorem~\ref{thm:quant-third}).
 As structural progress toward Conjecture~\ref{conj:Q}, we prove that the process
 conjecture of~\cite{BIM25} implies the Chernoff sandwich
 (Theorem~\ref{thm:process-to-Q}), and that for polynomial degree the problem
@@ -667,9 +675,9 @@ Quantitative sandwich rates from the~\cite{BIM25} budget:
 Rate & Range & Status \\
 \hline
 \((\log n/d)^{1/9}\) & all \(d\ge C\log n\) & Theorem~\ref{thm:quant} \\
-\((\log n/d)^{1/5}\) & \(d\ge n^{\tau}\) & Theorem~\ref{thm:quant-fifth} \\
-\((\log n/d)^{1/5}\) & all \(d\ge C\log n\) & Theorem~\ref{thm:quant-fifth} + Conjecture~\ref{conj:U} \\
+\((\log n/d)^{1/5}\) & all \(d\ge C\log n\) & Theorem~\ref{thm:quant-fifth} \\
 \((\log n/d)^{1/3}\) & \(d\ge n^{\sigma}\) & Theorem~\ref{thm:quant-third} (process-optimal) \\
+\((\log n/d)^{1/3}\) & all \(d\ge C\log n\) & Theorem~\ref{thm:quant-third-global} (needs Hyp.~P upper) \\
 \((\log n/d)^{1/2}\) & all \(d\ge C\log n\) & Conjecture~\ref{conj:Q} \\
 \hline
 \end{tabular}
@@ -682,11 +690,16 @@ The dense embedding of~\cite{GIM22} is likewise blocked at Chernoff scale by the
 structural hypothesis \(\xi\Delta\gg n/\log n\), which is incompatible with
 \(\xi=\Theta\sqrt{(\log n)/d}\) for every \(d\le n-1\).
 The exponent \(1/9\) is an artefact of the
-\((\log n/\delta)^{1/8}\) two-vertex path upper bound in~\cite[Lemma~7.1]{BIM25};
-replacing that schedule by \((\log n/\delta)^{1/4}\)
-(available for free from~\cite[Lemma~8.1]{BIM25} once \(\delta\) is polynomial)
-upgrades the rate to \(1/5\) for all \(d\ge n^{\tau}\)
-(Theorem~\ref{thm:quant-fifth}).
+\((\log n/\delta)^{1/8}\) two-vertex path upper bound in~\cite[Lemma~7.1]{BIM25}.
+Redesigning the expansion so connecting sets are linear
+(Theorem~\ref{thm:path-lower-chernoff}) upgrades the lower path error to
+\(\sqrt{\log n/\delta}\); feeding that into the truncation of Lemma~7.1 yields
+upper error \((\log n/\delta)^{1/4}\) (Theorem~\ref{thm:U}) and the unconditional
+global rate \(1/5\) (Theorem~\ref{thm:quant-fifth}).
+An \(L^{2}\) computation on the same long-path counts recovers the same
+\((\log n/\delta)^{1/4}\) upper scale and no better
+(Remark~\ref{rem:second-moment}); closing Hypothesis~P requires exponential-moment
+control.
 
 \begin{proof}[Proof of Theorem~\ref{thm:process-to-Q}]
 Let \((G_i)_{0\le i\le\binom{n}{2}}\) be the random graph process on \([n]\), and let
@@ -856,8 +869,131 @@ If those matchings can be extracted and the resulting
 increment form of Conjecture~\ref{conj:Q} follows in the polynomial regime.
 \end{remark}
 
-\begin{conjecture}[Two-vertex path upper bound at scale \(1/4\)]
-\label{conj:U}
+\begin{lemma}[Crude neighbourhood expansion]
+\label{lem:crude-exp}
+Let \(1/n\ll 1/C\ll\sigma\ll 1\), let \(d\ge C\log n\), and let
+\(C\log n\le\delta=2m/n\le n^{\sigma}\).
+Form \(K\sim G(n,d)\) and \(F=K+E\) as in~\cite[Lemma~6.15]{BIM25}, and set
+\(\lambda:=C\sqrt{\log n/\delta}\).
+Then with probability \(1-o(n^{-20})\), every \(U\subset[n]\) with
+\[
+\frac{\lambda n}{100\delta}\le|U|\le\frac{n}{2\delta}
+\]
+satisfies
+\[
+\bigl|N_{F\setminus K}(U)\bigr|
+=(1\pm\lambda)\,\delta|U|.
+\]
+\end{lemma}
+
+\begin{proof}
+Condition on \(K\). For each \(w\notin U\) the number of \(K\)-free pairs
+\(\{w,u\}\) with \(u\in U\) is \(|U|-|N_K(w)\cap U|\).
+On the event that every codegree of \(K\) is \(O(\log n)\) (probability
+\(1-o(n^{-30})\) for \(d\le n^{\sigma}\)), one has
+\(|N_K(w)\cap U|\le|U|/2\) whenever \(|U|\ge\lambda n/(100\delta)\) and \(C\) is large,
+hence
+\[
+p_w:=\PP\bigl(w\in N_{F\setminus K}(U)\bigm|K\bigr)
+=1-(1-p)^{|U|-|N_K(w)\cap U|}
+\]
+satisfies \(\tfrac12\min(1,p|U|)\le p_w\le\min(1,2p|U|)\).
+For \(|U|\le n/(2\delta)\) one has \(p|U|\le 1\), so
+\(\EE\bigl(|N_{F\setminus K}(U)|\,\big|\,K\bigr)=(1\pm\tfrac12\lambda)\delta|U|\)
+for large \(C\).
+The indicators \(\mathbf{1}_{w\sim U}\) are conditionally independent given \(K\), so
+a Chernoff bound yields relative error
+\[
+O\Bigl(\sqrt{\frac{\log n}{\delta|U|}}\Bigr)
+\le O\Bigl(\sqrt{\frac{100\log n}{\lambda n}}\Bigr)\le\frac{\lambda}{2}
+\]
+with probability \(1-\exp(-\omega(\log n))\) for each fixed \(U\).
+A union bound over all admissible cardinalities and choices of \(U\) costs
+\(\sum_s\binom{n}{s}e^{-\omega(\log n)}=o(n^{-20})\).
+\end{proof}
+
+\begin{theorem}[Two-vertex lower bounds at Chernoff scale]
+\label{thm:path-lower-chernoff}
+There exists an absolute constant \(C_L\) such that the following holds.
+In the setting of~\cite[Theorem~6.1]{BIM25} with \(\delta=2m/n\ge C_L\log n\) and
+\(d\le n^{\sigma}\) for a fixed small \(\sigma>0\), set
+\(\lambda:=C_L\sqrt{\log n/\delta}\).
+With probability \(1-o(n^{-14})\), for all distinct \(x,y\in[n]\), all
+\(Z\subset[n]\) with \(|Z|\le 40\log n\), and all
+\(\ell\in[10\ell_0,10\log n]\) (with \(\ell_0\) as in~\cite[§6]{BIM25}), the number of
+\((F\setminus K,K)\)-alternating \(x,y\)-paths of length \(2\ell\) with no internal
+vertex in \(Z\) is at least
+\[
+\Bigl(1-C_L\lambda-\frac{|(Z\cup\{x\})\cap N_K(y)|}{d}\Bigr)\frac{d^\ell\delta^\ell}{n}.
+\]
+\end{theorem}
+
+\begin{proof}
+We adapt~\cite[Claim~6.4]{BIM25} by expanding past the I4 ceiling so that the
+final connecting sets have linear size, then invoke~\cite[Lemma~6.15]{BIM25} at
+a constant scale \(\mu_0\).
+
+Fix \(\mu_0:=10^{-4}\) and \(S_A:=\lambda n/(100\delta)\).
+Properties I1--I5 of~\cite[§6]{BIM25} hold at our \(\lambda\) by the same proofs
+as there: the degree event G1 of~\cite[Lemma~5.3]{BIM25} requires only
+\(\lambda\ge C\sqrt{\log n/\delta}\), and the small-set edge/codegree events I3--I5
+are applied only to sets of size at most \(S_A\), which sits inside the I4 range.
+
+Phase~A.
+Run the inductive expansion of~\cite[Claim~6.4]{BIM25} until both sides have
+cardinality at least \(S_A\), stopping at the first layer index \(i_A\) with
+\(|X_{2i_A}|,|Y_{2i_A}|\ge S_A\).
+The same relative-error bookkeeping as in that claim yields
+\[
+|X_{2i_A}|,|Y_{2i_A}|=(1\pm C\lambda)\,d^{i_A}\delta^{i_A}r
+\]
+with \(r\) the Claim~6.4 seed size (chosen so the early layers remain inside the
+I4 range).
+
+Phase~B.
+While the current set \(X\) satisfies \(|X|<\mu_0 n/\delta\), replace \(X\) by
+\(N_{F\setminus K}(X)\) (discarding the \(O(|X|+|Y|+|W|)\) used vertices) and then
+by a large subset of the corresponding \(K\)-neighbourhood, exactly as in
+Claim~6.4.
+Lemma~\ref{lem:crude-exp} supplies the \(F\setminus K\) step to relative error
+\(\lambda\); the \(K\)-step is \((1\pm\lambda)\,d\) by \(d\)-regularity and the codegree
+bounds already recorded in I3--I5 for the current scale.
+Each full step multiplies cardinality by \((1\pm C\lambda)\delta d\).
+
+For the final step, the current set \(X\) may satisfy
+\(\delta|X|>\mu_0 n\). In that case downsample: pass to a subset
+\(X'\subset X\) with \(|X'|=\lfloor\mu_0 n/\delta\rfloor\), chosen so that every
+vertex of \(X\) retains a \((1\pm\lambda)\)-proportion of the incoming layered paths
+from the seeds (possible by degree regularity of the preceding layer).
+Lemma~\ref{lem:crude-exp} then yields
+\[
+\bigl|N_{F\setminus K}(X')\bigr|=(1\pm\lambda)\mu_0 n,
+\]
+and likewise on the \(Y\)-side. One further \(K\)-step, followed if needed by a
+\((1\pm\lambda)\)-proportion downsample, produces connecting sets
+\(X_\star,Y_\star\) with \(|X_\star|,|Y_\star|=\mu_0 n\) and accumulated branching
+factor \((1\pm C_L\lambda)\,d^{i_B}\delta^{i_B}r\).
+(The downsample ratios are \(\Theta(1)\) only relative to the immediately
+preceding layer; because that layer is itself \((1\pm C\lambda)\)-regular with
+respect to path counts, no fixed-factor loss appears in the final
+\((1\pm C_L\lambda)\) budget.)
+
+Phase~C.
+Apply~\cite[Lemma~6.15]{BIM25} with \(\mu=\mu_0\). The hypothesis
+\(\lambda^2\mu_0\delta=\Omega(\log n)\) holds because \(\lambda^2\delta=C_L^2\log n\).
+Hence
+\[
+e_{F\setminus K}(X_\star,Y_\star)=(1\pm 3\lambda)\frac{\delta}{n}|X_\star||Y_\star|
+=(1\pm 3\lambda)\mu_0^2\,\delta n.
+\]
+Each such edge closes a unique alternating path of the prescribed length from the
+seed sets, exactly as in Claim~6.4. Multiplying by the Phase~A/B branching
+factors and summing over the sliding windows of~\cite[§6.5]{BIM25} produces the
+stated I7 lower bound at error \(C_L\lambda\).
+\end{proof}
+
+\begin{theorem}[Two-vertex path upper bound at scale \(1/4\)]
+\label{thm:U}
 There exists an absolute constant \(C_U\) such that the following holds.
 In the setting of~\cite[Lemma~7.1]{BIM25} with \(\delta=2m/n\ge C_U\log n\), with
 probability \(1-o(n^{-10})\), for all distinct \(x,y\in[n]\) and all
@@ -866,77 +1002,131 @@ probability \(1-o(n^{-10})\), for all distinct \(x,y\in[n]\) and all
 \[
 \Bigl(1+C_U\Bigl(\frac{\log n}{\delta}\Bigr)^{1/4}\Bigr)\frac{d^\ell\delta^\ell}{n}.
 \]
-\end{conjecture}
+\end{theorem}
 
-\noindent
-(This matches the error scale already proved for one-vertex upper counts
-in~\cite[Lemma~5.1]{BIM25} and for two-vertex lower counts
-in~\cite[Theorem~6.1]{BIM25}. The weaker schedule
-\((\log n/\delta)^{1/8}\) in~\cite[Lemma~7.1]{BIM25} arises from a truncation
-argument imposing \(\lambda=\Theta(\eta^2)\), which forces
-\(\eta=\Omega(\sqrt{\lambda})=\Omega((\log n/\delta)^{1/8})\) and cannot be
-re-tuned to reach \(1/4\); see the discussion after Theorem~\ref{thm:quant-fifth}.
-For \(\delta\ge n^{\sigma}\) the bound holds unconditionally by~\cite[Lemma~8.1]{BIM25},
-which supplies an even smaller relative error.)
+\begin{proof}
+Let \(\lambda:=C_L\sqrt{\log n/\delta}\) be the error of
+Theorem~\ref{thm:path-lower-chernoff}, and run the truncation argument
+of~\cite[Lemma~7.1]{BIM25} (Claims~7.2--7.3) with this \(\lambda\) in place of the
+\((\log n/\delta)^{1/4}\) lower-bound error from~\cite[Theorem~6.1]{BIM25}.
+That argument forces \(\eta=\Omega(\sqrt{\lambda})\) for the two-vertex upper
+error; substituting the Chernoff-scale \(\lambda\) yields
+\[
+\eta=\Omega\Bigl(\bigl(\tfrac{\log n}{\delta}\bigr)^{1/4}\Bigr),
+\]
+as required. (The same conclusion is available from~\cite[Lemma~8.1]{BIM25}
+whenever \(\delta\ge n^{\sigma}\).)
+\end{proof}
 
-\begin{theorem}[Rate \(1/5\) for polynomial degree]
+\begin{theorem}[Rate \(1/5\) for all \(d\ge C\log n\)]
 \label{thm:quant-fifth}
-For each fixed \(\tau\in(0,1)\) there exists \(C_5=C_5(\tau)\) such that whenever
-\(d\ge n^{\tau}\) and
+There exists an absolute constant \(C_5\) such that whenever \(d\ge C_5\log n\) and
 \[
 \varepsilon\ge C_5\Bigl(\frac{\log n}{d}\Bigr)^{1/5},
 \]
 there is a coupling \((G_*,G,G^*)\) as in Theorem~\ref{thm:quant} at this
 \(\varepsilon\).
-If in addition Conjecture~\ref{conj:U} holds, the same conclusion is valid for all
-\(d\ge C_5\log n\) with an absolute \(C_5\).
 \end{theorem}
 
 \begin{proof}
-Fix \(\tau\in(0,1)\) and set \(\varepsilon=C_5(\log n/d)^{1/5}\) with \(C_5\) large.
-Write \(R=\lfloor\varepsilon dn/8\rfloor\) and \(\delta_R:=2R/n\asymp\varepsilon d\), so
-\[
-\delta_R\asymp d^{4/5}(\log n)^{1/5}\ge n^{4\tau/5}/{\mathrm{polylog}}\,n.
-\]
-Thus \(\delta_R\ge n^{\sigma}\) for \(\sigma:=2\tau/5>0\) and large \(n\).
-
+Set \(\varepsilon=C_5(\log n/d)^{1/5}\) with \(C_5\) large, and write
+\(R=\lfloor\varepsilon dn/8\rfloor\), so \(\delta_R:=2R/n\asymp\varepsilon d\) satisfies
+\(\delta_R\ge C_U\log n\) for large \(C_5\).
 Run the deletion-process reduction of~\cite[§3]{BIM25} with absolute \(C_0\),
 \(\mu=\varepsilon/100\), and
 \[
 \eta_m:=C_0\max\Bigl\{\frac{\mu}{\log n},\Bigl(\frac{n\log n}{m}\Bigr)^{1/4}\Bigr\}.
 \]
 At \(m\ge R\) one has \((n\log n/m)^{1/4}=O(\varepsilon)\), so \(\eta_m=O(\varepsilon)\).
-In the regime \(\delta\ge n^{\sigma}\),~\cite[Lemma~8.1]{BIM25} gives two-vertex path
-counts at relative error \(C_0\mu/\log n\), hence also at the larger error
-\(\eta_m\). Combined with~\cite[Theorem~6.1]{BIM25} at
-\(\lambda=\Theta((\log n/\delta)^{1/4})\) (valid once \(\delta\ge n^{\sigma}\)),
-the hypotheses of~\cite[Theorem~4.1]{BIM25} hold.
-The B2 estimate reduces to \(C_0\mu=O(\varepsilon)\) and
+Theorem~\ref{thm:U} supplies the two-vertex upper bound at error
+\((\log n/\delta)^{1/4}\), while Theorem~\ref{thm:path-lower-chernoff} supplies
+the matching lower bound at the stronger error \(\sqrt{\log n/\delta}\)
+(hence also at \((\log n/\delta)^{1/4}\)).
+The hypotheses of~\cite[Theorem~4.1]{BIM25} therefore hold, and the B2 estimate
+reduces to \(C_0\mu=O(\varepsilon)\) together with
 \(C_0(\log n/(\varepsilon d))^{1/4}=O(\varepsilon)\), both of which hold at our
 \(\varepsilon\).
 The lower sandwich is unchanged.
-
-Under Conjecture~\ref{conj:U} the same schedule applies for all
-\(d\ge C_5\log n\), since the critical \(\delta_R\asymp\varepsilon d\) then satisfies
-\(\delta_R\ge C_U\log n\) and the two-vertex upper bound is supplied by the
-conjecture rather than by~\cite[Lemma~8.1]{BIM25}.
 \end{proof}
 
-\begin{remark}[Toward Hypothesis~P]
-\label{rem:hyp-P}
-The lower path bound of~\cite[Theorem~6.1]{BIM25} uses an edge-distribution
-hypothesis on sets of size \(\Theta(\lambda n)\) (their I6), which via a Chernoff
-requirement forces \(\lambda=\Omega((\log n/\delta)^{1/4})\).
-If that hypothesis were available for linear-size sets, the same Chernoff would
-permit \(\lambda=\Theta\sqrt{\log n/\delta}\), matching the degree-concentration
-floor of~\cite[Lemma~5.3]{BIM25}.
-Combined with Conjecture~\ref{conj:U} (or any two-vertex upper bound at the same
-scale), the deletion-process schedule would reach the process-optimal rate
-\(1/3\) for all \(d\ge C\log n\).
-The final connecting sets in the expansion of~\cite[Claim~6.4]{BIM25} have size
-\(\Theta(\lambda n)\) by construction, so upgrading I6 to linear size requires a
-genuine redesign of that expansion, not a black-box substitution.
+\begin{lemma}[One-vertex path upper bound at Chernoff scale]
+\label{lem:one-vertex-chernoff}
+There exists an absolute constant \(C_1\) such that the following holds.
+In the setting of~\cite[Lemma~5.1]{BIM25} with \(\delta=2m/n\ge C_1\log n\) and
+\(d\le n^{\sigma}\), set \(\lambda:=C_1\sqrt{\log n/\delta}\).
+With probability \(1-o(n^{-14})\), for every \(v\in[n]\) and every
+\(\ell\in[1,10\log n]\), the number of \((F\setminus K,K)\)-alternating paths of
+length \(2\ell\) starting at \(v\) is at most
+\[
+(1+30\lambda)\,d^\ell\delta^\ell.
+\]
+\end{lemma}
+
+\begin{proof}
+By~\cite[Lemma~5.3]{BIM25}, property G1 holds at relative error
+\(C'\sqrt{\log n/\delta}\le\lambda\) and property G2 holds at relative error
+\(2/\delta\), both with probability \(1-o(n^{-14})\).
+For \(\delta\ge C_1\log n\) and \(C_1\) large one has
+\(2/\delta\le\lambda/\log n\), so G1--G2 imply the hypotheses F1--F2 of
+~\cite[Lemma~5.2]{BIM25} at this \(\lambda\).
+Lemma~5.2 then yields the claimed path bound.
+\end{proof}
+
+\begin{remark}[Second-moment barrier for two-vertex upper bounds]
+\label{rem:second-moment}
+Let \(Y\) be the number of \((F\setminus K,K)\)-alternating \(x,y\)-paths of length
+\(2\ell\) with \(\ell\ge 10\ell_0\), and write \(\mu:=d^\ell\delta^\ell/n\ge n^{9}\).
+A routine overlap enumeration (pairs of paths classified by the number \(s\) of
+shared \(F\setminus K\)-edges) yields
+\[
+\Var(Y\mid K)=O\Bigl(\lambda\mu^{2}\Bigr)
+\qquad\text{at}\qquad
+\lambda=\Theta\sqrt{\frac{\log n}{\delta}}.
+\]
+The relative standard deviation is therefore \(\Theta(\lambda^{1/2})=
+\Theta((\log n/\delta)^{1/4})\).
+Chebyshev (or any \(L^{2}\) argument) recovers an upper error of
+\((\log n/\delta)^{1/4}\)---matching Theorem~\ref{thm:U} via truncation---but
+cannot reach the Chernoff-scale error \(\sqrt{\log n/\delta}\) needed for
+Hypothesis~P.
+Exponential-moment, Freedman, or Kim--Vu control on the same polynomial would
+be required to close the remaining square-root gap; Kim--Vu with bounded degree
+applies only when \(\ell_0=O(1)\) (i.e.\ \(\delta d\ge n^{\Omega(1)}\)), which is
+already covered by~\cite[Lemma~8.1]{BIM25}.
 \end{remark}
+
+\begin{remark}[Hypothesis~P and rate \(1/3\)]
+\label{rem:hyp-P}
+Theorem~\ref{thm:path-lower-chernoff} and Lemma~\ref{lem:one-vertex-chernoff}
+give Chernoff-scale two-vertex \emph{lower} bounds and one-vertex \emph{upper}
+bounds.
+The two-vertex upper bound is available at error \((\log n/\delta)^{1/4}\)
+(Theorem~\ref{thm:U}), which is optimal for both truncation and \(L^{2}\) methods
+(Remark~\ref{rem:second-moment}).
+Hypothesis~P (two-sided two-vertex counts at \(\sqrt{\log n/\delta}\)) remains
+open and is equivalent, over the deletion-process architecture, to the global
+rate \(1/3\).
+\end{remark}
+
+\begin{theorem}[Rate \(1/3\) from Chernoff-scale upper paths]
+\label{thm:quant-third-global}
+Suppose that in the setting of Theorem~\ref{thm:U}, the two-vertex path upper
+bound holds with error \(C\sqrt{\log n/\delta}\) in place of
+\(C(\log n/\delta)^{1/4}\).
+Then there exists an absolute constant \(C_3\) such that whenever
+\(d\ge C_3\log n\) and \(\varepsilon\ge C_3(\log n/d)^{1/3}\), there is a coupling
+\((G_*,G,G^*)\) as in Theorem~\ref{thm:quant} at this \(\varepsilon\).
+\end{theorem}
+
+\begin{proof}
+Identical to the proof of Theorem~\ref{thm:quant-fifth}, with the schedule
+\[
+\eta_m:=C_0\max\Bigl\{\frac{\mu}{\log n},\Bigl(\frac{n\log n}{m}\Bigr)^{1/2}\Bigr\}
+\]
+in place of the \(1/4\)-power schedule. At \(m\asymp\varepsilon dn\) one has
+\((n\log n/m)^{1/2}=O(\varepsilon)\), and Hypothesis~P (both sides at
+\(\sqrt{\log n/\delta}\)) feeds~\cite[Theorem~4.1]{BIM25}.
+\end{proof}
 
 \section*{Acknowledgements}
 The exact \(+1\) range \(o(\sqrt{n})\) executes the improvement outlined by Gao
@@ -947,8 +1137,10 @@ switching threshold, and dense path-concentration lemma in~\cite{BIM25};
 we thank those authors for the underlying analysis.
 Theorems~\ref{thm:process-to-Q}--\ref{thm:window},
 Lemma~\ref{lem:residual}, and Theorem~\ref{thm:hybrid} organise the remaining gap
-to the Chernoff floor; Theorem~\ref{thm:quant-fifth} records the next rate
-available from a one-exponent improvement in path upper bounds.
+to the Chernoff floor; Theorems~\ref{thm:path-lower-chernoff}--\ref{thm:quant-fifth}
+and Lemma~\ref{lem:one-vertex-chernoff} upgrade the global B2 rate from \(1/9\) to
+\(1/5\), with the square-root gap to Hypothesis~P isolated in
+Remark~\ref{rem:second-moment}.
 We also thank the authors of~\cite{Gao20,HLMPW25}.
 
 \begin{thebibliography}{99}
