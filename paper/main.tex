@@ -32,16 +32,18 @@ so that \(\Gnd\subset G(n,d+1)\) with high probability whenever \(d\to\infty\) a
 \(d=o(n^{1/3})\), and observed that the same argument should extend to
 \(d=o(n^{1/2})\) via the sharper conditional edge probabilities of~\cite{Gao20},
 leaving the details for a simpler exposition.
-We supply those details, obtaining the range \(d=o(n^{1/2}/\log^3 n)\).
+We supply those details, obtaining the range \(d=o(n^{1/2})\).
 
-As a new consequence of the same error schedule, we prove \emph{long simultaneous
-nesting chains}: for base degree \(D=o(n^{1/2}/\log^4 n)\) one can nest
-\(G(n,D)\subseteq\cdots\subseteq G(n,D+L)\) through a window of length
-\(L=o\bigl((n/D^2)^{1/3}/\log^{2/3}n\bigr)\).
-In particular, Chernoff-scale windows \(L=\Theta\sqrt{D\log n}\) are available for all
-\(D=o(n^{2/7}/\mathrm{polylog}\,n)\) (Corollary~\ref{cor:chernoff-chains}).
-In the sparse regime \(D=\mathrm{polylog}\,n\) this yields polynomial-length
-exact nestings, far beyond constant-factor relative windows.
+As a new consequence of the same error schedule, we prove long simultaneous
+nesting chains. The length is the Chebyshev optimum for the patched relative
+variance of perfect-matching counts. After the odd part of the Laplace expansion
+is removed (Lemma~\ref{lem:laplace}), that variance is of order
+\(D^{-3}+D^2/n\), so the window has length
+\(L=o(v(D)^{-1/3})\) (Theorem~\ref{thm:chains}).
+The term \(1/(6D^3)\) alone forces \(L=o(D)\). Chernoff-scale windows
+\(L=\Theta\sqrt{D\log n}\) are then available for
+\(\omega(\log n)=D=o\bigl(n^{2/7}/(\log n)^{3/7}\bigr)\)
+(Corollary~\ref{cor:chernoff-chains}).
 
 Past \(\sqrt{n}\), exact \(+1\) is blocked by an enumeration barrier.
 Tracking the error budget in the Kim--Vu sandwich proof of~\cite{BIM25} with
@@ -61,9 +63,10 @@ supergraph with the correct edge marginals (Theorem~\ref{thm:hybrid}), and that
 peeling \(m=\Theta\sqrt{d\log n}\) perfect matchings from the residual produces an
 exact \((d+m)\)-regular one-sided container inside the rate-\(1/3\) ER upper graph
 (Theorem~\ref{thm:matching-peel}, Corollary~\ref{cor:chernoff-container}), and that
-for \(d=o(n^{1/7})\) this container is within \(o(1)\) total variation of
-\(G(n,d+m)\), yielding Chernoff-scale nesting increments
-(Theorem~\ref{thm:config-split}, Corollary~\ref{cor:chernoff-inc-sparse}).
+host-restricted identification of that container with \(G(n,d+m)\) is open
+(Conjecture~\ref{conj:config-split}). A sandwich coupling at degree \(d+m\)
+does not place a uniform copy of \(G(n,d+m)\) inside the upper graph already
+built at degree \(d\) (Proposition~\ref{prop:host-gap}).
 \end{abstract}
 
 \tableofcontents
@@ -88,9 +91,10 @@ of~\cite{Gao20}, but leaves the details for a simpler exposition
 (see~\cite[Remark~16(b), §5]{Gao21}).
 We write those details out.
 As a new consequence of the same patched error schedule, we obtain long
-simultaneous nesting chains (Theorem~\ref{thm:chains}): polynomial-length exact
-nestings in the sparse regime, and windows of length
-\(o\bigl((n/D^2)^{1/3}/\mathrm{polylog}\,n\bigr)\) at base degree \(D\).
+simultaneous nesting chains (Theorem~\ref{thm:chains}). The window length is
+\(o(v(D)^{-1/3})\), where \(v(D)\) is the patched relative variance of the
+perfect-matching count. This reaches degrees up to \(o(\sqrt{n})\),
+with Chernoff-scale increments up to \(o(n^{2/7}/(\log n)^{3/7})\).
 
 Independently, the Kim--Vu sandwich conjecture---coupling \(\Gnd\) between two
 binomial graphs of density \((1\pm\varepsilon)d/n\)---was proved in full by
@@ -114,8 +118,13 @@ final surplus-degree window of width \(d^{2/3}\to d^{1/2}\) for every
 \(d\ge C\log n\) (Theorem~\ref{thm:window}).
 Peeling perfect matchings from the rate-\(1/3\) residual then yields an exact
 \((d+m)\)-regular container at Chernoff scale \(m=\Theta\sqrt{d\log n}\)
-(Theorem~\ref{thm:matching-peel}), identified with \(G(n,d+m)\) for
-\(d=o(n^{1/7})\) (Theorem~\ref{thm:config-split}).
+(Theorem~\ref{thm:matching-peel}).
+Free \(m\)-extensions of a \(d\)-regular graph are flat up to a \(1+o(1)\) factor
+for every \(d=o(n^{2/5}/(\log n)^{1/5})\) (Lemma~\ref{lem:free-flat}).
+Identifying the host-restricted container with \(G(n,d+m)\) remains open
+(Conjecture~\ref{conj:config-split}); Proposition~\ref{prop:host-gap} records why
+conditioning on the degree-\(d\) upper graph does not inherit a total-variation
+decomposition.
 
 \subsection{Main result}
 
@@ -123,7 +132,7 @@ Peeling perfect matchings from the rate-\(1/3\) residual then yields an exact
 \label{thm:main}
 Assume the conditional edge-probability estimate of~\cite[Theorem~6]{Gao20}.
 Let \(n\) be even and let \(d=d(n)\) satisfy \(d\to\infty\) and
-\(d=o(n^{1/2}/\log^3 n)\).
+\(d=o(n^{1/2})\).
 Then there exists a coupling of \(G_d\sim\Gnd\) and \(G_{d+1}\sim G(n,d+1)\) such that
 \[
 \PP(G_d\subset G_{d+1})=1-o(1).
@@ -142,31 +151,35 @@ tracked error substitution \(d^3/n\mapsto d^2/n\).
 \begin{theorem}[Long \(+1\) chains]
 \label{thm:chains}
 Assume~\cite[Theorem~6]{Gao20}.
-Let \(n\) be even and let \(D=D(n)\), \(L=L(n)\) be positive integers with \(Dn\) even,
+Let \(n\) be even and let \(D=D(n)\), \(L=L(n)\) be positive integers with \(Dn\) even.
+Write
 \[
-D\to\infty,\qquad
-D=o\Bigl(\frac{n^{1/2}}{\log^4 n}\Bigr),\qquad
-L\to\infty,\qquad
-L=o\Biggl(\frac{(n/D^2)^{1/3}}{\log^{2/3}n}\Biggr).
+v(D)
+:=
+D^{-3}+\frac{D^2}{n}.
 \]
-Then there exists a coupling \((G_d)_{d=D}^{D+L}\) such that each \(G_d\sim G(n,d)\) and
+If \(D\to\infty\), \(D=o(n^{1/2})\), \(L\to\infty\), and \(L=o\bigl(v(D)^{-1/3}\bigr)\),
+then there exists a coupling \((G_d)_{d=D}^{D+L}\) such that each \(G_d\sim G(n,d)\) and
 \[
 \PP\bigl(G_D\subseteq G_{D+1}\subseteq\cdots\subseteq G_{D+L}\bigr)=1-o(1).
 \]
 \end{theorem}
 
-\begin{corollary}[Sparse mega-window]
+\begin{corollary}[Longest second-moment window]
 \label{cor:mega}
-Taking \(D=\lfloor\log^4 n\rfloor\) (with parity arranged) yields a simultaneous
-exact nesting through \(L=o(n^{1/3}/\mathrm{polylog}\,n)\) consecutive degrees.
+At \(D=\lfloor n^{1/5}\rfloor\) (with parity arranged) one has
+\(v(D)=\Theta(n^{-3/5})\), so Theorem~\ref{thm:chains} supplies a simultaneous
+exact nesting of length \(L=o(n^{1/5})\).
 \end{corollary}
 
 \begin{corollary}[Chernoff-length chains up to \(n^{2/7}\)]
 \label{cor:chernoff-chains}
 Assume~\cite[Theorem~6]{Gao20}.
-Let \(n\) be even and let \(D\to\infty\) satisfy
+Let \(n\) be even and let \(D\) satisfy
 \[
-D=o\Biggl(\frac{n^{2/7}}{\log^{2}n}\Biggr).
+\frac{D}{\log n}\to\infty,
+\qquad
+D=o\Biggl(\frac{n^{2/7}}{(\log n)^{3/7}}\Biggr).
 \]
 Set \(m:=\lfloor c\sqrt{D\log n}\rfloor\) with \(c>0\) a small absolute constant
 (and parity arranged so that \(mn\) is even).
@@ -175,15 +188,40 @@ Then there exists a coupling of \(G\sim G(n,D)\) with \(H\sim G(n,D+m)\) such th
 \end{corollary}
 
 \begin{proof}
-The choice of \(D\) forces
+Write \(v(D)\) as in Theorem~\ref{thm:chains}. Then
 \[
-m
-=\Theta\sqrt{D\log n}
-=o\Biggl(\frac{(n/D^2)^{1/3}}{\log^{2/3}n}\Biggr),
+v(D)^{1/3}
+\le
+2\max\Biggl\{
+D^{-1},\;
+\Bigl(\frac{D^2}{n}\Bigr)^{1/3}
+\Biggr\},
 \]
-so Theorem~\ref{thm:chains} applies with this \(L:=m\).
-The resulting chain \(G_D\subseteq\cdots\subseteq G_{D+m}\) yields the claim upon
-taking \(G:=G_D\) and \(H:=G_{D+m}\).
+up to adjusting the absolute constant inside the \(O\)-notation of
+Lemma~\ref{lem:moments}, which is absorbed into the little-o below.
+Hence
+\[
+m\,v(D)^{1/3}
+=
+O\Biggl(
+\sqrt{\frac{\log n}{D}}
++
+\frac{D^{7/6}(\log n)^{1/2}}{n^{1/3}}
+\Biggr).
+\]
+The hypothesis \(D/\log n\to\infty\) kills the first summand.
+Under \(D=o(n^{2/7}/(\log n)^{3/7})\) one has
+\(D^{7/6}(\log n)^{1/2}/n^{1/3}=o(1)\), so the second summand vanishes as well.
+The log power is sharp: substituting \(D=n^{2/7}/(\log n)^{3/7}\) produces
+\[
+\frac{D^{7/6}(\log n)^{1/2}}{n^{1/3}}
+=
+1,
+\]
+because \((2/7)\cdot(7/6)=1/3\) and \((3/7)\cdot(7/6)=1/2\).
+A big-O bound at that threshold leaves a constant Chebyshev cost and the union bound does not tend to zero.
+Thus \(m=o(v(D)^{-1/3})\). Theorem~\ref{thm:chains} with \(L:=m\) yields the chain
+\(G_D\subseteq\cdots\subseteq G_{D+m}\).
 \end{proof}
 
 \subsection{Secondary and conditional results}
@@ -395,6 +433,90 @@ Hence \(P_{\mathrm{seq}}=(1+O(d^2/n))P_{\mathrm{McKay}}\).
 Defining \(\rho:=P_{\mathrm{McKay}}\) yields the claim.
 \end{proof}
 
+\begin{lemma}[Laplace window for intersection size]
+\label{lem:laplace}
+Let \(d\to\infty\) and \(d=o(n^{1/2})\). Let \((a_k)\) be a positive sequence whose
+consecutive ratios satisfy, for \(1\le k\le n/3\),
+\[
+\frac{a_k}{a_{k-1}}
+=
+\frac{(d-2)n+2k}{2(d-1)^2 k}\,(1+O(1/n)),
+\]
+and \(a_k/a_{k-1}\le 1/2\) for \(k>n/3\). Set \(\bar k=n/(2d)\) and \(m=\lfloor\bar k\rfloor\).
+Then
+\[
+\sum_k a_k
+=
+a_m\sqrt{2\pi\bar k}\,\bigl(1+O(d/n)\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+Write \(r_0(k)=((d-2)n+2k)/(2(d-1)^2 k)\). The identity \(r_0(\bar k)=1\) rearranges to
+\[
+r_0(\bar k+t)
+=
+\frac{\bar k+t/(d-1)^2}{\bar k+t}.
+\]
+Set \(\sigma=\sqrt{\bar k}\) and \(\lambda=\log n\), and write \(\delta=k-m\).
+The window \(|\delta|\le\lambda\sigma\) lies inside \(k\le n/3\) for large \(n\), because
+\(\lambda\sigma=o(\bar k)\).
+
+On this window, \(u=t/\bar k\) satisfies \(|u|\le 2\lambda/\sigma\to 0\). The expansion
+\[
+\log\Bigl(1+\frac{u}{(d-1)^2}\Bigr)-\log(1+u)
+=
+-u+\frac{u}{(d-1)^2}+\frac{u^2}{2}-\frac{u^3}{3}+O(u^4)+O\Bigl(\frac{u^2}{d^4}\Bigr)
+\]
+has odd part \(-u-u^3/3+u/(d-1)^2\) and even part \(u^2/2+O(u^4)\).
+Summing the increments in \(t\) gives
+\[
+\log\frac{a_{m+\delta}}{a_m}
+=
+-\frac{\delta^2}{2\bar k}+b(\delta)+e(\delta),
+\]
+where \(b\) is an odd function of \(\delta\), coming from the linear and cubic terms, and the
+even remainder obeys
+\[
+|e(\delta)|
+\le
+C\Biggl(\frac{\delta^4}{\bar k^3}+\frac{\delta^2}{\bar k\,d^2}+\frac{|\delta|}{n}\Biggr)
+\]
+for an absolute \(C\) and large \(n\). The accumulated \(O(1/n)\) in the ratio hypothesis
+is the last summand. In particular \(|b(\delta)|\le C\lambda^3/\sigma\to 0\) and
+\(|e(\delta)|\to 0\) uniformly on the window, since \(d=o(n^{1/2})\) forces
+\(\lambda^4/\sigma^2=o(1)\). Therefore
+\[
+\frac{a_{m+\delta}}{a_m}
+=
+\exp\Bigl(-\frac{\delta^2}{2\bar k}\Bigr)
+\bigl(1+b(\delta)+O(b(\delta)^2+|e(\delta)|)\bigr).
+\]
+
+The weights \(g(\delta)=\exp(-\delta^2/(2\bar k))\) are even. Summing an odd function
+against them on a symmetric window gives zero, so the \(b(\delta)\) contribution drops.
+Poisson summation gives
+\[
+\sum_{\delta\in\mathbb{Z}}g(\delta)
+=
+\sigma\sqrt{2\pi}\sum_{q\in\mathbb{Z}}\exp(-2\pi^2\bar k\,q^2)
+=
+\sigma\sqrt{2\pi}\,\bigl(1+O(e^{-c\bar k})\bigr).
+\]
+The truncated tails \(|\delta|>\lambda\sigma\) of \(g\) are \(O(\sigma\exp(-\lambda^2/2))\).
+The quadratic and sextic sums
+\(\sum g(\delta)\,\delta^2\) and \(\sum g(\delta)\,\delta^6\) are \(O(\sigma^3)\) and \(O(\sigma^7)\).
+Dividing by the powers of \(\bar k=\sigma^2\) in \(b^2\) and \(e\) produces an absolute
+error \(O(\sigma\cdot d/n)\) relative to the main term \(a_m\sigma\sqrt{2\pi}\). Hence the
+window sum is \(a_m\sqrt{2\pi\bar k}\,(1+O(d/n))\).
+
+Outside the window and up to distance \(\bar k/2\) from \(m\), the same expansion yields
+\(\log(a_{m+\delta}/a_m)\le-\delta^2/(4\bar k)\). Those tails are
+\(O(a_m\sigma\exp(-c\log^2 n))\). Beyond \(2\bar k\), one has \(r_0(k)\le 2/3\), so the
+remaining series is geometric and of size \(O(a_m e^{-c\bar k})\). Both are absorbed in
+the factor \(1+O(d/n)\).
+\end{proof}
+
 \begin{lemma}[Patched moments]
 \label{lem:moments}
 Let \(Y\) be the number of perfect matchings in \(\Gnd\), and assume \(d=o(n^{1/2})\).
@@ -405,7 +527,7 @@ Then
 &=(1+O(d^2/n))\frac{n!}{(n/2)!\,2^{n/2}}\,\rho(n,d,1),\\
 \label{eq:VarY}
 \frac{\Var Y}{(\EE Y)^2}
-&=\frac1{6d^3}+O\Bigl(d^{-4}+\frac{d^2}{n}+\sqrt{\frac{d}{n}}\log^3 n\Bigr).
+&=\frac1{6d^3}+O\Bigl(d^{-4}+\frac{d^2}{n}\Bigr).
 \end{align}
 \end{lemma}
 
@@ -420,13 +542,15 @@ Lemma~\ref{lem:cor15}, so
 \[
 \PP(H_1\cup H_2\subseteq\Gnd)=(1+O(d^2/n))\,\rho(n,d,2k/n).
 \]
-Count pairs via~\cite[Lemma~17]{Gao21} and extract the sum by the Laplace argument
-of~\cite[Lemma~18]{Gao21}.
-The hypothesis \(d=o(n^{1/3})\) in that lemma entered only through the old
-\(O(d^3/n)\) error; with Lemma~\ref{lem:cor15} the same argument applies for
-\(d=o(n^{1/2})\).
-The resulting ratio \(\EE[Y^2]/(\EE Y)^2\) is evaluated exactly as
-in~\cite[§3.4.1]{Gao21}, with every \(d^3/n\) replaced by \(d^2/n\).
+Count pairs via~\cite[Lemma~17]{Gao21}. The resulting summand in \(k\), up to the factor
+\(1+O(d^2/n)\) from Lemma~\ref{lem:cor15}, satisfies the ratio hypothesis of
+Lemma~\ref{lem:laplace} (the same ratio computed in~\cite[§3.4.2]{Gao21}).
+Lemma~\ref{lem:laplace} replaces the truncation error \(O(\sqrt{d/n}\,\log^3 n)\) in Gao's
+Lemma~18 by \(O(d/n)\). For \(d\ge 1\) one has \(d/n\le d^2/n\), so this error is absorbed
+in the enumeration error \(O(d^2/n)\).
+The ratio \(\EE[Y^2]/(\EE Y)^2\) is then evaluated as
+in~\cite[§3.4.1]{Gao21}, with every \(d^3/n\) replaced by \(d^2/n\), and equals
+\(1+1/(6d^3)+O(d^{-4}+d^2/n)\).
 \end{proof}
 
 \section{The coupling}
@@ -437,29 +561,29 @@ in~\cite[§3.4.1]{Gao21}, with every \(d^3/n\) replaced by \(d^2/n\).
 Define
 \[
 \eta(\alpha)=2\alpha+\frac1{d^3\alpha^2}+C\frac{d^2}{n\alpha^2}
-+C\frac{\sqrt{d/n}\,\log^3 n}{\alpha^2}
 \]
 for a sufficiently large absolute constant \(C\), and set
 \[
-\alpha=\max\bigl\{d^{-1},\,(d^2/n)^{1/4}\log n,\,(d/n)^{1/6}\log n\bigr\}.
+\alpha=\max\bigl\{d^{-1},\,(d^2/n)^{1/8}\bigr\}.
 \]
-If \(d\to\infty\) and \(d=o(n^{1/2}/\log^3 n)\), then \(\alpha=o(1)\) and \(\eta(\alpha)=o(1)\).
+If \(d\to\infty\) and \(d=o(n^{1/2})\), then \(\alpha=o(1)\) and \(\eta(\alpha)=o(1)\).
 \end{lemma}
 
 \begin{proof}
-Under the hypothesis on \(d\), each argument of the maximum is \(o(1)\), so
-\(\alpha=o(1)\).
-Then \(2\alpha=o(1)\).
-Since \(\alpha\ge d^{-1}\), one has \(1/(d^3\alpha^2)\le d^{-1}=o(1)\).
-Since \(\alpha\ge(d^2/n)^{1/4}\log n\),
+The two arguments of the maximum meet when \(d\cdot(d^2/n)^{1/8}=1\), i.e.\ \(d=n^{1/10}\),
+since \(d\cdot(d^2/n)^{1/8}=d^{5/4}/n^{1/8}\).
+
+If \(d\le n^{1/10}\), then \(\alpha=d^{-1}\). Hence \(2\alpha=o(1)\) and
+\(1/(d^3\alpha^2)\le d^{-1}=o(1)\). The remaining term is
+\(d^2/(n\alpha^2)=d^4/n\le n^{-3/5}\) at the right endpoint, and is smaller for smaller \(d\).
+
+If \(n^{1/10}\le d=o(n^{1/2})\), then \(\alpha=(d^2/n)^{1/8}\). This tends to \(0\), and
 \[
-\frac{d^2}{n\alpha^2}\le\frac{(d^2/n)^{1/2}}{\log^2 n}=o(1).
+\frac{d^2}{n\alpha^2}=(d^2/n)^{3/4}=o(1),
 \]
-Since \(\alpha\ge(d/n)^{1/6}\log n\),
-\[
-\frac{\sqrt{d/n}\,\log^3 n}{\alpha^2}
-\le (d/n)^{1/6}\log n=o(1).
-\]
+while \(1/(d^3\alpha^2)\le d^{-1}=o(1)\) because \(\alpha\ge d^{-1}\).
+Lemma~\ref{lem:laplace} is what removes the former summand \(\sqrt{d/n}\,\log^3 n\) from
+Lemma~\ref{lem:moments}, so no extra logarithmic loss remains in the schedule.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
@@ -485,34 +609,34 @@ The coupling therefore satisfies
 
 \begin{lemma}[Chain schedule]
 \label{lem:chain-eta}
-Let \(D,L\) satisfy the hypotheses of Theorem~\ref{thm:chains}.
-For every \(d\in[D,D+L]\) set \(\gamma_n:=(\log n)^{-1}\) and
-\[
-\alpha_{\mathrm{ch}}
-:=
-\max\Biggl\{
-\frac{\gamma_n}{L},\;
-D^{-1},\;
-\Biggl(\frac{(D+L)^2 L}{n\gamma_n}\Biggr)^{1/2},\;
-\bigl(L\log^3 n/\gamma_n\bigr)^{1/2}(D/n)^{1/4}
-\Biggr\}.
-\]
+Let \(D,L\) satisfy the hypotheses of Theorem~\ref{thm:chains}, and write \(v(D)\)
+for the quantity defined there.
+For every \(d\in[D,D+L]\) set \(\alpha_{\mathrm{ch}}:=v(d)^{1/3}\), where \(v(d)\)
+is the same expression at degree \(d\).
 Then \(\alpha_{\mathrm{ch}}=o(1)\) and \(\eta(\alpha_{\mathrm{ch}})=o(1/L)\), uniformly in
 \(d\in[D,D+L]\).
 \end{lemma}
 
 \begin{proof}
-The hypothesis \(L=o\bigl((n/D^2)^{1/3}/\log^{2/3}n\bigr)\) forces each argument of
-the maximum to be \(o(1)\), so \(\alpha_{\mathrm{ch}}=o(1)\).
-In particular \(\alpha_{\mathrm{ch}}\ge\gamma_n/L\), whence
+Since \(v(D)\ge D^{-3}\), the hypothesis \(L=o(v(D)^{-1/3})\) forces \(L=o(D)\).
+Thus \(d\le 2D\) for large \(n\), and \(v(d)\le 8v(D)\).
+In particular \(\alpha_{\mathrm{ch}}\ge d^{-1}\) and
+\(\alpha_{\mathrm{ch}}\le 2v(D)^{1/3}=o(1/L)=o(1)\).
+Lemma~\ref{lem:moments} gives
+\(\Var Y/(\EE Y)^2\le v(d)\) after enlarging the absolute constant inside \(v\).
+Chebyshev's inequality at relative height \(\alpha_{\mathrm{ch}}\) therefore costs at most
+\(v(d)/\alpha_{\mathrm{ch}}^2=v(d)^{1/3}\).
+The same comparison absorbs the summands of \(\eta\) beyond \(2\alpha_{\mathrm{ch}}\), and
 \[
-2\alpha_{\mathrm{ch}}=O(\gamma_n/L)=o(1/L).
+\eta(\alpha_{\mathrm{ch}})
+\le 3v(d)^{1/3}
+=O\bigl(v(D)^{1/3}\bigr)
+=o(1/L).
 \]
-The remaining summands of \(\eta\) are \(o(1/L)\) by the same comparisons as in
-Lemma~\ref{lem:eta}, with the extra factors of \(L/\gamma_n\) absorbed into the
-choice of \(\alpha_{\mathrm{ch}}\).
-(The worst case is \(d=D+L\); since \(L=o((n/D^2)^{1/3})\) one has
-\(D+L\le 2\max(D,L)\) and the stated bounds continue to hold.)
+A lower bound \(\alpha_{\mathrm{ch}}\ge c/L\) does not imply
+\(2\alpha_{\mathrm{ch}}=O(1/L)\). The deviation \(\alpha_{\mathrm{ch}}\) is set by balancing
+\(2\alpha\) against \(v(d)/\alpha^2\), and that balance is of order \(v(d)^{1/3}\), which
+is at least on the order of \(1/d\) because \(v(d)\ge d^{-3}\).
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:chains}]
@@ -532,7 +656,8 @@ On the complementary event one has
 \end{proof}
 
 \begin{proof}[Proof of Corollary~\ref{cor:mega}]
-Immediate from Theorem~\ref{thm:chains} with \(D=\lfloor\log^4 n\rfloor\).
+At \(D=\lfloor n^{1/5}\rfloor\) both summands of \(v(D)\) are \(\Theta(n^{-3/5})\),
+so \(v(D)^{-1/3}=\Theta(n^{1/5})\).
 \end{proof}
 
 \section{Beyond exact \(o(\sqrt{n})\)}
@@ -825,6 +950,42 @@ Chernoff bounds yield
 and a union bound over \(v\in[n]\) completes the proof.
 \end{proof}
 
+\begin{lemma}[Sharp residual degrees]
+\label{lem:residual-sharp}
+Let \(d/\log n\to\infty\), and let \(R\) be as in Lemma~\ref{lem:residual}, with
+\(\varepsilon_0=C_3(\log n/d)^{1/3}\).
+Then with probability \(1-o(1)\),
+\[
+\deg_R(v)=(1+o(1))\,\varepsilon_0 d
+\qquad\text{for every vertex \(v\).}
+\]
+More precisely, the relative error may be taken to be \(\varepsilon_0/2\), which tends to \(0\).
+\end{lemma}
+
+\begin{proof}
+On \(\{G\subset G^*_0\}\) one has \(\deg_R(v)=\deg_{G^*_0}(v)-d\), and
+\(\deg_{G^*_0}(v)\) is binomial with mean
+\(\lambda=(1+\varepsilon_0)d\,(1-O(1/n))\).
+The residual mean is therefore
+\(\mu_R=\varepsilon_0 d-O(d/n)\).
+Since \(d=\omega(\log n)\) one has \(\varepsilon_0\to 0\), and the relative window
+\(t:=\varepsilon_0/2\) satisfies
+\[
+t^2\mu_R
+=\frac{\varepsilon_0^3 d}{4}-o(1)
+=\frac{C_3^3}{4}\log n-o(1).
+\]
+Chernoff's bound gives
+\[
+\PP\bigl(|\deg_R(v)-\mu_R|\ge t\mu_R\bigr)
+\le 2\exp\bigl(-\Omega(C_3^3\log n)\bigr).
+\]
+For the absolute constant \(C_3\) already fixed large by Theorem~\ref{thm:quant-third-global},
+the right-hand side is \(o(n^{-2})\).
+A union bound over \(v\), together with \(\PP(G\not\subset G^*_0)=o(1)\), yields
+\(\deg_R(v)=(1\pm\varepsilon_0/2)\mu_R=(1+o(1))\varepsilon_0 d\) simultaneously for every \(v\).
+\end{proof}
+
 \begin{theorem}[Hybrid Chernoff container]
 \label{thm:hybrid}
 Let \(d\ge C_3\log n\) and
@@ -960,83 +1121,114 @@ Hence
 \]
 \end{proof}
 
-\begin{lemma}[Residual cut density]
+\begin{lemma}[Two-sided residual cuts]
 \label{lem:residual-cuts}
-Under the hypotheses of Lemma~\ref{lem:residual-exp}, with probability \(1-o(n^{-8})\)
-every pair of disjoint sets \(W,Z\subset[n]\) with
-\(|W||Z|\ge C_e n\log n/\delta_0\) satisfies
+Let \(d\ge(\log n)^{5/2}\), and let \(R\) and \(\delta_0=\tfrac12\varepsilon_0 d\) be as in
+Lemma~\ref{lem:residual-exp}.
+Set \(s_0:=C_e n\log n/\delta_0\) with \(C_e\) a large absolute constant.
+Then with probability \(1-o(n^{-8})\), every pair of disjoint sets
+\(W,Z\subset[n]\) with \(\min(|W|,|Z|)\ge s_0\) satisfies
 \[
 e_R(W,Z)\ge\frac{\delta_0}{4n}\,|W||Z|.
 \]
 \end{lemma}
 
 \begin{proof}
-Write \(p_0=(1+\varepsilon_0)d/n\). For fixed disjoint \(W,Z\),
-\(e_{G^*_0}(W,Z)\sim\mathrm{Bin}(|W||Z|,p_0)\) has mean
-\(\mu_0=p_0|W||Z|\).
-On \(\{G\subset G^*_0\}\) one has \(e_R(W,Z)=e_{G^*_0}(W,Z)-e_G(W,Z)\).
-The \(G\)-cut is concentrated: since \(G\) is \(d\)-regular,
-\(\EE e_G(W,Z)=d|W||Z|/(n-1)\), and a configuration-model / Chernoff bound
-(as in~\cite[Appendix~A]{BIM25}) yields
+A one-vertex set against its non-neighbourhood is an empty cut, so a product
+hypothesis \(|W||Z|\ge s_0\) alone is false.
+Both sides must be large.
+Write \(p_0=(1+\varepsilon_0)d/n\).
+For fixed disjoint \(W,Z\) with \(w:=|W|\), \(z:=|Z|\) and \(w,z\ge s_0\),
+\(e_{G^*_0}(W,Z)\) is binomial with mean \(p_0 wz\).
+On \(\{G\subset G^*_0\}\),
 \[
-e_G(W,Z)\le\frac{d}{n}|W||Z|+\frac{\varepsilon_0 d}{4n}|W||Z|
+e_R(W,Z)=e_{G^*_0}(W,Z)-e_G(W,Z).
 \]
-with probability \(1-o(n^{-12})\) uniformly over the stated range of \((W,Z)\)
-(the entropy of the pair enumeration is \(O\bigl((|W|+|Z|)\log n\bigr)\), while the
-lower-tail rate for \(e_{G^*_0}\) below \(\bigl(1+\varepsilon_0/2\bigr)d|W||Z|/n\) is
-\(\Omega(\varepsilon_0^2 d|W||Z|/n)=\Omega(\varepsilon_0\delta_0|W||Z|/n)=\Omega(\log n)\)
-on the hypothesis \(|W||Z|\ge C_e n\log n/\delta_0\)).
-Combining,
+The same configuration-model tail as in~\cite[Appendix~A]{BIM25} gives
 \[
-e_R(W,Z)
-\ge\Bigl(1+\frac{\varepsilon_0}{2}\Bigr)\frac{d}{n}|W||Z|
--\Bigl(1+\frac{\varepsilon_0}{4}\Bigr)\frac{d}{n}|W||Z|
-=\frac{\varepsilon_0 d}{4n}|W||Z|
-=\frac{\delta_0}{2n}|W||Z|,
+e_G(W,Z)\le\Bigl(1+\frac{\varepsilon_0}{4}\Bigr)\frac{d}{n}\,wz
 \]
-and the factor \(\tfrac12\) may be replaced by \(\tfrac14\) to absorb \(o(1)\) losses.
+except with probability \(\exp(-\Omega(\varepsilon_0^2 d\, wz/n))\).
+A Chernoff bound likewise yields
+\[
+e_{G^*_0}(W,Z)\ge\Bigl(1+\frac{\varepsilon_0}{2}\Bigr)\frac{d}{n}\,wz
+\]
+except with probability \(\exp(-\Omega(\varepsilon_0^2 d\, wz/n))\).
+On the complementary event,
+\(e_R(W,Z)\ge(\varepsilon_0 d/(4n))wz=\delta_0\, wz/(2n)\).
+The failure probability of a fixed pair is therefore
+\(\exp(-\Omega(\delta_0 wz/n))\).
+Since \(w,z\ge s_0=C_e n\log n/\delta_0\),
+\[
+\frac{\delta_0 wz}{n}\ge C_e(w+z)\log n
+\]
+once \(C_e\) is large, because
+\(\delta_0 s_0/n=C_e\log n\) and \(\min(w,z)\ge s_0\) implies
+\(wz\ge s_0(w+z)/2\).
+Hence the failure probability is at most
+\(\exp(-4(w+z)\log n)\), while there are at most
+\(\exp(O((w+z)\log n))\) pairs of those sizes.
+Summing over \(w,z\ge s_0\) gives \(o(n^{-8})\).
+For \(d\ge(\log n)^{5/2}\) one has \(s_0\le n/4\), so the range is nonempty.
 \end{proof}
 
 \begin{lemma}[Perfect matching in the residual]
 \label{lem:perfect-matching}
-Assume \(n\) is even. Under the hypotheses of Lemmas~\ref{lem:residual-exp}
-and~\ref{lem:residual-cuts}, with probability \(1-o(1)\) the graph \(R\) contains a
-perfect matching.
+Assume \(n\) is even and \(d\ge(\log n)^{5/2}\).
+Under the hypotheses of Lemmas~\ref{lem:residual-exp} and~\ref{lem:residual-cuts},
+with probability \(1-o(1)\) the graph \(R\) contains a perfect matching.
 \end{lemma}
 
 \begin{proof}
-Draw a uniformly random balanced bipartition \([n]=L\cup L'\) with
-\(|L|=|L'|=n/2\), and let \(B\) be the bipartite graph with parts \(L,L'\) and edges
-\(E(R)\cap(L\times L')\).
-A perfect matching of \(B\) is a perfect matching of \(R\), so it is enough to
-verify Hall's condition in \(B\).
+For \(d\ge(\log n)^{5/2}\), enlarging the absolute constant \(C_3\) if needed,
+the minimum degree satisfies \(\delta_0\ge 120(\log n)^2\),
+so the expansion factor of Lemma~\ref{lem:residual-exp} obeys
+\(\delta_0/(40\log n)\ge 3\log n\).
+In particular that lemma applies to every set of size at most
+\(s_0:=C_e n\log n/\delta_0\), the same threshold as Lemma~\ref{lem:residual-cuts},
+and \(s_0\le n/4\).
 
-On the event of Lemma~\ref{lem:residual}, every vertex has \(R\)-degree at least
-\(\delta_0\). For each \(v\), the number of \(R\)-neighbours in the opposite part is a
-hypergeometric slice of those neighbours; a Chernoff bound and union over \(v\) give
-\(\deg_B(v)\ge\delta_0/3\) for every \(v\), with probability \(1-o(n^{-2})\).
+Draw a uniformly random balanced bipartition \([n]=L\cup L'\) and let \(B\) be the
+bipartite graph of \(R\)-edges across the cut.
+A perfect matching of \(B\) is a perfect matching of \(R\).
+A Chernoff bound gives \(\deg_B(v)\ge\delta_0/3\) for every vertex, with probability
+\(1-o(n^{-2})\).
+It is enough to check Hall's condition for sets \(W\subset L\) with \(|W|\le n/2\);
+the opposite part is identical.
 
-Now fix \(W\subset L\) with \(w:=|W|\ge 1\), and write \(T:=N_B(W)\).
-If \(w\le\delta_0/6\), then \(\deg_B\ge\delta_0/3\) forces \(|T|\ge\delta_0/3\ge 2w\), so Hall
-holds.
-Now suppose \(|T|\le w-1\), and set \(Z:=L'\setminus T\).
-Every vertex of \(Z\) has its at least \(\delta_0/3\) many \(B\)-neighbours inside
-\(L\setminus W\) (there are no \(W\)--\(Z\) edges), so
-\(|L\setminus W|\ge\delta_0/3\) and therefore \(w\le n/2-\delta_0/3\).
-In particular \(|T|\le w-1\le n/2-\delta_0/3-1\) and
-\(|Z|\ge\delta_0/3+1\).
-Combined with \(w>\delta_0/6\) one obtains
-\(|W||Z|\ge(\delta_0/6)(\delta_0/3)\gg C_e n\log n/\delta_0\)
-(using \(\delta_0^2\gg\log n\)), so Lemma~\ref{lem:residual-cuts} yields
-\(e_R(W,Z)>0\), contradicting \(T=N_B(W)\).
+If \(1\le|W|\le\delta_0/3\), then \(N_B(W)\) contains \(N_B(v)\) for any \(v\in W\), hence
+\(|N_B(W)|\ge\delta_0/3\ge|W|\).
 
-Thus Hall holds for every \(W\subset L\); the symmetric argument covers
-\(W\subset L'\). Therefore \(B\) has a perfect matching, and so does \(R\).
+If \(\delta_0/3<|W|\le s_0\), Lemma~\ref{lem:residual-exp} gives
+\(|N_R(W)|\ge 3|W|\log n\).
+Conditionally on \(W\subset L\), a hypergeometric slice of \(N_R(W)\) lands in \(L'\).
+Its mean is at least \(|N_R(W)|/3\), so the probability it has size less than
+\(|W|\) is \(\exp(-\Omega(|W|\log n))\).
+Also \(\PP(W\subset L)\le 2^{-|W|}\).
+There are at most \(\exp(|W|\log(en/|W|))\) candidate sets, and
+\(\Omega(|W|\log n)\) dominates \(|W|\log(en/|W|)\).
+Thus, with probability \(1-o(1)\), \(B\) has no Hall violator of size at most \(s_0\).
+
+Now suppose \(s_0<|W|\le n/2\) and \(|N_B(W)|<|W|\).
+The set \(Z:=L'\setminus N_B(W)\) then satisfies \(e_R(W,Z)=0\) and
+\(|Z|>n/2-|W|\).
+If \(|W|\le n/2-s_0\), both \(|W|\) and \(|Z|\) exceed \(s_0\), so
+Lemma~\ref{lem:residual-cuts} forces \(e_R(W,Z)>0\), a contradiction.
+If instead \(|W|>n/2-s_0\), then \(|L\setminus W|<s_0\) and
+\(|N_B(Z)|\le|L\setminus W|\), while \(|Z|>|L\setminus W|\).
+Every \(z\in Z\) has its \(\delta_0/3\) neighbours in \(L\setminus W\), so
+\(|Z|>\delta_0/3\).
+If \(|Z|\ge s_0\), then both sides of the empty cut \((W,Z)\) have size at least
+\(s_0\) (using \(s_0\le n/4\), so \(|W|>n/2-s_0\ge s_0\)), and
+Lemma~\ref{lem:residual-cuts} yields \(e_R(W,Z)>0\).
+If \(|Z|<s_0\), then \(Z\) itself is a Hall violator of size at most \(s_0\), which
+the previous paragraph forbids.
+Therefore no Hall violator exists, and \(B\) has a perfect matching.
 \end{proof}
 
 \begin{theorem}[Matching peel in the rate-\(1/3\) residual]
 \label{thm:matching-peel}
-Let \(d\ge C_3\log n\) with \(dn\) even and \(n\) even, and let
+Let \(d\ge(\log n)^{5/2}\) with \(dn\) even and \(n\) even, and let
 \((G,G^*_0)\) and \(R:=G^*_0\setminus G\) be as in Lemma~\ref{lem:residual}.
 Set \(m:=\lfloor c\sqrt{d\log n}\rfloor\) with \(c>0\) a sufficiently small absolute
 constant.
@@ -1066,8 +1258,14 @@ Lemma~\ref{lem:perfect-matching} therefore supplies a perfect matching
 \(M_{i+1}\) of \(R_i\).
 After \(m\) steps the union \(H_\star:=\bigcup_{i=1}^m M_i\) is an \(m\)-regular spanning
 subgraph of \(R\), so \(\Omega_m(R)\neq\emptyset\).
-Sampling \(H\) uniformly from \(\Omega_m(R)\) (or from the configuration model on
-\(R\) conditioned on simplicity) and setting \(G_m:=G\cup H\) yields the claim.
+Sampling \(H\) uniformly from \(\Omega_m(R)\) and setting \(G_m:=G\cup H\) yields
+the claim.
+For \(\omega(\log n)=d<(\log n)^{5/2}\) the Chernoff-scale nesting
+\(G(n,d)\subset G(n,d+m)\) is already given by Corollary~\ref{cor:chernoff-chains},
+which does not use this peel. At \(d=\Theta(\log n)\) the same corollary does not
+apply: the perfect-matching variance \(1/(6d^3)\) makes each \(+1\) step fail with
+Chebyshev probability of order \(1/d\), and a block of length \(\Theta(d)\) does not
+survive the union bound.
 \end{proof}
 
 \begin{corollary}[Exact Chernoff-scale regular container]
@@ -1086,9 +1284,9 @@ Immediate from Theorem~\ref{thm:matching-peel}.
 Corollary~\ref{cor:chernoff-container} produces an exact \((d+m)\)-regular one-sided
 container at Chernoff scale \(m=\Theta\sqrt{d\log n}\), nested between \(G\) and the
 rate-\(1/3\) ER upper graph \(G^*_0\).
-Theorem~\ref{thm:config-split} identifies a matching-superposition form of this
-container with \(G(n,d+m)\) for \(d+m=o(n^{1/7})\); Conjecture~\ref{conj:config-split}
-asks for the same at all \(d\ge C_3\log n\).
+Conjecture~\ref{conj:config-split} asks for total variation between this container
+and \(G(n,d+m)\). Proposition~\ref{prop:host-gap} explains why the free decomposition
+of~\cite{CFG25} does not transfer onto \(G^*_0\).
 \end{remark}
 
 \begin{theorem}[Reduction: container identification implies Chernoff increments]
@@ -1157,8 +1355,9 @@ Let \(d\ge C_3\log n\), \(m:=\lfloor c\sqrt{d\log n}\rfloor\) with \(c\) small, 
 \(G^*_0\sim G\bigl(n,(1+\varepsilon_0)d/n\bigr)\) with \(\varepsilon_0=C_3(\log n/d)^{1/3}\).
 Then \(\varepsilon':=(1+\varepsilon_0)d/(d+m)-1\) satisfies
 \(\varepsilon'\ge C_3'(\log n/(d+m))^{1/3}\) for an absolute \(C_3'>0\) and large \(n\).
-In particular, Theorem~\ref{thm:quant-third-global} at degree \(d+m\) yields a coupling
-with \(G(n,d+m)\subset G^*_0\) a.a.s.
+Thus \(G^*_0\) has the marginal density of an upper sandwich graph at degree \(d+m\).
+Proposition~\ref{prop:host-gap} records that this does not place a uniform copy of
+\(G(n,d+m)\) inside the already sampled graph \(G^*_0\).
 \end{lemma}
 
 \begin{proof}
@@ -1172,9 +1371,11 @@ Compute
 Since \(m/d=O\bigl(\sqrt{(\log n)/d}\bigr)=o(\varepsilon_0)\), one has
 \(\varepsilon'\ge\varepsilon_0/2\) for small \(c\), and
 \(\varepsilon_0/2\ge C_3'(\log n/(d+m))^{1/3}\) upon adjusting constants.
-The final claim is Theorem~\ref{thm:quant-third-global} applied to degree \(d+m\) with
-rate \(\varepsilon'\), using that \(G^*_0\) has the correct marginal density
-\((1+\varepsilon')(d+m)/n\).
+The density identity \((1+\varepsilon')(d+m)/n=(1+\varepsilon_0)d/n\) is the only use of
+\(\varepsilon'\). Theorem~\ref{thm:quant-third-global} at degree \(d+m\), applied to a
+fresh binomial graph of this density, produces some coupling in which a copy of
+\(G(n,d+m)\) sits inside that fresh graph. It does not alter the joint law of the
+pair \((G,G^*_0)\) already built at degree \(d\).
 \end{proof}
 
 \begin{lemma}[Switching degree for a random \(m\)-factor of the residual]
@@ -1185,57 +1386,102 @@ and~\ref{lem:residual-cuts}. Write \(R:=G^*_0\setminus G\) and
 Let \(\Lambda(H)\) be the number of \(2\)-switches of \(H\) inside \(R\) (ordered pairs of
 vertex-disjoint \(H\)-edges \(\{ab,cd\}\) together with a crossing perfect matching
 on \(\{a,b,c,d\}\) whose two edges lie in \(R'\)).
-If \(H\) is drawn from the configuration model of \(m\)-regular spanning subgraphs of
-\(R\) (conditioned on being simple and nested in \(R\)), then
+Let \(H\) be drawn from the configuration model with \(m\) stubs at each vertex,
+conditioned on every paired edge lying in \(R\), and write \(S\) for the event that
+this pairing is simple.
+If \(d/\log n\to\infty\), then on the event of Lemma~\ref{lem:residual-sharp}
 \[
 \Lambda(H)
-=(1+o(1))\,n m^2(\delta_0-m)^2
+=(1+o(1))\,n m^2(\varepsilon_0 d)^2
 \]
-with probability \(1-o(1)\) as \(n\to\infty\), provided \(3\le m\le c\sqrt{d\log n}\) with
-\(c\) small.
+with probability \(1-o(1)\) under the conditional law given \(S\), provided
+\(3\le m\le c\sqrt{d\log n}\) with \(c\) small.
+For \(d\ge C_3\log n\) the same argument gives
+\(\Lambda(H)=\Theta\bigl(nm^2(\varepsilon_0 d)^2\bigr)\) under the simple conditional law,
+with the implicit constant read off the degree window of Lemma~\ref{lem:residual}.
 \end{lemma}
 
 \begin{proof}
-In the configuration model each vertex has \(m\) stubs, paired uniformly among
-pairings whose underlying edges lie in \(R\).
-Write \(\Lambda_0:=nm^2(\delta_0-m)^2\).
-For fixed distinct vertices \(a,b,c,d\), the probability that \(ab,cd\in E(H)\) and
-\(ac,bd\in E(R)\setminus E(H)\) is
+Write \(P_0\) for the uniform pairing of \(m\) stubs at each vertex, and write
+\(A\) for the event that every paired edge lies in \(R\).
+The law in the statement is \(P_0(\,\cdot\mid A)\), and the simple model is
+\(P_0(\,\cdot\mid A\cap S)\).
+On the event of Lemma~\ref{lem:residual}, \(\delta(R)\in[\delta_0,4\delta_0]\).
+If moreover \(d=\omega(\log n)\), Lemma~\ref{lem:residual-sharp} upgrades this to
+\(\deg_R(v)=(1+o(1))\varepsilon_0 d\) for every \(v\), and the two normalisations
+below differ by \(1+o(1)\).
+On the sharp event, \(\sum_v\deg_R(v)(\deg_R(v)-1)=(1+o(1))n(\varepsilon_0 d)^2\).
+Set \(\Lambda_0:=nm^2(\varepsilon_0 d)^2\).
+Under \(P_0(\,\cdot\mid A)\), sequential stub pairing gives, for distinct
+\(a,b,c,d\),
 \[
-(1+O(m/\delta_0))\frac{m(m-1)}{(nm-O(1))^2}\cdot\mathbf{1}_{ac,bd\in E(R)},
+\PP\bigl(ab,cd\in E(H),\; ac,bd\in E(R)\setminus E(H)\bigr)
+=(1+O(m/\delta_0))\frac{m(m-1)}{(nm-O(1))^2}\cdot\mathbf{1}_{ac,bd\in E(R)}.
 \]
-by sequential stub pairing together with \(\delta(R)\in[\delta_0,4\delta_0]\).
-Summing over ordered quadruples and applying Lemma~\ref{lem:residual-cuts} to
-replace \(\sum\mathbf{1}_{ac,bd\in E(R)}\) by \((1+o(1))n(\delta_0-m)^2\) (codegrees
-\(O(\log n)\) absorb into the \(o(1)\)) yields
-\(\EE\Lambda(H)=(1+O(m/\delta_0))\Lambda_0\).
+Summing over ordered quadruples, the crossing pool
+\(\sum\mathbf{1}_{ac,bd\in E(R)}\) equals \((1+o(1))n(\varepsilon_0 d)^2\) up to the
+\(O(\log n)\) codegrees already controlled by Lemma~\ref{lem:residual-cuts}, and
+\[
+\EE[\Lambda(H)\mid A]=(1+O(m/\delta_0))\Lambda_0.
+\]
+The relative error \(m/\delta_0=O\bigl(d^{-1/6}(\log n)^{1/6}\bigr)\) tends to \(0\) for small \(c\).
+(If one uses only Lemma~\ref{lem:residual}, the same argument yields
+\(\EE[\Lambda\mid A]=\Theta(nm^2(\varepsilon_0 d)^2)\), with the implicit constant depending
+on the factor-\(4\) degree window.)
 
-For concentration, expose the pairing stub-by-stub in an arbitrary order.
-Changing the partner of a single stub alters at most \(O(m\delta_0)\) switches
-(the \(H\)-edges and \(R'\)-stars at its two endpoints).
-Azuma--Hoeffding over the \(nm\) stub exposures therefore gives, for any fixed
-\(\eta\in(0,1)\),
+Expose the conditional pairing stub-by-stub.
+Changing the partner of one stub alters at most \(O(m\delta_0)\) switches.
+Azuma--Hoeffding over the \(nm\) exposures gives, for
+\(\eta:=(\log n)^{-1/4}\) (so \(\eta\to 0\)),
 \[
-\PP\bigl(|\Lambda(H)-\EE\Lambda(H)|\ge\eta\Lambda_0\bigr)
-\le 2\exp\Bigl(-\frac{\eta^2\Lambda_0^2}{O\bigl(nm\cdot(m\delta_0)^2\bigr)}\Bigr)
-=2\exp\bigl(-\Omega(\eta^2 nm\delta_0^2)\bigr)
-=o(n^{-10}).
+P_0\bigl(|\Lambda-\EE[\Lambda\mid A]|\ge\eta\Lambda_0\bigm|A\bigr)
+\le 2\exp\bigl(-\Omega(\eta^2 nm\delta_0^2)\bigr).
 \]
-The simplicity conditioning has probability \(1-o(1)\) for \(m^2=o(\delta_0)\) by the
-standard configuration-model estimate inside a host of minimum degree \(\delta_0\),
-and does not change the \((1+o(1))\) relative concentration.
+Call this bad event \(B\).
+
+The hypothesis \(m^2=o(\delta_0)\) is false at Chernoff scale:
+\(\delta_0\asymp d^{2/3}(\log n)^{1/3}\) while \(m^2\asymp d\log n\), so
+\(m^2/\delta_0\asymp d^{1/3}(\log n)^{2/3}\to\infty\).
+Simplicity is therefore not a \(1-o(1)\) event under \(P_0(\,\cdot\mid A)\), and
+the bad event must be transferred rather than ignored.
+On \(\{\Omega_m(R)\neq\emptyset\}\) (probability \(1-o(1)\) by
+Theorem~\ref{thm:matching-peel}) fix one simple \(m\)-factor \(H_0\subset R\).
+Exactly \((m!)^n\) pairings realise \(H_0\), so
+\[
+P_0(S\mid A)
+=\frac{P_0(S\cap A)}{P_0(A)}
+\ge P_0(H_0)
+=\frac{(m!)^n}{(mn-1)!!}
+=\exp\bigl(-O(mn\log(n/m))\bigr),
+\]
+where the inequality uses \(P_0(A)\le 1\).
+Hence
+\begin{align*}
+P_0(B\mid A\cap S)
+&\le\frac{P_0(B\mid A)}{P_0(S\mid A)}
+\le\exp\bigl(-\Omega(\eta^2 nm\delta_0^2)+O(mn\log(n/m))\bigr).
+\end{align*}
+With this \(\eta\), the exponent is \(-\Omega(nm\delta_0^2/\log^{1/2}n)\) once
+\(\eta^2\delta_0^2\gg\log(n/m)\).
+That comparison holds for \(d\ge C_3\log n\), since
+\(\delta_0^2\asymp d^{4/3}(\log n)^{2/3}\) and therefore
+\(\eta^2\delta_0^2\asymp d^{4/3}(\log n)^{1/6}\).
+Thus \(\Lambda(H)=(1+o(1))\Lambda_0\) with probability \(1-o(1)\) under the simple
+conditional law.
 \end{proof}
 
 \begin{remark}[Switching programme for denser degrees]
 \label{rem:quasi-regular}
-For \(d+m=o(n^{1/7})\), Theorem~\ref{thm:config-split} already identifies the
-matching-superposition container with \(G(n,d+m)\) in total variation.
 Lemma~\ref{lem:switching-typical} records a host-restricted switching approach aimed
-at Conjecture~\ref{conj:config-split} in denser regimes: quasi-regular
-\(2\)-switchings on \(\Omega_m(R)\) would make \(\mathrm{Unif}(\Omega_m(R))\) the approximate
-stationary measure inside \(G^*_0\), and comparing that stationary law to
-\(\mu_{d+m}(\,\cdot\mid\subset G^*_0)\) is an alternative route past the
-\(n^{1/7}\) threshold of~\cite{CFG25}.
+at Conjecture~\ref{conj:config-split}.
+The \(2\)-switch count concentrates for the uniform simple \(m\)-factor even though
+\(m^2/\delta_0\to\infty\) at Chernoff scale: the Azuma tail
+\(\exp(-\Omega(nm\delta_0^2))\) dominates the crude simplicity weight
+\(\exp(O(mn\log(n/m)))\).
+Quasi-regular switchings make \(\mathrm{Unif}(\Omega_m(R))\) a candidate stationary measure
+inside \(G^*_0\). Comparing that law to \(\mu_{d+m}\) is open, including past the
+chain ceiling \(n^{2/7}\) of Corollary~\ref{cor:chernoff-chains}.
+Proposition~\ref{prop:host-gap} blocks the shortcut through~\cite[(1.1)]{CFG25}.
 \end{remark}
 
 \begin{lemma}[Contiguity preserved by a.a.s.\ conditioning]
@@ -1259,81 +1505,62 @@ If instead \(\dTV(\mu_n,\nu_n)\to 0\), a maximal coupling gives
 conditionals with failure probability \(o(1)\).
 \end{proof}
 
-\begin{theorem}[Host-restricted configuration splitting, sparse surplus]
-\label{thm:config-split}
-Let \(d\ge C_3\log n\) with \(d+m=o(n^{1/7})\), \(dn\) even, \(n\) even, and set
-\(m:=\lfloor c\sqrt{d\log n}\rfloor\) with \(c>0\) small enough that
-\(m\le\delta_0/2\) as in Theorem~\ref{thm:matching-peel}.
-Let \((G,G^*_0)\) be as in Lemma~\ref{lem:residual}, write \(R:=G^*_0\setminus G\), and
-let \(\mathcal{M}_m^{\oplus}\) be the law of the superposition of \(m\) independent uniform
-perfect matchings on \([n]\) conditioned on being simple~\cite{CFG25}.
-Define \(\mathcal{L}_{d,m}\) as the law of \(G\cup H\) where \(H\sim\mathcal{M}_m^{\oplus}\) is
-conditioned on \(H\subset R\) (equivalently: the second factor of
-\((\mu_d\oplus\mathcal{M}_m^{\oplus})(\,\cdot\mid\subset G^*_0)\), with the first factor
-realised by the BIM coupling).
-Then \(\dTV\bigl(\mathcal{L}_{d,m},\mu_{d+m}\bigr)\to 0\).
-In particular, Theorem~\ref{thm:matching-peel} ensures the conditioning event
-\(H\subset R\) is a.a.s.\ nonempty, and \(G\subset G\cup H\subset G^*_0\) with
-\(G\cup H\) exactly \((d+m)\)-regular.
-\end{theorem}
+\begin{proposition}[Sandwich marginals do not fill a fixed host]
+\label{prop:host-gap}
+Let \(d\ge C_3\log n\) and \(m=\lfloor c\sqrt{d\log n}\rfloor\) be as in
+Lemma~\ref{lem:host-room}, and let \(G^*_0\) be the upper graph of the degree-\(d\)
+sandwich in Lemma~\ref{lem:residual}.
+Let \(H\) be drawn from \(\mu_{d+m}\) independently of \(G^*_0\).
+Then
+\[
+\PP(H\subset G^*_0)=\exp\bigl(-\Theta(nd\log(n/d))\bigr).
+\]
+In particular this probability does not tend to \(1\), so the event
+\(\{K\subset G^*_0\}\) cannot be fed to Lemma~\ref{lem:cond-contiguity} in order to
+condition the decomposition of~\cite[(1.1)]{CFG25} on the already sampled host.
+\end{proposition}
 
 \begin{proof}
-Write \(\mu_k\) for the law of \(G(n,k)\), and write \(\mu_d\oplus\mathcal{M}_m^{\oplus}\) for
-the law of the union of independent samples from \(\mu_d\) and \(\mathcal{M}_m^{\oplus}\)
-conditioned on being edge-disjoint.
-By~\cite[(1.1)]{CFG25}, with \(D:=d+m=\omega(1)\) and \(D=o(n^{1/7})\),
+The upper graph \(G^*_0\) is distributed as \(G(n,p)\) with \(p=(1+\varepsilon_0)d/n\),
+and \(H\) has \(n(d+m)/2\) edges.
+On \(d\ge C_3\log n\) one has \(\varepsilon_0\le C_3^{2/3}\), hence
+\(p\le(1+C_3^{2/3})d/n\).
+For \(d=o(n)\) this is at most \(1/2\) when \(n\) is large, so
+\(\log(1/p)=\log(n/d)+O(1)\).
+Independence gives
 \[
-\dTV\bigl(\mu_D,\,\mu_d\oplus\mathcal{M}_m^{\oplus}\bigr)=o(1).
+\PP(H\subset G^*_0)
+=p^{n(d+m)/2}
+=\exp\bigl(-\Theta(nd\log(n/d))\bigr).
 \]
-
-Let \(A:=\{\,K:K\subset G^*_0\,\}\).
-Lemma~\ref{lem:host-room} gives \(\mu_D(A)=1-o(1)\), hence
-\((\mu_d\oplus\mathcal{M}_m^{\oplus})(A)=1-o(1)\), and
-Lemma~\ref{lem:cond-contiguity} yields
-\[
-\dTV\bigl(\mu_D(\,\cdot\mid A),\,(\mu_d\oplus\mathcal{M}_m^{\oplus})(\,\cdot\mid A)\bigr)=o(1).
-\]
-
-Under \(\mu_d\oplus\mathcal{M}_m^{\oplus}\), the event \(A\) is
-\(\{G_d\subset G^*_0\}\cap\{H\subset R_d\}\) with \(R_d:=G^*_0\setminus G_d\).
-The BIM coupling realises the first factor on \(\{G\subset G^*_0\}\) up to \(o(1)\)
-total variation, and the second factor is exactly \(\mathcal{M}_m^{\oplus}\)
-conditioned on lying in \(R_d\).
-Theorem~\ref{thm:matching-peel} ensures \(R_d\) admits \(m\) edge-disjoint perfect
-matchings a.a.s., so this conditional law is well-defined on a set of
-probability \(1-o(1)\).
-Thus \(\mathcal{L}_{d,m}=(\mu_d\oplus\mathcal{M}_m^{\oplus})(\,\cdot\mid A)\) up to \(o(1)\)
-total variation, and \(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\).
+Theorem~\ref{thm:quant-third-global} at degree \(d+m\) produces a different coupling,
+in which some \((d+m)\)-regular graph sits inside a fresh binomial graph of density
+\(p\). That joint law is not the product of \(\mu_{d+m}\) with the degree-\(d\) upper
+graph, and Lemma~\ref{lem:cond-contiguity} requires the containment event to have
+probability \(1-o(1)\) under the measure being conditioned.
 \end{proof}
 
-\begin{corollary}[Chernoff increments for \(d=o(n^{1/7})\)]
-\label{cor:chernoff-inc-sparse}
-Under the hypotheses of Theorem~\ref{thm:config-split} there is a coupling of
-\(G\sim\Gnd\) with \(H\sim G(n,d+m)\) such that \(\PP(G\subset H)=1-o(1)\), with
-\(m=\Theta\sqrt{d\log n}\).
-\end{corollary}
-
-\begin{proof}
-Combine Theorems~\ref{thm:config-split} and~\ref{thm:id-implies-Q}.
-\end{proof}
-
-\begin{remark}[Comparison with chain increments]
+\begin{remark}[What the chain range still gives]
 \label{rem:chain-vs-split}
-Corollary~\ref{cor:chernoff-chains} already supplies Chernoff-scale nesting
-increments for all \(D=o(n^{2/7}/\mathrm{polylog}\,n)\) by iterating exact \(+1\)
-couplings, which strictly contains the range \(d=o(n^{1/7})\) of
-Corollary~\ref{cor:chernoff-inc-sparse}.
-The residual/config-split route is aimed at degrees past the chain ceiling
-\(n^{2/7}\), where Theorem~\ref{thm:matching-peel} still produces an exact
-\((d+m)\)-regular container; Conjecture~\ref{conj:config-split} records the
-missing identification in that denser regime.
+Corollary~\ref{cor:chernoff-chains} supplies the nesting
+\(G(n,D)\subset G(n,D+m)\) for Chernoff \(m\) throughout
+\(\omega(\log n)=D=o(n^{2/7}/(\log n)^{3/7})\), by iterating exact \(+1\) couplings.
+The free total-variation decomposition of~\cite{CFG25} stops at \(o(n^{1/7})\), which
+sits inside that range, and Proposition~\ref{prop:host-gap} blocks the attempt to
+push it onto the rate-\(1/3\) host.
+Past the chain ceiling, Theorem~\ref{thm:matching-peel} still produces an exact
+\((d+m)\)-regular container. Conjecture~\ref{conj:config-split} is the missing
+identification.
 \end{remark}
 
-\begin{conjecture}[Host-restricted splitting at all degrees]
+\begin{conjecture}[Host-restricted splitting]
 \label{conj:config-split}
-The conclusion of Theorem~\ref{thm:config-split} continues to hold for all
-\(d\ge C_3\log n\) (equivalently, \(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\) throughout
-the range of Theorem~\ref{thm:matching-peel}).
+Let \(d\ge(\log n)^{5/2}\) with \(dn\) even and \(n\) even, and set
+\(m:=\lfloor c\sqrt{d\log n}\rfloor\) as in Theorem~\ref{thm:matching-peel}.
+Write \(\mathcal{L}_{d,m}\) for the law of the graph \(G_m\) produced by
+Corollary~\ref{cor:chernoff-container}, and \(\mu_{d+m}\) for the law of
+\(G(n,d+m)\).
+Then \(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\).
 \end{conjecture}
 
 \begin{proposition}[Splitting without host]
@@ -1352,18 +1579,72 @@ disjoint stub sets (equivalently, a random partition of the
 conditioning on simplicity.
 \end{proof}
 
+\begin{lemma}[Free \(m\)-extension flatness past the chain ceiling]
+\label{lem:free-flat}
+Let \(n\) be even, let \(d=d(n)\to\infty\), and set
+\(m:=\lfloor c\sqrt{d\log n}\rfloor\) with \(c>0\) fixed and \(mn\) even.
+If
+\[
+d=o\Biggl(\frac{n^{2/5}}{(\log n)^{1/5}}\Biggr),
+\]
+then any two \(d\)-regular graphs \(G,G'\) on \([n]\) satisfy
+\[
+N_m(G)=(1+o(1))\,N_m(G'),
+\]
+where \(N_m(G)\) is the number of \(m\)-regular graphs on \([n]\) edge-disjoint from \(G\).
+In particular the conclusion holds for a sequence \(d=\omega(n^{2/7})\).
+\end{lemma}
+
+\begin{proof}
+Apply McKay's enumeration of sparse graphs in the complement of a sparse
+host~\cite[Theorem~4.6]{McK85} (recorded as Theorem~2.1 in~\cite{HLMPW25}).
+Take the degree sequence \(g_i=m\) and the forbidden graph \(X=G\), which is
+\(d\)-regular.
+The hypotheses of that theorem hold for any fixed \(\varepsilon\in(0,2/3)\) and large
+\(n\): writing \(\widehat\Delta\) for McKay's degree parameter,
+\[
+\widehat\Delta
+=2+m\Bigl(\tfrac32 m+d+1\Bigr)
+=O\bigl(m(d+m)\bigr)
+=o(mn),
+\]
+since \(d=o(n^{2/5})\) forces \(d+m=o(n)\).
+The main terms \(\lambda=(m-1)/2\) and
+\(\mu=md/2\) depend on \(G\) only through its degree and its number of edges, hence
+are the same for every \(d\)-regular graph.
+The relative error in the exponent is
+\[
+O\Biggl(\frac{\widehat\Delta^{\,2}}{mn}\Biggr)
+=O\Biggl(\frac{m(d+m)^2}{n}\Biggr)
+=O\Biggl(\frac{d^{5/2}(\log n)^{1/2}}{n}\Biggr)
+=o(1)
+\]
+under the stated bound on \(d\), and the implied constant is uniform in the host.
+Therefore
+\[
+N_m(G)
+=
+\frac{(mn)!}{(mn/2)!\,2^{mn/2}(m!)^n}
+\exp\bigl(-\lambda-\lambda^2-\mu+o(1)\bigr),
+\]
+which is independent of the choice of \(G\) up to the factor \(1+o(1)\).
+\end{proof}
+
 \begin{remark}[Toward Conjecture~\ref{conj:config-split}]
 \label{rem:config-split}
-Theorem~\ref{thm:config-split} uses the total-variation decomposition
-\(\mu_{d+m}\approx\mu_d\oplus\mathcal{M}_m^{\oplus}\) available for \(d+m=o(n^{1/7})\)
-from~\cite{CFG25}.
 Lemma~\ref{lem:switching-typical} supplies \((1+o(1))\)-quasi-regular host-restricted
-switchings for all \(d\ge C_3\log n\) in the residual, which is the natural tool for
-pushing the same identification past the chain ceiling \(n^{2/7}\) of
-Corollary~\ref{cor:chernoff-chains}.
-What remains is to convert that quasi-regularity into
-\(\dTV\bigl(G\cup\mathrm{Unif}(\Omega_m(R)),\mu_{d+m}(\,\cdot\mid\subset G^*_0)\bigr)\to 0\)
-for \(d=\omega(n^{2/7})\).
+switchings for the uniform simple \(m\)-factor at Chernoff scale
+\(m=\Theta\sqrt{d\log n}\), including degrees \(d=\omega(n^{2/7})\) where
+Corollary~\ref{cor:chernoff-chains} no longer applies.
+(The count is centred at \(nm^2(\varepsilon_0 d)^2\) once
+Lemma~\ref{lem:residual-sharp} is available, i.e.\ for \(d=\omega(\log n)\).)
+Lemma~\ref{lem:free-flat} makes the number of \(m\)-factors of the complement of \(G\)
+independent of which \(d\)-regular graph was chosen, for every
+\(d=o(n^{2/5}/(\log n)^{1/5})\).
+That complement has degree \(n-1-d\). The container in
+Conjecture~\ref{conj:config-split} counts \(m\)-factors of the residual \(R\), whose
+degree is of order \(d^{2/3}(\log n)^{1/3}\). Flat free counts do not identify
+\(\mathcal{L}_{d,m}\) with \(\mu_{d+m}\).
 \end{remark}
 
 \begin{theorem}[Conditional Chernoff increments]
@@ -1375,9 +1656,8 @@ Then under the hypotheses of Theorem~\ref{thm:matching-peel} there is a coupling
 \end{theorem}
 
 \begin{proof}
-Theorem~\ref{thm:matching-peel} and Conjecture~\ref{conj:config-split} give
-\(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\) (after invoking Lemma~\ref{lem:host-room} as in
-the last step of Theorem~\ref{thm:config-split}).
+Conjecture~\ref{conj:config-split} is the hypothesis
+\(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\).
 Apply Theorem~\ref{thm:id-implies-Q}.
 \end{proof}
 
@@ -1754,14 +2034,17 @@ Lemma~\ref{lem:residual}, and Theorem~\ref{thm:hybrid} organise the remaining ga
 to the Chernoff floor; Theorems~\ref{thm:path-lower-chernoff}--\ref{thm:quant-third-global}
 push the global B2 rate from \(1/9\) through \(1/5\) to the process-optimal
 \(1/3\); Corollary~\ref{cor:chernoff-chains} extracts Chernoff-scale nesting
-increments for all \(D=o(n^{2/7}/\mathrm{polylog}\,n)\) from the long-chain schedule;
+increments for all \(D=o(n^{2/7}/(\log n)^{3/7})\) with \(D/\log n\to\infty\), which is
+the Chebyshev optimum once Lemma~\ref{lem:laplace} has removed the truncation term;
 Theorem~\ref{thm:matching-peel} and
 Corollary~\ref{cor:chernoff-container} extract an exact \((d+m)\)-regular
 Chernoff-scale container from the rate-\(1/3\) residual;
-Theorem~\ref{thm:config-split} and Corollary~\ref{cor:chernoff-inc-sparse}
-identify a matching-superposition form of that container with \(G(n,d+m)\) for
-\(d=o(n^{1/7})\), while Conjecture~\ref{conj:config-split} records the remaining
-case past the chain ceiling \(n^{2/7}\).
+Lemma~\ref{lem:residual-sharp} sharpens that residual to \((1+o(1))\varepsilon_0 d\)
+for \(d=\omega(\log n)\), and Lemma~\ref{lem:switching-typical} concentrates the
+host-restricted \(2\)-switch count of the uniform simple Chernoff \(m\)-factor.
+Proposition~\ref{prop:host-gap} records that a sandwich coupling does not fill the
+already sampled upper graph, and Conjecture~\ref{conj:config-split} is the
+remaining identification past the chain ceiling \(n^{2/7}\).
 We also thank the authors of~\cite{Gao20,HLMPW25,CFG25}.
 
 \begin{thebibliography}{99}
@@ -1792,6 +2075,11 @@ arXiv:2104.11850, 2021;
 P.~Gao, M.~Isaev, and B.~D.~McKay,
 \emph{Sandwiching dense random regular graphs between binomial random graphs},
 \emph{Probab.\ Theory Relat.\ Fields} \textbf{184} (2022), 115--158.
+
+\bibitem{McK85}
+B.~D.~McKay,
+\emph{Asymptotics for symmetric \(0\)-\(1\) matrices with prescribed row sums},
+Ars Combin.\ \textbf{19} (1985), 15--25.
 
 \bibitem{HLMPW25}
 L.~Hollom, L.~Lichev, A.~Mond, J.~Portier, and Y.~Wang,
