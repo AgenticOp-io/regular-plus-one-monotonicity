@@ -10,7 +10,7 @@ PROVED  PROVED  PROVED   PROVED                            OPEN (d>n^{2/7})
 
 ## Toward Chernoff
 
-- **Exact +1:** \(d=o(\sqrt{n})\). The old \(\log^3 n\) loss was the Laplace truncation; Lemma laplace absorbs it, and the Chebyshev schedule \(\alpha=\max(d^{-1},(d^2/n)^{1/8})\) has crossover \(d=n^{1/10}\).
+- **Exact +1:** \(d=o(\sqrt{n})\). The Laplace window cancels the odd cubic piece, which is the old \(\sqrt{d/n}\log^3 n\) truncation, and leaves a relative \(O(d/n)\). The Gaussian prefactor \(\beta^{-1/2}=1+1/(2d^2)+d^{-3}+O(d^{-4})\) stays inside Gao's main-term expansion. The Chebyshev schedule \(\alpha=\max(d^{-1},(d^2/n)^{1/8})\) has crossover \(d=n^{1/10}\).
 - **Cor chernoff-chains:** G(n,D) ⊂ G(n,D+m) for m=Θ√(D log n),
   when ω(log n)=D=o(n^{2/7}/(log n)^{3/7}).
   Chain length is L=o(v(D)^{-1/3}) for v=D^{-3}+D^2/n.
