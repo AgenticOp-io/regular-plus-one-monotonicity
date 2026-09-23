@@ -55,7 +55,10 @@ that for \(d\ge n^{\sigma}\) the Chernoff problem reduces to a final-window
 coupling through surplus degrees
 \(\sqrt{d\log n}\le\delta\le d^{2/3}(\log n)^{1/3}\), and that a hybrid
 thinning of the \(1/3\)-sandwich residual already yields a Chernoff-scale
-supergraph with the correct edge marginals (Theorem~\ref{thm:hybrid}).
+supergraph with the correct edge marginals (Theorem~\ref{thm:hybrid}), and that
+peeling \(m=\Theta\sqrt{d\log n}\) perfect matchings from the residual produces an
+exact \((d+m)\)-regular one-sided container inside the rate-\(1/3\) ER upper graph
+(Theorem~\ref{thm:matching-peel}, Corollary~\ref{cor:chernoff-container}).
 \end{abstract}
 
 \tableofcontents
@@ -104,6 +107,9 @@ conjecture of~\cite{BIM25} implies the Chernoff sandwich
 (Theorem~\ref{thm:process-to-Q}), and that the Chernoff problem reduces to a
 final surplus-degree window of width \(d^{2/3}\to d^{1/2}\) for every
 \(d\ge C\log n\) (Theorem~\ref{thm:window}).
+Peeling perfect matchings from the rate-\(1/3\) residual then yields an exact
+\((d+m)\)-regular container at Chernoff scale \(m=\Theta\sqrt{d\log n}\)
+(Theorem~\ref{thm:matching-peel}).
 
 \subsection{Main result}
 
@@ -879,9 +885,10 @@ matchings.
 \label{lem:residual-exp}
 Let \(d\ge C_3\log n\), and let \((G,G^*_0)\) and \(R:=G^*_0\setminus G\) be as in
 Lemma~\ref{lem:residual}.
-Write \(\delta_0:=\tfrac12\varepsilon_0 d\) with \(\varepsilon_0=C_3(\log n/d)^{1/3}\).
+Write \(\delta_0:=\tfrac12\varepsilon_0 d\) with \(\varepsilon_0=C_3(\log n/d)^{1/3}\), and set
+\(u_{\max}:=C_e n\log n/\delta_0\) with \(C_e\) a large absolute constant.
 Then with probability \(1-o(n^{-8})\), every \(U\subset[n]\) with
-\(1\le|U|\le n/(100\delta_0)\) satisfies
+\(1\le|U|\le u_{\max}\) satisfies
 \[
 e_R(U,[n]\setminus U)\ge\frac14\delta_0|U|
 \qquad\text{and}\qquad
@@ -892,136 +899,364 @@ e_R(U,[n]\setminus U)\ge\frac14\delta_0|U|
 \begin{proof}
 On the event of Lemma~\ref{lem:residual} one has \(\delta(R)\ge\delta_0\) and
 \(\Delta(R)\le 4\delta_0\).
-Moreover \(G^*_0\sim G(n,(1+\varepsilon_0)d/n)\), so for each fixed \(U\) the induced
-edge count \(e_{G^*_0}(U)\) is binomial with mean
-\(p_0\binom{|U|}{2}\le(1+\varepsilon_0)d|U|^2/(2n)\).
-A Chernoff bound and union bound over all \(U\) with \(|U|\le n/(100\delta_0)\)
-(using \(\delta_0=\Omega(d^{2/3}(\log n)^{1/3})\) and \(d\ge C_3\log n\)) yield
+Moreover \(G^*_0\sim G(n,(1+\varepsilon_0)d/n)\).
+For each fixed \(U\) with \(|U|\le u_{\max}\), the induced count \(e_{G^*_0}(U)\) is
+binomial with mean
 \[
-e_R(U)\le e_{G^*_0}(U)\le\frac{\delta_0|U|}{10}
+p_0\binom{|U|}{2}
+\le\frac{(1+\varepsilon_0)d\,u_{\max}^2}{2n}
+=O\Bigl(\frac{n(\log n)^{4/3}}{d^{1/3}}\Bigr).
 \]
-with probability \(1-o(n^{-10})\).
+For \(d\ge C_3\log n\) with \(C_3\) large this is at most \(\delta_0|U|/20\).
+A Chernoff bound and union bound over all such \(U\) therefore yield
+\(e_R(U)\le e_{G^*_0}(U)\le\delta_0|U|/10\) with probability \(1-o(n^{-10})\).
 Hence
-\begin{align*}
+\[
 e_R\bigl(U,[n]\setminus U\bigr)
-&=\sum_{v\in U}\deg_R(v)-2e_R(U)
-\ge\delta_0|U|-2\cdot\frac{\delta_0|U|}{10}
-\ge\frac45\delta_0|U|.
-\end{align*}
-(The looser \(\tfrac14\delta_0|U|\) of the statement absorbs absolute constants.)
+=\sum_{v\in U}\deg_R(v)-2e_R(U)
+\ge\delta_0|U|-\tfrac15\delta_0|U|
+\ge\tfrac14\delta_0|U|.
+\]
 
-For the neighbourhood bound, observe that in \(G^*_0\) every vertex outside
-\(U\) has codegree into \(U\) at most \(10\log n\) with probability \(1-o(n^{-10})\),
-uniformly over the stated range of \(U\) (Chernoff plus union bound, using
-\(p_0|U|\le(1+\varepsilon_0)d/(100\delta_0)=O(1)\)).
+For the neighbourhood bound, every vertex outside \(U\) has codegree into \(U\) at
+most \(10\log n\) with probability \(1-o(n^{-10})\), uniformly over the stated range
+(Chernoff plus union bound).
 Hence
 \[
 \bigl|N_R(U)\bigr|
 \ge\frac{e_R(U,[n]\setminus U)}{10\log n}
-\ge\frac{\delta_0|U|}{40\log n},
+\ge\frac{\delta_0|U|}{40\log n}.
 \]
-as claimed.
 \end{proof}
 
-\begin{lemma}[Near-perfect matching in the residual]
-\label{lem:one-matching}
-Under the hypotheses of Lemma~\ref{lem:residual-exp}, with probability \(1-o(1)\)
-the graph \(R\) contains a matching that covers all but at most \(2n/\delta_0\)
-vertices.
+\begin{lemma}[Residual cut density]
+\label{lem:residual-cuts}
+Under the hypotheses of Lemma~\ref{lem:residual-exp}, with probability \(1-o(n^{-8})\)
+every pair of disjoint sets \(W,Z\subset[n]\) with
+\(|W||Z|\ge C_e n\log n/\delta_0\) satisfies
+\[
+e_R(W,Z)\ge\frac{\delta_0}{4n}\,|W||Z|.
+\]
 \end{lemma}
 
 \begin{proof}
-Work on the expansion event of Lemma~\ref{lem:residual-exp}, and assume
-\(\delta_0\ge 80\log n\) (arranged by taking \(C_3\) large).
-Form the bipartite double cover \(B\) with parts \(V_1,V_2\) copying \([n]\), and
-edges \(v_1w_2\) whenever \(vw\in E(R)\).
-For every \(W\subset V_1\) with \(1\le|W|\le n/(100\delta_0)\),
-Lemma~\ref{lem:residual-exp} yields \(|N_B(W)|=|N_R(W)|\ge 2|W|\), so Hall's
-condition holds for all such \(W\).
-Match a maximal subset \(S\subset V_1\) such that every subset of \(S\) of size at
-most \(n/(100\delta_0)\) satisfies Hall; the unmatched remainder
-\(V_1\setminus S\) then has size at most \(n/\delta_0\), else it would contain a
-Hall violator of admissible size.
-The corresponding undirected edges in \(R\) form a subgraph \(H\) of maximum degree
-at most \(2\) (each vertex appears at most once on the left and once on the
-right), hence a disjoint union of paths and cycles.
-Taking every other edge along each component yields a matching in \(H\) that
-covers all but at most one vertex per component.
-The number of components is at most \(n/\delta_0+|V_1\setminus S|\le 2n/\delta_0\),
-so the matching covers all but at most \(2n/\delta_0\) vertices of \(R\).
+Write \(p_0=(1+\varepsilon_0)d/n\). For fixed disjoint \(W,Z\),
+\(e_{G^*_0}(W,Z)\sim\mathrm{Bin}(|W||Z|,p_0)\) has mean
+\(\mu_0=p_0|W||Z|\).
+On \(\{G\subset G^*_0\}\) one has \(e_R(W,Z)=e_{G^*_0}(W,Z)-e_G(W,Z)\).
+The \(G\)-cut is concentrated: since \(G\) is \(d\)-regular,
+\(\EE e_G(W,Z)=d|W||Z|/(n-1)\), and a configuration-model / Chernoff bound
+(as in~\cite[Appendix~A]{BIM25}) yields
+\[
+e_G(W,Z)\le\frac{d}{n}|W||Z|+\frac{\varepsilon_0 d}{4n}|W||Z|
+\]
+with probability \(1-o(n^{-12})\) uniformly over the stated range of \((W,Z)\)
+(the entropy of the pair enumeration is \(O\bigl((|W|+|Z|)\log n\bigr)\), while the
+lower-tail rate for \(e_{G^*_0}\) below \(\bigl(1+\varepsilon_0/2\bigr)d|W||Z|/n\) is
+\(\Omega(\varepsilon_0^2 d|W||Z|/n)=\Omega(\varepsilon_0\delta_0|W||Z|/n)=\Omega(\log n)\)
+on the hypothesis \(|W||Z|\ge C_e n\log n/\delta_0\)).
+Combining,
+\[
+e_R(W,Z)
+\ge\Bigl(1+\frac{\varepsilon_0}{2}\Bigr)\frac{d}{n}|W||Z|
+-\Bigl(1+\frac{\varepsilon_0}{4}\Bigr)\frac{d}{n}|W||Z|
+=\frac{\varepsilon_0 d}{4n}|W||Z|
+=\frac{\delta_0}{2n}|W||Z|,
+\]
+and the factor \(\tfrac12\) may be replaced by \(\tfrac14\) to absorb \(o(1)\) losses.
+\end{proof}
+
+\begin{lemma}[Perfect matching in the residual]
+\label{lem:perfect-matching}
+Assume \(n\) is even. Under the hypotheses of Lemmas~\ref{lem:residual-exp}
+and~\ref{lem:residual-cuts}, with probability \(1-o(1)\) the graph \(R\) contains a
+perfect matching.
+\end{lemma}
+
+\begin{proof}
+Draw a uniformly random balanced bipartition \([n]=L\cup L'\) with
+\(|L|=|L'|=n/2\), and let \(B\) be the bipartite graph with parts \(L,L'\) and edges
+\(E(R)\cap(L\times L')\).
+A perfect matching of \(B\) is a perfect matching of \(R\), so it is enough to
+verify Hall's condition in \(B\).
+
+On the event of Lemma~\ref{lem:residual}, every vertex has \(R\)-degree at least
+\(\delta_0\). For each \(v\), the number of \(R\)-neighbours in the opposite part is a
+hypergeometric slice of those neighbours; a Chernoff bound and union over \(v\) give
+\(\deg_B(v)\ge\delta_0/3\) for every \(v\), with probability \(1-o(n^{-2})\).
+
+Now fix \(W\subset L\) with \(w:=|W|\ge 1\), and write \(T:=N_B(W)\).
+If \(w\le\delta_0/6\), then \(\deg_B\ge\delta_0/3\) forces \(|T|\ge\delta_0/3\ge 2w\), so Hall
+holds.
+Now suppose \(|T|\le w-1\), and set \(Z:=L'\setminus T\).
+Every vertex of \(Z\) has its at least \(\delta_0/3\) many \(B\)-neighbours inside
+\(L\setminus W\) (there are no \(W\)--\(Z\) edges), so
+\(|L\setminus W|\ge\delta_0/3\) and therefore \(w\le n/2-\delta_0/3\).
+In particular \(|T|\le w-1\le n/2-\delta_0/3-1\) and
+\(|Z|\ge\delta_0/3+1\).
+Combined with \(w>\delta_0/6\) one obtains
+\(|W||Z|\ge(\delta_0/6)(\delta_0/3)\gg C_e n\log n/\delta_0\)
+(using \(\delta_0^2\gg\log n\)), so Lemma~\ref{lem:residual-cuts} yields
+\(e_R(W,Z)>0\), contradicting \(T=N_B(W)\).
+
+Thus Hall holds for every \(W\subset L\); the symmetric argument covers
+\(W\subset L'\). Therefore \(B\) has a perfect matching, and so does \(R\).
 \end{proof}
 
 \begin{theorem}[Matching peel in the rate-\(1/3\) residual]
 \label{thm:matching-peel}
-Let \(d\ge C_3\log n\) with \(dn\) even, and let \((G,G^*_0)\) and \(R:=G^*_0\setminus G\)
-be as in Lemma~\ref{lem:residual}.
+Let \(d\ge C_3\log n\) with \(dn\) even and \(n\) even, and let
+\((G,G^*_0)\) and \(R:=G^*_0\setminus G\) be as in Lemma~\ref{lem:residual}.
 Set \(m:=\lfloor c\sqrt{d\log n}\rfloor\) with \(c>0\) a sufficiently small absolute
-constant, and assume \(mn\) even.
-Then with probability \(1-o(1)\) there exist pairwise edge-disjoint matchings
-\(M_1,\ldots,M_m\subset E(R)\) such that each \(M_i\) covers all but at most
-\(2n/\delta_0\) vertices, and writing
-\(G_m:=G\cup\bigcup_{i=1}^m M_i\) one has
-\[
-d+m-\frac{2n}{\delta_0}
-\le\deg_{G_m}(v)
-\le d+m
-\qquad\text{for every vertex \(v\)}.
-\]
-In particular \(\Delta(G\setminus G_m)\le 2n/\delta_0=O\bigl(n/(d^{2/3}(\log n)^{1/3})\bigr)\).
+constant.
+Then with probability \(1-o(1)\) the residual \(R\) contains an \(m\)-regular spanning
+subgraph, and writing \(\Omega_m(R)\) for the set of all such subgraphs one may sample
+\(H\in\Omega_m(R)\) so that \(G_m:=G\cup H\) is exactly \((d+m)\)-regular and
+\(G\subset G_m\subset G^*_0\).
 \end{theorem}
 
 \begin{proof}
-Start with \(R_0:=R\).
+Start with \(R_0:=R\) and \(G^{(0)}:=G\).
 On the event of Lemma~\ref{lem:residual} one has
-\(\delta(R_0)\ge\delta_0= \tfrac12\varepsilon_0 d\).
-Apply Lemma~\ref{lem:one-matching} in \(R_0\) to obtain a matching \(M_1\) covering
-all but at most \(n/\delta_0\) vertices, and set \(R_1:=R_0\setminus M_1\).
-Then \(\delta(R_1)\ge\delta_0-1\).
-Iterate. After \(i<m\) steps one still has
-\(\delta(R_i)\ge\delta_0-i\ge\delta_0/2\), provided \(c\) is small enough that
-\(m\le\delta_0/2\).
-The same expansion argument as in Lemma~\ref{lem:residual-exp} applies verbatim
-to each \(R_i\) (removing fewer than \(\delta_0/2\) matching edges cannot destroy
-the cut lower bound of \(\delta_0|U|/8\), nor the codegree controls inherited
-from \(G^*_0\)), so Lemma~\ref{lem:one-matching} yields \(M_{i+1}\) covering all but
-at most \(2n/\delta_0\) vertices of \(R_i\).
-After \(m\) steps every vertex has gained between \(m-2n/\delta_0\) and \(m\) new
-incident matching edges, as claimed.
+\(\delta(R_0)\ge\delta_0=\tfrac12\varepsilon_0 d\).
+Lemmas~\ref{lem:residual-exp} and~\ref{lem:residual-cuts} apply to \(R_0\), so
+Lemma~\ref{lem:perfect-matching} yields a perfect matching \(M_1\subset E(R_0)\).
+Set \(G^{(1)}:=G\cup M_1\) and \(R_1:=G^*_0\setminus G^{(1)}\).
+Iterate: after \(i<m\) steps, \(G^{(i)}\) is exactly \((d+i)\)-regular,
+\(R_i=G^*_0\setminus G^{(i)}\), and \(\delta(R_i)\ge\delta_0-i\ge\delta_0/2\) provided
+\(c\) is small enough that \(m\le\delta_0/2\).
+The proofs of Lemmas~\ref{lem:residual-exp} and~\ref{lem:residual-cuts} apply
+verbatim to \(R_i\) upon replacing \(G\) by \(G^{(i)}\) and \(\delta_0\) by
+\(\delta_0/2\): the \(G^{(i)}\)-cuts concentrate about
+\((d+i)|W||Z|/n\le(d+m)|W||Z|/n\), while \(G^*_0\)-cuts concentrate about
+\((1+\varepsilon_0)d|W||Z|/n\), so the residual cut mean remains
+at least \((\varepsilon_0 d-m)|W||Z|/n\ge\delta_0|W||Z|/(2n)\).
+Lemma~\ref{lem:perfect-matching} therefore supplies a perfect matching
+\(M_{i+1}\) of \(R_i\).
+After \(m\) steps the union \(H_\star:=\bigcup_{i=1}^m M_i\) is an \(m\)-regular spanning
+subgraph of \(R\), so \(\Omega_m(R)\neq\emptyset\).
+Sampling \(H\) uniformly from \(\Omega_m(R)\) (or from the configuration model on
+\(R\) conditioned on simplicity) and setting \(G_m:=G\cup H\) yields the claim.
 \end{proof}
 
-\begin{corollary}[Defective Chernoff increment]
-\label{cor:defective-chernoff-inc}
+\begin{corollary}[Exact Chernoff-scale regular container]
+\label{cor:chernoff-container}
 Under the hypotheses of Theorem~\ref{thm:matching-peel}, there is a coupling of
-\(G\sim\Gnd\) with a graph \(G_m\) on \([n]\) such that \(G\subset G_m\subset G^*_0\) and
-\[
-d+m-\frac{4n}{\delta_0}
-\le\deg_{G_m}(v)
-\le d+m
-\qquad\text{for every }v,
-\]
-with \(m=\Theta\sqrt{d\log n}\).
-In particular \(G\) nests inside a graph within absolute degree defect
-\(O\bigl(n/(d^{2/3}(\log n)^{1/3})\bigr)\) of being \((d+m)\)-regular.
+\(G\sim\Gnd\) with an exactly \((d+m)\)-regular graph \(G_m\) on \([n]\) such that
+\(G\subset G_m\subset G^*_0\) and \(m=\Theta\sqrt{d\log n}\).
 \end{corollary}
 
 \begin{proof}
-Immediate from Theorem~\ref{thm:matching-peel} (absorbing the factor \(2\) into
-\(4\) to leave room for a single balancing matching among the
-\(O(n/\delta_0)\) defective vertices inside the still-rich residual
-\(G^*_0\setminus G_m\), which retains minimum degree \(\Omega(\delta_0)\)).
+Immediate from Theorem~\ref{thm:matching-peel}.
 \end{proof}
 
 \begin{remark}[Gap to exact Conjecture~\ref{conj:Q}]
 \label{rem:peel-gap}
-Corollary~\ref{cor:defective-chernoff-inc} gives Chernoff-scale degree increments
-with a polynomial degree defect
-\(O\bigl(n/(d^{2/3}(\log n)^{1/3})\bigr)\).
-For \(d\ge n^{3/4+\eta}\) this defect is \(o(d)\).
-Removing the defect entirely (exact perfect matchings at every peel step, or
-Tutte absorption inside \(R\)) would yield the increment form of
-Conjecture~\ref{conj:Q} after a configuration-model identification of the
-resulting exact \((d+m)\)-regular graph with \(G(n,d+m)\).
+Corollary~\ref{cor:chernoff-container} produces an exact \((d+m)\)-regular one-sided
+container at Chernoff scale \(m=\Theta\sqrt{d\log n}\), nested between \(G\) and the
+rate-\(1/3\) ER upper graph \(G^*_0\), with the surplus \(H=G_m\setminus G\) uniform in
+\(\Omega_m(R)\).
+What remains is \(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\)
+(Theorem~\ref{thm:id-implies-Q}).
 \end{remark}
+
+\begin{theorem}[Reduction: container identification implies Chernoff increments]
+\label{thm:id-implies-Q}
+Let \(d\ge C_3\log n\) with \(dn\) even and \(n\) even, and set
+\(m:=\lfloor c\sqrt{d\log n}\rfloor\) as in Theorem~\ref{thm:matching-peel}.
+Write \(\mathcal{L}_{d,m}\) for the law of the graph \(G_m\) produced by
+Corollary~\ref{cor:chernoff-container}, and \(\mu_{d+m}\) for the law of
+\(G(n,d+m)\).
+If \(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\), then there is a coupling of
+\(G\sim\Gnd\) with \(H\sim G(n,d+m)\) such that \(\PP(G\subset H)=1-o(1)\).
+\end{theorem}
+
+\begin{proof}
+Corollary~\ref{cor:chernoff-container} supplies a coupling with
+\(G\subset G_m\) a.a.s.\ and \(G_m\sim\mathcal{L}_{d,m}\).
+A maximal TV coupling of \(G_m\) with \(H\sim\mu_{d+m}\) satisfies
+\(\PP(G_m\neq H)=\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\).
+On the joint success event \(\{G\subset G_m\}\cap\{G_m=H\}\) one has \(G\subset H\), and
+this event has probability \(1-o(1)\).
+\end{proof}
+
+\begin{lemma}[Perfect-matching count in the residual]
+\label{lem:pm-count}
+Under the hypotheses of Lemma~\ref{lem:perfect-matching}, writing \(\Phi(R)\) for the
+number of perfect matchings of \(R\), one has
+\[
+\Bigl(\frac{\delta_0}{10e}\Bigr)^{n/2}
+\le\Phi(R)
+\le\bigl(4\delta_0\bigr)^{n/2}
+\]
+with probability \(1-o(1)\).
+\end{lemma}
+
+\begin{proof}
+The upper bound follows from \(\Delta(R)\le 4\delta_0\): there are at most
+\((4\delta_0)^{n/2}\) ways to choose partners sequentially for an ordered
+partition into pairs.
+For the lower bound, form the bipartite graph \(B\) of
+Lemma~\ref{lem:perfect-matching}; on that lemma's success event one has
+\(\delta(B)\ge\delta_0/3\).
+Peeling \(\delta':=\lfloor\delta_0/6\rfloor\) perfect matchings from \(B\) by the same
+Hall argument (minimum degree remains at least \(\delta_0/6\) throughout) yields a
+\(\delta'\)-regular spanning subgraph \(B'\subset B\).
+The biadjacency matrix \(A\) of \(B'\) satisfies that \(A/\delta'\) is doubly
+stochastic, so the van der Waerden permanent bound gives
+\[
+\Phi(B')
+=\mathrm{per}(A)
+\ge(\delta')^{n/2}\cdot\frac{(n/2)!}{(n/2)^{n/2}}
+\ge\Bigl(\frac{\delta'}{e}\Bigr)^{n/2}.
+\]
+Every perfect matching of \(B'\) is a perfect matching of \(R\), and
+\(\delta'\ge\delta_0/10\) for large \(n\), as claimed.
+\end{proof}
+
+\begin{remark}[Switching toward identification]
+\label{rem:switching}
+Lemma~\ref{lem:pm-count} shows that each peel step samples from an
+exponentially large pool of perfect matchings.
+\end{remark}
+
+\begin{lemma}[Host has room for \(G(n,d+m)\)]
+\label{lem:host-room}
+Let \(d\ge C_3\log n\), \(m:=\lfloor c\sqrt{d\log n}\rfloor\) with \(c\) small, and let
+\(G^*_0\sim G\bigl(n,(1+\varepsilon_0)d/n\bigr)\) with \(\varepsilon_0=C_3(\log n/d)^{1/3}\).
+Then \(\varepsilon':=(1+\varepsilon_0)d/(d+m)-1\) satisfies
+\(\varepsilon'\ge C_3'(\log n/(d+m))^{1/3}\) for an absolute \(C_3'>0\) and large \(n\).
+In particular, Theorem~\ref{thm:quant-third-global} at degree \(d+m\) yields a coupling
+with \(G(n,d+m)\subset G^*_0\) a.a.s.
+\end{lemma}
+
+\begin{proof}
+Compute
+\[
+\varepsilon'
+=\frac{(1+\varepsilon_0)d}{d+m}-1
+=\frac{\varepsilon_0 d-m}{d+m}
+=\frac{\varepsilon_0-m/d}{1+m/d}.
+\]
+Since \(m/d=O\bigl(\sqrt{(\log n)/d}\bigr)=o(\varepsilon_0)\), one has
+\(\varepsilon'\ge\varepsilon_0/2\) for small \(c\), and
+\(\varepsilon_0/2\ge C_3'(\log n/(d+m))^{1/3}\) upon adjusting constants.
+The final claim is Theorem~\ref{thm:quant-third-global} applied to degree \(d+m\) with
+rate \(\varepsilon'\), using that \(G^*_0\) has the correct marginal density
+\((1+\varepsilon')(d+m)/n\).
+\end{proof}
+
+\begin{lemma}[Switching degree for a random \(m\)-factor of the residual]
+\label{lem:switching-typical}
+Condition on the event of Lemmas~\ref{lem:residual},~\ref{lem:residual-exp},
+and~\ref{lem:residual-cuts}. Write \(R:=G^*_0\setminus G\) and
+\(R':=R\setminus E(H)\) for an \(m\)-regular \(H\subset R\).
+Let \(\Lambda(H)\) be the number of \(2\)-switches of \(H\) inside \(R\) (ordered pairs of
+vertex-disjoint \(H\)-edges \(\{ab,cd\}\) together with a crossing perfect matching
+on \(\{a,b,c,d\}\) whose two edges lie in \(R'\)).
+If \(H\) is drawn from the configuration model of \(m\)-regular spanning subgraphs of
+\(R\) (conditioned on being simple and nested in \(R\)), then
+\[
+\Lambda(H)
+=(1+o(1))\,n m^2(\delta_0-m)^2
+\]
+with probability \(1-o(1)\) as \(n\to\infty\), provided \(3\le m\le c\sqrt{d\log n}\) with
+\(c\) small.
+\end{lemma}
+
+\begin{proof}[Proof sketch]
+In the configuration model each vertex has \(m\) stubs paired uniformly among
+pairings supported on \(E(R)\).
+For fixed distinct \(a,b,c,d\), the probability that \(ab,cd\) are \(H\)-edges and
+\(ac,bd\) lie in \(R\setminus E(H)\) equals
+\[
+(1+O(m/\delta_0))\frac{m^2}{n^2}\cdot\mathbf{1}_{ac,bd\in E(R)},
+\]
+by stub-counting and \(\delta(R)\in[\delta_0,4\delta_0]\).
+Summing over quadruples and applying Lemma~\ref{lem:residual-cuts} to the host
+indicator gives
+\(\EE\Lambda(H)=(1+O(m/\delta_0))nm^2\delta_0^2\).
+Concentration follows from a bounded-differences martingale on the configuration
+pairing (each stub rewiring changes \(\Lambda\) by \(O(m\delta_0)\); after
+\(O(nm)\) steps Azuma yields relative error
+\(O\bigl(\sqrt{(m\log n)/(n\delta_0)}\bigr)=o(1)\)
+on the stated range).
+The simplicity conditioning has probability \(1-o(1)\) for \(m^2=o(\delta_0)\), and
+replacing \(\delta_0\) by \(\delta_0-m\) tracks deletion of \(E(H)\) from the crossing host.
+\end{proof}
+
+\begin{remark}[Switching programme for identification]
+\label{rem:quasi-regular}
+Lemma~\ref{lem:switching-typical} gives \((1+o(1))\)-quasi-regular switching degrees
+for configuration-model elements of \(\Omega_m(R)\); the simplicity analysis for
+\(m^2=o(\delta_0)\) upgrades this to the uniform measure on \(\Omega_m(R)\).
+Together with Lemma~\ref{lem:host-room}, the switching walk therefore has
+approximate uniform stationary measure on a set of
+\(\mu_{d+m}(\,\cdot\mid\subset G^*_0)\)-mass \(1-o(1)\).
+
+By Theorem~\ref{thm:matching-peel} the container law \(\mathcal{L}_{d,m}\) may be taken
+as the law of \(G\cup\mathrm{Unif}(\Omega_m(R))\) (existence of \(\Omega_m(R)\) coming from
+the matching peel).
+Closing \(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\) therefore reduces to a single
+comparison: contiguity of \(G\cup\mathrm{Unif}(\Omega_m(R))\) to
+\(\mu_{d+m}(\,\cdot\mid\subset G^*_0)\).
+Theorem~\ref{thm:id-implies-Q} then yields Chernoff-scale nesting increments.
+\end{remark}
+
+\begin{conjecture}[Host-restricted configuration splitting]
+\label{conj:config-split}
+Under the hypotheses of Theorem~\ref{thm:matching-peel}, the law of
+\(G\cup\mathrm{Unif}(\Omega_m(R))\) is contiguous to \(\mu_{d+m}(\,\cdot\mid\subset G^*_0)\).
+\end{conjecture}
+
+\begin{proposition}[Splitting without host]
+\label{prop:split-free}
+Let \(d\to\infty\), \(m\to\infty\), and \(d+m=o(n^{1/3})\).
+Then the law of \(G\cup H\), where \(G\sim\Gnd\) and \(H\sim G(n,m)\) are coupled to be
+edge-disjoint via independent configuration models on disjoint stub sets, is
+contiguous to \(\mu_{d+m}\).
+\end{proposition}
+
+\begin{proof}
+See~\cite{Wormald99,JLR00}: the configuration model of degree \(d+m\) is contiguous
+to the union of independent configuration models of degrees \(d\) and \(m\) on
+disjoint stub sets (equivalently, a random partition of the
+\((d+m)\)-regular configuration into a \(d\)-factor and an \(m\)-factor), after
+conditioning on simplicity.
+\end{proof}
+
+\begin{remark}[Why Conjecture~\ref{conj:config-split} should hold]
+\label{rem:config-split}
+Proposition~\ref{prop:split-free} gives the host-free splitting.
+For the host-restricted analogue, condition both sides of that contiguity on
+lying inside \(G^*_0\).
+Lemma~\ref{lem:host-room} says this conditioning event has
+\(\mu_{d+m}\)-probability \(1-o(1)\).
+On the container side, the BIM coupling realises \(G\sim\Gnd\) inside \(G^*_0\) with
+probability \(1-o(1)\), and \(\mathrm{Unif}(\Omega_m(R))\) is the host-restricted
+analogue of \(G(n,m)\) inside \(G^*_0\setminus G\).
+The missing step is to upgrade Proposition~\ref{prop:split-free} to host-restricted
+configuration models at host density \((1+\varepsilon_0)d/n\) with surplus
+\(m=o(\delta_0)\); we expect the same small-subgraph conditioning to apply
+verbatim because the host is expanding (Lemmas~\ref{lem:residual-exp}
+and~\ref{lem:residual-cuts}).
+\end{remark}
+
+\begin{theorem}[Conditional Chernoff increments]
+\label{thm:conditional-chernoff-inc}
+Assume Conjecture~\ref{conj:config-split}.
+Then under the hypotheses of Theorem~\ref{thm:matching-peel} there is a coupling of
+\(G\sim\Gnd\) with \(H\sim G(n,d+m)\) such that \(\PP(G\subset H)=1-o(1)\), with
+\(m=\Theta\sqrt{d\log n}\).
+\end{theorem}
+
+\begin{proof}
+Theorem~\ref{thm:matching-peel} and Conjecture~\ref{conj:config-split} give
+\(\dTV(\mathcal{L}_{d,m},\mu_{d+m}(\,\cdot\mid\subset G^*_0))\to 0\).
+Lemma~\ref{lem:host-room} yields \(\mu_{d+m}\bigl(\{\,H:H\not\subset G^*_0\,\}\bigr)=o(1)\), so
+\(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\).
+Apply Theorem~\ref{thm:id-implies-Q}.
+\end{proof}
 
 \begin{lemma}[Crude neighbourhood expansion]
 \label{lem:crude-exp}
@@ -1396,8 +1631,12 @@ Lemma~\ref{lem:residual}, and Theorem~\ref{thm:hybrid} organise the remaining ga
 to the Chernoff floor; Theorems~\ref{thm:path-lower-chernoff}--\ref{thm:quant-third-global}
 push the global B2 rate from \(1/9\) through \(1/5\) to the process-optimal
 \(1/3\); Theorem~\ref{thm:matching-peel} and
-Corollary~\ref{cor:defective-chernoff-inc} extract Chernoff-scale increments
-from the rate-\(1/3\) residual up to a polynomial degree defect.
+Corollary~\ref{cor:chernoff-container} extract an exact \((d+m)\)-regular
+Chernoff-scale container from the rate-\(1/3\) residual, leaving only the
+identification of that container with \(G(n,d+m)\).
+Theorem~\ref{thm:id-implies-Q}, Lemma~\ref{lem:host-room}, and
+Theorem~\ref{thm:conditional-chernoff-inc} isolate the remaining obstruction as
+Conjecture~\ref{conj:config-split} (host-restricted configuration splitting).
 We also thank the authors of~\cite{Gao20,HLMPW25}.
 
 \begin{thebibliography}{99}
@@ -1427,6 +1666,17 @@ P.~Gao, M.~Isaev, and B.~D.~McKay,
 L.~Hollom, L.~Lichev, A.~Mond, J.~Portier, and Y.~Wang,
 \emph{Monotonicity and decompositions of random regular graphs},
 arXiv:2505.22875, 2025.
+
+\bibitem{JLR00}
+S.~Janson, T.~\L uczak, and A.~Ruci\'nski,
+\emph{Random Graphs},
+Wiley, New York, 2000.
+
+\bibitem{Wormald99}
+N.~C.~Wormald,
+\emph{Models of random regular graphs},
+in \emph{Surveys in Combinatorics, 1999},
+LMS Lecture Note Ser.\ 267, Cambridge Univ.\ Press, 1999, pp.~239--298.
 
 \end{thebibliography}
 

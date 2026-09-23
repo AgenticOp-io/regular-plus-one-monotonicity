@@ -3,19 +3,18 @@
 ## Rate ladder
 
 ```
-1/9  <<  1/5  <<  1/3 (all d)  <<  defective Chernoff inc  <<  1/2 exact
-PROVED   PROVED   PROVED           PROVED (defect n/d^{2/3})     OPEN
+1/9  <<  1/5  <<  1/3 (all d)  <<  exact Chernoff container  <<  Chernoff inc
+PROVED   PROVED   PROVED           PROVED (d+m)-reg in G*_0      CONDITIONAL
+                                                                   (config-split)
 ```
 
 ## Toward Chernoff
 
-- process ⇒ Q
-- window reduction for all \(d\ge C\log n\)
-- hybrid marginals (not contiguous)
-- **matching peel** in residual → \(m=\Theta\sqrt{d\log n}\) near-matchings
-- defective increment: \(G\subset G_m\) with degrees in \([d+m-O(n/\delta_0),d+m]\)
+- Exact matching peel ⇒ \(\Omega_m(R)\neq\emptyset\); container = \(G\cup\mathrm{Unif}(\Omega_m)\)
+- **Thm id-implies-Q** + **Lem host-room** + **Thm conditional-chernoff-inc**
+- Remaining black box: **Conjecture config-split** (host-restricted stub colouring)
 
 ## Next
 
-Exact perfect matchings in \(R\) (Tutte absorption) → exact \((d+m)\)-regular
-container → identify with \(G(n,d+m)\).
+Prove Conjecture `config-split`: red/blue stub colouring in the host-restricted
+configuration model for \(G(n,d+m)\subset G^*_0\).
