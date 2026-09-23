@@ -2,15 +2,16 @@
 
 ## Done
 
-- Exact PMs (bipartite Hall) ⇒ \(\Omega_m(R)\neq\emptyset\)
-- Container \(G_m=G\cup\mathrm{Unif}(\Omega_m(R))\)
-- **Thm config-split + Cor chernoff-inc-sparse** for \(d=o(n^{1/7})\)
-  (CFG25 TV decomposition + host conditioning)
+- Exact PMs ⇒ Ω_m(R) nonempty; exact (d+m)-regular container (all d)
+- Config-split / Chernoff inc for d=o(n^{1/7}) (CFG25)
+- **Cor chernoff-chains:** Chernoff increments for D=o(n^{2/7}/log²n) via +1 chains
+- Switching-typical sealed (Azuma on stub exposure)
 
 ## Remaining
 
-Conjecture config-split for \(d\ge n^{1/7}\).
+Conjecture config-split for d=ω(n^{2/7}) (past chain ceiling).
 
-## Dead ends
+## Note
 
-Hybrid ER contiguity; thinning \(G^*_0\); odd-cycle flips; defective near-PMs
+Chain increments dominate config-split on overlapping ranges; residual method
+is the route past n^{2/7}.
