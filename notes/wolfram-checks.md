@@ -151,3 +151,40 @@ Query: simplify d*d^(-1/9)*log(n)^(1/9)
 simplify | d d^(-1/9) log(n)^(1/9)
 [Expanded logarithmic form]
 d^(8/9) log(n)^(1/9)
+
+
+Query: solve d^(11/6) = n for d
+[Input interpretation]
+solve d^(11/6) = n for d
+[Result]
+d = n^(6/11)
+
+
+Query: simplify (d*log(n))^(1/2) * (d^(2/3)*(log(n))^(1/3))^2 / n
+[Input interpretation]
+simplify | sqrt(d log(n)) × (d^(2/3) log(n)^(1/3))^2/n
+[Expanded logarithmic form]
+(sqrt(d log(n)) d^((2 2)/3) log^(2/3)(n))/n
+[Alternate form assuming d>=0, n>0, and log(n)>=0]
+(d^(4/3) log^(2/3)(n) sqrt(log(n^d)))/n
+
+
+Query: simplify (n^(1/2))^(11/6)/n
+[Input interpretation]
+simplify | sqrt(n)^(11/6)/n
+[Result]
+1/n^(1/12)
+
+
+Query: simplify d^(4/3)*d^(1/2)*log(n)^(2/3)*log(n)^(1/2)/n
+[Input interpretation]
+simplify | d^(4/3) sqrt(d) log^(2/3)(n) × sqrt(log(n))/n
+[Expanded logarithmic form]
+(d^(11/6) log^(7/6)(n))/n
+
+
+Query: simplify (n^(2/7))^(11/6)/n
+[Input interpretation]
+simplify | (n^(2/7))^(11/6)/n
+[Result]
+1/n^(10/21)

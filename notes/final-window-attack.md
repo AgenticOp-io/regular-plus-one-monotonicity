@@ -11,12 +11,8 @@
 - **Cor chernoff-chains:** Chernoff increments for
   ω(log n)=D=o(n^{2/7}/(log n)^{3/7}) via +1 chains.
   The sqrt(d/n) log^3 n truncation is removed by the odd cancellation in lem:laplace.
-- Switching degree concentrates for the uniform **simple** Chernoff \(m\)-factor.
-  \(m^2/\delta_0\to\infty\), so simplicity is rare in the stub model; the Azuma tail
-  \(\exp(-\Omega(nm\delta_0^2))\) still beats the witness bound
-  \(\exp(O(mn\log(n/m)))\).
-- Sharp residual degrees \((1+o(1))\varepsilon_0 d\) when \(d=\omega(\log n)\), so the
-  switch count is centred at \(nm^2(\varepsilon_0 d)^2\).
+- The \(2\)-switch mean is \(m^2(\varepsilon_0 d)^2\). The factor \(n\) in the old centre
+  was an arithmetic error. Switches per edge are \(o(1)\) for \(d=o(n^{6/11})\).
 
 ## Remaining
 

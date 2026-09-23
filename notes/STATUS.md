@@ -22,8 +22,7 @@ PROVED  PROVED  PROVED   PROVED                            OPEN (d>n^{2/7})
 - Hall proof for the residual matching no longer uses an empty-cut claim
   (a vertex and its non-neighbourhood). Cuts are two-sided.
 - Config-split TV was withdrawn: product containment in the host is exponentially small
-- Switching degree of the uniform simple Chernoff \(m\)-factor concentrates
-  (simplicity is rare, but the Azuma tail still dominates)
+- Switching: the \(2\)-switch count of a residual \(m\)-factor has mean \(m^2(\varepsilon_0 d)^2\), not \(nm^2(\varepsilon_0 d)^2\). There are \(o(1)\) switches per edge for \(d=o(n^{6/11})\), including the whole gap from \(n^{2/7}\) through \(o(\sqrt{n})\). The Azuma exponent does not beat the simplicity weight.
 - Sharp residual degrees \((1+o(1))\varepsilon_0 d\) for \(d=\omega(\log n)\)
 
 - Free \(m\)-extension counts are \((1+o(1))\)-flat for all \(d\)-regular graphs
@@ -32,6 +31,7 @@ PROVED  PROVED  PROVED   PROVED                            OPEN (d>n^{2/7})
 ## Next
 
 Host-restricted total variation is open (Conjecture config-split).
+Two-switches do not close it: Proposition switch-barrier.
 A sandwich coupling does not put uniform G(n,d+m) inside the upper graph
 already built at degree d (Proposition host-gap). Free flatness counts
 factors of the complement, not of the residual.
