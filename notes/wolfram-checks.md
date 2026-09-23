@@ -202,3 +202,28 @@ Query: simplify d^(1/4)*log(n)^(3/4)/(d^(1/2)*log(n)^(1/2))
 simplify | d^(1/4) × (log^(3/4)(n))/(sqrt(d) sqrt(log(n)))
 [Result]
 log(n)^(1/4)/d^(1/4)
+
+
+Query: simplify (n^(4/13))^(13/10) / n^(2/5)
+[Input interpretation]
+simplify | (n^(4/13))^(13/10)/n^(2/5)
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: simplify (log(n))^(-(5/13)*(13/10)) * (log(n))^(1/2)
+[Input interpretation]
+simplify | log^(-5/13 × 13/10)(n) sqrt(log(n))
+[Expanded logarithmic form]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: simplify d^(1/2)*d^(2/3)/n
+[Input interpretation]
+simplify | sqrt(d) × d^(2/3)/n
+[Result]
+d^(7/6)/n
