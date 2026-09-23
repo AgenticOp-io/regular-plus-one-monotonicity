@@ -1420,110 +1420,82 @@ fresh binomial graph of this density, produces some coupling in which a copy of
 pair \((G,G^*_0)\) already built at degree \(d\).
 \end{proof}
 
-\begin{lemma}[Switching degree for a random \(m\)-factor of the residual]
-\label{lem:switching-typical}
-Condition on the event of Lemmas~\ref{lem:residual},~\ref{lem:residual-exp},
-and~\ref{lem:residual-cuts}. Write \(R:=G^*_0\setminus G\) and
-\(R':=R\setminus E(H)\) for an \(m\)-regular \(H\subset R\).
-Let \(\Lambda(H)\) be the number of \(2\)-switches of \(H\) inside \(R\) (ordered pairs of
-vertex-disjoint \(H\)-edges \(\{ab,cd\}\) together with a crossing perfect matching
-on \(\{a,b,c,d\}\) whose two edges lie in \(R'\)).
-Let \(H\) be drawn from the configuration model with \(m\) stubs at each vertex,
-conditioned on every paired edge lying in \(R\), and write \(S\) for the event that
-this pairing is simple.
-If \(d/\log n\to\infty\), then on the event of Lemma~\ref{lem:residual-sharp}
+\begin{proposition}[Two-switches do not identify the container]
+\label{prop:switch-barrier}
+Condition on the degree event of Lemma~\ref{lem:residual-sharp}, and write
+\(\delta:=(1+o(1))\varepsilon_0 d\) and \(m\le c\sqrt{d\log n}\).
+Let \(\Lambda(H)\) be the number of ordered \(4\)-tuples of distinct vertices
+\((a,b,c,d)\) with \(ab,cd\in E(H)\) and \(ac,bd\in E(R)\setminus E(H)\).
+In the configuration model with \(m\) stubs at each vertex, before conditioning on
+the pairs lying in \(R\),
 \[
-\Lambda(H)
-=(1+o(1))\,n m^2(\varepsilon_0 d)^2
+\EE[\Lambda]=(1+o(1))\,m^2\delta^2.
 \]
-with probability \(1-o(1)\) under the conditional law given \(S\), provided
-\(3\le m\le c\sqrt{d\log n}\) with \(c\) small.
-For \(d\ge C_3\log n\) the same argument gives
-\(\Lambda(H)=\Theta\bigl(nm^2(\varepsilon_0 d)^2\bigr)\) under the simple conditional law,
-with the implicit constant read off the degree window of Lemma~\ref{lem:residual}.
-\end{lemma}
+The centre \(nm^2\delta^2\) is larger by a factor \(n\).
+A stub exposure changes \(\Lambda\) by at most \(O(m\delta)\). Azuma's inequality at
+relative height \(\eta\to 0\) therefore has exponent
+\(O(\eta^2 m\delta^2/n)\). Substituting the Chernoff scale gives
+\[
+\frac{m\delta^2}{n}
+=
+\Theta\Biggl(\frac{d^{11/6}(\log n)^{7/6}}{n}\Biggr),
+\]
+which tends to \(0\) for \(d=o(n^{6/11})\). At \(d=n^{1/2}\) it is
+\(n^{-1/12}(\log n)^{7/6}\), and at \(d=n^{2/7}\) it is \(n^{-10/21}(\log n)^{7/6}\).
+The same exponent does not dominate the simplicity weight
+\(\exp(-O(mn\log(n/m)))\), because \(\delta\le n\) forces
+\(\delta^2=o(n^2\log n)\).
+Thus this \(2\)-switch count neither concentrates on the uniform simple
+\(m\)-factor nor supplies \(\omega(1)\) switches per edge anywhere in the open
+interval between the chain ceiling and \(\sqrt{n}\).
+\end{proposition}
 
 \begin{proof}
-Write \(P_0\) for the uniform pairing of \(m\) stubs at each vertex, and write
-\(A\) for the event that every paired edge lies in \(R\).
-The law in the statement is \(P_0(\,\cdot\mid A)\), and the simple model is
-\(P_0(\,\cdot\mid A\cap S)\).
-On the event of Lemma~\ref{lem:residual}, \(\delta(R)\in[\delta_0,4\delta_0]\).
-If moreover \(d=\omega(\log n)\), Lemma~\ref{lem:residual-sharp} upgrades this to
-\(\deg_R(v)=(1+o(1))\varepsilon_0 d\) for every \(v\), and the two normalisations
-below differ by \(1+o(1)\).
-On the sharp event, \(\sum_v\deg_R(v)(\deg_R(v)-1)=(1+o(1))n(\varepsilon_0 d)^2\).
-Set \(\Lambda_0:=nm^2(\varepsilon_0 d)^2\).
-Under \(P_0(\,\cdot\mid A)\), sequential stub pairing gives, for distinct
-\(a,b,c,d\),
-\[
-\PP\bigl(ab,cd\in E(H),\; ac,bd\in E(R)\setminus E(H)\bigr)
-=(1+O(m/\delta_0))\frac{m(m-1)}{(nm-O(1))^2}\cdot\mathbf{1}_{ac,bd\in E(R)}.
-\]
-Summing over ordered quadruples, the crossing pool
-\(\sum\mathbf{1}_{ac,bd\in E(R)}\) equals \((1+o(1))n(\varepsilon_0 d)^2\) up to the
-\(O(\log n)\) codegrees already controlled by Lemma~\ref{lem:residual-cuts}, and
-\[
-\EE[\Lambda(H)\mid A]=(1+O(m/\delta_0))\Lambda_0.
-\]
-The relative error \(m/\delta_0=O\bigl(d^{-1/6}(\log n)^{1/6}\bigr)\) tends to \(0\) for small \(c\).
-(If one uses only Lemma~\ref{lem:residual}, the same argument yields
-\(\EE[\Lambda\mid A]=\Theta(nm^2(\varepsilon_0 d)^2)\), with the implicit constant depending
-on the factor-\(4\) degree window.)
+In the pairing model, two fixed disjoint vertex pairs are matched with probability
+\((1+O(m/n))(m/n)^2\), and a third fixed pair fails to be matched with probability
+\(1-O(m/n)\).
+On the sharp degree event the number of ordered crossing pairs \((a,c),(b,d)\) in \(R\)
+with four distinct vertices is \((1+o(1))(n\delta)^2\): there are \((1+o(1))n\delta\)
+ordered edges, and the \(O(\delta)\) edges incident to a given vertex change the count
+by a relative \(O(1/n)\).
+Multiplying these contributions yields
+\(\EE[\Lambda]=(1+o(1))(m/n)^2(n\delta)^2=(1+o(1))m^2\delta^2\).
 
-Expose the conditional pairing stub-by-stub.
-Changing the partner of one stub alters at most \(O(m\delta_0)\) switches.
-Azuma--Hoeffding over the \(nm\) exposures gives, for
-\(\eta:=(\log n)^{-1/4}\) (so \(\eta\to 0\)),
+The ratio of \(nm^2\delta^2\) to this mean is \(n\).
+For the Lipschitz bound, fix an edge \(ab\) of the pairing. A switch through \(ab\)
+requires the opposite edge \(cd\) and the crossings \(ac,bd\in E(R)\), so \(c\in N_R(a)\)
+and \(d\in N_R(b)\). Each of the \(O(\delta)\) choices of \(c\) has at most \(m\) partners
+in the pairing, hence \(O(m\delta)\) switches touch \(ab\).
+Over \(nm\) stub exposures, Azuma's inequality at deviation \(\eta\cdot\Theta(m^2\delta^2)\)
+has exponent
 \[
-P_0\bigl(|\Lambda-\EE[\Lambda\mid A]|\ge\eta\Lambda_0\bigm|A\bigr)
-\le 2\exp\bigl(-\Omega(\eta^2 nm\delta_0^2)\bigr).
+\frac{(\eta m^2\delta^2)^2}{nm\cdot O(m^2\delta^2)}
+=O\Biggl(\eta^2\frac{m\delta^2}{n}\Biggr).
 \]
-Call this bad event \(B\).
-
-The hypothesis \(m^2=o(\delta_0)\) is false at Chernoff scale:
-\(\delta_0\asymp d^{2/3}(\log n)^{1/3}\) while \(m^2\asymp d\log n\), so
-\(m^2/\delta_0\asymp d^{1/3}(\log n)^{2/3}\to\infty\).
-Simplicity is therefore not a \(1-o(1)\) event under \(P_0(\,\cdot\mid A)\), and
-the bad event must be transferred rather than ignored.
-On \(\{\Omega_m(R)\neq\emptyset\}\) (probability \(1-o(1)\) by
-Theorem~\ref{thm:matching-peel}) fix one simple \(m\)-factor \(H_0\subset R\).
-Exactly \((m!)^n\) pairings realise \(H_0\), so
-\[
-P_0(S\mid A)
-=\frac{P_0(S\cap A)}{P_0(A)}
-\ge P_0(H_0)
-=\frac{(m!)^n}{(mn-1)!!}
-=\exp\bigl(-O(mn\log(n/m))\bigr),
-\]
-where the inequality uses \(P_0(A)\le 1\).
-Hence
-\begin{align*}
-P_0(B\mid A\cap S)
-&\le\frac{P_0(B\mid A)}{P_0(S\mid A)}
-\le\exp\bigl(-\Omega(\eta^2 nm\delta_0^2)+O(mn\log(n/m))\bigr).
-\end{align*}
-With this \(\eta\), the exponent is \(-\Omega(nm\delta_0^2/\log^{1/2}n)\) once
-\(\eta^2\delta_0^2\gg\log(n/m)\).
-That comparison holds for \(d\ge C_3\log n\), since
-\(\delta_0^2\asymp d^{4/3}(\log n)^{2/3}\) and therefore
-\(\eta^2\delta_0^2\asymp d^{4/3}(\log n)^{1/6}\).
-Thus \(\Lambda(H)=(1+o(1))\Lambda_0\) with probability \(1-o(1)\) under the simple
-conditional law.
+The identities
+\(m\delta^2/n=\Theta(d^{11/6}(\log n)^{7/6}/n)\),
+\((n^{1/2})^{11/6}/n=n^{-1/12}\), and
+\((n^{2/7})^{11/6}/n=n^{-10/21}\),
+up to the factor \((\log n)^{7/6}\) from \(m\) and \(\delta\),
+A single simple \(m\)-factor has pairing probability
+\(\exp(-O(mn\log(n/m)))\), as in the count \((m!)^n/(mn-1)!!\).
+Dividing an Azuma tail by this weight produces a useful bound only if
+\(m\delta^2/n\) dominates \(mn\log(n/m)\), i.e.\ only if \(\delta^2\) dominates
+\(n^2\log(n/m)\). No degree \(\delta\le n\) satisfies that comparison.
 \end{proof}
 
-\begin{remark}[Switching programme for denser degrees]
+\begin{remark}[Where the switching programme stops]
 \label{rem:quasi-regular}
-Lemma~\ref{lem:switching-typical} records a host-restricted switching approach aimed
-at Conjecture~\ref{conj:config-split}.
-The \(2\)-switch count concentrates for the uniform simple \(m\)-factor even though
-\(m^2/\delta_0\to\infty\) at Chernoff scale: the Azuma tail
-\(\exp(-\Omega(nm\delta_0^2))\) dominates the crude simplicity weight
-\(\exp(O(mn\log(n/m)))\).
-Quasi-regular switchings make \(\mathrm{Unif}(\Omega_m(R))\) a candidate stationary measure
-inside \(G^*_0\). Comparing that law to \(\mu_{d+m}\) is open, including past the
-chain ceiling \(n^{2/7}\) of Corollary~\ref{cor:chernoff-chains}.
+Proposition~\ref{prop:switch-barrier} is the obstruction to reading a uniform edge
+law off \(2\)-switches of the residual \(m\)-factor.
+The count is of order \(m^2\delta^2\), not \(nm^2\delta^2\), and the resulting
+Azuma exponent is too small to pass from the pairing model to the uniform simple
+factor.
+On \(n^{2/7}\le d\le n^{1/2}\) a typical edge lies in \(o(1)\) such switches, so the
+comparison that would identify \(\mathrm{Unif}(\Omega_m(R))\) with \(\mu_{d+m}\) does not
+start.
 Proposition~\ref{prop:host-gap} blocks the shortcut through~\cite[(1.1)]{CFG25}.
+Conjecture~\ref{conj:config-split} stays open.
 \end{remark}
 
 \begin{lemma}[Contiguity preserved by a.a.s.\ conditioning]
@@ -1674,12 +1646,11 @@ which is independent of the choice of \(G\) up to the factor \(1+o(1)\).
 
 \begin{remark}[Toward Conjecture~\ref{conj:config-split}]
 \label{rem:config-split}
-Lemma~\ref{lem:switching-typical} supplies \((1+o(1))\)-quasi-regular host-restricted
-switchings for the uniform simple \(m\)-factor at Chernoff scale
-\(m=\Theta\sqrt{d\log n}\), including degrees \(d=\omega(n^{2/7})\) where
-Corollary~\ref{cor:chernoff-chains} no longer applies.
-(The count is centred at \(nm^2(\varepsilon_0 d)^2\) once
-Lemma~\ref{lem:residual-sharp} is available, i.e.\ for \(d=\omega(\log n)\).)
+Proposition~\ref{prop:switch-barrier} shows that the \(2\)-switch count of a residual
+\(m\)-factor is of order \(m^2(\varepsilon_0 d)^2\). That supplies \(o(1)\) switches per
+edge throughout \(d=o(n^{6/11})\), which contains the open interval past
+Corollary~\ref{cor:chernoff-chains} up through \(o(\sqrt{n})\). The same proposition
+shows that the Azuma tail does not survive conditioning on simplicity.
 Lemma~\ref{lem:free-flat} makes the number of \(m\)-factors of the complement of \(G\)
 independent of which \(d\)-regular graph was chosen, for every
 \(d=o(n^{2/5}/(\log n)^{1/5})\).
