@@ -873,7 +873,9 @@ probability \(1-o(n^{-10})\), for all distinct \(x,y\in[n]\) and all
 in~\cite[Lemma~5.1]{BIM25} and for two-vertex lower counts
 in~\cite[Theorem~6.1]{BIM25}. The weaker schedule
 \((\log n/\delta)^{1/8}\) in~\cite[Lemma~7.1]{BIM25} arises from a truncation
-argument imposing \(\lambda=\Theta(\eta^2)\).
+argument imposing \(\lambda=\Theta(\eta^2)\), which forces
+\(\eta=\Omega(\sqrt{\lambda})=\Omega((\log n/\delta)^{1/8})\) and cannot be
+re-tuned to reach \(1/4\); see the discussion after Theorem~\ref{thm:quant-fifth}.
 For \(\delta\ge n^{\sigma}\) the bound holds unconditionally by~\cite[Lemma~8.1]{BIM25},
 which supplies an even smaller relative error.)
 
@@ -919,6 +921,22 @@ Under Conjecture~\ref{conj:U} the same schedule applies for all
 \(\delta_R\ge C_U\log n\) and the two-vertex upper bound is supplied by the
 conjecture rather than by~\cite[Lemma~8.1]{BIM25}.
 \end{proof}
+
+\begin{remark}[Toward Hypothesis~P]
+\label{rem:hyp-P}
+The lower path bound of~\cite[Theorem~6.1]{BIM25} uses an edge-distribution
+hypothesis on sets of size \(\Theta(\lambda n)\) (their I6), which via a Chernoff
+requirement forces \(\lambda=\Omega((\log n/\delta)^{1/4})\).
+If that hypothesis were available for linear-size sets, the same Chernoff would
+permit \(\lambda=\Theta\sqrt{\log n/\delta}\), matching the degree-concentration
+floor of~\cite[Lemma~5.3]{BIM25}.
+Combined with Conjecture~\ref{conj:U} (or any two-vertex upper bound at the same
+scale), the deletion-process schedule would reach the process-optimal rate
+\(1/3\) for all \(d\ge C\log n\).
+The final connecting sets in the expansion of~\cite[Claim~6.4]{BIM25} have size
+\(\Theta(\lambda n)\) by construction, so upgrading I6 to linear size requires a
+genuine redesign of that expansion, not a black-box substitution.
+\end{remark}
 
 \section*{Acknowledgements}
 The exact \(+1\) range \(o(\sqrt{n})\) executes the improvement outlined by Gao
