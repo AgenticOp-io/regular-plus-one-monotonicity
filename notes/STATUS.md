@@ -22,6 +22,7 @@ PROVED  PROVED  PROVED   PROVED                            OPEN (d>n^{2/7})
 - Hall proof for the residual matching no longer uses an empty-cut claim
   (a vertex and its non-neighbourhood). Cuts are two-sided.
 - Config-split TV was withdrawn: product containment in the host is exponentially small
+- **Hybrid degrees:** for \(d/\log n\to\infty\) and Chernoff \(\varepsilon\), every degree of the thinned residual container is \(d+(1+o(1))\varepsilon d\).
 - Switching: the \(2\)-switch count of a residual \(m\)-factor has mean \(m^2(\varepsilon_0 d)^2\), not \(nm^2(\varepsilon_0 d)^2\). There are \(o(1)\) switches per edge for \(d=o(n^{6/11})\), including the whole gap from \(n^{2/7}\) through \(o(\sqrt{n})\). The Azuma exponent does not beat the simplicity weight.
 - Sharp residual degrees \((1+o(1))\varepsilon_0 d\) for \(d=\omega(\log n)\)
 

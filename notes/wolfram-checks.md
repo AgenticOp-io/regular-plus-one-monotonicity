@@ -188,3 +188,17 @@ Query: simplify (n^(2/7))^(11/6)/n
 simplify | (n^(2/7))^(11/6)/n
 [Result]
 1/n^(10/21)
+
+
+Query: simplify (d^(1/2)*(log(n))^(3/2))^(1/2)/(d^(1/2)*(log(n))^(1/2))
+[Input interpretation]
+simplify | sqrt(sqrt(d) log^(3/2)(n))/(sqrt(d) sqrt(log(n)))
+[Result]
+log(n)/sqrt(sqrt(d) log^(3/2)(n))
+
+
+Query: simplify d^(1/4)*log(n)^(3/4)/(d^(1/2)*log(n)^(1/2))
+[Input interpretation]
+simplify | d^(1/4) × (log^(3/4)(n))/(sqrt(d) sqrt(log(n)))
+[Result]
+log(n)^(1/4)/d^(1/4)
