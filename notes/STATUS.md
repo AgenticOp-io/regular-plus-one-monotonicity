@@ -3,19 +3,19 @@
 ## Rate ladder
 
 ```
-1/9 << 1/5 << 1/3 (all d) << exact container << Chernoff inc (d=o(n^{1/7}))
-PROVED  PROVED  PROVED          PROVED             PROVED
-                                                 << all d (config-split conj)
-                                                    OPEN
+1/9 << 1/5 << 1/3 << Chernoff inc (chains, D=o(n^{2/7})) << exact Q
+PROVED  PROVED  PROVED   PROVED                            OPEN (d>n^{2/7})
+         residual container (all d) + config-split (o(n^{1/7}))
 ```
 
 ## Toward Chernoff
 
-- Exact PM peel ⇒ Ω_m(R) nonempty
-- **Thm config-split:** TV(L, μ_{d+m})→0 for d+m=o(n^{1/7}) via CFG25 ⊕ M_m^⊕
-- **Cor chernoff-inc-sparse:** G(n,d) ⊂ G(n,d+m) a.a.s. at m=Θ√(d log n)
-- **Conj config-split:** same for all d ≥ C log n
+- **Cor chernoff-chains:** G(n,D) ⊂ G(n,D+m) for m=Θ√(D log n), D=o(n^{2/7}/log²n)
+- Residual exact (d+m)-regular container for all d ≥ C log n
+- Config-split TV id for d=o(n^{1/7}) (methodology toward denser)
+- Sealed switching-typical Azuma for host-restricted m-factors
 
 ## Next
 
-Extend past n^{1/7} (dense CFG25 analogue / host-restricted switchings).
+Identify container for d=ω(n^{2/7}) via host-restricted switchings
+(Conjecture config-split).
