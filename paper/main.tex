@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage[margin=1in]{geometry}
+\usepackage{lmodern}
 \usepackage[colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
 \usepackage{microtype}
 
@@ -442,75 +443,94 @@ consecutive ratios satisfy, for \(1\le k\le n/3\),
 =
 \frac{(d-2)n+2k}{2(d-1)^2 k}\,(1+O(1/n)),
 \]
-and \(a_k/a_{k-1}\le 1/2\) for \(k>n/3\). Set \(\bar k=n/(2d)\) and \(m=\lfloor\bar k\rfloor\).
+and \(a_k/a_{k-1}\le 1/2\) for \(k>n/3\). Set \(\bar k=n/(2d)\), \(m=\lfloor\bar k\rfloor\), and
+\[
+\beta
+:=
+1-\frac1{(d-1)^2}.
+\]
 Then
 \[
 \sum_k a_k
 =
-a_m\sqrt{2\pi\bar k}\,\bigl(1+O(d/n)\bigr).
+a_m\sqrt{\frac{2\pi\bar k}{\beta}}\,\bigl(1+O(d/n)\bigr).
 \]
+The prefactor admits the expansion
+\(\beta^{-1/2}=1+1/(2d^2)+d^{-3}+O(d^{-4})\).
+It depends only on \(d\), and it is part of the main-term expansion in~\cite[§3.4.1]{Gao21},
+not a truncation error.
 \end{lemma}
 
 \begin{proof}
-Write \(r_0(k)=((d-2)n+2k)/(2(d-1)^2 k)\). The identity \(r_0(\bar k)=1\) rearranges to
+Write \(r_0(k)=((d-2)n+2k)/(2(d-1)^2 k)\) and \(a=(d-1)^2\). The identity \(r_0(\bar k)=1\) rearranges to
 \[
 r_0(\bar k+t)
 =
-\frac{\bar k+t/(d-1)^2}{\bar k+t}.
+\frac{\bar k+t/a}{\bar k+t}.
 \]
 Set \(\sigma=\sqrt{\bar k}\) and \(\lambda=\log n\), and write \(\delta=k-m\).
 The window \(|\delta|\le\lambda\sigma\) lies inside \(k\le n/3\) for large \(n\), because
 \(\lambda\sigma=o(\bar k)\).
 
-On this window, \(u=t/\bar k\) satisfies \(|u|\le 2\lambda/\sigma\to 0\). The expansion
+On this window, \(u=t/\bar k\) satisfies \(|u|\le 2\lambda/\sigma\to 0\). For \(|u|<1\) and \(|u/a|<1\),
 \[
-\log\Bigl(1+\frac{u}{(d-1)^2}\Bigr)-\log(1+u)
+\log\Bigl(1+\frac{u}{a}\Bigr)-\log(1+u)
 =
--u+\frac{u}{(d-1)^2}+\frac{u^2}{2}-\frac{u^3}{3}+O(u^4)+O\Bigl(\frac{u^2}{d^4}\Bigr)
+\sum_{j\ge 1}\frac{(-1)^j}{j}\Bigl(u^j-\bigl(\frac{u}{a}\bigr)^j\Bigr).
 \]
-has odd part \(-u-u^3/3+u/(d-1)^2\) and even part \(u^2/2+O(u^4)\).
-Summing the increments in \(t\) gives
+The \(j=1\) summand is \(-u(1-1/a)=-u\beta\). Summing it from the mode produces the even function
 \[
-\log\frac{a_{m+\delta}}{a_m}
-=
--\frac{\delta^2}{2\bar k}+b(\delta)+e(\delta),
+-\frac{\beta\,\delta^2}{2\bar k}+O\Bigl(\frac{|\delta|}{\bar k}\Bigr).
 \]
-where \(b\) is an odd function of \(\delta\), coming from the linear and cubic terms, and the
-even remainder obeys
-\[
-|e(\delta)|
-\le
-C\Biggl(\frac{\delta^4}{\bar k^3}+\frac{\delta^2}{\bar k\,d^2}+\frac{|\delta|}{n}\Biggr)
-\]
-for an absolute \(C\) and large \(n\). The accumulated \(O(1/n)\) in the ratio hypothesis
-is the last summand. In particular \(|b(\delta)|\le C\lambda^3/\sigma\to 0\) and
-\(|e(\delta)|\to 0\) uniformly on the window, since \(d=o(n^{1/2})\) forces
-\(\lambda^4/\sigma^2=o(1)\). Therefore
-\[
-\frac{a_{m+\delta}}{a_m}
-=
-\exp\Bigl(-\frac{\delta^2}{2\bar k}\Bigr)
-\bigl(1+b(\delta)+O(b(\delta)^2+|e(\delta)|)\bigr).
-\]
-
-The weights \(g(\delta)=\exp(-\delta^2/(2\bar k))\) are even. Summing an odd function
-against them on a symmetric window gives zero, so the \(b(\delta)\) contribution drops.
-Poisson summation gives
+The comparison weights are therefore the even function
+\(g(\delta)=\exp(-\beta\delta^2/(2\bar k))\).
+Poisson summation, after the change of scale \(\sigma_\beta=\sigma/\sqrt{\beta}\), gives
 \[
 \sum_{\delta\in\mathbb{Z}}g(\delta)
 =
-\sigma\sqrt{2\pi}\sum_{q\in\mathbb{Z}}\exp(-2\pi^2\bar k\,q^2)
-=
-\sigma\sqrt{2\pi}\,\bigl(1+O(e^{-c\bar k})\bigr).
+\sigma_\beta\sqrt{2\pi}\,(1+O(e^{-c\bar k})),
 \]
-The truncated tails \(|\delta|>\lambda\sigma\) of \(g\) are \(O(\sigma\exp(-\lambda^2/2))\).
-The quadratic and sextic sums
-\(\sum g(\delta)\,\delta^2\) and \(\sum g(\delta)\,\delta^6\) are \(O(\sigma^3)\) and \(O(\sigma^7)\).
-Dividing by the powers of \(\bar k=\sigma^2\) in \(b^2\) and \(e\) produces an absolute
-error \(O(\sigma\cdot d/n)\) relative to the main term \(a_m\sigma\sqrt{2\pi}\). Hence the
-window sum is \(a_m\sqrt{2\pi\bar k}\,(1+O(d/n))\).
+since \(\beta\to 1\). This is the main term \(a_m\sqrt{2\pi\bar k/\beta}\).
+The expansion \(\beta^{-1/2}=1+1/(2d^2)+d^{-3}+O(d^{-4})\) is the Taylor expansion of that
+prefactor at infinity. It is independent of the window. In the ratio of moments it is evaluated
+by the algebraic expansion of~\cite[§3.4.1]{Gao21}, whose output is already
+\(1+1/(6d^3)+O(d^{-4})\). It is not charged again below.
 
-Outside the window and up to distance \(\bar k/2\) from \(m\), the same expansion yields
+The \(j=2\) summand is \((u^2/2)(1-1/a^2)\), an even function of \(t\), with \(1-1/a^2=1+O(d^{-2})\). Its partial sums are
+\[
+\sum_{t=1}^{\delta}\frac{t^2}{2\bar k^2}
+=
+\frac{\delta(\delta+1)(2\delta+1)}{12\bar k^2}
+=
+\frac{\delta^3}{6\bar k^2}+\frac{\delta^2}{4\bar k^2}+\frac{\delta}{12\bar k^2}.
+\]
+The cubic and linear terms are odd in \(\delta\). At the window edge \(|\delta|=\lambda\sigma\) the cubic term has size
+\[
+\frac{\lambda^3}{3\sqrt{2}\,\sqrt{n/d}}
+=
+\Theta\Bigl(\sqrt{\frac{d}{n}}\,\log^3 n\Bigr).
+\]
+Bounding that odd function by its maximum, rather than summing it, is the truncation error in
+Gao's Lemma~18. Against the even weight \(g\), on a symmetric window, the odd part sums to zero.
+The even piece \(\delta^2/(4\bar k^2)\) is \(O((\log n)^2\,d/n)\) on the window. Summing it against \(g\) costs a relative
+error \(O(d/n)\), since \(\sum g(\delta)\,\delta^2=O(\sigma^3)\) and \(\bar k^2=\sigma^4\).
+The same cancellation removes the odd part of the discrepancy \(O(|\delta|/\bar k)\)
+and the odd part of the accumulated \(O(1/n)\) ratio error.
+
+The remainder is even. Its leading piece is the \(j=3\) sum, of size \(O(\delta^4/\bar k^3)\).
+The Gaussian moment \(\sum g(\delta)\,\delta^4\) is \(O(\sigma^5)\). Dividing by \(\bar k^3=\sigma^6\)
+and by the main-term size \(\sigma\) produces a relative error \(O(1/\sigma^2)=O(d/n)\),
+since \(1/\sigma^2=2d/n\). Terms with \(j\ge 4\) are of size \(O(\lambda^4/\sigma^2)\) uniformly on the
+window, and
+\[
+\frac{\lambda^4}{\sigma^2}
+=
+\frac{2d\,(\log n)^4}{n}\to 0
+\]
+throughout \(d=o(n^{1/2})\). They contribute the same relative order \(O(d/n)\) after summation.
+Thus the window sum equals \(a_m\sqrt{2\pi\bar k/\beta}\,(1+O(d/n))\).
+
+Outside the window and up to distance \(\bar k/2\) from \(m\), the quadratic exponent still yields
 \(\log(a_{m+\delta}/a_m)\le-\delta^2/(4\bar k)\). Those tails are
 \(O(a_m\sigma\exp(-c\log^2 n))\). Beyond \(2\bar k\), one has \(r_0(k)\le 2/3\), so the
 remaining series is geometric and of size \(O(a_m e^{-c\bar k})\). Both are absorbed in
@@ -546,10 +566,14 @@ Count pairs via~\cite[Lemma~17]{Gao21}. The resulting summand in \(k\), up to th
 \(1+O(d^2/n)\) from Lemma~\ref{lem:cor15}, satisfies the ratio hypothesis of
 Lemma~\ref{lem:laplace} (the same ratio computed in~\cite[§3.4.2]{Gao21}).
 Lemma~\ref{lem:laplace} replaces the truncation error \(O(\sqrt{d/n}\,\log^3 n)\) in Gao's
-Lemma~18 by \(O(d/n)\). For \(d\ge 1\) one has \(d/n\le d^2/n\), so this error is absorbed
+Lemma~18 by \(O(d/n)\): that error is the window maximum of the odd \(j=2\) sum, and the sum of
+an odd function against the even Gaussian weight vanishes.
+The prefactor \(\beta^{-1/2}=1+1/(2d^2)+d^{-3}+O(d^{-4})\) is not a new error.
+It is a function of \(d\) alone and is already expanded in~\cite[§3.4.1]{Gao21}.
+For \(d\ge 1\) one has \(d/n\le d^2/n\), so the improved truncation is absorbed
 in the enumeration error \(O(d^2/n)\).
-The ratio \(\EE[Y^2]/(\EE Y)^2\) is then evaluated as
-in~\cite[§3.4.1]{Gao21}, with every \(d^3/n\) replaced by \(d^2/n\), and equals
+The ratio \(\EE[Y^2]/(\EE Y)^2\) is then the same algebraic value as
+in~\cite[§3.4.1]{Gao21}, with every \(d^3/n\) replaced by \(d^2/n\), namely
 \(1+1/(6d^3)+O(d^{-4}+d^2/n)\).
 \end{proof}
 
@@ -660,7 +684,7 @@ At \(D=\lfloor n^{1/5}\rfloor\) both summands of \(v(D)\) are \(\Theta(n^{-3/5})
 so \(v(D)^{-1/3}=\Theta(n^{1/5})\).
 \end{proof}
 
-\section{Beyond exact \(o(\sqrt{n})\)}
+\section{Beyond exact \texorpdfstring{\(o(\sqrt{n})\)}{o(sqrt(n))}}
 \label{sec:beyond}
 
 \begin{proof}[Proof of Theorem~\ref{thm:approx}]
@@ -716,7 +740,10 @@ with probability \(1-o(1)\).
 \begin{proof}[Proof of Theorem~\ref{thm:quant}]
 We track the error budget in the upper-sandwich reduction of~\cite[§3]{BIM25},
 using their switching estimate~\cite[Theorem~2.4]{BIM25} as a black box.
-(The lower sandwich is analogous via~\cite[Lemma~2.2]{BIM25} and is omitted.)
+The lower inclusion is~\cite[Lemma~2.2]{BIM25}. Its hypotheses are implied by
+the budget constraints checked below: once \(C_*\) is large one has
+\(\varepsilon d=C_*d^{8/9}(\log n)^{1/9}\gg\log n\), so the same \(\varepsilon\) is admissible
+for that lemma.
 
  Crucially, the switching core~\cite[Theorem~4.1]{BIM25} uses an
 \emph{absolute} large constant \(C_0\) in the constraints
@@ -770,7 +797,7 @@ Set \(\varepsilon=C_{**}(\log n/d)^{1/3}\) with \(C_{**}\) large, and write
 \(R=\lfloor\varepsilon dn/8\rfloor\) and \(\delta_R:=2R/n\asymp\varepsilon d\).
 Then
 \[
-\delta_R\asymp d^{2/3}(\log n)^{1/3}\ge n^{2\sigma/3}/{\mathrm{polylog}}\,n,
+\delta_R\asymp d^{2/3}(\log n)^{1/3}\ge n^{2\sigma/3},
 \]
 so \(\delta_R\ge n^{\sigma'}\) for some fixed \(\sigma'>0\) and large \(n\).
 
@@ -828,18 +855,31 @@ For \(\varepsilon\le 1/4\) this is implied by \(k\ge 3\varepsilon d=3C_0\sqrt{d\
 Monotone-couple the two binomial graphs to finish.
 \end{proof}
 
-\section{The \(\sqrt{n}\) barrier and open problems}
+\section{The \texorpdfstring{\(\sqrt{n}\)}{sqrt(n)} barrier and open problems}
 \label{sec:open}
 
 \begin{proposition}[Enumeration barrier]
 \label{prop:barrier}
-Any estimate of \(\PP(M\subset\Gnd)\) obtained by multiplying \(n/2\) conditional edge
-probabilities, each with relative error \(\Omega(d^2/n^2)\), incurs a cumulative
-relative error \(\Omega(d^2/n)\), which is not \(o(1)\) when \(d=\omega(\sqrt{n})\).
+Let \(M\) be a perfect matching. The estimate of \(\PP(M\subset\Gnd)\) obtained by
+multiplying the \(n/2\) conditional probabilities from~\cite[Theorem~6]{Gao20} is
+known only up to a cumulative relative factor \(1+O(d^2/n)\). The estimate yields a
+\(1+o(1)\) factor when \(d=o(n^{1/2})\), and it does not when \(d=\omega(n^{1/2})\).
 \end{proposition}
 
-Thus the present matching-enumeration method cannot yield exact high-probability
-\(+1\) nesting past \(\sqrt{n}\).
+\begin{proof}
+Each factor is the principal term of~\cite[Theorem~6]{Gao20} times \(1+O(d^2/n^2)\),
+as in the proof of Lemma~\ref{lem:cor15}. The product of \(n/2\) such factors is
+\[
+\bigl(1+O(d^2/n^2)\bigr)^{n/2}
+=
+\exp\bigl(O(d^2/n)\bigr),
+\]
+which is \(1+O(d^2/n)\) whenever \(d=o(n^{1/2})\). If \(d=\omega(n^{1/2})\), then \(d^2/n\not\to 0\),
+so the same product does not tend to \(1\).
+\end{proof}
+
+Thus this matching-enumeration does not prove exact high-probability
+\(+1\) nesting for \(d=\omega(\sqrt{n})\).
 Theorem~\ref{thm:chains} expands the simultaneous reach inside the \(o(\sqrt{n})\)
 regime, but does not breach that barrier.
 
@@ -1155,7 +1195,9 @@ e_{G^*_0}(W,Z)\ge\Bigl(1+\frac{\varepsilon_0}{2}\Bigr)\frac{d}{n}\,wz
 \]
 except with probability \(\exp(-\Omega(\varepsilon_0^2 d\, wz/n))\).
 On the complementary event,
-\(e_R(W,Z)\ge(\varepsilon_0 d/(4n))wz=\delta_0\, wz/(2n)\).
+\[
+e_R(W,Z)\ge\Bigl(\frac{\varepsilon_0 d}{4n}\Bigr)wz=\frac{\delta_0\, wz}{2n}.
+\]
 The failure probability of a fixed pair is therefore
 \(\exp(-\Omega(\delta_0 wz/n))\).
 Since \(w,z\ge s_0=C_e n\log n/\delta_0\),
@@ -1691,7 +1733,11 @@ p_w:=\PP\bigl(w\in N_{F\setminus K}(U)\bigm|K\bigr)
 \]
 satisfies \(\tfrac12\min(1,p|U|)\le p_w\le\min(1,2p|U|)\).
 For \(|U|\le n/(2\delta)\) one has \(p|U|\le 1\), so
-\(\EE\bigl(|N_{F\setminus K}(U)|\,\big|\,K\bigr)=(1\pm\tfrac12\lambda)\delta|U|\)
+\[
+\EE\bigl(|N_{F\setminus K}(U)|\,\big|\,K\bigr)
+=
+\bigl(1\pm\tfrac12\lambda\bigr)\delta|U|
+\]
 for large \(C\).
 The indicators \(\mathbf{1}_{w\sim U}\) are conditionally independent given \(K\), so
 a Chernoff bound yields relative error
@@ -2008,7 +2054,12 @@ Fixing any such length, the hypotheses of~\cite[Theorem~4.1]{BIM25} hold, and
 the B2 estimate reduces to \(C_0\mu=O(\varepsilon)\) together with
 \(C_0(\log n/(\varepsilon d))^{1/2}=O(\varepsilon)\), both of which hold at our
 \(\varepsilon\).
-The lower sandwich is unchanged.
+The lower inclusion is again~\cite[Lemma~2.2]{BIM25}, at the same \(\varepsilon\).
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:global-inc}]
+Identical to Corollary~\ref{cor:quant-nest}, using Theorem~\ref{thm:quant-third-global}
+in place of Theorem~\ref{thm:quant}, and \(k_3=3C_3 d^{2/3}(\log n)^{1/3}\) in place of \(k_0\).
 \end{proof}
 
 \begin{remark}[Hypothesis~P resolved]
@@ -2023,29 +2074,12 @@ Conjecture~\ref{conj:Q}.
 \end{remark}
 
 \section*{Acknowledgements}
-The exact \(+1\) range \(o(\sqrt{n})\) executes the improvement outlined by Gao
-in~\cite{Gao21}.
-The long-chain theorem is new.
-The quantitative rates \(1/9\) and \(1/3\) are readings of the error budget,
-switching threshold, and dense path-concentration lemma in~\cite{BIM25};
-we thank those authors for the underlying analysis.
-Theorems~\ref{thm:process-to-Q}--\ref{thm:window},
-Lemma~\ref{lem:residual}, and Theorem~\ref{thm:hybrid} organise the remaining gap
-to the Chernoff floor; Theorems~\ref{thm:path-lower-chernoff}--\ref{thm:quant-third-global}
-push the global B2 rate from \(1/9\) through \(1/5\) to the process-optimal
-\(1/3\); Corollary~\ref{cor:chernoff-chains} extracts Chernoff-scale nesting
-increments for all \(D=o(n^{2/7}/(\log n)^{3/7})\) with \(D/\log n\to\infty\), which is
-the Chebyshev optimum once Lemma~\ref{lem:laplace} has removed the truncation term;
-Theorem~\ref{thm:matching-peel} and
-Corollary~\ref{cor:chernoff-container} extract an exact \((d+m)\)-regular
-Chernoff-scale container from the rate-\(1/3\) residual;
-Lemma~\ref{lem:residual-sharp} sharpens that residual to \((1+o(1))\varepsilon_0 d\)
-for \(d=\omega(\log n)\), and Lemma~\ref{lem:switching-typical} concentrates the
-host-restricted \(2\)-switch count of the uniform simple Chernoff \(m\)-factor.
-Proposition~\ref{prop:host-gap} records that a sandwich coupling does not fill the
-already sampled upper graph, and Conjecture~\ref{conj:config-split} is the
-remaining identification past the chain ceiling \(n^{2/7}\).
-We also thank the authors of~\cite{Gao20,HLMPW25,CFG25}.
+The exact \(+1\) argument carries out the extension outlined by Gao in~\cite{Gao21},
+using the conditional edge probabilities of~\cite{Gao20} as a black box.
+The long-chain theorem, the global sandwich rates \(1/9\), \(1/5\), and \(1/3\),
+and the Chernoff-scale regular container are new; the sandwich rates read the error
+budget of~\cite{BIM25}, and the container uses the configuration estimates of~\cite{CFG25,McK85}.
+We also thank the authors of~\cite{HLMPW25}.
 
 \begin{thebibliography}{99}
 

@@ -4,5 +4,7 @@ __pycache__/
 .wolfram-appid
 *.aux
 *.log
+*.out
+*.toc
 *.pdf
 .DS_Store
