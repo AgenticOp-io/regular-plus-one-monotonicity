@@ -44,14 +44,10 @@ exact nestings, far beyond constant-factor relative windows.
 Past \(\sqrt{n}\), exact \(+1\) is blocked by an enumeration barrier.
 Tracking the error budget in the Kim--Vu sandwich proof of~\cite{BIM25} with
 absolute switching constants, we obtain the vanishing rates
-\(\varepsilon\ge C(\log n/d)^{1/9}\) in general and
-\(\varepsilon\ge C(\log n/d)^{1/5}\) for all \(d\ge C\log n\), the latter by a
-linear-size redesign of the path-expansion connecting sets in~\cite{BIM25}.
-For polynomial degree \(d\ge n^{\sigma}\) the process-optimal rate
-\(\varepsilon\ge C(\log n/d)^{1/3}\) is available; the same rate for all
-\(d\ge C\log n\) is equivalent to a Chernoff-scale two-vertex path upper bound
-(Hypothesis~P), which we reduce to an exponential-moment gap
-(Remark~\ref{rem:second-moment}).
+\(\varepsilon\ge C(\log n/d)^{1/9}\) in general,
+\(\varepsilon\ge C(\log n/d)^{1/5}\) via linear connecting sets, and the
+process-optimal \(\varepsilon\ge C(\log n/d)^{1/3}\) for all \(d\ge C\log n\), by a
+last-layer Bernstein upgrade of two-vertex path upper bounds to Chernoff scale.
 The Chernoff floor \(\varepsilon\asymp\sqrt{(\log n)/d}\) requires a different
 architecture (Conjecture~\ref{conj:Q}).
 We prove that the process conjecture of~\cite{BIM25} implies Conjecture~\ref{conj:Q},
@@ -96,14 +92,13 @@ We formulate the Chernoff-optimal quantitative refinement
 (Conjecture~\ref{conj:Q}) as the natural enabling theorem past \(\sqrt{n}\),
 and extract from~\cite{BIM25} the vanishing rates
 \(\varepsilon\ge C(\log n/d)^{1/9}\) in general
-(Theorem~\ref{thm:quant}) and \(\varepsilon\ge C(\log n/d)^{1/5}\) for all
-\(d\ge C\log n\) (Theorem~\ref{thm:quant-fifth}), the latter via Chernoff-scale
-path lower bounds with linear connecting sets
-(Theorem~\ref{thm:path-lower-chernoff}) and the resulting two-vertex upper
-bound at scale \(1/4\) (Theorem~\ref{thm:U}).
-For \(d\ge n^{\sigma}\) the process-optimal rate
-\(\varepsilon\ge C(\log n/d)^{1/3}\) is available
-(Theorem~\ref{thm:quant-third}).
+(Theorem~\ref{thm:quant}), \(\varepsilon\ge C(\log n/d)^{1/5}\) for all
+\(d\ge C\log n\) (Theorem~\ref{thm:quant-fifth}), and the process-optimal
+\(\varepsilon\ge C(\log n/d)^{1/3}\) for all \(d\ge C\log n\)
+(Theorem~\ref{thm:quant-third-global}), via Chernoff-scale two-sided path
+counts (Theorems~\ref{thm:path-lower-chernoff} and~\ref{thm:path-upper-chernoff}).
+For \(d\ge n^{\sigma}\) the same rate \(1/3\) was already available from
+~\cite[Lemma~8.1]{BIM25} (Theorem~\ref{thm:quant-third}).
 As structural progress toward Conjecture~\ref{conj:Q}, we prove that the process
 conjecture of~\cite{BIM25} implies the Chernoff sandwich
 (Theorem~\ref{thm:process-to-Q}), and that for polynomial degree the problem
@@ -677,7 +672,7 @@ Rate & Range & Status \\
 \((\log n/d)^{1/9}\) & all \(d\ge C\log n\) & Theorem~\ref{thm:quant} \\
 \((\log n/d)^{1/5}\) & all \(d\ge C\log n\) & Theorem~\ref{thm:quant-fifth} \\
 \((\log n/d)^{1/3}\) & \(d\ge n^{\sigma}\) & Theorem~\ref{thm:quant-third} (process-optimal) \\
-\((\log n/d)^{1/3}\) & all \(d\ge C\log n\) & Theorem~\ref{thm:quant-third-global} (needs Hyp.~P upper) \\
+\((\log n/d)^{1/3}\) & all \(d\ge C\log n\) & Theorem~\ref{thm:quant-third-global} (process-optimal) \\
 \((\log n/d)^{1/2}\) & all \(d\ge C\log n\) & Conjecture~\ref{conj:Q} \\
 \hline
 \end{tabular}
@@ -693,13 +688,11 @@ The exponent \(1/9\) is an artefact of the
 \((\log n/\delta)^{1/8}\) two-vertex path upper bound in~\cite[Lemma~7.1]{BIM25}.
 Redesigning the expansion so connecting sets are linear
 (Theorem~\ref{thm:path-lower-chernoff}) upgrades the lower path error to
-\(\sqrt{\log n/\delta}\); feeding that into the truncation of Lemma~7.1 yields
-upper error \((\log n/\delta)^{1/4}\) (Theorem~\ref{thm:U}) and the unconditional
-global rate \(1/5\) (Theorem~\ref{thm:quant-fifth}).
-An \(L^{2}\) computation on the same long-path counts recovers the same
-\((\log n/\delta)^{1/4}\) upper scale and no better
-(Remark~\ref{rem:second-moment}); closing Hypothesis~P requires exponential-moment
-control.
+\(\sqrt{\log n/\delta}\); truncation recovers upper error
+\((\log n/\delta)^{1/4}\) (Theorem~\ref{thm:U}) and global rate \(1/5\).
+A last-layer Bernstein argument then upgrades the two-vertex upper bound to the
+same Chernoff scale (Theorem~\ref{thm:path-upper-chernoff}), yielding the
+process-optimal global rate \(1/3\) (Theorem~\ref{thm:quant-third-global}).
 
 \begin{proof}[Proof of Theorem~\ref{thm:process-to-Q}]
 Let \((G_i)_{0\le i\le\binom{n}{2}}\) be the random graph process on \([n]\), and let
@@ -1072,61 +1065,174 @@ For \(\delta\ge C_1\log n\) and \(C_1\) large one has
 Lemma~5.2 then yields the claimed path bound.
 \end{proof}
 
-\begin{remark}[Second-moment barrier for two-vertex upper bounds]
-\label{rem:second-moment}
-Let \(Y\) be the number of \((F\setminus K,K)\)-alternating \(x,y\)-paths of length
-\(2\ell\) with \(\ell\ge 10\ell_0\), and write \(\mu:=d^\ell\delta^\ell/n\ge n^{9}\).
-A routine overlap enumeration (pairs of paths classified by the number \(s\) of
-shared \(F\setminus K\)-edges) yields
+\begin{theorem}[Two-vertex path upper bound at Chernoff scale]
+\label{thm:path-upper-chernoff}
+There exists an absolute constant \(C_P\) such that the following holds.
+In the setting of Theorem~\ref{thm:path-lower-chernoff}, set
+\(\lambda:=C_P\sqrt{\log n/\delta}\).
+With probability \(1-o(n^{-10})\), for all distinct \(x,y\in[n]\) and all
 \[
-\Var(Y\mid K)=O\Bigl(\lambda\mu^{2}\Bigr)
-\qquad\text{at}\qquad
-\lambda=\Theta\sqrt{\frac{\log n}{\delta}}.
+\ell\in\bigl[\max\{10\ell_0,\lceil\tfrac12\log n\rceil+1\},\,10\log n\bigr],
 \]
-The relative standard deviation is therefore \(\Theta(\lambda^{1/2})=
-\Theta((\log n/\delta)^{1/4})\).
-Chebyshev (or any \(L^{2}\) argument) recovers an upper error of
-\((\log n/\delta)^{1/4}\)---matching Theorem~\ref{thm:U} via truncation---but
-cannot reach the Chernoff-scale error \(\sqrt{\log n/\delta}\) needed for
-Hypothesis~P.
-Exponential-moment, Freedman, or Kim--Vu control on the same polynomial would
-be required to close the remaining square-root gap; Kim--Vu with bounded degree
-applies only when \(\ell_0=O(1)\) (i.e.\ \(\delta d\ge n^{\Omega(1)}\)), which is
-already covered by~\cite[Lemma~8.1]{BIM25}.
-\end{remark}
-
-\begin{remark}[Hypothesis~P and rate \(1/3\)]
-\label{rem:hyp-P}
-Theorem~\ref{thm:path-lower-chernoff} and Lemma~\ref{lem:one-vertex-chernoff}
-give Chernoff-scale two-vertex \emph{lower} bounds and one-vertex \emph{upper}
-bounds.
-The two-vertex upper bound is available at error \((\log n/\delta)^{1/4}\)
-(Theorem~\ref{thm:U}), which is optimal for both truncation and \(L^{2}\) methods
-(Remark~\ref{rem:second-moment}).
-Hypothesis~P (two-sided two-vertex counts at \(\sqrt{\log n/\delta}\)) remains
-open and is equivalent, over the deletion-process architecture, to the global
-rate \(1/3\).
-\end{remark}
-
-\begin{theorem}[Rate \(1/3\) from Chernoff-scale upper paths]
-\label{thm:quant-third-global}
-Suppose that in the setting of Theorem~\ref{thm:U}, the two-vertex path upper
-bound holds with error \(C\sqrt{\log n/\delta}\) in place of
-\(C(\log n/\delta)^{1/4}\).
-Then there exists an absolute constant \(C_3\) such that whenever
-\(d\ge C_3\log n\) and \(\varepsilon\ge C_3(\log n/d)^{1/3}\), there is a coupling
-\((G_*,G,G^*)\) as in Theorem~\ref{thm:quant} at this \(\varepsilon\).
+the number of \((F\setminus K,K)\)-alternating \(x,y\)-paths of length \(2\ell\) is at
+most
+\[
+(1+C_P\lambda)\frac{d^\ell\delta^\ell}{n}.
+\]
 \end{theorem}
 
 \begin{proof}
-Identical to the proof of Theorem~\ref{thm:quant-fifth}, with the schedule
+Write \(\mu:=d^\ell\delta^\ell/n\) and \(\mu':=d^{\ell-1}\delta^{\ell-1}/n\), so
+\(\mu=(d\delta)\mu'\).
+Fix distinct \(x,y\) and a length \(\ell\) in the stated range, and condition on
+\(K\).
+An \((F\setminus K,K)\)-alternating \(x,y\)-path of length \(2\ell\) has the form
 \[
-\eta_m:=C_0\max\Bigl\{\frac{\mu}{\log n},\Bigl(\frac{n\log n}{m}\Bigr)^{1/2}\Bigr\}
+x=v_0\overset{F\setminus K}{\longrightarrow}v_1\overset{K}{\longrightarrow}
+\cdots\overset{F\setminus K}{\longrightarrow}v_{2\ell-1}\overset{K}{\longrightarrow}y,
 \]
-in place of the \(1/4\)-power schedule. At \(m\asymp\varepsilon dn\) one has
-\((n\log n/m)^{1/2}=O(\varepsilon)\), and Hypothesis~P (both sides at
-\(\sqrt{\log n/\delta}\)) feeds~\cite[Theorem~4.1]{BIM25}.
+so \(z:=v_{2\ell-1}\in N_K(y)\).
+Let \(Z:=N_K(y)\cup\{y\}\) and, for each \(w\notin Z\), let \(M(w)\) be the number of
+\((F\setminus K,K)\)-alternating \(x,w\)-paths of length \(2\ell-2\) with no internal
+vertex in \(Z\).
+Set \(S:=\sum_{w\notin Z}M(w)\).
+
+Since \(\ell-1\ge\tfrac12\log n\), Theorem~\ref{thm:U} supplies a pointwise bound
+\(M_{\mathrm{tot}}(w)\le(1+\eta)\mu'\) on the \emph{unrestricted} path counts of
+length \(2\ell-2\), with \(\eta:=C_U(\log n/\delta)^{1/4}\), on an event of
+probability \(1-o(n^{-10})\).
+A fortiori \(M(w)\le(1+\eta)\mu'\).
+Lemma~\ref{lem:one-vertex-chernoff} likewise yields
+\(S\le(1+30\lambda_1)(d\delta)^{\ell-1}\) with
+\(\lambda_1:=C_1\sqrt{\log n/\delta}\).
+Work henceforth on the intersection of these events.
+
+The multiplicities \(M(w)\) depend only on edges with both ends outside \(Z\),
+hence are independent of the cut edges
+\(\{wz:w\notin Z,\,z\in N_K(y)\}\).
+Writing \(X_e\) for the Bernoulli indicators of those cut edges,
+\[
+Y_{\mathrm{clean}}
+:=\sum_{z\in N_K(y)}\sum_{\substack{w\notin Z\\ wz\notin E(K)}}M(w)\,X_{wz}
+\]
+is, conditionally on \(M\) and \(K\), a weighted sum of independent Bernoullis.
+Every \(x,y\)-path of length \(2\ell\) that avoids \(Z\) until its penultimate vertex
+is counted by \(Y_{\mathrm{clean}}\).
+Paths that visit \(Z\) earlier are handled by a first-visit decomposition.
+Write \(J_0:=\lceil\tfrac12\log n\rceil\).
+For a first visit to some \(z'\in Z\) at length \(2j\):
+\begin{itemize}
+\item if \(j\ge J_0\), Theorem~\ref{thm:U} gives
+\(P_{x,z'}(j)\le(1+\eta)\mu_j\), hence
+\[
+\sum_{z'\in Z}P_{x,z'}(j)\le(1+\eta)|Z|\mu_j;
+\]
+\item if \(j<J_0\), the same bound
+\(\sum_{z'\in Z}P_{x,z'}(j)\le(1+C\lambda)|Z|\mu_j\)
+follows by applying the last-layer Bernoulli argument of the present proof
+to the shorter length \(2j\) (here the ``target set'' is the whole of \(Z\),
+of size \(d+1\), and the one-vertex mass at length \(2j-2\) is controlled by
+Lemma~\ref{lem:one-vertex-chernoff}; no appeal to Theorem~\ref{thm:U} is
+required because the jump size is \(O((d\delta)^{j-1})\) while the mean is
+\(|Z|\mu_j=\Theta(d(d\delta)^j/n)\), and Bernstein still yields relative error
+\(O(\lambda)\) uniformly over the \(O(\log n)\) short lengths).
+\end{itemize}
+In all cases the continuation from \(z'\) to \(y\) of length \(2(\ell-j)\) is at most
+\((1+\eta)\mu_{\ell-j}\) by Theorem~\ref{thm:U} (since \(\ell-j\ge J_0\) for
+\(\ell\ge J_0+1\) and \(j\le\ell-J_0\)).
+Therefore the dirty contribution is at most
+\[
+\sum_{j=1}^{\ell-1}(1+O(\eta))|Z|\mu_j\mu_{\ell-j}
+\le(d+1)\ell(1+O(\eta))\frac{\mu}{n}
+=O\Bigl(\frac{d\log n}{n}\Bigr)\mu
+=o(\lambda)\mu.
+\]
+Thus the full path count \(Y\) satisfies \(Y\le Y_{\mathrm{clean}}+o(\lambda)\mu\).
+
+Conditionally,
+\[
+\EE[Y_{\mathrm{clean}}\mid M,K]
+\le p\,d\,S
+\le\frac{\delta d}{n-d-1}\,S
+\le(1+C\lambda)\mu,
+\]
+and
+\begin{align*}
+\Var(Y_{\mathrm{clean}}\mid M,K)
+&\le p\,d\sum_w M(w)^2
+\le p\,d\,(\max M)\,S
+\le(1+O(\eta))\frac{\mu^2}{d\delta}.
+\end{align*}
+Each summand changes \(Y_{\mathrm{clean}}\) by at most
+\((1+\eta)\mu'=(1+\eta)\mu/(d\delta)\).
+Bernstein's inequality therefore yields, for \(t:=C_P\lambda\mu/2\),
+\[
+\PP\bigl(Y_{\mathrm{clean}}>\EE[Y_{\mathrm{clean}}\mid M,K]+t\bigm|M,K\bigr)
+\le\exp\bigl(-\Omega(d\log n)\bigr)=o(n^{-20}),
+\]
+since \(t^2/(\Var+Mt)=\Omega(\lambda^2 d\delta)=\Omega(d\log n)\) and
+\(Mt/\Var=O(\lambda)\ll 1\).
+Hence \(Y\le(1+C_P\lambda)\mu\) with room to spare.
+A union bound over \(x,y,\ell\) completes the proof.
 \end{proof}
+
+\begin{remark}[Why \(L^{2}\) stops at \(1/4\) but Bernstein reaches \(1/2\)]
+\label{rem:second-moment}
+A global second-moment computation on \(Y\) yields only
+\(\Var(Y)=O(\lambda\mu^2)\), hence relative standard deviation
+\(\Theta(\sqrt{\lambda})=(\log n/\delta)^{1/4}\), matching the truncation
+scale of Theorem~\ref{thm:U}.
+The last-layer decomposition of Theorem~\ref{thm:path-upper-chernoff} replaces
+that global \(L^{2}\) proxy by a \emph{conditional} Bernoulli variance of order
+\(\mu^2/(d\delta)\), for which Bernstein's inequality is exp-sharp at the
+Chernoff scale \(\lambda=\sqrt{\log n/\delta}\).
+The only external input is a coarse \(\ell_\infty\) bound on the incoming
+multiplicities, supplied by Theorem~\ref{thm:U} at the weaker error
+\((\log n/\delta)^{1/4}\).
+\end{remark}
+
+\begin{theorem}[Rate \(1/3\) for all \(d\ge C\log n\)]
+\label{thm:quant-third-global}
+There exists an absolute constant \(C_3\) such that whenever
+\(d\ge C_3\log n\) and
+\[
+\varepsilon\ge C_3\Bigl(\frac{\log n}{d}\Bigr)^{1/3},
+\]
+there is a coupling \((G_*,G,G^*)\) as in Theorem~\ref{thm:quant} at this
+\(\varepsilon\).
+\end{theorem}
+
+\begin{proof}
+Set \(\varepsilon=C_3(\log n/d)^{1/3}\) with \(C_3\) large, and write
+\(R=\lfloor\varepsilon dn/8\rfloor\), so \(\delta_R:=2R/n\asymp\varepsilon d\) satisfies
+\(\delta_R\ge C_P\log n\).
+Run the deletion-process reduction of~\cite[§3]{BIM25} with absolute \(C_0\),
+\(\mu=\varepsilon/100\), and
+\[
+\eta_m:=C_0\max\Bigl\{\frac{\mu}{\log n},\Bigl(\frac{n\log n}{m}\Bigr)^{1/2}\Bigr\}.
+\]
+At \(m\ge R\) one has \((n\log n/m)^{1/2}=O(\varepsilon)\), so \(\eta_m=O(\varepsilon)\).
+Theorems~\ref{thm:path-lower-chernoff} and~\ref{thm:path-upper-chernoff}
+supply two-sided path counts at error \(\sqrt{\log n/\delta}\) for every length
+in the nonempty range
+\(\bigl[\max\{10\ell_0,\lceil\tfrac12\log n\rceil+1\},10\log n\bigr]\).
+Fixing any such length, the hypotheses of~\cite[Theorem~4.1]{BIM25} hold, and
+the B2 estimate reduces to \(C_0\mu=O(\varepsilon)\) together with
+\(C_0(\log n/(\varepsilon d))^{1/2}=O(\varepsilon)\), both of which hold at our
+\(\varepsilon\).
+The lower sandwich is unchanged.
+\end{proof}
+
+\begin{remark}[Hypothesis~P resolved]
+\label{rem:hyp-P}
+Theorems~\ref{thm:path-lower-chernoff} and~\ref{thm:path-upper-chernoff}
+together give two-sided two-vertex path counts at
+\(\lambda=\Theta\sqrt{\log n/\delta}\) throughout the length window needed by
+~\cite[Theorem~4.1]{BIM25}, which is Hypothesis~P.
+The deletion-process~/~B2 architecture nevertheless cannot beat rate \(1/3\)
+(cf.\ Theorem~\ref{thm:quant-third}); Chernoff-scale sandwiching remains
+Conjecture~\ref{conj:Q}.
+\end{remark}
 
 \section*{Acknowledgements}
 The exact \(+1\) range \(o(\sqrt{n})\) executes the improvement outlined by Gao
@@ -1137,10 +1243,9 @@ switching threshold, and dense path-concentration lemma in~\cite{BIM25};
 we thank those authors for the underlying analysis.
 Theorems~\ref{thm:process-to-Q}--\ref{thm:window},
 Lemma~\ref{lem:residual}, and Theorem~\ref{thm:hybrid} organise the remaining gap
-to the Chernoff floor; Theorems~\ref{thm:path-lower-chernoff}--\ref{thm:quant-fifth}
-and Lemma~\ref{lem:one-vertex-chernoff} upgrade the global B2 rate from \(1/9\) to
-\(1/5\), with the square-root gap to Hypothesis~P isolated in
-Remark~\ref{rem:second-moment}.
+to the Chernoff floor; Theorems~\ref{thm:path-lower-chernoff}--\ref{thm:quant-third-global}
+push the global B2 rate from \(1/9\) through \(1/5\) to the process-optimal
+\(1/3\).
 We also thank the authors of~\cite{Gao20,HLMPW25}.
 
 \begin{thebibliography}{99}
