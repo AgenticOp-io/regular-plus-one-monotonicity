@@ -2,19 +2,15 @@
 
 ## Done
 
-- Thm process-to-Q, window (all \(d\ge C\log n\)), residual, hybrid
-- **Lem residual-exp:** cut expansion \(e_R(U,U^c)\ge\delta_0|U|/4\) for small \(U\)
-- **Lem one-matching:** near-perfect matching via bipartite double cover + Hall
-- **Thm matching-peel:** \(m=\Theta\sqrt{d\log n}\) edge-disjoint near-matchings
-- **Cor defective-chernoff-inc:** \(G\subset G_m\) with degree defect \(O(n/d^{2/3})\)
+- Exact PMs in residual (bipartite Hall) ⇒ \(\Omega_m(R)\neq\emptyset\)
+- Container: \(G_m=G\cup\mathrm{Unif}(\Omega_m(R))\), exactly \((d+m)\)-regular
+- Host room, PM counts, switching-typical (sketch)
+- Conditional Chernoff increments assuming Conjecture config-split
 
-## Remaining to exact Q
+## Remaining
 
-1. Upgrade near-perfect → perfect matchings in \(R\) (Tutte absorption /
-   \(n/\delta_0\to 0\) uncovered).
-2. Identify the exact \((d+m)\)-regular graph with \(G(n,d+m)\).
+Prove Conjecture config-split (host-restricted configuration stub colouring).
 
 ## Dead ends
 
-- Hybrid contiguity to ER (\(\chi^2=\Theta(dn)\))
-- Thinning all of \(G^*_0\) (destroys \(G\))
+- Hybrid ER contiguity; thinning \(G^*_0\); odd-cycle flips; defective near-PMs
