@@ -1024,3 +1024,127 @@ Query: simplify (n^(1/9))^3/n
 simplify | (n^(1/9))^3/n
 [Result]
 1/n^(2/3)
+
+
+Query: simplify 1/2 - q/(2*q+1)
+[Input interpretation]
+simplify | 1/2 - q/(2 q + 1)
+[Results]
+1/(2 (2 q + 1))
+[Results]
+1/(4 q + 2)
+
+
+Query: simplify (n/n^(1/2))^(1/2)
+[Input interpretation]
+simplify | sqrt(n/sqrt(n))
+[Result]
+n^(1/4)
+
+
+Query: simplify d^2/(d*n)
+[Input interpretation]
+simplify | d^2/(d n)
+[Result]
+d/n
+
+
+Query: simplify n-1-(s+1)
+[Input interpretation]
+simplify | n - 1 - (s + 1)
+[Result]
+n - s - 2
+
+
+Query: simplify Integrate[1/x, {x, 3, n/3}]
+[Input interpretation]
+simplify | integral_3^(n/3) 1/x dx
+[Computation result]
+simplify | integral_3^(n/3) 1/x dx = simplify | log(n/9) for Re(n)>9 ∨ 0<Re(n)<9 ∨ n not element R≈simplify | log(0.111111 n) for Re(n)>9 ∨ 0<Re(n)<9 ∨ n not element R
+
+
+Query: n*d*(d-1)/(2*(d*n-1)) = d*(d-1)/(2*(d - 1/n)) for n>1 and d>1
+[Input interpretation]
+plot | n d × (d - 1)/(2 (d n - 1)) = d × (d - 1)/(2 (d - 1/n)) | n = 1 to ∞
+d = 1 to ∞
+
+
+Query: n*d*(d-1)/(2*(d*n-1)) - d*(d-1)/(2*(d - 1/n)) = 0
+[Input]
+n d × (d - 1)/(2 (d n - 1)) - d × (d - 1)/(2 (d - 1/n)) = 0
+[Result]
+((d - 1) d n)/(2 (d n - 1)) - ((d - 1) d)/(2 (d - 1/n)) = 0
+[Result]
+True
+
+
+Query: n*(n/2)*(n/2-1)/(2*((n/2)*n-1)) - n*(n-2)/(2*(n^2-2)) = 0
+[Input]
+n × n/2 × (n/2 - 1)/(2 (n/2 n - 1)) - n × (n - 2)/(2 (n^2 - 2)) = 0
+[Result]
+((n/2 - 1) n^2)/(4 (n^2/2 - 1)) - ((n - 2) n)/(2 (n^2 - 2)) = 0
+[Alternate form assuming n is real]
+((n - 2) n)/(n^2 - 2) = 0
+[Expanded forms]
+-n^2/(4 (n^2/2 - 1)) - n^2/(2 (n^2 - 2)) + n/(n^2 - 2) + n^3/(8 (n^2/2 - 1)) = 0
+[Expanded forms]
+-n^2/(4 (n^2/2 - 1)) - n^2/(2 n^2 - 4) + n/(n^2 - 2) + n^3/(4 n^2 - 8) = 0
+[Alternate form]
+((n - 2)^2 n)/(4 (n^2 - 2)) = 0
+[Alternate form assuming n is positive]
+(n - 2)/(n^2 - 2) = 0
+[Solutions]
+n = 0
+[Solutions]
+n = 2
+
+
+Query: (n/2)*((n/2)-1)/(2*((n/2)-1/n)) - n*(n-2)/(2*(n^2-2)) = 0
+[Input]
+n/2 × (n/2 - 1)/(2 (n/2 - 1/n)) - n × (n - 2)/(2 (n^2 - 2)) = 0
+[Result]
+((n/2 - 1) n)/(4 (n/2 - 1/n)) - ((n - 2) n)/(2 (n^2 - 2)) = 0
+[Alternate form assuming n is real]
+((n - 2) n)/(n^2 - 2) = 0
+[Expanded forms]
+n^2/(8 (n/2 - 1/n)) - n^2/(2 (n^2 - 2)) + n/(n^2 - 2) - n/(4 (n/2 - 1/n)) = 0
+[Expanded forms]
+n^2/(4 n - 8/n) - n^2/(2 n^2 - 4) + n/(n^2 - 2) - n/(4 (n/2 - 1/n)) = 0
+[Alternate form]
+((n - 2)^2 n)/(4 (n^2 - 2)) = 0
+[Alternate form assuming n is positive]
+(n - 2)/(n^2 - 2) = 0
+[Solution]
+n = 2
+
+
+Query: (n/2)*((n/2)-1)/(2*((n/2)-1/n)) - n^2*(n-2)/(4*(n^2-2)) = 0
+[Input]
+n/2 × (n/2 - 1)/(2 (n/2 - 1/n)) - n^2 × (n - 2)/(4 (n^2 - 2)) = 0
+[Result]
+((n/2 - 1) n)/(4 (n/2 - 1/n)) - ((n - 2) n^2)/(4 (n^2 - 2)) = 0
+[Result]
+True
+
+
+Query: limit as n to infinity of 2*((n*(n-1)/2)*(n*(n-2)/8)^2 + n*(n*(n-2)/8)*(((n-4)/2)*((n-6)/2)/2)/2)*(n^2/2-1)/((n^2/2-3)*(n^2*(n-2)/8)^2)
+[Limit]
+lim_(n->∞) (2 (1/2 (n (n - 1)) (1/8 n (n - 2))^2 + (n (n (n - 2)) ((n - 4) (n - 6)))/(8 ((2 (2 2)) 2))) (n^2/2 - 1))/((n^2/2 - 3) (1/8 n^2 (n - 2))^2) = 1
+[Series expansion at n = ∞]
+1 - 4/n^2 + 8/n^3 + 8/n^4 + 64/n^5 + O((1/n)^6)
+(Laurent series)
+
+
+Query: limit as n to infinity of n*(n-2)/(4*(n^2-2))
+[Limit]
+lim_(n->∞) (n (n - 2))/(4 (n^2 - 2)) = 1/4
+[Series expansion at n = ∞]
+1/4 - 1/(2 n) + 1/(2 n^2) - (1/n)^3 + (1/n)^4 + O((1/n)^5)
+(Laurent series)
+
+
+Query: v/(v^(1/3))^2 - v^(1/3) = 0
+[Input]
+v/(v^(1/3))^2 - v^(1/3) = 0
+[Result]
+True
