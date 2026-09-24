@@ -10,7 +10,7 @@ PROVED  PROVED  PROVED   PROVED                            OPEN (d>n^{2/5})
 
 ## Toward Chernoff
 
-- **Exact +1:** \(d=o(\sqrt{n})\). The Laplace window cancels the odd cubic piece, which is the old \(\sqrt{d/n}\log^3 n\) truncation, and leaves a relative \(O(d/n)\). The Gaussian prefactor \(\beta^{-1/2}=1+1/(2d^2)+d^{-3}+O(d^{-4})\) stays inside Gao's main-term expansion. The Chebyshev schedule \(\alpha=\max(d^{-1},(d^2/n)^{1/8})\) has crossover \(d=n^{1/10}\).
+- **Longest exact chain:** at \(D=n^{1/4}\), \(v=\Theta(n^{-3/4})\) and \(L=o(n^{1/4})\), from the ratio error \(O(d/n)\).
 - **Cor summable:** for \(D\to\infty\) and \(D\le n^{1/6}/\log n\), the chain
   runs up to \(\lfloor n^{1/6}/\log n\rfloor\). One-step total variation is
   \(O(d^{-6/5})\), from a triangle projection whose fourth moment is proved in
