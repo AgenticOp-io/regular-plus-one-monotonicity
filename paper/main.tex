@@ -50,6 +50,10 @@ pairs that were previously bounded, replaces the ratio error \(O(d^2/n)\) by
 \(O(d/n)\). The same windows then run up to
 \(o\bigl(n^{2/5}/(\log n)^{3/5}\bigr)\)
 (Corollary~\ref{cor:chernoff-two-fifths}).
+The edge-linear part of that error cancels in moment ratios, and the centered
+fourth moment is then a constant times the square of the variance, so the same
+windows run up to \(o\bigl(n^{4/9}/(\log n)^{5/9}\bigr)\)
+(Theorem~\ref{thm:fourth-chains}).
 For \(D=o(n^{1/6})\) the same nesting extends from any \(D\to\infty\) up to
 degree \(\lfloor n^{1/6}/\log n\rfloor\). The one-step total variation is
 \(O(d^{-6/5})\), which sums (Corollary~\ref{cor:summable}).
@@ -109,9 +113,10 @@ and, after one further switching pass, up to \(o(n^{2/5}/(\log n)^{3/5})\)
 Inside \(D=o(n^{1/6})\) the one-step total variation is \(O(d^{-6/5})\), so the
 chain runs from any \(D\to\infty\) up to \(\lfloor n^{1/6}/\log n\rfloor\)
 (Corollary~\ref{cor:summable}).
-A Gaussian fourth-moment bound on the matching count would move that window past
-the Chebyshev ceiling, to \(o(n^{4/9}/(\log n)^{5/9})\)
-(Theorem~\ref{thm:fourth-chains}).
+A fourth-moment bound on the matching count, proved by cancelling the
+edge-linear factor in the moment ratios, moves that window past the Chebyshev
+ceiling, to \(o(n^{4/9}/(\log n)^{5/9})\)
+(Lemma~\ref{lem:fourth-moment}, Theorem~\ref{thm:fourth-chains}).
 The factor \(1+O(d^2/n)\) in the subgraph probabilities does not resolve a moment of
 that size past \(o(n^{1/8})\) (Proposition~\ref{prop:moment-precision}).
 
@@ -480,6 +485,96 @@ since \(\int_D^\infty x^{-6/5}\,dx=5D^{-1/5}\). The hypothesis \(D\to\infty\) se
 the bound to \(0\).
 \end{proof}
 
+\begin{lemma}[Fourth moment of the matching count]
+\label{lem:fourth-moment}
+Assume~\cite[Theorem~6]{Gao20}. Let \(d\to\infty\) and \(d=o(n^{1/2})\), and let
+\(Y\) be the number of perfect matchings in \(\Gnd\). Write
+\(v(d)=d^{-3}+d/n\). Then
+\[
+\frac{\EE\bigl[(Y-\EE Y)^4\bigr]}{(\EE Y)^4}
+\le
+K\,v(d)^2
+\]
+for an absolute constant \(K\) and all large \(n\).
+\end{lemma}
+
+\begin{proof}
+Write \(N\) for the number of perfect matchings and \(p=\PP(M\subseteq\Gnd)\),
+which does not depend on the perfect matching \(M\). Then \(\EE Y=Np\).
+For matchings \(M_1,\ldots,M_k\) let \(\sigma\) be the number of edge-identifications
+in their union, so \(|E(\cup_i M_i)|=kn/2-\sigma\), and write \(s_{ij}=|M_i\cap M_j|\).
+Thus \(\sum_{i<j}s_{ij}=\sum_e\binom{m_e}{2}\), where \(m_e\) is the number of the
+\(k\) matchings that contain the edge \(e\), while
+\(\sigma=\sum_e(m_e-1)_+\). The two agree on every edge with \(m_e\le 2\), and
+\[
+\sum_{i<j}s_{ij}-\sigma
+=
+\sum_{m_e\ge 3}\bigl(\binom{m_e}{2}-(m_e-1)\bigr)
+\]
+is carried only by edges that lie in at least three of the matchings.
+
+As in Lemma~\ref{lem:ratio-error}, the universal part of \(\EE X_{uv}\) contributes
+a relative factor \(d^2/n^2\) at every edge, with a coefficient \(c\) that depends
+only on \(d\) and \(n\). The ratio of this factor on the union to its value on the
+\(k\) separate matchings is \(\exp(-c\sigma d^2/n^2)\). The identity
+\(\exp(\lambda kn/2)/\exp(\lambda n/2)^k=1\) is the case \(\sigma=0\).
+An edge-linear factor therefore cancels in \(\EE[Y^k]/(\EE Y)^k\), and the
+coefficient \(-3+8-6=-1\) of Proposition~\ref{prop:moment-precision} does not
+arise for this factor.
+
+The normalized moment is the average of these ratios. Split the average into
+quadruples in which some pair has \(s_{ij}>2n/d\), and the rest.
+On the first class, \(\PP(M_1\cup M_2\cup M_3\cup M_4\subseteq\Gnd)\le\PP(M_i\cup M_j\subseteq\Gnd)\).
+Summing out the other two matchings reproduces the tail of the second-moment sum.
+Lemma~\ref{lem:laplace} bounds that tail by \(O(e^{-cn/d})\) times the main term,
+which is \(o(v(d)^2)\) throughout \(d=o(n^{1/2})\).
+
+On the complementary class every pairwise overlap is at most \(2n/d\), so
+\(\sigma=O(n/d)\) and \(c\sigma d^2/n^2=O(d/n)\). Expand
+\[
+\exp(-c\sigma d^2/n^2)
+=
+1-c\sigma d^2/n^2+O\bigl((d/n)^2\bigr).
+\]
+The constant \(1\) reproduces the product of the means. The linear term is a sum
+of pairwise overlaps. Averaged under Lemma~\ref{lem:laplace}, one pair
+contributes the second-moment excess \(v_\star=\Var Y/(\EE Y)^2=O(v(d))\).
+A \(k\)-tuple has \(\binom{k}{2}\) pairs: \(\binom{3}{2}=3\) and \(\binom{4}{2}=6\).
+An edge with \(m_e\ge 3\) meets three of the matchings. Inside the light class its
+multiplicity is \(O(1)\), since an overlap of size \(\omega(1)\) that is still
+\(O(n/d)\) is charged to the pair that contains it and is already present in
+\(v_\star\). The triple defect, multiplied by \(d^2/n^2\), is
+\(O(d^2/n^2)=O((d/n)^2)\).
+
+The quadratic piece of the exponential, averaged on the Laplace window, has size
+\((d^2/n^2)^2\cdot O(n/d)=O(d^3/n^3)\).
+Wolfram gives \((d^4/n^4)\cdot(n/d)=d^3/n^3\) and
+\((d^3/n^3)/(d/n)^2=d/n\).
+For \(d=o(n^{1/2})\) this is \(o((d/n)^2)\). On \(d=o(n^{1/4})\), where
+\(v(d)\asymp d^{-3}\), the coarser piece \(d^2/n^2\) satisfies
+\((n^{1/4})^2/n^2=(n^{1/4})^{-6}=n^{-3/2}\), so \(d^2/n^2=O(d^{-6})=O(v(d)^2)\).
+In both regimes the remainder is \(O(v(d)^2)\).
+
+Therefore, with \(v_\star=O(v(d))\),
+\[
+\frac{\EE[Y^k]}{(\EE Y)^k}
+=
+1+\binom{k}{2}v_\star+O(v(d)^2)
+\qquad(k\in\{2,3,4\}).
+\]
+The centered combination of the main terms vanishes at order \(v_\star\),
+\[
+(1+6v_\star)-4(1+3v_\star)+6(1+v_\star)-3=0,
+\]
+and the order-\(v_\star^2\) identity
+\((1+6v+3v^2)-4(1+3v)+6(1+v)-3=3v^2\)
+shows that the Gaussian piece, together with the remainder above, is
+\(O(v(d)^2)\). Hence
+\[
+\frac{\EE[(Y-\EE Y)^4]}{(\EE Y)^4}=O(v(d)^2).
+\]
+\end{proof}
+
 \begin{theorem}[Fourth-moment chains]
 \label{thm:fourth-chains}
 Assume~\cite[Theorem~6]{Gao20}.
@@ -488,13 +583,6 @@ Let \(n\) be even and let \(D\) satisfy \(D/\log n\to\infty\) and
 D=o\Biggl(\frac{n^{4/9}}{(\log n)^{5/9}}\Biggr).
 \]
 Set \(m:=\lfloor c\sqrt{D\log n}\rfloor\) with \(c>0\) small and \(mn\) even.
-Assume that the perfect-matching count \(Y\) in \(G(n,d)\) satisfies
-\[
-\EE\bigl[(Y-\EE Y)^4\bigr]
-\le
-K\,(\Var Y)^2
-\]
-for an absolute constant \(K\), at every degree \(d\in[D,D+m]\).
 Then there is a coupling of \(G\sim G(n,D)\) with \(H\sim G(n,D+m)\) such that
 \(\PP(G\subset H)=1-o(1)\).
 \end{theorem}
@@ -502,15 +590,12 @@ Then there is a coupling of \(G\sim G(n,D)\) with \(H\sim G(n,D+m)\) such that
 \begin{proof}
 Write \(v(d)=d^{-3}+d/n\) and \(\alpha:=v(d)^{2/5}\).
 Lemma~\ref{lem:ratio-error} supplies the variance bound of this order.
-The fourth-moment hypothesis and Markov's inequality give
+Lemma~\ref{lem:fourth-moment} and Markov's inequality give
 \[
 \PP\bigl(|Y-\EE Y|\ge\alpha\,\EE Y\bigr)
 \le
-K\frac{(\Var Y)^2}{\alpha^4(\EE Y)^4}.
+\frac{K\,v(d)^2}{\alpha^4}.
 \]
-Lemma~\ref{lem:ratio-error} supplies \(\Var Y/(\EE Y)^2=O(v(d))\) for \(d=o(n^{1/2})\),
-and the stated range is inside that hypothesis, so the right-hand side is
-\(O(v(d)^2/\alpha^4)\).
 The choice \(\alpha=v(d)^{2/5}\) makes \(\alpha^4=v(d)^{8/5}\) and
 \(v(d)^2/v(d)^{8/5}=v(d)^{2/5}\), hence the probability is \(O(v(d)^{2/5})\).
 Lemma~\ref{lem:tv} therefore bounds the one-step coupling failure by
@@ -602,14 +687,9 @@ At \(d=n^{2/7}\) the two comparisons are
 \((n^{2/7})^8/n=n^{9/7}\) and \(n/(n^{2/7})^2=n^{3/7}\).
 Thus for \(\omega(n^{1/8})=d=o(n^{1/2})\) the uncertainty is \(\omega(v(d)^2)\).
 
-Theorem~\ref{thm:fourth-chains} needs the fourth-moment bound on an interval of
-degrees reaching \(n^{4/9}/(\log n)^{5/9}\).
-Since \(1/8<2/5<4/9\), that interval meets the region
-\(\omega(n^{1/8})=d=o(n^{1/2})\), where Lemma~\ref{lem:cor15} does not resolve a
-quantity of size \(v(d)^2\).
-On \(d=o(n^{1/8})\) the uncertainty is fine enough to see a scale \(d^{-6}\), but
-there \(v(d)\asymp d^{-3}\) and Corollary~\ref{cor:chernoff-chains} already follows
-from Chebyshev's inequality.
+Theorem~\ref{thm:fourth-chains} is the resulting Chernoff window. The unsigned
+bound of this proposition does not by itself supply the fourth moment; the
+edge-linear factor of Lemma~\ref{lem:fourth-moment} does.
 \end{proof}
 
 \subsection{Secondary and conditional results}
@@ -1916,11 +1996,10 @@ comparison that would identify \(\mathrm{Unif}(\Omega_m(R))\) with \(\mu_{d+m}\)
 start.
 Proposition~\ref{prop:host-gap} blocks the shortcut through~\cite[(1.1)]{CFG25}.
 Conjecture~\ref{conj:config-split} stays open.
-The conditional route past the second-moment ceiling is Theorem~\ref{thm:fourth-chains}:
-a Gaussian fourth-moment bound on perfect-matching counts would move the Chernoff
-window from \(n^{2/5}\) to \(n^{4/9}\).
-Proposition~\ref{prop:moment-precision} shows that the factor \(1+O(d^2/n)\) in
-Lemma~\ref{lem:cor15} is too coarse to certify that bound on this range.
+The route past the second-moment ceiling is Theorem~\ref{thm:fourth-chains}:
+the edge-linear factor cancels in the moment ratios, and the centered fourth
+moment is \(O((\Var Y)^2)\). Chernoff nesting therefore extends to
+\(o(n^{4/9}/(\log n)^{5/9})\).
 \end{remark}
 
 \begin{lemma}[Contiguity preserved by a.a.s.\ conditioning]
