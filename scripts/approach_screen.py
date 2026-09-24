@@ -1,0 +1,153 @@
+"""Stop a proof approach before expanding it.
+
+Uses only obstructions already proved in paper/main.tex. A block means that
+approach cannot close the claim. A clear result is not a proof.
+
+  python scripts/approach_screen.py middle
+  python scripts/approach_screen.py config-second-moment --degree n/2
+"""
+
+from __future__ import annotations
+
+import argparse
+import sys
+
+# degree regime -> (blocked_when_linear, note)
+# linear means min(d, n-d) is a positive fraction of n.
+
+
+def regime(degree: str) -> str:
+    key = degree.strip().lower().replace(" ", "")
+    aliases = {
+        "n/2": "half",
+        "theta(n)": "linear",
+        "θ(n)": "linear",
+        "o(n)": "sublinear",
+        "o(sqrt(n))": "sparse",
+        "o(n^(1/2))": "sparse",
+    }
+    if key not in aliases:
+        raise SystemExit(f"unknown degree regime: {degree}")
+    return aliases[key]
+
+
+CHECKS = {
+    "config-second-moment": {
+        "half": (
+            "block",
+            "Proposition config-loops: at d=n/2 the configuration model has a loop with probability 1-o(1). "
+            "A multigraph second moment does not transfer to the uniform simple graph.",
+        ),
+        "linear": (
+            "block",
+            "The loop expectation d(d-1)/(2(d-1/n)) tends to infinity whenever d tends to infinity. "
+            "The probability statement is proved at d=n/2. Do not expand a configuration second moment in the middle band.",
+        ),
+        "sublinear": (
+            "clear",
+            "d=o(n) is outside Proposition config-loops. This screen does not prove the argument.",
+        ),
+        "sparse": (
+            "clear",
+            "d=o(sqrt(n)) is the range of the existing variance lemma. This screen does not reprove it.",
+        ),
+    },
+    "gao-iteration": {
+        "half": (
+            "block",
+            "Proposition linear-barrier: Gao Theorem 6 needs d=o(n). At d=n/2 the hypothesis does not start.",
+        ),
+        "linear": (
+            "block",
+            "Proposition linear-barrier: both d and n-d of order n lie outside Theorem 6.",
+        ),
+        "sublinear": (
+            "clear",
+            "d=o(n) is the hypothesis of the sublinear theorem. This screen does not reprove it.",
+        ),
+        "sparse": (
+            "clear",
+            "d=o(sqrt(n)) is inside the edge estimate. This screen does not reprove it.",
+        ),
+    },
+    "plus-one-chain": {
+        "half": (
+            "block",
+            "Proposition harmonic: if each step on [3,n/3] costs at least c/d, the union bound is at least c log(n/9).",
+        ),
+        "linear": (
+            "block",
+            "Proposition harmonic: a chain of one-step couplings across [3,n/3] does not tend to probability 1 when each cost is at least c/d.",
+        ),
+        "sublinear": (
+            "clear",
+            "A chain inside d=o(n) is not the harmonic obstruction. This screen does not prove the chain.",
+        ),
+        "sparse": (
+            "clear",
+            "Sparse chains are not blocked by the harmonic sum. This screen does not reprove them.",
+        ),
+    },
+    "chebyshev-ratio": {
+        "half": (
+            "block",
+            "Lemma ratio-error carries an O(d/n) error. At d=n/2 that term does not tend to 0, so Chebyshev from this lemma does not give a vanishing failure.",
+        ),
+        "linear": (
+            "block",
+            "The O(d/n) error in the variance lemma stays of order 1 when d is a positive fraction of n.",
+        ),
+        "sublinear": (
+            "clear",
+            "d/n tends to 0 in this regime. Whether the variance proof extends is a separate argument.",
+        ),
+        "sparse": (
+            "clear",
+            "d=o(sqrt(n)) is the stated range of the variance lemma.",
+        ),
+    },
+    "laplace-window": {
+        "half": (
+            "block",
+            "The overlap window needs n/(2d) to infinity. At d=n/2 that mean is 1.",
+        ),
+        "linear": (
+            "block",
+            "At d a positive fraction of n, the mean overlap n/(2d) stays constant, so the Gaussian window does not open.",
+        ),
+        "sublinear": (
+            "clear",
+            "n/(2d) tends to infinity when d=o(n). This screen does not reprove the window.",
+        ),
+        "sparse": (
+            "clear",
+            "The overlap mean tends to infinity in this regime.",
+        ),
+    },
+}
+
+
+def screen(approach: str, degree: str) -> int:
+    kind = regime(degree)
+    verdict, reason = CHECKS[approach][kind]
+    print(f"{verdict.upper()} {approach} at {degree}")
+    print(reason)
+    return 0 if verdict == "clear" else 2
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("approach", choices=[*CHECKS, "middle"])
+    parser.add_argument("--degree", default="n/2")
+    args = parser.parse_args()
+    if args.approach == "middle":
+        code = 0
+        for name in CHECKS:
+            code = max(code, screen(name, args.degree))
+            print()
+        return code
+    return screen(args.approach, args.degree)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

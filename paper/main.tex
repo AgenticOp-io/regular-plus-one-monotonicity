@@ -122,6 +122,12 @@ Laplace window \(d=o(n/(\log n)^2)\) (Theorem~\ref{thm:laplace-degree}).
 A shorter overlap window, of width \(\bar k^{2/3}\) rather than \(\sqrt{\bar k}\,\log n\),
 removes that restriction and gives exact \(+1\) for every \(d=o(n)\)
 (Theorem~\ref{thm:sublinear}).
+On \(n^{1/2}\le D=o(n/(\log n)^2)\) the same moment bound nests
+\(o((n/D)^{1/2-\varepsilon})\) consecutive degrees
+(Theorem~\ref{thm:chain-past-sqrt}).
+Degree \(\Theta(n)\) with both \(d\) and \(n-d\) of order \(n\) lies outside the edge
+estimate (Proposition~\ref{prop:linear-barrier}). The complementary range
+\(n-d=o(n)\) follows by complementation (Theorem~\ref{thm:dense}).
 As a new consequence of the same patched error schedule, we obtain long
 simultaneous nesting chains (Theorem~\ref{thm:chains}). The window length is
 \(o(v(D)^{-1/3})\), where \(v(D)\) is the patched relative variance of the
@@ -1559,6 +1565,169 @@ this concentration, together with subgraph ratios of relative error \(o(1)\), bo
 of which hold here.
 \end{proof}
 
+\begin{theorem}[Chains past \(\sqrt{n}\)]
+\label{thm:chain-past-sqrt}
+Assume~\cite[Theorem~6]{Gao20}. Fix \(\varepsilon>0\). Let \(n\) be even and let
+\(D\) satisfy \(n^{1/2}\le D=o\bigl(n/(\log n)^2\bigr)\). Let
+\(L=o\bigl((n/D)^{1/2-\varepsilon}\bigr)\).
+Then there is a coupling \((G_d)_{d=D}^{D+L}\) with each \(G_d\sim G(n,d)\) and
+\[
+\PP\bigl(G_D\subseteq\cdots\subseteq G_{D+L}\bigr)=1-o(1).
+\]
+\end{theorem}
+
+\begin{proof}
+The proof of Lemma~\ref{lem:high-moment} uses \(d=o(n^{1/2})\) only to compare the
+Laplace tail \(e^{-cn/d}\) with a power of \(v(d)\). For
+\(d=o(n/(\log n)^2)\) one has \(n/d=\omega((\log n)^2)\), so the tail is
+\(e^{-\omega((\log n)^2)}\), while \(v(d)\ge d/n\). The tail is smaller than every
+fixed power of \(v(d)\). The remaining estimates in that proof use only
+\(d\to\infty\) and \(d=o(n)\). Thus for each fixed \(q\ge 2\),
+\[
+\frac{\EE[(Y-\EE Y)^{2q}]}{(\EE Y)^{2q}}=O_q\bigl(v(d)^q\bigr)
+\]
+on this range, with \(v(d)=d^{-3}+d/n\). Theorem~\ref{thm:laplace-degree} supplies
+the variance bound.
+
+Choose \(q\) so that \(\gamma=q/(2q+1)\) satisfies \(\gamma>1/2-\varepsilon\). The identity
+\(1/2-q/(2q+1)=1/(2(2q+1))\) makes such a finite \(q\) exist. Markov's inequality
+at height \(v(d)^\gamma\), as in Theorem~\ref{thm:high-chains}, fails with
+probability \(O_q(v(d)^\gamma)\). For \(D\ge n^{1/2}\) one has \(v(D)\le 2D/n\).
+Also \(L=o(D)\), because \((n/n^{1/2})^{1/2}=n^{1/4}=o(n^{1/2})\). Hence
+\(v(d)\le 4v(D)\) on the interval, and
+\[
+L\cdot O_q\bigl((D/n)^\gamma\bigr)=o(1)
+\]
+by the choice of \(L\). Lemma~\ref{lem:tv} converts each step into a coupling.
+\end{proof}
+
+\begin{proposition}[Linear degree lies outside the edge estimate]
+\label{prop:linear-barrier}
+\cite[Theorem~6]{Gao20} assumes \(\Delta^2=o(M)\). For a \(d\)-regular graph this
+is \(d=o(n)\), since \(\Delta^2/M=d/n\). The substitutions that prove
+Theorem~\ref{thm:sublinear} therefore do not start at a degree \(d\) for which
+both \(d\) and \(n-d\) are of order \(n\).
+\end{proposition}
+
+\begin{proof}
+For the degree sequence \((d,\ldots,d)\) one has \(\Delta=d\) and \(M=dn\), so
+\(\Delta^2/M=d/n\). This tends to \(0\) if and only if \(d=o(n)\). At \(d=\Theta(n)\)
+the hypothesis of Theorem~6 fails. Theorem~\ref{thm:dense} recovers the
+complementary range by applying the sparse theorem to \(n-1-d\), so the
+unresolved degrees are those with both \(d\) and \(n-d\) of order \(n\).
+\end{proof}
+
+\begin{theorem}[Exact \(+1\) in the dense range]
+\label{thm:dense}
+Assume~\cite[Theorem~6]{Gao20}. Let \(n\) be even and let \(d\) satisfy
+\(n-d\to\infty\) and \(n-d=o(n)\). Then there is a coupling of \(G_d\sim\Gnd\)
+and \(G_{d+1}\sim G(n,d+1)\) with \(\PP(G_d\subset G_{d+1})=1-o(1)\).
+\end{theorem}
+
+\begin{proof}
+Set \(s=n-2-d\). The hypotheses on \(d\) are exactly \(s\to\infty\) and \(s=o(n)\).
+Theorem~\ref{thm:sublinear} supplies a coupling \(G_s\subset G_{s+1}\) of uniform
+random regular graphs. The complement of a uniform \(s\)-regular graph is a
+uniform \((n-1-s)\)-regular graph, and complementation reverses inclusions.
+The complement of \(G_{s+1}\) is uniform of degree \(n-1-(s+1)=n-2-s=d\).
+The complement of \(G_s\) is uniform of degree \(n-1-s=d+1\).
+Thus the complemented coupling is a coupling of \(G(n,d)\) inside \(G(n,d+1)\).
+\end{proof}
+
+\begin{conjecture}[The middle band]
+\label{conj:middle}
+Let \(n\) be even and let \(d=d(n)\) satisfy \(\min(d,n-d)=\Theta(n)\), with \(dn\) even.
+Then there is a coupling of \(G_d\sim\Gnd\) and \(G_{d+1}\sim G(n,d+1)\) with
+\(\PP(G_d\subset G_{d+1})=1-o(1)\).
+\end{conjecture}
+
+The coupling asked for is deletion of one uniform perfect matching from a uniform
+\((d+1)\)-regular simple graph. The output is uniform of degree \(d\) precisely when
+the number of perfect matchings is relatively concentrated on the simple model.
+Lemma~\ref{lem:ratio-error} gives that concentration only while \(d=o(n^{1/2})\).
+The configuration multigraph is a different probability space.
+Each simple \(d\)-regular graph arises from exactly \((d!)^n\) pairings, so the
+uniform simple graph is the pairing conditioned on simplicity.
+At half degree that conditioning event is not of probability \(1-o(1)\).
+
+\begin{proposition}[Half-degree configurations have a loop]
+\label{prop:config-loops}
+Let \(n\ge 4\) be even and let \(d=n/2\). In the configuration model of degree \(d\),
+the number \(L\) of loops satisfies \(\EE L\to\infty\) and \(\PP(L\ge 1)\to 1\).
+\end{proposition}
+
+\begin{proof}
+A loop is a pair of stubs at the same vertex that the random pairing joins.
+There are \(n\binom{d}{2}\) such pairs of stubs, and each is joined with probability
+\(1/(dn-1)\), so
+\[
+\EE L
+=
+\frac{n\,d(d-1)}{2(dn-1)}
+=
+\frac{d(d-1)}{2\bigl(d-1/n\bigr)}.
+\]
+Substituting \(d=n/2\) gives
+\[
+\EE L
+=
+\frac{n^2(n-2)}{4(n^2-2)}.
+\]
+The quotient of this quantity by \(n\) tends to \(1/4\), so \(\EE L\to\infty\).
+
+For the second moment, count ordered pairs of distinct potential loops.
+Two potential loops occur together only when their four stubs are disjoint, in which
+case the probability is \(1/((dn-1)(dn-3))\).
+The number of unordered stub-disjoint pairs of potential loops is
+\[
+\binom{n}{2}\binom{d}{2}^2
++
+n\cdot\binom{d}{2}\binom{d-2}{2}/2.
+\]
+Hence \(\EE[L(L-1)]\) equals twice that count, divided by \((dn-1)(dn-3)\).
+At \(d=n/2\) the ratio \(\EE[L(L-1)]/(\EE L)^2\) tends to \(1\).
+Since \(\EE L\to\infty\), one also has \(\EE[L^2]/(\EE L)^2\to 1\).
+Cauchy--Schwarz in the form
+\((\EE L)^2=\bigl(\EE[L\,1_{L\ge 1}]\bigr)^2\le\EE[L^2]\,\PP(L\ge 1)\)
+therefore yields \(\PP(L\ge 1)\to 1\).
+\end{proof}
+
+\begin{proposition}[Middle band from matching concentration]
+\label{prop:middle-reduction}
+Let \(n\) be even and let \(d\) satisfy \(\min(d,n-d)=\Theta(n)\), with \(dn\) even.
+Let \(Y\) be the number of perfect matchings in \(G(n,d+1)\).
+If \(\Var Y/(\EE Y)^2=o(1)\), then Conjecture~\ref{conj:middle} holds.
+\end{proposition}
+
+\begin{proof}
+Let \(v=\Var Y/(\EE Y)^2\), and set \(\alpha=v^{1/3}\).
+The hypothesis \(v=o(1)\) forces \(\alpha=o(1)\).
+Chebyshev's inequality bounds the failure probability by \(v/\alpha^2\).
+The identity \(v/(v^{1/3})^2=v^{1/3}\) makes that failure \(o(1)\) as well.
+Lemma~\ref{lem:tv} converts the pair \((\alpha,o(1))\) into total variation \(o(1)\) between
+\(\mu_{d+1}\) and the law of a uniform \(d\)-regular graph plus a uniform perfect matching.
+That is the coupling in Conjecture~\ref{conj:middle}.
+\end{proof}
+
+\begin{proposition}[Union bound across all degrees]
+\label{prop:harmonic}
+Suppose each one-step coupling at degree \(d\) fails with probability at least \(c/d\)
+for some \(c>0\) and all \(d\in[3,n/3]\). Then a union bound over these steps does
+not tend to \(0\).
+\end{proposition}
+
+\begin{proof}
+The sum of the costs is at least
+\[
+c\sum_{d=3}^{\lfloor n/3\rfloor}\frac1d
+\ge
+c\int_{3}^{n/3}\frac{dx}{x}
+=
+c\log(n/9),
+\]
+which tends to infinity.
+\end{proof}
+
 \begin{lemma}[Chain schedule]
 \label{lem:chain-eta}
 Let \(D,L\) satisfy the hypotheses of Theorem~\ref{thm:chains}, and write \(v(D)\)
@@ -1818,8 +1987,15 @@ Growing the number of substitutions to \(\lceil\log n/\log\log n\rceil\) reaches
 every \(d=o(n/(\log n)^2)\) (Theorem~\ref{thm:laplace-degree}).
 Lemma~\ref{lem:overlap-wide} uses a window of width \(\bar k^{2/3}\), which remains
 \(o(\bar k)\) whenever \(\bar k\to\infty\), and Theorem~\ref{thm:sublinear} gives
-exact \(+1\) for every \(d=o(n)\). At linear degree the host-dependent factor
-\(O(d/n)\) no longer tends to \(0\).
+exact \(+1\) for every \(d=o(n)\). At degrees where both \(d\) and \(n-d\) are of
+order \(n\), the factor \(O(d/n)\) no longer tends to \(0\).
+Theorem~\ref{thm:dense} recovers the range \(n-d=o(n)\).
+Conjecture~\ref{conj:middle} is the remaining \(+1\) statement.
+Proposition~\ref{prop:config-loops} shows that the configuration multigraph at half
+degree has a loop with probability \(1-o(1)\), so the deletion has to be proved
+on the uniform simple graph.
+Proposition~\ref{prop:middle-reduction} reduces that conjecture to
+\(\Var Y/(\EE Y)^2=o(1)\) for the perfect-matching count on \(G(n,d+1)\).
 Theorem~\ref{thm:chains} still describes simultaneous chains inside \(o(n^{1/2})\), where the variance is \(D^{-3}+D/n\).
 
 Quantitative sandwich rates from the~\cite{BIM25} budget:
