@@ -54,7 +54,16 @@ The edge-linear part of that error cancels in moment ratios, and the centered
 fourth moment is then a constant times the square of the variance, so the same
 windows run up to \(o\bigl(n^{4/9}/(\log n)^{5/9}\bigr)\)
 (Theorem~\ref{thm:fourth-chains}).
-For \(D=o(n^{1/6})\) the same nesting extends from any \(D\to\infty\) up to
+The same one-step bound sums from every \(D\to\infty\) up to
+\(\lfloor n^{2/7}/\log n\rfloor\) (Corollary~\ref{cor:fourth-span}).
+Carrying the expansion to an arbitrary fixed order \(q\) produces the moment
+bound \(O_q(v(d)^q)\) and moves the Chernoff window to
+\(o\bigl(n^{2q/(4q+1)}/(\log n)^{(2q+1)/(4q+1)}\bigr)\)
+(Lemma~\ref{lem:high-moment}, Theorem~\ref{thm:high-chains}).
+Every exponent strictly below \(1/2\) is attained
+(Corollary~\ref{cor:near-barrier}), and the summed chain reaches every
+exponent strictly below \(1/3\) (Corollary~\ref{cor:high-span}).
+For \(D=o(n^{1/6})\) the triangle projection gives a separate chain up to
 degree \(\lfloor n^{1/6}/\log n\rfloor\). The one-step total variation is
 \(O(d^{-6/5})\), which sums (Corollary~\ref{cor:summable}).
 
@@ -117,6 +126,11 @@ A fourth-moment bound on the matching count, proved by cancelling the
 edge-linear factor in the moment ratios, moves that window past the Chebyshev
 ceiling, to \(o(n^{4/9}/(\log n)^{5/9})\)
 (Lemma~\ref{lem:fourth-moment}, Theorem~\ref{thm:fourth-chains}).
+The same cancellation at every fixed order \(q\) gives the moment bound
+\(O_q(v(d)^q)\). Markov's inequality then reaches
+\(o\bigl(n^{2q/(4q+1)}/(\log n)^{(2q+1)/(4q+1)}\bigr)\), and therefore every
+degree \(o(n^{1/2-\varepsilon})\) (Lemma~\ref{lem:high-moment},
+Theorem~\ref{thm:high-chains}, Corollary~\ref{cor:near-barrier}).
 The factor \(1+O(d^2/n)\) in the subgraph probabilities does not resolve a moment of
 that size past \(o(n^{1/8})\) (Proposition~\ref{prop:moment-precision}).
 
@@ -627,6 +641,226 @@ A little-o hypothesis makes the product \(o(1)\). A union bound over the \(m\) s
 yields the chain.
 \end{proof}
 
+\begin{corollary}[Fourth-moment chains from every large degree]
+\label{cor:fourth-span}
+Assume~\cite[Theorem~6]{Gao20}.
+Let \(n\) be even, let \(D\to\infty\), and let
+\(M=\lfloor n^{2/7}/\log n\rfloor\). If \(D\le M\), then there is a coupling
+\((G_d)_{d=D}^{M}\) with each \(G_d\sim G(n,d)\) and
+\[
+\PP\bigl(G_D\subseteq G_{D+1}\subseteq\cdots\subseteq G_M\bigr)=1-o(1).
+\]
+\end{corollary}
+
+\begin{proof}
+The one-step coupling in the proof of Theorem~\ref{thm:fourth-chains} fails
+with probability \(O(v(d)^{2/5})\) at degree \(d\), where \(v(d)=d^{-3}+d/n\).
+For \(d\le n^{1/4}\) one has \(v(d)\le 2d^{-3}\), so the failure is
+\(O(d^{-6/5})\). The sum of these terms from \(D\) up to \(n^{1/4}\) is
+\(O(D^{-1/5})\) by the integral bound in Corollary~\ref{cor:summable}, and
+\(D\to\infty\) sends it to \(0\).
+
+For \(n^{1/4}\le d\le M\) one has \(v(d)\le 2d/n\), so the failure is
+\(O((d/n)^{2/5})\). Therefore
+\[
+\sum_{n^{1/4}\le d\le M}O\bigl((d/n)^{2/5}\bigr)
+\le
+C n^{-2/5}\int_{1}^{M}x^{2/5}\,dx
+\le
+C'n^{-2/5}M^{7/5}.
+\]
+The identity \((2/7)\cdot(7/5)=2/5\) gives \((n^{2/7})^{7/5}/n^{2/5}=1\).
+Substituting \(M=\lfloor n^{2/7}/\log n\rfloor\) leaves a factor
+\((\log n)^{-7/5}\to 0\). The two ranges together cost \(o(1)\), and composing
+the couplings gives the chain. Since \(2/7-1/6=5/42>0\), the upper end lies
+past Corollary~\ref{cor:summable}.
+\end{proof}
+
+\begin{lemma}[Moments of every fixed order]
+\label{lem:high-moment}
+Assume~\cite[Theorem~6]{Gao20}. Fix an integer \(q\ge 2\). Let \(d\to\infty\) and
+\(d=o(n^{1/2})\), and let \(Y\) be the number of perfect matchings in \(\Gnd\).
+Write \(v(d)=d^{-3}+d/n\). Then
+\[
+\frac{\EE\bigl[(Y-\EE Y)^{2q}\bigr]}{(\EE Y)^{2q}}
+\le
+K_q\,v(d)^q
+\]
+for a constant \(K_q\) that depends only on \(q\), and for all large \(n\).
+\end{lemma}
+
+\begin{proof}
+Write \(\mu_r=\EE[Y^r]/(\EE Y)^r\) for \(r\le 2q\), and write \(\sigma\) for the
+edge-identification count of an \(r\)-tuple, as in Lemma~\ref{lem:fourth-moment}.
+The host formed by at most \(2q\) matchings has maximum degree at most \(2q\).
+Every constant below may therefore depend on \(q\), through~\cite[Theorem~6]{Gao20},
+and on nothing else.
+
+Split the average that defines \(\mu_r\) into tuples in which some pair shares
+more than \(2n/d\) edges, and the rest. On the first class, discarding the other
+matchings reproduces the tail of the second-moment sum. Lemma~\ref{lem:laplace}
+bounds that tail by \(O(e^{-cn/d})\). For \(d=o(n^{1/2})\) one has
+\(v(d)\ge n^{-1}\), and \(e^{-cn/d}\) is smaller than every fixed power of
+\(v(d)\).
+
+On the complementary class, \(\sigma=O_q(n/d)\), so the edge-linear exponent
+\(c\sigma d^2/n^2\) is \(O_q(d/n)\). Expand the exponential through order \(q-1\).
+The remainder is \(O_q((d/n)^q)\). Since \(v(d)\ge d/n\), this is \(O_q(v(d)^q)\).
+
+The Taylor polynomial is a sum of products of at most \(q-1\) factors of
+\(\sigma\). Write \(\sigma=\sum_{a<b}s_{ab}-\Delta\), where \(\Delta\) is carried
+only by edges that lie in at least three of the matchings. A product that uses
+only the pairwise overlaps \(s_{ab}\) mentions at most \(2(q-1)\) matchings.
+Averaging it over an \(r\)-tuple produces a polynomial in \(r\) of degree at most
+\(2q-2\): each pattern of overlaps contributes a constant, and the number of
+ways to place that pattern among \(r\) indices is a falling factorial.
+The central moment of order \(2q\) is the finite difference of order \(2q\) of
+\(\mu_r\). That difference vanishes on every polynomial of degree at most
+\(2q-2\). The case of order \(6\) and degree \(4\) is the identity
+\(\sum_{k=0}^{6}\binom{6}{k}(-1)^{6-k}k^4=0\).
+
+A product whose degree in \(r\) is at least \(2q\) must contain at least two
+factors of \(\Delta\). Indeed a product of \(j\le q-1\) factors has pairwise
+degree at most \(2j\le 2q-2\), and each factor of \(\Delta\) raises the degree
+by at most \(3\), so one such factor reaches degree at most \(2q-1\).
+Under the uniform measure on perfect matchings, a fixed pair lies in a matching
+with probability \(1/(n-1)\), and
+\[
+\binom{n}{2}\frac1{(n-1)^3}
+=
+\frac{n}{2(n-1)^2}
+=
+O\Bigl(\frac1n\Bigr).
+\]
+Thus each triple intersection has expectation \(O(1/n)\), and a product of two
+or more factors of \(\Delta\) has expectation \(O_q(1/n^2)\). Multiplied by at
+most \((d^2/n^2)^{q-1}\), the contribution is \(O_q\bigl((d^2/n^2)^{q-1}/n^2\bigr)\).
+Divided by \((d/n)^q\) this ratio equals \(d^{q-2}/n^q\). Substituting the
+endpoint \(d=n^{1/2}\) produces \(n^{-q/2-1}\), which tends to \(0\), and the
+same comparison holds for \(d=o(n^{1/2})\). The light-class factor
+\(1+O_q(d/n)\) does not change the order. Every term that the finite difference
+does not kill is therefore \(O_q(v(d)^q)\), and
+\[
+\frac{\EE[(Y-\EE Y)^{2q}]}{(\EE Y)^{2q}}=O_q\bigl(v(d)^q\bigr).
+\]
+\end{proof}
+
+\begin{theorem}[Chains from moments of fixed order]
+\label{thm:high-chains}
+Assume~\cite[Theorem~6]{Gao20}. Fix an integer \(q\ge 2\). Let \(n\) be even and
+let \(D\) satisfy \(D/\log n\to\infty\) and
+\[
+D=o\Biggl(
+\frac{n^{2q/(4q+1)}}{(\log n)^{(2q+1)/(4q+1)}}
+\Biggr).
+\]
+Set \(m:=\lfloor c\sqrt{D\log n}\rfloor\) with \(c>0\) small and \(mn\) even.
+Then there is a coupling of \(G\sim G(n,D)\) with \(H\sim G(n,D+m)\) such that
+\(\PP(G\subset H)=1-o(1)\). The implied constant may depend on \(q\).
+\end{theorem}
+
+\begin{proof}
+Write \(v(d)=d^{-3}+d/n\), \(\gamma=q/(2q+1)\), and \(\alpha:=v(d)^\gamma\).
+Lemma~\ref{lem:high-moment} and Markov's inequality give
+\[
+\PP\bigl(|Y-\EE Y|\ge\alpha\,\EE Y\bigr)
+\le
+\frac{K_q\,v(d)^q}{\alpha^{2q}}.
+\]
+The choice of \(\alpha\) makes the right-hand side \(O_q(v(d)^\gamma)\), because
+\(q-2q\gamma=\gamma\). Lemma~\ref{lem:tv} converts this into a one-step coupling
+failure \(O_q(v(d)^\gamma)\). As in Theorem~\ref{thm:fourth-chains}, one has
+\(m=o(D)\) and \(v(d)\le 4v(D)\) for \(d\in[D,D+m]\). The product of the length
+with the failure is
+\[
+m\,v(D)^\gamma
+=
+O_q\Biggl(
+(\log n)^{1/2}\,D^{1/2-3\gamma}
++
+\frac{D^{1/2+\gamma}(\log n)^{1/2}}{n^\gamma}
+\Biggr).
+\]
+The exponent \(1/2-3\gamma=(1-4q)/(2(2q+1))\) is negative for every \(q\ge 2\),
+so the first summand tends to \(0\) under \(D/\log n\to\infty\).
+For the second, the threshold
+\(D=n^{2q/(4q+1)}/(\log n)^{(2q+1)/(4q+1)}\) produces \(1\): the degree identity
+\[
+\frac{2q}{4q+1}\cdot\frac{4q+1}{2(2q+1)}
+=
+\frac{q}{2q+1}
+\]
+matches the power of \(n\) with \(\gamma\), and the logarithmic identity
+\[
+\frac{2q+1}{4q+1}\cdot\frac{4q+1}{2(2q+1)}
+=
+\frac12
+\]
+cancels \((\log n)^{1/2}\). A little-o hypothesis makes the product \(o(1)\).
+For \(q=2\) the degree exponent is \(4/9\), so the range contains
+Theorem~\ref{thm:fourth-chains}.
+\end{proof}
+
+\begin{corollary}[Chernoff nesting below the enumeration barrier]
+\label{cor:near-barrier}
+Assume~\cite[Theorem~6]{Gao20}. Fix \(\varepsilon>0\). Let \(n\) be even and let
+\(D\) satisfy \(D/\log n\to\infty\) and \(D=o(n^{1/2-\varepsilon})\). Set
+\(m:=\lfloor c\sqrt{D\log n}\rfloor\) with \(c>0\) small and \(mn\) even.
+Then there is a coupling of \(G\sim G(n,D)\) with \(H\sim G(n,D+m)\) such that
+\(\PP(G\subset H)=1-o(1)\).
+\end{corollary}
+
+\begin{proof}
+The gap identity \(1/2-2q/(4q+1)=1/(2(4q+1))\) lets us choose a fixed integer
+\(q\ge 2\) with \(1/(2(4q+1))<\varepsilon\). For that \(q\),
+\[
+n^{1/2-\varepsilon}
+=
+o\Biggl(
+\frac{n^{2q/(4q+1)}}{(\log n)^{(2q+1)/(4q+1)}}
+\Biggr),
+\]
+because the remaining power of \(n\) is \(1/(2(4q+1))-\varepsilon<0\).
+Theorem~\ref{thm:high-chains} supplies the coupling. The same choice of \(q\)
+shows that every exponent strictly below \(1/2\) is attained, while
+Proposition~\ref{prop:barrier} still stops exact \(+1\) at \(o(n^{1/2})\).
+\end{proof}
+
+\begin{corollary}[Long chains below \(n^{1/3}\)]
+\label{cor:high-span}
+Assume~\cite[Theorem~6]{Gao20}. Fix \(\varepsilon>0\). Let \(n\) be even, let
+\(D\to\infty\), and let \(M=\lfloor n^{1/3-\varepsilon}\rfloor\). If \(D\le M\),
+then there is a coupling \((G_d)_{d=D}^{M}\) with each \(G_d\sim G(n,d)\) and
+\[
+\PP\bigl(G_D\subseteq G_{D+1}\subseteq\cdots\subseteq G_M\bigr)=1-o(1).
+\]
+\end{corollary}
+
+\begin{proof}
+Use the one-step failure \(O_q(v(d)^\gamma)\) from the proof of
+Theorem~\ref{thm:high-chains}, with \(\gamma=q/(2q+1)\). The gap identity
+\(1/3-q/(3q+1)=1/(3(3q+1))\) lets us fix \(q\) so that
+\(q/(3q+1)>1/3-\varepsilon\). For \(d\le n^{1/4}\) one has
+\(v(d)\le 2d^{-3}\), so the failure is \(O_q(d^{-3q/(2q+1)})\). The exponent
+\(-3q/(2q+1)\) is less than \(-1\), and the integral from \(D\) onward is
+\(O_q(D^{(1-q)/(2q+1)})\), which tends to \(0\) as \(D\to\infty\).
+For \(n^{1/4}\le d\le M\) the failure is \(O_q((d/n)^\gamma)\), and
+\[
+\sum_{d\le M}O_q\bigl((d/n)^\gamma\bigr)
+\le
+C_q n^{-\gamma}M^{\gamma+1}.
+\]
+Here \(\gamma+1=(3q+1)/(2q+1)\), and
+\[
+\frac{q}{3q+1}\cdot\frac{3q+1}{2q+1}
+=
+\frac{q}{2q+1},
+\]
+so \(n^{-\gamma}(n^{q/(3q+1)})^{\gamma+1}=1\). The stricter upper end
+\(n^{1/3-\varepsilon}\) makes the sum \(o(1)\). For \(q=2\) the endpoint exponent
+is \(2/7\), so the range contains Corollary~\ref{cor:fourth-span}.
+\end{proof}
+
 \begin{proposition}[Moment precision]
 \label{prop:moment-precision}
 The factor \(1+O(d^2/n)\) in the proof of Lemma~\ref{lem:cor15} determines each
@@ -687,9 +921,10 @@ At \(d=n^{2/7}\) the two comparisons are
 \((n^{2/7})^8/n=n^{9/7}\) and \(n/(n^{2/7})^2=n^{3/7}\).
 Thus for \(\omega(n^{1/8})=d=o(n^{1/2})\) the uncertainty is \(\omega(v(d)^2)\).
 
-Theorem~\ref{thm:fourth-chains} is the resulting Chernoff window. The unsigned
-bound of this proposition does not by itself supply the fourth moment; the
-edge-linear factor of Lemma~\ref{lem:fourth-moment} does.
+The unsigned bound of this proposition does not by itself supply these moments.
+The edge-linear factor of Lemma~\ref{lem:fourth-moment}, carried to every fixed
+order in Lemma~\ref{lem:high-moment}, does, and Corollary~\ref{cor:near-barrier}
+is the resulting Chernoff window.
 \end{proof}
 
 \subsection{Secondary and conditional results}
@@ -1998,8 +2233,9 @@ Proposition~\ref{prop:host-gap} blocks the shortcut through~\cite[(1.1)]{CFG25}.
 Conjecture~\ref{conj:config-split} stays open.
 The route past the second-moment ceiling is Theorem~\ref{thm:fourth-chains}:
 the edge-linear factor cancels in the moment ratios, and the centered fourth
-moment is \(O((\Var Y)^2)\). Chernoff nesting therefore extends to
-\(o(n^{4/9}/(\log n)^{5/9})\).
+moment is \(O(v(d)^2)\). Carrying the same expansion to every fixed order
+\(q\) gives Lemma~\ref{lem:high-moment}, and Chernoff nesting then extends to
+every degree \(o(n^{1/2-\varepsilon})\) by Corollary~\ref{cor:near-barrier}.
 \end{remark}
 
 \begin{lemma}[Contiguity preserved by a.a.s.\ conditioning]
