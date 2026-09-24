@@ -287,3 +287,153 @@ simplify | integral_D^∞ x^(-11/10) dx | assuming D>0
 simplify | integral_D^∞ x^(-11/10) dx | assuming D>0 = {10/D^(1/10), D}
 [Result]
 10/D^(1/10)
+
+
+Query: simplify (n^(1/6))^6/n
+[Input interpretation]
+simplify | (n^(1/6))^6/n
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: simplify -4+2*(6/5)
+[Input interpretation]
+simplify | -4 + 2 × 6/5
+[Result]
+-8/5
+[Quotient and Remainder]
+-8 = (-1) × 5 + (-3)
+[Decimal form]
+-1.6
+
+
+Query: simplify -6+4*(6/5)
+[Input interpretation]
+simplify | -6 + 4 × 6/5
+[Result]
+-6/5
+[Quotient and Remainder]
+-6 = (-1) × 5 + (-1)
+[Decimal form]
+-1.2
+
+
+Query: simplify Integrate[x^(-6/5), {x, D, Infinity}] for D>0
+[Input interpretation]
+simplify | integral_D^∞ x^(-6/5) dx | assuming D>0
+[Computation result]
+simplify | integral_D^∞ x^(-6/5) dx | assuming D>0 = {5/D^(1/5), D}
+[Result]
+5/D^(1/5)
+
+
+Query: simplify 1-4+6-3
+[Input interpretation]
+simplify | 1 - 4 + 6 - 3
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify 6-12+6
+[Input interpretation]
+simplify | 6 - 12 + 6
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Rerun of the identities used by the current theorems. Each result below matches the manuscript.
+
+Query: simplify (2/7)*(7/6)
+[Result]
+1/3
+
+Query: simplify (3/7)*(7/6)
+[Result]
+1/2
+
+Query: simplify (4/13)*(13/10)
+[Result]
+2/5
+
+Query: simplify (5/13)*(13/10)
+[Result]
+1/2
+
+Query: simplify (1/6)-(1/10)
+[Result]
+1/15
+
+Query: simplify (2/7)-(1/6)
+[Result]
+5/42
+
+Query: simplify (n^(2/7))^(7/6)/n^(1/3)
+[Result]
+1
+
+Query: simplify (n^(1/6))^12/n/((n^(1/6))^6)
+[Input interpretation]
+simplify | ((n^(1/6))^12/n)/(n^(1/6))^6
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: simplify (2/5)*(5/6)
+[Input interpretation]
+simplify | 2/5 × 5/6
+[Result]
+1/3
+[Quotient and Remainder]
+1 = (0) × 3 + 1
+[Decimal approximation]
+0.3333333333333333333333333333333333333333333333333333333333333333...
+[Repeating decimal]
+0.3^_ (period 1)
+
+
+Query: simplify (3/5)*(5/6)
+[Input interpretation]
+simplify | 3/5 × 5/6
+[Result]
+1/2
+[Quotient and Remainder]
+1 = (0) × 2 + 1
+[Decimal form]
+0.5
+
+
+Query: simplify (2/5)-(2/7)
+[Input interpretation]
+simplify | 2/5 - 2/7
+[Result]
+4/35
+[Quotient and Remainder]
+4 = (0) × 35 + 4
+[Decimal approximation]
+0.1142857142857142857142857142857142857142857142857142857142857142...
+[Repeating decimal]
+0.1142857^_ (period 6)
+
+
+Query: simplify (n^(2/5))^(5/6)/n^(1/3)
+[Input interpretation]
+simplify | (n^(2/5))^(5/6)/n^(1/3)
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: simplify (n^(1/2))^3/n^2
+[Input interpretation]
+simplify | sqrt(n)^3/n^2
+[Result]
+1/sqrt(n)

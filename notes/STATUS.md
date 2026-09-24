@@ -3,21 +3,22 @@
 ## Rate ladder
 
 ```
-1/9 << 1/5 << 1/3 << Chernoff inc (chains, D=o(n^{2/7})) << exact Q
-PROVED  PROVED  PROVED   PROVED                            OPEN (d>n^{2/7})
+1/9 << 1/5 << 1/3 << Chernoff inc (chains, D=o(n^{2/5})) << exact Q
+PROVED  PROVED  PROVED   PROVED                            OPEN (d>n^{2/5})
          residual container (d at least (log n)^{5/2}); host TV open
 ```
 
 ## Toward Chernoff
 
 - **Exact +1:** \(d=o(\sqrt{n})\). The Laplace window cancels the odd cubic piece, which is the old \(\sqrt{d/n}\log^3 n\) truncation, and leaves a relative \(O(d/n)\). The Gaussian prefactor \(\beta^{-1/2}=1+1/(2d^2)+d^{-3}+O(d^{-4})\) stays inside Gao's main-term expansion. The Chebyshev schedule \(\alpha=\max(d^{-1},(d^2/n)^{1/8})\) has crossover \(d=n^{1/10}\).
-- **Cor summable:** for \(D\to\infty\) and \(D\le n^{1/10}\), the chain
-  \(G(n,D)\subset\cdots\subset G(n,\lfloor n^{1/10}\rfloor)\) holds.
-  Each step fails with probability \(O(d^{-11/10})\) by HLMPW Corollary 3.2,
-  and \(\sum_{d\ge D} d^{-11/10}=O(D^{-1/10})\to 0\).
-  Chebyshev only pays \(O(1/d)\) per step in this range, and that series does not sum.
+- **Cor summable:** for \(D\to\infty\) and \(D\le n^{1/6}/\log n\), the chain
+  runs up to \(\lfloor n^{1/6}/\log n\rfloor\). One-step total variation is
+  \(O(d^{-6/5})\), from a triangle projection whose fourth moment is proved in
+  the manuscript. The tail sums as \(O(D^{-1/5})\).
 - **Cor chernoff-chains:** G(n,D) ⊂ G(n,D+m) for m=Θ√(D log n),
-  when ω(log n)=D=o(n^{2/7}/(log n)^{3/7}).
+  when ω(log n)=D=o(n^{2/7}/(log n)^{3/7}) from the coarse ratio error, and
+  when ω(log n)=D=o(n^{2/5}/(log n)^{3/5}) after one further switching pass
+  (Lemma ratio-error, Corollary chernoff-two-fifths).
   Chain length is L=o(v(D)^{-1/3}) for v=D^{-3}+D^2/n.
   Lemma laplace cancels the odd truncation error, so the sqrt(D/n) log^3 n
   term is absorbed in D^2/n. Relative variance at least 1/(6D^3) still
@@ -38,7 +39,7 @@ PROVED  PROVED  PROVED   PROVED                            OPEN (d>n^{2/7})
 
 Host-restricted total variation is open (Conjecture config-split).
 Two-switches do not close it: Proposition switch-barrier.
-The conditional way past the chain ceiling is a fourth-moment bound on perfect-matching counts: that would move Chernoff nesting from \(n^{2/7}\) to \(n^{4/13}/(\log n)^{5/13}\) (Theorem fourth-chains). The bound is assumed there, not proved. Proposition moment-precision: the factor \(1+O(d^2/n)\) leaves an additive uncertainty larger than \(v(d)^2\) for every \(d=\omega(n^{1/8})\), so the existing subgraph estimate cannot discharge the hypothesis on the range that would pass \(n^{2/7}\).
+Chernoff nesting now runs to \(o(n^{2/5}/(\log n)^{3/5})\). The gain is a second-moment ratio error \(O(d/n)\) rather than \(O(d^2/n)\): the universal part of the closing-pair count cancels in the ratio, and the host-dependent part sums to \(O(d/n)\). The fourth-moment hypothesis remains open and is no longer the constraint on the chain length. Exact nesting for \(d=\omega(\sqrt{n})\) is still blocked by the enumeration barrier.
 A sandwich coupling does not put uniform G(n,d+m) inside the upper graph
 already built at degree d (Proposition host-gap). Free flatness counts
 factors of the complement, not of the residual.
