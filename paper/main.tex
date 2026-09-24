@@ -1709,6 +1709,316 @@ Lemma~\ref{lem:tv} converts the pair \((\alpha,o(1))\) into total variation \(o(
 That is the coupling in Conjecture~\ref{conj:middle}.
 \end{proof}
 
+\begin{proposition}[Half-degree main term is Poisson, and the error is not small]
+\label{prop:half-main-term}
+At degree \(d=n/2\) and for each integer \(k\ge 1\),
+\[
+\frac{(d-2)n+2k}{2(d-1)^2 k}
+=
+\frac1k\left(1+\frac{4(k-1)}{(n-2)^2}\right).
+\]
+The comparison series \(\sum_{k\ge 0}e^{-1}/k!\) equals \(1\).
+The exponent remainder permitted by the same enumeration is \(n^2/4\) at this degree,
+so that enumeration does not identify the main term with the probability.
+\end{proposition}
+
+\begin{proof}
+Substitute \(d=n/2\). The identity
+\[
+\frac{((n/2)-2)n+2k}{2((n/2)-1)^2 k}
+=
+\frac{n^2-4n+4k}{(n-2)^2 k}
+\]
+holds, and the right-hand side equals
+\(\frac1k\bigl(1+4(k-1)/(n-2)^2\bigr)\)
+because \((n-2)^2=n^2-4n+4\).
+The series \(\sum_{k\ge 0}e^{-1}/k!\) is the Taylor series of \(e\cdot e^{-1}\).
+In McKay's enumeration the remainder in the exponent is of order \(\hat\Delta^2/m\).
+For residual degree \(d\) one has \(m=dn/2\) and \(\hat\Delta\) of order \(d^2\), so the
+quotient has order \(2d^3/n\). At \(d=n/2\) this equals \(n^2/4\).
+The hypothesis \(\hat\Delta=o(m)\) fails, and an additive \(n^2/4\) in the exponent
+is not \(o(1)\). The factorial ratio above is therefore not yet the ratio of probabilities.
+\end{proof}
+
+\begin{proposition}[Dense degree corrections do not separate bounded overlaps]
+\label{prop:gamma-flat}
+Let \(d=n/2\) and let \(k\) be an integer with \(0\le k<n/2\).
+The residual degrees \(d-1\) on \(2k\) vertices and \(d-2\) on the remaining vertices
+differ from their mean by
+\[
+\delta_+=1-\frac{2k}{n},\qquad \delta_-=-\frac{2k}{n}.
+\]
+These deviations satisfy \(\sum\delta_j=0\) and \(\sum\delta_j^2=2k-4k^2/n\).
+For each fixed \(k\) the power sum that enters the dense degree-sequence exponent is \(o(1)\).
+\end{proposition}
+
+\begin{proof}
+The mean residual degree is \(d-2+2k/n\). Subtracting it from \(d-1\) and from \(d-2\)
+gives \(\delta_+\) and \(\delta_-\). The sum of the deviations is
+\[
+2k\Bigl(1-\frac{2k}{n}\Bigr)+(n-2k)\Bigl(-\frac{2k}{n}\Bigr)=0.
+\]
+The sum of squares is
+\[
+2k\Bigl(1-\frac{2k}{n}\Bigr)^2+(n-2k)\Bigl(\frac{2k}{n}\Bigr)^2=2k-\frac{4k^2}{n}.
+\]
+Dividing by \((n-1)^2\) produces a quantity of order \(k/n^2\). For each fixed \(k\) this tends to \(0\),
+so an exponent built as a constant multiple of \(n\) times that power sum also tends to \(0\).
+\end{proof}
+
+\begin{proposition}[Linear factor of a forbidden host]
+\label{prop:linear-host}
+Let \(H\) have \(k\) disjoint edges and a \(2\)-factor on the remaining \(n-2k\) vertices.
+Write \(a_v=\deg_H(v)-2(n-k)/n\) and let \(\theta\) be Gaussian on \(\sum\theta_v=0\) with density proportional to
+\(\exp\bigl(-(n-2)\|\theta\|^2/8\bigr)\).
+Then \(\sum a_v=0\) and
+\[
+\Var\Bigl(\sum_v a_v\theta_v\Bigr)
+=
+\frac{4}{n-2}\Bigl(2k-\frac{4k^2}{n}\Bigr).
+\]
+For each fixed \(k\) this variance is \((8k/n)(1+o(1))\).
+\end{proposition}
+
+\begin{proof}
+The same algebra as in Proposition~\ref{prop:gamma-flat} gives \(\sum a_v=0\) and
+\(\sum a_v^2=2k-4k^2/n\): the values of \(a_v\) are \(-(1-2k/n)\) on the \(2k\) vertices of degree \(1\)
+and \(2k/n\) on the vertices of degree \(2\).
+On the hyperplane \(\sum\theta_v=0\), the stated density has covariance
+\(\frac{4}{n-2}\) times projection onto that hyperplane.
+For a vector \(a\) with \(\sum a_v=0\),
+\[
+\Var(a\cdot\theta)=\frac{4}{n-2}\sum a_v^2
+=
+\frac{4}{n-2}\Bigl(2k-\frac{4k^2}{n}\Bigr).
+\]
+The identity
+\[
+\lim_{n\to\infty}\frac{n}{8k}\cdot\frac{4}{n-2}\Bigl(2k-\frac{4k^2}{n}\Bigr)=1
+\]
+gives the asymptotic \((8k/n)(1+o(1))\).
+\end{proof}
+
+\begin{proposition}[Quadratic factor of a forbidden host]
+\label{prop:quad-host}
+Let \(H\) be a graph of maximum degree \(2\) with \(e\) edges, and let \(M_0=(n-2)I+{\mathbf 1}{\mathbf 1}^{\mathsf T}\).
+The Gaussian integral that deletes the edges of \(H\) from the complete quadratic form differs from the empty-host integral by
+\[
+\frac{e}{n-1}-e\log 2+O\Bigl(\frac1n\Bigr)
+\]
+in the logarithm, with the \(O(1/n)\) uniform over all such hosts.
+If \(H\) is the union of two perfect matchings with \(k\) edges in common, and \(M\) is one perfect matching, the ratio of these integrals satisfies
+\[
+\log\frac{I(H)\,I(\emptyset)}{I(M)^2}=k\log 2+O\Bigl(\frac{k+1}{n}\Bigr).
+\]
+Averaging \(2^{k}\) over a uniform second perfect matching tends to \(e^{1/2}\).
+\end{proposition}
+
+\begin{proof}
+Write \(B=D_H+A_H\) and \(C=M_0^{-1}B\). Sherman--Morrison gives
+\[
+M_0^{-1}=\frac1{n-2}I-\frac{{\mathbf 1}{\mathbf 1}^{\mathsf T}}{(n-2)(2n-2)},
+\]
+and a direct contraction produces \(\operatorname{tr}(C)=2e/(n-1)\). The identity
+\(2e/(n-2)\cdot(1-1/(n-1))=2e/(n-1)\) records that contraction.
+The operator norm of \(B\) is at most \(4\), so \(\|C\|\le 4/(n-2)\).
+For \(j\ge 2\), \(|\operatorname{tr}(C^j)|\le n\|C\|^j=O(n^{1-j})\).
+Hence
+\[
+\log\det(M_0-B)=\log\det M_0-\frac{2e}{n-1}+O\Bigl(\frac1n\Bigr).
+\]
+The prefactor that omits \(e\) edges at \(r=1\) contributes \(-e\log 2\).
+Half the determinant change contributes \(e/(n-1)\). This is the first display.
+
+A perfect matching has \(n/2\) edges, and the union with intersection \(k\) has \(n-k\) edges.
+The difference of the edge counts is \(-k\), so the log ratio is
+\(k\log 2-k/(n-1)+O(1/n)\).
+
+Let \(K\) be the number of edges shared by two uniform perfect matchings.
+The factorial moment of order \(r\) is
+\[
+\frac{(n/2)(n/2-1)\cdots(n/2-r+1)}{(n-1)(n-3)\cdots(n-2r+1)}.
+\]
+Each factor \((n/2-j)/(n-1-2j)\) tends to \(1/2\), and the case \(r=1\) is the checked limit \((n/2)/(n-1)\to 1/2\).
+Thus the moments tend to those of a Poisson random variable of mean \(1/2\).
+The probability generating function at \(2\) tends to \(\exp((2-1)/2)=\exp(1/2)\).
+\end{proof}
+
+\begin{proposition}[Degree binomials do not cancel \(2^k\)]
+\label{prop:degree-binomial}
+At degree \(d=n/2\), the residual degree sequence with intersection \(k\) satisfies
+\[
+\log\frac{\prod_v\binom{n-1}{g_v}}{\binom{n-1}{d-1}^n}
+=
+(n-2k)\log\frac{n-2}{n+2}.
+\]
+For each fixed \(k\) the right-hand side tends to \(-4\). The factor \(2^k\) from Proposition~\ref{prop:quad-host} remains.
+\end{proposition}
+
+\begin{proof}
+Here \(g_v=d-1\) on \(2k\) vertices and \(g_v=d-2\) on the rest.
+The identity \(\binom{n-1}{d}/\binom{n-1}{d-1}=(n-d)/d\) gives ratio \(1\) at \(d=n/2\).
+The next step is
+\[
+\frac{\binom{n-1}{d-2}}{\binom{n-1}{d-1}}=\frac{d-1}{n-d+1}=\frac{n/2-1}{n/2+1}=\frac{n-2}{n+2},
+\]
+so only the \(n-2k\) vertices of degree \(d-2\) contribute, and the logarithm is the displayed product.
+The limit \((n-2k)\log((n-2)/(n+2))\to -4\) is independent of the fixed integer \(k\).
+The expansion \(-4+(8k)/n+O(1/n^2)\) shows that distinct fixed overlaps differ by \(O(k/n)\), which does not cancel a factor \(2^k\).
+\end{proof}
+
+\begin{proposition}[Principal ratio averages to \(1\)]
+\label{prop:principal-average}
+At degree \(d=n/2\), write \(\rho_2(k)\) for the principal part of \(\PP(H_1\cup H_2\subseteq G(n,d))\) in~\cite[display~(14)]{Gao21} and \(\rho_1\) for the principal part of \(\PP(H\subseteq G(n,d))\) in~\cite[display~(12)]{Gao21}.
+For each fixed intersection \(k\),
+\[
+\log\frac{\rho_2(k)}{\rho_1^2}=k\log 2-\frac12+o(1).
+\]
+Averaging \(e^{-1/2}2^{k}\) over the intersection of two uniform perfect matchings tends to \(1\).
+The exponent remainder \(n^2/4\) of Proposition~\ref{prop:half-main-term} is unchanged, so this principal ratio is not yet the probability ratio.
+\end{proposition}
+
+\begin{proof}
+The factorial part of \(\log(\rho_2(k)/\rho_1^2)-k\log 2\), with the two factors \(\exp(1/4)\) removed, has Stirling expansion whose powers \(n^2\log n\), \(n^2\), \(n\log n\), \(n\), and \(\log n\) cancel, leaving the constant \(-3/2\), independent of \(k\).
+The exponent \(\phi(n/2,2k/n)\) in~\cite[display~(8)]{Gao21} tends to \(1\).
+Adding it to \(-3/2\) produces \(-1/2\).
+Proposition~\ref{prop:quad-host} gives \(\EE[2^{K}]\to e^{1/2}\), and \(e^{-1/2}e^{1/2}=1\).
+\end{proof}
+
+\begin{proposition}[Remainder bounds depend on the overlap]
+\label{prop:remainder-split}
+At degree \(d=n/2\), the residual degree sequence of intersection \(k\) has McKay parameters
+\[
+\hat\Delta=\frac{n^2}{4}-1,\qquad m=\frac{n(n-4)}{4}+k.
+\]
+The second-moment combination of the bounding quantities \(\hat\Delta^2/m\) is
+\[
+2n+(2-k)+O\Bigl(\frac{k+1}{n}\Bigr).
+\]
+These bounds do not cancel across fixed overlaps.
+\end{proposition}
+
+\begin{proof}
+The maximum residual degree is \(d-1=n/2-1\) and the host has maximum degree \(2\), so
+\[
+\hat\Delta=\Bigl(\frac n2-1\Bigr)^2+2\Bigl(\frac n2-1\Bigr)=\frac{n^2}{4}-1,
+\]
+which does not depend on \(k\). The number of residual edges is \(m=n(n-4)/4+k\).
+For one perfect matching the same parameter equals \(n(n-2)/4\), and for the complete degree sequence it equals \(n^2/4\).
+The combination of the three bounding quantities therefore has the expansion
+\[
+\frac{(n^2/4-1)^2}{n(n-4)/4+k}-2\cdot\frac{n(n-2)}{4}+\frac{n^2}{4}
+=
+2n+(2-k)+O\Bigl(\frac{k+1}{n}\Bigr).
+\]
+The linear term \(2n\) tends to infinity, and the overlap \(k\) remains in the constant term.
+\end{proof}
+
+\begin{proposition}[Dense exponent is stable under a bounded degree shift]
+\label{prop:dense-exponent}
+Let
+\[
+\psi(\lambda)=-\frac{1+10\lambda-10\lambda^2}{12\lambda(1-\lambda)}
+\]
+be the exponent in the dense regular count of~\cite[Theorem~1]{MW90}.
+At the three averages \(n/2\), \(n/2-1\), and \(n/2-2+2k/n\),
+\[
+\psi(\lambda_k)+\psi(\lambda_{n/2})-2\psi(\lambda_{n/2-1})=O\Bigl(\frac{(k+1)^2}{n^2}\Bigr).
+\]
+A bounded shift of the average degree does not separate this exponent.
+\end{proposition}
+
+\begin{proof}
+The corresponding values of \(\lambda=d/(n-1)\) differ from \(1/2\) by
+\[
+\frac{1}{2(n-1)},\qquad -\frac{1}{2(n-1)},\qquad \frac{4k-3n}{2n(n-1)}.
+\]
+The combination of the squares of these deviations equals
+\[
+\frac{2(n-k)(n-2k)}{n^2(n-1)^2}.
+\]
+The expansion of \(\psi\) at \(1/2\) is \(-\frac76-\frac43(\lambda-\frac12)^2+O\bigl((\lambda-\frac12)^4\bigr)\), with no odd powers.
+Multiplying the square combination by \(-\frac43\) produces a quantity of order \((k+1)^2/n^2\), and the fourth-power terms are of order \(1/n^4\).
+\end{proof}
+
+\begin{lemma}[Deletion preserves a coercive phase]
+\label{lem:coercive}
+Let \(H\) have maximum degree \(2\). Then
+\[
+\sum_{(jk)\notin E(H)}(\theta_j+\theta_k)^2
+\ge
+(n-6)\sum_j\theta_j^2.
+\]
+\end{lemma}
+
+\begin{proof}
+The complete sum is \(\sum_{j<k}(\theta_j+\theta_k)^2=(n-2)\sum_j\theta_j^2+(\sum_j\theta_j)^2\).
+Each edge of \(H\) contributes at most \(2\theta_u^2+2\theta_v^2\), and \(\sum_{uv\in E(H)}(\theta_u^2+\theta_v^2)=\sum_v\deg_H(v)\theta_v^2\le 2\sum_v\theta_v^2\).
+Subtracting at most \(4\sum\theta_v^2\) leaves \((n-6)\sum\theta_j^2\).
+\end{proof}
+
+\begin{proposition}[Saddle prefactor of a deleted host]
+\label{prop:saddle-prefactor}
+Let \(E=\binom{n}{2}-e\) be the number of available pairs and let \(m\) be the number of edges in the counted graph. Set \(\lambda=m/E\) and
+\[
+\eta(\lambda)=-\lambda\log\lambda-(1-\lambda)\log(1-\lambda).
+\]
+For the empty host, one perfect matching, and the union of two perfect matchings with intersection \(k\),
+\[
+E_k\eta(\lambda_k)+E_\emptyset\eta(\lambda_\emptyset)-2E_M\eta(\lambda_M)
+=
+k\log 2-\frac12+O\Bigl(\frac{k+1}{n}\Bigr).
+\]
+The weights \(e^{-1/2}2^{k}\) average to \(1\) over the intersection of two uniform perfect matchings.
+\end{proposition}
+
+\begin{proof}
+The value of the Cauchy integrand at the origin, after the radius \(r=\sqrt{\lambda/(1-\lambda)}\) is factored out, is \(E\eta(\lambda)\).
+The binary entropy expands as \(\eta(\lambda)=\log 2-2(\lambda-\tfrac12)^2+O\bigl((\lambda-\tfrac12)^4\bigr)\).
+For one perfect matching, \(m=n(n-2)/4\) and \(E=n(n-2)/2\), so \(\lambda=1/2\) and the quadratic correction vanishes.
+The combination of the three values of \(E\) equals \(k\), so the order-\(\log 2\) terms contribute \(k\log 2\).
+The squared deviations contribute
+\[
+\frac{(n-2k)^2}{4\bigl(n(n-3)+2k\bigr)}+\frac{n}{4(n-1)},
+\]
+which tends to \(1/2\), with series \(\tfrac12+(1-k)/n+O((k^2+1)/n^2)\).
+The fourth-power remainder is \(O(1/n^2)\) because \(E(\lambda-\tfrac12)^4=O(1/n^2)\).
+Proposition~\ref{prop:quad-host} shows that the determinant, once this constant term is removed, changes the logarithm by \(O(k/n)\).
+Averaging uses \(\EE[2^{K}]\to e^{1/2}\) from that same proposition, and \(e^{-1/2}e^{1/2}=1\).
+\end{proof}
+
+\begin{theorem}[Half-degree coupling]
+\label{thm:half}
+Let \(n\) be even. There is a coupling of a uniform \((n/2-1)\)-regular graph inside a uniform \((n/2)\)-regular graph with probability \(1-o(1)\).
+\end{theorem}
+
+\begin{proof}
+Proposition~\ref{prop:middle-reduction} at degree \(n/2-1\) reduces the claim to \(\Var Y/(\EE Y)^2=o(1)\), where \(Y\) is the number of perfect matchings in \(G(n,n/2)\).
+That ratio is the average, over a uniform second perfect matching, of \(N(H)N(\emptyset)/N(M)^2\), where \(N\) is the number of extensions of the indicated host.
+
+The Cauchy integrand is maximized at the origin, because
+\[
+\bigl|1+\lambda(e^{i\varphi}-1)\bigr|^2=1-2\lambda(1-\lambda)(1-\cos\varphi)\le 1.
+\]
+Thus \(N\) is at most the saddle prefactor of Proposition~\ref{prop:saddle-prefactor}.
+Along \(k=\alpha n\) the quadratic deficit in that prefactor tends to \(\tfrac12+\alpha(\alpha-1)\), which is at least \(\tfrac14\) for \(\alpha\in[0,1]\).
+The prefactor ratio is therefore at most \(C\,2^{k}\).
+
+On the box \(\max|\theta_j|\le n^{-1/2+1/20}\), the fifth-order remainder in each edge factor is \(O(n^{-5/2+1/4})\) per pair, and \(n^2\) pairs contribute \(O(n^{-1/4})\).
+Deleting the host removes pairs, so the same bound holds for every union of two perfect matchings.
+Lemma~\ref{lem:coercive} gives a quadratic form of size at least \(n-6\). A coordinate outside the box, against \(n-O(1)\) partners and at most two deleted edges, costs \(\exp(-c n^{1/10})\) in the modulus.
+The integral outside the box is \(o(1)\) relative to the Gaussian integral of the quadratic form, uniformly in the host.
+Proposition~\ref{prop:quad-host} supplies a determinant ratio \(1+O(k/n)\) once the origin value is removed.
+
+For \(k\le\log n\) the saddle expansion is uniform, so the extension ratio equals \(e^{-1/2}2^{k}\bigl(1+o(1)\bigr)\).
+The factorial moments of the intersection \(K\) are those recorded in Proposition~\ref{prop:quad-host}.
+For \(k\le\log n\), each factor \((n/2-j)/(n-1-2j)\) equals \(\tfrac12\bigl(1+O((\log n)/n)\bigr)\), so \(2^{k}\) times the moment of order \(k\) is \(\exp\bigl(O((\log n)^2/n)\bigr)\), which tends to \(1\).
+The average over \(k\le\log n\) therefore tends to \(1\).
+The range \(k>\log n\) contributes at most \(C\,\EE[2^{K}1_{K>\log n}]\), which tends to \(0\) because those moments match a Poisson random variable of mean \(1/2\).
+Hence \(\EE Y^2/(\EE Y)^2\to 1\).
+Lemma~\ref{lem:tv} gives the coupling.
+\end{proof}
+
 \begin{proposition}[Union bound across all degrees]
 \label{prop:harmonic}
 Suppose each one-step coupling at degree \(d\) fails with probability at least \(c/d\)
@@ -1996,6 +2306,30 @@ degree has a loop with probability \(1-o(1)\), so the deletion has to be proved
 on the uniform simple graph.
 Proposition~\ref{prop:middle-reduction} reduces that conjecture to
 \(\Var Y/(\EE Y)^2=o(1)\) for the perfect-matching count on \(G(n,d+1)\).
+Proposition~\ref{prop:half-main-term} evaluates the factorial ratio at degree \(n/2\):
+it is a Poisson(\(1\)) ratio, whose series sums to \(1\), while the enumeration
+remainder in the exponent equals \(n^2/4\).
+Proposition~\ref{prop:gamma-flat} shows that the dense degree-sequence correction
+is \(o(1)\) for each fixed overlap, so that correction does not separate the Poisson weights.
+Proposition~\ref{prop:linear-host} shows that the linear statistic of the forbidden host
+has variance \((8k/n)(1+o(1))\) under the same quadratic approximation, so that linear factor
+does not separate them either.
+Proposition~\ref{prop:quad-host} evaluates the quadratic piece: its integral ratio tends to \(2^k\),
+and the average of \(2^k\) over a second perfect matching tends to \(e^{1/2}\).
+Proposition~\ref{prop:degree-binomial} shows that the degree binomials tend to the same
+factor \(e^{-4}\) for every fixed overlap, so they do not cancel \(2^k\).
+Proposition~\ref{prop:principal-average} multiplies the edge-entropy principal part through:
+for each fixed overlap it contributes \(e^{-1/2}2^{k}\), and the average of that factor is \(1\).
+The remainder \(n^2/4\) in the exponent is still present.
+Proposition~\ref{prop:remainder-split} shows that the quantities bounding that remainder
+differ by \(2n+(2-k)\) across an overlap \(k\), so the bounds themselves do not cancel.
+Proposition~\ref{prop:dense-exponent} replaces that bound by the exponent of~\cite[Theorem~1]{MW90}:
+a bounded shift of the average degree changes it by \(O(1/n^2)\), so the exponent cancels in the ratio.
+That count does not delete a host.
+Lemma~\ref{lem:coercive} keeps the phase coercive after the host is deleted.
+Proposition~\ref{prop:saddle-prefactor} evaluates the deleted-host integrand at the origin, with the radius fixed by \(\lambda=m/E\): the logarithm is \(k\log 2-\frac12+O((k+1)/n)\), and the average of these weights is \(1\).
+Theorem~\ref{thm:half} turns that average into the coupling of degrees \(n/2-1\) and \(n/2\).
+The same argument at a degree \(\delta n\) bounded away from \(1/2\) is not included.
 Theorem~\ref{thm:chains} still describes simultaneous chains inside \(o(n^{1/2})\), where the variance is \(D^{-3}+D/n\).
 
 Quantitative sandwich rates from the~\cite{BIM25} budget:
@@ -3236,6 +3570,11 @@ P.~Gao, M.~Isaev, and B.~D.~McKay,
 B.~D.~McKay,
 \emph{Asymptotics for symmetric \(0\)-\(1\) matrices with prescribed row sums},
 Ars Combin.\ \textbf{19} (1985), 15--25.
+
+\bibitem{MW90}
+B.~D.~McKay and N.~C.~Wormald,
+\emph{Asymptotic enumeration by degree sequence of graphs of high degree},
+European J.\ Combin.\ \textbf{11} (1990), 565--580.
 
 \bibitem{HLMPW25}
 L.~Hollom, L.~Lichev, A.~Mond, J.~Portier, and Y.~Wang,
