@@ -725,3 +725,141 @@ Query: simplify (n^(1/4))^(-6)
 simplify | 1/(n^(1/4))^6
 [Result]
 1/n^(3/2)
+
+
+Query: simplify (2/7)*(7/5)
+[Input interpretation]
+simplify | 2/7 × 7/5
+[Result]
+2/5
+[Quotient and Remainder]
+2 = (0) × 5 + 2
+[Decimal form]
+0.4
+
+
+Query: simplify (2/7)-(1/6)
+[Input interpretation]
+simplify | 2/7 - 1/6
+[Result]
+5/42
+[Quotient and Remainder]
+5 = (0) × 42 + 5
+[Decimal approximation]
+0.1190476190476190476190476190476190476190476190476190476190476190...
+[Repeating decimal]
+0.1190476^_ (period 6)
+
+
+Query: simplify (n^(2/7))^(7/5)/n^(2/5)
+[Input interpretation]
+simplify | (n^(2/7))^(7/5)/n^(2/5)
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: Sum[Binomial[6,k]*(-1)^(6-k)*k^4,{k,0,6}]
+[Sum]
+sum_(k=0)^6 (-1)^(6 - k) k^4 binomial(6, k) = 0
+
+
+Query: simplify ((d^2/n^2)^(3)/n^2)/((d/n)^4)
+[Input interpretation]
+simplify | ((d^2/n^2)^3/n^2)/(d/n)^4
+[Result]
+d^2/n^4
+
+
+Query: simplify (1/2)-(2*q)/(4*q+1)
+[Input interpretation]
+simplify | 1/2 - (2 q)/(4 q + 1)
+[Results]
+1/(2 (4 q + 1))
+[Results]
+1/(8 q + 2)
+
+
+Query: simplify (1/3)-(q)/(3*q+1)
+[Input interpretation]
+simplify | 1/3 - q/(3 q + 1)
+[Results]
+1/(3 (3 q + 1))
+[Results]
+1/(9 q + 3)
+
+
+Query: simplify ((2*q)/(4*q+1))*((4*q+1)/(2*(2*q+1)))
+[Input interpretation]
+simplify | (2 q)/(4 q + 1) × (4 q + 1)/(2 (2 q + 1))
+[Results]
+q/(2 q + 1)
+[Results]
+1/2 - 1/(2 (2 q + 1))
+[Quotient and Remainder]
+q = 1/2(2 q + 1) + (-1/2)
+
+
+Query: simplify ((2*q+1)/(4*q+1))*((4*q+1)/(2*(2*q+1)))
+[Input interpretation]
+simplify | (2 q + 1)/(4 q + 1) × (4 q + 1)/(2 (2 q + 1))
+[Result]
+1/2
+[Quotient and Remainder]
+1 = (0) × 2 + 1
+
+
+Query: simplify (q/(3*q+1))*((3*q+1)/(2*q+1))
+[Input interpretation]
+simplify | q/(3 q + 1) × (3 q + 1)/(2 q + 1)
+[Results]
+q/(2 q + 1)
+[Results]
+1/2 - 1/(2 (2 q + 1))
+[Quotient and Remainder]
+q = 1/2(2 q + 1) + (-1/2)
+
+
+Query: simplify (n^(1/2))^(q-2)/n^q
+[Input interpretation]
+simplify | sqrt(n)^(q - 2)/n^q
+[Result]
+n^(-q/2 - 1)
+
+
+Query: simplify Binomial[n,2]/(n-1)^3
+[Input interpretation]
+simplify | binomial(n, 2)/(n - 1)^3
+[Results]
+n/(2 (n - 1)^2)
+[Results]
+n/(n (2 n - 4) + 2)
+[Quotient and Remainder]
+n = (0)(2 (n - 1)^2) + n
+[Expanded form]
+n/(2 n^2 - 4 n + 2)
+[Partial fraction expansion]
+1/(2 (n - 1)) + 1/(2 (n - 1)^2)
+
+
+Query: simplify 1-(3*q)/(2*q+1)
+[Input interpretation]
+simplify | 1 - (3 q)/(2 q + 1)
+[Results]
+(1 - q)/(2 q + 1)
+[Results]
+-(q - 1)/(2 q + 1)
+[Results]
+3/(2 (2 q + 1)) - 1/2
+
+
+Query: simplify (1/2)-(3*q)/(2*q+1)
+[Input interpretation]
+simplify | 1/2 - (3 q)/(2 q + 1)
+[Results]
+(1 - 4 q)/(2 (2 q + 1))
+[Results]
+3/(2 (2 q + 1)) - 1
+[Results]
+(1 - 4 q)/(4 q + 2)
