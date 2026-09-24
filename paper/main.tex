@@ -45,10 +45,14 @@ The term \(1/(6D^3)\) alone forces \(L=o(D)\). Chernoff-scale windows
 \(L=\Theta\sqrt{D\log n}\) are then available for
 \(\omega(\log n)=D=o\bigl(n^{2/7}/(\log n)^{3/7}\bigr)\)
 (Corollary~\ref{cor:chernoff-chains}).
-For \(D\le n^{1/10}\) the same nesting extends from any \(D\to\infty\) up to
-degree \(\lfloor n^{1/10}\rfloor\), because the total-variation cost
-\(O(d^{-11/10})\) of~\cite[Corollary~3.2]{HLMPW25} is summable
-(Corollary~\ref{cor:summable}).
+One further pass through the switching count, using the same edge estimate on the
+pairs that were previously bounded, replaces the ratio error \(O(d^2/n)\) by
+\(O(d/n)\). The same windows then run up to
+\(o\bigl(n^{2/5}/(\log n)^{3/5}\bigr)\)
+(Corollary~\ref{cor:chernoff-two-fifths}).
+For \(D=o(n^{1/6})\) the same nesting extends from any \(D\to\infty\) up to
+degree \(\lfloor n^{1/6}/\log n\rfloor\). The one-step total variation is
+\(O(d^{-6/5})\), which sums (Corollary~\ref{cor:summable}).
 
 Past \(\sqrt{n}\), exact \(+1\) is blocked by an enumeration barrier.
 Tracking the error budget in the Kim--Vu sandwich proof of~\cite{BIM25} with
@@ -99,10 +103,12 @@ As a new consequence of the same patched error schedule, we obtain long
 simultaneous nesting chains (Theorem~\ref{thm:chains}). The window length is
 \(o(v(D)^{-1/3})\), where \(v(D)\) is the patched relative variance of the
 perfect-matching count. This reaches degrees up to \(o(\sqrt{n})\),
-with Chernoff-scale increments up to \(o(n^{2/7}/(\log n)^{3/7})\).
-Inside \(D\le n^{1/10}\), the total-variation steps of~\cite[Corollary~3.2]{HLMPW25}
-are summable, so the same chain runs from any \(D\to\infty\) all the way to
-\(\lfloor n^{1/10}\rfloor\) (Corollary~\ref{cor:summable}).
+with Chernoff-scale increments up to \(o(n^{2/7}/(\log n)^{3/7})\),
+and, after one further switching pass, up to \(o(n^{2/5}/(\log n)^{3/5})\)
+(Corollary~\ref{cor:chernoff-two-fifths}).
+Inside \(D=o(n^{1/6})\) the one-step total variation is \(O(d^{-6/5})\), so the
+chain runs from any \(D\to\infty\) up to \(\lfloor n^{1/6}/\log n\rfloor\)
+(Corollary~\ref{cor:summable}).
 A Gaussian fourth-moment bound on the matching count would move that window to
 \(o(n^{4/13}/(\log n)^{5/13})\) (Theorem~\ref{thm:fourth-chains}).
 The factor \(1+O(d^2/n)\) in the subgraph probabilities does not resolve a moment of
@@ -236,35 +242,241 @@ Thus \(m=o(v(D)^{-1/3})\). Theorem~\ref{thm:chains} with \(L:=m\) yields the cha
 \(G_D\subseteq\cdots\subseteq G_{D+m}\).
 \end{proof}
 
-\begin{corollary}[Summable chains up to \(n^{1/10}\)]
+\begin{lemma}[Ratio error after one further switching pass]
+\label{lem:ratio-error}
+Assume~\cite[Theorem~6]{Gao20}. Let \(d\to\infty\) and \(d=o(n^{1/2})\), and let
+\(Y\) be the number of perfect matchings in \(\Gnd\). Then
+\[
+\frac{\Var Y}{(\EE Y)^2}
+=
+\frac1{6d^3}+O\Bigl(d^{-4}+\frac{d}{n}\Bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+The proof of Lemma~\ref{lem:moments} writes each subgraph probability as its
+principal term times \(1+\theta\), and obtains \(|\theta|=O(d^2/n)\) because each of
+\(O(n)\) factors from~\cite[Theorem~6]{Gao20} contributes a relative
+\(O(d^2/n^2)\). The second-moment ratio only needs a sharper \(\theta\).
+
+In the proof of that theorem, the displayed error \(O(\Delta^5 n/M^3)\) comes from
+two contributions. The first invokes an edge probability with relative error
+\(O(\Delta^2/M)=O(d/n)\). Theorem~6, already proved, supplies the same
+probabilities with relative error \(O(d^2/n^2)\). The main term being corrected
+has size \(O(d^2)\), so the absolute error drops to \(O(d^4/n^2)\). Divided by the
+stub count \(M=dn\), this is a relative \(O(d^3/n^3)\) per edge. Over \(O(n)\)
+edges the product is \(1+O(d^3/n^2)\). For \(d=o(n^{1/2})\) one has
+\(d^3/n^2=O(d/n)\), since \((n^{1/2})^3/n^2=n^{-1/2}\).
+
+The second contribution is \(\EE X_{uv}\), previously bounded by \(O(d^3/n)\) and
+then discarded. For a host of maximum degree at most \(2\), expose the neighbours
+of the two endpoints. There are \(d^2\) candidate pairs, up to \(O(d)\) pairs that
+meet the host neighbourhood. Theorem~6 gives each closing probability as
+\((d/n)(1+O(d/n))\). Summing produces
+\[
+\EE X_{uv}=\frac{d^3}{n}+O\Bigl(\frac{d^2}{n}\Bigr).
+\]
+The summand \(d^3/n\) depends only on \(d\) and \(n\). Divided by \(M\) it
+contributes \(d^2/n^2\) to every conditional probability. The host-dependent piece
+\(O(d^2/n)/M=O(d/n^2)\) per edge, and \(O(n)\) edges give a factor \(1+O(d/n)\).
+
+A perfect matching has \(n/2\) edges. The union of two perfect matchings with
+\(k\) edges in common has \(n-k\) edges. In the ratio of these probabilities the
+universal factors contribute
+\[
+\exp\bigl((n-k-n)d^2/n^2+O(d^4/n^3)\bigr)
+=
+\exp\bigl(-kd^2/n^2+O(d^4/n^3)\bigr).
+\]
+Lemma~\ref{lem:laplace} localises the second-moment sum to
+\(k=O(\sqrt{n/d}\,\log n)\). On that range
+\(kd^2/n^2=O((d/n)^{3/2}\log n)\), which is \(O(d/n)\) for \(d=o(n^{1/2})\).
+The remainder \(d^4/n^3\) is likewise \(O(d/n)\), because
+\((d^4/n^3)/(d/n)=d^3/n^2\) and \((n^{1/2})^3/n^2=n^{-1/2}\).
+
+Every ratio of a union probability to the product of the two matching
+probabilities is therefore the ratio of the principal terms times \(1+O(d/n)\).
+The Laplace argument in the proof of Lemma~\ref{lem:moments} returns
+\(1/(6d^3)+O(d^{-4}+d/n)\).
+\end{proof}
+
+\begin{corollary}[Chernoff-length chains up to \(n^{2/5}\)]
+\label{cor:chernoff-two-fifths}
+Assume~\cite[Theorem~6]{Gao20}.
+Let \(n\) be even and let \(D\) satisfy
+\[
+\frac{D}{\log n}\to\infty,
+\qquad
+D=o\Biggl(\frac{n^{2/5}}{(\log n)^{3/5}}\Biggr).
+\]
+Set \(m:=\lfloor c\sqrt{D\log n}\rfloor\) with \(c>0\) a small absolute constant
+(and parity arranged so that \(mn\) is even).
+Then there exists a coupling of \(G\sim G(n,D)\) with \(H\sim G(n,D+m)\) such that
+\(\PP(G\subset H)=1-o(1)\).
+\end{corollary}
+
+\begin{proof}
+Write \(v_\star(D)=D^{-3}+D/n\). Lemma~\ref{lem:ratio-error} gives
+\(\Var Y/(\EE Y)^2=O(v_\star(D))\) throughout \(D=o(n^{1/2})\).
+The same Chebyshev schedule as in Theorem~\ref{thm:chains}, with \(v\) replaced by
+\(v_\star\), has one-step failure \(O(v_\star(D)^{1/3})\). Hence
+\[
+m\,v_\star(D)^{1/3}
+=
+O\Biggl(
+\sqrt{\frac{\log n}{D}}
++
+\frac{D^{5/6}(\log n)^{1/2}}{n^{1/3}}
+\Biggr).
+\]
+The hypothesis \(D/\log n\to\infty\) kills the first summand.
+Under \(D=o(n^{2/5}/(\log n)^{3/5})\) the second summand is \(o(1)\):
+substituting the threshold \(D=n^{2/5}/(\log n)^{3/5}\) produces \(1\), because
+\((2/5)\cdot(5/6)=1/3\) and \((3/5)\cdot(5/6)=1/2\), and
+\((n^{2/5})^{5/6}/n^{1/3}=1\).
+A big-O bound at that threshold leaves a constant cost, so the little-o is required.
+The union bound over the \(m\) steps tends to zero.
+The argument of Lemma~\ref{lem:chain-eta} and of the coupling in the proof of
+Theorem~\ref{thm:chains} uses the relative variance only through Chebyshev's
+inequality, so it applies with \(v_\star\) in place of \(v\).
+\end{proof}
+
+\begin{lemma}[Triangle moments]
+\label{lem:tri-moments}
+Assume~\cite[Theorem~2]{Gao20}. Let \(X\) be the number of triangles in \(\Gnd\),
+and assume \(d\to\infty\) together with \(d=o(n^{1/6})\). Write \(\mu=(d-1)^3/6\).
+Then \(\EE X=(1+O(1/n))\mu\), and for \(k\in\{2,3,4\}\),
+\[
+\EE[X^k]
+=
+(\EE X)^k+\binom{k}{2}(\EE X)^{k-1}+O\bigl((\EE X)^{k-2}\bigr).
+\]
+In particular \(\Var X=\EE X+o(1)\).
+\end{lemma}
+
+\begin{proof}
+\cite[Theorem~2]{Gao20} gives, for a host \(H\) with \(O(1)\) edges and \(d=o(n^{1/2})\),
+\[
+\PP(uv\in\Gnd\mid H\subseteq\Gnd)
+=
+\frac{(d-d_u^H)(d-d_v^H)}{dn}
+\Bigl(1-\frac{\varphi_H(uv)}{dn}\Bigr)
+\bigl(1+O(d^2/n^2)\bigr).
+\]
+On a triangle the stub product of the three factors is \((d-1)^3/n^3\), and each
+factor \(1-\varphi_H(uv)/(dn)\) is \(1+O(1/n)\). There are \(\binom{n}{3}=(1+O(1/n))n^3/6\)
+potential triangles, so \(\EE X=(1+O(1/n))\mu\).
+
+For the factorial moment, split \(k\)-tuples of distinct triangles into those whose
+union has at most as many edges as vertices, and the rest. A component with as many
+edges as vertices is a cycle, so the first class consists of \(k\) vertex-disjoint
+triangles. Their number is \((1+O(1/n))(n^3/6)^k\), and the same edge estimate
+gives probability \((1+O(1/n))((d-1)/n)^{3k}\). The contribution is
+\((\EE X)^k+O((\EE X)^k/n)\). Since \(d=o(n^{1/6})\) one has
+\((\EE X)^k/n=O((\EE X)^{k-2})\) for \(k\le 4\): the identity
+\((n^{1/6})^{12}/n\big/(n^{1/6})^6=1\) shows that the boundary case \(k=4\) meets
+\((\EE X)^2\), and the little-o hypothesis makes the ratio \(o(1)\).
+
+A tuple with more edges than vertices uses \(h\le 3k\) edges on at most \(h-1\)
+vertices, hence contributes \(O(d^h/n)\). The largest term is \(O(d^{3k}/n)\),
+which is \(o((\EE X)^{k-2})\) under the same hypothesis. Expanding the factorial
+moments into ordinary moments produces the displayed formula. The \(k=2\) case is
+\(\EE[X^2]=(\EE X)^2+\EE X+o(1)\), so \(\Var X=\EE X+o(1)\).
+\end{proof}
+
+\begin{lemma}[Matching count tracks triangles]
+\label{lem:proj}
+Assume~\cite[Theorem~6]{Gao20} and~\cite[Theorem~10]{Gao21}, and let \(d\to\infty\)
+with \(d=o(n^{1/6})\). Let \(Y\) be the number of perfect matchings in \(\Gnd\) and
+let \(X\) be the number of triangles. Set \(a=\operatorname{Cov}(X,Y)/\Var X\) and
+\(Y^\star=aX+\EE Y-a\EE X\). Then
+\[
+\Var(Y-Y^\star)=O\bigl((\EE Y)^2/d^4\bigr)
+\]
+and
+\[
+\EE\bigl[(Y^\star-\EE Y)^4\bigr]=O\bigl((\EE Y)^4/d^6\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+\cite[Theorem~10]{Gao21} gives
+\(\operatorname{Cov}(X,Y)=(-d^{-3}+O(d^{-4}+d/n))\EE X\,\EE Y\) for \(d=o(n^{1/3})\).
+Lemma~\ref{lem:moments} gives
+\(\Var Y/(\EE Y)^2=1/(6d^3)+O(d^{-4}+d^2/n)\).
+Lemma~\ref{lem:tri-moments} gives \(\Var X=\EE X+o(1)\) and \(\EE X=(1+O(1/n))\mu\)
+with \(\mu=(d-1)^3/6\). Orthogonality yields \(\Var(Y-Y^\star)=\Var Y-\Var Y^\star\)
+and \(\Var Y^\star=\operatorname{Cov}(X,Y)^2/\Var X\). Substituting the expansions,
+\[
+\frac{\Var Y^\star}{(\EE Y)^2}
+=
+\frac1{6d^3}+O\Bigl(d^{-4}+\frac{d}{n}\Bigr),
+\]
+because \((1/d^6)\mu=1/(6d^3)+O(d^{-4})\) and the covariance error \(O(d/n)\) is
+absorbed. The difference of the two variance formulae is \(O(d^{-4}+d^2/n)\).
+The identity \((n^{1/6})^6/n=1\) shows \(d^2/n=o(d^{-4})\) throughout
+\(d=o(n^{1/6})\), so the difference is \(O(d^{-4})\).
+
+For the fourth moment, Lemma~\ref{lem:tri-moments} gives
+\(\EE[X^2]=\mu_X^2+\mu_X+O(1)\),
+\(\EE[X^3]=\mu_X^3+3\mu_X^2+O(\mu_X)\), and
+\(\EE[X^4]=\mu_X^4+6\mu_X^3+O(\mu_X^2)\), where \(\mu_X=\EE X\).
+The central moment \(\EE[(X-\mu_X)^4]\) has coefficients \(1-4+6-3=0\) on
+\(\mu_X^4\) and \(6-12+6=0\) on \(\mu_X^3\), hence is \(O(\mu_X^2)\).
+Since \(a=\Theta((\EE Y)/d^3)\),
+\(\EE[(Y^\star-\EE Y)^4]=a^4 O(\mu_X^2)=O((\EE Y)^4/d^6)\).
+\end{proof}
+
+\begin{proposition}[Summable one-step total variation]
+\label{prop:summable-step}
+Assume~\cite[Theorem~6]{Gao20} and~\cite[Theorem~10]{Gao21}.
+If \(d\to\infty\) and \(d=o(n^{1/6})\), then
+\[
+\dTV(\mu_d\oplus\mu_1,\mu_{d+1})=O(d^{-6/5}).
+\]
+\end{proposition}
+
+\begin{proof}
+Apply Lemma~\ref{lem:proj} in \(G(n,d+1)\), which stays inside \(o(n^{1/6})\).
+Set \(\alpha=\tfrac12(d+1)^{-6/5}\). Chebyshev's inequality and the variance bound
+give
+\[
+\PP\bigl(|Y-Y^\star|\ge\alpha\,\EE Y\bigr)
+=O(d^{-4}/\alpha^2)=O(d^{-8/5}),
+\]
+since \(-4+2\cdot(6/5)=-8/5\). Markov's inequality and the fourth-moment bound give
+\[
+\PP\bigl(|Y^\star-\EE Y|\ge\alpha\,\EE Y\bigr)
+=O(d^{-6}/\alpha^4)=O(d^{-6/5}),
+\]
+since \(-6+4\cdot(6/5)=-6/5\). Thus \(Y\) is \(\alpha\)-concentrated with failure
+\(O(d^{-6/5})\). Lemma~\ref{lem:tv} yields the total-variation bound.
+\end{proof}
+
+\begin{corollary}[Summable chains up to \(n^{1/6}\)]
 \label{cor:summable}
-Let \(n\) be even and let \(D=D(n)\) satisfy \(D\to\infty\) and \(D\le n^{1/10}\).
-Then there is a coupling \((G_d)_{d=D}^{M}\) with \(M=\lfloor n^{1/10}\rfloor\),
-each \(G_d\sim G(n,d)\), and
+Assume~\cite[Theorem~6]{Gao20} and~\cite[Theorem~10]{Gao21}.
+Let \(n\) be even, let \(D\to\infty\), and let
+\(M=\lfloor n^{1/6}/\log n\rfloor\). If \(D\le M\), then there is a coupling
+\((G_d)_{d=D}^{M}\) with each \(G_d\sim G(n,d)\) and
 \[
 \PP\bigl(G_D\subseteq G_{D+1}\subseteq\cdots\subseteq G_M\bigr)=1-o(1).
 \]
 \end{corollary}
 
 \begin{proof}
-\cite[Corollary~3.2]{HLMPW25} supplies, for every \(d\in[3,n^{1/10}]\),
+Proposition~\ref{prop:summable-step} and Theorem~\ref{thm:approx} give, at each
+\(d\in[D,M-1]\), a coupling of \(G(n,d)\) with \(G(n,d+1)\) of failure probability
+\(O(d^{-6/5})\). Compose these couplings. For \(D\ge 2\),
 \[
-\dTV(\mu_d\oplus\mu_1,\mu_{d+1})\le C_1 d^{-11/10}
-\]
-with \(C_1\) absolute.
-Theorem~\ref{thm:approx} turns each such bound into a coupling of \(G(n,d)\) with
-\(G(n,d+1)\) whose failure probability is at most \(C_1 d^{-11/10}\).
-Compose these couplings from \(d=D\) through \(d=M-1\).
-The union bound is at most
-\[
-\sum_{d=D}^{M-1} C_1 d^{-11/10}
+\sum_{d=D}^{M-1} O(d^{-6/5})
 \le
-C_1\int_{D-1}^{\infty} x^{-11/10}\,dx
+C\int_{D-1}^{\infty} x^{-6/5}\,dx
 =
-10\,C_1(D-1)^{-1/10}
+5C(D-1)^{-1/5},
 \]
-for \(D\ge 2\), since \(\int_D^\infty x^{-11/10}\,dx=10 D^{-1/10}\).
-The hypothesis \(D\to\infty\) sends the bound to \(0\).
+since \(\int_D^\infty x^{-6/5}\,dx=5D^{-1/5}\). The hypothesis \(D\to\infty\) sends
+the bound to \(0\).
 \end{proof}
 
 \begin{theorem}[Fourth-moment chains]
