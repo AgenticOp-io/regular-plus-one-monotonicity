@@ -39,7 +39,7 @@ As a new consequence of the same error schedule, we prove long simultaneous
 nesting chains. The length is the Chebyshev optimum for the patched relative
 variance of perfect-matching counts. After the odd part of the Laplace expansion
 is removed (Lemma~\ref{lem:laplace}), that variance is of order
-\(D^{-3}+D^2/n\), so the window has length
+\(D^{-3}+D/n\), so the window has length
 \(L=o(v(D)^{-1/3})\) (Theorem~\ref{thm:chains}).
 The term \(1/(6D^3)\) alone forces \(L=o(D)\). Chernoff-scale windows
 \(L=\Theta\sqrt{D\log n}\) are then available for
@@ -109,8 +109,9 @@ and, after one further switching pass, up to \(o(n^{2/5}/(\log n)^{3/5})\)
 Inside \(D=o(n^{1/6})\) the one-step total variation is \(O(d^{-6/5})\), so the
 chain runs from any \(D\to\infty\) up to \(\lfloor n^{1/6}/\log n\rfloor\)
 (Corollary~\ref{cor:summable}).
-A Gaussian fourth-moment bound on the matching count would move that window to
-\(o(n^{4/13}/(\log n)^{5/13})\) (Theorem~\ref{thm:fourth-chains}).
+A Gaussian fourth-moment bound on the matching count would move that window past
+the Chebyshev ceiling, to \(o(n^{4/9}/(\log n)^{5/9})\)
+(Theorem~\ref{thm:fourth-chains}).
 The factor \(1+O(d^2/n)\) in the subgraph probabilities does not resolve a moment of
 that size past \(o(n^{1/8})\) (Proposition~\ref{prop:moment-precision}).
 
@@ -174,7 +175,7 @@ Write
 \[
 v(D)
 :=
-D^{-3}+\frac{D^2}{n}.
+D^{-3}+\frac{D}{n}.
 \]
 If \(D\to\infty\), \(D=o(n^{1/2})\), \(L\to\infty\), and \(L=o\bigl(v(D)^{-1/3}\bigr)\),
 then there exists a coupling \((G_d)_{d=D}^{D+L}\) such that each \(G_d\sim G(n,d)\) and
@@ -185,9 +186,9 @@ then there exists a coupling \((G_d)_{d=D}^{D+L}\) such that each \(G_d\sim G(n,
 
 \begin{corollary}[Longest second-moment window]
 \label{cor:mega}
-At \(D=\lfloor n^{1/5}\rfloor\) (with parity arranged) one has
-\(v(D)=\Theta(n^{-3/5})\), so Theorem~\ref{thm:chains} supplies a simultaneous
-exact nesting of length \(L=o(n^{1/5})\).
+At \(D=\lfloor n^{1/4}\rfloor\) (with parity arranged) one has
+\(v(D)=\Theta(n^{-3/4})\), so Theorem~\ref{thm:chains} supplies a simultaneous
+exact nesting of length \(L=o(n^{1/4})\).
 \end{corollary}
 
 \begin{corollary}[Chernoff-length chains up to \(n^{2/7}\)]
@@ -484,7 +485,7 @@ the bound to \(0\).
 Assume~\cite[Theorem~6]{Gao20}.
 Let \(n\) be even and let \(D\) satisfy \(D/\log n\to\infty\) and
 \[
-D=o\Biggl(\frac{n^{4/13}}{(\log n)^{5/13}}\Biggr).
+D=o\Biggl(\frac{n^{4/9}}{(\log n)^{5/9}}\Biggr).
 \]
 Set \(m:=\lfloor c\sqrt{D\log n}\rfloor\) with \(c>0\) small and \(mn\) even.
 Assume that the perfect-matching count \(Y\) in \(G(n,d)\) satisfies
@@ -499,14 +500,15 @@ Then there is a coupling of \(G\sim G(n,D)\) with \(H\sim G(n,D+m)\) such that
 \end{theorem}
 
 \begin{proof}
-Write \(v(d)=d^{-3}+d^2/n\) and \(\alpha:=v(d)^{2/5}\).
+Write \(v(d)=d^{-3}+d/n\) and \(\alpha:=v(d)^{2/5}\).
+Lemma~\ref{lem:ratio-error} supplies the variance bound of this order.
 The fourth-moment hypothesis and Markov's inequality give
 \[
 \PP\bigl(|Y-\EE Y|\ge\alpha\,\EE Y\bigr)
 \le
 K\frac{(\Var Y)^2}{\alpha^4(\EE Y)^4}.
 \]
-Lemma~\ref{lem:moments} supplies \(\Var Y/(\EE Y)^2=O(v(d))\) for \(d=o(n^{1/2})\),
+Lemma~\ref{lem:ratio-error} supplies \(\Var Y/(\EE Y)^2=O(v(d))\) for \(d=o(n^{1/2})\),
 and the stated range is inside that hypothesis, so the right-hand side is
 \(O(v(d)^2/\alpha^4)\).
 The choice \(\alpha=v(d)^{2/5}\) makes \(\alpha^4=v(d)^{8/5}\) and
@@ -522,16 +524,20 @@ m\,v(D)^{2/5}
 =O\Biggl(
 \frac{(\log n)^{1/2}}{D^{7/10}}
 +
-\frac{D^{13/10}(\log n)^{1/2}}{n^{2/5}}
+\frac{D^{9/10}(\log n)^{1/2}}{n^{2/5}}
 \Biggr).
 \]
-The first summand tends to \(0\) because \(D/\log n\to\infty\).
-For the second, the threshold substitution \(D=n^{4/13}/(\log n)^{5/13}\) produces
+The first summand tends to \(0\) because \(D/\log n\to\infty\): the exponent
+\(7/10\) is larger than \(1/2\).
+For the second, the threshold substitution \(D=n^{4/9}/(\log n)^{5/9}\) produces
 \[
-\frac{D^{13/10}(\log n)^{1/2}}{n^{2/5}}
+\frac{D^{9/10}(\log n)^{1/2}}{n^{2/5}}
 =1,
 \]
-because \((4/13)\cdot(13/10)=2/5\) and \((5/13)\cdot(13/10)=1/2\).
+because \((4/9)\cdot(9/10)=2/5\) and \((5/9)\cdot(9/10)=1/2\), and
+\((n^{4/9})^{9/10}/n^{2/5}=1\).
+Since \(4/9-2/5=2/45>0\), this range lies past
+Corollary~\ref{cor:chernoff-two-fifths}.
 A little-o hypothesis makes the product \(o(1)\). A union bound over the \(m\) steps
 yields the chain.
 \end{proof}
@@ -590,8 +596,8 @@ At \(d=n^{2/7}\) the two comparisons are
 Thus for \(\omega(n^{1/8})=d=o(n^{1/2})\) the uncertainty is \(\omega(v(d)^2)\).
 
 Theorem~\ref{thm:fourth-chains} needs the fourth-moment bound on an interval of
-degrees reaching \(n^{4/13}/(\log n)^{5/13}\).
-Since \(1/8<2/7<4/13\), that interval meets the region
+degrees reaching \(n^{4/9}/(\log n)^{5/9}\).
+Since \(1/8<2/5<4/9\), that interval meets the region
 \(\omega(n^{1/8})=d=o(n^{1/2})\), where Lemma~\ref{lem:cor15} does not resolve a
 quantity of size \(v(d)^2\).
 On \(d=o(n^{1/8})\) the uncertainty is fine enough to see a scale \(d^{-6}\), but
@@ -1020,7 +1026,7 @@ Since \(v(D)\ge D^{-3}\), the hypothesis \(L=o(v(D)^{-1/3})\) forces \(L=o(D)\).
 Thus \(d\le 2D\) for large \(n\), and \(v(d)\le 8v(D)\).
 In particular \(\alpha_{\mathrm{ch}}\ge d^{-1}\) and
 \(\alpha_{\mathrm{ch}}\le 2v(D)^{1/3}=o(1/L)=o(1)\).
-Lemma~\ref{lem:moments} gives
+Lemma~\ref{lem:ratio-error} gives
 \(\Var Y/(\EE Y)^2\le v(d)\) after enlarging the absolute constant inside \(v\).
 Chebyshev's inequality at relative height \(\alpha_{\mathrm{ch}}\) therefore costs at most
 \(v(d)/\alpha_{\mathrm{ch}}^2=v(d)^{1/3}\).
@@ -1054,8 +1060,10 @@ On the complementary event one has
 \end{proof}
 
 \begin{proof}[Proof of Corollary~\ref{cor:mega}]
-At \(D=\lfloor n^{1/5}\rfloor\) both summands of \(v(D)\) are \(\Theta(n^{-3/5})\),
-so \(v(D)^{-1/3}=\Theta(n^{1/5})\).
+The summands of \(v(D)=D^{-3}+D/n\) meet when \(D^4=n\), i.e.\ at
+\(D=\lfloor n^{1/4}\rfloor\). There \((n^{1/4})/n=n^{-3/4}\), so
+\(v(D)=\Theta(n^{-3/4})\) and \(v(D)^{-1/3}=\Theta(n^{1/4})\), because
+\((n^{-3/4})^{-1/3}=n^{1/4}\).
 \end{proof}
 
 \section{Beyond exact \texorpdfstring{\(o(\sqrt{n})\)}{o(sqrt(n))}}
@@ -1903,7 +1911,7 @@ Proposition~\ref{prop:host-gap} blocks the shortcut through~\cite[(1.1)]{CFG25}.
 Conjecture~\ref{conj:config-split} stays open.
 The conditional route past the second-moment ceiling is Theorem~\ref{thm:fourth-chains}:
 a Gaussian fourth-moment bound on perfect-matching counts would move the Chernoff
-window from \(n^{2/7}\) to \(n^{4/13}\).
+window from \(n^{2/5}\) to \(n^{4/9}\).
 Proposition~\ref{prop:moment-precision} shows that the factor \(1+O(d^2/n)\) in
 Lemma~\ref{lem:cor15} is too coarse to certify that bound on this range.
 \end{remark}

@@ -437,3 +437,213 @@ Query: simplify (n^(1/2))^3/n^2
 simplify | sqrt(n)^3/n^2
 [Result]
 1/sqrt(n)
+
+
+Query: simplify (d^4/n^2)/(d*n)
+[Input interpretation]
+simplify | (d^4/n^2)/(d n)
+[Result]
+d^3/n^3
+
+
+Query: simplify (d^3/n)/(d*n)
+[Input interpretation]
+simplify | (d^3/n)/(d n)
+[Result]
+d^2/n^2
+
+
+Query: simplify (d^2/n)/(d*n)
+[Input interpretation]
+simplify | (d^2/n)/(d n)
+[Result]
+d/n^2
+
+
+Query: simplify n*(d/n^2)
+[Input interpretation]
+simplify | n × d/n^2
+[Result]
+d/n
+
+
+Query: simplify (d^4/n^3)/(d/n)
+[Input interpretation]
+simplify | (d^4/n^3)/(d/n)
+[Result]
+d^3/n^2
+
+
+Query: simplify sqrt(n/d)*d^2/n^2
+[Input interpretation]
+simplify | sqrt(n/d) × d^2/n^2
+[Result]
+1/(n/d)^(3/2)
+
+
+Query: simplify sqrt(n/d)*d^2/n^2 - (d/n)^(3/2) for d>0 and n>0
+[Input interpretation]
+simplify | {sqrt(n/d) × d^2/n^2 - (d/n)^(3/2) d>0, n>0}
+[Results]
+{d^2 n^2 (sqrt(n/d) - n sqrt(d/n))>0, n>0}
+[Results]
+{(d (d sqrt(n/d) - n^2 (d/n)^(3/2)))/n^2>0, n>0}
+[Results]
+{-(d (n^2 (d/n)^(3/2) - d sqrt(n/d)))/n^2>0, n>0}
+[Expanded form]
+{(d^2 sqrt(n/d))/n^2 - (d^2 sqrt(d/n))/n>0, n>0}
+
+
+Query: simplify (d/n)^(3/2)/(d/n) for d>0 and n>0
+[Input interpretation]
+simplify | {(d/n)^(3/2)/(d/n) d>0, n>0}
+[Expanded form]
+{d sqrt(d/n)>0, n>0}
+
+
+Query: sqrt(n/d)*d^2/n^2 == (d/n)^(3/2) for d>0, n>0
+[Input]
+{sqrt(n/d) × d^2/n^2 = (d/n)^(3/2) d>0, n>0}
+[Alternate forms]
+{1/(n/d)^(3/2) = d (d/n)^(3/2)>0, n>0}
+[Alternate forms]
+{d sqrt(n/d) = (d/n)^(3/2) n^2 ∧ d (d/n)^(3/2)>0, n>0}
+[Expanded form]
+{(d^2 sqrt(n/d))/n^2 = (d^2 sqrt(d/n))/n>0, n>0}
+[Alternate form assuming d and n are positive]
+{(d/n)^(3/2) = d^(5/2)/n^(3/2)>0, n>0}
+[Solution]
+d = 1, n>0
+[Integer solutions]
+d = 1, n = 1
+[Integer solutions]
+d = 1, n = 2
+[Integer solutions]
+d = 1, n = 3
+[Integer solutions]
+d = 1, n = 4
+[Integer solutions]
+d = 1, n = 5
+
+
+Query: (d/n)^(3/2)/(d/n) == sqrt(d/n) for d>0, n>0
+[Input]
+{(d/n)^(3/2)/(d/n) = sqrt(d/n) d>0, n>0}
+[Solution]
+d = 1, n>0
+[Integer solutions]
+d = 1, n = 1
+[Integer solutions]
+d = 1, n = 2
+[Integer solutions]
+d = 1, n = 3
+[Integer solutions]
+d = 1, n = 4
+[Integer solutions]
+d = 1, n = 5
+
+
+Query: FullSimplify[Sqrt[n/d]*d^2/n^2 - (d/n)^(3/2), Assumptions -> d>0 && n>0]
+[error]
+no result
+
+
+Query: FullSimplify[(d/n)^(3/2)/(d/n) - Sqrt[d/n], Assumptions -> d>0 && n>0]
+[error]
+no result
+
+Fallback, exact rational arithmetic, after Wolfram returned no equality.
+The domain clause in the preceding equality queries was parsed as an extra equation and solved only at d=1; that is not a counterexample.
+For d>0 and n>0 both sides of sqrt(n/d)*d^2/n^2 = (d/n)^(3/2) are positive, and their squares are the same rational:
+(n/d)*d^4/n^4 = d^3/n^3 = ((d/n)^(3/2))^2.
+Likewise ((d/n)^(3/2)/(d/n))^2 = d/n = (sqrt(d/n))^2.
+Checked as equal for every integer pair 1<=d<n<80.
+
+
+Query: simplify (n^(1/4))/n
+[Input interpretation]
+simplify | n^(1/4)/n
+[Result]
+1/n^(3/4)
+
+
+Query: simplify (n^(-3/4))^(-1/3)
+[Input interpretation]
+simplify | (n^(-3/4))^(-1/3)
+[Result]
+n^(1/4)
+
+
+Query: simplify (1/4)-(1/5)
+[Input interpretation]
+simplify | 1/4 - 1/5
+[Result]
+1/20
+[Quotient and Remainder]
+1 = (0) × 20 + 1
+[Decimal form]
+0.05
+
+
+Query: simplify (n^(1/4))^3/n
+[Input interpretation]
+simplify | (n^(1/4))^3/n
+[Result]
+1/n^(1/4)
+
+
+Query: simplify (4/9)*(9/10)
+[Input interpretation]
+simplify | 4/9 × 9/10
+[Result]
+2/5
+[Quotient and Remainder]
+2 = (0) × 5 + 2
+[Decimal form]
+0.4
+
+
+Query: simplify (5/9)*(9/10)
+[Input interpretation]
+simplify | 5/9 × 9/10
+[Result]
+1/2
+[Quotient and Remainder]
+1 = (0) × 2 + 1
+[Decimal form]
+0.5
+
+
+Query: simplify (4/9)-(2/5)
+[Input interpretation]
+simplify | 4/9 - 2/5
+[Result]
+2/45
+[Quotient and Remainder]
+2 = (0) × 45 + 2
+[Decimal approximation]
+0.0444444444444444444444444444444444444444444444444444444444444444...
+[Repeating decimal]
+0.04^_ (period 1)
+
+
+Query: simplify (n^(4/9))^(9/10)/n^(2/5)
+[Input interpretation]
+simplify | (n^(4/9))^(9/10)/n^(2/5)
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: simplify (2/5)-(1/8)
+[Input interpretation]
+simplify | 2/5 - 1/8
+[Result]
+11/40
+[Quotient and Remainder]
+11 = (0) × 40 + 11
+[Decimal form]
+0.275
+[Percent decrease]
+2/5 - 1/8 = 11/40 is 31.25% smaller than 2/5.
