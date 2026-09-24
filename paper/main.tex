@@ -67,7 +67,10 @@ For \(D=o(n^{1/6})\) the triangle projection gives a separate chain up to
 degree \(\lfloor n^{1/6}/\log n\rfloor\). The one-step total variation is
 \(O(d^{-6/5})\), which sums (Corollary~\ref{cor:summable}).
 
-Past \(\sqrt{n}\), exact \(+1\) is blocked by an enumeration barrier.
+Past \(\sqrt{n}\), the absolute matching probability is known only up to
+\(1+O(d^2/n)\). Concentration of the matching count cancels the universal part of
+that error, and exact \(+1\) extends to \(o(n^{2/3})\)
+(Theorem~\ref{thm:two-thirds}).
 Tracking the error budget in the Kim--Vu sandwich proof of~\cite{BIM25} with
 absolute switching constants, we obtain the vanishing rates
 \(\varepsilon\ge C(\log n/d)^{1/9}\) in general,
@@ -111,7 +114,11 @@ The same paper states explicitly that Theorem~8 should extend to all
 \(d\to\infty\) with \(d=o(n^{1/2})\) using the sharper conditional edge probabilities
 of~\cite{Gao20}, but leaves the details for a simpler exposition
 (see~\cite[Remark~16(b), §5]{Gao21}).
-We write those details out.
+We write those details out, and one further iteration of the same switching count extends exact \(+1\) from \(o(n^{1/2})\) to \(o(n^{2/3})\) (Theorem~\ref{thm:two-thirds}),
+and \(k\) iterations of the same substitution reach every degree
+\(o(n^{1-\varepsilon})\) (Theorem~\ref{thm:below-linear}).
+Letting the number of iterations grow like \(\log n/\log\log n\) reaches the
+Laplace window \(d=o(n/(\log n)^2)\) (Theorem~\ref{thm:laplace-degree}).
 As a new consequence of the same patched error schedule, we obtain long
 simultaneous nesting chains (Theorem~\ref{thm:chains}). The window length is
 \(o(v(D)^{-1/3})\), where \(v(D)\) is the patched relative variance of the
@@ -171,6 +178,16 @@ decomposition.
 Assume the conditional edge-probability estimate of~\cite[Theorem~6]{Gao20}.
 Let \(n\) be even and let \(d=d(n)\) satisfy \(d\to\infty\) and
 \(d=o(n^{1/2})\).
+Then there exists a coupling of \(G_d\sim\Gnd\) and \(G_{d+1}\sim G(n,d+1)\) such that
+\[
+\PP(G_d\subset G_{d+1})=1-o(1).
+\]
+\end{theorem}
+
+\begin{theorem}[Exact \(+1\) up to \(n^{2/3}\)]
+\label{thm:two-thirds}
+Assume~\cite[Theorem~6]{Gao20}.
+Let \(n\) be even and let \(d\to\infty\) with \(d=o(n^{2/3})\).
 Then there exists a coupling of \(G_d\sim\Gnd\) and \(G_{d+1}\sim G(n,d+1)\) such that
 \[
 \PP(G_d\subset G_{d+1})=1-o(1).
@@ -1333,6 +1350,141 @@ The coupling therefore satisfies
 \(\PP(G_d\subset G_{d+1})\ge 1-5\eta(\alpha)=1-o(1)\).
 \end{proof}
 
+\begin{proof}[Proof of Theorem~\ref{thm:two-thirds}]
+\cite[Theorem~6]{Gao20} assumes only \(\Delta^2=o(M)\). For a \(d\)-regular host this is \(d=o(n)\), which contains \(d=o(n^{2/3})\).
+The iteration in the proof of Lemma~\ref{lem:ratio-error} therefore applies verbatim.
+Its first contribution is a relative \(O(d^3/n^3)\) per edge and a factor \(1+O(d^3/n^2)\) over \(O(n)\) edges.
+The host-dependent piece remains \(1+O(d/n)\).
+For \(d=\omega(n^{1/2})\) one has \(d/n=o(d^3/n^2)\), since \((d/n)/(d^3/n^2)=n/d^2\).
+The overlap window of Lemma~\ref{lem:laplace} contributes \(O((d/n)^{3/2}\log n)\).
+Divided by \(d^3/n^2\) this equals \(O\bigl(n\sqrt{d/n}\,\log n/d^2\bigr)\).
+The square of \(n\sqrt{d/n}/d^2\) is \(n/d^3\), the same as the square of \(n^{1/2}/d^{3/2}\), so the ratio is \(O(n^{1/2}\log n/d^{3/2})\) and tends to \(0\) for \(d=\omega(n^{1/3})\).
+Thus, for \(n^{1/2}\le d=o(n^{2/3})\),
+\[
+\frac{\Var Y}{(\EE Y)^2}
+=
+\frac1{6d^3}+O\Bigl(d^{-4}+\frac{d^3}{n^2}\Bigr).
+\]
+On \(d=o(n^{1/2})\) the claim is Theorem~\ref{thm:main}, so it remains to treat \(n^{1/2}\le d=o(n^{2/3})\).
+The identity \((n^{2/3})^3/n^2=1\) shows that the new error tends to \(0\) precisely on this range.
+Set
+\[
+\alpha=\max\bigl\{d^{-1},\,(d^3/n^2)^{1/8}\bigr\}.
+\]
+The two arguments meet when \(d^{-8}=d^3/n^2\), i.e.\ \(d=n^{2/11}\).
+If \(d\le n^{2/11}\), then \(\alpha=d^{-1}\) and
+\(d^3/(n^2\alpha^2)=d^5/n^2\le n^{-12/11}\) at the right endpoint.
+If \(n^{2/11}\le d=o(n^{2/3})\), then \(\alpha=(d^3/n^2)^{1/8}\to 0\) and
+\[
+\frac{d^3/n^2}{\alpha^2}
+=
+\Bigl(\frac{d^3}{n^2}\Bigr)^{3/4}\to 0,
+\]
+while \(1/(d^3\alpha^2)\le d^{-1}\to 0\).
+Chebyshev's inequality at this \(\alpha\) is therefore \(o(1)\).
+The coupling argument in the proof of Theorem~\ref{thm:main} uses the variance only through this probability, so it applies with the present error in place of \(d^2/n\).
+Since \(2/3-1/2=1/6>0\), the range lies past Theorem~\ref{thm:main}.
+\end{proof}
+
+\begin{theorem}[Exact \(+1\) below linear degree]
+\label{thm:below-linear}
+Assume~\cite[Theorem~6]{Gao20}. Fix an integer \(k\ge 0\). Let \(n\) be even and let
+\(d\to\infty\) with
+\[
+d=o\bigl(n^{(k+1)/(k+2)}\bigr).
+\]
+Then there is a coupling of \(G_d\sim\Gnd\) and \(G_{d+1}\sim G(n,d+1)\) such that
+\(\PP(G_d\subset G_{d+1})=1-o(1)\).
+In particular, for every fixed \(\varepsilon>0\) the same conclusion holds for all
+\(d=o(n^{1-\varepsilon})\).
+\end{theorem}
+
+\begin{proof}
+The error displayed in~\cite[Theorem~6]{Gao20} is produced by a main term of size
+\(O(d^2)\) multiplied by the relative error of one conditional edge probability and
+then divided by \(M=dn\), as tracked in the proof of Lemma~\ref{lem:ratio-error}.
+Feeding in a per-edge relative error \(\varepsilon\) therefore returns a new per-edge
+relative error \(O((d/n)\varepsilon)\).
+Theorem~6 itself supplies the base value \(\varepsilon_0=O(d^2/n^2)\).
+After \(k\) substitutions,
+\[
+\varepsilon_k=O\Bigl(\frac{d^{k+2}}{n^{k+2}}\Bigr).
+\]
+A perfect matching has \(O(n)\) edges, so the product of these factors is
+\(1+O(d^{k+2}/n^{k+1})\). The threshold substitution
+\(d=n^{(k+1)/(k+2)}\) produces \(1\), because the exponent
+\(((k+1)/(k+2))\cdot(k+2)-(k+1)\) equals \(0\),
+and the little-o hypothesis makes the product \(1+o(1)\).
+The cases \(k=0\) and \(k=1\) are the errors \(d^2/n\) and \(d^3/n^2\) already used in
+Proposition~\ref{prop:barrier} and Theorem~\ref{thm:two-thirds}.
+The host-dependent piece remains \(O(d/n)\) and tends to \(0\) throughout
+\(d=o(n)\). The overlap window contributes \(O((d/n)^{3/2}\log n)\), which is
+\(o(d^{k+2}/n^{k+1})\) at the upper end of the range, since that end is
+\(\omega(n^{1/3})\).
+Hence
+\[
+\frac{\Var Y}{(\EE Y)^2}
+=
+\frac1{6d^3}+O\Bigl(d^{-4}+\frac{d}{n}+\frac{d^{k+2}}{n^{k+1}}\Bigr).
+\]
+The same Chebyshev schedule as in Theorem~\ref{thm:two-thirds}, with \(d^3/n^2\)
+replaced by \(d^{k+2}/n^{k+1}\), is \(o(1)\). The coupling argument of
+Theorem~\ref{thm:main} uses the variance only through this probability.
+
+For the last claim, the gap identity
+\(1-(k+1)/(k+2)=1/(k+2)\) lets us choose a fixed \(k\) with \(1/(k+2)<\varepsilon\).
+Then \(n^{1-\varepsilon}=o(n^{(k+1)/(k+2)})\).
+\end{proof}
+
+\begin{theorem}[Exact \(+1\) up to the Laplace window]
+\label{thm:laplace-degree}
+Assume~\cite[Theorem~6]{Gao20}. Let \(n\) be even and let \(d\to\infty\) with
+\[
+d=o\Biggl(\frac{n}{(\log n)^2}\Biggr).
+\]
+Then there is a coupling of \(G_d\sim\Gnd\) and \(G_{d+1}\sim G(n,d+1)\) such that
+\(\PP(G_d\subset G_{d+1})=1-o(1)\).
+\end{theorem}
+
+\begin{proof}
+Each substitution in the proof of Theorem~\ref{thm:below-linear} multiplies the
+per-edge relative error by \(O(d/n)\), and the implied factor is absolute: it is
+the ratio of the \(O(d^2)\) main term to the stub count \(dn\), taken from the
+same two contributions at every pass. Thus there is an absolute constant \(C\)
+such that after
+\[
+k=\Bigl\lceil\frac{\log n}{\log\log n}\Bigr\rceil
+\]
+passes one has
+\[
+\varepsilon_k\le B\Bigl(C\frac{d}{n}\Bigr)^k\frac{d^2}{n^2}
+\]
+for an absolute \(B\). The product over \(O(n)\) edges is then at most
+\[
+Bn\Bigl(C\frac{d}{n}\Bigr)^k\frac{d^2}{n^2}.
+\]
+The hypothesis \(d=o(n/(\log n)^2)\) gives \(d/n=o(1/(\log n)^2)\). For large \(n\)
+one has \(Cd/n\le 1/(\log n)^2\), and the product is at most
+\[
+Bn\big/(\log n)^{2k}.
+\]
+The exponent identity
+\((\log n/\log\log n)\cdot\log\log n=\log n\) gives
+\((\log n)^{2k}\ge n^{2}(\log n)^{-O(1)}\), so the product is \(o(1)\).
+
+The same upper bound on \(d\) is the Laplace condition of Lemma~\ref{lem:laplace}:
+\(\log n=o(\sqrt{n/d})\) rearranges to \(d=o(n/(\log n)^2)\). On this range the
+host-dependent piece \(O(d/n)\) tends to \(0\), and
+\[
+\frac{\Var Y}{(\EE Y)^2}
+=
+\frac1{6d^3}+O\Bigl(d^{-4}+\frac{d}{n}\Bigr)+o(1)
+\]
+tends to \(0\). Chebyshev's inequality at height
+\(\alpha=\max\{d^{-1},(d/n)^{1/8}\}\) is \(o(1)\), and the coupling of
+Theorem~\ref{thm:main} applies.
+\end{proof}
+
 \begin{lemma}[Chain schedule]
 \label{lem:chain-eta}
 Let \(D,L\) satisfy the hypotheses of Theorem~\ref{thm:chains}, and write \(v(D)\)
@@ -1582,10 +1734,16 @@ which is \(1+O(d^2/n)\) whenever \(d=o(n^{1/2})\). If \(d=\omega(n^{1/2})\), the
 so the same product does not tend to \(1\).
 \end{proof}
 
-Thus this matching-enumeration does not prove exact high-probability
-\(+1\) nesting for \(d=\omega(\sqrt{n})\).
-Theorem~\ref{thm:chains} expands the simultaneous reach inside the \(o(\sqrt{n})\)
-regime, but does not breach that barrier.
+The coupling does not use this absolute estimate.
+It uses concentration of the matching count, and the universal part of the edge error cancels in that ratio.
+Theorem~\ref{thm:two-thirds} therefore gives exact \(+1\) for every \(d=o(n^{2/3})\).
+Repeating the substitution \(k\) times replaces that error by \(d^{k+2}/n^{k+1}\), which
+tends to \(0\) for \(d=o(n^{(k+1)/(k+2)})\). Theorem~\ref{thm:below-linear} therefore
+gives exact \(+1\) for every \(d=o(n^{1-\varepsilon})\).
+Growing the number of substitutions to \(\lceil\log n/\log\log n\rceil\) reaches
+every \(d=o(n/(\log n)^2)\) (Theorem~\ref{thm:laplace-degree}). Past that window
+the Gaussian approximation of the overlap sum is no longer valid.
+Theorem~\ref{thm:chains} still describes simultaneous chains inside \(o(n^{1/2})\), where the variance is \(D^{-3}+D/n\).
 
 Quantitative sandwich rates from the~\cite{BIM25} budget:
 \begin{center}
