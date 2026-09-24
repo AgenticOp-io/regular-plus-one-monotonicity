@@ -119,6 +119,9 @@ and \(k\) iterations of the same substitution reach every degree
 \(o(n^{1-\varepsilon})\) (Theorem~\ref{thm:below-linear}).
 Letting the number of iterations grow like \(\log n/\log\log n\) reaches the
 Laplace window \(d=o(n/(\log n)^2)\) (Theorem~\ref{thm:laplace-degree}).
+A shorter overlap window, of width \(\bar k^{2/3}\) rather than \(\sqrt{\bar k}\,\log n\),
+removes that restriction and gives exact \(+1\) for every \(d=o(n)\)
+(Theorem~\ref{thm:sublinear}).
 As a new consequence of the same patched error schedule, we obtain long
 simultaneous nesting chains (Theorem~\ref{thm:chains}). The window length is
 \(o(v(D)^{-1/3})\), where \(v(D)\) is the patched relative variance of the
@@ -1485,6 +1488,77 @@ tends to \(0\). Chebyshev's inequality at height
 Theorem~\ref{thm:main} applies.
 \end{proof}
 
+\begin{lemma}[Overlap sum past the logarithmic window]
+\label{lem:overlap-wide}
+Let \(d\to\infty\) and \(d=o(n)\). Let \((a_k)\) satisfy the ratio hypothesis of
+Lemma~\ref{lem:laplace}. Set \(\bar k=n/(2d)\) and \(\sigma=\sqrt{\bar k}\). Then
+\(\bar k\to\infty\) and
+\[
+\sum_k a_k
+=
+a_m\sigma\sqrt{2\pi}\,(1+o(1)),
+\]
+where \(m=\lfloor\bar k\rfloor\).
+\end{lemma}
+
+\begin{proof}
+The hypothesis \(d=o(n)\) is \(\bar k\to\infty\). Set \(\lambda=\bar k^{1/6}\). The window
+\(|\delta|\le\lambda\sigma\) has width \(\lambda\sigma=\bar k^{2/3}=o(\bar k)\), so it lies
+inside \(k\le n/3\) for large \(n\), and the scale \(u=\delta/\bar k\) tends to \(0\).
+The expansion in the proof of Lemma~\ref{lem:laplace} therefore applies on this window.
+The even piece of size \(\delta^2/\bar k^2\) is at most \(\lambda^2/\bar k=\bar k^{-2/3}\).
+The terms of order \(j\ge 4\) are of size \(\lambda^4/\sigma^2\). The identity
+\((\bar k^{1/6})^4/\bar k=\bar k^{-1/3}\) shows that this tends to \(0\).
+The cubic piece sums to a relative \(O(1/\sigma^2)=O(d/n)\), as in that proof, and
+\(d/n\to 0\).
+Outside the window and up to distance \(\bar k/2\) from \(m\), the same quadratic bound
+gives \(\log(a_{m+\delta}/a_m)\le-\delta^2/(4\bar k)\). At the window edge
+\(\delta^2/\bar k=\lambda^2=\bar k^{1/3}\), so those tails are
+\(O(e^{-c\bar k^{1/3}})=o(1)\). Beyond \(2\bar k\), \(r_0(k)\le 2/3\) and the series is
+geometric of size \(O(e^{-c\bar k})\).
+Odd summands cancel against the even Gaussian weight, as in Lemma~\ref{lem:laplace}.
+The resulting relative error tends to \(0\).
+\end{proof}
+
+\begin{theorem}[Exact \(+1\) for every sublinear degree]
+\label{thm:sublinear}
+Assume~\cite[Theorem~6]{Gao20}. Let \(n\) be even and let \(d\to\infty\) with \(d=o(n)\).
+Then there is a coupling of \(G_d\sim\Gnd\) and \(G_{d+1}\sim G(n,d+1)\) such that
+\(\PP(G_d\subset G_{d+1})=1-o(1)\).
+\end{theorem}
+
+\begin{proof}
+Write \(L=n/d\), so \(L\to\infty\). Let \(C\) and \(B\) be the absolute constants of
+Theorem~\ref{thm:laplace-degree}, and set
+\[
+k=\Bigl\lceil\frac{2\log n}{\log(L/C)}\Bigr\rceil
+\]
+once \(L>2C\). The same recurrence gives a per-edge relative error at most
+\(B(Cd/n)^k(d^2/n^2)\). The product over \(O(n)\) edges is at most
+\[
+Bn\Bigl(\frac{C}{L}\Bigr)^k\frac1{L^2}.
+\]
+The choice of \(k\) makes \((L/C)^k\ge n^2\), so the product is \(O(1/(nL^2))=o(1)\).
+
+Lemma~\ref{lem:overlap-wide} replaces Lemma~\ref{lem:laplace} in the second-moment
+sum. The Gaussian integral is therefore known up to a factor \(1+o(1)\), and the
+algebra of~\cite[§3.4.1]{Gao21} returns
+\[
+\frac{\Var Y}{(\EE Y)^2}
+=
+\frac1{6d^3}+O(d^{-4})+O\Bigl(\frac{d}{n}\Bigr)+o(1).
+\]
+Every term tends to \(0\). Chebyshev's inequality at height
+\(\alpha=\max\{d^{-1},(d/n)^{1/8}\}\) is \(o(1)\).
+The two arguments of the maximum meet when \((d/n)^{1/8}=d^{-1}\), i.e.\ \(d^9=n\).
+For \(d\ge n^{1/9}\) one has \((d/n)/\alpha^2=(d/n)^{3/4}\to 0\).
+For \(d\le n^{1/9}\) one has \((d/n)/\alpha^2=d^3/n\le n^{-2/3}\), because
+\((n^{1/9})^3/n=n^{-2/3}\), and \(1/(d^3\alpha^2)\le d^{-1}\to 0\).
+Lemma~\ref{lem:tv} and the coupling in the proof of Theorem~\ref{thm:main} use only
+this concentration, together with subgraph ratios of relative error \(o(1)\), both
+of which hold here.
+\end{proof}
+
 \begin{lemma}[Chain schedule]
 \label{lem:chain-eta}
 Let \(D,L\) satisfy the hypotheses of Theorem~\ref{thm:chains}, and write \(v(D)\)
@@ -1741,8 +1815,11 @@ Repeating the substitution \(k\) times replaces that error by \(d^{k+2}/n^{k+1}\
 tends to \(0\) for \(d=o(n^{(k+1)/(k+2)})\). Theorem~\ref{thm:below-linear} therefore
 gives exact \(+1\) for every \(d=o(n^{1-\varepsilon})\).
 Growing the number of substitutions to \(\lceil\log n/\log\log n\rceil\) reaches
-every \(d=o(n/(\log n)^2)\) (Theorem~\ref{thm:laplace-degree}). Past that window
-the Gaussian approximation of the overlap sum is no longer valid.
+every \(d=o(n/(\log n)^2)\) (Theorem~\ref{thm:laplace-degree}).
+Lemma~\ref{lem:overlap-wide} uses a window of width \(\bar k^{2/3}\), which remains
+\(o(\bar k)\) whenever \(\bar k\to\infty\), and Theorem~\ref{thm:sublinear} gives
+exact \(+1\) for every \(d=o(n)\). At linear degree the host-dependent factor
+\(O(d/n)\) no longer tends to \(0\).
 Theorem~\ref{thm:chains} still describes simultaneous chains inside \(o(n^{1/2})\), where the variance is \(D^{-3}+D/n\).
 
 Quantitative sandwich rates from the~\cite{BIM25} budget:

@@ -973,3 +973,54 @@ simplify | log(n)/log(log(n)) log(log(n)) - log(n)
 0
 [Quotient and Remainder]
 0 = (0) × 1 + 0
+
+
+Query: simplify (k^(1/6))^4/k
+[Input interpretation]
+simplify | (k^(1/6))^4/k
+[Result]
+1/k^(1/3)
+
+
+Query: simplify k^(2/3)/k
+[Input interpretation]
+simplify | k^(2/3)/k
+[Result]
+1/k^(1/3)
+
+
+Query: simplify (k^(1/6))^2/k
+[Input interpretation]
+simplify | (k^(1/6))^2/k
+[Result]
+1/k^(2/3)
+
+
+Query: simplify (2*Log[n]/Log[L])*Log[L] - 2*Log[n]
+[Input interpretation]
+simplify | (2 × log(n)/log(L)) log(L) - 2 log(n)
+[Expanded logarithmic form]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify (k^(1/6))^2
+[Input interpretation]
+simplify | (k^(1/6))^2
+[Result]
+k^(1/3)
+
+
+Query: simplify (n^(1/7))^3/n
+[Input interpretation]
+simplify | (n^(1/7))^3/n
+[Result]
+1/n^(4/7)
+
+
+Query: simplify (n^(1/9))^3/n
+[Input interpretation]
+simplify | (n^(1/9))^3/n
+[Result]
+1/n^(2/3)
