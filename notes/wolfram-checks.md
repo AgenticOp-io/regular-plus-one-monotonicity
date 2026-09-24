@@ -1148,3 +1148,376 @@ Query: v/(v^(1/3))^2 - v^(1/3) = 0
 v/(v^(1/3))^2 - v^(1/3) = 0
 [Result]
 True
+
+
+Query: ((n/2-2)*n+2*k)/(2*(n/2-1)^2*k) - (n^2-4*n+4*k)/((n-2)^2*k) = 0
+[Input]
+((n/2 - 2) n + 2 k)/(2 (n/2 - 1)^2 k) - (n^2 - 4 n + 4 k)/((n - 2)^2 k) = 0
+[Result]
+True
+
+
+Query: sum_{k=0}^{infinity} exp(-1)/k! = 1
+[Input interpretation]
+sum_(k=0)^∞ exp(-1)/(k!) = 1
+[Result]
+True
+
+
+Query: 2*(n/2)^3/n - n^2/4 = 0
+[Input]
+2 × (n/2)^3/n - n^2/4 = 0
+[Solution]
+n!=0
+
+
+Query: 2*(n/2)^3/n - n^2/4
+[Input]
+2 × (n/2)^3/n - n^2/4
+[Result]
+0 (for n!=0)
+
+
+Query: (n^2-4*n+4*k)/((n-2)^2*k) - (1/k)*(1+4*(k-1)/(n-2)^2) = 0
+[Input]
+(n^2 - 4 n + 4 k)/((n - 2)^2 k) - 1/k (1 + 4 × (k - 1)/(n - 2)^2) = 0
+[Result]
+True
+
+
+Query: 2*k*(1-2*k/n)^2 + (n-2*k)*(2*k/n)^2 - 2*k
+[Input]
+2 k (1 - 2 × k/n)^2 + (n - 2 k) (2 × k/n)^2 - 2 k
+[Result]
+(4 k^2 (n - 2 k))/n^2 + 2 k (1 - (2 k)/n)^2 - 2 k
+[Values]
+k | 
+0 | 0
+1 | (4 (n - 2))/n^2 + 2 (1 - 2/n)^2 - 2
+2 | (16 (n - 4))/n^2 + 4 (1 - 4/n)^2 - 4
+3 | (36 (n - 6))/n^2 + 6 (1 - 6/n)^2 - 6
+[Alternate form]
+(4 (-1) k^2)/n
+[Expanded form]
+-(4 k^2)/n
+[Root]
+n!=0, k = 0
+[Property as a function]
+odd
+[Derivative]
+d/dn(2 k (1 - (2 k)/n)^2 + (n - 2 k) ((2 k)/n)^2 - 2 k) = (4 k^2)/n^2
+[Indefinite integral]
+integral(-2 k + 2 k (1 - (2 k)/n)^2 + (4 k^2 (-2 k + n))/n^2) dn = -4 k^2 log(n) + constant
+(assuming a complex-valued logarithm)
+[Limit]
+lim_(n->±∞)(-2 k + 2 k (1 - (2 k)/n)^2 + (4 k^2 (-2 k + n))/n^2) = 0
+[Series representation]
+-2 k + 2 k (1 - (2 k)/n)^2 + (4 k^2 (-2 k + n))/n^2 = sum_(ν=0)^∞ (-1 + n)^ν (-4) ((-1)^ν k^2) for abs(1 - n)<1
+
+
+Query: 2*k*(1-2*k/n)+(n-2*k)*(-2*k/n)
+[Input]
+2 k (1 - 2 × k/n) + (n - 2 k) (-2 × k/n)
+[Result]
+0
+[Values]
+k | 
+0 | 0
+1 | 2 (1 - 2/n) - (2 (n - 2))/n
+2 | 4 (1 - 4/n) - (4 (n - 4))/n
+3 | 6 (1 - 6/n) - (6 (n - 6))/n
+[Property as a function]
+even and odd
+[Limit]
+lim_(n->±∞)(2 k (1 - (2 k)/n) - (2 k (-2 k + n))/n) = 0
+
+
+Query: limit as n to infinity of n/(8*k)*4*(2*k-4*k^2/n)/(n-2)
+[Limit]
+lim_(n->∞) (n 4 (2 k - (4 k^2)/n))/((8 k) (n - 2)) = 1
+[Series expansion at n = ∞]
+1 + (2 - 2 k)/n + (4 - 4 k)/n^2 + (8 - 8 k)/n^3 + (16 - 16 k)/n^4 + O((1/n)^5)
+(Laurent series)
+
+
+Query: limit as n to infinity of (n/2)/(n-1)
+[Limit]
+lim_(n->∞) n/(2 (n - 1)) = 1/2
+[Series expansion at n = ∞]
+1/2 + 1/(2 n) + 1/(2 n^2) + 1/(2 n^3) + 1/(2 n^4) + O((1/n)^5)
+(Laurent series)
+
+
+Query: exp((2-1)/2) - exp(1/2) = 0
+[Input]
+exp((2 - 1)/2) - exp(1/2) = 0
+[Result]
+True
+
+
+Query: 2*e/(n-2)*(1-1/(n-1)) - 2*e/(n-1) = 0
+[Input]
+2 × e/(n - 2) (1 - 1/(n - 1)) - 2 × e/(n - 1) = 0
+[Result]
+True
+
+
+Query: limit as n to infinity of (n-2*k)*log((n-2)/(n+2))
+[Limit]
+lim_(n->∞) (n - 2 k) log((n - 2)/(n + 2)) = -4
+[Series expansion at n = ∞]
+-4 + (8 k)/n - 16/(3 n^2) + (32 k)/(3 n^3) - 64/(5 n^4) + O((1/n)^5)
+(Laurent series)
+
+
+Query: (n/2-1)/(n/2+1) - (n-2)/(n+2) = 0
+[Input]
+(n/2 - 1)/(n/2 + 1) - (n - 2)/(n + 2) = 0
+[Result]
+True
+
+
+Query: limit as n to infinity of (4*((n/2)-2)^2 - (((n/2)^2)-5)*(2*k/n)^2 - (2*(n/2)^2 - 14*(n/2) + 20)*(2*k/n)) / (4*((n/2)-2 + 2*k/n)^2)
+[Limit]
+lim_(n->∞) (4 (n/2 - 2)^2 - ((n/2)^2 - 5) ((2 k)/n)^2 - ((2 (n/2)^2 - (14 n)/2 + 20) (2 k))/n)/(4 (n/2 - 2 + (2 k)/n)^2) = 1
+[Series expansion at n = ∞]
+1 - k/n - (k (k + 2))/n^2 - (8 k)/n^3 + (4 k (2 k^2 + k - 8))/n^4 + O((1/n)^5)
+(Laurent series)
+
+
+Query: limit as n to infinity of LogGamma(n^2/2 - 2*n + 2*k + 1) + LogGamma(n^2/4 + 1) + (n-k)*Log[2] + n*Log[n/2] + (n-2*k)*Log[n/2 - 1] - LogGamma(n^2/4 - n + k + 1) - LogGamma(n^2/2 + 1) - n*Log[E/n] - n*(n/2 - 1)*Log[1 - 2/n] - n*Log[n/2] - 1/2 - k*Log[2]
+[error]
+no result
+
+
+Query: series of LogGamma(n^2/2 - 2*n + 2*k + 1) + LogGamma(n^2/4 + 1) - LogGamma(n^2/4 - n + k + 1) - LogGamma(n^2/2 + 1) + (n - 2*k)*Log[n/2 - 1] - n*Log[n/2] - n*Log[E/n] - n*(n/2 - 1)*Log[1 - 2/n] + n*Log[2] - 1/2 at n = infinity
+[error]
+no result
+
+
+Query: limit as n to infinity of LogGamma(n^2/2) + LogGamma(n^2/4) - LogGamma(n^2/4) - LogGamma(n^2/2)
+[Limit]
+lim_(n->∞)(logΓ(n^2/2) + logΓ(n^2/4) - logΓ(n^2/4) - logΓ(n^2/2)) = 0
+
+Fallback: the full LogGamma limit returned no result. Stirling's series through order 1, with rational coefficients, cancels every non-negative power of n except the constant, which equals -3/2 and is independent of k. Adding the checked limit 1 of the exponent phi gives -1/2.
+
+
+Query: exp(-1/2)*exp(1/2) - 1 = 0
+[Input]
+exp(-1/2) exp(1/2) - 1 = 0
+[Result]
+True
+
+
+Query: series of (n^2/4 - 1)^2 / (n*(n-4)/4 + k) - n^2/4 at n = infinity
+[Input interpretation]
+series | (n^2/4 - 1)^2/(n × (n - 4)/4 + k) - n^2/4 | point | n = ∞
+[Series expansion at n = ∞]
+n + (2 - k) + (8 - 8 k)/n + (4 (k^2 - 10 k + 9))/n^2 + (48 (k^2 - 4 k + 3))/n^3 + O((1/n)^4)
+(Laurent series)
+[Series representation at n = ∞]
+(-k n + 4 n^3 - 2 n + 1)/(4 k n^3 - 4 n^2 + n)
+
+
+Query: series of (n^2/4 - 1)^2 / (n*(n-4)/4 + k) - 2*(n*(n-2)/4) + n^2/4 at n = infinity
+[Input interpretation]
+series | (n^2/4 - 1)^2/(n × (n - 4)/4 + k) - 2 (n × (n - 2)/4) + n^2/4 | point | n = ∞
+[Series expansion at n = ∞]
+2 n + (2 - k) + (8 - 8 k)/n + (4 (k^2 - 10 k + 9))/n^2 + (48 (k^2 - 4 k + 3))/n^3 + O((1/n)^4)
+(Laurent series)
+[Series representation at n = ∞]
+(4 k n^2 - k n + 4 n^3 - 6 n + 2)/(4 k n^3 - 4 n^2 + n)
+
+
+Query: (n/2 - 1)^2 + 2*(n/2 - 1) - (n^2/4 - 1) = 0
+[Input]
+(n/2 - 1)^2 + 2 (n/2 - 1) - (n^2/4 - 1) = 0
+[Result]
+-n^2/4 + (n/2 - 1)^2 + 2 (n/2 - 1) + 1 = 0
+[Expanded form]
+True
+[Sum of roots]
+-({}[[-2]])/(Last[{}])
+[Product of roots]
+indeterminate
+
+
+Query: series of -(1 + 10*L - 10*L^2)/(12*L*(1-L)) at L = 1/2
+[Input interpretation]
+series | -(1 + 10 L - 10 L^2)/(12 L (1 - L)) | point | L = 1/2
+[Series expansion at L = 1/2]
+-7/6 - 4/3 (L - 1/2)^2 - 16/3 (L - 1/2)^4 + O((L - 1/2)^6)
+(Taylor series)
+(converges when abs(1 - 2 L)<1)
+[Approximations about L = 1/2 up to order 4]
+(order n approximation shown with n dots)
+[Series representation at L = 1/2]
+sum_(n>0) 1/6 (-(-2)^n - 2^n) (L - 1/2)^n - 7/6
+
+
+Query: series of psi( (n*(n-4)+4*k)/(2*n*(n-1)) ) + psi( n/(2*(n-1)) ) - 2*psi( (n-2)/(2*(n-1)) ) where psi(L) = -(1+10*L-10*L^2)/(12*L*(1-L)) at n = infinity
+[error]
+no result
+
+
+Query: series of -(1+10*a-10*a^2)/(12*a*(1-a)) -(1+10*b-10*b^2)/(12*b*(1-b)) +2*(1+10*c-10*c^2)/(12*c*(1-c)) at n=infinity where a=(n*(n-4)+4*k)/(2*n*(n-1)) and b=n/(2*(n-1)) and c=(n-2)/(2*(n-1))
+[error]
+no result
+
+
+Query: (4*k - 3*n)^2/(4*n^2*(n-1)^2) + 1/(4*(n-1)^2) - 1/(2*(n-1)^2) - (n^2 - 3*k*n + 2*k^2)/(n^2*(n-1)^2) = 0
+[Input]
+(4 k - 3 n)^2/(4 n^2 (n - 1)^2) + 1/(4 (n - 1)^2) - 1/(2 (n - 1)^2) - (n^2 - 3 k n + 2 k^2)/(n^2 (n - 1)^2) = 0
+[Result]
+-(2 k^2 - 3 k n + n^2)/((n - 1)^2 n^2) + (4 k - 3 n)^2/(4 (n - 1)^2 n^2) - 1/(4 (n - 1)^2) = 0
+[Alternate form assuming k and n are real]
+((n - 2 k) (n - k))/((n - 1) n) = 0
+[Expanded forms]
+-(2 k^2)/(n^4 - 2 n^3 + n^2) + (16 k^2)/(4 n^4 - 8 n^3 + 4 n^2) + (3 k n)/(n^4 - 2 n^3 + n^2) - (24 k n)/(4 n^4 - 8 n^3 + 4 n^2) - 1/(4 n^2 - 8 n + 4) - n^2/(n^4 - 2 n^3 + n^2) + (9 n^2)/(4 n^4 - 8 n^3 + 4 n^2) = 0
+[Expanded forms]
+(2 k^2)/((n - 1)^2 n^2) - (3 k)/((n - 1)^2 n) + 1/(n - 1)^2 = 0
+[Alternate forms]
+((n - 2 k) (n - k))/((n - 1)^2 n^2) = 0
+[Alternate forms]
+(2 k^2 - 3 k n + n^2)/((n - 1)^2 n^2) = 0
+[Alternate form assuming k and n are positive]
+((n - 2 k) (n - k))/(n - 1) = 0
+[Solutions]
+n = k, k^2 - k!=0
+[Solutions]
+n = 2 k, 2 k^2 - k!=0
+[Solution]
+k = 1/2, n = 1/2
+[Implicit derivatives]
+(dk(n))/(dn) = (4 k - 6 k^2 - 3 n + 5 k n)/(6 k - 10 k^2 - 5 n + 9 k n)
+[Implicit derivatives]
+(dn(k))/(dk) = (6 k - 10 k^2 - 5 n + 9 k n)/(4 k - 6 k^2 - 3 n + 5 k n)
+
+
+Query: (4*k - 3*n)^2/(4*n^2*(n-1)^2) - 1/(4*(n-1)^2) - 2*(n-k)*(n-2*k)/(n^2*(n-1)^2) = 0
+[Input]
+(4 k - 3 n)^2/(4 n^2 (n - 1)^2) - 1/(4 (n - 1)^2) - 2 (n - k) × (n - 2 k)/(n^2 (n - 1)^2) = 0
+[Result]
+(4 k - 3 n)^2/(4 (n - 1)^2 n^2) - (2 (n - 2 k) (n - k))/((n - 1)^2 n^2) - 1/(4 (n - 1)^2) = 0
+[Result]
+True
+
+
+Query: n/(2*(n-1)) - 1/2 - 1/(2*(n-1)) = 0
+[Input]
+n/(2 (n - 1)) - 1/2 - 1/(2 (n - 1)) = 0
+[Alternate form]
+True (for n!=1)
+
+
+Query: (n-2)/(2*(n-1)) - 1/2 + 1/(2*(n-1)) = 0
+[Input]
+(n - 2)/(2 (n - 1)) - 1/2 + 1/(2 (n - 1)) = 0
+[Result]
+True
+
+
+Query: (n*(n-4)+4*k)/(2*n*(n-1)) - 1/2 - (4*k-3*n)/(2*n*(n-1)) = 0
+[Input]
+(n (n - 4) + 4 k)/(2 n (n - 1)) - 1/2 - (4 k - 3 n)/(2 n (n - 1)) = 0
+[Result]
+True
+
+
+Query: series of (n*(n-1)/2)*((-a*Log[a]-(1-a)*Log[1-a]) + (-b*Log[b]-(1-b)*Log[1-b]) - 2*(-c*Log[c]-(1-c)*Log[1-c])) at n=infinity
+[Input interpretation]
+series | (n × (n - 1)/2) ((-a log(a) - (1 - a) log(1 - a)) + (-b log(b) - (1 - b) log(1 - b)) - 2 (-c log(c) - (1 - c) log(1 - c))) | point | n = ∞
+[Series expansion at n = ∞]
+1/2 n^2 ((a - 1) log(1 - a) - a log(a) + b log(1 - b) - log(1 - b) - b log(b) - 2 c log(1 - c) + 2 log(1 - c) + 2 c log(c)) + 1/2 n (-((a - 1) log(1 - a)) + a log(a) - b log(1 - b) + log(1 - b) + b log(b) + 2 c log(1 - c) - 2 log(1 - c) - 2 c log(c)) + O((1/n)^6)
+(Taylor series)
+(converges everywhere away from origin)
+
+
+Query: limit as n to infinity of (n - 2*k)^2/(4*(n*(n-3)+2*k)) + n/(8*(n-1))
+[Limit]
+lim_(n->∞)((n - 2 k)^2/(4 (n (n - 3) + 2 k)) + n/(8 (n - 1))) = 3/8
+[Series expansion at n = ∞]
+3/8 + (7/8 - k)/n + (k^2 - (7 k)/2 + 19/8)/n^2 + (5 k^2 - 12 k + 55/8)/n^3 + (-2 k^3 + 22 k^2 - (81 k)/2 + 163/8)/n^4 + O((1/n)^5)
+(Laurent series)
+
+
+Query: n*(n-1)/2 - (n-k) + n*(n-1)/2 - 2*(n*(n-1)/2 - n/2) - k = 0
+[Input]
+n × (n - 1)/2 - (n - k) + n × (n - 1)/2 - 2 (n × (n - 1)/2 - n/2) - k = 0
+[Result]
+(n - 1) n - n - 2 (1/2 (n - 1) n - n/2) = 0
+[Expanded form]
+True
+[Sum of roots]
+-({}[[-2]])/(Last[{}])
+[Product of roots]
+indeterminate
+
+
+Query: limit as n to infinity of (n - 2*k)^2/(4*(n*(n-3)+2*k)) + n/(4*(n-1))
+[Limit]
+lim_(n->∞)((n - 2 k)^2/(4 (n (n - 3) + 2 k)) + n/(4 (n - 1))) = 1/2
+[Series expansion at n = ∞]
+1/2 + (1 - k)/n + (k^2 - (7 k)/2 + 5/2)/n^2 + (5 k^2 - 12 k + 7)/n^3 + (-2 k^3 + 22 k^2 - (81 k)/2 + 41/2)/n^4 + O((1/n)^5)
+(Laurent series)
+
+
+Query: series of -L*Log[L] - (1-L)*Log[1-L] at L = 1/2
+[Input interpretation]
+series | -L log(L) - (1 - L) log(1 - L) | point | L = 1/2
+[Series expansion at L = 1/2]
+log(2) - 2 (L - 1/2)^2 - 4/3 (L - 1/2)^4 - 32/15 (L - 1/2)^6 + O((L - 1/2)^7)
+(Taylor series)
+[Approximations about L = 1/2 up to order 6]
+(order n approximation shown with n dots)
+[Series representation at L = 1/2]
+sum_(n>=2)-((-1)^n ((-2)^n + 2^n) (L - 1/2)^n)/(2 (n - 1) n) + log(2)
+
+
+Query: n*(n-4)/2 + 2*k - (n*(n-1)/2 - (n-k)) - (k - n/2) = 0
+[Input]
+n × (n - 4)/2 + 2 k - (n × (n - 1)/2 - (n - k)) - (k - n/2) = 0
+[Result]
+1/2 (n - 4) n - 1/2 (n - 1) n + (3 n)/2 = 0
+[Expanded form]
+True
+[Sum of roots]
+-({}[[-2]])/(Last[{}])
+[Product of roots]
+indeterminate
+
+
+Query: limit as n to infinity of (n - 2*a*n)^2/(4*(n*(n-3)+2*a*n)) + n/(4*(n-1)) - 1/2
+[Limit]
+lim_(n->∞)((n - 2 a n)^2/(4 (n (n - 3) + 2 a n)) + n/(4 (n - 1)) - 1/2) = (-1 + a) a
+[Values]
+a | 
+0 | 0
+1 | 0
+2 | 2
+3 | 6
+[Series expansion at n = ∞]
+(a - 1) a + (-2 a^3 + 5 a^2 - (7 a)/2 + 1)/n + ((4 a^2 - 8 a + 3)^2 + 1)/(4 n^2) + (1/4 - 1/4 (1 - 2 a)^2 (2 a - 3)^3)/n^3 + ((1 - 2 a)^2 (3 - 2 a)^4 + 1)/(4 n^4) + O((1/n)^5)
+(Laurent series)
+
+
+Query: (1 - L + L*cos(p))^2 + (L*sin(p))^2 - (1 - 2*L*(1-L)*(1-cos(p))) = 0
+[Input]
+(1 - L + L cos(p))^2 + (L sin(p))^2 - (1 - 2 L (1 - L) (1 - cos(p))) = 0
+[Result]
+True
+[Real solution]
+L = 0
+
+
+Query: 1/2 + a*(a-1) - 1/4 - (a - 1/2)^2 = 0
+[Input]
+1/2 + a (a - 1) - 1/4 - (a - 1/2)^2 = 0
+[Result]
+-(a - 1/2)^2 + (a - 1) a + 1/4 = 0
+[Expanded form]
+True
+[Sum of roots]
+-({}[[-2]])/(Last[{}])
+[Product of roots]
+indeterminate
