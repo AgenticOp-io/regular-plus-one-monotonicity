@@ -583,6 +583,13 @@ The centered moment expands as
 The constant terms cancel, and the same cancellation does not apply to the
 \(O(d^2/n)\) errors: their coefficients are not asserted to be equal.
 The combination is therefore known only up to an additive \(O(d^2/n)\).
+A common multiplicative factor does not remove the obstruction.
+If every subgraph probability is the principal term times the same \(1+\varepsilon\),
+then \(\EE[Y^k]/(\EE Y)^k\) acquires a factor \((1+\varepsilon)^{1-k}\).
+Differentiating the centered combination in \(\varepsilon\) at \(\varepsilon=0\) produces
+the coefficient \(-3+8-6=-1\).
+An error of size \(\varepsilon\) therefore survives as an additive \(-\varepsilon\) in the
+centered fourth moment.
 
 A bound \(\EE[(Y-\EE Y)^4]\le K(\Var Y)^2\) is a statement at scale \(v(d)^2\), since
 \(\Var Y/(\EE Y)^2=O(v(d))\).

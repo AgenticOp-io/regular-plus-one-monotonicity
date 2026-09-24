@@ -647,3 +647,12 @@ simplify | 2/5 - 1/8
 0.275
 [Percent decrease]
 2/5 - 1/8 = 11/40 is 31.25% smaller than 2/5.
+
+
+Query: simplify -3+8-6
+[Input interpretation]
+simplify | -3 + 8 - 6
+[Result]
+-1
+[Quotient and Remainder]
+-1 = (-1) × 1 + 0
