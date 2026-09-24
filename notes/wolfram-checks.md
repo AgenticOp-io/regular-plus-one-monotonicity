@@ -863,3 +863,113 @@ simplify | 1/2 - (3 q)/(2 q + 1)
 3/(2 (2 q + 1)) - 1
 [Results]
 (1 - 4 q)/(4 q + 2)
+
+
+Query: simplify (n^(2/3))^3/n^2
+[Input interpretation]
+simplify | (n^(2/3))^3/n^2
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: simplify (2/3)-(1/2)
+[Input interpretation]
+simplify | 2/3 - 1/2
+[Result]
+1/6
+[Quotient and Remainder]
+1 = (0) × 6 + 1
+[Decimal approximation]
+0.1666666666666666666666666666666666666666666666666666666666666666...
+[Repeating decimal]
+0.16^_ (period 1)
+
+
+Query: simplify (n^(2/11))^5/n^2
+[Input interpretation]
+simplify | (n^(2/11))^5/n^2
+[Result]
+1/n^(12/11)
+
+
+Query: simplify (d/n)/(d^3/n^2)
+[Input interpretation]
+simplify | (d/n)/(d^3/n^2)
+[Result]
+n/d^2
+
+
+Query: simplify ((d/n)^(3/2))/(d^3/n^2)
+[Input interpretation]
+simplify | (d/n)^(3/2)/(d^3/n^2)
+[Expanded form]
+(n sqrt(d/n))/d^2
+
+
+Query: simplify (n*sqrt(d/n))/d^2 * d^(3/2)/n^(1/2)
+[Input interpretation]
+simplify | (n sqrt(d/n))/d^2 × d^(3/2)/sqrt(n)
+[Result]
+(sqrt(n) sqrt(d/n))/sqrt(d)
+
+
+Query: simplify (sqrt(n)*sqrt(d/n))/sqrt(d)
+[Input interpretation]
+simplify | (sqrt(n) sqrt(d/n))/sqrt(d)
+[Result]
+(sqrt(n) sqrt(d/n))/sqrt(d)
+
+Fallback, exact arithmetic, d>0 and n>0. Wolfram left (n sqrt(d/n))/d^2 unsimplified. Its square is n^2*(d/n)/d^4 = n/d^3. The square of n^{1/2}/d^{3/2} is the same, and both sides are positive, so (n sqrt(d/n))/d^2 = n^{1/2}/d^{3/2}.
+
+
+Query: simplify 1-(k+1)/(k+2)
+[Input interpretation]
+simplify | 1 - (k + 1)/(k + 2)
+[Results]
+1/(k + 2)
+[Results]
+-k/(k + 2) - 1/(k + 2) + 1
+
+
+Query: simplify (n^((k+1)/(k+2)))^(k+2)/n^(k+1)
+[Input interpretation]
+simplify | (n^((k + 1)/(k + 2)))^(k + 2)/n^(k + 1)
+[Results]
+n^(-k - 1) (n^((k + 1)/(k + 2)))^(k + 2)
+[Results]
+n^(-k - 2/(k + 2) + 1) (n^((k + 1)/(k + 2)))^k
+
+
+Query: simplify (1+1)/(1+2)
+[Input interpretation]
+simplify | (1 + 1)/(1 + 2)
+[Result]
+2/3
+[Quotient and Remainder]
+2 = (0) × 3 + 2
+[Decimal approximation]
+0.6666666666666666666666666666666666666666666666666666666666666666...
+[Repeating decimal]
+0.6^_ (period 1)
+[Percentage]
+66.67%
+
+
+Query: simplify ((k+1)/(k+2))*(k+2)-(k+1)
+[Input interpretation]
+simplify | (k + 1)/(k + 2) (k + 2) - (k + 1)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify (Log[n]/Log[Log[n]])*Log[Log[n]] - Log[n]
+[Input interpretation]
+simplify | log(n)/log(log(n)) log(log(n)) - log(n)
+[Expanded logarithmic form]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
