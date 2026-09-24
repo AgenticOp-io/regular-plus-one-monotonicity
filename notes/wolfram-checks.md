@@ -656,3 +656,72 @@ simplify | -3 + 8 - 6
 -1
 [Quotient and Remainder]
 -1 = (-1) × 1 + 0
+
+
+Query: simplify (1+6*v+3*v^2)-4*(1+3*v)+6*(1+v)-3
+[Input interpretation]
+simplify | (1 + 6 v + 3 v^2) - 4 (1 + 3 v) + 6 (1 + v) - 3
+[Result]
+3 v^2
+
+
+Query: simplify exp(l*k*n/2)/exp(l*n/2)^k
+[Input interpretation]
+simplify | exp(l k × n/2)/(exp^k(l × n/2))
+[Result]
+e^((k l n)/2) (e^((l n)/2))^(-k)
+[Alternate form assuming k, l, and n are real]
+1
+
+
+Query: simplify (d^2/n^2)*(n/(2*d))
+[Input interpretation]
+simplify | d^2/n^2 × n/(2 d)
+[Result]
+d/(2 n)
+
+
+Query: simplify Binomial[4,2]
+[Input interpretation]
+simplify | binomial(4, 2)
+[Result]
+6
+[Quotient and Remainder]
+6 = 6 × 1 + 0
+
+
+Query: simplify Binomial[3,2]
+[Input interpretation]
+simplify | binomial(3, 2)
+[Result]
+3
+[Quotient and Remainder]
+3 = 3 × 1 + 0
+
+
+Query: simplify (d^4/n^4)*(n/d)
+[Input interpretation]
+simplify | d^4/n^4 × n/d
+[Result]
+d^3/n^3
+
+
+Query: simplify (d^3/n^3)/(d/n)^2
+[Input interpretation]
+simplify | (d^3/n^3)/(d/n)^2
+[Result]
+d/n
+
+
+Query: simplify (n^(1/4))^2/n^2
+[Input interpretation]
+simplify | (n^(1/4))^2/n^2
+[Result]
+1/n^(3/2)
+
+
+Query: simplify (n^(1/4))^(-6)
+[Input interpretation]
+simplify | 1/(n^(1/4))^6
+[Result]
+1/n^(3/2)
