@@ -2451,18 +2451,19 @@ The quadratic combination is the two-matching combination of Theorem~\ref{thm:ba
 \]
 
 Let \(K\) be the number of common edges of a fixed \(L\)-regular graph \(F_1\) and a uniform random \(L\)-regular graph \(G\).
-Order the edges of \(F_1\) and apply~\cite[Theorem~6]{Gao20} to \(G(n,L)\): here \(M=Ln\) and \(\Delta\le L\), so each successive edge of \(F_1\) is present with conditional probability \(p_i=L/(n-1)\) times \(1+O(L^2/n^2)\).
+Order the edges of \(F_1\) and apply~\cite[Theorem~6]{Gao20} to \(G(n,L)\): here \(M=Ln\) and \(\Delta\le L\).
+The displayed remainder is \(O(L^2/n^2)\), but the remaining-degree main term is \(p(1+O(L/n))\) with \(p=L/(n-1)\), because the exposed intersection at a vertex is of order \(L^2/n\).
 Hence
 \[
 \EE\bigl[\lambda^{-K}\bigr]
 =
 \EE\prod_i\bigl(1-p_i+p_i\lambda^{-1}\bigr)
 =
-\bigl(1-p+p\lambda^{-1}\bigr)^{Ln/2}\exp\bigl(O(L^4/n^2)\bigr),
+\bigl(1-p+p\lambda^{-1}\bigr)^{Ln/2}\exp\bigl(O(L^3/n)\bigr).
 \]
-where \(p=L/(n-1)\). The exponent \(L^4/n^2\) tends to \(0\) because \(L=o(n^{1/3})\).
-The binomial generating function times the exponential deficit equals \(1+O(L^3/n)\): the product of \(Ln/2\) factors of relative size \(1+O(L^2/n^2)\) is \(1+O(L^3/n)\), and \(L^3/n=o(1)\).
-The average of the origin contribution is therefore \(1+o(1)\).
+The exponent \(L^3/n\) tends to \(0\) because \(L=o(n^{1/3})\).
+The binomial generating function times the exponential deficit is therefore \(1+O(L^3/n)=1+o(1)\).
+The average of the origin contribution is \(1+o(1)\).
 The range \(k>\ L^2\log n\) is a large-deviation tail of \(K\) and is negligible against \(\lambda^{-k}\).
 Thus \(\EE Z^2/(\EE Z)^2\to 1\).
 \end{proof}
@@ -2473,8 +2474,8 @@ Let \(n\) be even, let \(\min(D,n-D)=\Theta(n)\), and let \(L\) satisfy \(Ln\) e
 Let \(Z\) be the number of \(L\)-factors of a uniform random \(D\)-regular graph.
 Then \(\Var Z/(\EE Z)^2=o(1)\).
 The range \(L=o(n^{1/3})\) is Theorem~\ref{thm:factor-third}.
-Theorem~\ref{thm:half-factor-rate} identifies the second-moment ratio at half degree as \(1+L^3/(4n)+O(L^2/n)\) throughout that range, so the cubic is a genuine leading term of \(\Var Z/(\EE Z)^2\), not only an incomplete quadratic-times-PGF deficit.
-The same leading term diverges for \(L=\omega(n^{1/3})\), and a proof of the present conjecture cannot use the origin-plus-binomial average.
+The origin-plus-binomial average of Proposition~\ref{prop:binomial-leftover-average} equals \(1+L^3/(4n)+O(L^2/n)\), but that quantity is not \(\EE[Z^2]/(\EE Z)^2\): the exact pairwise mass of Proposition~\ref{prop:pairwise-mass} cancels the cubic at order \(L^3/n\), and the remaining-degree main term independently contributes an unsigned \(O(L^3/n)\) (Proposition~\ref{prop:cubic-not-identified}).
+A proof of the present conjecture cannot treat the binomial cubic as a leading term of the relative variance, nor as a term that diverges for \(L=\omega(n^{1/3})\).
 \end{conjecture}
 
 \begin{proposition}[Cubic leftover at half degree]
@@ -2564,18 +2565,85 @@ which was checked, and subtracting the \(k=0\) value leaves \(-(2L-1)k/(2n)\).
 Twice the negative of that increment is \((2L-1)k/n\).
 \end{proof}
 
-\begin{theorem}[Half-degree factor rate below \(n^{1/3}\)]
-\label{thm:half-factor-rate}
-Let \(n\) be even, let \(D=n/2\), and let \(L\) satisfy \(Ln\) even, \(2\le L=o(n^{1/3})\).
-Let \(Z\) be the number of \(L\)-factors of a uniform random \(D\)-regular graph.
-Then
+\begin{proposition}[Pairwise intersections of two \(L\)-regular graphs]
+\label{prop:pairwise-mass}
+Let \(n>3\) and let \(L\ge 2\) satisfy \(Ln\) even and \(L\le n-1\). Let \(F_1\) be a fixed \(L\)-regular graph and let \(G\sim G(n,L)\). Write \(K=|E(F_1)\cap E(G)|\), \(p=L/(n-1)\), \(s=Ln/2\), and
 \[
-\frac{\EE[Z^2]}{(\EE Z)^2}
-=
-1+\frac{L^3}{4n}+O\Bigl(\frac{L^2}{n}\Bigr).
+S=\sum_{\{e,f\}\subset E(F_1)}\bigl(\PP(e,f\in G)-p^2\bigr).
 \]
-In particular \(\Var Z/(\EE Z)^2\sim L^3/(4n)\) as soon as \(L\to\infty\).
-\end{theorem}
+Then \(\PP(e\in G)=p\) for every edge \(e\). For distinct \(e,f\in E(F_1)\),
+\[
+\PP(e,f\in G)
+=
+\begin{cases}
+\dfrac{L}{n-1}\dfrac{L-1}{n-2} & \text{if \(e,f\) share a vertex},\\[1.1em]
+\dfrac{L}{n-1}\dfrac{L(n-4)+2}{(n-2)(n-3)} & \text{if \(e,f\) are disjoint}.
+\end{cases}
+\]
+The corresponding covariances are
+\[
+\delta_{\mathrm{adj}}=\frac{L(L-n+1)}{(n-2)(n-1)^2},\qquad
+\delta_{\mathrm{disj}}=\frac{2L(n-1-L)}{(n-3)(n-2)(n-1)^2}.
+\]
+There are \(N_{\mathrm{adj}}=n\binom{L}{2}\) adjacent pairs in \(F_1\) and \(N_{\mathrm{disj}}=\binom{s}{2}-N_{\mathrm{adj}}\) disjoint pairs, so
+\[
+S=N_{\mathrm{adj}}\delta_{\mathrm{adj}}+N_{\mathrm{disj}}\delta_{\mathrm{disj}}=-\frac{(L-2)L^2}{4n}+O\Bigl(\frac{L^3}{n^2}\Bigr).
+\]
+The displayed leading term equals \(-L^3/(4n)+L^2/(2n)\).
+\end{proposition}
+
+\begin{proof}
+Every \(L\)-regular graph has \(Ln/2\) edges, so the first identity is \(p=L/(n-1)\) by symmetry among the \(\binom{n}{2}\) possible edges.
+If \(e=uv\) and \(f=uw\) share a vertex, then conditioning on \(uv\in G\) leaves \(L-1\) unused stubs at \(u\) among the \(n-2\) vertices other than \(v\), and those endpoints are symmetric, so \(\PP(uw\in G\mid uv\in G)=(L-1)/(n-2)\).
+If \(e=uv\) and \(f=xy\) are disjoint, the same conditioning leaves a graph in which \(u\) and \(v\) have degree \(L-1\) and every other vertex has degree \(L\).
+The number of edges of \(G\) inside \(V\setminus\{u,v\}\) is therefore
+\[
+\frac{L(n-2)-(2L-2)}{2}=\frac{L(n-4)}{2}+1
+\]
+deterministically, and those edges are symmetric among the \(\binom{n-2}{2}\) possible pairs, so
+\[
+\PP(xy\in G\mid uv\in G)=\frac{L(n-4)+2}{(n-2)(n-3)}.
+\]
+The identity \(\delta_{\mathrm{disj}}=2L(n-1-L)/((n-3)(n-2)(n-1)^2)\) was checked.
+The count \(N_{\mathrm{adj}}=n\binom{L}{2}\) is the number of pairs of \(F_1\)-edges at a common vertex.
+The series of \(S\) at \(n=\infty\) is \(-((L-2)L^2)/(4n)+O(1/n^2)\) for each fixed \(L\), which was checked, and the same expansion with \(L=o(n)\) leaves remainder \(O(L^3/n^2)\).
+\end{proof}
+
+\begin{proposition}[Pairwise correction to the intersection generating function]
+\label{prop:pairwise-pgf}
+Under the hypotheses of Proposition~\ref{prop:pairwise-mass}, write \(a=z-1\) and
+\[
+\kappa_{ef}=\frac{a^2\bigl(\PP(e,f\in G)-p^2\bigr)}{(1-p+pz)^2}
+\]
+for \(z>0\). Then
+\[
+\sum_{\{e,f\}\subset E(F_1)}\kappa_{ef}
+=
+\frac{(z-1)^2}{(1-p+pz)^2}\,S.
+\]
+At the leftover tilt \(z=2\exp((2L-1)/n)\) the prefactor has series \(1+(6L-4)/n+O(n^{-2})\), which was checked, so the sum equals \(-((L-2)L^2)/(4n)+O(L^3/n^2)\).
+\end{proposition}
+
+\begin{proof}
+For each pair,
+\[
+\frac{\EE[(1+aI_e)(1+aI_f)]}{\EE[1+aI_e]\,\EE[1+aI_f]}-1
+=
+\frac{a^2\bigl(\PP(e,f\in G)-p^2\bigr)}{(1+ap)^2},
+\]
+because the numerator is \(1+2ap+a^2\PP(e,f\in G)\) and the denominator is \((1+ap)^2\).
+Summing over pairs of \(F_1\)-edges yields the displayed identity.
+The series of the prefactor at the leftover tilt was checked, and multiplying by the series of \(S\) from Proposition~\ref{prop:pairwise-mass} produces no new order-\(1/n\) term.
+\end{proof}
+
+\begin{proposition}[Binomial leftover average]
+\label{prop:binomial-leftover-average}
+Let \(n>2\) be even and let \(L\ge 2\) satisfy \(Ln<n(n-1)/4\). Write \(p=L/(n-1)\) and \(z=2\exp((2L-1)/n)\). The formal origin-plus-binomial average
+\[
+\exp\Bigl(-\frac{L^2}{2}-\frac{L^2(3L-1)}{2n}\Bigr)\bigl(1-p+pz\bigr)^{Ln/2}
+\]
+has logarithm \(L^3/(4n)+O(L^2/n)\) throughout \(L=o(n^{1/3})\). The series of the logarithm at \(n=\infty\) is \(L^3/(4n)+O(1/n^2)\) for each fixed \(L\), which was checked.
+\end{proposition}
 
 \begin{proof}
 At degree \(n/2\) the quadratic origin of Theorem~\ref{thm:factor-third} is \(2^k\exp(-L^2/2)\).
@@ -2583,21 +2651,29 @@ Proposition~\ref{prop:origin-leftover} upgrades it to
 \[
 2^k\exp\Bigl(-\frac{L^2}{2}-\frac{L^2(3L-1)}{2n}+\frac{(2L-1)k}{n}+O\Bigl(\frac{k^2+L^4+1}{n^2}\Bigr)\Bigr).
 \]
-The determinant comparison of that theorem contributes a further \(O((k+L^2)/n)\).
-Let \(K\) be the intersection size of two uniform \(L\)-regular graphs, and write \(z=2\exp((2L-1)/n)\).
-The average of the origin times the determinant is
-\[
-\exp\Bigl(-\frac{L^2}{2}-\frac{L^2(3L-1)}{2n}\Bigr)\,\EE\bigl[z^K\bigr]\,\Bigl(1+O\Bigl(\frac{L^2}{n}\Bigr)\Bigr),
-\]
-because \(\EE[K^2]=O(L^4)\) under the sequential estimate of~\cite[Theorem~6]{Gao20} used in Theorem~\ref{thm:factor-third}, so the leftover remainder averages to \(O(L^4/n^2)=o(L^2/n)\).
-The same sequential estimate yields \(\EE[z^K]=(1-p+pz)^{Ln/2}\exp(O(L^4/n^2))\) with \(p=L/(n-1)\).
+Replacing \(2^k\exp(((2L-1)k)/n)\) by the binomial generating function \((1-p+pz)^{Ln/2}\) produces the displayed quantity.
 The logarithm
 \[
 \frac{Ln}{2}\log\bigl(1-p+pz\bigr)-\frac{L^2}{2}-\frac{L^2(3L-1)}{2n}
 \]
 has series \(L^3/(4n)+O(1/n^2)\) for each fixed \(L\), which was checked, and the same expansion with \(L=o(n^{1/3})\) leaves remainder \(O(L^2/n)\).
-Thus the second-moment ratio is \(\exp(L^3/(4n)+O(L^2/n))=1+L^3/(4n)+O(L^2/n)\).
-The integral outside the saddle box remains \(\exp(-c n^{1/10})\).
+\end{proof}
+
+\begin{proposition}[The binomial cubic is not the factor rate]
+\label{prop:cubic-not-identified}
+The logarithm in Proposition~\ref{prop:binomial-leftover-average} plus the pairwise sum of Proposition~\ref{prop:pairwise-pgf} equals \(L^2/(2n)+O(L^3/n^2)\).
+The identity \(L^3/(4n)-((L-2)L^2)/(4n)=L^2/(2n)\) was checked.
+The pairwise sum already sits at order \(L^3/n\), so \(\EE[z^K]=(1-p+pz)^{Ln/2}\exp(o(L^3/n))\) can hold only if clusters of order three and higher cancel that sum.
+Independently, the remaining-degree main term of~\cite[Theorem~6]{Gao20} is \(p(1+O(L/n))\), so the sequential product in Theorem~\ref{thm:factor-third} carries an unsigned error \(O(L^3/n)\) and cannot identify a coefficient of \(L^3/n\).
+Neither expansion identifies \(\Var Z/(\EE Z)^2\) at order \(L^3/n\).
+The bound \(\Var Z/(\EE Z)^2=o(1)\) for \(L=o(n^{1/3})\) remains Theorem~\ref{thm:factor-third}.
+\end{proposition}
+
+\begin{proof}
+Add the two checked series.
+The first sentence of the second paragraph is the order-\(1/n\) term of Proposition~\ref{prop:pairwise-pgf}.
+The remaining-degree ratio \((L-X_u)(L-X_v)/(Ln-2S)\) equals \(p(1+O(L/n))\) as soon as the exposed intersection is of order \(L^2/n\), which it is in expectation under the exact mean \(\EE K=nL^2/(2(n-1))\).
+A product of \(Ln/2\) factors of relative size \(1+O(L/n)\) is \(\exp(O(L^3/n))\).
 \end{proof}
 
 \begin{proposition}[Where the matching expansion stops]
@@ -2666,7 +2742,7 @@ An interval of length \(cn\) with \(c>0\) fixed requires at least \(cn/(2L)\) st
 Chebyshev's inequality at height \(v^{1/3}\) produces total variation \(O(v^{1/3})\).
 That quantity is \(o(L/n)\) only if \(v=o(L^3/n^3)\).
 The matching-shaped excess \(\Theta(L^2/n)\) of Proposition~\ref{prop:sqrt-stop} exceeds \(L^3/n^3\) by the factor \(\Theta(n^2/L)\), which tends to infinity for \(L=o(n)\).
-At half degree Theorem~\ref{thm:half-factor-rate} already gives \(\Var Z/(\EE Z)^2\sim L^3/(4n)\) for \(L=o(n^{1/3})\), which exceeds \(L^3/n^3\) by the factor \(\Theta(n^2)\).
+The formal binomial leftover cubic \(L^3/(4n)\) exceeds \(L^3/n^3\) by the factor \(n^2/4\), but that cubic is not the relative variance, by Proposition~\ref{prop:cubic-not-identified}.
 \end{proposition}
 
 \begin{proof}
@@ -2682,7 +2758,7 @@ Under the hypotheses of Conjecture~\ref{conj:factor-moment},
 \[
 \frac{\Var Z}{(\EE Z)^2}=o\Bigl(\frac{L^3}{n^3}\Bigr).
 \]
-The same bound already fails at half degree throughout \(L=o(n^{1/3})\), by Theorem~\ref{thm:half-factor-rate}.
+The formal binomial leftover cubic already exceeds \(L^3/n^3\), but that comparison does not disprove the present conjecture: Proposition~\ref{prop:cubic-not-identified} removes the cubic from the identified expansion.
 \end{conjecture}
 
 \begin{proposition}[A regular upper graph is not the Chernoff binomial]
@@ -3105,8 +3181,8 @@ Proposition~\ref{prop:contain-first} flattens the first moment of that count for
 Proposition~\ref{prop:jensen-inverse} records that the inverse count is a separate upper bound, and Proposition~\ref{prop:peel-weights} is the Radon--Nikodym derivative of the peel.
 Proposition~\ref{prop:bernoulli-moment} shows that the same count on an independent Bernoulli residual has second-moment ratio at least \(p^{-\EE K}\to\infty\), so Conjecture~\ref{conj:residual-moment} cannot be proved by replacing \(R\) with an independent binomial graph.
 Conjecture~\ref{conj:Q} itself needs a different coupling: the hybrid is more regular than the binomial, and the BIM deletion process is tight at rate \(1/3\).
-For Conjecture~\ref{conj:factor-moment} the quadratic-times-PGF deficit of Proposition~\ref{prop:factor-cubic} is \(\sim-L^3/(4n)\), but that combination is not the origin: Proposition~\ref{prop:origin-leftover} supplies the missing leftover \(-L^2(3L-1)/(2n)+(2L-1)k/n\), and Theorem~\ref{thm:half-factor-rate} averages the complete origin to \(1+L^3/(4n)+O(L^2/n)\) at half degree.
-The cubic is therefore a genuine leading term of the relative variance throughout \(L=o(n^{1/3})\), and the same term diverges for \(L=\omega(n^{1/3})\).
+For Conjecture~\ref{conj:factor-moment} the quadratic-times-PGF deficit of Proposition~\ref{prop:factor-cubic} is \(\sim-L^3/(4n)\), but that combination is not the origin: Proposition~\ref{prop:origin-leftover} supplies the missing leftover \(-L^2(3L-1)/(2n)+(2L-1)k/n\), and Proposition~\ref{prop:binomial-leftover-average} averages the complete origin against a binomial generating function to \(1+L^3/(4n)+O(L^2/n)\).
+That binomial cubic is not the relative variance: Proposition~\ref{prop:pairwise-mass} gives an exact pairwise mass \(-L^3/(4n)+L^2/(2n)+O(L^3/n^2)\), which cancels the cubic in the formal expansion, and the remaining-degree main term independently blocks identification at order \(L^3/n\) (Proposition~\ref{prop:cubic-not-identified}).
 Proposition~\ref{prop:typical-origin} records that evaluating the quadratic remainder at the typical intersection \(k=\Theta(L^2)\) does not cancel it.
 
 Quantitative sandwich rates from the~\cite{BIM25} budget:
