@@ -2261,3 +2261,167 @@ Query: Simplify[n*(n-1-L)/2 * ((1-L)/(2*(n-1-L)))^2 - n*(L-1)^2/(8*(n-1-L))] == 
 simplify | n (1/2 (n - 1 - L)) ((1 - L)/(2 (n - 1 - L)))^2 - n × (L - 1)^2/(8 (n - 1 - L)) = 0
 [Expanded form]
 True
+
+
+Query: Simplify[L/(n-1)*(L-1)/(n-2) - (L/(n-1))^2]
+[Input interpretation]
+simplify | L/(n - 1) × (L - 1)/(n - 2) - (L/(n - 1))^2
+[Results]
+(L (L - n + 1))/((n - 2) (n - 1)^2)
+[Results]
+(L (L - n + 1))/((n - 2) (n - 1)^2)
+[Results]
+L^2/((n - 2) (n - 1)^2) - L/((n - 2) (n - 1))
+
+
+Query: Simplify[L/(n-1)*(L*(n-4)+2)/((n-2)*(n-3)) - (L/(n-1))^2]
+[Input interpretation]
+simplify | L/(n - 1) × (L (n - 4) + 2)/((n - 2) (n - 3)) - (L/(n - 1))^2
+[Results]
+(2 L (-L + n - 1))/((n - 3) (n - 2) (n - 1)^2)
+[Results]
+-(2 L (L - n + 1))/((n - 3) (n - 2) (n - 1)^2)
+[Results]
+((2 L)/(n - 1) - (2 L^2)/(n - 1)^2)/((n - 3) (n - 2))
+
+
+Query: Simplify[(n*L*(L-1)/2)*L*(L-n+1)/((n-2)*(n-1)^2) + ((L*n/2)*(L*n/2-1)/2 - n*L*(L-1)/2)*2*L*(-L+n-1)/((n-3)*(n-2)*(n-1)^2)]
+[Input interpretation]
+simplify | (n L × (L - 1)/2) L × (L - n + 1)/((n - 2) (n - 1)^2) + ((L × n/2) (1/2 (L × n/2 - 1)) - n L × (L - 1)/2) × 2 L × (-L + n - 1)/((n - 3) (n - 2) (n - 1)^2)
+
+
+Query: Series[(n*L*(L-1)/2)*L*(L-n+1)/((n-2)*(n-1)^2) + ((L*n/2)*(L*n/2-1)/2 - n*L*(L-1)/2)*2*L*(n-1-L)/((n-3)*(n-2)*(n-1)^2), {n, Infinity, 1}]
+[Input interpretation]
+series | (n L × (L - 1)/2) L × (L - n + 1)/((n - 2) (n - 1)^2) + ((L × n/2) (1/2 (L × n/2 - 1)) - n L × (L - 1)/2) × 2 L × (n - 1 - L)/((n - 3) (n - 2) (n - 1)^2) | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+-((L - 2) L^2)/(4 n) + O((1/n)^2)
+(Laurent series)
+(converges when abs(n)>3)
+[Series representation at n = ∞]
+-((L - 2) L^2 n (L n + n - 1))/(4 (n - 1)^2 (3 n - 1))
+
+
+Query: L^4/n^2 / (L^3/n) == L/n
+[Input]
+(L^4/n^2)/(L^3/n) = L/n
+
+
+Query: Simplify[n*L*(L-1)/2 - n*Binomial[L,2]]
+[Input interpretation]
+simplify | n L × (L - 1)/2 - n binomial(L, 2)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[L^4/n^2/(L^3/n) - L/n] == 0
+[Input interpretation]
+simplify | (L^4/n^2)/(L^3/n) - L/n = 0
+[Result]
+True
+
+
+Query: Series[Log[Hypergeometric2F1[-L*n/2, -L*n/2, -n*(n-1)/2, 1-2]] - (L*n/2)*Log[1+L/(n-1)], {n, Infinity, 1}]
+[Input interpretation]
+series | log(2F1(-L × n/2, -L × n/2, -n × (n - 1)/2, 1 - 2)) - (L × n/2) log(1 + L/(n - 1)) | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+log(2F1(-(L n)/2, -(L n)/2, -1/2 (n - 1) n, -1)) + (-L^2/2 + ((L - 2) L^2)/(4 n) + O((1/n)^2))
+
+
+Query: Simplify[L/(n-1)*(L*(n-4)+2)/((n-2)*(n-3)) - L^2/(n-1)^2 - 2*L*(n-1-L)/((n-3)*(n-2)*(n-1)^2)] == 0
+[Input interpretation]
+simplify | L/(n - 1) × (L (n - 4) + 2)/((n - 2) (n - 3)) - L^2/(n - 1)^2 - 2 L × (n - 1 - L)/((n - 3) (n - 2) (n - 1)^2) = 0
+[Result]
+True
+[Expanded form]
+(L^2 n)/((n - 3) (n - 2) (n - 1)) - (4 L^2)/((n - 3) (n - 2) (n - 1)) + (2 L^2)/((n - 3) (n - 2) (n - 1)^2) - L^2/(n - 1)^2 - (2 L n)/((n - 3) (n - 2) (n - 1)^2) + (2 L)/((n - 3) (n - 2) (n - 1)) + (2 L)/((n - 3) (n - 2) (n - 1)^2) = 0
+
+
+Query: Series[(n*L*(L-1)/2)*L*(L-n+1)/((n-2)*(n-1)^2) + ((L*n/2)*(L*n/2-1)/2 - n*L*(L-1)/2)*2*L*(n-1-L)/((n-3)*(n-2)*(n-1)^2), {n, Infinity, 2}]
+[Input interpretation]
+series | (n L × (L - 1)/2) L × (L - n + 1)/((n - 2) (n - 1)^2) + ((L × n/2) (1/2 (L × n/2 - 1)) - n L × (L - 1)/2) × 2 L × (n - 1 - L)/((n - 3) (n - 2) (n - 1)^2) | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+-((L - 2) L^2)/(4 n) + ((L - 4) (L - 2) L^2)/(4 n^2) + O((1/n)^3)
+(Laurent series)
+(converges when abs(n)>3)
+[Series representation at n = ∞]
+-((L - 2) L^2 n (L n + n - 1))/(4 (n - 1)^2 (3 n - 1))
+
+
+Query: Series[n*Binomial[L,3]*(L*(L-1)*(L-2)/((n-1)*(n-2)*(n-3)) - 3*L*(L-1)/((n-1)*(n-2))*L/(n-1) + 2*L^3/(n-1)^3), {n, Infinity, 3}]
+[Input interpretation]
+series | n binomial(L, 3) (L (L - 1) × (L - 2)/((n - 1) (n - 2) (n - 3)) - 3 L × (L - 1)/((n - 1) (n - 2)) × L/(n - 1) + 2 × L^3/(n - 1)^3) | point | n = ∞
+order | n^3
+[Series expansion at n = ∞]
+((L - 2) (L - 1) L^2)/(3 n^2) - ((L - 2)^2 (L - 1) L^2)/n^3 + ((L - 2) (L - 1) L^2 (2 L^2 - 21 L + 25))/(3 n^4) + O((1/n)^5)
+(Laurent series)
+(converges when abs(n)>3)
+[Series representation at n = ∞]
+-((L - 2) (L - 1) L^2 n^2 ((2 L^2 + 3 L + 1) n^2 - (3 L + 2) n + 1))/(3 (n - 1)^3 (6 n^2 - 5 n + 1))
+
+
+Query: Series[((L-2)*L^2)/(4*n) + ((n*L*(L-1)/2)*L*(L-n+1)/((n-2)*(n-1)^2) + ((L*n/2)*(L*n/2-1)/2 - n*L*(L-1)/2)*2*L*(n-1-L)/((n-3)*(n-2)*(n-1)^2))/(1+L/(n-1))^2, {n, Infinity, 2}]
+[Input interpretation]
+series | ((L - 2) L^2)/(4 n) + ((n L × (L - 1)/2) L × (L - n + 1)/((n - 2) (n - 1)^2) + ((L × n/2) (1/2 (L × n/2 - 1)) - n L × (L - 1)/2) × 2 L × (n - 1 - L)/((n - 3) (n - 2) (n - 1)^2))/(1 + L/(n - 1))^2 | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+((L - 2) L^2 (3 L - 4))/(4 n^2) - ((L - 2) L^2 (5 L^2 - 15 L + 13))/(4 n^3) + O((1/n)^4)
+(Laurent series)
+(converges when abs((1 - L)/n)<1 ∧ abs(n)>3)
+[Series representation at n = ∞]
+((L - 2) L^2 n^2 (L^2 n (3 n - 1) + L (-6 n^2 + 8 n - 3) + 3 n^2 - 7 n + 4))/(4 (3 n - 1) ((L - 1) n + 1)^2)
+
+
+Query: Series[(L*n/2)*Log[1-L/(n-1)+(L/(n-1))*2*Exp[(2*L-1)/n]] - L^2/2 - L^2*(3*L-1)/(2*n) + (2*Exp[(2*L-1)/n]-1)^2/((1-L/(n-1)+(L/(n-1))*2*Exp[(2*L-1)/n])^2) * ((n*L*(L-1)/2)*L*(L-n+1)/((n-2)*(n-1)^2) + ((L*n/2)*(L*n/2-1)/2 - n*L*(L-1)/2)*2*L*(n-1-L)/((n-3)*(n-2)*(n-1)^2)), {n, Infinity, 1}]
+[error]
+no result
+
+
+Query: Series[(2*Exp[(2*L-1)/n]-1)^2/(1-L/(n-1)+(L/(n-1))*2*Exp[(2*L-1)/n])^2, {n, Infinity, 1}]
+[Input interpretation]
+series | (2 exp((2 L - 1)/n) - 1)^2/(1 - L/(n - 1) + L/(n - 1) × 2 exp((2 L - 1)/n))^2 | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+1 + O((1/n)^1)
+(Taylor series)
+
+
+Query: Series[(2*Exp[(2*L-1)/n]-1)^2/(1-L/(n-1)+(L/(n-1))*2*Exp[(2*L-1)/n])^2, {n, Infinity, 2}]
+[Input interpretation]
+series | (2 exp((2 L - 1)/n) - 1)^2/(1 - L/(n - 1) + L/(n - 1) × 2 exp((2 L - 1)/n))^2 | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+1 + (6 L - 4)/n + O((1/n)^2)
+(Laurent series)
+
+
+Query: Series[(L*n/2)*Log[1-L/(n-1)+(L/(n-1))*2*Exp[(2*L-1)/n]] - L^2/2 - L^2*(3*L-1)/(2*n), {n, Infinity, 2}]
+[Input interpretation]
+series | (L × n/2) log(1 - L/(n - 1) + L/(n - 1) × 2 exp((2 L - 1)/n)) - L^2/2 - L^2 × (3 L - 1)/(2 n) | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+L^3/(4 n) + (L^3 (L + 3))/(6 n^2) + O((1/n)^3)
+(Laurent series)
+
+
+Query: Series[(n*L*(L-1)^2/2)*(L/(n-1)*(L-1)/(n-2)*L*(L-1)/(L*n-4) - 2*L*(L-1)/((n-1)*(n-2))*L/(n-1) - L/(n-1)*(L*(n-4)+2)/((n-2)*(n-3))*L/(n-1) + 2*L^3/(n-1)^3), {n, Infinity, 2}]
+[Input interpretation]
+series | (n L (1/2 (L - 1)^2)) (L/(n - 1) × (L - 1)/(n - 2) L × (L - 1)/(L n - 4) - 2 L × (L - 1)/((n - 1) (n - 2)) × L/(n - 1) - L/(n - 1) × (L (n - 4) + 2)/((n - 2) (n - 3)) × L/(n - 1) + 2 × L^3/(n - 1)^3) | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+((L - 1)^2 L^2)/(2 n^2) - ((L - 1)^2 L (2 L^3 - 4 L^2 + 5 L - 4))/(2 n^3) + O((1/n)^4)
+(Laurent series)
+(converges when 4 abs(1/(L n))<1 ∧ abs(n)>3)
+[Series representation at n = ∞]
+((L - 1)^2 L^3 n^2 ((3 L^2 + 2 L + 35) n^3 + (-9 L^2 + 18 L - 47) n^2 + (2 L^2 - 4 L + 13) n - 1))/(2 (n - 1)^3 (2 n - 1) (3 n - 1) (L - 4 n))
+
+
+Query: Simplify[L^3/(4*n) - (L-2)*L^2/(4*n) - L^2/(2*n)] == 0
+[Input interpretation]
+simplify | L^3/(4 n) - (L - 2) × L^2/(4 n) - L^2/(2 n) = 0
+[Expanded form]
+True

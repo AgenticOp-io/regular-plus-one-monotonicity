@@ -163,7 +163,7 @@ CHECKS = {
     "quadratic-pgf-without-leftover": {
         "half": (
             "block",
-            "Proposition origin-leftover: the quadratic-times-PGF deficit is -L^3/(4n), but the origin leftover is -L^2(3L-1)/(2n)+(2L-1)k/n. Theorem half-factor-rate averages the complete origin to 1+L^3/(4n). Do not treat the incomplete deficit as a variance lower bound.",
+            "Proposition origin-leftover: the quadratic-times-PGF deficit is -L^3/(4n), but the origin leftover is -L^2(3L-1)/(2n)+(2L-1)k/n. Proposition binomial-leftover-average is that formal average, not the second-moment ratio. Do not treat the incomplete deficit as a variance lower bound.",
         ),
         "linear": (
             "block",
@@ -176,6 +176,24 @@ CHECKS = {
         "sparse": (
             "block",
             "The leftover expansion is a half-degree identity. It does not apply to the sparse matching expansion.",
+        ),
+    },
+    "binomial-pgf-without-pairwise": {
+        "half": (
+            "block",
+            "Proposition pairwise-mass: the exact pairwise mass is -L^3/(4n)+L^2/(2n). Proposition cubic-not-identified: that term cancels the binomial leftover cubic, and the remaining-degree main term is an unsigned O(L^3/n). Do not treat origin-plus-binomial as the second-moment ratio.",
+        ),
+        "linear": (
+            "block",
+            "The pairwise mass is exact at every degree. The leftover cubic that it cancels is proved only at D=n/2. Do not use a binomial PGF as a signed L^3/n rate.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition cubic-not-identified: the sequential main term is p(1+O(L/n)), so the product error is O(L^3/n). This is not a signed rate.",
+        ),
+        "sparse": (
+            "block",
+            "The binomial-versus-pairwise comparison is a half-degree generating-function identity. It is not an attack on the sparse matching expansion.",
         ),
     },
     "origin-at-typical-k": {
