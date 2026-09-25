@@ -160,6 +160,24 @@ CHECKS = {
             "Proposition bernoulli-moment: the Bernoulli comparison diverges throughout d=o(n).",
         ),
     },
+    "quadratic-pgf-without-leftover": {
+        "half": (
+            "block",
+            "Proposition origin-leftover: the quadratic-times-PGF deficit is -L^3/(4n), but the origin leftover is -L^2(3L-1)/(2n)+(2L-1)k/n. Theorem half-factor-rate averages the complete origin to 1+L^3/(4n). Do not treat the incomplete deficit as a variance lower bound.",
+        ),
+        "linear": (
+            "block",
+            "The half-degree leftover is proved only at D=n/2. The incomplete quadratic-times-PGF deficit is not a lower bound at any linear degree.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition origin-leftover uses the half-degree entropy. This is not an attack on a sublinear host.",
+        ),
+        "sparse": (
+            "block",
+            "The leftover expansion is a half-degree identity. It does not apply to the sparse matching expansion.",
+        ),
+    },
     "origin-at-typical-k": {
         "half": (
             "block",
