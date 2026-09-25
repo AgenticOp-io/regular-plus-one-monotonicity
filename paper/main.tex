@@ -2473,8 +2473,8 @@ Let \(n\) be even, let \(\min(D,n-D)=\Theta(n)\), and let \(L\) satisfy \(Ln\) e
 Let \(Z\) be the number of \(L\)-factors of a uniform random \(D\)-regular graph.
 Then \(\Var Z/(\EE Z)^2=o(1)\).
 The range \(L=o(n^{1/3})\) is Theorem~\ref{thm:factor-third}.
-The cubic remainder \(O(L^3/n)\) in that proof is not \(o(1)\) for \(L=\omega(n^{1/3})\).
-Proposition~\ref{prop:factor-cubic} records the leading coefficient at half degree.
+Theorem~\ref{thm:half-factor-rate} identifies the second-moment ratio at half degree as \(1+L^3/(4n)+O(L^2/n)\) throughout that range, so the cubic is a genuine leading term of \(\Var Z/(\EE Z)^2\), not only an incomplete quadratic-times-PGF deficit.
+The same leading term diverges for \(L=\omega(n^{1/3})\), and a proof of the present conjecture cannot use the origin-plus-binomial average.
 \end{conjecture}
 
 \begin{proposition}[Cubic leftover at half degree]
@@ -2513,6 +2513,91 @@ Lemma~\ref{lem:pair-saddle} gives \(f'''=O(n^{-4})\) on densities bounded away f
 An argument of size at most \(2s=Ln\) therefore leaves remainder \(O((Ln)^3/n^4)\).
 The identity \((Ln)^3/n^4=L^3/n\) was checked.
 The mean intersection \(nL^2/(2(n-1))\) does not exceed \(s\) throughout \(L\le n-1\).
+\end{proof}
+
+\begin{proposition}[Origin leftover beyond the quadratic at half degree]
+\label{prop:origin-leftover}
+Let \(n>2\) be even and let \(L\ge 2\) satisfy \(Ln<n(n-1)/4\). Write \(E_0=\binom{n}{2}\), \(m_0=n^2/4\), \(s=Ln/2\), and \(f(e)=(E_0-e)\,\eta((m_0-e)/(E_0-e))\) with \(\eta(\lambda)=-\lambda\log\lambda-(1-\lambda)\log(1-\lambda)\).
+At degree \(n/2\) one has \(\lambda=(n/2-1)/(n-2)=1/2\), and the origin logarithm minus the quadratic approximation of Theorem~\ref{thm:factor-third} is
+\[
+f(2s-k)+f(0)-2f(s)+k\log 2+\frac{L^2}{2}
+=
+-\frac{L^2(3L-1)}{2n}+\frac{(2L-1)k}{n}+O\Bigl(\frac{k^2+L^4+1}{n^2}\Bigr)
+\]
+for every overlap \(0\le k\le s\).
+\end{proposition}
+
+\begin{proof}
+The identity \(\lambda=1/2\) was checked.
+Write \(t=e/n\). The edge density in \(f\) is exactly
+\[
+\frac{m_0-e}{E_0-e}-\frac12
+=
+\frac{1-2t}{2(n-1-2t)}.
+\]
+Thus \(\eta=\log 2-2\delta^2+O(\delta^4)\) with \(\delta=(1-2t)/(2(n-1-2t))\), and the combination of the three values of \(E_0-e\) contributes \(k\log 2\), which cancels the quadratic \(k\log 2\).
+The order-\(\delta^4\) remainder of each host is \(O(L^4/n^2)\).
+The quadratic entropy combination is \(-2\bigl((E_0-2s+k)\delta_u^2+E_0\delta_0^2-2(E_0-s)\delta_s^2\bigr)\), where
+\[
+\delta_0=\frac1{2(n-1)},
+\qquad
+\delta_s=\frac{1-L}{2(n-1-L)},
+\qquad
+\delta_u=\frac{1-2L+2k/n}{2(n-1-2L+2k/n)}.
+\]
+These evaluate to
+\[
+E_0\delta_0^2=\frac{n}{8(n-1)},
+\qquad
+(E_0-s)\delta_s^2=\frac{n(L-1)^2}{8(n-1-L)},
+\]
+which were checked, and at \(k=0\)
+\[
+(E_0-2s)\delta_u^2=\frac{n(2L-1)^2}{8(n-1-2L)}.
+\]
+The resulting \(k=0\) combination plus \(L^2/2\) has series \(-L^2(3L-1)/(2n)+O(1/n^2)\), which was checked.
+The \(k\)-dependent summand \((E_0-2s+k)\delta_u^2\) has series
+\[
+\frac{(1-2L)^2}{8}+\frac{(2L-1)(-4k+4L^2-1)}{8n}+O\Bigl(\frac{k^2+L^4+1}{n^2}\Bigr),
+\]
+which was checked, and subtracting the \(k=0\) value leaves \(-(2L-1)k/(2n)\).
+Twice the negative of that increment is \((2L-1)k/n\).
+\end{proof}
+
+\begin{theorem}[Half-degree factor rate below \(n^{1/3}\)]
+\label{thm:half-factor-rate}
+Let \(n\) be even, let \(D=n/2\), and let \(L\) satisfy \(Ln\) even, \(2\le L=o(n^{1/3})\).
+Let \(Z\) be the number of \(L\)-factors of a uniform random \(D\)-regular graph.
+Then
+\[
+\frac{\EE[Z^2]}{(\EE Z)^2}
+=
+1+\frac{L^3}{4n}+O\Bigl(\frac{L^2}{n}\Bigr).
+\]
+In particular \(\Var Z/(\EE Z)^2\sim L^3/(4n)\) as soon as \(L\to\infty\).
+\end{theorem}
+
+\begin{proof}
+At degree \(n/2\) the quadratic origin of Theorem~\ref{thm:factor-third} is \(2^k\exp(-L^2/2)\).
+Proposition~\ref{prop:origin-leftover} upgrades it to
+\[
+2^k\exp\Bigl(-\frac{L^2}{2}-\frac{L^2(3L-1)}{2n}+\frac{(2L-1)k}{n}+O\Bigl(\frac{k^2+L^4+1}{n^2}\Bigr)\Bigr).
+\]
+The determinant comparison of that theorem contributes a further \(O((k+L^2)/n)\).
+Let \(K\) be the intersection size of two uniform \(L\)-regular graphs, and write \(z=2\exp((2L-1)/n)\).
+The average of the origin times the determinant is
+\[
+\exp\Bigl(-\frac{L^2}{2}-\frac{L^2(3L-1)}{2n}\Bigr)\,\EE\bigl[z^K\bigr]\,\Bigl(1+O\Bigl(\frac{L^2}{n}\Bigr)\Bigr),
+\]
+because \(\EE[K^2]=O(L^4)\) under the sequential estimate of~\cite[Theorem~6]{Gao20} used in Theorem~\ref{thm:factor-third}, so the leftover remainder averages to \(O(L^4/n^2)=o(L^2/n)\).
+The same sequential estimate yields \(\EE[z^K]=(1-p+pz)^{Ln/2}\exp(O(L^4/n^2))\) with \(p=L/(n-1)\).
+The logarithm
+\[
+\frac{Ln}{2}\log\bigl(1-p+pz\bigr)-\frac{L^2}{2}-\frac{L^2(3L-1)}{2n}
+\]
+has series \(L^3/(4n)+O(1/n^2)\) for each fixed \(L\), which was checked, and the same expansion with \(L=o(n^{1/3})\) leaves remainder \(O(L^2/n)\).
+Thus the second-moment ratio is \(\exp(L^3/(4n)+O(L^2/n))=1+L^3/(4n)+O(L^2/n)\).
+The integral outside the saddle box remains \(\exp(-c n^{1/10})\).
 \end{proof}
 
 \begin{proposition}[Where the matching expansion stops]
@@ -2581,12 +2666,14 @@ An interval of length \(cn\) with \(c>0\) fixed requires at least \(cn/(2L)\) st
 Chebyshev's inequality at height \(v^{1/3}\) produces total variation \(O(v^{1/3})\).
 That quantity is \(o(L/n)\) only if \(v=o(L^3/n^3)\).
 The matching-shaped excess \(\Theta(L^2/n)\) of Proposition~\ref{prop:sqrt-stop} exceeds \(L^3/n^3\) by the factor \(\Theta(n^2/L)\), which tends to infinity for \(L=o(n)\).
+At half degree Theorem~\ref{thm:half-factor-rate} already gives \(\Var Z/(\EE Z)^2\sim L^3/(4n)\) for \(L=o(n^{1/3})\), which exceeds \(L^3/n^3\) by the factor \(\Theta(n^2)\).
 \end{proposition}
 
 \begin{proof}
 The identity \(v/(v^{1/3})^2=v^{1/3}\) is the Chebyshev cost at height \(v^{1/3}\), and Lemma~\ref{lem:factor-tv} returns total variation of that order.
 Raising \(o(L/n)\) to the third power yields \(o(L^3/n^3)\).
 The ratio of \(\Theta(L^2/n)\) to \(L^3/n^3\) equals \(\Theta(n^2/L)\).
+The identity \((L^3/(4n))/(L^3/n^3)=n^2/4\) was checked.
 \end{proof}
 
 \begin{conjecture}[Factor moment at the repetition scale]
@@ -2595,6 +2682,7 @@ Under the hypotheses of Conjecture~\ref{conj:factor-moment},
 \[
 \frac{\Var Z}{(\EE Z)^2}=o\Bigl(\frac{L^3}{n^3}\Bigr).
 \]
+The same bound already fails at half degree throughout \(L=o(n^{1/3})\), by Theorem~\ref{thm:half-factor-rate}.
 \end{conjecture}
 
 \begin{proposition}[A regular upper graph is not the Chernoff binomial]
@@ -3004,7 +3092,6 @@ Theorem~\ref{thm:factor-third} gives the \(L\)-factor second moment for \(L=o(n^
 The number of \(L\)-factors is still unproved for \(L=\omega(n^{1/3})\). Proposition~\ref{prop:flat-same} makes the lower graph uniform once that moment bound holds at degree \(n-1-d\), and Theorem~\ref{thm:long-from-moment} is the coupling past \(n^{1/3}\), conditional on Conjecture~\ref{conj:factor-moment}. Proposition~\ref{prop:chain-budget} shows that repeating the step across a linear interval needs the stronger Conjecture~\ref{conj:factor-rate}. Proposition~\ref{prop:not-binomial} keeps this coupling away from Conjecture~\ref{conj:Q}.
 A Chernoff increment still has length \(\Theta\sqrt{n\log n}\) at this degree, which is longer by a power of \(\log n\), so Conjecture~\ref{conj:Q} and Conjecture~\ref{conj:config-split} stay open.
 Theorem~\ref{thm:free-chernoff} is the increment at every \(d+m=o(n^{1/3})\) from a free \(m\)-factor, which does not identify the peel container.
-Theorem~\ref{thm:free-chernoff} is the increment at every \(d+m=o(n^{1/3})\) from a free \(m\)-factor, which does not identify the peel container.
 Theorem~\ref{thm:chains} still describes simultaneous chains inside \(o(n^{1/2})\), where the variance is \(D^{-3}+D/n\).
 
 The next attack on the three remaining conjectures is not another switching pass or another Taylor step of the matching origin.
@@ -3018,7 +3105,9 @@ Proposition~\ref{prop:contain-first} flattens the first moment of that count for
 Proposition~\ref{prop:jensen-inverse} records that the inverse count is a separate upper bound, and Proposition~\ref{prop:peel-weights} is the Radon--Nikodym derivative of the peel.
 Proposition~\ref{prop:bernoulli-moment} shows that the same count on an independent Bernoulli residual has second-moment ratio at least \(p^{-\EE K}\to\infty\), so Conjecture~\ref{conj:residual-moment} cannot be proved by replacing \(R\) with an independent binomial graph.
 Conjecture~\ref{conj:Q} itself needs a different coupling: the hybrid is more regular than the binomial, and the BIM deletion process is tight at rate \(1/3\).
-For Conjecture~\ref{conj:factor-moment} the matching expansion is finished: Proposition~\ref{prop:factor-cubic} is the third-cumulant leftover \(\sim-L^3/(4n)\), and Proposition~\ref{prop:typical-origin} records that evaluating the origin at the typical intersection \(k=\Theta(L^2)\) leaves the same cubic order \(O(L^3/n)\).
+For Conjecture~\ref{conj:factor-moment} the quadratic-times-PGF deficit of Proposition~\ref{prop:factor-cubic} is \(\sim-L^3/(4n)\), but that combination is not the origin: Proposition~\ref{prop:origin-leftover} supplies the missing leftover \(-L^2(3L-1)/(2n)+(2L-1)k/n\), and Theorem~\ref{thm:half-factor-rate} averages the complete origin to \(1+L^3/(4n)+O(L^2/n)\) at half degree.
+The cubic is therefore a genuine leading term of the relative variance throughout \(L=o(n^{1/3})\), and the same term diverges for \(L=\omega(n^{1/3})\).
+Proposition~\ref{prop:typical-origin} records that evaluating the quadratic remainder at the typical intersection \(k=\Theta(L^2)\) does not cancel it.
 
 Quantitative sandwich rates from the~\cite{BIM25} budget:
 \begin{center}

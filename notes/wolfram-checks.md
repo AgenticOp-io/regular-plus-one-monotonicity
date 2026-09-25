@@ -2105,3 +2105,159 @@ Query: Simplify[(D*n/2)*(D^2/n^2) - D^3/(2*n)] == 0
 simplify | (D × n/2) × D^2/n^2 - D^3/(2 n) = 0
 [Result]
 True
+
+
+Query: D[-x*Log[x]-(1-x)*Log[1-x],x] + Log[x/(1-x)]
+[Input]
+(d(-x log(x) - (1 - x) log(1 - x)))/(dx) + log(x/(1 - x))
+[Alternate forms]
+log(1/(1 - x)) + log(1 - x)
+[Alternate forms]
+log(1 - x) - log(x) + log(-x/(x - 1))
+[Alternate form assuming x>0]
+piecewise | 2 i π | arg(1 - x)>=π
+0 | (otherwise)
+[Alternate form assuming x>0]
+2 i π floor(arg(1 - x)/(2 π) + 1/2)
+[Alternative representations]
+(d(-x log(x) - (1 - x) log(1 - x)))/(dx) + log(x/(1 - x)) = (d(-((1 - x) log(a) log(a, 1 - x)) - x log(a) log(a, x)))/(dx) + log(a) log(a, x/(1 - x))
+[Alternative representations]
+(d(-x log(x) - (1 - x) log(1 - x)))/(dx) + log(x/(1 - x)) = (d(-((1 - x) log(e, 1 - x)) - x log(e, x)))/(dx) + log(e, x/(1 - x))
+[Alternative representations]
+(d(-x log(x) - (1 - x) log(1 - x)))/(dx) + log(x/(1 - x)) = (d(x Li_1(1 - x) + (1 - x) Li_1(x)))/(dx) - Li_1(1 - x/(1 - x))
+[Series representations]
+(d(-x log(x) - (1 - x) log(1 - x)))/(dx) + log(x/(1 - x)) = d/(dx)(-x log(x) - (-1 + x) sum_(k=1)^∞ ((-1)^k (-x)^k)/k) + log(x/(1 - x)) for abs(x)<1
+[Series representations]
+(d(-x log(x) - (1 - x) log(1 - x)))/(dx) + log(x/(1 - x)) = d/(dx)(-x log(x) + (-1 + x) (log(-x) - sum_(k=1)^∞ ((-1)^k (-x)^(-k))/k)) + log(x/(1 - x)) for abs(x)>1
+[Series representations]
+(d(-x log(x) - (1 - x) log(1 - x)))/(dx) + log(x/(1 - x)) = d/(dx)( sum_(k=1)^∞ ((-1)^k ((-x)^k + (-x)^(1 + k) + (-1 + x)^k x))/k) - sum_(k=1)^∞ ((-1)^k ((1 - 2 x)/(-1 + x))^k)/k for (abs(-1 + x)<1 and abs(x)<1 and abs((1 - 2 x)/(-1 + x))<1)
+[Integral representations]
+(d(-x log(x) - (1 - x) log(1 - x)))/(dx) + log(x/(1 - x)) = d/(dx)( integral_1^(1 - x) (-1 + x) (1/t + x/(-1 + t + 2 x - t x)) dt) + integral_1^(x/(1 - x)) 1/t dt
+[Integral representations]
+(d(-x log(x) - (1 - x) log(1 - x)))/(dx) + log(x/(1 - x)) = d/(dx)(-(i (-1 + x))/(2 π) integral_(-i ∞ + γ)^(i ∞ + γ) ((-x)^(-s) Γ(-s)^2 Γ(1 + s))/Γ(1 - s) ds - x log(x)) + log(x/(1 - x)) for (-1<γ<0 and abs(arg(-x))<π)
+[Integral representations]
+(d(-x log(x) - (1 - x) log(1 - x)))/(dx) + log(x/(1 - x)) = (2 π d/(dx)(i/(2 π) integral_(-i ∞ + γ)^(i ∞ + γ) ((-1 + x)^(-s) (-x)^(-s) ((-1 + x)^s + (-(-1 + x)^s + (-x)^s) x) Γ(-s)^2 Γ(1 + s))/Γ(1 - s) ds) - i integral_(-i ∞ + γ)^(i ∞ + γ) (((1 - 2 x)/(-1 + x))^(-s) Γ(-s)^2 Γ(1 + s))/Γ(1 - s) ds)/(2 π) for (abs(arg(-1 + x))<π and abs(arg(-x))<π and abs(arg((1 - 2 x)/(-1 + x)))<π and -1<γ<0)
+
+
+Query: Simplify[D[-x*Log[x]-(1-x)*Log[1-x],x] - Log[(1-x)/x]]
+[Input interpretation]
+simplify | (d(-x log(x) - (1 - x) log(1 - x)))/(dx) - log((1 - x)/x)
+[Results]
+-log(1/x) - log(x)
+[Results]
+-log(1/x - 1) + log(1 - x) - log(x)
+
+
+Query: Assuming[0<x<1, Simplify[D[-x*Log[x]-(1-x)*Log[1-x],x] - Log[(1-x)/x]]]
+[error]
+no result
+
+
+Query: Simplify[L/(n-1) + (1-L/(n-1))*(D-L)/(n-1-L) - D/(n-1)]
+[Input interpretation]
+simplify | L/(n - 1) + (1 - L/(n - 1)) × (D - L)/(n - 1 - L) - D/(n - 1)
+[Results]
+0
+[Results]
+-(D L)/((n - 1) (-L + n - 1)) + D/(-L + n - 1) - D/(n - 1) + L^2/((n - 1) (-L + n - 1)) + L/(n - 1) - L/(-L + n - 1)
+
+
+Query: Simplify[L/(n-1) + (1 - L/(n-1))*(D-L)/(n-1-L) - D/(n-1)] == 0
+[Input interpretation]
+simplify | L/(n - 1) + (1 - L/(n - 1)) × (D - L)/(n - 1 - L) - D/(n - 1) = 0
+[Result]
+True
+[Expanded form]
+-(D L)/((n - 1) (-L + n - 1)) + D/(-L + n - 1) - D/(n - 1) + L^2/((n - 1) (-L + n - 1)) + L/(n - 1) - L/(-L + n - 1) = 0
+
+
+Query: Simplify[(n/2-1)/(n-2)-1/2]
+[Input interpretation]
+simplify | (n/2 - 1)/(n - 2) - 1/2
+[Results]
+1/2 - 1/2
+[Results]
+0
+[Results]
+n/(2 (n - 2)) - 1/(n - 2) - 1/2
+
+
+Query: With[{eta=-#*Log[#]-(1-#)*Log[1-#]&, E0=n*(n-1)/2, m0=n^2/4}, Series[(E0)*eta[m0/E0] + (E0-L*n)*eta[(m0-L*n)/(E0-L*n)] - 2*(E0-L*n/2)*eta[(m0-L*n/2)/(E0-L*n/2)] + L^2/2, {n,Infinity,1}]]
+[error]
+no result
+
+
+Query: Series[-n/4*(1/(n-1)+(2*L-1)^2/(n-1-2*L)-2*(L-1)^2/(n-1-L))+L^2/2, {n, Infinity, 1}]
+[Input interpretation]
+series | -n/4 (1/(n - 1) + (2 L - 1)^2/(n - 1 - 2 L) - 2 × (L - 1)^2/(n - 1 - L)) + L^2/2 | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+-(L^2 (3 L - 1))/(2 n) + O((1/n)^2)
+(Laurent series)
+(converges when abs((L + 1)/n)<1 ∧ abs((2 L + 1)/n)<1 ∧ abs(n)>1)
+[Series representation at n = ∞]
+(L^2 n (2 L^2 (n - 1) n + 3 L (n - 1)^2 + n^2 + n - 1))/(2 (n - 1) (L n + n - 1) (2 L n + n - 1))
+
+
+Query: Series[(n*(n-1-2*L)/2+k)*((1-2*L+2*k/n)/(2*(n-1-2*L+2*k/n)))^2, {n, Infinity, 1}]
+[Input interpretation]
+series | (n (1/2 (n - 1 - 2 L)) + k) ((1 - 2 L + 2 × k/n)/(2 (n - 1 - 2 L + 2 × k/n)))^2 | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+1/8 (1 - 2 L)^2 + O((1/n)^1)
+(Taylor series)
+[Series representation at n = ∞]
+-(2 k n - 2 L + 1)^2/(8 (-2 k n^2 + 2 L n + n - 1))
+
+
+Query: Series[(n*(n-1-2*L)/2+k)*((1-2*L+2*k/n)/(2*(n-1-2*L+2*k/n)))^2, {n, Infinity, 2}]
+[Input interpretation]
+series | (n (1/2 (n - 1 - 2 L)) + k) ((1 - 2 L + 2 × k/n)/(2 (n - 1 - 2 L + 2 × k/n)))^2 | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+1/8 (1 - 2 L)^2 + ((2 L - 1) (-4 k + 4 L^2 - 1))/(8 n) + O((1/n)^2)
+(Laurent series)
+[Series representation at n = ∞]
+-(2 k n - 2 L + 1)^2/(8 (-2 k n^2 + 2 L n + n - 1))
+
+
+Query: Series[n/4*(1/(n-1)+(2*L-1)^2/(n-1-2*L)-2*(L-1)^2/(n-1-L)) - L^2/2 + L^2*(3*L-1)/(2*n), {n, Infinity, 1}]
+[Input interpretation]
+series | n/4 (1/(n - 1) + (2 L - 1)^2/(n - 1 - 2 L) - 2 × (L - 1)^2/(n - 1 - L)) - L^2/2 + L^2 × (3 L - 1)/(2 n) | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+(L^2 (3 L - 1))/n + O((1/n)^2)
+(Laurent series)
+(converges when abs((L + 1)/n)<1 ∧ abs((2 L + 1)/n)<1 ∧ abs(n)>1)
+[Series representation at n = ∞]
+(L^2 n (6 L^3 (n - 1) n^2 + L^2 n (7 n^2 - 18 n + 11) - 6 L (n - 1)^2 - n^3 + 2 n^2 - 4 n + 2))/(2 (n - 1) (L n + n - 1) (2 L n + n - 1))
+
+
+Query: Series[(L*n/2)*Log[1-L/(n-1)+2*(L/(n-1))*Exp[(2*L-1)/n]] - L^2/2 - L^2*(3*L-1)/(2*n), {n, Infinity, 1}]
+[Input interpretation]
+series | (L × n/2) log(1 - L/(n - 1) + 2 × L/(n - 1) exp((2 L - 1)/n)) - L^2/2 - L^2 × (3 L - 1)/(2 n) | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+L^3/(4 n) + O((1/n)^2)
+(Laurent series)
+
+
+Query: Simplify[(L^3/(4*n))/(L^3/n^3) - n^2/4] == 0
+[Input interpretation]
+simplify | (L^3/(4 n))/(L^3/n^3) - n^2/4 = 0
+[Result]
+True
+
+
+Query: Simplify[n*(n-1)/2 * (1/(2*(n-1)))^2 - n/(8*(n-1))] == 0
+[Input interpretation]
+simplify | n × (n - 1)/2 (1/(2 (n - 1)))^2 - n/(8 (n - 1)) = 0
+[Result]
+True
+
+
+Query: Simplify[n*(n-1-L)/2 * ((1-L)/(2*(n-1-L)))^2 - n*(L-1)^2/(8*(n-1-L))] == 0
+[Input interpretation]
+simplify | n (1/2 (n - 1 - L)) ((1 - L)/(2 (n - 1 - L)))^2 - n × (L - 1)^2/(8 (n - 1 - L)) = 0
+[Expanded form]
+True
