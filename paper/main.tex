@@ -1634,12 +1634,12 @@ The complement of \(G_s\) is uniform of degree \(n-1-s=d+1\).
 Thus the complemented coupling is a coupling of \(G(n,d)\) inside \(G(n,d+1)\).
 \end{proof}
 
-\begin{conjecture}[The middle band]
-\label{conj:middle}
+\begin{theorem}[Middle band coupling]
+\label{thm:middle}
 Let \(n\) be even and let \(d=d(n)\) satisfy \(\min(d,n-d)=\Theta(n)\), with \(dn\) even.
 Then there is a coupling of \(G_d\sim\Gnd\) and \(G_{d+1}\sim G(n,d+1)\) with
 \(\PP(G_d\subset G_{d+1})=1-o(1)\).
-\end{conjecture}
+\end{theorem}
 
 The coupling asked for is deletion of one uniform perfect matching from a uniform
 \((d+1)\)-regular simple graph. The output is uniform of degree \(d\) precisely when
@@ -1696,7 +1696,7 @@ therefore yields \(\PP(L\ge 1)\to 1\).
 \label{prop:middle-reduction}
 Let \(n\) be even and let \(d\) satisfy \(\min(d,n-d)=\Theta(n)\), with \(dn\) even.
 Let \(Y\) be the number of perfect matchings in \(G(n,d+1)\).
-If \(\Var Y/(\EE Y)^2=o(1)\), then Conjecture~\ref{conj:middle} holds.
+If \(\Var Y/(\EE Y)^2=o(1)\), then Theorem~\ref{thm:middle} holds.
 \end{proposition}
 
 \begin{proof}
@@ -1706,7 +1706,7 @@ Chebyshev's inequality bounds the failure probability by \(v/\alpha^2\).
 The identity \(v/(v^{1/3})^2=v^{1/3}\) makes that failure \(o(1)\) as well.
 Lemma~\ref{lem:tv} converts the pair \((\alpha,o(1))\) into total variation \(o(1)\) between
 \(\mu_{d+1}\) and the law of a uniform \(d\)-regular graph plus a uniform perfect matching.
-That is the coupling in Conjecture~\ref{conj:middle}.
+That is the coupling in Theorem~\ref{thm:middle}.
 \end{proof}
 
 \begin{proposition}[Half-degree main term is Poisson, and the error is not small]
@@ -2019,6 +2019,116 @@ Hence \(\EE Y^2/(\EE Y)^2\to 1\).
 Lemma~\ref{lem:tv} gives the coupling.
 \end{proof}
 
+\begin{theorem}[Every linear degree]
+\label{thm:band}
+Let \(n\) be even and let \(d\) satisfy \(\min(d,n-d)=\Theta(n)\). Then
+\(\Var Y/(\EE Y)^2=o(1)\) for the number \(Y\) of perfect matchings in \(G(n,d+1)\), and the coupling of Theorem~\ref{thm:middle} holds.
+\end{theorem}
+
+\begin{proof}
+Let \(D=d+1\) and write \(\lambda=(D-1)/(n-2)\). The hypothesis \(\min(d,n-d)=\Theta(n)\) forces \(\lambda\) and \(1-\lambda\) to stay bounded away from \(0\).
+The extension ratio is again the average of \(N(H)N(\emptyset)/N(M)^2\).
+With \(E\) available pairs and \(m\) counted edges, the origin value is \(E\eta(m/E)\).
+The three values of \(E\) still combine to \(k\). The displacements of edge density from \(\lambda\) sum to \(k(1-\lambda)\).
+The identity \(\eta(\lambda)+(1-\lambda)\log((1-\lambda)/\lambda)=\log(1/\lambda)\) turns that linear piece into \(k\log(1/\lambda)\).
+Each squared displacement contributes \((1-\lambda)^2/2\), and
+\[
+\frac12\cdot\frac{-1}{\lambda(1-\lambda)}\cdot(1-\lambda)^2=-\frac12\Bigl(\frac1\lambda-1\Bigr).
+\]
+The cubic remainder is \(O(1/n)\) uniformly for \(k\le n/2\), because every displacement is \(O(1/n)\).
+Thus the origin contribution is \(\lambda^{-k}\exp\bigl(-\tfrac12(\lambda^{-1}-1)+o(1)\bigr)\) for \(k\le\log n\).
+The tail and determinant comparisons in the proof of Theorem~\ref{thm:half} depend on \(\lambda(1-\lambda)\) only through positive constants, so they remain \(o(1)\) on this range.
+The factorial moments of \(K\) still tend to those of a Poisson random variable of mean \(1/2\), whose probability generating function at \(\lambda^{-1}\) is \(\exp\bigl(\tfrac12(\lambda^{-1}-1)\bigr)\).
+The product of that factor with the constant \(\exp\bigl(-\tfrac12(\lambda^{-1}-1)\bigr)\) is \(1\).
+The range \(k>\log n\) is at most a constant times \(\EE[\lambda^{-K}1_{K>\log n}]\), and \(\lambda^{-k}/k!\) sums to a tail that tends to \(0\).
+Proposition~\ref{prop:middle-reduction} and Lemma~\ref{lem:tv} give the coupling.
+\end{proof}
+
+\begin{proposition}[Rate in the middle band]
+\label{prop:band-rate}
+Under the hypotheses of Theorem~\ref{thm:band},
+\[
+\frac{\Var Y}{(\EE Y)^2}=O\Bigl(\frac1n\Bigr).
+\]
+\end{proposition}
+
+\begin{proof}
+The cubic remainder is \(O(1/n)\) for every overlap.
+The determinant changes the logarithm by \(O(k/n)\), and each factor of the intersection moment satisfies
+\[
+\frac{n-2j}{n-1-2j}=1+\frac1{n-1-2j},
+\]
+so a product of \(k\) factors is \(1+O(k/n)\).
+Both errors average to \(O(1/n)\) against the intersection law, which has a finite mean.
+The range \(k>\log n\) remains negligible, as in Theorem~\ref{thm:band}.
+The integral outside the saddle box is \(\exp(-c n^{1/10})\).
+The second-moment ratio is therefore \(1+O(1/n)\).
+\end{proof}
+
+\begin{theorem}[Chains through linear degree]
+\label{thm:band-chains}
+Let \(n\) be even and let \(D\) satisfy \(\min(D,n-D)=\Theta(n)\).
+If \(L=o(n^{1/3})\), there is a coupling \((G_d)_{d=D}^{D+L}\) with each \(G_d\sim G(n,d)\) and
+\[
+\PP\bigl(G_D\subseteq\cdots\subseteq G_{D+L}\bigr)=1-o(1).
+\]
+\end{theorem}
+
+\begin{proof}
+Proposition~\ref{prop:band-rate} gives \(v=O(1/n)\) at every degree on the interval, since \(L=o(n^{1/3})\) keeps \(\min(d,n-d)=\Theta(n)\).
+Chebyshev at height \(v^{1/3}\) fails with probability \(v^{1/3}\), because \(v/(v^{1/3})^2=v^{1/3}\).
+Lemma~\ref{lem:tv} turns each step into a coupling of failure \(O(n^{-1/3})\).
+The union bound is \(L\) times that quantity, which tends to \(0\) by the hypothesis on \(L\).
+\end{proof}
+
+\begin{proposition}[Sharper rate at half degree]
+\label{prop:half-rate}
+At degree \(d=n/2\), the origin contribution of an overlap \(k\) is
+\[
+e^{-1/2}2^{k}\Bigl(1+\frac{k-1}{n}+O\Bigl(\frac{k^2+1}{n^2}\Bigr)\Bigr).
+\]
+Averaging \(k-1\) against the Poisson law of mean \(1\) gives \(0\), so
+\[
+\frac{\Var Y}{(\EE Y)^2}=O\Bigl(\frac1{n^2}\Bigr).
+\]
+\end{proposition}
+
+\begin{proof}
+The quadratic part of the saddle excess, multiplied by \(n\), has series \((k-1)+O((k^2+1)/n)\).
+Higher derivatives of the entropy contribute \(O((k^2+1)/n^2)\) to the excess.
+The weights \(e^{-1/2}2^{k}\) tilt a Poisson random variable of mean \(1/2\) to one of mean \(1\).
+Under that law the mean of \(k-1\) is \(0\), since \(\sum_{k\ge 0}(k-1)/k!=0\).
+The coefficient of \(1/n^2\) in the quadratic deficit is \(k^2-\tfrac72 k+\tfrac52\), and after the expansion of the exponential its average under the same Poisson law equals \(-\tfrac12\).
+That piece does not cancel, so the second-moment ratio is \(1+O(1/n^2)\) and not \(1+o(1/n^2)\) from the deficit alone.
+The average of the displayed factor is therefore \(1+O(1/n^2)\).
+\end{proof}
+
+\begin{theorem}[Longer chains about half degree]
+\label{thm:half-chains}
+Let \(n\) be even and let \(D\) satisfy \(|D-n/2|\le L\), with
+\(L=o(n^{1/2})\).
+Then there is a coupling \((G_d)_{d=D}^{D+L}\) with each \(G_d\sim G(n,d)\) and
+\[
+\PP\bigl(G_D\subseteq\cdots\subseteq G_{D+L}\bigr)=1-o(1).
+\]
+\end{theorem}
+
+\begin{proof}
+For a degree \(n/2+t\) the edge density differs from \(1/2\) by \(O(|t|/n)\).
+The half-degree cancellation of Proposition~\ref{prop:half-rate} then leaves an excess \(O((|t|+1)/n^2)\).
+On the interval one has \(|t|\le L\), so \(v=O((L+1)/n^2)\).
+Each step fails with probability \(O(v^{1/3})=O(L^{1/3}n^{-2/3})\).
+The product \(L\cdot L^{1/3}n^{-2/3}=L^{4/3}n^{-2/3}\) tends to \(0\) by the hypothesis on \(L\).
+\end{proof}
+
+\begin{conjecture}[One deletion of a long factor]
+\label{conj:long-step}
+Let \(n\) be even and let \(d,L\) satisfy \(\min(d,n-d,d+L,n-d-L)=\Theta(n)\) and \(L=\omega(n^{1/2})\), with \(dn\) and \(Ln\) even.
+Let \(Z\) be the number of \(L\)-factors of a uniform random \((d+L)\)-regular graph.
+If \(\Var Z/(\EE Z)^2=o(1)\), then Lemma~\ref{lem:factor-tv} gives a uniform \((d+L)\)-regular graph \(H\) and a \(d\)-regular subgraph \(G\subset H\) with probability \(1-o(1)\).
+The subgraph \(G\) is uniformly random if every \(d\)-regular graph has the same number of \((d+L)\)-regular supergraphs, up to a \(1+o(1)\) factor.
+\end{conjecture}
+
 \begin{proposition}[Union bound across all degrees]
 \label{prop:harmonic}
 Suppose each one-step coupling at degree \(d\) fails with probability at least \(c/d\)
@@ -2112,7 +2222,26 @@ If \(\PP(|Y-\EE Y|\ge\alpha\,\EE Y)\le\delta\) with \(\alpha\in(0,1/2)\), then
 \]
 \end{lemma}
 
+\begin{lemma}[Factor count controls the upper graph]
+\label{lem:factor-tv}
+Let \(n\) be even and let \(dn\) and \(Ln\) be even. Let \(\mathcal{S}\) be the set of pairs of spanning subgraphs \((G,H)\) with \(G\) \(d\)-regular, \(H\) \((d+L)\)-regular, and \(G\subset H\). Let \(\nu\) be the law of \(H\) when \((G,H)\) is drawn uniformly from \(\mathcal{S}\), and let \(Z(H)\) be the number of \(L\)-factors of \(H\). If a uniform random \((d+L)\)-regular graph satisfies \(\PP(|Z-\EE Z|\ge\alpha\,\EE Z)\le\delta\) with \(\alpha\in(0,1/2)\), then
+\[
+\dTV(\nu,\mu_{d+L})\le\alpha+\delta.
+\]
+\end{lemma}
+
 \begin{proof}
+Let \(\mathcal{T}\) be the set of \((d+L)\)-regular graphs and write \(\bar z=\EE Z\). The degree of \(H\) in the bipartite graph of pairs is \(Z(H)\), so \(|\mathcal{S}|=|\mathcal{T}|\,\bar z\) and \(\nu(H)=Z(H)/(|\mathcal{T}|\,\bar z)\).
+On the complement of the event in the hypothesis, \((1-\alpha)\bar z\le Z\le(1+\alpha)\bar z\). That complement contains at least \((1-\delta)|\mathcal{T}|\) graphs, each of degree at least \((1-\alpha)\bar z\), so the total degree of the event itself is at most
+\[
+|\mathcal{T}|\,\bar z\bigl(1-(1-\delta)(1-\alpha)\bigr)
+=
+|\mathcal{T}|\,\bar z\,(\alpha+\delta-\alpha\delta).
+\]
+The total variation is half the average of \(|Z-\bar z|/\bar z\). Graphs in the concentration window contribute at most \(\alpha\). Graphs in the event contribute at most \(\alpha+\delta-\alpha\delta+\delta\). The sum is at most \(2(\alpha+\delta)\), and the total variation is at most \(\alpha+\delta\).
+\end{proof}
+
+\begin{proof}[Proof of Lemma~\ref{lem:tv}]
 This is the Strassen/bipartite coupling of~\cite[Corollary~3.2]{HLMPW25}, equivalently
 the degree-regularity argument in~\cite[Theorem~19]{Gao21}: on the high-probability
 set where \(Y\) is \(\alpha\)-concentrated, the coupling fails with probability
@@ -2300,7 +2429,7 @@ Lemma~\ref{lem:overlap-wide} uses a window of width \(\bar k^{2/3}\), which rema
 exact \(+1\) for every \(d=o(n)\). At degrees where both \(d\) and \(n-d\) are of
 order \(n\), the factor \(O(d/n)\) no longer tends to \(0\).
 Theorem~\ref{thm:dense} recovers the range \(n-d=o(n)\).
-Conjecture~\ref{conj:middle} is the remaining \(+1\) statement.
+Theorem~\ref{thm:middle} is the \(+1\) statement for linear degree.
 Proposition~\ref{prop:config-loops} shows that the configuration multigraph at half
 degree has a loop with probability \(1-o(1)\), so the deletion has to be proved
 on the uniform simple graph.
@@ -2329,7 +2458,15 @@ That count does not delete a host.
 Lemma~\ref{lem:coercive} keeps the phase coercive after the host is deleted.
 Proposition~\ref{prop:saddle-prefactor} evaluates the deleted-host integrand at the origin, with the radius fixed by \(\lambda=m/E\): the logarithm is \(k\log 2-\frac12+O((k+1)/n)\), and the average of these weights is \(1\).
 Theorem~\ref{thm:half} turns that average into the coupling of degrees \(n/2-1\) and \(n/2\).
-The same argument at a degree \(\delta n\) bounded away from \(1/2\) is not included.
+Theorem~\ref{thm:band} carries the same saddle to every degree \(\delta n\) with \(\delta\) and \(1-\delta\) bounded away from \(0\): the origin contribution is \(\lambda^{-k}\exp\bigl(-\tfrac12(\lambda^{-1}-1)\bigr)\), and that factor averages to \(1\) against the intersection of two perfect matchings.
+Theorem~\ref{thm:middle} is the resulting coupling.
+Theorem~\ref{thm:band-chains} extends one step to a chain of length \(o(n^{1/3})\).
+Theorem~\ref{thm:half-chains} lengthens that chain to \(o(n^{1/2})\) for degrees within the same distance of \(n/2\).
+A union bound of these steps cannot cross length \(n^{1/2}\): in the linear band the relative variance of the matching count is of order \(1/n\), so even a deviation at the standard-deviation scale costs \(n^{-1/2}\) per step.
+Conjecture~\ref{conj:long-step} is the replacement, one deletion of an \(L\)-factor for some \(L=\omega(n^{1/2})\).
+Lemma~\ref{lem:factor-tv} is the total-variation comparison for that deletion: concentration of the factor count makes the upper graph uniform.
+The number of \(L\)-factors is still unproved for \(L=\omega(n^{1/2})\), and the lower graph is uniform only when every \(d\)-regular graph has the same number of extensions.
+A Chernoff increment still has length \(\Theta\sqrt{n\log n}\) at this degree, which is longer by a power of \(\log n\), so Conjecture~\ref{conj:Q} and Conjecture~\ref{conj:config-split} stay open.
 Theorem~\ref{thm:chains} still describes simultaneous chains inside \(o(n^{1/2})\), where the variance is \(D^{-3}+D/n\).
 
 Quantitative sandwich rates from the~\cite{BIM25} budget:
@@ -2406,6 +2543,11 @@ one must thin the residual \(R:=G^*_0\setminus G\), which is approximately
 \(\varepsilon_0 d\)-regular of order \(d^{2/3}(\log n)^{1/3}\), down to surplus
 degree \(\asymp\sqrt{d\log n}\) without exposing any edge of \(G\).
 This is a far smaller range of surplus densities than the full deletion process.
+Proposition~\ref{prop:hybrid-gap} shows that thinning that residual produces a degree of variance \(O(d^{2/3}(\log n)^{1/3})\), whereas a binomial degree has variance \(\Theta(d)\), so the thinned graph is not the Chernoff upper graph.
+Proposition~\ref{prop:sprinkle-gap} extends the same obstruction to every completion that freezes \(G\) and sprinkles independently on its complement.
+Proposition~\ref{prop:binomial-first} is the route around that obstruction: sample the binomial first and select a \(d\)-regular subgraph whose marginal is uniform.
+The selection step is open.
+Conjecture~1.3 of~\cite{BIM25} is the same demand applied to every graph of the random graph process at once, and Theorem~\ref{thm:process-to-Q} converts it into Conjecture~\ref{conj:Q}.
 \end{remark}
 
 \begin{lemma}[Residual degree after rate \(1/3\)]
@@ -2585,6 +2727,53 @@ obtained by retaining each edge of \(G^*_0\) independently with probability
 Theorem~\ref{thm:hybrid} to the upper half of Conjecture~\ref{conj:Q} requires a
 different identification (or the process conjecture).
 \end{remark}
+
+\begin{proposition}[Hybrid degrees are too concentrated]
+\label{prop:hybrid-gap}
+In the setting of Theorem~\ref{thm:hybrid} with \(\varepsilon\to 0\), the law of one degree of \(H\) and the law of one degree of \(G\bigl(n,(1+\varepsilon)d/n\bigr)\) have total variation bounded below by \(1/16-o(1)\).
+\end{proposition}
+
+\begin{proof}
+Let \(X\) be a vertex degree in the binomial graph. Its variance is \(\sigma^2=\Theta(d)\), and its fourth central moment is at most \(3\sigma^4+\sigma^2\).
+Paley--Zygmund gives \(\PP(|X-\EE X|>\sigma/\sqrt{2})\ge 1/16\) once \(\sigma^2\ge 1\).
+Let \(D\) be the corresponding degree of \(H\). Conditioning on the residual as in Theorem~\ref{thm:hybrid}, and using \(\deg_R(v)=(1+o(1))\varepsilon_0 d\) from Lemma~\ref{lem:residual-sharp}, yields
+\(\Var D=O(d^{2/3}(\log n)^{1/3})\).
+Chebyshev's inequality gives \(\PP(|D-\EE D|>\sigma/4)\to 0\).
+The edge marginals of Theorem~\ref{thm:hybrid} match the two means up to \(O(d/n)=o(\sigma)\).
+The set where the binomial degree has probability at least \(1/16\) therefore has probability \(o(1)\) under \(D\).
+\end{proof}
+
+\begin{proposition}[Independent completion has the wrong variance]
+\label{prop:sprinkle-gap}
+Let \(G\) be a fixed \(d\)-regular graph, and let \(H\) be obtained by retaining every edge of \(G\) and adding each remaining edge independently with probability \(p'\) chosen so that \(\EE[\deg_H(v)]=(1+\varepsilon)d\).
+If \(d\ge C\log n\) and \(\varepsilon=C\sqrt{(\log n)/d}\to 0\), then \(\Var(\deg_H(v))=\Theta(\varepsilon d)=o(d)\), while a degree in \(G\bigl(n,(1+\varepsilon)d/n\bigr)\) has variance \(\Theta(d)\).
+The two degree laws are singular, so this completion is not a coupling for Conjecture~\ref{conj:Q}.
+\end{proposition}
+
+\begin{proof}
+The added degree at \(v\) is binomial of mean \(\varepsilon d\), hence of variance \(\varepsilon d\,(1-p')\).
+Here \(p'=\varepsilon d/(n-1-d)\le\varepsilon d/(n-1-d)\).
+For \(d\le n/2\) one has \(p'=O(\varepsilon d/n)=O(\varepsilon)\), so the variance is \((1-o(1))\varepsilon d\).
+For \(n/2<d\le n-1\) the same mean \(\varepsilon d\) is at most \(n-1-d\) only when \(\varepsilon d\le n-1-d\); otherwise no such \(p'\) exists.
+Whenever \(p'\) exists, the variance is at most \(\varepsilon d=o(d)\).
+The binomial comparison is the same Paley--Zygmund estimate as in Proposition~\ref{prop:hybrid-gap}.
+\end{proof}
+
+\begin{proposition}[Sample the binomial first]
+\label{prop:binomial-first}
+Let \(d\ge C\log n\) and \(\varepsilon\ge C\sqrt{(\log n)/d}\).
+The upper half of Conjecture~\ref{conj:Q} is equivalent to a coupling of \(H\sim G\bigl(n,(1+\varepsilon)d/n\bigr)\) with a \(d\)-regular graph \(G\subset H\) whose marginal is within total variation \(o(1)\) of the uniform law on \(d\)-regular graphs.
+Every such coupling has \(\Var(\deg_H(v))=\Theta(d)\).
+\end{proposition}
+
+\begin{proof}
+The upper half of Conjecture~\ref{conj:Q} is a coupling of this form.
+Conversely, let \(G\subset H\) with \(H\) binomial and with \(\dTV(\mathcal{L}(G),\mu_d)=o(1)\).
+A maximal coupling of \(G\) with a uniform random \(d\)-regular graph \(G_u\) satisfies \(\PP(G\neq G_u)=o(1)\).
+On the agreement event, \(G_u\subset H\).
+Thus \(\PP(G_u\subset H)=1-o(1)\), and \((G_u,H)\) is the required coupling.
+The degree variance is the binomial variance \(\Theta(d)\), so the constructions of Propositions~\ref{prop:hybrid-gap} and~\ref{prop:sprinkle-gap} are excluded: those supergraphs are not binomial.
+\end{proof}
 
 \begin{remark}[Matching room]
 \label{rem:matching-room}
@@ -3528,6 +3717,23 @@ The deletion-process~/~B2 architecture nevertheless cannot beat rate \(1/3\)
 (cf.\ Theorem~\ref{thm:quant-third}); Chernoff-scale sandwiching remains
 Conjecture~\ref{conj:Q}.
 \end{remark}
+
+\begin{proposition}[B2 excess at the Chernoff rate]
+\label{prop:b2-excess}
+In the sum of Section~3.5.5 of~\cite{BIM25}, replace the path error
+\((n\log n/j)^{1/8}\) by \((n\log n/j)^{1/2}\), as in the proof of
+Theorem~\ref{thm:quant-third-global}.
+At \(\varepsilon=(\log n/d)^{1/3}\) the resulting expectation is of order \(R\).
+At \(\varepsilon=(\log n/d)^{1/2}\) it exceeds \(R\) by the factor \((d/\log n)^{1/4}\).
+\end{proposition}
+
+\begin{proof}
+The expectation is of order \(dn\,(\log n/(\varepsilon d))^{1/2}\), while
+\(R=\Theta(\varepsilon dn)\), so the ratio is \(\Theta\bigl((\log n/(\varepsilon d))^{1/2}/\varepsilon\bigr)\).
+Substituting \(\varepsilon=(\log n/d)^{1/3}\) gives the value \(1\).
+Substituting \(\varepsilon=(\log n/d)^{1/2}\) gives \((d/\log n)^{1/4}\).
+Both identities were checked symbolically.
+\end{proof}
 
 \section*{Acknowledgements}
 The exact \(+1\) argument carries out the extension outlined by Gao in~\cite{Gao21},
