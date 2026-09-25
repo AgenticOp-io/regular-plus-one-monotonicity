@@ -2126,8 +2126,141 @@ The product \(L\cdot L^{1/3}n^{-2/3}=L^{4/3}n^{-2/3}\) tends to \(0\) by the hyp
 Let \(n\) be even and let \(d,L\) satisfy \(\min(d,n-d,d+L,n-d-L)=\Theta(n)\) and \(L=\omega(n^{1/2})\), with \(dn\) and \(Ln\) even.
 Let \(Z\) be the number of \(L\)-factors of a uniform random \((d+L)\)-regular graph.
 If \(\Var Z/(\EE Z)^2=o(1)\), then Lemma~\ref{lem:factor-tv} gives a uniform \((d+L)\)-regular graph \(H\) and a \(d\)-regular subgraph \(G\subset H\) with probability \(1-o(1)\).
-The subgraph \(G\) is uniformly random if every \(d\)-regular graph has the same number of \((d+L)\)-regular supergraphs, up to a \(1+o(1)\) factor.
+Theorem~\ref{thm:long-from-moment} removes the worst-case hypothesis: the same moment bound at degree \(n-1-d\) makes the lower graph uniform in total variation.
 \end{conjecture}
+
+\begin{proposition}[Worst-case extensions are not flat]
+\label{prop:not-flat}
+Let \(n\equiv 2\pmod{4}\). The complete bipartite graph \(K_{n/2,n/2}\) is \(n/2\)-regular, and its complement is a disjoint union of two cliques of odd order, hence has no perfect matching.
+A uniform random \((n/2-1)\)-regular graph has a perfect matching with probability \(1-o(1)\).
+\end{proposition}
+
+\begin{proof}
+The complement of \(K_{n/2,n/2}\) is \(2K_{n/2}\). Since \(n/2\) is odd, neither clique has a perfect matching.
+Proposition~\ref{prop:band-rate} for the number of perfect matchings in \(G(n,n/2-1)\) gives \(\Var Y/(\EE Y)^2=O(1/n)\).
+Chebyshev's inequality at relative height \(1/2\) yields \(\PP(Y=0)=O(1/n)\).
+\end{proof}
+
+\begin{proposition}[Distributional flatness for one matching]
+\label{prop:flat-one}
+Let \(n\) be even and let \(\min(d,n-d)=\Theta(n)\), with \(dn\) even.
+For a \(d\)-regular graph \(G\), write \(Z_\partial(G)\) for the number of perfect matchings in \(K_n\setminus G\).
+If \(G\) is drawn uniformly, the law reweighted by \(Z_\partial\) is within total variation \(O(n^{-1/3})\) of the uniform law on \(d\)-regular graphs.
+\end{proposition}
+
+\begin{proof}
+Complementation is a bijection between \(d\)-regular graphs and \((n-1-d)\)-regular graphs, and \(Z_\partial(G)\) is the number of perfect matchings of the complement.
+Proposition~\ref{prop:band-rate} supplies relative variance \(O(1/n)\).
+Chebyshev's inequality at height \(n^{-1/3}\) fails with probability \(O(n^{-1/3})\).
+The reweighted law is the lower marginal of a uniform containment pair, so the degree sum in the proof of Lemma~\ref{lem:factor-tv} gives total variation \(O(n^{-1/3})\).
+\end{proof}
+
+\begin{proposition}[Long-factor flatness is the same count]
+\label{prop:flat-same}
+Under the hypotheses of Conjecture~\ref{conj:long-step}, the number of \((d+L)\)-regular supergraphs of a uniform random \(d\)-regular graph has the same distribution as the number of \(L\)-factors of a uniform random \((n-1-d)\)-regular graph.
+Thus a relative variance \(o(1)\) for \(L\)-factor counts on every linear degree gives both marginals of the uniform containment pair within total variation \(o(1)\) of the corresponding uniform regular graph.
+\end{proposition}
+
+\begin{proof}
+The complement of a \(d\)-regular graph is \((n-1-d)\)-regular, and an \(L\)-factor of the complement is the edge set of a \((d+L)\)-regular supergraph.
+Lemma~\ref{lem:factor-tv} and the same reweighting as in Proposition~\ref{prop:flat-one} convert a relative variance \(o(1)\) into the two total-variation bounds.
+\end{proof}
+
+\begin{conjecture}[Factor second moment past \(\sqrt{n}\)]
+\label{conj:factor-moment}
+Let \(n\) be even, let \(\min(D,n-D)=\Theta(n)\), and let \(L\) satisfy \(Ln\) even, \(L\le D\), and \(n^{1/2}=o(L)=o(n)\).
+Let \(Z\) be the number of \(L\)-factors of a uniform random \(D\)-regular graph.
+Then \(\Var Z/(\EE Z)^2=o(1)\).
+\end{conjecture}
+
+\begin{proposition}[Where the matching expansion stops]
+\label{prop:sqrt-stop}
+In a \(D\)-regular graph with \(D=\Theta(n)\), two independent \(L\)-regular subgraphs have expected intersection \(\Theta(L^2)\).
+The matching expansion leaves a second-moment factor of order \((\text{intersection})/n\) after the entropy cancellation.
+At intersection \(\Theta(L^2)\) that order is \(\Theta(L^2/n)\), which tends to infinity for \(L=\omega(n^{1/2})\).
+\end{proposition}
+
+\begin{proof}
+The host has \(Dn/2\) edges. An \(L\)-factor uses each of them with probability \(L/D\), so the expected size of the intersection of two such factors is
+\[
+\frac{Dn}{2}\cdot\Bigl(\frac{L}{D}\Bigr)^2
+=
+\frac{nL^2}{2D}
+=
+\Theta(L^2).
+\]
+In the proof of Theorem~\ref{thm:band} the entropy cancellation removes the leading power of the intersection size and leaves a factor \(1+O(k/n)\) for an intersection of size \(k\).
+The scaled excess of the quadratic deficit has limit \((k-1)/k\) as \(n\to\infty\) with \(k\) fixed, so the excess is asymptotic to \((k-1)/n\).
+An intersection of size \(\Theta(L^2)\) leaves that fixed-\(k\) regime as soon as \(L=\omega(n^{1/2})\), and the same order \(\Theta(L^2/n)\) tends to infinity.
+\end{proof}
+
+\begin{theorem}[Long step from the factor moment]
+\label{thm:long-from-moment}
+Assume Conjecture~\ref{conj:factor-moment} at every degree \(D\) with \(\min(D,n-D)=\Theta(n)\).
+Let \(n\) be even and let \(d,L\) satisfy the hypotheses of Conjecture~\ref{conj:long-step}.
+Then there is a coupling of a \(d\)-regular graph \(G\) and a \((d+L)\)-regular graph \(H\) with \(G\subset H\) such that each marginal is within total variation \(o(1)\) of the uniform regular graph of the same degree.
+\end{theorem}
+
+\begin{proof}
+Let \(v=o(1)\) be the relative variance of the \(L\)-factor count at degree \(d+L\), and set \(\alpha=v^{1/3}\).
+For large \(n\) one has \(\alpha<1/2\), and Chebyshev's inequality costs at most \(v/\alpha^2=\alpha\).
+Lemma~\ref{lem:factor-tv} therefore places the upper marginal within total variation \(2\alpha=o(1)\) of \(\mu_{d+L}\).
+The lower marginal is the uniform \(d\)-regular law reweighted by the number of \((d+L)\)-regular supergraphs.
+Proposition~\ref{prop:flat-same} identifies that weight with the \(L\)-factor count at degree \(n-1-d\).
+The hypotheses \(\min(d,n-d,d+L,n-d-L)=\Theta(n)\) force \(\min(n-1-d,d+1)=\Theta(n)\) and \(L\le n-1-d\), so Conjecture~\ref{conj:factor-moment} applies there.
+The same Chebyshev bound and the degree sum in the proof of Lemma~\ref{lem:factor-tv} give total variation \(o(1)\) for the lower marginal.
+\end{proof}
+
+\begin{proposition}[Repetition cost]
+\label{prop:repeat-cost}
+Suppose each long step of length \(L\) fails with probability at most \(\tau\).
+A union bound over \(N\) successive steps fails with probability at most \(N\tau\).
+Crossing an interval of length \(\Theta(n)\) takes \(N=\Theta(n/L)\) steps, so the union bound tends to \(0\) only if \(\tau=o(L/n)\).
+\end{proposition}
+
+\begin{proof}
+The failure event of the chain is contained in the union of the \(N\) step-failures, which has probability at most \(N\tau\).
+An interval of length \(cn\) with \(c>0\) fixed requires at least \(cn/(2L)\) steps of length \(L\) once \(L=o(n)\).
+\end{proof}
+
+\begin{proposition}[Moment order for a repeated long step]
+\label{prop:chain-budget}
+Chebyshev's inequality at height \(v^{1/3}\) produces total variation \(O(v^{1/3})\).
+That quantity is \(o(L/n)\) only if \(v=o(L^3/n^3)\).
+The matching-shaped excess \(\Theta(L^2/n)\) of Proposition~\ref{prop:sqrt-stop} exceeds \(L^3/n^3\) by the factor \(\Theta(n^2/L)\), which tends to infinity for \(L=o(n)\).
+\end{proposition}
+
+\begin{proof}
+The identity \(v/(v^{1/3})^2=v^{1/3}\) is the Chebyshev cost at height \(v^{1/3}\), and Lemma~\ref{lem:factor-tv} returns total variation of that order.
+Raising \(o(L/n)\) to the third power yields \(o(L^3/n^3)\).
+The ratio of \(\Theta(L^2/n)\) to \(L^3/n^3\) equals \(\Theta(n^2/L)\).
+\end{proof}
+
+\begin{conjecture}[Factor moment at the repetition scale]
+\label{conj:factor-rate}
+Under the hypotheses of Conjecture~\ref{conj:factor-moment},
+\[
+\frac{\Var Z}{(\EE Z)^2}=o\Bigl(\frac{L^3}{n^3}\Bigr).
+\]
+\end{conjecture}
+
+\begin{proposition}[A regular upper graph is not the Chernoff binomial]
+\label{prop:not-binomial}
+The upper graph in Theorem~\ref{thm:long-from-moment} is \((d+L)\)-regular, so every degree has variance \(0\).
+Under the same hypotheses \(d\) and \(n-d\) are of order \(n\). For \(\varepsilon\to 0\), a degree in \(G\bigl(n,(1+\varepsilon)d/n\bigr)\) has variance \((1-o(1))\,d(n-d)/n=\Theta(d)\).
+The long step therefore does not produce the upper graph of Conjecture~\ref{conj:Q}.
+\end{proposition}
+
+\begin{proof}
+A regular graph has deterministic degrees.
+With \(p=(1+\varepsilon)d/n\), the binomial variance is \((n-1)p(1-p)\).
+Dividing by \(d(n-d)/n\) produces
+\[
+\frac{n-1}{n}\,(1+\varepsilon)\Bigl(1-\frac{\varepsilon d}{n-d}\Bigr).
+\]
+The hypotheses give \(d/(n-d)=\Theta(1)\), so the displayed factor tends to \(1\) as \(n\to\infty\) and \(\varepsilon\to 0\).
+Since \(n-d=\Theta(n)\), the variance is \(\Theta(d)\).
+\end{proof}
 
 \begin{proposition}[Union bound across all degrees]
 \label{prop:harmonic}
@@ -2465,7 +2598,7 @@ Theorem~\ref{thm:half-chains} lengthens that chain to \(o(n^{1/2})\) for degrees
 A union bound of these steps cannot cross length \(n^{1/2}\): in the linear band the relative variance of the matching count is of order \(1/n\), so even a deviation at the standard-deviation scale costs \(n^{-1/2}\) per step.
 Conjecture~\ref{conj:long-step} is the replacement, one deletion of an \(L\)-factor for some \(L=\omega(n^{1/2})\).
 Lemma~\ref{lem:factor-tv} is the total-variation comparison for that deletion: concentration of the factor count makes the upper graph uniform.
-The number of \(L\)-factors is still unproved for \(L=\omega(n^{1/2})\), and the lower graph is uniform only when every \(d\)-regular graph has the same number of extensions.
+The number of \(L\)-factors is still unproved for \(L=\omega(n^{1/2})\). Proposition~\ref{prop:flat-same} makes the lower graph uniform once that moment bound holds at degree \(n-1-d\), and Theorem~\ref{thm:long-from-moment} is the resulting coupling. Proposition~\ref{prop:chain-budget} shows that repeating the step across a linear interval needs the stronger Conjecture~\ref{conj:factor-rate}. Proposition~\ref{prop:not-binomial} keeps this coupling away from Conjecture~\ref{conj:Q}.
 A Chernoff increment still has length \(\Theta\sqrt{n\log n}\) at this degree, which is longer by a power of \(\log n\), so Conjecture~\ref{conj:Q} and Conjecture~\ref{conj:config-split} stay open.
 Theorem~\ref{thm:chains} still describes simultaneous chains inside \(o(n^{1/2})\), where the variance is \(D^{-3}+D/n\).
 
@@ -3239,6 +3372,8 @@ push it onto the rate-\(1/3\) host.
 Past the chain ceiling, Theorem~\ref{thm:matching-peel} still produces an exact
 \((d+m)\)-regular container. Conjecture~\ref{conj:config-split} is the missing
 identification.
+The \(L\)-factor count does not supply it: the residual \(R=G^*_0\setminus G\) has degrees \(\Theta(d^{2/3}(\log n)^{1/3})\) and is not regular, so neither Lemma~\ref{lem:factor-tv} nor Conjecture~\ref{conj:factor-moment} applies to \(R\).
+The identification does not use Conjecture~\ref{conj:Q}. The missing statement is a second-moment bound for \(m\)-factors of this irregular residual.
 \end{remark}
 
 \begin{conjecture}[Host-restricted splitting]
@@ -3249,6 +3384,13 @@ Write \(\mathcal{L}_{d,m}\) for the law of the graph \(G_m\) produced by
 Corollary~\ref{cor:chernoff-container}, and \(\mu_{d+m}\) for the law of
 \(G(n,d+m)\).
 Then \(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\to 0\).
+\end{conjecture}
+
+\begin{conjecture}[Second moment on the irregular residual]
+\label{conj:residual-moment}
+Let \(R\) be the residual of Lemma~\ref{lem:residual}, and let \(m=\lfloor c\sqrt{d\log n}\rfloor\) be as in Theorem~\ref{thm:matching-peel}.
+Let \(Z\) be the number of spanning \(m\)-regular subgraphs of \(R\).
+Then \(\Var Z/(\EE Z)^2=o(1)\).
 \end{conjecture}
 
 \begin{proposition}[Splitting without host]
