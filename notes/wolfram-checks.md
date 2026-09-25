@@ -1767,3 +1767,31 @@ Query: 7/15 + 1/5 - 2/3 = 0
 7/15 + 1/5 - 2/3 = 0
 [Result]
 True
+
+
+Query: 2 - 4*(2/5) - 2/5 = 0
+[Input]
+2 - 4 × 2/5 - 2/5 = 0
+[Result]
+True
+
+
+Query: q - 2*q*(q/(2*q+1)) - q/(2*q+1) = 0
+[Input]
+q - 2 q × q/(2 q + 1) - q/(2 q + 1) = 0
+[Alternate form]
+True (for q!=-1/2)
+
+
+Query: Sum[Binomial[4,k]*(-1)^(4-k)*k^2, {k,0,4}] = 0
+[Input interpretation]
+sum_(k=0)^4 binomial(4, k) (-1)^(4 - k) k^2 = 0
+[Result]
+True
+
+
+Query: 1/2 - q/(2*q+1) - 1/(2*(2*q+1)) = 0
+[Input]
+1/2 - q/(2 q + 1) - 1/(2 (2 q + 1)) = 0
+[Alternate form]
+True (for q!=-1/2)

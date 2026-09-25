@@ -1957,6 +1957,23 @@ Each edge of \(H\) contributes at most \(2\theta_u^2+2\theta_v^2\), and \(\sum_{
 Subtracting at most \(4\sum\theta_v^2\) leaves \((n-6)\sum\theta_j^2\).
 \end{proof}
 
+\begin{lemma}[A bounded-degree host stays coercive]
+\label{lem:coercive-bound}
+Let \(H\) have maximum degree \(\Delta\). Then
+\[
+\sum_{(jk)\notin E(H)}(\theta_j+\theta_k)^2
+\ge
+(n-2-2\Delta)\sum_j\theta_j^2.
+\]
+\end{lemma}
+
+\begin{proof}
+The complete sum is the same as in Lemma~\ref{lem:coercive}.
+Each edge of \(H\) contributes at most \(2\theta_u^2+2\theta_v^2\), and
+\(\sum_{uv\in E(H)}(\theta_u^2+\theta_v^2)=\sum_v\deg_H(v)\theta_v^2\le\Delta\sum_v\theta_v^2\).
+Subtracting at most \(2\Delta\sum\theta_v^2\) leaves \((n-2-2\Delta)\sum\theta_j^2\).
+\end{proof}
+
 \begin{proposition}[Saddle prefactor of a deleted host]
 \label{prop:saddle-prefactor}
 Let \(E=\binom{n}{2}-e\) be the number of available pairs and let \(m\) be the number of edges in the counted graph. Set \(\lambda=m/E\) and
@@ -2079,6 +2096,7 @@ Proposition~\ref{prop:band-rate} gives \(v=O(1/n)\) at every degree on the inter
 Chebyshev at height \(v^{1/3}\) fails with probability \(v^{1/3}\), because \(v/(v^{1/3})^2=v^{1/3}\).
 Lemma~\ref{lem:tv} turns each step into a coupling of failure \(O(n^{-1/3})\).
 The union bound is \(L\) times that quantity, which tends to \(0\) by the hypothesis on \(L\).
+The fourth-moment bound of Lemma~\ref{lem:band-fourth} lengthens the same chain to \(o(n^{2/5})\), as in Theorem~\ref{thm:band-fourth-chains}.
 \end{proof}
 
 \begin{proposition}[Sharper rate at half degree]
@@ -2167,6 +2185,91 @@ When \(T=n^{3/5}\) and \(L=o(n^{7/15})\), one has \(T+L\sim n^{3/5}\) and
 L(T+L)^{1/3}=o\bigl(n^{7/15}\cdot n^{1/5}\bigr)=o\bigl(n^{7/15+3/15}\bigr)=o(n^{2/3}),
 \]
 since \(1/5=3/15\).
+\end{proof}
+
+\begin{lemma}[Pairwise saddle for several matchings]
+\label{lem:pair-saddle}
+Fix an integer \(r\ge 2\). Let \(\min(D,n-D)=\Theta(n)\), and let \(M_1,\ldots,M_r\) be perfect matchings with total pairwise overlap \(\sigma\). Write \(\lambda=(D-1)/(n-2)\). The origin contribution of
+\[
+\frac{N\bigl(\bigcup_i M_i\bigr)\,N(\emptyset)^{r-1}}{N(M)^r}
+\]
+is
+\[
+\lambda^{-\sigma}\exp\Bigl(-\binom{r}{2}\tfrac12(\lambda^{-1}-1)\Bigr)\Bigl(1+O_r\Bigl(\frac{\sigma+1}{n}\Bigr)\Bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+Write \(E_0=\binom{n}{2}\) and \(m_0=Dn/2\), and let
+\[
+f(e)=(E_0-e)\,\eta\bigl((m_0-e)/(E_0-e)\bigr)
+\]
+be the origin logarithm as a function of the number of deleted edges.
+On the compact interval of densities bounded away from \(0\) and \(1\), the third derivative satisfies \(f'''=O(n^{-4})\).
+A host of \(O(rn)\) edges therefore differs from the quadratic Taylor polynomial of \(f\) by \(O_r(1/n)\).
+The quadratic combination of \(r\) single matchings is \(\binom{r}{2}\) times the two-matching combination in the proof of Theorem~\ref{thm:band}, which equals \(\sigma\log(1/\lambda)-\binom{r}{2}\tfrac12(\lambda^{-1}-1)\).
+The determinant comparison of that theorem contributes a further \(O_r((\sigma+1)/n)\).
+\end{proof}
+
+\begin{lemma}[Fourth moment in the linear band]
+\label{lem:band-fourth}
+Under the hypotheses of Theorem~\ref{thm:band},
+\[
+\frac{\EE\bigl[(Y-\EE Y)^{4}\bigr]}{(\EE Y)^{4}}
+=
+O(n^{-2}).
+\]
+\end{lemma}
+
+\begin{proof}
+Write \(\mu_r=\EE[Y^r]/(\EE Y)^r\) for \(r\le 4\).
+The host formed by at most four matchings has maximum degree at most \(4\), so Lemma~\ref{lem:coercive-bound} keeps the phase coercive with a positive multiple of \(n\).
+The integral outside the saddle box of Theorem~\ref{thm:half} is \(\exp(-c n^{1/10})\), uniformly in such a host.
+
+Split the average that defines \(\mu_r\) into tuples in which some pair shares more than \(\log n\) edges, and the rest.
+On the first class, the intersection of two uniform perfect matchings has Poisson(\(\tfrac12\)) factorial moments, so the tail is \(o(n^{-C})\) for every fixed \(C\).
+
+On the complementary class, Lemma~\ref{lem:pair-saddle} gives the origin contribution
+\[
+\lambda^{-\sigma}\exp\Bigl(-\binom{r}{2}\tfrac12(\lambda^{-1}-1)\Bigr)\Bigl(1+O\Bigl(\frac{\sigma+1}{n}\Bigr)\Bigr),
+\]
+where \(\sigma\) is the total pairwise overlap.
+The factorial moments of each pairwise intersection still tend to those of a Poisson random variable of mean \(\tfrac12\), so the product of \(\lambda^{-\sigma}\) with the exponential averages to \(1+O(1/n)\).
+
+Write \(\sigma=\sum_{a<b}s_{ab}-\Delta\), where \(\Delta\) is carried only by edges in at least three of the matchings.
+The linear piece in the \(s_{ab}\) is a polynomial of degree \(2\) in \(r\).
+The fourth central moment is the finite difference of order \(4\) of \(\mu_r\), which vanishes on every polynomial of degree at most \(2\):
+\[
+\sum_{k=0}^{4}\binom{4}{k}(-1)^{4-k}k^2=0.
+\]
+A product whose degree in \(r\) is at least \(4\) must contain at least two factors of \(\Delta\).
+A fixed pair lies in a matching with probability \(1/(n-1)\), so each triple intersection has expectation \(O(1/n)\), and a product of two or more factors of \(\Delta\) has expectation \(O(1/n^2)\).
+Every term that the finite difference does not kill is therefore \(O(n^{-2})\).
+\end{proof}
+
+\begin{theorem}[Fourth-moment chains through linear degree]
+\label{thm:band-fourth-chains}
+Let \(n\) be even and let \(D\) satisfy \(\min(D,n-D)=\Theta(n)\).
+If \(L=o(n^{2/5})\) and \(L\le n/6\), there is a coupling \((G_d)_{d=D}^{D+L}\) with each \(G_d\sim G(n,d)\) and
+\[
+\PP\bigl(G_D\subseteq\cdots\subseteq G_{D+L}\bigr)=1-o(1).
+\]
+\end{theorem}
+
+\begin{proof}
+Set \(\alpha=n^{-2/5}\).
+Lemma~\ref{lem:band-fourth} and Markov's inequality give
+\[
+\PP\bigl(|Y-\EE Y|\ge\alpha\,\EE Y\bigr)
+\le
+O\bigl(n^{-2}/\alpha^{4}\bigr)
+=
+O(n^{-2/5}),
+\]
+because \(2-8/5=2/5\).
+Lemma~\ref{lem:tv} converts this into a one-step failure \(O(n^{-2/5})\).
+The hypothesis \(L\le n/6\) keeps \(\min(d,n-d)=\Theta(n)\) on the interval.
+The union bound is \(L\cdot O(n^{-2/5})\), which tends to \(0\).
 \end{proof}
 
 \begin{conjecture}[One deletion of a long factor]
@@ -2644,7 +2747,9 @@ Theorem~\ref{thm:middle} is the resulting coupling.
 Theorem~\ref{thm:band-chains} extends one step to a chain of length \(o(n^{1/3})\).
 Theorem~\ref{thm:half-chains} lengthens that chain to \(o(n^{1/2})\) for degrees within the same distance of \(n/2\).
 Theorem~\ref{thm:distance-chains} interpolates the two: at distance \(T\) from \(n/2\) the chain may have length \(o\bigl(n^{2/3}/(T+1)^{1/3}\bigr)\), which is \(o(n^{7/15})\) at distance \(n^{3/5}\).
-A union bound of these steps cannot cross length \(n^{1/2}\): in the linear band the relative variance of the matching count is of order \(1/n\), so even a deviation at the standard-deviation scale costs \(n^{-1/2}\) per step.
+Lemma~\ref{lem:band-fourth} upgrades the linear-band matching count to a fourth moment \(O(n^{-2})\).
+Theorem~\ref{thm:band-fourth-chains} turns that moment into a chain of length \(o(n^{2/5})\) at every linear degree.
+A union bound of matching steps still cannot cross length \(n^{1/2}\): the relative width of \(Y\) is of order \(n^{-1/2}\), and \(n^{1/2}\) steps at that scale do not vanish.
 Conjecture~\ref{conj:long-step} is the replacement, one deletion of an \(L\)-factor for some \(L=\omega(n^{1/2})\).
 Lemma~\ref{lem:factor-tv} is the total-variation comparison for that deletion: concentration of the factor count makes the upper graph uniform.
 The number of \(L\)-factors is still unproved for \(L=\omega(n^{1/2})\). Proposition~\ref{prop:flat-same} makes the lower graph uniform once that moment bound holds at degree \(n-1-d\), and Theorem~\ref{thm:long-from-moment} is the resulting coupling. Proposition~\ref{prop:chain-budget} shows that repeating the step across a linear interval needs the stronger Conjecture~\ref{conj:factor-rate}. Proposition~\ref{prop:not-binomial} keeps this coupling away from Conjecture~\ref{conj:Q}.
