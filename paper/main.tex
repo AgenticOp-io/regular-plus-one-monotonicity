@@ -3003,6 +3003,8 @@ Lemma~\ref{lem:factor-tv} is the total-variation comparison for that deletion: c
 Theorem~\ref{thm:factor-third} gives the \(L\)-factor second moment for \(L=o(n^{1/3})\), and Theorem~\ref{thm:third-step} is the resulting deletion.
 The number of \(L\)-factors is still unproved for \(L=\omega(n^{1/3})\). Proposition~\ref{prop:flat-same} makes the lower graph uniform once that moment bound holds at degree \(n-1-d\), and Theorem~\ref{thm:long-from-moment} is the coupling past \(n^{1/3}\), conditional on Conjecture~\ref{conj:factor-moment}. Proposition~\ref{prop:chain-budget} shows that repeating the step across a linear interval needs the stronger Conjecture~\ref{conj:factor-rate}. Proposition~\ref{prop:not-binomial} keeps this coupling away from Conjecture~\ref{conj:Q}.
 A Chernoff increment still has length \(\Theta\sqrt{n\log n}\) at this degree, which is longer by a power of \(\log n\), so Conjecture~\ref{conj:Q} and Conjecture~\ref{conj:config-split} stay open.
+Theorem~\ref{thm:free-chernoff} is the increment at every \(d+m=o(n^{1/3})\) from a free \(m\)-factor, which does not identify the peel container.
+Theorem~\ref{thm:free-chernoff} is the increment at every \(d+m=o(n^{1/3})\) from a free \(m\)-factor, which does not identify the peel container.
 Theorem~\ref{thm:chains} still describes simultaneous chains inside \(o(n^{1/2})\), where the variance is \(D^{-3}+D/n\).
 
 The next attack on the three remaining conjectures is not another switching pass or another Taylor step of the matching origin.
@@ -3813,7 +3815,8 @@ sits inside that range, and Proposition~\ref{prop:host-gap} blocks the attempt t
 push it onto the rate-\(1/3\) host.
 Past the chain ceiling, Theorem~\ref{thm:matching-peel} still produces an exact
 \((d+m)\)-regular container. Conjecture~\ref{conj:config-split} is the missing
-identification.
+identification of that container.
+Theorem~\ref{thm:free-chernoff} already gives the increment \(G(n,d)\subset G(n,d+m)\) with a uniform upper graph throughout \(d+m=o(n^{1/3})\), by free splitting rather than the peel.
 The \(L\)-factor count does not supply it: the residual \(R=G^*_0\setminus G\) has degrees \(\Theta(d^{2/3}(\log n)^{1/3})\) and is not regular, so neither Lemma~\ref{lem:factor-tv} nor Conjecture~\ref{conj:factor-moment} applies to \(R\).
 The identification does not use Conjecture~\ref{conj:Q}.
 Theorem~\ref{thm:selection-reduces} is the reduction: identify the peel with a uniform \((d+m)\)-regular subgraph of \(G^*_0\), and flatten the inverse subgraph count of that binomial host.
@@ -4000,6 +4003,20 @@ to the union of independent configuration models of degrees \(d\) and \(m\) on
 disjoint stub sets (equivalently, a random partition of the
 \((d+m)\)-regular configuration into a \(d\)-factor and an \(m\)-factor), after
 conditioning on simplicity.
+\end{proof}
+
+\begin{theorem}[Chernoff increments by free splitting]
+\label{thm:free-chernoff}
+Let \(n\) be even, let \(d\to\infty\) with \(dn\) even, and set \(m:=\lfloor c\sqrt{d\log n}\rfloor\) with \(c>0\) fixed, \(mn\) even, and \(d+m=o(n^{1/3})\).
+Then there is a coupling of \(G\sim\Gnd\) with \(H\sim G(n,d+m)\) such that \(\PP(G\subset H)=1-o(1)\).
+In particular the increment conclusion of Theorem~\ref{thm:id-implies-Q} holds throughout this range without Conjecture~\ref{conj:config-split}.
+\end{theorem}
+
+\begin{proof}
+Proposition~\ref{prop:split-free} supplies a coupling of \(G\sim\Gnd\) with an \(m\)-regular graph \(F\) such that \(G\) and \(F\) are edge-disjoint and \(G\cup F\) is contiguous to \(\mu_{d+m}\).
+Contiguity yields a coupling of \(G\cup F\) with \(H\sim\mu_{d+m}\) such that \(\PP(G\cup F=H)=1-o(1)\).
+On that event \(G\subset H\).
+The hypothesis \(d+m=o(n^{1/3})\) is exactly the range of Proposition~\ref{prop:split-free}, and \(m=\Theta\sqrt{d\log n}\) forces \(d=o(n^{1/3})\).
 \end{proof}
 
 \begin{lemma}[Free \(m\)-extension flatness past the chain ceiling]
