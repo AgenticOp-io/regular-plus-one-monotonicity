@@ -2093,3 +2093,15 @@ Query: n*((n-1)/2 - d/2)*m^2/(n-1-d)^2 == n*m^2/(2*(n-1-d))
 n ((n - 1)/2 - d/2) × m^2/(n - 1 - d)^2 = n × m^2/(2 (n - 1 - d))
 [Result]
 True
+
+
+Query: (D*n/2)*(D^2/n^2) == D^3/(2*n)
+[Input]
+(D × n/2) × D^2/n^2 = D^3/(2 n)
+
+
+Query: Simplify[(D*n/2)*(D^2/n^2) - D^3/(2*n)] == 0
+[Input interpretation]
+simplify | (D × n/2) × D^2/n^2 - D^3/(2 n) = 0
+[Result]
+True

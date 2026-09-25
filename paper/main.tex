@@ -3012,6 +3012,8 @@ Proposition~\ref{prop:hybrid-singular} shows that \(H\) is likewise at total var
 The identification in Conjecture~\ref{conj:config-split} is not that comparison.
 It is \(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\), both laws living on \((d+m)\)-regular graphs.
 Theorem~\ref{thm:selection-reduces} reduces that comparison to flatness of the inverse subgraph count of the already sampled binomial host, together with the peel matching a uniform \((d+m)\)-regular subgraph of that host.
+Proposition~\ref{prop:contain-first} flattens the first moment of that count for \(D=o(n^{1/3})\).
+Proposition~\ref{prop:jensen-inverse} records that the inverse count is a separate upper bound, and Proposition~\ref{prop:peel-weights} is the Radon--Nikodym derivative of the peel.
 Proposition~\ref{prop:bernoulli-moment} shows that the same count on an independent Bernoulli residual has second-moment ratio at least \(p^{-\EE K}\to\infty\), so Conjecture~\ref{conj:residual-moment} cannot be proved by replacing \(R\) with an independent binomial graph.
 Conjecture~\ref{conj:Q} itself needs a different coupling: the hybrid is more regular than the binomial, and the BIM deletion process is tight at rate \(1/3\).
 For Conjecture~\ref{conj:factor-moment} the matching expansion is finished: Proposition~\ref{prop:factor-cubic} is the third-cumulant leftover \(\sim-L^3/(4n)\), and Proposition~\ref{prop:typical-origin} records that evaluating the origin at the typical intersection \(k=\Theta(L^2)\) leaves the same cubic order \(O(L^3/n)\).
@@ -3913,6 +3915,77 @@ The law \(\mathcal{L}_{d,m}\) is supported on \(D\)-regular subgraphs of \(G^*_0
 The triangle inequality with (iii) yields (iv).
 \end{proof}
 
+\begin{proposition}[First-moment subgraph count given containment]
+\label{prop:contain-first}
+Assume~\cite[Theorem~6]{Gao20}. Let \(D=o(n^{1/3})\) with \(Dn\) even, and let \(G^*_0\sim G(n,p)\) with \(p=(1+\varepsilon)D/n\) and \(0<\varepsilon=o(1)\).
+Write \(N(G^*_0)\) for the number of \(D\)-regular spanning subgraphs of \(G^*_0\), and \(\pi=D/(n-1)\).
+For every \(D\)-regular graph \(G_0\),
+\[
+\EE\bigl[N(G^*_0)\bigm|G_0\subset G^*_0\bigr]
+=
+(1+o(1))\,\lvert\Omega_D\rvert\,p^{Dn/2}\bigl(1-\pi+\pi p^{-1}\bigr)^{Dn/2},
+\]
+where \(\Omega_D\) is the set of \(D\)-regular graphs on \([n]\).
+The right-hand side does not depend on \(G_0\).
+\end{proposition}
+
+\begin{proof}
+Given \(G_0\subset G^*_0\), the remaining pairs are independent Bernoulli(\(p\)), so
+\[
+\EE\bigl[N\bigm|G_0\subset G^*_0\bigr]
+=
+\sum_{H\in\Omega_D}p^{Dn/2-\lvert E(H)\cap E(G_0)\rvert}
+=
+\lvert\Omega_D\rvert\,p^{Dn/2}\,\EE\bigl[p^{-K}\bigr],
+\]
+where \(K=\lvert E(H)\cap E(G_0)\rvert\) for \(H\sim\mu_D\).
+Order the edges of \(G_0\) and apply~\cite[Theorem~6]{Gao20} to \(G(n,D)\): here \(M=Dn\) and \(\Delta\le D\), so each successive edge of \(G_0\) is present with conditional probability \(\pi\) times \(1+O(D^2/n^2)\).
+The product of \(Dn/2\) factors of relative size \(1+O(D^2/n^2)\) is \(1+O(D^3/n)\).
+The identity \((Dn/2)(D^2/n^2)=D^3/(2n)\) was checked, and \(D^3/n=o(1)\) by hypothesis.
+Thus \(\EE[p^{-K}]=(1-\pi+\pi p^{-1})^{Dn/2}(1+o(1))\), independently of which \(D\)-regular graph \(G_0\) was fixed.
+\end{proof}
+
+\begin{proposition}[First moment does not flatten the inverse count]
+\label{prop:jensen-inverse}
+In the setting of Proposition~\ref{prop:contain-first}, Jensen's inequality for \(x\mapsto 1/x\) on \(\{N\ge 1\}\) gives
+\[
+\EE\bigl[1/N(G^*_0)\bigm|G_0\subset G^*_0\bigr]
+\ge
+\frac{1}{\EE\bigl[N(G^*_0)\bigm|G_0\subset G^*_0\bigr]}.
+\]
+The right-hand side is \((1+o(1))\) the same for every \(D\)-regular \(G_0\).
+Equality holds if and only if \(N\) is almost surely constant given containment.
+Item (iii) of Theorem~\ref{thm:selection-reduces} is the matching upper bound, which the first moment does not supply.
+\end{proposition}
+
+\begin{proof}
+On \(\{G_0\subset G^*_0\}\) one has \(N\ge 1\).
+The function \(x\mapsto 1/x\) is convex on \([1,\infty)\), so Jensen's inequality is the display.
+Proposition~\ref{prop:contain-first} identifies the denominator up to \(1+o(1)\), independently of \(G_0\).
+\end{proof}
+
+\begin{proposition}[Peel weights on a fixed host]
+\label{prop:peel-weights}
+Condition on \(G^*_0\) in the construction of Theorem~\ref{thm:matching-peel}, and write \(D=d+m\).
+For every \(D\)-regular spanning subgraph \(F\subset G^*_0\),
+\[
+\PP(G_m=F\mid G^*_0)
+=
+\sum_{\substack{G\subset F\\ G\text{ \(d\)-regular}}}
+\PP(G\mid G^*_0)\,\frac{1}{N_m(G^*_0\setminus G)},
+\]
+and the mass is \(0\) if \(F\not\subset G^*_0\).
+Uniform selection \(\nu_D\) assigns mass \(1/N(G^*_0)\) to each such \(F\).
+If \(\PP(G\mid G^*_0)\) is uniform on the \(d\)-regular spanning subgraphs of \(G^*_0\), if \(N_m(G^*_0\setminus G)\) is the same for every such \(G\), and if every \(D\)-regular \(F\subset G^*_0\) has the same number of \(d\)-factors, then the two conditional laws agree.
+\end{proposition}
+
+\begin{proof}
+The construction samples \(H\) uniformly from the \(m\)-regular spanning subgraphs of \(R=G^*_0\setminus G\), and returns \(G_m=G\cup H\).
+The event \(G_m=F\) is \(H=F\setminus G\) with \(G\subset F\).
+Under the three flatness hypotheses the sum is \(Z_d(F)/(N_d(G^*_0)\,N_m)\), where \(Z_d(F)\) is the number of \(d\)-factors of \(F\).
+Double counting gives \(\sum_F Z_d(F)=N_d(G^*_0)\,N_m\), so a constant \(Z_d\) equals \(N_d(G^*_0)\,N_m/N(G^*_0)\), and the mass is \(1/N(G^*_0)\).
+\end{proof}
+
 \begin{proposition}[Splitting without host]
 \label{prop:split-free}
 Let \(d\to\infty\), \(m\to\infty\), and \(d+m=o(n^{1/3})\).
@@ -4019,6 +4092,8 @@ Conjecture~\ref{conj:config-split} counts \(m\)-factors of the residual \(R\), w
 degree is of order \(d^{2/3}(\log n)^{1/3}\). Flat free counts do not identify
 \(\mathcal{L}_{d,m}\) with \(\mu_{d+m}\).
 Theorem~\ref{thm:selection-reduces} is the comparison that remains: the peel must match a uniform \(D\)-regular subgraph of \(G^*_0\), and the inverse count \(1/N(G^*_0)\) must be flat given containment.
+Proposition~\ref{prop:contain-first} is the first moment of \(N\) for \(D=o(n^{1/3})\), and Proposition~\ref{prop:jensen-inverse} keeps that moment from implying item (iii).
+Proposition~\ref{prop:peel-weights} is the conditional law of the peel.
 Proposition~\ref{prop:bernoulli-moment} blocks the independent-Bernoulli comparison for Conjecture~\ref{conj:residual-moment}.
 \end{remark}
 
