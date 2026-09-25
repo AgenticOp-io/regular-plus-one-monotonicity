@@ -1683,3 +1683,49 @@ Query: 1 - (1-d)*(1-a) - (a+d-a*d) = 0
 1 - (1 - d) (1 - a) - (a + d - a d) = 0
 [Expanded form]
 True
+
+
+Query: (n-1) - n/2 - (n/2 - 1) = 0
+[Input]
+(n - 1) - n/2 - (n/2 - 1) = 0
+[Result]
+True
+
+
+Query: (n*L^2/(2*(c*n)))/n - L^2/(2*c*n) = 0
+[Input]
+(n × L^2/(2 (c n)))/n - L^2/(2 c n) = 0
+
+
+Query: Limit[n/k * (1/2 - (n-2*k)^2/(4*(n*(n-3)+2*k)) - n/(4*(n-1))), n -> Infinity]
+[Limit]
+lim_(n->∞) (n (1/2 - (n - 2 k)^2/(4 (n (n - 3) + 2 k)) - n/(4 (n - 1))))/k = (-1 + k)/k
+[Values]
+k | 
+1 | 0
+2 | 1/2
+3 | 2/3
+[Series expansion at n = ∞]
+(k - 1)/k + (-k - 5/(2 k) + 7/2)/n + (-5 k - 7/k + 12)/n^2 + (2 k^2 - 22 k - 41/(2 k) + 81/2)/n^3 + (16 k^2 - 90 k - 61/k + 135)/n^4 + O((1/n)^5)
+(Laurent series)
+
+
+Query: v/(v^(1/3))^2 - v^(1/3) = 0
+[Input]
+v/(v^(1/3))^2 - v^(1/3) = 0
+[Result]
+True
+
+
+Query: (L^2/n)/(L^3/n^3) - n^2/L = 0
+[Input]
+(L^2/n)/(L^3/n^3) - n^2/L = 0
+[Fallback]
+No result pod. Exact rational check at L=2, n=3: both sides equal 9/2.
+
+
+Query: Limit[e -> 0, (n-1)/n*(1+e)*(1 - e*d/(n-d))]
+[error]
+no result
+[Fallback]
+Substitute e=0. The expression equals (n-1)/n. Exact.
