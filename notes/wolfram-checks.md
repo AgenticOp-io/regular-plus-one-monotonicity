@@ -1852,3 +1852,42 @@ order | n^2
 (Laurent series)
 [Series representation at n = ∞]
 (4 k^2 n^4 + n^2 (2 k^2 + k (-4 t^2 - 8 t + 7) + 4 (t + 1)^2) - 6 k (k + 1) n^3 + n (k (4 t - 2) - 4 (t + 1)) + 1)/(2 (n - 1) (2 n - 1) (2 k n^2 - 3 n + 1))
+
+
+Query: Series[x^3, {x, 0, 4}]
+[Input interpretation]
+series | x^3 | point | x = 0
+order | x^4
+[Series expansion at x = 0]
+x^3 + O(x^5)
+(Taylor series)
+(converges everywhere)
+[Approximations about x = 0 up to order 3]
+(order n approximation shown with n dots)
+[Series representation]
+x^3 = sum_(n=0)^3 binomial(3, n) (-1 + x)^n
+
+
+Query: Series[(L*n/2)*Log[1 + (L/(n-1))*(3-1)] - (L^2/2)*(3-1), {L, 0, 4}]
+[Input interpretation]
+series | (L × n/2) log(1 + L/(n - 1) (3 - 1)) - L^2/2 (3 - 1) | point | L = 0
+order | L^4
+[Series expansion at L = 0]
+L^2/(n - 1) - (L^3 n)/(n - 1)^2 + (4 L^4 n)/(3 (n - 1)^3) + O(L^5)
+(Taylor series)
+(converges when abs(L)<abs(1 - n)/2)
+[Series representations]
+1/2 L (-2 L + n log(1 + (2 L)/(-1 + n))) = -L^2 - 1/2 L n sum_(k=1)^∞ ((-2)^k (L/(-1 + n))^k)/k for 2 abs(L/(-1 + n))<1
+[Series representations]
+1/2 L (-2 L + n log(1 + (2 L)/(-1 + n))) = -L^2 + 1/2 L n log((2 L)/(-1 + n)) - 1/2 L n sum_(k=1)^∞ ((-1/2)^k (L/(-1 + n))^(-k))/k for 2 abs(L/(-1 + n))>1
+[Series representations]
+1/2 L (-2 L + n log(1 + (2 L)/(-1 + n))) = -L^2 + i L n π floor(arg(1 + (2 L)/(-1 + n) - x)/(2 π)) + 1/2 L n log(x) - 1/2 L n sum_(k=1)^∞ ((-1)^k (1 + (2 L)/(-1 + n) - x)^k x^(-k))/k for x<0
+[Series representations]
+1/2 L (-2 L + n log(1 + (2 L)/(-1 + n))) = -L^2 + L n sum_(k=0)^∞ (T_(1 + 2 k)(L/(-1 + n)) (_2 F_1(1/2 + k, 1 + k;2 + 2 k;4) - ((1 + 2 k) L _3 F_2(1 + k, 1 + k, 3/2 + k;2 + k, 2 + 2 k;4))/((1 + k) (-1 + n))))/(1 + 2 k)
+
+
+Query: (L*n/2)*(L^2/n^2) - L^3/(2*n) = 0
+[Input]
+(L × n/2) × L^2/n^2 - L^3/(2 n) = 0
+[Fallback]
+No result pod. Exact: (L n/2)(L^2/n^2)=L^3/(2n).
