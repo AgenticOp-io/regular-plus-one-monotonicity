@@ -1521,3 +1521,165 @@ True
 -({}[[-2]])/(Last[{}])
 [Product of roots]
 indeterminate
+
+
+Query: d/(n-1) - (d-1)/(n-2) - (n-d-1)/((n-1)*(n-2)) = 0
+[Input]
+d/(n - 1) - (d - 1)/(n - 2) - (n - d - 1)/((n - 1) (n - 2)) = 0
+[Result]
+True
+
+
+Query: simplify (d-2)*n/2 + k - ((d-1)/(n-2))*(n*(n-3)/2 + k) + n*(n-d-1)/(2*(n-2))
+[Input interpretation]
+simplify | (d - 2) × n/2 + k - (d - 1)/(n - 2) (n × (n - 3)/2 + k) + n × (n - d - 1)/(2 (n - 2))
+[Results]
+(k (-d + n - 1))/(n - 2)
+[Results]
+-(k (d - n + 1))/(n - 2)
+[Results]
+k (-d/(n - 2) + 1/(n - 2) + 1)
+
+
+Query: simplify (d-2)*n/2 + k - ((d-1)/(n-2))*(n*(n-3)/2 + k)
+[Input interpretation]
+simplify | (d - 2) × n/2 + k - (d - 1)/(n - 2) (n × (n - 3)/2 + k)
+[Results]
+((-d + n - 1) (2 k - n))/(2 (n - 2))
+[Results]
+((d - n + 1) (n - 2 k))/(2 (n - 2))
+[Results]
+-((d - n + 1) (2 k - n))/(2 (n - 2))
+
+
+Query: (1/2)*(-1/(L*(1-L)))*(1-L)^2 + (1/2)*(1/L - 1) = 0
+[Input]
+(1/2 × (-1) (1 - L)^2)/(L (1 - L)) + 1/2 (1/L - 1) = 0
+[Result]
+1/2 (1/L - 1) - (1 - L)/(2 L) = 0
+[Expanded form]
+True (for L!=0 and L!=1)
+
+
+Query: (-L*Log[L] - (1-L)*Log[1-L]) + (1-L)*Log[(1-L)/L] + Log[L] = 0
+[Input]
+(-L log(L) - (1 - L) log(1 - L)) + (1 - L) log((1 - L)/L) + log(L) = 0
+[Alternate form assuming L is real]
+(L - 1) (log(1/L) + log(L)) = 0
+[Alternate forms]
+-((L - 1) (log(1/L) + log(L))) = 0
+[Alternate forms]
+-((L - 1) (log(1/L - 1) - log(1 - L) + log(L))) = 0
+[Alternate forms]
+(L - 1) (log(1 - L) - log((1 - L)/L) - log(L)) = 0
+[Expanded form]
+{True, MInput->Hold[expand | -((1 - L) log(1 - L)) + (1 - L) log((1 - L)/L) - L log(L) + log(L) = 0], MOutput->True}
+[Alternate form assuming 0<L<1]
+-log(1 - L) + log((1 - L)/L) + L (log(1 - L) - log((1 - L)/L) - log(L)) + log(L) = 0
+
+
+Query: limit as x to 0 of (exp(x)-1)/x
+[Limit]
+lim_(x->0) (exp(x) - 1)/x = 1
+[Series expansion at x = 0]
+1 + x/2 + x^2/6 + x^3/24 + x^4/120 + x^5/720 + O(x^6)
+(Taylor series)
+
+
+Query: sum from k=0 to infinity of (k-1)/k!
+[Infinite sum]
+sum_(k=0)^∞ (k - 1)/(k!) = 0
+[Sum convergence]
+sum_(k=0)^∞ (k - 1)/(k!) converges
+[Partial sum formula]
+sum_(k=0)^n (k - 1)/(k!) = -(1 + n)/((1 + n)!)
+
+
+Query: series of n*((n*(n-3)/2)*eta((n-4)/(2*(n-3))) + (n*(n-1)/2)*eta(n/(2*(n-1))) - n*(n-2)*Log[2] + 1/2) at n=infinity where eta(L)= -L*Log[L]-(1-L)*Log[1-L]
+[error]
+no result
+
+
+Query: series of n*(-2*(n*(n/2-1)^2/(2*(n-1)*(n-2)^2) + ((n/2-1)*(n-2*k)/(2*(n-2)))^2 / (n*(n-3)/2 + k) - 1/4)) at n = infinity
+[Input interpretation]
+series | n (-2 (n × (n/2 - 1)^2/(2 (n - 1) (n - 2)^2) + ((n/2 - 1) × (n - 2 k)/(2 (n - 2)))^2/(n × (n - 3)/2 + k) - 1/4)) | point | n = ∞
+[Series expansion at n = ∞]
+(k - 1) - ((k - 1) (2 k - 5))/(2 n) - ((k - 1) (5 k - 7))/n^2 + ((k - 1) (4 k^2 - 40 k + 41))/(2 n^3) + ((k - 1) (16 k^2 - 74 k + 61))/n^4 + O((1/n)^5)
+(Laurent series)
+[Series representation at n = ∞]
+-((k - 1) (2 k n^2 - (2 k + 3) n + 2))/(2 (n - 1) (2 k n^2 - 3 n + 1))
+
+
+Query: (2-1)*(2/2 - 1) = 0
+[Input]
+(2 - 1) (2/2 - 1) = 0
+[Result]
+True
+
+
+Query: s*(1 - 6*p*(1-p)) + 3*s^2 - (3*s^2 + s) = -6*s*p*(1-p)
+[Input]
+s (1 - 6 p (1 - p)) + 3 s^2 - (3 s^2 + s) = -6 s p (1 - p)
+[Result]
+(1 - 6 (1 - p) p) s - s = -6 (1 - p) p s
+[Expanded form]
+True
+
+
+Query: m*p*(1-p) - (m*p)*(1-p) = 0
+[Input]
+m p (1 - p) - (m p) (1 - p) = 0
+[Result]
+True
+
+
+Query: (L/(((L/d)^(1/2))*d))^(1/2)/((L/d)^(1/2)) - (d/L)^(1/4) = 0
+[Input]
+sqrt(L/(sqrt(L/d) d))/sqrt(L/d) - (d/L)^(1/4) = 0
+[Alternate form]
+1/(L/d)^(1/4) - (d/L)^(1/4) = 0
+[Alternate form assuming d and L are positive]
+True
+[Real solutions]
+d<0, L<0
+[Real solutions]
+d>0, L>0
+
+
+Query: (L/(((L/d)^(1/3))*d))^(1/2)/((L/d)^(1/3)) - 1 = 0
+[Input]
+sqrt(L/((L/d)^(1/3) d))/(L/d)^(1/3) - 1 = 0
+[Result]
+True
+
+
+Query: Series[(n-2*k)^2/(4*(n*(n-3)+2*k)) + n/(4*(n-1)) - 1/2 - (1-k)/n, {n, Infinity, 2}]
+[Input interpretation]
+series | (n - 2 k)^2/(4 (n (n - 3) + 2 k)) + n/(4 (n - 1)) - 1/2 - (1 - k)/n | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+(k^2 - (7 k)/2 + 5/2)/n^2 + ((k - 1) (5 k - 7))/n^3 + O((1/n)^4)
+(Laurent series)
+[Series representation at n = ∞]
+((k - 1) n^2 (k (4 n^2 - 2 n - 2) - 6 n + 5))/(2 (n - 1) (2 k n^2 - 3 n + 1))
+
+
+Query: Sum[Exp[-1]/k! * ((k-1)^2/2 - (k^2 - (7/2)*k + 5/2)), {k, 0, Infinity}]
+[Infinite sum]
+sum_(k=0)^∞ (exp(-1) (1/2 (k - 1)^2 - (k^2 - (7 k)/2 + 5/2)))/(k!) = -1/2 = -0.5
+[Sum convergence]
+sum_(k=0)^∞ (exp(-1) (1/2 (k - 1)^2 - (k^2 - (7 k)/2 + 5/2)))/(k!) converges
+
+
+Query: (n-2*j)/(n-1-2*j) - 1 - 1/(n-1-2*j) = 0
+[Input]
+(n - 2 j)/(n - 1 - 2 j) - 1 - 1/(n - 1 - 2 j) = 0
+[Result]
+True
+
+
+Query: 1 - (1-d)*(1-a) - (a+d-a*d) = 0
+[Input]
+1 - (1 - d) (1 - a) - (a + d - a d) = 0
+[Expanded form]
+True
