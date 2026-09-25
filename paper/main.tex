@@ -6,7 +6,7 @@
 \usepackage{microtype}
 
 \title{Nesting random regular graphs:\\
-exact \(+1\) to \(o(\sqrt{n})\), long chains, and a quantitative sandwich program}
+exact \(+1\) at every growing degree, long chains, and a quantitative sandwich program}
 \author{AgenticOp-io}
 \date{}
 
@@ -34,6 +34,18 @@ so that \(\Gnd\subset G(n,d+1)\) with high probability whenever \(d\to\infty\) a
 \(d=o(n^{1/2})\) via the sharper conditional edge probabilities of~\cite{Gao20},
 leaving the details for a simpler exposition.
 We supply those details, obtaining the range \(d=o(n^{1/2})\).
+Iterating the same switching count, then widening the overlap window, extends exact \(+1\) to every \(d=o(n)\)
+(Theorem~\ref{thm:sublinear}).
+The complementary range \(n-d=o(n)\) follows by complementation
+(Theorem~\ref{thm:dense}).
+At linear degree the edge estimate does not start; a Cauchy second moment for the matching count on the simple graph gives the remaining range
+(Theorem~\ref{thm:middle}).
+Combined, there is an exact \(+1\) coupling whenever \(d\to\infty\) and \(n-d\to\infty\)
+(Theorem~\ref{thm:plus-one}).
+The same estimates give \(G(n,d)\subset G(n,D)\) whenever the gap \(D-d\) is below the chain length at degree \(d\)
+(Theorem~\ref{thm:gim-gap}).
+In the linear band the matching count has relative fourth moment \(O(n^{-2})\), which nests \(o(n^{2/5})\) consecutive degrees
+(Theorem~\ref{thm:band-fourth-chains}).
 
 As a new consequence of the same error schedule, we prove long simultaneous
 nesting chains. The length is the Chebyshev optimum for the patched relative
@@ -69,8 +81,8 @@ degree \(\lfloor n^{1/6}/\log n\rfloor\). The one-step total variation is
 
 Past \(\sqrt{n}\), the absolute matching probability is known only up to
 \(1+O(d^2/n)\). Concentration of the matching count cancels the universal part of
-that error, and exact \(+1\) extends to \(o(n^{2/3})\)
-(Theorem~\ref{thm:two-thirds}).
+that error, and the substitutions just cited push exact \(+1\) through every sublinear degree
+(Theorems~\ref{thm:two-thirds} and~\ref{thm:sublinear}).
 Tracking the error budget in the Kim--Vu sandwich proof of~\cite{BIM25} with
 absolute switching constants, we obtain the vanishing rates
 \(\varepsilon\ge C(\log n/d)^{1/9}\) in general,
@@ -127,7 +139,9 @@ On \(n^{1/2}\le D=o(n/(\log n)^2)\) the same moment bound nests
 (Theorem~\ref{thm:chain-past-sqrt}).
 Degree \(\Theta(n)\) with both \(d\) and \(n-d\) of order \(n\) lies outside the edge
 estimate (Proposition~\ref{prop:linear-barrier}). The complementary range
-\(n-d=o(n)\) follows by complementation (Theorem~\ref{thm:dense}).
+\(n-d=o(n)\) follows by complementation (Theorem~\ref{thm:dense}), and the linear band is Theorem~\ref{thm:middle}.
+Theorem~\ref{thm:plus-one} is the three ranges together: exact \(+1\) whenever \(d\to\infty\) and \(n-d\to\infty\).
+Theorem~\ref{thm:gim-gap} is the coupling at a longer gap, up to the chain length at the lower degree, including the high-moment window from any growing degree to \(o(n^{1/3-\varepsilon})\) (Theorem~\ref{thm:high-gap}).
 As a new consequence of the same patched error schedule, we obtain long
 simultaneous nesting chains (Theorem~\ref{thm:chains}). The window length is
 \(o(v(D)^{-1/3})\), where \(v(D)\) is the patched relative variance of the
@@ -182,6 +196,16 @@ decomposition.
 
 \subsection{Main result}
 
+\begin{theorem}[Exact \(+1\) at every growing degree]
+\label{thm:plus-one}
+Let \(n\) be even and let \(d=d(n)\) satisfy \(d\to\infty\), \(n-d\to\infty\), and \(dn\) even.
+Assume the conditional edge-probability estimate of~\cite[Theorem~6]{Gao20} whenever \(\min(d,n-d)=o(n)\).
+Then there exists a coupling of \(G_d\sim\Gnd\) and \(G_{d+1}\sim G(n,d+1)\) such that
+\[
+\PP(G_d\subset G_{d+1})=1-o(1).
+\]
+\end{theorem}
+
 \begin{theorem}[Main]
 \label{thm:main}
 Assume the conditional edge-probability estimate of~\cite[Theorem~6]{Gao20}.
@@ -209,6 +233,21 @@ in~\cite{Gao21}.
 All other steps are either elementary or inherited from~\cite{Gao21} with a
 tracked error substitution \(d^3/n\mapsto d^2/n\).
 \end{remark}
+
+\begin{theorem}[Short-range nesting]
+\label{thm:gim-gap}
+Let \(n\) be even and let \(d<D\) satisfy \(d\to\infty\), \(n-D\to\infty\), and \(dn\), \(Dn\) even.
+Write \(L=D-d\). There is a coupling of \(G\sim G(n,d)\) with \(H\sim G(n,D)\) such that
+\(\PP(G\subset H)=1-o(1)\) in each of the following ranges.
+\begin{enumerate}
+\item \(\min(d,n-D)=\Theta(n)\) and \(L=o(n^{2/5})\) with \(L\le n/6\).
+\item \(\min(d,n-D)=\Theta(n)\), \(T:=|d-n/2|\), \(L\le n/6\), and either \(T+L\le n^{1/2}\) with \(L(T+L)^{2/3}=o(n^{2/3})\) or \(L=o(n^{2/5})\).
+\item \(D=o(n^{1/2})\) and \(L=o\bigl((d^{-3}+d/n)^{-1/3}\bigr)\), assuming~\cite[Theorem~6]{Gao20}.
+\item \(n^{1/2}\le d\) and \(D=o\bigl(n/(\log n)^2\bigr)\) and \(L=o\bigl((n/d)^{1/2-\varepsilon}\bigr)\) for some fixed \(\varepsilon>0\), assuming~\cite[Theorem~6]{Gao20}.
+\item \(D=o(n^{1/3-\varepsilon})\) for some fixed \(\varepsilon>0\), assuming~\cite[Theorem~6]{Gao20}.
+\item \(n^{1/4}\le d\) and \(D=o(n^{1/2})\) and \(L\bigl(D/n\bigr)^{q/(2q+1)}=o(1)\) for some integer \(q\ge 2\), assuming~\cite[Theorem~6]{Gao20}.
+\end{enumerate}
+\end{theorem}
 
 \subsection{Long simultaneous chains}
 
@@ -885,6 +924,30 @@ Here \(\gamma+1=(3q+1)/(2q+1)\), and
 so \(n^{-\gamma}(n^{q/(3q+1)})^{\gamma+1}=1\). The stricter upper end
 \(n^{1/3-\varepsilon}\) makes the sum \(o(1)\). For \(q=2\) the endpoint exponent
 is \(2/7\), so the range contains Corollary~\ref{cor:fourth-span}.
+\end{proof}
+
+\begin{theorem}[High-moment gaps below the square root]
+\label{thm:high-gap}
+Assume~\cite[Theorem~6]{Gao20}. Fix an integer \(q\ge 2\) and a real \(\varepsilon>0\).
+Let \(n\) be even and let \(d<D\) satisfy \(d\to\infty\), \(Dn\) even, and \(D=o(n^{1/2})\).
+Write \(L=D-d\), \(v(x)=x^{-3}+x/n\), and \(\gamma=q/(2q+1)\).
+There is a coupling of \(G\sim G(n,d)\) with \(H\sim G(n,D)\) such that
+\(\PP(G\subset H)=1-o(1)\) in each of the following ranges.
+\begin{enumerate}
+\item \(D=o(n^{1/3-\varepsilon})\).
+\item \(n^{1/4}\le d\) and \(L\,(D/n)^\gamma=o(1)\).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The one-step failure in the proof of Theorem~\ref{thm:high-chains} is \(O_q(v(x)^\gamma)\) at degree \(x\), via Lemma~\ref{lem:high-moment} and the identity \(q-2q\gamma=\gamma\).
+
+For (i), Corollary~\ref{cor:high-span} supplies the chain from \(d\) to \(\lfloor n^{1/3-\varepsilon}\rfloor\), which contains \(D\).
+
+For (ii), the comparison \(x^{-3}\le x/n\) rearranges to \(x^4\ge n\). Thus on \([d,D]\) one has \(v(x)\le 2x/n\le 2D/n\).
+Each step fails with probability \(O_q((D/n)^\gamma)\).
+The union bound is \(L\cdot O_q((D/n)^\gamma)\), which tends to \(0\) by hypothesis.
+The terminal degree \(D=o(n^{1/2})\) stays inside Lemma~\ref{lem:high-moment}.
 \end{proof}
 
 \begin{proposition}[Moment precision]
@@ -1614,7 +1677,7 @@ For the degree sequence \((d,\ldots,d)\) one has \(\Delta=d\) and \(M=dn\), so
 \(\Delta^2/M=d/n\). This tends to \(0\) if and only if \(d=o(n)\). At \(d=\Theta(n)\)
 the hypothesis of Theorem~6 fails. Theorem~\ref{thm:dense} recovers the
 complementary range by applying the sparse theorem to \(n-1-d\), so the
-unresolved degrees are those with both \(d\) and \(n-d\) of order \(n\).
+remaining degrees are those with both \(d\) and \(n-d\) of order \(n\), which are Theorem~\ref{thm:middle}.
 \end{proof}
 
 \begin{theorem}[Exact \(+1\) in the dense range]
@@ -1704,9 +1767,15 @@ Let \(v=\Var Y/(\EE Y)^2\), and set \(\alpha=v^{1/3}\).
 The hypothesis \(v=o(1)\) forces \(\alpha=o(1)\).
 Chebyshev's inequality bounds the failure probability by \(v/\alpha^2\).
 The identity \(v/(v^{1/3})^2=v^{1/3}\) makes that failure \(o(1)\) as well.
-Lemma~\ref{lem:tv} converts the pair \((\alpha,o(1))\) into total variation \(o(1)\) between
-\(\mu_{d+1}\) and the law of a uniform \(d\)-regular graph plus a uniform perfect matching.
-That is the coupling in Theorem~\ref{thm:middle}.
+If \(d>n/2-1\), complementation swaps the pair with a coupling of \(G(n,n-2-d)\) inside \(G(n,n-1-d)\), and \(n-2-d\le n/2-1\).
+Assume therefore \(d\le n/2-1\).
+The complementary matching count \(Z_\partial\) on \(G(n,d)\) is the number of perfect matchings in \(G(n,n-1-d)\).
+Proposition~\ref{prop:band-rate} at that linear degree supplies relative variance \(O(1/n)\), so Chebyshev at height \(n^{-1/3}\) fails with probability \(O(n^{-1/3})\).
+Lemma~\ref{lem:linear-tv} converts the two concentration windows into
+\[
+\dTV(\mu_d\oplus\mu_1,\mu_{d+1})=o(1).
+\]
+Theorem~\ref{thm:approx} is the coupling in Theorem~\ref{thm:middle}.
 \end{proof}
 
 \begin{proposition}[Half-degree main term is Poisson, and the error is not small]
@@ -2033,7 +2102,7 @@ For \(k\le\log n\), each factor \((n/2-j)/(n-1-2j)\) equals \(\tfrac12\bigl(1+O(
 The average over \(k\le\log n\) therefore tends to \(1\).
 The range \(k>\log n\) contributes at most \(C\,\EE[2^{K}1_{K>\log n}]\), which tends to \(0\) because those moments match a Poisson random variable of mean \(1/2\).
 Hence \(\EE Y^2/(\EE Y)^2\to 1\).
-Lemma~\ref{lem:tv} gives the coupling.
+Proposition~\ref{prop:middle-reduction} is the coupling.
 \end{proof}
 
 \begin{theorem}[Every linear degree]
@@ -2058,7 +2127,20 @@ The tail and determinant comparisons in the proof of Theorem~\ref{thm:half} depe
 The factorial moments of \(K\) still tend to those of a Poisson random variable of mean \(1/2\), whose probability generating function at \(\lambda^{-1}\) is \(\exp\bigl(\tfrac12(\lambda^{-1}-1)\bigr)\).
 The product of that factor with the constant \(\exp\bigl(-\tfrac12(\lambda^{-1}-1)\bigr)\) is \(1\).
 The range \(k>\log n\) is at most a constant times \(\EE[\lambda^{-K}1_{K>\log n}]\), and \(\lambda^{-k}/k!\) sums to a tail that tends to \(0\).
-Proposition~\ref{prop:middle-reduction} and Lemma~\ref{lem:tv} give the coupling.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:middle}]
+Theorem~\ref{thm:band} gives \(\Var Y/(\EE Y)^2=o(1)\) for the number of perfect matchings in \(G(n,d+1)\).
+Proposition~\ref{prop:middle-reduction} is the coupling.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:plus-one}]
+It is enough to show that every subsequence of \(n\) has a further subsequence along which the coupling probability tends to \(1\).
+Along any subsequence, pass to a further subsequence on which one of the following holds:
+\(d=o(n)\), or \(n-d=o(n)\), or \(\min(d,n-d)=\Theta(n)\).
+These are Theorems~\ref{thm:sublinear},~\ref{thm:dense}, and~\ref{thm:middle} respectively.
+The first two use~\cite[Theorem~6]{Gao20} through the hypothesis \(\min(d,n-d)=o(n)\).
+The third does not use that estimate.
 \end{proof}
 
 \begin{proposition}[Rate in the middle band]
@@ -2093,8 +2175,10 @@ If \(L=o(n^{1/3})\), there is a coupling \((G_d)_{d=D}^{D+L}\) with each \(G_d\s
 
 \begin{proof}
 Proposition~\ref{prop:band-rate} gives \(v=O(1/n)\) at every degree on the interval, since \(L=o(n^{1/3})\) keeps \(\min(d,n-d)=\Theta(n)\).
+The same bound applies to the complementary matching count at each step.
 Chebyshev at height \(v^{1/3}\) fails with probability \(v^{1/3}\), because \(v/(v^{1/3})^2=v^{1/3}\).
-Lemma~\ref{lem:tv} turns each step into a coupling of failure \(O(n^{-1/3})\).
+At a degree \(d\ge n/2\) the same lemma applies to the complementary pair of degrees \(n-2-d\le n/2-1\).
+Lemma~\ref{lem:linear-tv} turns each step into a coupling of failure \(O(n^{-1/3})\).
 The union bound is \(L\) times that quantity, which tends to \(0\) by the hypothesis on \(L\).
 The fourth-moment bound of Lemma~\ref{lem:band-fourth} lengthens the same chain to \(o(n^{2/5})\), as in Theorem~\ref{thm:band-fourth-chains}.
 \end{proof}
@@ -2124,19 +2208,19 @@ The average of the displayed factor is therefore \(1+O(1/n^2)\).
 \begin{theorem}[Longer chains about half degree]
 \label{thm:half-chains}
 Let \(n\) be even and let \(D\) satisfy \(|D-n/2|\le L\), with
-\(L=o(n^{1/2})\).
+\(L=o(n^{2/5})\).
 Then there is a coupling \((G_d)_{d=D}^{D+L}\) with each \(G_d\sim G(n,d)\) and
 \[
 \PP\bigl(G_D\subseteq\cdots\subseteq G_{D+L}\bigr)=1-o(1).
 \]
+The length \(o(n^{1/2})\) is not available from this variance: Proposition~\ref{prop:distance-rate} gives \(v=O((L^2+1)/n^2)\) on the interval, and \(L^{5/3}n^{-2/3}=o(1)\) forces \(L=o(n^{2/5})\).
 \end{theorem}
 
 \begin{proof}
-For a degree \(n/2+t\) the edge density differs from \(1/2\) by \(O(|t|/n)\).
-The half-degree cancellation of Proposition~\ref{prop:half-rate} then leaves an excess \(O((|t|+1)/n^2)\).
-On the interval one has \(|t|\le L\), so \(v=O((L+1)/n^2)\).
-Each step fails with probability \(O(v^{1/3})=O(L^{1/3}n^{-2/3})\).
-The product \(L\cdot L^{1/3}n^{-2/3}=L^{4/3}n^{-2/3}\) tends to \(0\) by the hypothesis on \(L\).
+Proposition~\ref{prop:distance-rate} supplies \(v=O((L^2+1)/n^2)\) at every degree on the interval, and the same bound for the complementary matching count.
+Lemma~\ref{lem:linear-tv} turns Chebyshev at height \(v^{1/3}\) into a one-step failure \(O(L^{2/3}n^{-2/3})\).
+The union bound is \(L^{5/3}n^{-2/3}\), which tends to \(0\) by the hypothesis on \(L\), because \(\tfrac25\cdot\tfrac53=\tfrac23\).
+This is the same length as Theorem~\ref{thm:band-fourth-chains}.
 \end{proof}
 
 \begin{proposition}[Rate by distance to half degree]
@@ -2144,21 +2228,23 @@ The product \(L\cdot L^{1/3}n^{-2/3}=L^{4/3}n^{-2/3}\) tends to \(0\) by the hyp
 Let \(n\) be even and let \(d=n/2+t\) with \(|t|\le n/3\).
 The number \(Y\) of perfect matchings in \(G(n,d)\) satisfies
 \[
-\frac{\Var Y}{(\EE Y)^2}=O\Bigl(\frac{|t|+1}{n^2}\Bigr).
+\frac{\Var Y}{(\EE Y)^2}=O\Bigl(\frac{t^2+1}{n^2}\Bigr).
 \]
+In particular the bound is \(O(1/n^2)\) at \(t=0\) and \(O(1/n)\) once \(|t|\ge n^{1/2}\), which matches Proposition~\ref{prop:band-rate}.
 \end{proposition}
 
 \begin{proof}
-If \(|t|\ge n/6\), Proposition~\ref{prop:band-rate} supplies \(O(1/n)\), and \(1/n\le 6|t|/n^2\).
-If \(|t|<n/6\), write \(\delta=\lambda-\tfrac12\) for each of the three hosts and expand \(\eta(\lambda)=\log 2-2\delta^2+O(\delta^4)\).
+If \(|t|\ge n^{1/2}\), Proposition~\ref{prop:band-rate} supplies \(O(1/n)\), and \(t^2/n^2\ge 1/n\).
+If \(|t|<n^{1/2}\), write \(\delta=\lambda-\tfrac12\) for each of the three hosts and expand \(\eta(\lambda)=\log 2-2\delta^2+O(\delta^4)\).
 The combination of the three values of \(E\) is \(k\), so the order-\(\log 2\) terms contribute \(k\log 2\).
 The combination of the squared deviations is
 \[
 \frac{(nt-n/2+k)^2}{n(n-3)+2k}+(t+\tfrac12)^2\Bigl(1+\frac1{n-1}\Bigr)-2t^2\Bigl(1+\frac2{n-2}\Bigr),
 \]
-which has series \(\tfrac12+(k-1)(2t-1)/n+O(1/n^2)\).
+which has series \(\tfrac12+(k-1)(2t-1)/n+O((t^2+k^2+1)/n^2)\).
 Theorem~\ref{thm:band} cancels the constant term and the part of the \(1/n\) term that is linear in the density, against the Poisson generating function at this \(\lambda\).
-What remains is the half-degree \(1/n^2\) term of Proposition~\ref{prop:half-rate} together with a linear response \(O(|t|/n^2)\).
+The linear correction \((k-1)(2t-1)/n\), averaged against the \(\lambda^{-k}\)-tilt of a Poisson random variable of mean \(1/2\), produces a term of order \(t^2/n^2\): the tilted mean is \(\lambda^{-1}/2\), and \(\lambda=\tfrac12+t/(n-2)\) forces \(\lambda^{-1}/2-1=O(|t|/n)\).
+The half-degree \(1/n^2\) term of Proposition~\ref{prop:half-rate} remains at \(t=0\).
 The tail \(k>\log n\) is negligible as in Theorem~\ref{thm:band}.
 \end{proof}
 
@@ -2168,28 +2254,22 @@ Let \(n\) be even and let \(D\) satisfy \(\min(D,n-D)=\Theta(n)\).
 Write \(T=|D-n/2|\).
 If \(L\ge 1\) satisfies \(L\le n/6\) and
 \[
-L\bigl(T+L\bigr)^{1/3}=o\bigl(n^{2/3}\bigr),
+L\bigl(T+L\bigr)^{2/3}=o\bigl(n^{2/3}\bigr)
 \]
-then there is a coupling \((G_d)_{d=D}^{D+L}\) with each \(G_d\sim G(n,d)\) and
+when \(T+L\le n^{1/2}\), or \(L=o(n^{2/5})\) when \(T+L\ge n^{1/2}\), then there is a coupling \((G_d)_{d=D}^{D+L}\) with each \(G_d\sim G(n,d)\) and
 \[
 \PP\bigl(G_D\subseteq\cdots\subseteq G_{D+L}\bigr)=1-o(1).
 \]
-In particular, \(T=\Theta(n)\) recovers chains of length \(o(n^{1/3})\), while \(T=o(n^{1/2})\) and \(L=o(n^{1/2})\) recover Theorem~\ref{thm:half-chains}.
-If \(T=n^{3/5}\), the same bound allows \(L=o(n^{7/15})\), which is longer than \(o(n^{1/3})\).
+Neither range exceeds the length \(o(n^{2/5})\) of Theorem~\ref{thm:band-fourth-chains}.
 \end{theorem}
 
 \begin{proof}
-On the interval every degree is \(n/2+s\) with \(|s|\le T+L\le n/3\) for large \(n\), since \(T\le n/2\) and \(L\le n/6\).
-Proposition~\ref{prop:distance-rate} gives relative variance \(O((T+L)/n^2)\).
-Chebyshev at height equal to the cube root of that variance, together with Lemma~\ref{lem:tv}, fails with probability \(O((T+L)^{1/3}n^{-2/3})\) at each step.
+On the interval every degree is \(n/2+s\) with \(|s|\le T+L\le n/3\) for large \(n\).
+If \(T+L\le n^{1/2}\), Proposition~\ref{prop:distance-rate} gives relative variance \(O((T+L)^2/n^2)\) for the matching count and for the complementary matching count.
+Chebyshev at height equal to the cube root of that variance, together with Lemma~\ref{lem:linear-tv}, fails with probability \(O((T+L)^{2/3}n^{-2/3})\) at each step.
 The union bound is \(L\) times this quantity, which tends to \(0\) by hypothesis.
-When \(T=\Theta(n)\), the hypothesis is \(L\cdot\Theta(n^{1/3})=o(n^{2/3})\), hence \(L=o(n^{1/3})\).
-When \(T\le L=o(n^{1/2})\), it is \(L^{4/3}=o(n^{2/3})\).
-When \(T=n^{3/5}\) and \(L=o(n^{7/15})\), one has \(T+L\sim n^{3/5}\) and
-\[
-L(T+L)^{1/3}=o\bigl(n^{7/15}\cdot n^{1/5}\bigr)=o\bigl(n^{7/15+3/15}\bigr)=o(n^{2/3}),
-\]
-since \(1/5=3/15\).
+The case \(T=0\) is \(L^{5/3}=o(n^{2/3})\), hence \(L=o(n^{2/5})\).
+If \(T+L\ge n^{1/2}\), the same proposition supplies \(O(1/n)\), and Theorem~\ref{thm:band-fourth-chains} applies.
 \end{proof}
 
 \begin{lemma}[Pairwise saddle for several matchings]
@@ -2272,9 +2352,21 @@ O\bigl(n^{-2}/\alpha^{4}\bigr)
 O(n^{-2/5}),
 \]
 because \(2-8/5=2/5\).
-Lemma~\ref{lem:tv} converts this into a one-step failure \(O(n^{-2/5})\).
+The same fourth-moment bound holds for the complementary matching count at every linear degree.
+At a degree \(d\ge n/2\) the same lemma applies to the complementary pair of degrees \(n-2-d\le n/2-1\).
+Lemma~\ref{lem:linear-tv} converts the two windows into a one-step failure \(O(n^{-2/5})\).
 The hypothesis \(L\le n/6\) keeps \(\min(d,n-d)=\Theta(n)\) on the interval.
 The union bound is \(L\cdot O(n^{-2/5})\), which tends to \(0\).
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:gim-gap}]
+If \(L=O(1)\), iterate Theorem~\ref{thm:plus-one} on the \(L\) consecutive degrees; each step fails with probability \(o(1)\), so the composition fails with probability \(o(1)\).
+If \(L\to\infty\), the first four ranges are Theorems~\ref{thm:band-fourth-chains},~\ref{thm:distance-chains},~\ref{thm:chains}, and~\ref{thm:chain-past-sqrt} respectively, started at degree \(d\) and run for \(L\) steps.
+The first range keeps every intermediate degree linear because \(L\le n/6\).
+The second does likewise, and the complementary matching count stays at distance \(T+O(L)\) from half degree.
+The third has \(L=o(d)\) because \(d^{-3}+d/n\ge d^{-3}\), so the terminal degree remains \(o(n^{1/2})\).
+The fourth has \(L=o(d)\) because \((n/d)^{1/2}=o(d)\) throughout \(d\ge n^{1/2}\).
+The fifth and sixth ranges are the two parts of Theorem~\ref{thm:high-gap}.
 \end{proof}
 
 \begin{conjecture}[One deletion of a long factor]
@@ -2309,6 +2401,20 @@ Complementation is a bijection between \(d\)-regular graphs and \((n-1-d)\)-regu
 Proposition~\ref{prop:band-rate} supplies relative variance \(O(1/n)\).
 Chebyshev's inequality at height \(n^{-1/3}\) fails with probability \(O(n^{-1/3})\).
 The reweighted law is the lower marginal of a uniform containment pair, so the degree sum in the proof of Lemma~\ref{lem:factor-tv} gives total variation \(O(n^{-1/3})\).
+\end{proof}
+
+\begin{proposition}[Fourth-moment flatness for one matching]
+\label{prop:flat-fourth}
+Under the hypotheses of Proposition~\ref{prop:flat-one}, the law reweighted by \(Z_\partial\) is within total variation \(O(n^{-2/5})\) of the uniform law on \(d\)-regular graphs.
+\end{proposition}
+
+\begin{proof}
+Lemma~\ref{lem:band-fourth} at degree \(n-1-d\) supplies
+\[
+\frac{\EE\bigl[(Z_\partial-\EE Z_\partial)^{4}\bigr]}{(\EE Z_\partial)^{4}}=O(n^{-2}).
+\]
+Markov's inequality at height \(n^{-2/5}\) fails with probability \(O(n^{-2/5})\), because \(2-8/5=2/5\).
+The same degree sum as in Proposition~\ref{prop:flat-one} gives total variation \(O(n^{-2/5})\).
 \end{proof}
 
 \begin{proposition}[Long-factor flatness is the same count]
@@ -2368,7 +2474,46 @@ Let \(Z\) be the number of \(L\)-factors of a uniform random \(D\)-regular graph
 Then \(\Var Z/(\EE Z)^2=o(1)\).
 The range \(L=o(n^{1/3})\) is Theorem~\ref{thm:factor-third}.
 The cubic remainder \(O(L^3/n)\) in that proof is not \(o(1)\) for \(L=\omega(n^{1/3})\).
+Proposition~\ref{prop:factor-cubic} records the leading coefficient at half degree.
 \end{conjecture}
+
+\begin{proposition}[Cubic leftover at half degree]
+\label{prop:factor-cubic}
+Let \(n>2\) be even and let \(L\ge 2\) satisfy \(L=o(n)\). Write \(\lambda=(n/2-1)/(n-2)\) and \(p=L/(n-1)\). The logarithm of the product of the quadratic origin deficit with the binomial generating function of Theorem~\ref{thm:factor-third} has series
+\[
+\frac{Ln}{2}\log\bigl(1-p+p\lambda^{-1}\bigr)-\frac{L^2}{2}(\lambda^{-1}-1)
+=
+-\frac{(L-2)L^2}{4n}+\frac{L^2(L^2-3L+3)}{6n^2}+O\Bigl(\frac{L^5+1}{n^3}\Bigr).
+\]
+The leading term is asymptotic to \(-L^3/(4n)\). It tends to \(0\) if and only if \(L=o(n^{1/3})\).
+\end{proposition}
+
+\begin{proof}
+The series of the displayed combination at \(n=\infty\) is
+\[
+-\frac{(L-2)L^2}{4n}+\frac{L^2(L^2-3L+3)}{6n^2}-\frac{L^2(L^3-4L^2+6L-4)}{8n^3}+O(n^{-4})
+\]
+for each fixed \(L\).
+The same expansion in \(1/n\), with \(L=o(n)\) so that \(p=o(1)\) and \(\lambda^{-1}=2+O(n^{-1})\), produces the displayed remainder \(O((L^5+1)/n^3)\).
+Dividing the leading term by \(L^3\) and sending \(L\to\infty\) yields \(-1/4\).
+The second term is \(O(L^4/n^2)\), which is \(o(L^3/n)\) throughout \(L=o(n)\).
+Thus the logarithm is \(o(1)\) precisely when \(L^3/n\to 0\).
+\end{proof}
+
+\begin{proposition}[Typical intersection leaves the same cubic]
+\label{prop:typical-origin}
+Under the hypotheses of Theorem~\ref{thm:factor-third}, write \(s=Ln/2\) and let \(f\) be the origin logarithm of Lemma~\ref{lem:pair-saddle}.
+For every intersection size \(0\le k\le s\), the third-derivative remainder of \(f(2s-k)+f(0)-2f(s)\) after the quadratic Taylor polynomial is \(O(L^3/n)\).
+The same bound holds at the mean intersection \(\EE K=nL^2/(2(n-1))\) of two independent \(L\)-regular graphs.
+Evaluating the origin at that typical value does not improve the range \(L=o(n^{1/3})\) of Theorem~\ref{thm:factor-third}.
+\end{proposition}
+
+\begin{proof}
+Lemma~\ref{lem:pair-saddle} gives \(f'''=O(n^{-4})\) on densities bounded away from \(0\) and \(1\).
+An argument of size at most \(2s=Ln\) therefore leaves remainder \(O((Ln)^3/n^4)\).
+The identity \((Ln)^3/n^4=L^3/n\) was checked.
+The mean intersection \(nL^2/(2(n-1))\) does not exceed \(s\) throughout \(L\le n-1\).
+\end{proof}
 
 \begin{proposition}[Where the matching expansion stops]
 \label{prop:sqrt-stop}
@@ -2582,11 +2727,55 @@ On the complement of the event in the hypothesis, \((1-\alpha)\bar z\le Z\le(1+\
 The total variation is half the average of \(|Z-\bar z|/\bar z\). Graphs in the concentration window contribute at most \(\alpha\). Graphs in the event contribute at most \(\alpha+\delta-\alpha\delta+\delta\). The sum is at most \(2(\alpha+\delta)\), and the total variation is at most \(\alpha+\delta\).
 \end{proof}
 
+\begin{lemma}[One-step total variation in the linear band]
+\label{lem:linear-tv}
+Let \(n\) be even and let \(\min(d,n-d)=\Theta(n)\), with \(dn\) even and \(d\le n/2-1\).
+Let \(Y\) be the number of perfect matchings in \(G(n,d+1)\), and let \(Z_\partial\) be the number of perfect matchings in the complement of \(G(n,d)\).
+If
+\[
+\PP\bigl(|Y-\EE Y|\ge\alpha\,\EE Y\bigr)\le\delta
+\quad\text{and}\quad
+\PP\bigl(|Z_\partial-\EE Z_\partial|\ge\beta\,\EE Z_\partial\bigr)\le\eta
+\]
+with \(\alpha,\beta\in(0,1/2)\), then
+\[
+\dTV(\mu_d\oplus\mu_1,\mu_{d+1})\le C(\alpha+\delta+\beta+\eta)
+\]
+for an absolute constant \(C\).
+\end{lemma}
+
+\begin{proof}
+Let \(\mathcal{T}_d\) and \(\mathcal{T}_{d+1}\) be the two sets of regular graphs, and let \(B\) be the bipartite graph of containments that differ by a perfect matching.
+Left degrees are the values of \(Z_\partial\), right degrees are the values of \(Y\), and
+\[
+|B|=|\mathcal{T}_d|\,\EE Z_\partial=|\mathcal{T}_{d+1}|\,\EE Y.
+\]
+The law \(\mu_d\oplus\mu_1\) is the upper marginal of a uniform left vertex followed by a uniform neighbour, so
+\[
+\PP_\oplus(H)=\frac1{|\mathcal{T}_d|}\sum_{G\subset H}\frac1{Z_\partial(G)},
+\]
+the sum running over the \(Y(H)\) subgraphs obtained by deleting a matching of \(H\).
+
+Write \(\mathcal{G}_L\) for the left vertices with \(|Z_\partial-\EE Z_\partial|<\beta\,\EE Z_\partial\), and \(\mathcal{G}_R\) for the right vertices with \(|Y-\EE Y|<\alpha\,\EE Y\).
+The complement of \(\mathcal{G}_L\) has \(\mu_d\)-mass at most \(\eta\). As in the degree sum of Lemma~\ref{lem:factor-tv}, its total \(B\)-degree is at most \(|B|(\beta+\eta-\beta\eta)\).
+On \(\mathcal{G}_L\) one has \(1/Z_\partial=(1+O(\beta))/\EE Z_\partial\), so for \(H\in\mathcal{G}_R\)
+\[
+\PP_\oplus(H)
+=
+(1+O(\beta))\,\frac{Y(H)}{|\mathcal{T}_d|\,\EE Z_\partial}
++
+O(\beta+\eta)\,\frac{Y(H)}{|B|}.
+\]
+The main term is \((1+O(\alpha+\beta))/|\mathcal{T}_{d+1}|\).
+The edge-mass of the complement of \(\mathcal{G}_L\) is \(O(\beta+\eta)\).
+The complement of \(\mathcal{G}_R\) has \(\mu_{d+1}\)-mass at most \(\delta\) and \(Y\)-reweighted mass \(O(\alpha+\delta)\) by Lemma~\ref{lem:factor-tv}.
+Therefore \(\PP_\oplus\) and \(\mu_{d+1}\) differ by \(O(\alpha+\delta+\beta+\eta)\) in total variation.
+\end{proof}
+
 \begin{proof}[Proof of Lemma~\ref{lem:tv}]
-This is the Strassen/bipartite coupling of~\cite[Corollary~3.2]{HLMPW25}, equivalently
-the degree-regularity argument in~\cite[Theorem~19]{Gao21}: on the high-probability
-set where \(Y\) is \(\alpha\)-concentrated, the coupling fails with probability
-\(O(\alpha+\delta)\).
+In the range of~\cite[Theorem~14]{Gao21} the left degrees \(Z_\partial\) are relatively concentrated with error \(o(1)\).
+The biregular comparison of Lemma~\ref{lem:linear-tv} then reduces the claim to concentration of \(Y\), which is~\cite[Theorem~19]{Gao21}, equivalently the Strassen coupling of~\cite[Corollary~3.2]{HLMPW25}.
+Those citations require \(d=o(n^{1/3})\). In the linear band the same comparison is Lemma~\ref{lem:linear-tv}, with left-degree concentration from Proposition~\ref{prop:band-rate}.
 \end{proof}
 
 \begin{proof}[Proof of Corollary~\ref{cor:sqrt}]
@@ -2770,11 +2959,13 @@ Lemma~\ref{lem:overlap-wide} uses a window of width \(\bar k^{2/3}\), which rema
 exact \(+1\) for every \(d=o(n)\). At degrees where both \(d\) and \(n-d\) are of
 order \(n\), the factor \(O(d/n)\) no longer tends to \(0\).
 Theorem~\ref{thm:dense} recovers the range \(n-d=o(n)\).
-Theorem~\ref{thm:middle} is the \(+1\) statement for linear degree.
+Theorem~\ref{thm:middle} is the \(+1\) statement for linear degree, and
+Theorem~\ref{thm:plus-one} is the three ranges together.
+Theorem~\ref{thm:gim-gap} is the same coupling at a gap equal to the longest chain the matching count supports at the lower degree.
 Proposition~\ref{prop:config-loops} shows that the configuration multigraph at half
 degree has a loop with probability \(1-o(1)\), so the deletion has to be proved
 on the uniform simple graph.
-Proposition~\ref{prop:middle-reduction} reduces that conjecture to
+Proposition~\ref{prop:middle-reduction} reduces the linear-band coupling to
 \(\Var Y/(\EE Y)^2=o(1)\) for the perfect-matching count on \(G(n,d+1)\).
 Proposition~\ref{prop:half-main-term} evaluates the factorial ratio at degree \(n/2\):
 it is a Poisson(\(1\)) ratio, whose series sums to \(1\), while the enumeration
@@ -2800,10 +2991,10 @@ Lemma~\ref{lem:coercive} keeps the phase coercive after the host is deleted.
 Proposition~\ref{prop:saddle-prefactor} evaluates the deleted-host integrand at the origin, with the radius fixed by \(\lambda=m/E\): the logarithm is \(k\log 2-\frac12+O((k+1)/n)\), and the average of these weights is \(1\).
 Theorem~\ref{thm:half} turns that average into the coupling of degrees \(n/2-1\) and \(n/2\).
 Theorem~\ref{thm:band} carries the same saddle to every degree \(\delta n\) with \(\delta\) and \(1-\delta\) bounded away from \(0\): the origin contribution is \(\lambda^{-k}\exp\bigl(-\tfrac12(\lambda^{-1}-1)\bigr)\), and that factor averages to \(1\) against the intersection of two perfect matchings.
-Theorem~\ref{thm:middle} is the resulting coupling.
+Theorem~\ref{thm:middle} is the resulting coupling: Lemma~\ref{lem:linear-tv} compares \(\mu_d\oplus\mu_1\) with \(\mu_{d+1}\) from concentration of both matching counts, which is the linear-band replacement for the out-of-range citation in Lemma~\ref{lem:tv}.
 Theorem~\ref{thm:band-chains} extends one step to a chain of length \(o(n^{1/3})\).
-Theorem~\ref{thm:half-chains} lengthens that chain to \(o(n^{1/2})\) for degrees within the same distance of \(n/2\).
-Theorem~\ref{thm:distance-chains} interpolates the two: at distance \(T\) from \(n/2\) the chain may have length \(o\bigl(n^{2/3}/(T+1)^{1/3}\bigr)\), which is \(o(n^{7/15})\) at distance \(n^{3/5}\).
+Theorem~\ref{thm:half-chains} is the same length \(o(n^{2/5})\) near \(n/2\): the distance-rate leftover is of order \(t^2/n^2\), not \(|t|/n^2\), so Chebyshev does not recover \(o(n^{1/2})\).
+Theorem~\ref{thm:distance-chains} interpolates with this \(t^2\) rate and does not exceed \(o(n^{2/5})\).
 Lemma~\ref{lem:band-fourth} upgrades the linear-band matching count to a fourth moment \(O(n^{-2})\).
 Theorem~\ref{thm:band-fourth-chains} turns that moment into a chain of length \(o(n^{2/5})\) at every linear degree.
 A union bound of matching steps still cannot cross length \(n^{1/2}\): the relative width of \(Y\) is of order \(n^{-1/2}\), and \(n^{1/2}\) steps at that scale do not vanish.
@@ -2813,6 +3004,17 @@ Theorem~\ref{thm:factor-third} gives the \(L\)-factor second moment for \(L=o(n^
 The number of \(L\)-factors is still unproved for \(L=\omega(n^{1/3})\). Proposition~\ref{prop:flat-same} makes the lower graph uniform once that moment bound holds at degree \(n-1-d\), and Theorem~\ref{thm:long-from-moment} is the coupling past \(n^{1/3}\), conditional on Conjecture~\ref{conj:factor-moment}. Proposition~\ref{prop:chain-budget} shows that repeating the step across a linear interval needs the stronger Conjecture~\ref{conj:factor-rate}. Proposition~\ref{prop:not-binomial} keeps this coupling away from Conjecture~\ref{conj:Q}.
 A Chernoff increment still has length \(\Theta\sqrt{n\log n}\) at this degree, which is longer by a power of \(\log n\), so Conjecture~\ref{conj:Q} and Conjecture~\ref{conj:config-split} stay open.
 Theorem~\ref{thm:chains} still describes simultaneous chains inside \(o(n^{1/2})\), where the variance is \(D^{-3}+D/n\).
+
+The next attack on the three remaining conjectures is not another switching pass or another Taylor step of the matching origin.
+Theorem~\ref{thm:hybrid} and Corollary~\ref{cor:hybrid-sharp} already produce a supergraph \(H\supset G\) at Chernoff scale whose degrees are all \((1+o(1))(d+\varepsilon d)\) and whose edge marginals match \(G\bigl(n,(1+\varepsilon)d/n\bigr)\).
+Proposition~\ref{prop:hybrid-gap} shows that one degree of \(H\) is at total variation \(1/16-o(1)\) from the corresponding binomial degree, so identifying \(H\) with that binomial graph cannot prove Conjecture~\ref{conj:Q}.
+Proposition~\ref{prop:hybrid-singular} shows that \(H\) is likewise at total variation \(1-o(1)\) from \(\mu_D\): an almost-regular graph and a regular graph have disjoint supports as soon as some degree differs by \(1\) (Proposition~\ref{prop:support-disjoint}).
+The identification in Conjecture~\ref{conj:config-split} is not that comparison.
+It is \(\dTV(\mathcal{L}_{d,m},\mu_{d+m})\), both laws living on \((d+m)\)-regular graphs.
+Theorem~\ref{thm:selection-reduces} reduces that comparison to flatness of the inverse subgraph count of the already sampled binomial host, together with the peel matching a uniform \((d+m)\)-regular subgraph of that host.
+Proposition~\ref{prop:bernoulli-moment} shows that the same count on an independent Bernoulli residual has second-moment ratio at least \(p^{-\EE K}\to\infty\), so Conjecture~\ref{conj:residual-moment} cannot be proved by replacing \(R\) with an independent binomial graph.
+Conjecture~\ref{conj:Q} itself needs a different coupling: the hybrid is more regular than the binomial, and the BIM deletion process is tight at rate \(1/3\).
+For Conjecture~\ref{conj:factor-moment} the matching expansion is finished: Proposition~\ref{prop:factor-cubic} is the third-cumulant leftover \(\sim-L^3/(4n)\), and Proposition~\ref{prop:typical-origin} records that evaluating the origin at the typical intersection \(k=\Theta(L^2)\) leaves the same cubic order \(O(L^3/n)\).
 
 Quantitative sandwich rates from the~\cite{BIM25} budget:
 \begin{center}
@@ -3086,6 +3288,32 @@ Let \(D\) be the corresponding degree of \(H\). Conditioning on the residual as 
 Chebyshev's inequality gives \(\PP(|D-\EE D|>\sigma/4)\to 0\).
 The edge marginals of Theorem~\ref{thm:hybrid} match the two means up to \(O(d/n)=o(\sigma)\).
 The set where the binomial degree has probability at least \(1/16\) therefore has probability \(o(1)\) under \(D\).
+\end{proof}
+
+\begin{proposition}[Almost-regular and regular graphs are singular]
+\label{prop:support-disjoint}
+Let \(g\) be a degree sequence on \([n]\) with \(\sum_v g_v=nD\) and \(g\neq(D,\ldots,D)\).
+The uniform measure on graphs with degree sequence \(g\) and the law \(\mu_D\) are mutually singular, so their total variation is \(1\).
+\end{proposition}
+
+\begin{proof}
+Every graph in the support of \(\mu_D\) is \(D\)-regular.
+Every graph with degree sequence \(g\) fails to be \(D\)-regular at some vertex.
+The two supports are disjoint.
+\end{proof}
+
+\begin{proposition}[The hybrid is singular to the regular law]
+\label{prop:hybrid-singular}
+In the setting of Theorem~\ref{thm:hybrid} with \(\varepsilon\to 0\) and \(\varepsilon d\to\infty\), writing \(D=\mathrm{round}((1+\varepsilon)d)\), one has \(\dTV(\mathcal{L}(H),\mu_D)\to 1\).
+\end{proposition}
+
+\begin{proof}
+A single degree of \(H\) has conditional variance \(\Theta(\varepsilon d)\) by Theorem~\ref{thm:hybrid}.
+The hypothesis \(\varepsilon\ge C\sqrt{(\log n)/d}\) forces \(\varepsilon d\ge C\sqrt{d\log n}\to\infty\).
+The point mass of a binomial of variance \(\sigma^2\) at any integer is \(O(\sigma^{-1})\).
+The identity \((\varepsilon d)^{-1/2}=O\bigl(d^{-1/4}(\log n)^{-1/4}\bigr)\) was checked under \(\varepsilon=\sqrt{(\log n)/d}\), and the right-hand side tends to \(0\).
+Thus \(\PP(\deg_H(v)=D)\to 0\), so \(\PP(H\text{ is \(D\)-regular})\to 0\).
+Every graph in the support of \(\mu_D\) is \(D\)-regular, and Proposition~\ref{prop:support-disjoint} records the same obstruction for each fixed non-regular degree sequence.
 \end{proof}
 
 \begin{proposition}[Independent completion has the wrong variance]
@@ -3585,7 +3813,9 @@ Past the chain ceiling, Theorem~\ref{thm:matching-peel} still produces an exact
 \((d+m)\)-regular container. Conjecture~\ref{conj:config-split} is the missing
 identification.
 The \(L\)-factor count does not supply it: the residual \(R=G^*_0\setminus G\) has degrees \(\Theta(d^{2/3}(\log n)^{1/3})\) and is not regular, so neither Lemma~\ref{lem:factor-tv} nor Conjecture~\ref{conj:factor-moment} applies to \(R\).
-The identification does not use Conjecture~\ref{conj:Q}. The missing statement is a second-moment bound for \(m\)-factors of this irregular residual.
+The identification does not use Conjecture~\ref{conj:Q}.
+Theorem~\ref{thm:selection-reduces} is the reduction: identify the peel with a uniform \((d+m)\)-regular subgraph of \(G^*_0\), and flatten the inverse subgraph count of that binomial host.
+Proposition~\ref{prop:bernoulli-moment} blocks the comparison that replaces the residual by an independent binomial graph.
 \end{remark}
 
 \begin{conjecture}[Host-restricted splitting]
@@ -3604,6 +3834,84 @@ Let \(R\) be the residual of Lemma~\ref{lem:residual}, and let \(m=\lfloor c\sqr
 Let \(Z\) be the number of spanning \(m\)-regular subgraphs of \(R\).
 Then \(\Var Z/(\EE Z)^2=o(1)\).
 \end{conjecture}
+
+\begin{proposition}[Bernoulli residual second moment diverges]
+\label{prop:bernoulli-moment}
+Let \(G\) be a fixed \(d\)-regular graph on \([n]\), let \(p=(1+\varepsilon_0)d/n\) with \(\varepsilon_0=C_3(\log n/d)^{1/3}\), and let \(R\) be the random graph with an edge independently on each pair outside \(E(G)\) with probability \(p\).
+Let \(m=\lfloor c\sqrt{d\log n}\rfloor\) with \(mn\) even, and let \(Z\) be the number of \(m\)-regular spanning subgraphs of \(R\).
+Then
+\[
+\frac{\EE[Z^2]}{(\EE Z)^2}
+=
+\EE\bigl[p^{-K}\bigr],
+\]
+where \(K\) is the number of common edges of two uniform \(m\)-regular subgraphs of \(K_n\setminus G\).
+The map \(x\mapsto p^{-x}\) is convex on \([0,\infty)\) for \(p\in(0,1)\), so Jensen's inequality yields \(\EE[p^{-K}]\ge p^{-\EE K}\).
+Two independent \(m\)-regular graphs on the complement have
+\[
+\EE K
+=
+\frac{nm^2}{2(n-1-d)}.
+\]
+Throughout \(d=o(n)\) one has \(\EE K=\Theta(d\log n)\to\infty\) and \(p=o(1)\), hence \(p^{-\EE K}\to\infty\).
+The second-moment method on this Bernoulli residual does not yield \(\Var Z/(\EE Z)^2=o(1)\).
+\end{proposition}
+
+\begin{proof}
+Write \(\mathcal{F}\) for the \(m\)-regular spanning subgraphs of \(K_n\setminus G\), and \(N=|\mathcal{F}|\).
+Each \(F\in\mathcal{F}\) satisfies \(\PP(F\subset R)=p^{mn/2}\), so \(\EE Z=Np^{mn/2}\).
+A pair \(F,F'\) with \(|E(F)\cap E(F')|=k\) has \(e(F\cup F')=mn-k\), hence
+\[
+\EE[Z^2]
+=
+\sum_{F,F'\in\mathcal{F}}p^{mn-k(F,F')}
+=
+N^2p^{mn}\,\EE\bigl[p^{-K}\bigr].
+\]
+The second derivative of \(p^{-x}\) is \(p^{-x}(\log p)^2\), which is positive for \(p\in(0,1)\).
+The identity for \(\EE K\) is the number of edges of \(K_n\setminus G\) times \((m/(n-1-d))^2\), and
+\[
+\Bigl(\frac{n(n-1)}{2}-\frac{dn}{2}\Bigr)\frac{m^2}{(n-1-d)^2}
+=
+\frac{nm^2}{2(n-1-d)}
+\]
+was checked, as was \(\binom{n}{2}(m/(n-1))^2=nm^2/(2(n-1))\) in the hole-free case.
+The factor \(n/(n-1)\to 1\) was checked.
+Substituting \(m=\Theta\sqrt{d\log n}\) gives \(\EE K=\Theta(d\log n)\).
+\end{proof}
+
+\begin{theorem}[Selection reduction for the container]
+\label{thm:selection-reduces}
+Let \(d\), \(m\), and \(G^*_0\sim G\bigl(n,(1+\varepsilon_0)d/n\bigr)\) be as in Theorem~\ref{thm:matching-peel}, and write \(p=(1+\varepsilon_0)d/n\) and \(D:=d+m\).
+Let \(N(G^*_0)\) be the number of \(D\)-regular spanning subgraphs of \(G^*_0\), and let \(\nu_D\) be the law of a uniformly chosen such subgraph, conditioned on \(N(G^*_0)\ge 1\).
+\begin{enumerate}
+\item For every \(D\)-regular graph \(G_0\) one has \(\PP(G_0\subset G^*_0)=p^{Dn/2}\).
+\item \(\nu_D(G_0)=\EE\bigl[1_{G_0\subset G^*_0}/N(G^*_0)\bigr]/\PP(N\ge 1)\).
+\item If there is a sequence \(c_n\) such that every \(D\)-regular graph \(G_0\) satisfies
+\[
+\EE\bigl[1/N(G^*_0)\bigm|G_0\subset G^*_0\bigr]
+=
+(1+o(1))\,c_n,
+\]
+then \(\dTV(\nu_D,\mu_D)\to 0\).
+\item If in addition \(\dTV(\mathcal{L}_{d,m},\nu_D)\to 0\), then Conjecture~\ref{conj:config-split} holds.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The graph \(G^*_0\) is binomial, and every \(D\)-regular graph has \(Dn/2\) edges, which is (i).
+Item (ii) is the definition of uniform selection among the subgraphs of a random host.
+Lemma~\ref{lem:host-room} and Theorem~\ref{thm:quant-third-global} give \(\PP(N\ge 1)\to 1\).
+Under (iii),
+\[
+\nu_D(G_0)
+=
+(1+o(1))\,p^{Dn/2}c_n
+\]
+for every \(D\)-regular \(G_0\), hence \(\nu_D\) is a \((1+o(1))\) multiple of \(\mu_D\) and the total variation tends to \(0\).
+The law \(\mathcal{L}_{d,m}\) is supported on \(D\)-regular subgraphs of \(G^*_0\).
+The triangle inequality with (iii) yields (iv).
+\end{proof}
 
 \begin{proposition}[Splitting without host]
 \label{prop:split-free}
@@ -3672,6 +3980,30 @@ N_m(G)
 which is independent of the choice of \(G\) up to the factor \(1+o(1)\).
 \end{proof}
 
+\begin{lemma}[Free extension flatness at McKay scale]
+\label{lem:free-flat-L}
+Let \(n\) be even, let \(d\to\infty\), and let \(L\to\infty\) with \(Ln\) even and \(L\le d\).
+If
+\[
+\frac{L(d+L)^2}{n}=o(1),
+\]
+then any two \(d\)-regular graphs \(G,G'\) on \([n]\) satisfy \(N_L(G)=(1+o(1))\,N_L(G')\), where \(N_L(G)\) is the number of \(L\)-regular graphs on \([n]\) edge-disjoint from \(G\).
+Lemma~\ref{lem:free-flat} is the case \(L=\lfloor c\sqrt{d\log n}\rfloor\).
+\end{lemma}
+
+\begin{proof}
+The same application of~\cite[Theorem~4.6]{McK85} as in Lemma~\ref{lem:free-flat}, with \(m\) replaced by \(L\), has McKay parameter \(\widehat\Delta=O(L(d+L))\).
+The hypothesis forces \(d+L=o(n)\), and the relative error in the exponent is
+\[
+O\Biggl(\frac{\widehat\Delta^{\,2}}{Ln}\Biggr)
+=
+O\Biggl(\frac{L(d+L)^2}{n}\Biggr)
+=
+o(1).
+\]
+The main terms still depend on \(G\) only through its degree and its number of edges.
+\end{proof}
+
 \begin{remark}[Toward Conjecture~\ref{conj:config-split}]
 \label{rem:config-split}
 Proposition~\ref{prop:switch-barrier} shows that the \(2\)-switch count of a residual
@@ -3681,11 +4013,13 @@ Corollary~\ref{cor:chernoff-chains} up through \(o(\sqrt{n})\). The same proposi
 shows that the Azuma tail does not survive conditioning on simplicity.
 Lemma~\ref{lem:free-flat} makes the number of \(m\)-factors of the complement of \(G\)
 independent of which \(d\)-regular graph was chosen, for every
-\(d=o(n^{2/5}/(\log n)^{1/5})\).
+\(d=o(n^{2/5}/(\log n)^{1/5})\), and Lemma~\ref{lem:free-flat-L} is the same count at every length with \(L(d+L)^2/n=o(1)\).
 That complement has degree \(n-1-d\). The container in
 Conjecture~\ref{conj:config-split} counts \(m\)-factors of the residual \(R\), whose
 degree is of order \(d^{2/3}(\log n)^{1/3}\). Flat free counts do not identify
 \(\mathcal{L}_{d,m}\) with \(\mu_{d+m}\).
+Theorem~\ref{thm:selection-reduces} is the comparison that remains: the peel must match a uniform \(D\)-regular subgraph of \(G^*_0\), and the inverse count \(1/N(G^*_0)\) must be flat given containment.
+Proposition~\ref{prop:bernoulli-moment} blocks the independent-Bernoulli comparison for Conjecture~\ref{conj:residual-moment}.
 \end{remark}
 
 \begin{theorem}[Conditional Chernoff increments]
