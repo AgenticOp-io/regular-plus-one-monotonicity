@@ -1729,3 +1729,41 @@ Query: Limit[e -> 0, (n-1)/n*(1+e)*(1 - e*d/(n-d))]
 no result
 [Fallback]
 Substitute e=0. The expression equals (n-1)/n. Exact.
+
+
+Query: Series[(-k + 1)*(2*t - 1), {n, Infinity, 0}]
+[Input interpretation]
+series | (-k + 1) (2 t - 1) | point | n = ∞
+order | n^0
+[Series expansion at t = ∞]
+(2 - 2 k) t + (k - 1) + O((1/t)^1)
+(Taylor series)
+(converges everywhere away from origin)
+
+
+Query: Sum[(1-k)/k!, {k,0,Infinity}]
+[Infinite sum]
+sum_(k=0)^∞ (1 - k)/(k!) = 0
+[Sum convergence]
+sum_(k=0)^∞ (1 - k)/(k!) converges
+[Partial sum formula]
+sum_(k=0)^n (1 - k)/(k!) = (1 + n)/((1 + n)!)
+
+
+Query: Series[With[{D=n/2+t, E0=n*(n-1)/2, EM=E0-n/2, Ek=E0-n+k, m0=D*n/2, mM=(D-1)*n/2, mk=(D-2)*n/2+k, eta=(Function[lam, -lam*Log[lam]-(1-lam)*Log[1-lam]])}, Ek*eta[mk/Ek]+E0*eta[m0/E0]-2*EM*eta[mM/EM] - k*Log[2] + 1/2], {n, Infinity, 2}]
+[error]
+no result
+
+
+Query: Limit[n*(entropy combination - k*Log[2] + 1/2), n -> Infinity]
+[error]
+no result
+[Fallback]
+High precision at n=10^6. For (t,k) in {(3,0),(3,4),(20,2),(100,3)}, n times the excess minus (1-k)*(2*t-1) is at most 0.02 in absolute value, of order (t^2+1)/n. The sum sum (1-k)/k! = 0 was returned by Wolfram, so the average of (1-k)*(2*t-1) is 0.
+
+
+Query: 7/15 + 1/5 - 2/3 = 0
+[Input]
+7/15 + 1/5 - 2/3 = 0
+[Result]
+True

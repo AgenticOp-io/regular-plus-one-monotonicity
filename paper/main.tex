@@ -2121,6 +2121,54 @@ Each step fails with probability \(O(v^{1/3})=O(L^{1/3}n^{-2/3})\).
 The product \(L\cdot L^{1/3}n^{-2/3}=L^{4/3}n^{-2/3}\) tends to \(0\) by the hypothesis on \(L\).
 \end{proof}
 
+\begin{proposition}[Rate by distance to half degree]
+\label{prop:distance-rate}
+Let \(n\) be even and let \(d=n/2+t\) with \(|t|\le n/3\).
+The number \(Y\) of perfect matchings in \(G(n,d)\) satisfies
+\[
+\frac{\Var Y}{(\EE Y)^2}=O\Bigl(\frac{|t|+1}{n^2}\Bigr).
+\]
+\end{proposition}
+
+\begin{proof}
+If \(|t|\ge n/6\), Proposition~\ref{prop:band-rate} supplies \(O(1/n)\), and \(1/n\le 6|t|/n^2\).
+If \(|t|<n/6\), the edge density differs from \(1/2\) by \(O(|t|/n)\).
+The half-degree expansion has \(1/n\) coefficient \(k-1\), and the same expansion at this density replaces that coefficient by \((1-k)(2t-1)\).
+The series \(\sum_{k\ge 0}(1-k)/k!=0\), so the average of \((1-k)(2t-1)\) against the tilted Poisson law is \(0\).
+The next term is \(O((|t|+1)(k^2+1)/n^2)\) for \(k\le\log n\), and the tail \(k>\log n\) is negligible as in Theorem~\ref{thm:band}.
+Averaging leaves \(O((|t|+1)/n^2)\).
+\end{proof}
+
+\begin{theorem}[Chains measured from half degree]
+\label{thm:distance-chains}
+Let \(n\) be even and let \(D\) satisfy \(\min(D,n-D)=\Theta(n)\).
+Write \(T=|D-n/2|\).
+If \(L\ge 1\) satisfies \(L\le n/6\) and
+\[
+L\bigl(T+L\bigr)^{1/3}=o\bigl(n^{2/3}\bigr),
+\]
+then there is a coupling \((G_d)_{d=D}^{D+L}\) with each \(G_d\sim G(n,d)\) and
+\[
+\PP\bigl(G_D\subseteq\cdots\subseteq G_{D+L}\bigr)=1-o(1).
+\]
+In particular, \(T=\Theta(n)\) recovers chains of length \(o(n^{1/3})\), while \(T=o(n^{1/2})\) and \(L=o(n^{1/2})\) recover Theorem~\ref{thm:half-chains}.
+If \(T=n^{3/5}\), the same bound allows \(L=o(n^{7/15})\), which is longer than \(o(n^{1/3})\).
+\end{theorem}
+
+\begin{proof}
+On the interval every degree is \(n/2+s\) with \(|s|\le T+L\le n/3\) for large \(n\), since \(T\le n/2\) and \(L\le n/6\).
+Proposition~\ref{prop:distance-rate} gives relative variance \(O((T+L)/n^2)\).
+Chebyshev at height equal to the cube root of that variance, together with Lemma~\ref{lem:tv}, fails with probability \(O((T+L)^{1/3}n^{-2/3})\) at each step.
+The union bound is \(L\) times this quantity, which tends to \(0\) by hypothesis.
+When \(T=\Theta(n)\), the hypothesis is \(L\cdot\Theta(n^{1/3})=o(n^{2/3})\), hence \(L=o(n^{1/3})\).
+When \(T\le L=o(n^{1/2})\), it is \(L^{4/3}=o(n^{2/3})\).
+When \(T=n^{3/5}\) and \(L=o(n^{7/15})\), one has \(T+L\sim n^{3/5}\) and
+\[
+L(T+L)^{1/3}=o\bigl(n^{7/15}\cdot n^{1/5}\bigr)=o\bigl(n^{7/15+3/15}\bigr)=o(n^{2/3}),
+\]
+since \(1/5=3/15\).
+\end{proof}
+
 \begin{conjecture}[One deletion of a long factor]
 \label{conj:long-step}
 Let \(n\) be even and let \(d,L\) satisfy \(\min(d,n-d,d+L,n-d-L)=\Theta(n)\) and \(L=\omega(n^{1/2})\), with \(dn\) and \(Ln\) even.
@@ -2595,6 +2643,7 @@ Theorem~\ref{thm:band} carries the same saddle to every degree \(\delta n\) with
 Theorem~\ref{thm:middle} is the resulting coupling.
 Theorem~\ref{thm:band-chains} extends one step to a chain of length \(o(n^{1/3})\).
 Theorem~\ref{thm:half-chains} lengthens that chain to \(o(n^{1/2})\) for degrees within the same distance of \(n/2\).
+Theorem~\ref{thm:distance-chains} interpolates the two: at distance \(T\) from \(n/2\) the chain may have length \(o\bigl(n^{2/3}/(T+1)^{1/3}\bigr)\), which is \(o(n^{7/15})\) at distance \(n^{3/5}\).
 A union bound of these steps cannot cross length \(n^{1/2}\): in the linear band the relative variance of the matching count is of order \(1/n\), so even a deviation at the standard-deviation scale costs \(n^{-1/2}\) per step.
 Conjecture~\ref{conj:long-step} is the replacement, one deletion of an \(L\)-factor for some \(L=\omega(n^{1/2})\).
 Lemma~\ref{lem:factor-tv} is the total-variation comparison for that deletion: concentration of the factor count makes the upper graph uniform.
