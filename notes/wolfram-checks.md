@@ -1891,3 +1891,205 @@ Query: (L*n/2)*(L^2/n^2) - L^3/(2*n) = 0
 (L × n/2) × L^2/n^2 - L^3/(2 n) = 0
 [Fallback]
 No result pod. Exact: (L n/2)(L^2/n^2)=L^3/(2n).
+
+
+Query: 1-(1-eta)(1-beta) == beta+eta-beta*eta
+[Input]
+1 - (1 - η) (1 - β) = β + η - β η
+[Expanded form]
+True
+
+
+Query: Series[((L n/2) Log[1 - L/(n-1) + (L/(n-1))*((n-2)/(D-1))] - (L^2/2)*((n-2)/(D-1)-1)) /. D->delta n, {n, Infinity, 1}]
+[error]
+no result
+
+
+Query: Series[(L n/2) Log[1 - L/(n-1) + (L/(n-1))*((n-2)/(n/2-1))] - (L^2/2)*((n-2)/(n/2-1)-1), {n, Infinity, 1}]
+[Input interpretation]
+series | (L × n/2) log(1 - L/(n - 1) + L/(n - 1) × (n - 2)/(n/2 - 1)) - L^2/2 ((n - 2)/(n/2 - 1) - 1) | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+-((L - 2) L^2)/(4 n) + O((1/n)^2)
+(Laurent series)
+(converges when (1/abs(n)<1 ∨ (abs(n) = 1 ∧ Boole[1/n = 1]<1)) ∧ (abs((1 - L)/n)<1 ∨ (abs((1 - L)/n) = 1 ∧ Boole[(L + n - 1)/n = 0]<1)))
+[Series representation at n = ∞]
+(L (log((-L n + n - 1)/(n - 1)) - L n))/(2 n)
+
+
+Query: With[{E0=n(n-1)/2, m0=(n/2)*n/2, s=L n/2, eta[x_]:=-x Log[x]-(1-x)Log[1-x], f[e_]:=(E0-e) eta[(m0-e)/(E0-e)], lam=(n/2-1)/(n-2)}, Series[f[2s]+f[0]-2 f[s] + (L^2/2)(1/lam-1), {n,Infinity,1}]]
+[error]
+no result
+
+
+Query: eta[x_]:=-x Log[x]-(1-x)Log[1-x]; f[e_,E,m]:=(E-e) eta[(m-e)/(E-e)]; D[f[e,E,m],{e,2}] /. e->0
+[error]
+no result
+
+
+Query: Simplify[D[(E-e)*(-((m-e)/(E-e))*Log[(m-e)/(E-e)]-(1-(m-e)/(E-e))*Log[1-(m-e)/(E-e)]), {e, 2}] /. e->0]
+[error]
+no result
+
+
+Query: n^(1/2) / (n^(1/2))^(3/2) == n^(-1/4)
+[Input]
+sqrt(n)/sqrt(n)^(3/2) = n^(-1/4)
+[Result]
+True
+
+
+Query: (L^2 (d+L)^2)/(L n) - L (d+L)^2/n == 0
+[Input]
+(L^2 (d + L)^2)/(L n) - L × (d + L)^2/n = 0
+
+
+Query: simplify L^2*(d+L)^2/(L*n) - L*(d+L)^2/n
+[Input interpretation]
+simplify | L^2 × (d + L)^2/(L n) - L × (d + L)^2/n
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: (n^(1/4))^4 == n
+[Input]
+(n^(1/4))^4 = n
+[Result]
+True
+
+
+Query: q - 2 q (q/(2 q+1)) == q/(2 q+1)
+[Input]
+q - 2 q × q/(2 q + 1) = q/(2 q + 1)
+[Alternate form]
+True (for q!=-1/2)
+
+
+Query: Limit[ -((L-2) L^2)/4 / L^3, L->Infinity] == -1/4
+[Input]
+lim_(L->∞) (-1/4 ((L - 2) L^2))/L^3 = -1/4
+[Result]
+True
+
+
+Query: Series[(L n/2) Log[1 - L/(n-1) + (L/(n-1))*((n-2)/(n/2-1))] - (L^2/2)*((n-2)/(n/2-1)-1), {n, Infinity, 2}]
+[Input interpretation]
+series | (L × n/2) log(1 - L/(n - 1) + L/(n - 1) × (n - 2)/(n/2 - 1)) - L^2/2 ((n - 2)/(n/2 - 1) - 1) | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+-((L - 2) L^2)/(4 n) + (L^2 (L^2 - 3 L + 3))/(6 n^2) + O((1/n)^3)
+(Laurent series)
+(converges when (1/abs(n)<1 ∨ (abs(n) = 1 ∧ Boole[1/n = 1]<1)) ∧ (abs((1 - L)/n)<1 ∨ (abs((1 - L)/n) = 1 ∧ Boole[(L + n - 1)/n = 0]<1)))
+[Series representation at n = ∞]
+(L (log((-L n + n - 1)/(n - 1)) - L n))/(2 n)
+
+
+Query: Series[(L n/2) Log[1 - L/(n-1) + (L/(n-1))*((n-2)/(n/2-1))] - (L^2/2)*((n-2)/(n/2-1)-1), {n, Infinity, 3}]
+[Input interpretation]
+series | (L × n/2) log(1 - L/(n - 1) + L/(n - 1) × (n - 2)/(n/2 - 1)) - L^2/2 ((n - 2)/(n/2 - 1) - 1) | point | n = ∞
+order | n^3
+[Series expansion at n = ∞]
+-((L - 2) L^2)/(4 n) + (L^2 (L^2 - 3 L + 3))/(6 n^2) - (L^2 (L^3 - 4 L^2 + 6 L - 4))/(8 n^3) + O((1/n)^4)
+(Laurent series)
+(converges when (1/abs(n)<1 ∨ (abs(n) = 1 ∧ Boole[1/n = 1]<1)) ∧ (abs((1 - L)/n)<1 ∨ (abs((1 - L)/n) = 1 ∧ Boole[(L + n - 1)/n = 0]<1)))
+[Series representation at n = ∞]
+(L (log((-L n + n - 1)/(n - 1)) - L n))/(2 n)
+
+
+Query: (n^(1/4))^(-3) == (n^(1/4))/n
+[Input]
+1/(n^(1/4))^3 = n^(1/4)/n
+[Result]
+True
+
+
+Query: Series[1/2 + t/(n-2), {n, Infinity, 1}]
+[Input interpretation]
+series | 1/2 + t/(n - 2) | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+1/2 + O((1/n)^1)
+(Taylor series)
+(converges when abs(n)>2)
+[Series representation at n = ∞]
+(2 n (t - 1) + 1)/(2 - 4 n)
+
+
+Query: (2/5)*(5/3) == 2/3
+[Input]
+2/5 × 5/3 = 2/3
+[Result]
+True
+
+
+Query: Series[1/(2*(1/2 + t/(n-2))) - 1, {n, Infinity, 1}]
+[Input interpretation]
+series | 1/(2 (1/2 + t/(n - 2))) - 1 | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+-(2 t)/n + O((1/n)^2)
+(Laurent series)
+(converges when abs((2 - 2 t)/n)<1)
+[Series representation at n = ∞]
+-(2 n t)/(2 n (t - 1) + 1)
+
+
+Query: Binomial(n,2)*(m/(n-1))^2 == n*m^2/(2*(n-1))
+[Input]
+binomial(n, 2) (m/(n - 1))^2 = n × m^2/(2 (n - 1))
+[Result]
+True
+
+
+Query: Simplify[D[p^(-x), {x, 2}] / (p^(-x)*(Log[p])^2)]
+[Input interpretation]
+simplify | ((d^2 p^(-x))/(dx^2))/(p^(-x) log^2(p))
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: (d * (log(n)/d)^(1/2))^(-1/2) == d^(-1/4)*(log(n))^(-1/4)
+[Input]
+(d sqrt(log(n)/d))^(-1/2) = d^(-1/4) log^(-1/4)(n)
+[Alternate form]
+sqrt(d sqrt(log(n)/d)) = d^(1/4) log(n)^(1/4)
+[Expanded form]
+(sqrt(log(n)/d) sqrt(d sqrt(log(n)/d)))/log(n) = 1/(d^(1/4) log(n)^(1/4))
+[Alternate form assuming d and n are positive]
+True
+[Real solution]
+d>0, n>1
+[Implicit derivatives]
+(dd(n))/(dn) = -d/(n log(n))
+[Implicit derivatives]
+(dn(d))/(dd) = -(n log(n))/d
+
+
+Query: Limit[n/(n-1), n->Infinity] == 1
+[Input]
+lim_(n->∞) n/(n - 1) = 1
+[Result]
+True
+
+
+Query: (L*n)^3 / n^4 == L^3 / n
+[Input]
+(L n)^3/n^4 = L^3/n
+
+
+Query: Simplify[(L*n)^3/n^4 - L^3/n] == 0
+[Input interpretation]
+simplify | (L n)^3/n^4 - L^3/n = 0
+[Result]
+True
+
+
+Query: n*((n-1)/2 - d/2)*m^2/(n-1-d)^2 == n*m^2/(2*(n-1-d))
+[Input]
+n ((n - 1)/2 - d/2) × m^2/(n - 1 - d)^2 = n × m^2/(2 (n - 1 - d))
+[Result]
+True

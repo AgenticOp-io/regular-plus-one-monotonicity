@@ -124,6 +124,60 @@ CHECKS = {
             "The overlap mean tends to infinity in this regime.",
         ),
     },
+    "almost-regular-tv": {
+        "half": (
+            "block",
+            "Proposition support-disjoint: a non-regular degree sequence and the regular law have disjoint supports, so their total variation is 1. Proposition hybrid-singular is the same obstruction for the hybrid.",
+        ),
+        "linear": (
+            "block",
+            "Proposition support-disjoint does not depend on the degree. Total variation between an almost-regular graph and a regular graph is 1.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition support-disjoint does not depend on the degree. Identify the peel with a uniform regular subgraph of the binomial host instead.",
+        ),
+        "sparse": (
+            "block",
+            "Proposition support-disjoint does not depend on the degree. Identify the peel with a uniform regular subgraph of the binomial host instead.",
+        ),
+    },
+    "bernoulli-residual-moment": {
+        "half": (
+            "block",
+            "Proposition bernoulli-moment: the second-moment ratio on an independent Bernoulli residual is E[p^{-K}] >= p^{-EK} with EK = Theta(d log n), which diverges.",
+        ),
+        "linear": (
+            "block",
+            "Proposition bernoulli-moment: even at linear degree, p is bounded away from 1 only if the sandwich rate is bounded away from 0, and EK = Theta(d log n) still sends p^{-EK} to infinity.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition bernoulli-moment: throughout d=o(n) one has p=o(1) and EK=Theta(d log n), so p^{-EK} tends to infinity.",
+        ),
+        "sparse": (
+            "block",
+            "Proposition bernoulli-moment: the Bernoulli comparison diverges throughout d=o(n).",
+        ),
+    },
+    "origin-at-typical-k": {
+        "half": (
+            "block",
+            "Proposition typical-origin: the third-derivative remainder of the origin is O(L^3/n) uniformly in the intersection, including at the typical value Theta(L^2). This does not improve factor-third.",
+        ),
+        "linear": (
+            "block",
+            "Proposition typical-origin: evaluating the origin at the typical intersection leaves the same cubic O(L^3/n).",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition typical-origin applies whenever the origin logarithm has third derivative O(n^{-4}). The cubic order does not change.",
+        ),
+        "sparse": (
+            "block",
+            "The typical-intersection rewrite is not an attack on the sparse matching expansion.",
+        ),
+    },
 }
 
 
