@@ -1795,3 +1795,60 @@ Query: 1/2 - q/(2*q+1) - 1/(2*(2*q+1)) = 0
 1/2 - q/(2 q + 1) - 1/(2 (2 q + 1)) = 0
 [Alternate form]
 True (for q!=-1/2)
+
+
+Query: Limit[n*((n*(n-1)/2)*(-((n/2+t)/(n-1))*Log[(n/2+t)/(n-1)]-(1-(n/2+t)/(n-1))*Log[1-(n/2+t)/(n-1)])), n->Infinity]
+[Limit]
+lim_(n->∞) 1/2 n ((n (n - 1)) (-((n/2 + t) log((n/2 + t)/(n - 1)))/(n - 1) - (1 - (n/2 + t)/(n - 1)) log(1 - (n/2 + t)/(n - 1)))) = ∞
+[Series expansion at n = ∞]
+1/2 n^3 log(2) - 1/2 n^2 log(2) - 1/4 n (2 t + 1)^2 - 1/4 (2 t + 1)^2 - ((2 t + 1)^2 (4 t^2 + 4 t + 7))/(24 n) + O((1/n)^2)
+(Laurent series)
+
+
+Query: Series[(n*(n-2)/2)*(-(((n/2+t-1)*n/2)/(n*(n-2)/2))*Log[((n/2+t-1)*n/2)/(n*(n-2)/2)]-(1-((n/2+t-1)*n/2)/(n*(n-2)/2))*Log[1-((n/2+t-1)*n/2)/(n*(n-2)/2)]), {n, Infinity, 0}]
+[Input interpretation]
+series | (n × (n - 2)/2) (-((n/2 + t - 1) × n/2)/(n × (n - 2)/2) log(((n/2 + t - 1) × n/2)/(n × (n - 2)/2)) - (1 - ((n/2 + t - 1) × n/2)/(n × (n - 2)/2)) log(1 - ((n/2 + t - 1) × n/2)/(n × (n - 2)/2))) | point | n = ∞
+order | n^0
+[Series expansion at n = ∞]
+1/2 n^2 log(2) - n log(2) - t^2 + O((1/n)^1)
+(Taylor series)
+
+
+Query: Series[(n*(n-1)/2)*(-((n/2+t)/(n-1))*Log[(n/2+t)/(n-1)]-(1-(n/2+t)/(n-1))*Log[1-(n/2+t)/(n-1)]), {n, Infinity, 1}]
+[Input interpretation]
+series | (n × (n - 1)/2) (-(n/2 + t)/(n - 1) log((n/2 + t)/(n - 1)) - (1 - (n/2 + t)/(n - 1)) log(1 - (n/2 + t)/(n - 1))) | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+1/2 n^2 log(2) - 1/2 n log(2) - 1/4 (2 t + 1)^2 + O((1/n)^1)
+(Taylor series)
+
+
+Query: Series[(n*(n-1)/2 - n + k)*(-((((n/2+t-2)*n/2+k)/(n*(n-1)/2-n+k)))*Log[((n/2+t-2)*n/2+k)/(n*(n-1)/2-n+k)]-(1-(((n/2+t-2)*n/2+k)/(n*(n-1)/2-n+k)))*Log[1-((n/2+t-2)*n/2+k)/(n*(n-1)/2-n+k)]), {n, Infinity, 1}]
+[error]
+no result
+
+
+Query: Series[With[{E=n*(n-3)/2+k, m=n*(n/2+t-2)/2+k}, E*(-(m/E)*Log[m/E]-(1-m/E)*Log[1-m/E])], {n, Infinity, 1}]
+[Input interpretation]
+series | {{e = n × (n - 3)/2 + k, m = n (1/2 (n/2 + t - 2)) + k}, e (-m/e log(m/e) - (1 - m/e) log(1 - m/e))} | point | n = ∞
+order | n^1
+[error]
+no result
+
+Query: Series[(n*t-n/2+k)^2/(n*(n-3)+2*k) + (t+1/2)^2*(1+1/(n-1)) - 2*t^2*(1+2/(n-2)), {n, Infinity, 2}]
+[Input interpretation]
+series | (n t - n/2 + k)^2/(n (n - 3) + 2 k) + (t + 1/2)^2 (1 + 1/(n - 1)) - 2 t^2 (1 + 2/(n - 2)) | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+1/2 + ((k - 1) (2 t - 1))/n + O((1/n)^2)
+
+
+Query: Series[(n*t-n/2+k)^2/(n*(n-3)+2*k) + (t+1/2)^2*(1+1/(n-1)) - 2*t^2*(1+2/(n-2)), {n, Infinity, 2}]
+[Input interpretation]
+series | (n t - n/2 + k)^2/(n (n - 3) + 2 k) + (t + 1/2)^2 (1 + 1/(n - 1)) - 2 t^2 (1 + 2/(n - 2)) | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+1/2 + ((k - 1) (2 t - 1))/n + O((1/n)^2)
+(Laurent series)
+[Series representation at n = ∞]
+(4 k^2 n^4 + n^2 (2 k^2 + k (-4 t^2 - 8 t + 7) + 4 (t + 1)^2) - 6 k (k + 1) n^3 + n (k (4 t - 2) - 4 (t + 1)) + 1)/(2 (n - 1) (2 n - 1) (2 k n^2 - 3 n + 1))
