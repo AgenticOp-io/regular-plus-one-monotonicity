@@ -178,6 +178,24 @@ CHECKS = {
             "The typical-intersection rewrite is not an attack on the sparse matching expansion.",
         ),
     },
+    "contain-first-as-inverse": {
+        "half": (
+            "block",
+            "Proposition jensen-inverse: E[1/N] >= 1/E[N]. Proposition contain-first flattens only the denominator for D=o(n^{1/3}). Item (iii) of selection-reduces is the matching upper bound.",
+        ),
+        "linear": (
+            "block",
+            "Proposition contain-first requires D=o(n^{1/3}), which linear degree is not. Proposition jensen-inverse blocks using a first moment in any case.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition jensen-inverse: a flat first moment of N does not flatten E[1/N].",
+        ),
+        "sparse": (
+            "block",
+            "Proposition jensen-inverse: a flat first moment of N does not flatten E[1/N].",
+        ),
+    },
 }
 
 
