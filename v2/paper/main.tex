@@ -703,6 +703,50 @@ A proof of item (iii) must control \(\EE[1/N]\) at that bulk scale, not at
 the intersection-biased mean.
 \end{remark}
 
+\section{Peel flatnesses and the remaining gaps}
+\label{sec:peel-gaps}
+
+Item (iv) of Theorem~\ref{thm:selection-reduces} needs
+\(\dTV(\mathcal{L}_{d,m},\nu_D)\to 0\) in addition to item (iii).
+The peel-weight identity of~\cite{PlusOneV1} isolates three flatnesses on a
+fixed host \(G^*_0\): the law of the peeled \(d\)-regular graph is uniform among
+\(d\)-factors of \(G^*_0\); the number \(N_m(G^*_0\setminus G)\) of \(m\)-factors of
+the residual does not depend on which \(d\)-factor \(G\) was chosen; and every
+\(D\)-regular \(F\subset G^*_0\) has the same number of \(d\)-factors.
+None of those three is proved here.
+
+\begin{proposition}[Free complement flatness is not residual flatness]
+\label{prop:free-not-residual}
+The free-extension flatness of~\cite{PlusOneV1} states that for
+\(d=o(n^{2/5}/(\log n)^{1/5})\) and \(m=\Theta\sqrt{d\log n}\), the number of
+\(m\)-regular graphs on \([n]\) edge-disjoint from a fixed \(d\)-regular graph
+\(G\) is \((1+o(1))\) the same for every such \(G\).
+That count is McKay's enumeration in the complement of \(G\) inside \(K_n\).
+The residual \(R=G^*_0\setminus G\) is a random subgraph of that complement
+with irregular degrees of order \(d^{2/3}(\log n)^{1/3}\).
+Flatness of \(N_m(K_n\setminus G)\) does not imply flatness of \(N_m(R)\), and
+does not identify \(\mathcal{L}_{d,m}\) with \(\mu_{d+m}\).
+\end{proposition}
+
+\begin{proof}
+The free count forbids every edge of \(G\) and allows every other edge of
+\(K_n\).
+The residual count forbids every edge of \(G\) and every non-edge of
+\(G^*_0\).
+Those are different ground sets.
+\end{proof}
+
+\begin{remark}[Residual moment and Chernoff]
+\label{rem:b3-b4}
+Conjecture~\ref{conj:residual-moment} asks for a second moment of \(m\)-factors
+of the actual residual \(R=G^*_0\setminus G\).
+The Bernoulli comparison of~\cite{PlusOneV1} diverges and is not that model.
+Conjecture~\ref{conj:Q} asks for a Chernoff-scale sandwich.
+Hybrid thinning and freeze-and-sprinkle are blocked in~\cite{PlusOneV1}.
+The remaining routes are a proof of~\cite[Conjecture~1.3]{BIM25}, or a new
+coupling whose output is binomial rather than hybrid.
+\end{remark}
+
 \section{Program}
 \label{sec:program}
 
@@ -729,6 +773,10 @@ Proposition~\ref{prop:sn-orbit} reduces the comparison to isomorphism types
 and does not close it.
 The missing estimate is still an upper bound on \(\EE[1/N\mid\text{containment}]\)
 at the target scale, uniformly across isomorphism types.
+Proposition~\ref{prop:free-not-residual} keeps free complement flatness from
+supplying the peel.
+Conjectures~\ref{conj:config-split}, \ref{conj:residual-moment}, and
+\ref{conj:Q} stay open.
 The three peel-weight flatnesses of~\cite{PlusOneV1} are a separate
 identification of \(\mathcal{L}_{d,m}\) with \(\nu_D\).
 Together they are Conjecture~\ref{conj:config-split}.

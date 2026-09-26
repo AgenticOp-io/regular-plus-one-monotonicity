@@ -2,11 +2,10 @@
 
 Bar is 2.0. v1.0 is sent.
 
-A identified: signed matching-host term leaves \(2t/(Ln)\).
-B scale identified: target \(c_n=1/(|\Omega|p^{Dn/2})\); \(S_n\) to iso-types;
-\(N\to\infty\) via switches; contain-first mean is the wrong scale.
+Both workstreams have been expanded to the first hard gap.
 
-Next object: upper bound on \(\mathbb{E}[1/N\mid\text{containment}]\) at the
-bulk scale, across isomorphism types.
+A: signed sequential Gao leaves \(2t/(Ln)\). Stopped.
+B: inverse-count scale, \(S_n\), switches, free-vs-residual recorded.
+Stopped at the bulk upper bound on \(\mathbb{E}[1/N]\).
 
-No named conjecture is a theorem.
+No named conjecture is a theorem. The six stay open.
