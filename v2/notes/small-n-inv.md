@@ -43,3 +43,15 @@ nu/mu = a(C3+C3)/a_bar (Corollary subgraph-bias), matched by direct host enumera
 | 3/4 | 0.941463 |
 
 Script: v2/scripts/_small_n_triangle.py
+
+## a(G0) vs target c_n (n=6, D=2)
+
+c_n = P(N>=1)/(|Omega| p^6). Identity: a_bar = c_n exactly.
+
+| p | a_C6/c_n | a_tt/c_n | a_bar/c_n |
+|---|----------|----------|-----------|
+| 1/4 | 1.0111 | 0.9336 | 1.0000 |
+| 1/3 | 1.0151 | 0.9094 | 1.0000 |
+| 1/2 | 1.0191 | 0.8853 | 1.0000 |
+
+Item (iii) fails on this finite instance: types disagree with c_n, average matches.
