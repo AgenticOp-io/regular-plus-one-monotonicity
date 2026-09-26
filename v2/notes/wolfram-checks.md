@@ -421,3 +421,104 @@ simplify | 16588 - 7080
 9508 = 9508 × 1 + 0
 [Percent decrease]
 16588 - 7080 = 9508 is 42.68% smaller than 16588.
+
+
+Query: Simplify[D^2 * n / (2*(n-1)) - D^2 / 2]
+[Input interpretation]
+simplify | D^2 × n/(2 (n - 1)) - D^2/2
+[Result]
+D^2/(2 (n - 1))
+
+
+Query: Series[D^2 * n / (2*(n-1)), {n, Infinity, 1}]
+[Input interpretation]
+series | D^2 × n/(2 (n - 1)) | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+D^2/2 + O((1/n)^1)
+(Taylor series)
+(converges when D = 0 ∨ 1/abs(n)<1)
+[Series representation at n = ∞]
+D^2/(2 - 2 n)
+
+
+Query: Simplify[D^2/2 - (D^2/10)*Log[n/D]]
+[Input interpretation]
+simplify | D^2/2 - D^2/10 log(n/D)
+[Results]
+-1/10 D^2 (log(n/D) - 5)
+[Results]
+D^2 (1/2 - 1/10 log(n/D))
+[Expanded logarithmic form]
+D^2/2 + 1/10 D^2 log(D) + -1/10 D^2 log(n)
+[Alternate form assuming D!=0, n!=0, and D n>0]
+1/10 D^2 log(e^5/(n/D))
+
+
+Query: assuming D>1 && n>D, Simplify[(D^2)/(D^2/log(n/D))*Log[n/D]]
+[error]
+no result
+
+
+Query: Simplify[(D*n/2)*(D/(n-1)) - D^2/2]
+[Input interpretation]
+simplify | (D × n/2) × D/(n - 1) - D^2/2
+[Result]
+D^2/(2 (n - 1))
+
+
+Query: Series[(D*n/2)*(-Log[1-D/(n-1)]), {n, Infinity, 0}]
+[Input interpretation]
+series | (D × n/2) (-log(1 - D/(n - 1))) | point | n = ∞
+order | n^0
+[Series expansion at n = ∞]
+D^2/2 + O((1/n)^1)
+(Taylor series)
+(converges when (1/abs(n)<1 ∨ (abs(n) = 1 ∧ Boole[1/n = 1]<1)) ∧ (abs((D + 1)/n)<1 ∨ (abs((D + 1)/n) = 1 ∧ Boole[(D + 1)/n = 1]<1)))
+[Series representation at n = ∞]
+-(D log((D n + n - 1)/(n - 1)))/(2 n)
+
+
+Query: Simplify[Log[(2+e)/(1+e)] - Log[2]]
+[Input interpretation]
+simplify | log((2 + e)/(1 + e)) - log(2)
+[Result]
+log((2 + e)/(2 + 2 e))
+[Expanded logarithmic form]
+log(2 + e) - log(1 + e) - log(2)
+[Reduced logarithmic form]
+log((2 + e)/((1 + e) 2))
+[Quotient and Remainder]
+log((2 + e)/(1 + e)) - log(2) = (0) × 1 + (log((2 + e)/(1 + e)) - log(2))
+[Decimal approximation]
+-0.454964154146117054410757069251900010919681890132207767139340386...
+
+
+Query: Simplify[((D*n/2)*(D/(n-1)))/(((1+e)*D/n)*(1-D/(n-1))) * (D/n)]
+[Input interpretation]
+simplify | ((D × n/2) × D/(n - 1))/(((1 + e) × D/n) (1 - D/(n - 1))) × D/n
+[Results]
+(D^2 n)/((1 + e) 2 (-D + n - 1))
+[Results]
+-(D^2 n)/(2 (1 + e) (D - n + 1))
+[Results]
+-(D^2 n)/(2 e D + 2 D - 2 e n - 2 n + 2 e + 2)
+
+
+Query: Series[((n*D/2)*(D/(n-1)))/(((1+e)*D/n)*(1-D/(n-1))), {n, Infinity, 0}]
+[Input interpretation]
+series | ((n × D/2) × D/(n - 1))/(((1 + e) × D/n) (1 - D/(n - 1))) | point | n = ∞
+order | n^0
+[Series expansion at n = ∞]
+(D n)/(2 + 2 e) + (D^2 + D)/(2 + 2 e) + O((1/n)^1)
+(Taylor series)
+(converges when abs((D + 1)/n)<1)
+[Series representation at n = ∞]
+-D/(2 (1 + e) n (D n + n - 1))
+
+
+Query: rational fallback: s*pi/(p*(1-pi)) ~ D*n/(2(1+e)); (1-pi)^s*(Dn)^ell for ell=D^2/(100*log(n*D))
+[fallback]
+n=1000000 D=100 ratio=45459136.8 ell=5.4 log_contrib=-4904.5
+n=1000000 D=200 ratio=95257241.9 ell=20.9 log_contrib=-19617.5
+n=10000000 D=500 ratio=2272841142.1 ell=111.9 log_contrib=-122591.4
