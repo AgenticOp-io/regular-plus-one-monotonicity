@@ -530,6 +530,134 @@ Conjectures~\ref{conj:factor-moment}, \ref{conj:factor-rate}, and
 \ref{conj:long-step} stay open.
 \end{remark}
 
+\section{The inverse-count scale}
+\label{sec:inverse-scale}
+
+Workstream B starts with item (iii) of Theorem~\ref{thm:selection-reduces}.
+Given \(G_0\subset G^*_0\) one has \(N\ge 1\) because \(G_0\) itself is a
+\(D\)-factor.
+The only sequence \(c_n\) that can appear in (iii) is forced by the fact
+that \(\nu_D\) is a probability measure.
+That sequence is not \(1/\EE[N\mid G_0\subset G^*_0]\).
+
+\begin{proposition}[The only possible inverse-count constant]
+\label{prop:target-cn}
+In the setting of Theorem~\ref{thm:selection-reduces},
+\[
+\sum_{G_0\in\Omega_D}\EE\Bigl[\frac{1_{G_0\subset G^*_0}}{N(G^*_0)}\Bigr]
+=
+\PP(N\ge 1).
+\]
+If item (iii) holds for a sequence \(c_n\), then necessarily
+\[
+c_n
+=
+\frac{\PP(N\ge 1)}{\lvert\Omega_D\rvert\,p^{Dn/2}}.
+\]
+Under the contain-first hypotheses of~\cite{PlusOneV1},
+\(\EE[N\mid G_0\subset G^*_0]=(1+o(1))\,\lvert\Omega_D\rvert\,p^{Dn/2}\,\EE[p^{-K}]\)
+with
+\[
+\EE[p^{-K}]
+=
+\bigl(1-\pi+\pi p^{-1}\bigr)^{Dn/2}(1+o(1)),
+\qquad
+\pi=\frac{D}{n-1}.
+\]
+The identity \(\pi/p=n/((n-1)(1+\varepsilon))\) for \(p=(1+\varepsilon)D/n\)
+has difference \(0\).
+The series of \(1-\pi+\pi p^{-1}\) at \(n=\infty\) is
+\((2+\varepsilon)/(1+\varepsilon)\), which was checked.
+For \(\varepsilon=o(1)\) one has \(\EE[p^{-K}]=\exp(\Theta(Dn))\).
+Thus the Jensen floor \(1/\EE[N\mid\text{containment}]\) is smaller than
+the target \(c_n\) by that exponential factor.
+Concentration of \(N\) about its conditional mean would give
+\(\EE[1/N]\sim 1/\EE[N]\), hence the wrong constant, and would make
+\(\sum\nu_D\) equal \(1/\EE[p^{-K}]\) rather than \(1\).
+Chebyshev about \(\EE[N]\) cannot prove item (iii).
+\end{proposition}
+
+\begin{proof}
+The sum over \(G_0\) of the indicators \(1_{G_0\subset G^*_0}\) is \(N\),
+so the displayed expectation identity is
+\(\EE[1_{N\ge 1}]=\PP(N\ge 1)\).
+Item (i) of Theorem~\ref{thm:selection-reduces} and a constant
+\(\EE[1/N\mid\text{containment}]\) turn the sum into
+\(\lvert\Omega_D\rvert\,p^{Dn/2}c_n\).
+Equating the two evaluations of the sum yields \(c_n\).
+The contain-first mean and the two checked identities give the gap
+between \(c_n\) and \(1/\EE[N]\).
+If \(N\) concentrated at that mean for every \(G_0\), then
+\(\nu_D(G_0)\) would equal \(p^{Dn/2}/\EE[N]\) and the masses would sum
+to \(1/\EE[p^{-K}]\).
+\end{proof}
+
+\begin{proposition}[Host degrees given containment]
+\label{prop:host-degree-marginal}
+Let \(G_0\) be \(D\)-regular and let \(G^*_0\sim G(n,p)\) with
+\(0<p<1\).
+Given \(G_0\subset G^*_0\), the remaining pairs are independent
+Bernoulli(\(p\)), so for every vertex \(v\)
+\[
+\deg_{G^*_0}(v)
+=
+D+\mathrm{Bin}(n-1-D,p).
+\]
+The marginal does not depend on which \(D\)-regular graph was fixed.
+If \(p=(1+\varepsilon)D/n\) with \(\varepsilon=o(1)\) and
+\(D\ge C\log n\), a Chernoff bound and a union bound give
+\(\min_v\deg_{G^*_0}(v)\ge D+(p/2)(n-1-D)\) with probability \(1-o(1)\),
+uniformly in \(G_0\).
+\end{proposition}
+
+\begin{proof}
+Vertex \(v\) has exactly \(D\) forced edges and \(n-1-D\) complement
+trials.
+The binomial tail \(\PP(\mathrm{Bin}(m,p)<pm/2)\le\exp(-\Theta(pm))\)
+with \(m=n-1-D\) and \(pm=\Theta(D)\) is \(o(n^{-1})\) for large \(C\).
+\end{proof}
+
+\begin{proposition}[Available switches in the complement]
+\label{prop:host-switches}
+Let \(G_0\) be \(D\)-regular with \(2\le D=o(n^{1/2})\) and \(Dn\) even.
+The number of unordered pairs of vertex-disjoint edges of \(G_0\) is
+\(nD^2(n-2)/8\) for every such \(G_0\), the identity
+\(\binom{Dn/2}{2}-n\binom{D}{2}=nD^2(n-2)/8\) having difference \(0\).
+Each such pair has two pairings; a pairing is a \(2\)-switch when both
+completion edges lie in the complement.
+The number of labelled completions that already lie in \(G_0\) is
+\(O(nD^3)\), by choosing an endpoint, two of its neighbours, and a
+common neighbour of the resulting path.
+Thus the number \(S\) of \(2\)-switches satisfies
+\(S=\Theta(n^2D^2)\) uniformly.
+Given \(G_0\subset G^*_0\sim G(n,p)\) with \(p=(1+\varepsilon)D/n\) and
+\(\varepsilon=o(1)\), let \(X\) be the number of those switches whose
+two new edges lie in \(G^*_0\).
+Then \(\EE[X\mid G_0\subset G^*_0]=Sp^2=\Theta(D^4)\).
+The identity \((n^2D^2)(D/n)^2=D^4\) has difference \(0\).
+A pair of switches sharing a complement edge contributes a relative
+\(O(1/(nD))\) to \(\EE[X^2]/(\EE X)^2\), because each complement edge
+lies in at most \(D^2\) switches.
+Hence \(\Var X/(\EE X)^2=o(1)\) as \(D\to\infty\), uniformly in \(G_0\),
+and \(X\to\infty\) in probability.
+In particular \(N\ge 1+X\to\infty\) in probability, uniformly in \(G_0\).
+This does not identify \(\EE[1/N]\) at the scale of Proposition~\ref{prop:target-cn}.
+\end{proposition}
+
+\begin{proof}
+The disjoint-pair count depends only on \(n\) and \(D\).
+The \(O(nD^3)\) bound on already-present completions is uniform, and
+\(nD^3/(n^2D^2)=D/n=o(1)\) throughout \(D=o(n^{1/2})\).
+Each switch uses two complement pairs, which are independent
+Bernoulli(\(p\)) given containment.
+A fixed complement edge \(ac\) extends to a switch by choosing a
+\(G_0\)-neighbour of \(a\) and of \(c\), at most \(D^2\) ways.
+The covariance sum over pairs sharing an edge is therefore
+\(O(SD^2p^3)\).
+Divided by \((Sp^2)^2\) this is \(O(D^2/(Sp))=O(1/(nD))\).
+Chebyshev applies to \(X\), not to \(N\).
+\end{proof}
+
 \section{Program}
 \label{sec:program}
 
@@ -548,9 +676,12 @@ Conjectures~\ref{conj:factor-moment}, \ref{conj:factor-rate}, and
 product.
 
 \paragraph{Workstream B: the peel and the Chernoff window.}
-Item (iii) of Theorem~\ref{thm:selection-reduces} is an upper bound on
-\(\EE[1/N\mid G_0\subset G^*_0]\) that does not go through any moment of
-\(N\).
+Proposition~\ref{prop:target-cn} is the scale of item (iii): the constant
+must be \(1/(\lvert\Omega_D\rvert p^{Dn/2})\), not \(1/\EE[N]\).
+Chebyshev about the mean of \(N\) is the wrong scale.
+Proposition~\ref{prop:host-switches} gives only \(N\to\infty\).
+The missing estimate is still an upper bound on \(\EE[1/N\mid\text{containment}]\)
+at the target scale, uniformly in \(G_0\).
 The three peel-weight flatnesses of~\cite{PlusOneV1} are a separate
 identification of \(\mathcal{L}_{d,m}\) with \(\nu_D\).
 Together they are Conjecture~\ref{conj:config-split}.
