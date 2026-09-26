@@ -722,3 +722,38 @@ Query: Assuming[n>1, (n/2)^3/n^3 == 1/8]
 Assuming[n>1, (n/2)^3/n^3 = 1/8]
 [Result]
 True
+
+
+Query: Limit[(n - 1 - 2*n^(1/4))/Sqrt[n], n->Infinity]
+[Limit]
+lim_(n->∞) (n - 1 - 2 n^(1/4))/sqrt(n) = ∞
+
+
+Query: Simplify[(n^(1/3))^3/n]
+[Input interpretation]
+simplify | (n^(1/3))^3/n
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: Simplify[(n-1-d-ell) - ((n-1-ell)-d)]
+[error]
+no result
+
+
+Query: Simplify[(n-1-d-L) - ((n-1-L)-d)] /. L -> ell
+[error]
+no result
+
+
+Query: Simplify[d + (n - 1 - d - ell) - (n - 1 - ell)]
+[error]
+no result
+
+
+Query: d+(n-1-d-ell)-(n-1-ell) [exact rational fallback]
+[fallback]
+0 for all n,d,ell
+

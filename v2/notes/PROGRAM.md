@@ -11,7 +11,10 @@ Complementation in the host: \(Z_L=Z_{D-L}\) pathwise. With the v1 moment at
 length \(D-L=o(n^{1/3})\), the factor second moment and factor rate hold for
 near-complete \(L=D-o(n^{1/3})\), including past \(\sqrt{n}\)
 (Theorems factor-complementary, factor-rate-complementary in `v2/paper/main.tex`).
-Long-step stays open: linear \(d\) blocks feeding both ends.
+
+Free split plus complementation: long deletion of length \(\Theta(n)\) from
+degree \(o(n^{1/3})\) to near-complete (Theorem long-sparse-near-complete).
+Linear-margin long-step stays open: complementary moment cannot feed both ends.
 
 ## Workstream B — hard gaps recorded
 

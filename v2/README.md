@@ -15,7 +15,7 @@ that supports the claim.
 | residual-moment | Second moment of \(m\)-factors of the BIM residual |
 | factor-moment | Balanced \(L\)-factor second moment: \(n^{1/2}=o(L)\) and \(\min(L,D-L)=\omega(n^{1/3})\) (near-complete side closed) |
 | factor-rate | Relative variance \(o(L^3/n^3)\) on that balanced range (near-complete side closed) |
-| long-step | One deletion of an \(L\)-factor with \(L=\omega(\sqrt{n})\) |
+| long-step | One deletion with \(L=\omega(\sqrt{n})\) and linear margins (sparse-to-near-complete closed) |
 
 v1.0 is sent. This tree is the bar. The reductions are already proved;
 this tree must supply a missing hypothesis.
