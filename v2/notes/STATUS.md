@@ -2,10 +2,9 @@
 
 Bar is 2.0. v1.0 is sent.
 
-Both workstreams have been expanded to the first hard gap.
+Sprinkle transfer blocked (degree variance \(\sim\varepsilon\)).
+Switch logarithmic bound misses bulk scale.
+Six conjectures still open.
 
-A: signed sequential Gao leaves \(2t/(Ln)\). Stopped.
-B: inverse-count scale, \(S_n\), switches, free-vs-residual recorded.
-Stopped at the bulk upper bound on \(\mathbb{E}[1/N]\).
-
-No named conjecture is a theorem. The six stay open.
+Next object needs a genuinely new comparison for \(\mathbb{E}[1/N]\) or
+a new coupling whose output is binomial.

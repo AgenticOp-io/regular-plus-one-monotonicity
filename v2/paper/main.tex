@@ -703,6 +703,93 @@ A proof of item (iii) must control \(\EE[1/N]\) at that bulk scale, not at
 the intersection-biased mean.
 \end{remark}
 
+\begin{proposition}[Regular-plus-sprinkle host is singular to \(G(n,p)\)]
+\label{prop:sprinkle-gap}
+Let \(D\ge 2\) with \(Dn\) even and \(D=o(n)\), and let
+\(p=(1+\varepsilon)D/n\) with \(\varepsilon\to 0\) and \(\varepsilon>2/n\).
+Sample \(G\sim\mu_D\), and on each pair outside \(E(G)\) include an edge
+independently with probability
+\[
+q
+=
+\frac{p-D/(n-1)}{1-D/(n-1)}.
+\]
+Write \(H\) for the resulting graph.
+Every edge has marginal probability \(p\), and the posterior of \(G\) given
+\(H\) is exactly uniform among the \(D\)-regular spanning subgraphs of \(H\).
+For every vertex,
+\[
+\deg_H(v)=D+\mathrm{Bin}(n-1-D,q),
+\]
+so
+\[
+\Var\deg_H(v)=(n-1-D)q(1-q),
+\]
+while a vertex degree in \(G(n,p)\) has variance \((n-1)p(1-p)\).
+Exact rational arithmetic for \(D=\Theta(n^{1/2})\) down through
+\(D=n/20\) and \(\varepsilon\in\{10^{-1},10^{-2},10^{-3}\}\) (with \(q>0\)) gives
+variance ratio \(\sim\varepsilon\).
+In particular the ratio tends to \(0\) whenever \(\varepsilon\to 0\).
+Hence the empirical degree variance of \(H\) and of \(G(n,p)\) are of
+different orders, and \(\dTV(\mathrm{law}(H),G(n,p))\to 1\).
+The exact uniformity of the sprinkle posterior therefore does not transfer
+to a \(G(n,p)\) host.
+\end{proposition}
+
+\begin{proof}
+The marginal computation is
+\(D/(n-1)+(1-D/(n-1))q=p\) by definition of \(q\).
+Given \(H\), every \(D\)-factor is equally likely because each was produced
+with probability \(q^{e(H)-Dn/2}\) times the uniform draw of \(G\).
+The series of \(p-D/(n-1)\) at \(n=\infty\) is \(\varepsilon D/n+O(D/n^2)\),
+which was checked, so \(q\sim\varepsilon D/n\) and
+\((n-D)q\sim\varepsilon D\).
+The binomial variance is \(\sim D\).
+Distinct limiting degree variances separate the two graph laws in total
+variation (as in the hybrid gap of~\cite{PlusOneV1}).
+\end{proof}
+
+\begin{proposition}[Switch lower bound misses the bulk scale]
+\label{prop:switch-not-bulk}
+In the setting of Proposition~\ref{prop:host-switches},
+\(\EE[\log(1+X)\mid G_0\subset G^*_0]=O(\log D)\) on the event
+\(X=\Theta(D^4)\), which has probability \(1-o(1)\).
+Jensen's inequality for \(-\log\) therefore yields only
+\[
+\EE\bigl[1/N\bigm|G_0\subset G^*_0\bigr]
+\le
+\exp\bigl(O(\log D)\bigr)
+=
+D^{O(1)}
+\]
+from the switch lower bound \(N\ge 1+X\).
+The target of Proposition~\ref{prop:target-cn} is
+\(1/(\lvert\Omega_D\rvert p^{Dn/2})\).
+Already the factor \((1+\varepsilon)^{Dn/2}\) in that scale is
+\(\exp\bigl((Dn/2)\log(1+\varepsilon)\bigr)\), and the identity
+\(\log\bigl((1+\varepsilon)D/n\bigr)+\log(n/D)=\log(1+\varepsilon)\)
+was checked.
+Throughout \(\varepsilon=\omega((\log D)/D)\) this exponential tends to
+infinity faster than every polynomial in \(D\).
+In particular, at the rate-\(1/3\) value
+\(\varepsilon=\Theta((\log n/D)^{1/3})\) one has
+\(\varepsilon Dn=\Theta\bigl(n D^{2/3}(\log n)^{1/3}\bigr)\).
+The switch bound does not reach the bulk scale.
+Combined with Proposition~\ref{prop:host-count-second}, neither a first
+nor a second moment of \(N\), nor a logarithmic switch bound, proves
+item (iii).
+\end{proposition}
+
+\begin{proof}
+On \(\{X\ge D^4/2\}\) one has \(\log(1+X)=O(\log D)\).
+That event has probability \(1-o(1)\) by Proposition~\ref{prop:host-switches}.
+The inequality \(N\ge 1+X\) and monotonicity of \(1/x\) give
+\(1/N\le 1/(1+X)\), and \(\EE[1/(1+X)]\le\exp(O(\log D))\) after discarding
+the \(o(1)\) probability event (where \(1/(1+X)\le 1\)).
+The logarithmic cancellation for the leading \(Dn\) terms of an enumeration
+scale \((n/D)^{Dn/2}p^{Dn/2}\) is the checked identity.
+\end{proof}
+
 \section{Peel flatnesses and the remaining gaps}
 \label{sec:peel-gaps}
 
@@ -771,6 +858,10 @@ Chebyshev about the mean of \(N\) is the wrong scale.
 Proposition~\ref{prop:host-switches} gives only \(N\to\infty\).
 Proposition~\ref{prop:sn-orbit} reduces the comparison to isomorphism types
 and does not close it.
+Proposition~\ref{prop:sprinkle-gap} blocks transferring the exact
+uniformity of a regular-plus-sprinkle posterior to a \(G(n,p)\) host.
+Proposition~\ref{prop:switch-not-bulk} shows that the switch lower bound
+reaches only \(D^{O(1)}\), not the bulk scale.
 The missing estimate is still an upper bound on \(\EE[1/N\mid\text{containment}]\)
 at the target scale, uniformly across isomorphism types.
 Proposition~\ref{prop:free-not-residual} keeps free complement flatness from
