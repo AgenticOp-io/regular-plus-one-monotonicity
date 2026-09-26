@@ -695,8 +695,14 @@ For every \(p\in\{1/4,1/3,1/2,2/3,3/4\}\), exact enumeration of the
 \]
 The conditional inverse count is therefore not constant across isomorphism
 types already at this order.
+A Monte Carlo sample of \(2000\) complement configurations at \(n=8\), \(p=1/2\)
+gives the same ordering among the three \(2\)-regular types
+\(C_8\), \(C_5\cup C_3\), and \(C_4\cup C_4\), with
+\(\EE[1/N\mid C_8]/\EE[1/N\mid C_5\cup C_3]\approx 1.11\).
 Proposition~\ref{prop:sn-orbit} is sharp: the comparison in item (iii) must
 still match the values on distinct orbits.
+Corollary~\ref{cor:subgraph-bias} converts any such oscillation into a
+subgraph-density gap between \(\nu_D\) and \(\mu_D\).
 \end{remark}
 
 \begin{remark}[Contain-first mean is intersection-biased]
@@ -837,6 +843,45 @@ Dividing by \(\mu_D(\{G_0\})=1/\lvert\Omega_D\rvert\) yields the derivative.
 Constancy of the conditional expectation is then equivalent to
 \(\nu_D=\mu_D\), and the target constant of Proposition~\ref{prop:target-cn}
 is exactly the value that makes the derivative identically \(1\).
+\end{proof}
+
+\begin{corollary}[Subgraph densities track inverse-count oscillation]
+\label{cor:subgraph-bias}
+Write
+\[
+a(G_0)
+:=
+\EE\bigl[1/N\bigm|G_0\subset G^*_0\bigr]
+\]
+and \(\bar a:=\EE_{H\sim\mu_D}[a(H)]\).
+For every labelled graph \(F\) with \(e(F)\) edges,
+\[
+\nu_D(F\subset\cdot)
+=
+\frac{\lvert\Omega_F\rvert}{\lvert\Omega_D\rvert}
+\cdot
+\frac{\EE_{\mu_D}\bigl[a\bigm|F\subset\cdot\bigr]}{\bar a}
+=
+\mu_D(F\subset\cdot)
+\cdot
+\frac{\EE_{\mu_D}\bigl[a\bigm|F\subset\cdot\bigr]}{\bar a},
+\]
+using \(\PP(N\ge 1)= \lvert\Omega_D\rvert\,p^{Dn/2}\,\bar a\) from
+Proposition~\ref{prop:target-cn}.
+In particular, if \(a\) is not \(\mu_D\)-almost surely constant, there exists some
+\(F\) for which \(\nu_D(F\subset\cdot)\ne\mu_D(F\subset\cdot)\).
+Edge indicators cannot serve as such an \(F\)
+(Proposition~\ref{prop:nu-sn}), so the first possible witnesses have at least
+two edges.
+\end{corollary}
+
+\begin{proof}
+Sum Proposition~\ref{prop:nu-rn} over \(\{G_0:F\subset G_0\}\).
+The normalisation identity for \(\bar a\) is the sum in
+Proposition~\ref{prop:target-cn} divided by \(\lvert\Omega_D\rvert\,p^{Dn/2}\).
+If \(a\) varies on a positive \(\mu_D\)-measure set of isomorphism classes, the
+conditional expectation of \(a\) given containment of a class-sensitive \(F\)
+differs from \(\bar a\).
 \end{proof}
 
 \begin{proposition}[Triangle first moments do not identify \(\nu_D\)]
@@ -1036,6 +1081,8 @@ Proposition~\ref{prop:sprinkle-posterior-gap} blocks transferring the exact
 uniformity of a regular-plus-sprinkle posterior to a \(G(n,p)\) host.
 Proposition~\ref{prop:nu-sn} shows that edge densities cannot detect the gap.
 Proposition~\ref{prop:nu-rn} identifies item (iii) with \(\nu_D=\mu_D\).
+Corollary~\ref{cor:subgraph-bias} converts any inverse-count oscillation into
+a subgraph-density gap.
 Proposition~\ref{prop:triangle-proxy} records that neither the unconditional
 nor the conditional first-moment triangle proxy supplies \(\EE[N_T/N]\).
 Proposition~\ref{prop:switch-not-bulk} shows that the switch lower bound
