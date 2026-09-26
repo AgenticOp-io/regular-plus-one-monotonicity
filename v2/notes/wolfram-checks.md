@@ -871,3 +871,15 @@ lim_(n->∞)(1/(6 n) + n^(2/3)/n) = 0
 Query: Limit[1/(6 (n^(2/3))^3) + n^(2/3)/n, n->Infinity]
 [Limit]
 lim_(n->∞)(1/(6 (n^(2/3))^3) + n^(2/3)/n) = 0
+
+
+Query: Limit[(n^(1/3))^2/n, n->Infinity]
+[Limit]
+lim_(n->∞) (n^(1/3))^2/n = 0
+
+
+Query: Assuming[ell>=1, Limit[ell (n^(1/4))^2 / n, n->Infinity]]
+[Input interpretation]
+Assuming[ell>=1, lim_(n->∞) ell × (n^(1/4))^2/n]
+[Result]
+0

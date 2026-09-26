@@ -8,8 +8,9 @@ Bar is 2.0. v1.0 is sent.
   past \(\sqrt{n}\) (Theorem factor-complementary): complementation in the host
   plus the \(o(n^{1/3})\) moment of v1.
 - Factor second moment for near-complete hosts throughout the McKay range
-  \(\ell(s+\ell)^2/n=o(1)\) (Theorem factor-dense-host), including
-  \(n-D=o(n^{1/2})\); free-extension flatness on the sparse complement.
+  \(\ell(s+\ell)^2/n=o(1)\) for every \(\ell\ge 1\) (Theorem factor-dense-host),
+  including co-length one with \(n-D=o(n^{1/2})\); McKay enumeration on the
+  sparse complement (the \(L\to\infty\) in v1 free-flat-L is not required).
 - Factor second moment for co-length one on every sublinear host \(D=o(n)\)
   (Theorem factor-sublinear-colength-one), including past \(\sqrt{n}\); from the
   matching variance in the sublinear nesting theorem of v1.
