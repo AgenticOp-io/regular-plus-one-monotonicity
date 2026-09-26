@@ -214,6 +214,24 @@ CHECKS = {
             "The typical-intersection rewrite is not an attack on the sparse matching expansion.",
         ),
     },
+    "chebyshev-N-about-mean": {
+        "half": (
+            "block",
+            "Proposition target-cn: the only possible c_n for selection-reduces (iii) is P(N>=1)/(|Omega| p^{Dn/2}). Concentration of N about E[N] would give 1/E[N], off by E[p^{-K}]=exp(Theta(Dn)), and the masses of nu_D would not sum to 1.",
+        ),
+        "linear": (
+            "block",
+            "The target inverse-count constant is not 1/E[N] at any degree. Chebyshev about the mean of N cannot prove item (iii).",
+        ),
+        "sublinear": (
+            "block",
+            "Contain-first identifies E[N] only for D=o(n^{1/3}). Even there, Chebyshev about that mean is the wrong scale for 1/N.",
+        ),
+        "sparse": (
+            "block",
+            "Chebyshev about E[N] is the wrong scale for item (iii) of selection-reduces.",
+        ),
+    },
     "signed-gao-matching-host": {
         "half": (
             "block",

@@ -107,3 +107,75 @@ Query: Simplify[(L-1)(L n - 4 t) - (n L (L-1) - 4 t (L-1))]
 simplify | (L - 1) (L n - 4 t) - (n L (L - 1) - 4 t (L - 1))
 [Result]
 0
+
+
+Query: Simplify[(n D/2)(n D/2 - 1)/2 - n D (D-1)/4 - n D (n D - 4 D + 2)/8]
+[Input interpretation]
+simplify | (n × D/2) (1/2 (n × D/2 - 1)) - n (1/4 × (d(D - 1))/(dD)) - n (1/8 × (d(n D - 4 D + 2))/(dD))
+[Results]
+D ((D n^2)/8 - n/4) + (1/4 - n/8) n
+[Results]
+(D^2/8 - 1/8) n^2 + (1/4 - D/4) n
+[Results]
+n ((D^2/8 - 1/8) n - D/4 + 1/4)
+[Expanded form]
+(D^2 n^2)/8 - (D n)/4 - n^2/8 + n/4
+
+
+Query: Simplify[(n L/2)*(n L/2 - 1)/2 - n*L*(L-1)/4 - n*L*(n*L - 4*L + 2)/8]
+[Input interpretation]
+simplify | (n × L/2) (1/2 (n × L/2 - 1)) - n L × (L - 1)/4 - n L (1/8 (n L - 4 L + 2))
+[Results]
+1/4 L (L - 1) n
+[Results]
+(L^2 n)/4 - (L n)/4
+[Results]
+L ((L n)/4 - n/4)
+
+
+Query: Simplify[(n L/2)*(n L/2 - 1)/2 - n*L*(L-1)/4 - n*L^2*(n-2)/8]
+[Input interpretation]
+simplify | (n × L/2) (1/2 (n × L/2 - 1)) - n L × (L - 1)/4 - n L^2 × (n - 2)/8
+[Result]
+0
+
+
+Query: Series[1 - L/(n-1) + n/((n-1)(1+e)), {n, Infinity, 0}]
+[Input interpretation]
+series | 1 - L/(n - 1) + n/((n - 1) (1 + e)) | point | n = ∞
+order | n^0
+[Series expansion at n = ∞]
+(1 + 1/(1 + e)) + O((1/n)^1)
+(Taylor series)
+(converges when e L + L = 1 ∨ 1/abs(n)<1)
+[Series representation at n = ∞]
+(L n + e (L n + n - 1) + n - 2)/((1 + e) (n - 1))
+
+
+Query: Simplify[L/(n-1) * n/((1+e) L) - n/((n-1)(1+e))]
+[Input interpretation]
+simplify | L/(n - 1) × n/((1 + e) L) - n/((n - 1) (1 + e))
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[1 + 1/(1+e) - (2+e)/(1+e)]
+[Input interpretation]
+simplify | 1 + 1/(1 + e) - (2 + e)/(1 + e)
+[Results]
+0
+[Results]
+1 - 1/(1 + e) - e/(1 + e)
+[Number name]
+zero
+
+
+Query: Simplify[(n^2 L^2)*(L/n)^2 - L^4]
+[Input interpretation]
+simplify | (n^2 L^2) (L/n)^2 - L^4
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
