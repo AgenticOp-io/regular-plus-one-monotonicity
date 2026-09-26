@@ -53,7 +53,8 @@ from degree \(o(n^{1/3})\) to a near-complete degree.
 The same complementation, fed by Dirac's theorem on the complement,
 gives a one-deletion of length \(\Theta(n)\) from every degree
 \(d\le n/2-1\) to an \((n-2)\)-regular graph, and Dirac nesting places a
-matching inside every host of degree at least \(n/2\).
+matching inside every host of degree at least \(n/2\), and, with failure
+probability \(o(1)\), inside every host of growing degree.
 The balanced range \(\min(L,D-L)=\omega(n^{1/3})\) of the factor conjectures,
 the four-linear-margin long-step, and the other three named statements stay open.
 \end{abstract}
@@ -94,7 +95,8 @@ together with long deletions past \(\sqrt{n}\) from sparse degrees
 (Theorem~\ref{thm:long-sparse-near-complete}) and from every degree
 \(d\le n/2-1\) to an \((n-2)\)-regular host
 (Theorem~\ref{thm:long-matching-gap}), and from a matching into every host of
-degree at least \(n/2\) (Theorem~\ref{thm:long-matching-into-dirac}).
+degree at least \(n/2\) (Theorem~\ref{thm:long-matching-into-dirac}) and into
+every growing degree (Theorem~\ref{thm:long-matching-growing}).
 The balanced factor range, the four-linear-margin Conjecture~\ref{conj:long-step},
 and the other three named statements stay open.
 
@@ -254,6 +256,8 @@ If \(D-L=1\), Proposition~\ref{prop:factor-complement-bijection} identifies \(Z\
 the number of perfect matchings of a uniform \(D\)-regular graph.
 Proposition~band-rate of~\cite{PlusOneV1}, applied with host degree \(D\), supplies
 relative variance \(O(1/n)\).
+Writing \(D=n/2+t\) with \(|t|\le n/3\), Proposition~distance-rate of~\cite{PlusOneV1}
+improves this to \(O((t^2+1)/n^2)\).
 \end{proof}
 
 \begin{theorem}[Factor second moment for co-length one on sublinear hosts]
@@ -483,6 +487,44 @@ degrees other than \(n-2\). The case \(D=n-2\) recovers a matching inside
 \(\mu_{n-2}\), which is the upper marginal of Theorem~\ref{thm:long-matching-gap}
 at \(d=1\).
 \end{remark}
+
+\begin{theorem}[Long nesting of a matching into every growing degree]
+\label{thm:long-matching-growing}
+Assume~\cite[Theorem~6]{Gao20} whenever \(D=o(n)\). Let \(n\) be even and let
+\(D\to\infty\) satisfy \(Dn\) even and \(D\le n-1\). Set \(L:=D-1\). There is a
+coupling of a perfect matching \(M\) and a \(D\)-regular graph \(H\) with both
+marginals exactly uniform and with \(\PP(M\subset H)=1-o(1)\). If \(D\ge n/2\) the
+containment holds almost surely, by Theorem~\ref{thm:long-matching-into-dirac}.
+Throughout \(\omega(n^{1/2})=D=o(n)\) one has \(n^{1/2}=o(L)=o(n)\).
+Throughout \(\min(D,n-D)=\Theta(n)\) one has \(L=\Theta(n)\).
+\end{theorem}
+
+\begin{proof}
+The case \(D\ge n/2\) is Theorem~\ref{thm:long-matching-into-dirac}.
+Assume therefore \(D<n/2\). Sample \(H\sim\mu_D\), and write \(Y\) for the number of
+perfect matchings of \(H\).
+If \(\min(D,n-D)=\Theta(n)\), Proposition~band-rate of~\cite{PlusOneV1} supplies
+\(\Var Y/(\EE Y)^2=O(1/n)\). Chebyshev's inequality at relative height \(1/2\) yields
+\(\PP(Y=0)=O(1/n)\); the identity \((1/n)/(1/2)^2=4/n\) was checked.
+If instead \(D=o(n)\), the sublinear nesting theorem of~\cite{PlusOneV1} supplies
+\[
+\frac{\Var Y}{(\EE Y)^2}
+=
+\frac1{6D^3}+O(D^{-4})+O\Bigl(\frac{D}{n}\Bigr)+o(1),
+\]
+which tends to \(0\), so Chebyshev at relative height \(1/2\) yields \(\PP(Y=0)=o(1)\).
+On \(\{Y\ge 1\}\) let \(M\) be a uniform random perfect matching of \(H\); on the
+complementary event let \(M\) be an independent uniform perfect matching of \(K_n\).
+The law of \(H\) is \(S_n\)-invariant, \(S_n\) acts transitively on perfect matchings,
+and \(\{Y\ge 1\}\) is \(S_n\)-invariant, so the conditional law of \(M\) on
+\(\{Y\ge 1\}\) is exactly \(\mu_1\). The mixture is therefore exactly \(\mu_1\), while
+\(H\) is exactly \(\mu_D\). On \(\{Y\ge 1\}\) one has \(M\subset H\), and the failure
+probability is \(o(1)\).
+Throughout \(\omega(n^{1/2})=D=o(n)\) one has \(L=D-1\), and the identity
+\(\lim_{n\to\infty}(n^{2/3}-1)/n^{1/2}=\infty\) was checked, so
+\(n^{1/2}=o(L)=o(n)\).
+Throughout \(\min(D,n-D)=\Theta(n)\) one has \(L=\Theta(n)\).
+\end{proof}
 
 \section{Reductions already proved}
 
@@ -2129,7 +2171,8 @@ That implication is Theorem~\ref{thm:long-from-moment}.
 Theorem~\ref{thm:long-sparse-near-complete} settles the sparse-to-near-complete
 regime; Theorem~\ref{thm:long-matching-gap} settles the matching-gap deletion to
 degree \(n-2\) for every \(d\le n/2-1\); Theorem~\ref{thm:long-matching-into-dirac}
-settles matching nesting into every Dirac host. Remark~\ref{rem:long-complement-empty} records that the
+settles matching nesting into every Dirac host; Theorem~\ref{thm:long-matching-growing}
+settles matching nesting into every growing degree. Remark~\ref{rem:long-complement-empty} records that the
 near-complete moment does not supply both ends under four linear margins.
 
 \section*{Acknowledgements}
