@@ -703,6 +703,20 @@ Proposition~\ref{prop:sn-orbit} is sharp: the comparison in item (iii) must
 still match the values on distinct orbits.
 Corollary~\ref{cor:subgraph-bias} converts any such oscillation into a
 subgraph-density gap between \(\nu_D\) and \(\mu_D\).
+Exact evaluation of that corollary for a fixed labelled triangle \(T\) at
+\(n=6\), \(D=2\) gives \(\mu_2(T\subset\cdot)=1/70\) and
+\[
+\frac{\nu_2(T\subset\cdot)}{\mu_2(T\subset\cdot)}
+=
+\frac{a(C_3\cup C_3)}{\bar a}
+\in
+[0.885,0.942]
+\]
+for every \(p\in\{1/4,1/3,1/2,2/3,3/4\}\), where \(a\) is the conditional
+inverse count and \(\bar a\) its \(\mu_2\)-mean.
+Triangles are under-represented under \(\nu_2\) because the unique
+\(2\)-regular graph containing \(T\) is of type \(C_3\cup C_3\), which has
+strictly smaller \(a\) than a Hamiltonian cycle.
 \end{remark}
 
 \begin{remark}[Contain-first mean is intersection-biased]
@@ -992,9 +1006,9 @@ In particular, at the rate-\(1/3\) value
 \(\varepsilon=\Theta((\log n/D)^{1/3})\) one has
 \(\varepsilon Dn=\Theta\bigl(n D^{2/3}(\log n)^{1/3}\bigr)\).
 The switch bound does not reach the bulk scale.
-Combined with Proposition~\ref{prop:host-count-second}, neither a first
-nor a second moment of \(N\), nor a logarithmic switch bound, proves
-item (iii).
+Combined with Propositions~\ref{prop:host-count-second}
+and~\ref{prop:switch-iterated}, neither a first nor a second moment of \(N\),
+nor a polynomial-depth switch exploration, proves item (iii).
 \end{proposition}
 
 \begin{proof}
@@ -1005,6 +1019,41 @@ The inequality \(N\ge 1+X\) and monotonicity of \(1/x\) give
 the \(o(1)\) probability event (where \(1/(1+X)\le 1\)).
 The logarithmic cancellation for the leading \(Dn\) terms of an enumeration
 scale \((n/D)^{Dn/2}p^{Dn/2}\) is the checked identity.
+\end{proof}
+
+\begin{proposition}[Iterated switches still miss the bulk]
+\label{prop:switch-iterated}
+In the setting of Proposition~\ref{prop:host-switches}, view the \(D\)-regular
+spanning subgraphs of \(G^*_0\) as vertices of a switch graph, with edges
+corresponding to \(2\)-switches supported in \(G^*_0\).
+From the forced factor \(G_0\), a breadth-first exploration of depth \(k\) that
+branches by at most \(X=O(D^4)\) at every step reaches at most
+\[
+1+X+\cdots+X^k
+\le
+(k+1)\,X^k
+=
+\exp\bigl(O(k\log D)\bigr)
+\]
+factors.
+Even at depth \(k=D\), this is \(\exp(O(D\log D))\).
+The bulk scale of Proposition~\ref{prop:target-cn} contributes
+\(\exp\bigl((Dn/2)\log(1+\varepsilon)\bigr)\) from the factor
+\((1+\varepsilon)^{Dn/2}\) alone.
+At \(\varepsilon=\Theta((\log n/D)^{1/3})\) one has
+\((Dn/2)\log(1+\varepsilon)=\Theta\bigl(n D^{2/3}(\log n)^{1/3}\bigr)\), which
+dominates \(D\log D\) throughout \(D=o(n)\); the comparison was checked by
+exact arithmetic on representative \((n,D)\).
+A polynomial-depth switch exploration therefore cannot prove the upper bound
+on \(\EE[1/N\mid\text{containment}]\) at the target scale.
+\end{proposition}
+
+\begin{proof}
+The branching bound is the crude tree majorant of the switch graph; overlaps
+only shrink the reachable set.
+The bulk exponent is Proposition~\ref{prop:switch-not-bulk}, and the numerical
+comparison \(n D^{2/3}(\log n)^{1/3}\) versus \(D\log D\) is recorded in the
+ledger.
 \end{proof}
 
 \section{Peel flatnesses and the remaining gaps}
@@ -1018,6 +1067,28 @@ fixed host \(G^*_0\): the law of the peeled \(d\)-regular graph is uniform among
 the residual does not depend on which \(d\)-factor \(G\) was chosen; and every
 \(D\)-regular \(F\subset G^*_0\) has the same number of \(d\)-factors.
 None of those three is proved here.
+
+\begin{proposition}[Sandwich posterior is not \(d\)-factor uniformity]
+\label{prop:peel-first-not-free}
+In the matching-peel construction of~\cite{PlusOneV1}, the pair
+\((G,G^*_0)\) is produced by the Kim--Vu sandwich of~\cite{BIM25}, and the
+residual is \(R=G^*_0\setminus G\).
+Conditionally on \(G^*_0\), the law of \(G\) is whatever posterior that sandwich
+induces, not the uniform measure on the \(d\)-regular spanning subgraphs of
+\(G^*_0\).
+The first peel-weight flatness---uniformity of \(\PP(G\mid G^*_0)\) on those
+\(d\)-factors---is therefore an additional identification, not a consequence of
+the sandwich alone.
+(The exact uniformity available for a regular-plus-sprinkle posterior does not
+transfer to \(G(n,p)\), by Proposition~\ref{prop:sprinkle-posterior-gap}.)
+\end{proposition}
+
+\begin{proof}
+The sandwich couples a uniform \(d\)-regular graph into a binomial host; it does
+not resample \(G\) uniformly among the \(d\)-factors of the realised host.
+The sprinkle posterior is a different coupling, already blocked as a transfer
+to \(G(n,p)\).
+\end{proof}
 
 \begin{proposition}[Free complement flatness is not residual flatness]
 \label{prop:free-not-residual}
@@ -1128,8 +1199,12 @@ Proposition~\ref{prop:triangle-proxy} records that neither the unconditional
 nor the conditional first-moment triangle proxy supplies \(\EE[N_T/N]\).
 Proposition~\ref{prop:switch-not-bulk} shows that the switch lower bound
 reaches only \(D^{O(1)}\), not the bulk scale.
+Proposition~\ref{prop:switch-iterated} extends that obstruction to
+polynomial-depth exploration in the switch graph.
 The missing estimate is still an upper bound on \(\EE[1/N\mid\text{containment}]\)
 at the target scale, uniformly across isomorphism types.
+Proposition~\ref{prop:peel-first-not-free} records that the sandwich posterior
+is not the first peel flatness.
 Proposition~\ref{prop:free-not-residual} keeps free complement flatness from
 supplying the peel.
 Proposition~\ref{prop:zd-not-flat} shows that the third peel-weight flatness

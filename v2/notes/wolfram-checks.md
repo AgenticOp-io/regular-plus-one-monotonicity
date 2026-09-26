@@ -378,3 +378,35 @@ simplify | 2 - 0
 2
 [Quotient and Remainder]
 2 = 2 × 1 + 0
+
+
+Query: Simplify[1/70]
+[Input interpretation]
+simplify | 1/70
+[Result]
+1/70
+[Quotient and Remainder]
+1 = (0) × 70 + 1
+[Decimal approximation]
+0.0142857142857142857142857142857142857142857142857142857142857142...
+[Repeating decimal]
+0.0142857^_ (period 6)
+[Percentage]
+1.429%
+
+
+Query: Simplify[Exp[c*D*Log[D]] / Exp[e*D*n] /. {c->10, e->1/100, D->100, n->10000}]
+[error]
+no result
+
+
+Query: assuming D>1 && n>1 && e>0, Exp[O[D]*Log[D]] mistarget
+[error]
+no result
+
+
+Query: rational fallback: eps=(log(n)/D)^(1/3); compare (Dn/2)log(1+eps) vs 4 D log D
+[fallback]
+n=1000000 D=100 eps=0.516958 ln_bulk=20835365.828 ln_tree=1842.068
+n=1000000 D=1000 eps=0.239951 ln_bulk=107535875.393 ln_tree=27631.021
+n=1000000000 D=10000 eps=0.127493 ln_bulk=599982562457.456 ln_tree=368413.615
