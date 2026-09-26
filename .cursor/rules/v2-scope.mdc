@@ -14,7 +14,7 @@ alwaysApply: true
 3. Do not retry attacks blocked in v1.0: hybrid-to-Q, binomial PGF without
    pairwise, leftover-free quadratic PGF, Bernoulli residual as BIM residual,
    config-model second moment at half degree, unsigned Gao main term as a
-   signed L^3/n rate.
+   signed L^3/n rate, Chebyshev on the binomial-host subgraph count N.
 4. Run `python scripts/approach_screen.py` from the repo root before expanding
    an approach. Append Wolfram checks for v2 identities to
    `v2/notes/wolfram-checks.md`.

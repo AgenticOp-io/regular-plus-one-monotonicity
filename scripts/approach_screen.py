@@ -214,6 +214,24 @@ CHECKS = {
             "The typical-intersection rewrite is not an attack on the sparse matching expansion.",
         ),
     },
+    "host-count-chebyshev": {
+        "half": (
+            "block",
+            "Proposition host-count-second: Var N/(EN)^2 is the p^{-K01-K02}-tilt of p^{-(K12-K012)}, which equals 1 iff H intersect H' lives in G0. Chebyshev on N is not item (iii) of selection-reduces.",
+        ),
+        "linear": (
+            "block",
+            "The host-count second moment identity does not use the degree. Chebyshev on N is not a proof that 1/N is flat.",
+        ),
+        "sublinear": (
+            "block",
+            "Contain-first is only for D=o(n^{1/3}). Even in that range, Chebyshev on N is not item (iii).",
+        ),
+        "sparse": (
+            "block",
+            "Chebyshev on the binomial-host subgraph count is not the inverse-count upper bound.",
+        ),
+    },
     "contain-first-as-inverse": {
         "half": (
             "block",

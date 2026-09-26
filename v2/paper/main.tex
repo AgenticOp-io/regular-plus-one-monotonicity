@@ -31,14 +31,49 @@ AgenticOps\\
 
 \begin{abstract}
 The companion paper~\cite{PlusOneV1} proves that uniform random regular graphs
-satisfy exact \(+1\) nesting at every growing degree.
-This manuscript collects the remaining problems: a Chernoff-scale sandwich,
-identification of the matching peel with the uniform regular law, and
-concentration of long \(L\)-factors past \(\sqrt{n}\).
-No new theorem is claimed here until a proof in this file supports it.
+satisfy exact \(+1\) nesting at every growing degree, assuming Gao's conditional
+edge probabilities on the two sparse sides.
+The same estimates give matching-count chains below \(\sqrt{n}\), linear-band
+chains of length \(o(n^{2/5})\), and vanishing Kim--Vu sandwich rates through
+the process-optimal exponent \(1/3\).
+This manuscript is the sequel: it records those reductions, proves that the
+binomial-host subgraph count is not flattened by a first or second moment,
+and isolates the six remaining statements.
+No one of those six is claimed here.
 \end{abstract}
 
-\section{Companion}
+\tableofcontents
+
+\section{Introduction}
+
+Let \(\Gnd\) be the uniform random \(d\)-regular graph on \(n\) labelled vertices.
+The companion~\cite{PlusOneV1} proves
+\[
+\PP\bigl(G(n,d)\subset G(n,d+1)\bigr)=1-o(1)
+\]
+whenever \(d\to\infty\) and \(n-d\to\infty\), assuming~\cite[Theorem~6]{Gao20}
+for \(\min(d,n-d)=o(n)\).
+That paper also extracts sandwich rates
+\(\varepsilon\ge C(\log n/d)^{1/9}\),
+\(\varepsilon\ge C(\log n/d)^{1/5}\), and
+\(\varepsilon\ge C(\log n/d)^{1/3}\)
+from the Kim--Vu proof of~\cite{BIM25}, and a Chernoff increment
+\(G(n,d)\subset G(n,d+m)\) by free splitting throughout \(d+m=o(n^{1/3})\).
+
+What remains is a Chernoff-scale sandwich, identification of the matching peel
+with the uniform regular law, and concentration of long \(L\)-factors past
+\(\sqrt{n}\).
+The companion already proved the implications that convert those statements
+into nesting theorems.
+This paper does not re-prove the implications.
+It records them, adds the second-moment identity for the binomial-host
+subgraph count, and leaves the six named conjectures open.
+
+The attacks that stop at a signed \(O(L^3/n)\) or a disjoint-support
+comparison are proved in~\cite{PlusOneV1}.
+They are not retried.
+
+\section{Companion results}
 
 \begin{theorem}[v1.0, recorded]
 \label{thm:plus-one-recorded}
@@ -48,9 +83,34 @@ Then there is a coupling of \(G_d\sim\Gnd\) and \(G_{d+1}\sim G(n,d+1)\) with
 \(\PP(G_d\subset G_{d+1})=1-o(1)\).
 \end{theorem}
 
-This is Theorem~1 of~\cite{PlusOneV1}. The sandwich rates \(1/9\), \(1/5\), and
-process-optimal \(1/3\), the hybrid container, and the matching peel also live
-in that paper. They do not imply the conjectures below.
+This is Theorem~1 of~\cite{PlusOneV1}.
+The sandwich rates \(1/9\), \(1/5\), and process-optimal \(1/3\), the hybrid
+container, and the matching peel also live in that paper.
+
+\begin{theorem}[One deletion of length \(o(n^{1/3})\), recorded]
+\label{thm:third-step-recorded}
+Let \(n\) be even and let \(d,L\) satisfy \(\min(d,n-d,d+L,n-d-L)=\Theta(n)\) and
+\(L=o(n^{1/3})\), with \(dn\) and \(Ln\) even.
+Then there is a coupling of a \(d\)-regular graph \(G\) and a \((d+L)\)-regular
+graph \(H\) with \(G\subset H\) such that each marginal is within total variation
+\(o(1)\) of the uniform regular graph of the same degree.
+\end{theorem}
+
+This is the one-deletion theorem of~\cite{PlusOneV1}, from the \(L\)-factor
+second moment below \(n^{1/3}\).
+
+\begin{theorem}[Chernoff increments by free splitting, recorded]
+\label{thm:free-chernoff-recorded}
+Let \(n\) be even, let \(d\to\infty\) with \(dn\) even, and set
+\(m:=\lfloor c\sqrt{d\log n}\rfloor\) with \(c>0\) fixed, \(mn\) even, and
+\(d+m=o(n^{1/3})\).
+Then there is a coupling of \(G\sim\Gnd\) with \(H\sim G(n,d+m)\) such that
+\(\PP(G\subset H)=1-o(1)\).
+\end{theorem}
+
+This is the free-splitting increment of~\cite{PlusOneV1}.
+The coupling is a free configuration split~\cite{Wormald99,JLR00}, not the
+matching peel of the rate-\(1/3\) residual.
 
 \section{Open problems}
 
@@ -96,33 +156,351 @@ There is a coupling of a \(d\)-regular graph and a \((d+L)\)-regular graph with
 are \(o(1)\) from uniform.
 \end{conjecture}
 
+\section{Reductions already proved}
+
+The next four statements are the process-to-Q, window, long-from-moment, and
+selection reductions of~\cite{PlusOneV1}.
+The proofs are repeated so the sequel is self-contained.
+
+\begin{theorem}[Process conjecture implies Chernoff sandwich]
+\label{thm:process-to-Q}
+Assume~\cite[Conjecture~1.3]{BIM25}.
+Then Conjecture~\ref{conj:Q} holds: for every \(d\ge C\log n\) and
+\(\varepsilon\ge C\sqrt{(\log n)/d}\) with \(C\) large absolute, there is a coupling
+as in Conjecture~\ref{conj:Q}.
+\end{theorem}
+
+\begin{proof}
+Let \((G_i)_{0\le i\le\binom{n}{2}}\) be the random graph process on \([n]\), and let
+\(G\sim\Gnd\) be coupled to the process as in~\cite[Conjecture~1.3]{BIM25}.
+Fix \(\varepsilon\ge C\sqrt{(\log n)/d}\) with \(C\) large, and set
+\[
+i_-:=\Bigl\lfloor(1-\varepsilon)\frac{dn}{2}\Bigr\rfloor,\qquad
+i_+:=\Bigl\lceil(1+\varepsilon)\frac{dn}{2}\Bigr\rceil.
+\]
+A Chernoff-plus-union bound gives
+\(\PP(\Delta(G_{i_-})>d)=o(1)\) and \(\PP(\delta(G_{i_+})<d)=o(1)\)
+once \(C\) is large enough (the Chernoff-floor proposition of~\cite{PlusOneV1}).
+On \(\{\Delta(G_{i_-})\le d\}\), Conjecture~1.3 of~\cite{BIM25} yields
+\(G_{i_-}\subset G\).
+On \(\{\delta(G_{i_+})\ge d\}\) it yields \(G\subset G_{i_+}\).
+The process graphs \(G_{i_\pm}\) couple with the binomial graphs of matching
+density, losing \(o(1)\) probability.
+\end{proof}
+
+\begin{theorem}[Final-window reduction]
+\label{thm:window}
+Suppose that whenever \(d\ge C_3\log n\) and
+\[
+C\sqrt{\frac{\log n}{d}}
+\le\varepsilon
+\le C_3\Bigl(\frac{\log n}{d}\Bigr)^{1/3},
+\]
+the following holds: if \((G,G^*_0)\) is a coupling at rate
+\(\varepsilon_0:=C_3(\log n/d)^{1/3}\) from the process-optimal sandwich of~\cite{PlusOneV1},
+then there exists a coupling of a graph \(H\sim G(n,(1+\varepsilon)d/n)\) with
+\(\PP(G\subset H)=1-o(1)\).
+Assume the symmetric lower-window statement.
+Then Conjecture~\ref{conj:Q} holds for all \(d\ge C_3\log n\).
+\end{theorem}
+
+\begin{proof}
+Apply the rate-\(1/3\) sandwich of~\cite{PlusOneV1} to obtain \(G\subset G^*_0\).
+The final-window hypothesis at the target Chernoff rate
+\(\varepsilon=C\sqrt{(\log n)/d}\le\varepsilon_0\) produces the upper graph.
+The symmetric argument produces the lower graph.
+\end{proof}
+
+\begin{theorem}[Long step from the factor moment]
+\label{thm:long-from-moment}
+Assume Conjecture~\ref{conj:factor-moment} at every degree \(D\) with
+\(\min(D,n-D)=\Theta(n)\).
+Let \(n\) be even and let \(d,L\) satisfy the hypotheses of
+Conjecture~\ref{conj:long-step}.
+Then there is a coupling of a \(d\)-regular graph \(G\) and a \((d+L)\)-regular
+graph \(H\) with \(G\subset H\) such that each marginal is within total variation
+\(o(1)\) of the uniform regular graph of the same degree.
+\end{theorem}
+
+\begin{proof}
+Let \(v=o(1)\) be the relative variance of the \(L\)-factor count at degree
+\(d+L\), and set \(\alpha=v^{1/3}\).
+Chebyshev costs at most \(\alpha\).
+The factor-to-TV lemma of~\cite{PlusOneV1} places the upper marginal within
+total variation \(2\alpha=o(1)\) of \(\mu_{d+L}\).
+The lower marginal is the uniform \(d\)-regular law reweighted by the number of
+\((d+L)\)-regular supergraphs, which that paper identifies with the \(L\)-factor
+count at degree \(n-1-d\).
+The same Chebyshev bound applies there.
+\end{proof}
+
+Retitling Conjecture~\ref{conj:long-step} as a theorem is not a close:
+the range \(L=\omega(\sqrt{n})\) of that conjecture is empty of a proved moment,
+and Theorem~\ref{thm:third-step-recorded} already occupies \(L=o(n^{1/3})\).
+
+\begin{theorem}[Selection reduction for the container]
+\label{thm:selection-reduces}
+Let \(d\), \(m\), and \(G^*_0\sim G\bigl(n,(1+\varepsilon_0)d/n\bigr)\) be as in the
+matching-peel construction of~\cite{PlusOneV1}, and write
+\(p=(1+\varepsilon_0)d/n\) and \(D:=d+m\).
+Let \(N(G^*_0)\) be the number of \(D\)-regular spanning subgraphs of \(G^*_0\),
+and let \(\nu_D\) be the law of a uniformly chosen such subgraph, conditioned
+on \(N(G^*_0)\ge 1\).
+\begin{enumerate}
+\item For every \(D\)-regular graph \(G_0\) one has \(\PP(G_0\subset G^*_0)=p^{Dn/2}\).
+\item \(\nu_D(G_0)=\EE\bigl[1_{G_0\subset G^*_0}/N(G^*_0)\bigr]/\PP(N\ge 1)\).
+\item If there is a sequence \(c_n\) such that every \(D\)-regular graph \(G_0\) satisfies
+\[
+\EE\bigl[1/N(G^*_0)\bigm|G_0\subset G^*_0\bigr]
+=
+(1+o(1))\,c_n,
+\]
+then \(\dTV(\nu_D,\mu_D)\to 0\).
+\item If in addition \(\dTV(\mathcal{L}_{d,m},\nu_D)\to 0\), then
+Conjecture~\ref{conj:config-split} holds.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Every \(D\)-regular graph has \(Dn/2\) edges, which is (i).
+Item (ii) is uniform selection among the subgraphs of a random host.
+The rate-\(1/3\) sandwich gives \(\PP(N\ge 1)\to 1\).
+Under (iii), \(\nu_D(G_0)=(1+o(1))\,p^{Dn/2}c_n\) for every \(D\)-regular \(G_0\),
+so \(\nu_D\) is a \((1+o(1))\) multiple of \(\mu_D\).
+The peel law is supported on \(D\)-regular subgraphs of \(G^*_0\), and the
+triangle inequality with (iii) is (iv).
+\end{proof}
+
 \section{What v1.0 already forbids}
 
 A hybrid almost-regular supergraph at Chernoff scale is at total variation
-bounded away from both the binomial graph and \(\mu_D\).
-The origin-plus-binomial average of the \(L\)-factor second moment is not the
-relative variance: exact pairwise mass cancels the leftover cubic, and the
-remaining-degree main term is an unsigned \(O(L^3/n)\).
-An independent Bernoulli residual has a diverging factor-count second moment
-and is not the BIM residual.
-These blocks are proved in~\cite{PlusOneV1}. They are not attacks to retry here.
+bounded away from both the binomial graph and \(\mu_D\)
+(Propositions~hybrid-gap and hybrid-singular of~\cite{PlusOneV1}).
+Supports of a non-regular degree sequence and a regular law are disjoint, so
+their total variation is \(1\).
 
-\begin{thebibliography}{9}
+The origin-plus-binomial average of the \(L\)-factor second moment equals
+\(1+L^3/(4n)+O(L^2/n)\), but that quantity is not \(\EE[Z^2]/(\EE Z)^2\):
+exact pairwise mass cancels the leftover cubic, and the remaining-degree main
+term independently contributes an unsigned \(O(L^3/n)\)
+(Propositions~pairwise-mass, pairwise-pgf, and cubic-not-identified
+of~\cite{PlusOneV1}).
+The signed \(3\)-matching residual is \(O(L^6/n^2)\) and does not put the cubic
+back.
+
+An independent Bernoulli residual has factor-count second moment
+\(\EE[p^{-K}]\ge p^{-\EE K}\) with \(\EE K=\Theta(d\log n)\), which diverges
+(Proposition~bernoulli-moment of~\cite{PlusOneV1}).
+That comparison is not the BIM residual.
+
+The first moment of the binomial-host subgraph count \(N\) is flat for
+\(D=o(n^{1/3})\) (Proposition~contain-first of~\cite{PlusOneV1}).
+Jensen's inequality for \(x\mapsto 1/x\) blocks using that moment for
+item (iii) of Theorem~\ref{thm:selection-reduces}.
+
+These blocks are not attacks to retry.
+
+\section{Intersection size and the host-count second moment}
+
+The missing estimate in item (iii) of Theorem~\ref{thm:selection-reduces} is
+an upper bound on \(\EE[1/N\mid G_0\subset G^*_0]\) that is independent of
+\(G_0\).
+The first moment of \(N\) cannot supply it.
+This section records the second-moment identity and shows that Chebyshev on
+\(N\) itself is the same obstruction in another form.
+
+\begin{proposition}[Intersection of a fixed factor with \(G(n,L)\)]
+\label{prop:intersection-var}
+Let \(n>3\) and let \(L\ge 2\) satisfy \(Ln\) even and \(L\le n-1\).
+Let \(F_1\) be a fixed \(L\)-regular graph and let \(G\sim G(n,L)\).
+Write \(K=\lvert E(F_1)\cap E(G)\rvert\), \(s=Ln/2\), and \(p=L/(n-1)\).
+Then \(\EE K=nL^2/(2(n-1))\), and
+\[
+\Var K
+=
+sp(1-p)+2S
+=
+\frac{L^2}{2}+O\Bigl(\frac{L^3}{n}\Bigr),
+\]
+where \(S\) is the pairwise mass of~\cite[Proposition~pairwise-mass]{PlusOneV1}.
+The relative variance is \(2/L^2+O(1/n)\).
+In particular \(\Var K/(\EE K)^2\to 0\) whenever \(L\to\infty\).
+\end{proposition}
+
+\begin{proof}
+Linearity and symmetry give \(\EE K=sp\), and the identity
+\(sp=nL^2/(2(n-1))\) has difference \(0\).
+The pairwise expansion of the variance is \(sp(1-p)+2S\).
+The leading term of \(S\) is \(-(L-2)L^2/(4n)\), so
+\(2S=-(L-2)L^2/(2n)\).
+The series of
+\[
+\frac{L^2 n(n-1-L)}{2(n-1)^2}-\frac{(L-2)L^2}{2n}
+\]
+over \((\EE K)^2\) at \(n=\infty\) is \(2/L^2+O(n^{-1})\), which was checked.
+\end{proof}
+
+\begin{proposition}[Off-host intersection]
+\label{prop:off-host}
+In the setting of Proposition~\ref{prop:intersection-var}, let \(H,H'\) be
+independent copies of \(G(n,L)\) and let \(G_0\) be a third \(L\)-regular graph.
+Write \(K_{12}=\lvert E(H)\cap E(H')\rvert\) and
+\(K_{012}=\lvert E(H)\cap E(H')\cap E(G_0)\rvert\).
+Then
+\[
+\EE[K_{12}-K_{012}]
+=
+\frac{nL^2(n-1-L)}{2(n-1)^2}.
+\]
+The identity
+\(\EE K_{12}-\EE K_{012}=nL^2/(2(n-1))-nL^3/(2(n-1)^2)\)
+has difference \(0\).
+For \(L=o(n)\) the mean is \(\Theta(L^2)\).
+Combined with Proposition~\ref{prop:intersection-var}, one has
+\(K_{12}-K_{012}=\Theta(L^2)\) with high probability.
+\end{proposition}
+
+\begin{proof}
+The first moment of \(K_{012}\) is \(s\cdot p^2=nL^3/(2(n-1)^2)\) because each
+edge of \(G_0\) lies in both \(H\) and \(H'\) independently with probability
+\(p^2\).
+Subtract from \(\EE K_{12}\).
+Chebyshev on \(K_{12}\) uses relative variance \(2/L^2+O(1/n)\).
+The mean of \(K_{012}\) is \(o(L^2)\) throughout \(L=o(n)\).
+\end{proof}
+
+\begin{proposition}[Second moment of the binomial-host subgraph count]
+\label{prop:host-count-second}
+Assume the setting of the contain-first proposition of~\cite{PlusOneV1}:
+\(D=o(n^{1/3})\), \(G^*_0\sim G(n,p)\) with \(p=(1+\varepsilon)D/n\) and
+\(0<\varepsilon=o(1)\), and \(N\) the number of \(D\)-regular spanning subgraphs
+of \(G^*_0\).
+Fix a \(D\)-regular graph \(G_0\), and let \(H,H'\) be independent samples from
+\(\mu_D\).
+Write \(K_{01}=\lvert E(H)\cap E(G_0)\rvert\), and likewise \(K_{02}\),
+\(K_{12}\), \(K_{012}\).
+Then
+\[
+\bigl\lvert\bigl(E(H)\cup E(H')\bigr)\setminus E(G_0)\bigr\rvert
+=
+Dn-K_{01}-K_{02}-K_{12}+K_{012},
+\]
+the counting identity having difference \(0\), and
+\[
+\frac{\EE\bigl[N^2\bigm|G_0\subset G^*_0\bigr]}
+{\bigl(\EE\bigl[N\bigm|G_0\subset G^*_0\bigr]\bigr)^2}
+=
+\frac{\EE\bigl[p^{-K_{01}-K_{02}-K_{12}+K_{012}}\bigr]}
+{\bigl(\EE\bigl[p^{-K_{01}}\bigr]\bigr)^2}.
+\]
+The increment \(K_{12}-K_{012}\) is nonnegative, so the ratio is at least \(1\),
+with equality if and only if \(E(H)\cap E(H')\subset E(G_0)\) almost surely.
+That event has probability \(o(1)\) by Proposition~\ref{prop:off-host}.
+\end{proposition}
+
+\begin{proof}
+Given \(G_0\subset G^*_0\), the remaining pairs are independent Bernoulli(\(p\)).
+A pair \(H,H'\) is contained in \(G^*_0\) precisely when
+\((E(H)\cup E(H'))\setminus E(G_0)\) is present, which has probability
+\(p\) to the displayed power.
+Summing over \(H,H'\in\Omega_D\) produces the second-moment identity.
+The first-moment identity of~\cite{PlusOneV1} is the same argument with one
+graph, and \(K_{01},K_{02}\) are i.i.d., so the denominator is a square.
+Since \(p\in(0,1)\) and \(K_{12}-K_{012}\ge 0\), one has
+\(p^{-(K_{12}-K_{012})}\ge 1\), hence the ratio is at least \(1\).
+Equality throughout the expectation holds if and only if
+\(K_{12}=K_{012}\) almost surely.
+\end{proof}
+
+\begin{remark}[Chebyshev on \(N\) is not item (iii)]
+\label{rem:host-chebyshev}
+Item (iii) of Theorem~\ref{thm:selection-reduces} is an upper bound on
+\(\EE[1/N\mid\text{containment}]\).
+Chebyshev supplies that bound only if \(\Var N/(\EE N)^2=o(1)\).
+Proposition~\ref{prop:host-count-second} rewrites that relative variance as
+the \(p^{-K_{01}-K_{02}}\)-tilt of \(p^{-(K_{12}-K_{012})}\).
+Under the untilted law the exponent is \(\Theta(D^2)\) in probability, and
+\(p^{-\Theta(D^2)}\) is \(\exp(\Theta(D^2\log(n/D)))\).
+Passing that lower bound through the tilt is a correlation estimate that this
+paper does not claim.
+The identity already shows that the second moment of \(N\) is not the first
+moment: the ratio equals \(1\) only on an event of probability \(o(1)\).
+Together with Jensen's inequality for \(1/N\), neither moment of \(N\) is a
+proof of item (iii).
+\end{remark}
+
+This does not disprove item (iii), and it does not close
+Conjecture~\ref{conj:config-split}.
+The peel still has to match \(\nu_D\), and the interesting range for that
+conjecture has \(D=\Theta(d)\) past \(n^{1/3}\).
+
+\section{What would close each statement}
+
+\paragraph{Conjecture~\ref{conj:Q}.}
+A proof of~\cite[Conjecture~1.3]{BIM25}, or a thinning of the rate-\(1/3\)
+residual down to surplus \(\sqrt{d\log n}\) whose output is binomial rather
+than hybrid.
+Hybrid-to-binomial and freeze-and-sprinkle are blocked.
+
+\paragraph{Conjecture~\ref{conj:config-split}.}
+Item (iii) of Theorem~\ref{thm:selection-reduces} together with the three
+peel-weight flatnesses of~\cite{PlusOneV1}.
+Free splitting already gives the increment throughout \(d+m=o(n^{1/3})\),
+and is a different coupling.
+
+\paragraph{Conjecture~\ref{conj:residual-moment}.}
+A second moment on the actual BIM residual \(R=G^*_0\setminus G\).
+Replacing \(R\) by an independent Bernoulli graph is blocked.
+
+\paragraph{Conjecture~\ref{conj:factor-moment}.}
+A signed generating function for the intersection of two \(L\)-factors of a
+linear-degree host, with remainder \(o(1)\) throughout
+\(n^{1/2}=o(L)=o(n)\).
+The unsigned sequential product is \(\exp(O(L^3/n))\), which is the size of
+the signal past \(n^{1/3}\).
+Binomial leftover plus pairwise is not that generating function.
+
+\paragraph{Conjecture~\ref{conj:factor-rate}.}
+The same signed expansion, to remainder \(o(L^3/n^3)\).
+The formal cubic \(L^3/(4n)\) is not the relative variance.
+
+\paragraph{Conjecture~\ref{conj:long-step}.}
+Conjecture~\ref{conj:factor-moment} at degrees \(d+L\) and \(n-1-d\).
+That implication is Theorem~\ref{thm:long-from-moment}.
+
+\section*{Acknowledgements}
+The exact \(+1\) theorem, the recorded reductions, and the blocked attacks
+are those of~\cite{PlusOneV1}.
+The edge probabilities assumed there are~\cite[Theorem~6]{Gao20}.
+The sandwich rates read~\cite{BIM25}.
+
+\begin{thebibliography}{99}
 
 \bibitem{PlusOneV1}
 D.~Peterson,
 \emph{Nesting random regular graphs: exact \(+1\) at every growing degree, long chains, and a quantitative sandwich program},
 companion manuscript v1.0, 2026.
 
+\bibitem{BIM25}
+N.~Behague, D.~Il'kovi\v{c}, and R.~Montgomery,
+\emph{A proof of the Kim--Vu sandwich conjecture},
+arXiv:2510.20765, 2025.
+
 \bibitem{Gao20}
 P.~Gao,
 \emph{Triangles and subgraph probabilities in random regular graphs},
 arXiv:2012.01492, 2020.
 
-\bibitem{BIM25}
-N.~Behague, D.~Il'kovi\v{c}, and R.~Montgomery,
-\emph{A proof of the Kim--Vu sandwich conjecture},
-arXiv:2510.20765, 2025.
+\bibitem{JLR00}
+S.~Janson, T.~\L uczak, and A.~Ruci\'nski,
+\emph{Random Graphs},
+Wiley, New York, 2000.
+
+\bibitem{Wormald99}
+N.~C.~Wormald,
+\emph{Models of random regular graphs},
+in \emph{Surveys in Combinatorics, 1999},
+LMS Lecture Note Ser.\ 267, Cambridge Univ.\ Press, 1999, pp.~239--298.
 
 \end{thebibliography}
 
