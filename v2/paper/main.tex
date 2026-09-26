@@ -228,12 +228,17 @@ Under the hypotheses of Theorem~\ref{thm:factor-complementary} one has
 \[
 \frac{\Var Z}{(\EE Z)^2}=o\Bigl(\frac{L^3}{n^3}\Bigr).
 \]
+If in addition \(D-L=1\), then \(\Var Z/(\EE Z)^2=O(1/n)\).
 \end{theorem}
 
 \begin{proof}
 Theorem~\ref{thm:factor-complementary} supplies \(\Var Z/(\EE Z)^2=o(1)\).
 The same hypotheses force \(L=\Theta(n)\), so \(L^3/n^3=\Theta(1)\). Thus
 \(o(1)=o(L^3/n^3)\).
+If \(D-L=1\), Proposition~\ref{prop:factor-complement-bijection} identifies \(Z\) with
+the number of perfect matchings of a uniform \(D\)-regular graph.
+Proposition~band-rate of~\cite{PlusOneV1}, applied with host degree \(D\), supplies
+relative variance \(O(1/n)\).
 \end{proof}
 
 \begin{remark}[Long-step is empty on the complementary side]
