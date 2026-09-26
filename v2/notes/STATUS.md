@@ -40,9 +40,10 @@ Bar is 2.0. v1.0 is sent.
   Krivelevich–Sudakov–Vu–Wormald. Failure probability \(o(1)\); both marginals
   exact. The gap is still \(\omega(\sqrt{n})\) above \(\sqrt{n}\log n\). Not
   \(\mu_2\), and not selection (iii).
-- Uniform perfect matching inside every fixed degree \(D\ge 3\)
-  (Theorem long-matching-at-least-three), from the same Hamiltonicity. The
-  growing-degree matching theorem needs \(D\to\infty\) for its variance bound.
+- Uniform perfect matching inside every degree \(D\ge 3\), including degrees
+  that stay bounded or oscillate (Theorem long-matching-at-least-three), from
+  the same Hamiltonicity. The growing-degree matching theorem needs \(D\to\infty\)
+  for its variance bound.
 - Co-length one near half degree: relative variance \(O((t^2+1)/n^2)\) at
   host degree \(n/2+t\) (distance-rate), sharpening the \(O(1/n)\) bound.
 - Selection item (iii) on single \(S_n\) orbits \(D\in\{1,n-2\}\)
