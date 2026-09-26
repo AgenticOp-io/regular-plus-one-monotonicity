@@ -24,6 +24,9 @@ Bar is 2.0. v1.0 is sent.
   plus \(S_n\)-transitivity gives \(G\sim\mu_d\subset H\sim\mu_{n-2}\) a.s.; the
   linear band \(d>n/2-1\) uses matching concentration instead. Gap
   \(n-d-L=2\).
+- Long nesting from a matching into every Dirac host \(D\ge n/2\)
+  (Theorem long-matching-into-dirac): same Dirac + transitivity, upper degree
+  any \(D\in[n/2,n-1]\).
 - Selection item (iii) on single \(S_n\) orbits \(D\in\{1,n-2\}\)
   (Corollary iii-one-orbit); not a config-split close at Chernoff scale.
 
@@ -31,8 +34,8 @@ Bar is 2.0. v1.0 is sent.
 
 - Q, config-split, residual-moment: fully open.
 - factor-moment, factor-rate: open only for \(\min(L,D-L)=\omega(n^{1/3})\).
-- long-step: open under four linear margins; sparse-to-near-complete and
-  matching-gap-to-\((n-2)\) are closed.
+- long-step: open under four linear margins; sparse-to-near-complete,
+  matching-gap-to-\((n-2)\), and matching-into-Dirac are closed.
 
 ## Recorded negatives (not conjecture closes)
 

@@ -883,3 +883,33 @@ Query: Assuming[ell>=1, Limit[ell (n^(1/4))^2 / n, n->Infinity]]
 Assuming[ell>=1, lim_(n->∞) ell × (n^(1/4))^2/n]
 [Result]
 0
+
+
+Query: Simplify[(n/2)-1 - ((n/2)-1)]
+[Input interpretation]
+simplify | n/2 - 1 - (n/2 - 1)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Assuming[D>=n/2, D-1 >= n/2-1]
+[Input]
+Assuming[D>=n/2, D - 1>=n/2 - 1]
+[Result]
+D - 1>=n/2 - 1
+[Geometric figure of boundary]
+line
+[Alternate forms]
+2 D>=n
+[Alternate forms]
+D>=n/2
+[Alternate forms]
+D - 1>=(n - 2)/2
+[Solution]
+n<=2 D
+[Interval notation]
+(-∞, 2 D]
+[Integer solution]
+D = m_1 + m_2 + m_3 - m_4, n = m_1 + 2 m_2 - 2 m_4 - m_5, m_5 element Z, m_5>=0, m_4 element Z, m_4>=0, m_3 element Z, m_3>=0, m_2 element Z, m_2>=0, m_1 element Z, m_1>=0

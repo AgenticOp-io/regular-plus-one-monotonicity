@@ -52,7 +52,8 @@ A free split plus complementation yields a one-deletion of length \(\Theta(n)\)
 from degree \(o(n^{1/3})\) to a near-complete degree.
 The same complementation, fed by Dirac's theorem on the complement,
 gives a one-deletion of length \(\Theta(n)\) from every degree
-\(d\le n/2-1\) to an \((n-2)\)-regular graph.
+\(d\le n/2-1\) to an \((n-2)\)-regular graph, and Dirac nesting places a
+matching inside every host of degree at least \(n/2\).
 The balanced range \(\min(L,D-L)=\omega(n^{1/3})\) of the factor conjectures,
 the four-linear-margin long-step, and the other three named statements stay open.
 \end{abstract}
@@ -92,7 +93,8 @@ by the sublinear matching variance for co-length one
 together with long deletions past \(\sqrt{n}\) from sparse degrees
 (Theorem~\ref{thm:long-sparse-near-complete}) and from every degree
 \(d\le n/2-1\) to an \((n-2)\)-regular host
-(Theorem~\ref{thm:long-matching-gap}).
+(Theorem~\ref{thm:long-matching-gap}), and from a matching into every host of
+degree at least \(n/2\) (Theorem~\ref{thm:long-matching-into-dirac}).
 The balanced factor range, the four-linear-margin Conjecture~\ref{conj:long-step},
 and the other three named statements stay open.
 
@@ -451,6 +453,35 @@ obstruction to Conjecture~\ref{conj:long-step}; the argument uses transitivity o
 \(\omega(1)\) with more than one isomorphism type. The Dirac range
 \(d\le n/2-1\) already includes every sparse and every linear degree on the
 smaller side, so the matching-gap deletion is not confined to the linear band.
+\end{remark}
+
+\begin{theorem}[Long nesting from a matching into every Dirac host]
+\label{thm:long-matching-into-dirac}
+Let \(n\) be even and let \(D\) satisfy \(Dn\) even and \(n/2\le D\le n-1\). Set
+\(L:=D-1\). Then \(L\ge n/2-1\), so \(n^{1/2}=o(L)=o(n)\), and there is a coupling
+of a perfect matching \(M\) and a \(D\)-regular graph \(H\) with \(M\subset H\) almost
+surely and with both marginals exactly uniform.
+\end{theorem}
+
+\begin{proof}
+Sample \(H\sim\mu_D\). The hypothesis \(D\ge n/2\) and Dirac's theorem supply a
+Hamilton cycle in \(H\), hence a perfect matching, so the number \(Y\) of perfect
+matchings of \(H\) satisfies \(Y\ge 1\) pathwise.
+Let \(M\) be a uniform random perfect matching of \(H\). The law of \(H\) is
+\(S_n\)-invariant and \(S_n\) acts transitively on perfect matchings, so \(M\) is
+exactly uniform. On the same event \(M\subset H\) almost surely.
+The identity \(L=D-1\ge n/2-1\) was checked, and
+\(\lim_{n\to\infty}(n/2-1)/n^{1/2}=\infty\) was checked.
+\end{proof}
+
+\begin{remark}[Relation to Theorem~\ref{thm:long-matching-gap}]
+\label{rem:matching-into-dirac}
+Theorem~\ref{thm:long-matching-gap} realises a \(d\)-regular graph inside an
+\((n-2)\)-regular graph for every \(d\le n/2-1\). Theorem~\ref{thm:long-matching-into-dirac}
+is the one-sided matching nesting into every host of Dirac degree, including
+degrees other than \(n-2\). The case \(D=n-2\) recovers a matching inside
+\(\mu_{n-2}\), which is the upper marginal of Theorem~\ref{thm:long-matching-gap}
+at \(d=1\).
 \end{remark}
 
 \section{Reductions already proved}
@@ -2097,7 +2128,8 @@ linear margins.
 That implication is Theorem~\ref{thm:long-from-moment}.
 Theorem~\ref{thm:long-sparse-near-complete} settles the sparse-to-near-complete
 regime; Theorem~\ref{thm:long-matching-gap} settles the matching-gap deletion to
-degree \(n-2\) for every \(d\le n/2-1\). Remark~\ref{rem:long-complement-empty} records that the
+degree \(n-2\) for every \(d\le n/2-1\); Theorem~\ref{thm:long-matching-into-dirac}
+settles matching nesting into every Dirac host. Remark~\ref{rem:long-complement-empty} records that the
 near-complete moment does not supply both ends under four linear margins.
 
 \section*{Acknowledgements}
