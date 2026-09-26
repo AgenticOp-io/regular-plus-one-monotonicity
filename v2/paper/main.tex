@@ -658,6 +658,51 @@ Divided by \((Sp^2)^2\) this is \(O(D^2/(Sp))=O(1/(nD))\).
 Chebyshev applies to \(X\), not to \(N\).
 \end{proof}
 
+\begin{proposition}[\(S_n\) reduces the inverse count to isomorphism type]
+\label{prop:sn-orbit}
+Let \(G^*_0\sim G(n,p)\) and let \(N\) be the number of \(D\)-regular spanning
+subgraphs of \(G^*_0\).
+For every permutation \(\sigma\in S_n\) and every \(D\)-regular graph \(G_0\),
+\[
+\EE\bigl[1/N\bigm|G_0\subset G^*_0\bigr]
+=
+\EE\bigl[1/N\bigm|\sigma(G_0)\subset G^*_0\bigr].
+\]
+Thus the conditional expectation depends on \(G_0\) only through its
+isomorphism type.
+Item (iii) of Theorem~\ref{thm:selection-reduces} is therefore equivalent to
+the same bound holding for one representative of each isomorphism class.
+The symmetric group does not identify the value across non-isomorphic
+\(D\)-regular graphs, so this reduction is not a proof of item (iii).
+\end{proposition}
+
+\begin{proof}
+The map \(G\mapsto\sigma(G)\) preserves the binomial law of \(G^*_0\), the count
+\(N\), and containment.
+\end{proof}
+
+\begin{remark}[Contain-first mean is intersection-biased]
+\label{rem:mean-skew}
+Given \(G_0\subset G^*_0\),
+\[
+N
+=
+\sum_{H\in\Omega_D}
+\prod_{e\in E(H)\setminus E(G_0)}I_e,
+\]
+where the \(I_e\) are i.i.d.\ Bernoulli(\(p\)).
+The contain-first mean weights \(H\) by \(p^{-|E(H)\cap E(G_0)|}\).
+Two independent \(D\)-regular graphs have expected intersection
+\(nD^2/(2(n-1))\), the identity with \((Dn/2)\cdot(D/(n-1))\) having
+difference \(0\).
+That bias of order \(D^2\) is what produces \(\EE[p^{-K}]=\exp(\Theta(Dn))\).
+The target scale of Proposition~\ref{prop:target-cn} is the unweighted
+count \(\lvert\Omega_D\rvert p^{Dn/2}\), which is the contribution of a
+typical \(H\) with no intersection bonus.
+A proof of item (iii) must control \(\EE[1/N]\) at that bulk scale, not at
+the intersection-biased mean.
+\end{remark}
+
 \section{Program}
 \label{sec:program}
 
@@ -680,8 +725,10 @@ Proposition~\ref{prop:target-cn} is the scale of item (iii): the constant
 must be \(1/(\lvert\Omega_D\rvert p^{Dn/2})\), not \(1/\EE[N]\).
 Chebyshev about the mean of \(N\) is the wrong scale.
 Proposition~\ref{prop:host-switches} gives only \(N\to\infty\).
+Proposition~\ref{prop:sn-orbit} reduces the comparison to isomorphism types
+and does not close it.
 The missing estimate is still an upper bound on \(\EE[1/N\mid\text{containment}]\)
-at the target scale, uniformly in \(G_0\).
+at the target scale, uniformly across isomorphism types.
 The three peel-weight flatnesses of~\cite{PlusOneV1} are a separate
 identification of \(\mathcal{L}_{d,m}\) with \(\nu_D\).
 Together they are Conjecture~\ref{conj:config-split}.

@@ -214,6 +214,24 @@ CHECKS = {
             "The typical-intersection rewrite is not an attack on the sparse matching expansion.",
         ),
     },
+    "sn-orbit-as-iii": {
+        "half": (
+            "block",
+            "Proposition sn-orbit: S_n makes E[1/N|containment] constant on isomorphism types. Non-isomorphic D-regular graphs are different orbits. This is not item (iii).",
+        ),
+        "linear": (
+            "block",
+            "S_n-invariance does not identify the inverse count across non-isomorphic regular graphs.",
+        ),
+        "sublinear": (
+            "block",
+            "S_n-invariance reduces selection-reduces (iii) to iso-types and does not prove it.",
+        ),
+        "sparse": (
+            "block",
+            "S_n-invariance is not a proof of selection-reduces (iii).",
+        ),
+    },
     "chebyshev-N-about-mean": {
         "half": (
             "block",
