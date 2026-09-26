@@ -925,3 +925,15 @@ True
 Query: Limit[(n^(2/3)-1)/Sqrt[n], n->Infinity]
 [Limit]
 lim_(n->∞) (n^(2/3) - 1)/sqrt(n) = ∞
+
+
+Query: Simplify[(n/2)-2]
+[Input interpretation]
+simplify | n/2 - 2
+[Result]
+(n - 4)/2
+
+
+Query: Limit[(n/2-2)/Sqrt[n], n->Infinity]
+[Limit]
+lim_(n->∞) (n/2 - 2)/sqrt(n) = ∞
