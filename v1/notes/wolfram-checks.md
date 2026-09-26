@@ -2521,3 +2521,18 @@ Query: Simplify[-2*(L+L)+2-(2*L-2)*(L-1)+L^2 + L^2] == 0
 simplify | -2 (L + L) + 2 - (2 L - 2) (L - 1) + L^2 + L^2 = 0
 [Expanded form]
 True
+
+
+Query: Simplify[(n*(n-1)/2 - (L*n - k)) + n*(n-1)/2 - 2*(n*(n-1)/2 - L*n/2) - k]
+[Input interpretation]
+simplify | (n × (n - 1)/2 - (L n - k)) + n × (n - 1)/2 - 2 (n × (n - 1)/2 - L × n/2) - k
+[Result]
+0
+
+Erratum for prop:origin-leftover. The combination of (E_0-e) equals k, so the
+log-2 part of f(2s-k)+f(0)-2f(s) is +k log 2. The quadratic approximation in
+thm:factor-third is also k log 2 - L^2/2. The difference therefore carries
+-k log 2, not +k log 2. The displayed right-hand side is unchanged.
+Numeric check at n=3200, L=4, k=3: corrected left-hand side -0.021008,
+right-hand side -L^2(3L-1)/(2n)+(2L-1)k/n = -0.0209375, within the
+O((k^2+L^4)/n^2) remainder.
