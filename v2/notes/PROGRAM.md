@@ -2,9 +2,16 @@
 
 v1.0 is sent. Active manuscript: `v2/paper/main.tex`.
 
-## Workstream A — closed as a negative
+## Workstream A — sequential product closed as a negative; complementation positive
 
-Signed Gao after a matching host leaves \(2t/(Ln)\). Not past \(n^{1/3}\).
+Signed Gao after a matching host leaves \(2t/(Ln)\). Not past \(n^{1/3}\) for
+balanced lengths.
+
+Complementation in the host: \(Z_L=Z_{D-L}\) pathwise. With the v1 moment at
+length \(D-L=o(n^{1/3})\), the factor second moment and factor rate hold for
+near-complete \(L=D-o(n^{1/3})\), including past \(\sqrt{n}\)
+(Theorems factor-complementary, factor-rate-complementary in `v2/paper/main.tex`).
+Long-step stays open: linear \(d\) blocks feeding both ends.
 
 ## Workstream B — hard gaps recorded
 

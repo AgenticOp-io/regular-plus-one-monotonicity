@@ -38,8 +38,13 @@ chains of length \(o(n^{2/5})\), and vanishing Kim--Vu sandwich rates through
 the process-optimal exponent \(1/3\).
 This manuscript is the sequel: it records those reductions, proves that the
 binomial-host subgraph count is not flattened by a first or second moment,
-and isolates the six remaining statements.
-No one of those six is claimed here.
+and isolates the six named statements.
+Inside a \(D\)-regular host the \(L\)-factors are the \((D-L)\)-factors, so the
+factor second moment of~\cite{PlusOneV1} below \(n^{1/3}\) yields the same bound
+for near-complete lengths \(D-L=o(n^{1/3})\), including past \(\sqrt{n}\).
+The factor-rate conjecture holds on that side as well.
+The balanced range \(\min(L,D-L)=\omega(n^{1/3})\) stays open, as do the other
+four named statements.
 \end{abstract}
 
 \tableofcontents
@@ -61,13 +66,17 @@ from the Kim--Vu proof of~\cite{BIM25}, and a Chernoff increment
 \(G(n,d)\subset G(n,d+m)\) by free splitting throughout \(d+m=o(n^{1/3})\).
 
 What remains is a Chernoff-scale sandwich, identification of the matching peel
-with the uniform regular law, and concentration of long \(L\)-factors past
-\(\sqrt{n}\).
+with the uniform regular law, and concentration of balanced long \(L\)-factors
+past \(\sqrt{n}\).
 The companion already proved the implications that convert those statements
 into nesting theorems.
 This paper does not re-prove the implications.
 It records them, adds the second-moment identity for the binomial-host
-subgraph count, and leaves the six named conjectures open.
+subgraph count, and closes the near-complete side of the factor second-moment
+and factor-rate conjectures by complementation in the host
+(Theorems~\ref{thm:factor-complementary} and~\ref{thm:factor-rate-complementary}).
+The balanced range of those two conjectures, and the other four named
+statements, stay open.
 
 The attacks that stop at a signed \(O(L^3/n)\) or a disjoint-support
 comparison are proved in~\cite{PlusOneV1}.
@@ -138,15 +147,19 @@ conditionally on \(G\), has relative variance \(o(1)\).
 \begin{conjecture}[Factor second moment past \(\sqrt{n}\)]
 \label{conj:factor-moment}
 Let \(n\) be even, let \(\min(D,n-D)=\Theta(n)\), and let \(L\) satisfy \(Ln\) even,
-\(L\le D\), and \(n^{1/2}=o(L)=o(n)\).
+\(L\le D\), \(n^{1/2}=o(L)=o(n)\), and \(\min(L,D-L)=\omega(n^{1/3})\).
 The number \(Z\) of \(L\)-factors of a uniform \(D\)-regular graph satisfies
 \(\Var Z/(\EE Z)^2=o(1)\).
+The complementary range \(\min(L,D-L)=o(n^{1/3})\) is
+Theorem~\ref{thm:factor-complementary}.
 \end{conjecture}
 
 \begin{conjecture}[Factor moment at the repetition scale]
 \label{conj:factor-rate}
 Under the hypotheses of Conjecture~\ref{conj:factor-moment},
 \(\Var Z/(\EE Z)^2=o(L^3/n^3)\).
+The complementary range \(\min(L,D-L)=o(n^{1/3})\) is
+Theorem~\ref{thm:factor-rate-complementary}.
 \end{conjecture}
 
 \begin{conjecture}[One deletion of a long factor]
@@ -155,6 +168,75 @@ There is a coupling of a \(d\)-regular graph and a \((d+L)\)-regular graph with
 \(n^{1/2}=o(L)=o(n)\) and \(\min(d,n-d,d+L,n-d-L)=\Theta(n)\) whose marginals
 are \(o(1)\) from uniform.
 \end{conjecture}
+
+\section{Closed cases of the factor conjectures}
+\label{sec:factor-complementary}
+
+Inside a fixed \(D\)-regular graph the \(L\)-factors are in bijection with the
+\((D-L)\)-factors: the complement of an \(L\)-factor in the host is a
+\((D-L)\)-factor. The two counts are therefore identical as random variables
+on \(G(n,D)\). Combining that identity with the \(o(n^{1/3})\) moment of
+~\cite{PlusOneV1} enters the past-\(\sqrt{n}\) regime along the near-complete
+side.
+
+\begin{proposition}[Complementary factor counts agree]
+\label{prop:factor-complement-bijection}
+Let \(G\) be a \(D\)-regular graph on \(n\) vertices and let \(0\le L\le D\) with
+\(Ln\) and \((D-L)n\) even. Writing \(Z_L(G)\) for the number of spanning
+\(L\)-regular subgraphs of \(G\), one has \(Z_L(G)=Z_{D-L}(G)\).
+\end{proposition}
+
+\begin{proof}
+If \(F\subset G\) is \(L\)-regular and spanning then \(G\setminus F\) is
+\((D-L)\)-regular and spanning. The map \(F\mapsto G\setminus F\) is an
+involution of the set of spanning regular subgraphs of \(G\) that exchanges
+the \(L\)-regular and \((D-L)\)-regular classes.
+\end{proof}
+
+\begin{theorem}[Factor second moment for near-complete factors]
+\label{thm:factor-complementary}
+Let \(n\) be even, let \(\min(D,n-D)=\Theta(n)\), and let \(L\) satisfy \(Ln\) even,
+\(L\le D\), and \(D-L=o(n^{1/3})\). Let \(Z\) be the number of \(L\)-factors of a
+uniform random \(D\)-regular graph. Then \(\Var Z/(\EE Z)^2=o(1)\).
+In particular the bound holds throughout
+\(n^{1/2}=o(L)=o(n)\) whenever \(D-L=o(n^{1/3})\).
+\end{theorem}
+
+\begin{proof}
+Proposition~\ref{prop:factor-complement-bijection} gives \(Z=Z_{D-L}\) pathwise on
+every \(D\)-regular host. The hypotheses \(\min(D,n-D)=\Theta(n)\),
+\((D-L)n\) even (arranged by the parity of \(Ln\) and \(Dn\)), \(D-L\le D\), and
+\(D-L=o(n^{1/3})\) are exactly those of the factor second-moment theorem of
+~\cite{PlusOneV1} at length \(D-L\). That theorem yields
+\(\Var Z_{D-L}/(\EE Z_{D-L})^2=o(1)\), hence the claim for \(Z\).
+If in addition \(\min(D,n-D)=\Theta(n)\) and \(D-L=o(n^{1/3})\), then
+\(L=D-o(n^{1/3})=\Theta(n)\), so \(n^{1/2}=o(L)=o(n)\). The identity
+\(\lim_{n\to\infty}(n/2-n^{1/3})/n^{1/2}=\infty\) was checked.
+\end{proof}
+
+\begin{theorem}[Factor rate for near-complete factors]
+\label{thm:factor-rate-complementary}
+Under the hypotheses of Theorem~\ref{thm:factor-complementary} one has
+\[
+\frac{\Var Z}{(\EE Z)^2}=o\Bigl(\frac{L^3}{n^3}\Bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Theorem~\ref{thm:factor-complementary} supplies \(\Var Z/(\EE Z)^2=o(1)\).
+The same hypotheses force \(L=\Theta(n)\), so \(L^3/n^3=\Theta(1)\). Thus
+\(o(1)=o(L^3/n^3)\).
+\end{proof}
+
+\begin{remark}[Long-step is empty on the complementary side]
+\label{rem:long-complement-empty}
+Theorem~\ref{thm:long-from-moment} needs the moment bound at degrees \(d+L\) and
+\(n-1-d\) simultaneously, with \(\min(d,n-d,d+L,n-d-L)=\Theta(n)\) and
+\(L=\omega(n^{1/2})\). At degree \(d+L\), the complementary length is \(d\). The
+bound of Theorem~\ref{thm:factor-complementary} therefore needs \(d=o(n^{1/3})\),
+which contradicts \(d=\Theta(n)\). The near-complete moment does not feed
+Conjecture~\ref{conj:long-step}.
+\end{remark}
 
 \section{Reductions already proved}
 
@@ -631,11 +713,13 @@ At the typical prefix \(t=\Theta(L^2)\) one has \(2t/(Ln)=\Theta(L/n)\).
 A product of \(Ln/2\) sequential factors of relative size \(1+\Theta(L/n)\)
 is again \(\exp(O(L^3/n))\).
 The signed main term therefore does not improve the range
-\(L=o(n^{1/3})\) of the factor second moment.
-Workstream A stops here: a further remainder \(o(L^3/n)\) needs a
-comparison that is not this sequential product.
-Conjectures~\ref{conj:factor-moment}, \ref{conj:factor-rate}, and
-\ref{conj:long-step} stay open.
+\(L=o(n^{1/3})\) of the sequential product.
+Workstream A stops here for balanced lengths: a further remainder \(o(L^3/n)\)
+needs a comparison that is not this sequential product.
+The near-complete side \(D-L=o(n^{1/3})\) is Theorem~\ref{thm:factor-complementary},
+by complementation rather than a signed product.
+Conjecture~\ref{conj:long-step} and the balanced range of
+Conjectures~\ref{conj:factor-moment} and~\ref{conj:factor-rate} stay open.
 \end{remark}
 
 \section{The inverse-count scale}
@@ -1584,13 +1668,14 @@ The enumeration \(\lvert\Omega_2\rvert=60+10=70\) is Remark~\ref{rem:small-n-inv
 \begin{remark}[Asymptotic \(Z_d\) and the factor-moment conjecture]
 \label{rem:zd-vs-factor}
 Conjecture~\ref{conj:factor-moment} asks for relative variance \(o(1)\) of the
-number of \(L\)-factors of a uniform \(D\)-regular graph throughout
-\(n^{1/2}=o(L)=o(n)\).
+number of \(L\)-factors of a uniform \(D\)-regular graph throughout the
+balanced past-\(\sqrt{n}\) range \(\min(L,D-L)=\omega(n^{1/3})\).
+Theorem~\ref{thm:factor-complementary} settles the near-complete side.
 That is asymptotic flatness of \(Z_L\) under \(\mu_D\).
 The third peel-weight flatness needs the same count to be flat among
 \(D\)-regular spanning subgraphs of the random host \(G^*_0\), which is the
 law \(\nu_D\) rather than \(\mu_D\).
-Even a proof of Conjecture~\ref{conj:factor-moment} would not automatically
+Even a proof of the remaining balanced conjecture would not automatically
 supply that host-restricted flatness, unless item (iii) of
 Theorem~\ref{thm:selection-reduces} has already identified \(\nu_D\) with
 \(\mu_D\).
@@ -1649,10 +1734,13 @@ Proposition~\ref{prop:signed-matching-host} is the sequential product
 with remaining stubs and phase together.
 The identified main term after a typical matching host is still
 \(p(1+\Theta(L/n))\).
-That workstream does not produce a theorem past \(L=o(n^{1/3})\).
-Conjectures~\ref{conj:factor-moment}, \ref{conj:factor-rate}, and
-\ref{conj:long-step} remain, and need a comparison that is not this
-product.
+That product does not produce a theorem past \(L=o(n^{1/3})\).
+Complementation in the host does: Theorems~\ref{thm:factor-complementary}
+and~\ref{thm:factor-rate-complementary} settle the near-complete side
+\(D-L=o(n^{1/3})\).
+The balanced range of Conjectures~\ref{conj:factor-moment} and
+\ref{conj:factor-rate}, and Conjecture~\ref{conj:long-step}, remain, and need a
+comparison that is not this product.
 
 \paragraph{Workstream B: the peel and the Chernoff window.}
 Proposition~\ref{prop:target-cn} is the scale of item (iii): the constant
@@ -1738,8 +1826,9 @@ Replacing \(R\) by an independent Bernoulli graph is blocked.
 
 \paragraph{Conjecture~\ref{conj:factor-moment}.}
 A signed generating function for the intersection of two \(L\)-factors of a
-linear-degree host, with remainder \(o(1)\) throughout
-\(n^{1/2}=o(L)=o(n)\).
+linear-degree host, with remainder \(o(1)\) throughout the balanced range
+\(\min(L,D-L)=\omega(n^{1/3})\).
+The near-complete side is Theorem~\ref{thm:factor-complementary}.
 The unsigned sequential product is \(\exp(O(L^3/n))\), which is the size of
 the signal past \(n^{1/3}\).
 The signed matching-host term of Proposition~\ref{prop:signed-matching-host}
@@ -1747,12 +1836,16 @@ leaves the same order.
 Binomial leftover plus pairwise is not that generating function.
 
 \paragraph{Conjecture~\ref{conj:factor-rate}.}
-The same signed expansion, to remainder \(o(L^3/n^3)\).
+The same signed expansion, to remainder \(o(L^3/n^3)\), on the balanced
+range.
+The near-complete side is Theorem~\ref{thm:factor-rate-complementary}.
 The formal cubic \(L^3/(4n)\) is not the relative variance.
 
 \paragraph{Conjecture~\ref{conj:long-step}.}
 Conjecture~\ref{conj:factor-moment} at degrees \(d+L\) and \(n-1-d\).
 That implication is Theorem~\ref{thm:long-from-moment}.
+Remark~\ref{rem:long-complement-empty} records that the near-complete moment
+does not supply both ends under linear margins.
 
 \section*{Acknowledgements}
 The exact \(+1\) theorem, the recorded reductions, and the blocked attacks
