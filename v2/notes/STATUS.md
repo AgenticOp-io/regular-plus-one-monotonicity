@@ -15,6 +15,9 @@ Bar is 2.0. v1.0 is sent.
   graph (Theorem long-linear-matching-gap): matching concentration in the
   complement plus \(S_n\)-transitivity on perfect matchings. Three margins
   linear; gap \(n-d-L=2\).
+- Factor rate \(O(1/n)\) when \(D-L=1\) (strengthening of factor-rate-complementary).
+- Selection item (iii) on single \(S_n\) orbits \(D\in\{1,n-2\}\)
+  (Corollary iii-one-orbit); not a config-split close at Chernoff scale.
 
 ## Still open (named)
 
