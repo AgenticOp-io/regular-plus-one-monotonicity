@@ -429,6 +429,34 @@ Together with Jensen's inequality for \(1/N\), neither moment of \(N\) is a
 proof of item (iii).
 \end{remark}
 
+\begin{proposition}[Untilted pairwise factor is exponentially large]
+\label{prop:untilted-tilt}
+In the setting of Proposition~\ref{prop:host-count-second}, write
+\(\Delta=K_{12}-K_{012}\).
+Under the law of two independent samples from \(\mu_D\),
+Proposition~\ref{prop:off-host} gives \(\EE\Delta=\Theta(D^2)\), and Jensen's
+inequality for \(x\mapsto p^{-x}\) yields
+\[
+\EE\bigl[p^{-\Delta}\bigr]
+\ge
+p^{-\EE\Delta}
+=
+\exp\bigl(\Theta(D^2\log(n/D))\bigr).
+\]
+The identity \(\EE\Delta\cdot\log(1/p)=\Theta(D^2\log(n/D))\) was checked at
+leading order.
+The relative second-moment ratio of Proposition~\ref{prop:host-count-second}
+is the \(p^{-K_{01}-K_{02}}\)-tilt of \(p^{-\Delta}\).
+The untilted lower bound already diverges, but converting it into a lower bound
+on the tilted expectation is a correlation estimate that this paper does not
+claim, as in Remark~\ref{rem:host-chebyshev}.
+\end{proposition}
+
+\begin{proof}
+Convexity of \(x\mapsto p^{-x}\) on \(\mathbb R\) for \(p\in(0,1)\) is Jensen's
+inequality, and the mean of \(\Delta\) is Proposition~\ref{prop:off-host}.
+\end{proof}
+
 This does not disprove item (iii), and it does not close
 Conjecture~\ref{conj:config-split}.
 The peel still has to match \(\nu_D\), and the interesting range for that
@@ -882,6 +910,10 @@ so a uniform bound \(a\le(1+o(1))c_n\) forces that lower-tail probability to be
 \(O(c_n^2)\).
 Item (iii) is therefore a statement about the lower tail of \(N\) at the bulk
 threshold \(1/c_n\), not about concentration of \(N\) about \(\EE[N]\).
+On the finite instance of Remark~\ref{rem:small-n-inv} with \(p=1/2\), one has
+\(c_n\approx 0.291\) and
+\(\PP(N<1/c_n\mid C_6\subset)\approx 0.334\), which is not \(o(c_n)\); the
+sufficient criterion fails on the same instance where \(a\) is not flat.
 \end{proposition}
 
 \begin{proof}
