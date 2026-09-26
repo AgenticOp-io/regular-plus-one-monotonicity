@@ -188,3 +188,54 @@ simplify | n × D^2/(2 (n - 1)) - (n × D/2) × D/(n - 1)
 0
 [Quotient and Remainder]
 0 = (0) × 1 + 0
+
+
+Query: Simplify[(n-1-D)*q*(1-q) /. q -> (p - D/(n-1))/(1 - D/(n-1)) ]
+[error]
+no result
+
+
+Query: With[{pi = D/(n-1), p = (1+e)*D/n, q = (p-pi)/(1-pi)}, Series[((n-1-D)*q*(1-q))/((n-1)*p*(1-p)), {n, Infinity, 0}]]
+[error]
+no result
+
+
+Query: Series[(1+e)*D/n - D/(n-1), {n, Infinity, 2}]
+[Input interpretation]
+series | (1 + e) × D/n - D/(n - 1) | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+(e D)/n - D/n^2 + O((1/n)^3)
+(Laurent series)
+(converges when D = 0 ∨ 1/abs(n)<1)
+[Series representation at n = ∞]
+D n (n/(n - 1) + e)
+
+
+Query: assuming e>0 && D>0 && n>1, (1+e)^(D n/2) = Exp[(D n/2) Log[1+e]]
+[Input]
+{e>0 ∧ D>0 ∧ n>1, (1 + e)^(D × n/2) = exp((D × n/2) log(1 + e))}
+
+
+Query: Series[Log[(1+e)*D/n] + Log[n/D], {n, Infinity, 1}]
+[Input interpretation]
+series | log((1 + e) × D/n) + log(n/D) | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+log(((1 + e) D)/n) + log(n/D)
+
+
+Fallback for sprinkle variance ratio (Wolfram With[] Series no-result).
+Exact Fraction arithmetic in v2/scripts/_sprinkle_var.py:
+q=(p-D/(n-1))/(1-D/(n-1)) with p=(1+e)D/n;
+Var_sprinkle/Var_binom ~ e for e in {0.1,0.01,0.001} and
+(n,D) with q>0 (requires e > ~1/n).
+
+Query: Simplify[Log[(1+e)*D/n] + Log[n/D] - Log[1+e]]
+[Expanded logarithmic form]
+0
+
+
+Query: Simplify[((1+e)*D/n - D/(n-1))/(1 - D/(n-1)) - ((1+e)*D*(n-1) - D*n)/((n - D)*n )]
+[Input interpretation]
+simplify | ((1 + e) × D/n - D/(n - 1))/(1 - D/(n - 1)) - ((1 + e) D (n - 1) - D n)/((n - D) n)

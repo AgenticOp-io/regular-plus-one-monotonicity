@@ -214,6 +214,24 @@ CHECKS = {
             "The typical-intersection rewrite is not an attack on the sparse matching expansion.",
         ),
     },
+    "sprinkle-transfer": {
+        "half": (
+            "block",
+            "Proposition sprinkle-gap: regular-plus-sprinkle has degree variance Theta(eps D) while G(n,p) has Theta(D). TV tends to 1 as eps tends to 0. Exact posterior uniformity does not transfer.",
+        ),
+        "linear": (
+            "block",
+            "Sprinkle-host degree variance is Theta(eps D); binomial is Theta(D). Singular when eps tends to 0.",
+        ),
+        "sublinear": (
+            "block",
+            "Sprinkle transfer is blocked by degree-variance mismatch whenever eps tends to 0.",
+        ),
+        "sparse": (
+            "block",
+            "Sprinkle transfer is blocked for vanishing eps.",
+        ),
+    },
     "free-flat-as-residual": {
         "half": (
             "block",
