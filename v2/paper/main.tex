@@ -58,7 +58,7 @@ probability \(o(1)\), inside every host of growing degree.
 Dirac's theorem likewise places a uniform Hamilton cycle inside every host of
 degree at least \(n/2\), and Hamiltonicity of a random regular graph extends
 that coupling to every degree at least \(3\). The same fact places a uniform
-perfect matching inside every fixed degree at least \(3\).
+perfect matching inside every degree at least \(3\).
 The balanced range \(\min(L,D-L)=\omega(n^{1/3})\) of the factor conjectures,
 the four-linear-margin long-step, and the other three named statements stay open.
 \end{abstract}
@@ -100,7 +100,7 @@ together with long deletions past \(\sqrt{n}\) from sparse degrees
 \(d\le n/2-1\) to an \((n-2)\)-regular host
 (Theorem~\ref{thm:long-matching-gap}), and from a matching into every host of
 degree at least \(n/2\) (Theorem~\ref{thm:long-matching-into-dirac}) and into
-every growing degree (Theorem~\ref{thm:long-matching-growing}) and every fixed
+every growing degree (Theorem~\ref{thm:long-matching-growing}) and every
 degree at least \(3\) (Theorem~\ref{thm:long-matching-at-least-three}), and a
 Hamilton cycle into every Dirac host (Theorem~\ref{thm:long-hamilton-dirac})
 and, with failure probability \(o(1)\), into every degree at least \(3\)
@@ -598,24 +598,28 @@ If \(\sqrt{n}\log n<D\), then \(D-2>\sqrt{n}\log n-2\), and the identity
 
 \begin{theorem}[Matching inside every degree at least \(3\)]
 \label{thm:long-matching-at-least-three}
-Let \(n\) be even and let \(D\) be a fixed integer with \(3\le D\le n-1\). There is a
+Let \(n\) be even, let \(Dn\) be even, and let \(3\le D\le n-1\). There is a
 coupling of a perfect matching \(M\) and a \(D\)-regular graph \(H\) with both
-marginals exactly uniform and with \(\PP(M\subset H)=1-o(1)\).
+marginals exactly uniform and with \(\PP(M\subset H)=1-o(1)\). If \(D\ge n/2\)
+the containment holds almost surely, by Theorem~\ref{thm:long-matching-into-dirac}.
 \end{theorem}
 
 \begin{proof}
-Sample \(H\sim\mu_D\). Since \(D\) is fixed and at least \(3\), \cite[Theorem~1]{RW94}
-gives that \(H\) is Hamiltonian with probability \(1-o(1)\).
-An even cycle contains a perfect matching, so on that event the number \(Y\) of
-perfect matchings of \(H\) is at least \(1\).
+If \(D\ge n/2\), Theorem~\ref{thm:long-matching-into-dirac} supplies the coupling
+with failure probability \(0\). Assume therefore \(D<n/2\).
+The proof of Theorem~\ref{thm:long-hamilton-wide} shows that a uniform
+\(D\)-regular graph is Hamiltonian with probability \(1-o(1)\).
+Since \(n\) is even, a Hamilton cycle contains a perfect matching, so on that
+event the number \(Y\) of perfect matchings is at least \(1\).
 On \(\{Y\ge 1\}\) let \(M\) be a uniform random perfect matching of \(H\); on the
 complementary event let \(M\) be an independent uniform perfect matching of \(K_n\).
 The law of \(H\) is \(S_n\)-invariant, \(S_n\) acts transitively on perfect matchings,
 and \(\{Y\ge 1\}\) is \(S_n\)-invariant, so the mixture is exactly \(\mu_1\), while
 \(H\) is exactly \(\mu_D\). The failure probability is \(o(1)\).
-The growing-degree case is Theorem~\ref{thm:long-matching-growing}; the variance
-bound used there requires \(D\to\infty\), so the fixed-degree case is this
-Hamiltonian substitute.
+Theorem~\ref{thm:long-matching-growing} reaches the same conclusion when
+\(D\to\infty\), by a variance bound. The present argument does not need
+\(D\to\infty\): it uses Hamiltonicity, and therefore also covers degrees that
+stay bounded or oscillate.
 \end{proof}
 
 \begin{remark}[Not a uniform \(2\)-factor]
@@ -2280,7 +2284,7 @@ Theorem~\ref{thm:long-hamilton-dirac} places a uniform Hamilton cycle in every
 Dirac host, and Theorem~\ref{thm:long-hamilton-wide} extends that coupling to
 every degree at least \(3\).
 Theorem~\ref{thm:long-matching-at-least-three} places a uniform perfect matching
-in every fixed degree at least \(3\).
+in every degree at least \(3\).
 Remark~\ref{rem:hamilton-not-mu2} records that the cycle marginal is not \(\mu_2\).
 Remark~\ref{rem:long-complement-empty} records that the
 near-complete moment does not supply both ends under four linear margins.

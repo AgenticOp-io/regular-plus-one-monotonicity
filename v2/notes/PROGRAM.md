@@ -27,7 +27,7 @@ enumeration (McK85) / free-extension flatness; sublinear matching variance.
 | long-matching-growing | Matching into every host \(D\to\infty\) (band-rate or sublinear variance below \(n/2\)) |
 | long-hamilton-dirac | Uniform Hamilton cycle inside every host \(D\ge n/2\); marginal is not \(\mu_2\) |
 | long-hamilton-wide | Uniform Hamilton cycle inside every host \(D\ge 3\); still not \(\mu_2\) |
-| long-matching-at-least-three | Uniform matching inside every fixed host \(D\ge 3\) |
+| long-matching-at-least-three | Uniform matching inside every host \(D\ge 3\), including bounded and oscillating degrees |
 
 ### Selection (iii)
 
