@@ -8,14 +8,15 @@ Bar is 2.0. v1.0 is sent.
   past \(\sqrt{n}\) (Theorem factor-complementary): complementation in the host
   plus the \(o(n^{1/3})\) moment of v1.
 - Factor rate on the same side (Theorem factor-rate-complementary):
-  \(L=\Theta(n)\) forces \(o(1)=o(L^3/n^3)\).
+  \(L=\Theta(n)\) forces \(o(1)=o(L^3/n^3)\); strengthened to \(O(1/n)\) when
+  \(D-L=1\).
 - Long deletion past \(\sqrt{n}\) from degree \(o(n^{1/3})\) to near-complete
   (Theorem long-sparse-near-complete): free split plus complementation.
-- Long deletion past \(\sqrt{n}\) from every linear degree to an \((n-2)\)-regular
-  graph (Theorem long-linear-matching-gap): matching concentration in the
-  complement plus \(S_n\)-transitivity on perfect matchings. Three margins
-  linear; gap \(n-d-L=2\).
-- Factor rate \(O(1/n)\) when \(D-L=1\) (strengthening of factor-rate-complementary).
+- Long deletion past \(\sqrt{n}\) leaving a matching gap
+  (Theorem long-matching-gap): for every \(d\le n/2-1\), Dirac on the complement
+  plus \(S_n\)-transitivity gives \(G\sim\mu_d\subset H\sim\mu_{n-2}\) a.s.; the
+  linear band \(d>n/2-1\) uses matching concentration instead. Gap
+  \(n-d-L=2\).
 - Selection item (iii) on single \(S_n\) orbits \(D\in\{1,n-2\}\)
   (Corollary iii-one-orbit); not a config-split close at Chernoff scale.
 
@@ -24,7 +25,7 @@ Bar is 2.0. v1.0 is sent.
 - Q, config-split, residual-moment: fully open.
 - factor-moment, factor-rate: open only for \(\min(L,D-L)=\omega(n^{1/3})\).
 - long-step: open under four linear margins; sparse-to-near-complete and
-  linear-to-\((n-2)\) are closed.
+  matching-gap-to-\((n-2)\) are closed.
 
 ## Recorded negatives (not conjecture closes)
 
