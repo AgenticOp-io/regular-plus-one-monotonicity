@@ -360,3 +360,12 @@ simplify | ((1 + e)/(2 + e))^3 - 1
 -0.510587251584480249735819007021469549731604050398220985586287065...
 [Property]
 -1 + (1 + e)^3/(2 + e)^3 is a transcendental number
+
+
+Query: Simplify[60+10-70]
+[Input interpretation]
+simplify | 60 + 10 - 70
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
