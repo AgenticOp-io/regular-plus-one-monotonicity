@@ -670,7 +670,7 @@ For every permutation \(\sigma\in S_n\) and every \(D\)-regular graph \(G_0\),
 \]
 Thus the conditional expectation depends on \(G_0\) only through its
 isomorphism type.
-Item (iii) of Theorem~\ref{thm:selection-reduces} is therefore equivalent to
+Item~(iii) of Theorem~\ref{thm:selection-reduces} is therefore equivalent to
 the same bound holding for one representative of each isomorphism class.
 The symmetric group does not identify the value across non-isomorphic
 \(D\)-regular graphs, so this reduction is not a proof of item (iii).
@@ -680,6 +680,24 @@ The symmetric group does not identify the value across non-isomorphic
 The map \(G\mapsto\sigma(G)\) preserves the binomial law of \(G^*_0\), the count
 \(N\), and containment.
 \end{proof}
+
+\begin{remark}[Exact gap on \(n=6\), \(D=2\)]
+\label{rem:small-n-inv}
+On six labelled vertices the simple \(2\)-regular graphs form two isomorphism
+classes: the \(60\) Hamiltonian cycles, and the \(10\) disjoint unions of two
+triangles.
+For every \(p\in\{1/4,1/3,1/2,2/3,3/4\}\), exact enumeration of the
+\(\binom{6}{2}-6=9\) complement edges shows
+\[
+\frac{\EE[1/N\mid C_6\subset G(6,p)]}{\EE[1/N\mid (C_3\cup C_3)\subset G(6,p)]}
+\in
+[1.07,1.16].
+\]
+The conditional inverse count is therefore not constant across isomorphism
+types already at this order.
+Proposition~\ref{prop:sn-orbit} is sharp: the comparison in item (iii) must
+still match the values on distinct orbits.
+\end{remark}
 
 \begin{remark}[Contain-first mean is intersection-biased]
 \label{rem:mean-skew}
@@ -704,9 +722,9 @@ the intersection-biased mean.
 \end{remark}
 
 \begin{proposition}[Regular-plus-sprinkle host is singular to \(G(n,p)\)]
-\label{prop:sprinkle-gap}
+\label{prop:sprinkle-posterior-gap}
 Let \(D\ge 2\) with \(Dn\) even and \(D=o(n)\), and let
-\(p=(1+\varepsilon)D/n\) with \(\varepsilon\to 0\) and \(\varepsilon>2/n\).
+\(p=(1+\varepsilon)D/n\) with \(\varepsilon>2/n\) and \(\varepsilon=O(1)\).
 Sample \(G\sim\mu_D\), and on each pair outside \(E(G)\) include an edge
 independently with probability
 \[
@@ -726,14 +744,18 @@ so
 \Var\deg_H(v)=(n-1-D)q(1-q),
 \]
 while a vertex degree in \(G(n,p)\) has variance \((n-1)p(1-p)\).
-Exact rational arithmetic for \(D=\Theta(n^{1/2})\) down through
-\(D=n/20\) and \(\varepsilon\in\{10^{-1},10^{-2},10^{-3}\}\) (with \(q>0\)) gives
-variance ratio \(\sim\varepsilon\).
-In particular the ratio tends to \(0\) whenever \(\varepsilon\to 0\).
-Hence the empirical degree variance of \(H\) and of \(G(n,p)\) are of
-different orders, and \(\dTV(\mathrm{law}(H),G(n,p))\to 1\).
+The ratio of these variances has series \(\varepsilon/(1+\varepsilon)+O(n^{-1})\) at
+\(n=\infty\), which was checked.
+In particular the ratio tends to \(0\) if \(\varepsilon\to 0\), and tends to a
+constant strictly less than \(1\) if \(\varepsilon\) stays in a compact subset of
+\((0,\infty)\).
+In every vanishing or fixed-\(\varepsilon\) regime the single-vertex degree laws are
+at total variation bounded away from \(0\), so
+\(\dTV(\mathrm{law}(H),G(n,p))\not\to 0\).
 The exact uniformity of the sprinkle posterior therefore does not transfer
 to a \(G(n,p)\) host.
+(The fixed-graph sprinkle of~\cite{PlusOneV1} is the same variance
+obstruction for Conjecture~\ref{conj:Q}.)
 \end{proposition}
 
 \begin{proof}
@@ -741,12 +763,162 @@ The marginal computation is
 \(D/(n-1)+(1-D/(n-1))q=p\) by definition of \(q\).
 Given \(H\), every \(D\)-factor is equally likely because each was produced
 with probability \(q^{e(H)-Dn/2}\) times the uniform draw of \(G\).
-The series of \(p-D/(n-1)\) at \(n=\infty\) is \(\varepsilon D/n+O(D/n^2)\),
-which was checked, so \(q\sim\varepsilon D/n\) and
-\((n-D)q\sim\varepsilon D\).
-The binomial variance is \(\sim D\).
-Distinct limiting degree variances separate the two graph laws in total
-variation (as in the hybrid gap of~\cite{PlusOneV1}).
+The series of the variance ratio was checked.
+Two laws on \(\mathbb Z\) whose variances tend to different positive limits
+(or to \(0\) and a positive limit) stay at positive total variation; the
+product structure over vertices upgrades that to the graph laws.
+\end{proof}
+
+\begin{proposition}[Selection law is \(S_n\)-invariant]
+\label{prop:nu-sn}
+In the setting of Theorem~\ref{thm:selection-reduces}, the law \(\nu_D\) is
+invariant under the action of \(S_n\) on labelled graphs.
+Consequently every edge has
+\[
+\nu_D\bigl(\{G_0:e\in G_0\}\bigr)
+=
+\frac{D}{n-1},
+\]
+the unique single-edge probability compatible with \(S_n\)-invariance and
+\(D\)-regularity.
+Any two isomorphic labelled edge sets likewise have equal \(\nu_D\)-mass, but
+that common mass need not equal the \(\mu_D\)-mass: \(S_n\) identifies orbits,
+not orbit weights.
+In particular edge densities match \(\mu_D\), while triangle densities agree
+with \(\mu_D\) if and only if the isomorphism-class weights of \(\nu_D\) make the
+mean number of triangles equal that under \(\mu_D\).
+Edge densities alone do not detect failure of item (iii).
+\end{proposition}
+
+\begin{proof}
+The binomial host \(G^*_0\) is \(S_n\)-invariant, the count \(N\) is invariant,
+and uniform selection among \(D\)-factors of a fixed host is equivariant.
+Double counting gives
+\(\sum_e\nu_D(e\in\cdot)=Dn/2\), and \(S_n\)-invariance forces every edge
+probability equal, hence \(D/(n-1)\).
+Orbit-equality for larger edge sets is the same argument; equality with
+\(\mu_D\) is not.
+\end{proof}
+
+\begin{proposition}[Radon--Nikodym of selection versus uniform]
+\label{prop:nu-rn}
+In the setting of Theorem~\ref{thm:selection-reduces},
+\[
+\nu_D(\{G_0\})
+=
+\frac{1}{\PP(N\ge 1)}\,
+\EE\Bigl[\frac{1_{G_0\subset G^*_0}}{N}\Bigr]
+=
+\frac{p^{Dn/2}}{\PP(N\ge 1)}\,
+\EE\bigl[1/N\bigm|G_0\subset G^*_0\bigr]
+\]
+for every \(G_0\in\Omega_D\).
+Thus
+\[
+\frac{d\nu_D}{d\mu_D}(G_0)
+=
+\frac{\lvert\Omega_D\rvert\,p^{Dn/2}}{\PP(N\ge 1)}\,
+\EE\bigl[1/N\bigm|G_0\subset G^*_0\bigr],
+\]
+and \(\nu_D=\mu_D\) if and only if \(\EE[1/N\mid\text{containment}]\) is constant
+on \(\Omega_D\).
+Combined with Proposition~\ref{prop:sn-orbit}, that constant need only be
+checked on isomorphism-class representatives.
+Item (iii) at the scale of Proposition~\ref{prop:target-cn} is exactly the
+statement that this Radon--Nikodym derivative equals \(1\).
+\end{proposition}
+
+\begin{proof}
+The first display is the definition of \(\nu_D\) in
+Theorem~\ref{thm:selection-reduces}.
+Item (i) of that theorem factors \(p^{Dn/2}\) out of the containment
+probability, which is the same for every \(G_0\).
+Dividing by \(\mu_D(\{G_0\})=1/\lvert\Omega_D\rvert\) yields the derivative.
+Constancy of the conditional expectation is then equivalent to
+\(\nu_D=\mu_D\), and the target constant of Proposition~\ref{prop:target-cn}
+is exactly the value that makes the derivative identically \(1\).
+\end{proof}
+
+\begin{proposition}[Triangle first moments do not identify \(\nu_D\)]
+\label{prop:triangle-proxy}
+Let \(D\ge 2\) with \(Dn\) even, let \(p\in(0,1)\), and fix a labelled triangle
+\(T\).
+Write \(N_T\) for the number of \(D\)-regular spanning subgraphs of \(G^*_0\) that
+contain \(T\), and \(\Omega_T\) for that collection.
+Unconditionally,
+\[
+\frac{\EE[N_T]}{\EE[N]}
+=
+\frac{\lvert\Omega_T\rvert}{\lvert\Omega_D\rvert}\,p^{-3}
+=
+\frac{\PP_{H\sim\mu_D}(T\subset H)}{p^3},
+\]
+so the unconditional first-moment proxy \(p^3\,\EE[N_T]/\EE[N]\) equals the
+\(\mu_D\)-triangle probability exactly.
+Given \(T\subset G^*_0\), grouping \(D\)-regular graphs by
+\(k=\lvert E(H)\cap E(T)\rvert\) yields
+\[
+\frac{\EE[N_T\mid T\subset G^*_0]}{\EE[N\mid T\subset G^*_0]}
+=
+\frac{\lvert\Omega_T\rvert}{\sum_{k=0}^{3}N_k\,p^{3-k}},
+\]
+where \(N_k=\lvert\{H:\lvert E(H)\cap E(T)\rvert=k\}\rvert\) and \(N_3=\lvert\Omega_T\rvert\).
+The sum is not asymptotic to \(\lvert\Omega_D\rvert\,p^3\): already the \(k=3\)
+term equals \(\lvert\Omega_T\rvert\), and
+\(\lvert\Omega_T\rvert/(\lvert\Omega_D\rvert p^3)\) has leading order
+\((\pi/p)^3=(1+o(1))/(1+\varepsilon)^3\) under \(p=(1+\varepsilon)D/n\) and
+\(\pi=D/(n-1)\), which is \(\Theta(1)\).
+The \(k=0\) term therefore does not dominate.
+Under the edge-independence approximation
+\(N_k=(1+o(1))\binom{3}{k}\pi^k(1-\pi)^{3-k}\lvert\Omega_D\rvert\), the
+conditional ratio equals
+\[
+\biggl(\frac{\pi}{\pi+(1-\pi)p}\biggr)^3(1+o(1)),
+\]
+so the conditional first-moment proxy is
+\[
+p^3\cdot\frac{\EE[N_T\mid T\subset G^*_0]}{\EE[N\mid T\subset G^*_0]}
+=
+\biggl(\frac{p\pi}{\pi+(1-\pi)p}\biggr)^3(1+o(1)).
+\]
+The identity
+\[
+\frac{p}{\pi+(1-\pi)p}
+\;\longrightarrow\;
+\frac{1+\varepsilon}{2+\varepsilon}
+\]
+as \(n\to\infty\) with \(D\to\infty\) and \(D=o(n)\) was checked by exact
+rational arithmetic.
+In particular that proxy equals
+\(\bigl((1+\varepsilon)/(2+\varepsilon)\bigr)^3\pi^3(1+o(1))\), which differs from
+\(\pi^3\) by a factor bounded away from \(1\) for each fixed \(\varepsilon>0\).
+The true selection probability is
+\[
+\nu_D(T\subset\cdot)
+=
+\frac{\EE\bigl[1_{T\subset G^*_0}\,N_T/N\bigr]}{\PP(N\ge 1)},
+\]
+which uses \(\EE[N_T/N]\) rather than either ratio of means.
+Neither first-moment proxy proves that \(\nu_D\) and \(\mu_D\) agree on triangles.
+\end{proposition}
+
+\begin{proof}
+Unconditionally every \(H\in\Omega_T\) contributes \(p^{Dn/2-3}\) and every
+\(H\in\Omega_D\) contributes \(p^{Dn/2}\), which is the first display.
+Given \(T\subset G^*_0\), the three edges of \(T\) are present, so an \(H\) with
+intersection size \(k\) contributes \(p^{Dn/2-k}\); dividing numerator and
+denominator by \(p^{Dn/2-3}\) yields the conditional ratio.
+The order comparison \(\lvert\Omega_T\rvert\sim\lvert\Omega_D\rvert\pi^3\) is the
+definition of the edge density \(\pi\) under the usual configuration-model
+asymptotics for a fixed triangle; the ratio to \(\lvert\Omega_D\rvert p^3\) is
+then \((\pi/p)^3\).
+The generating function
+\(\sum_k\binom{3}{k}\pi^k((1-\pi)p)^{3-k}=(\pi+(1-\pi)p)^3\) is the
+independence approximation, and the recorded rational limit
+\(p/(\pi+(1-\pi)p)\to(1+\varepsilon)/(2+\varepsilon)\) supplies the cubed
+factor in the proxy.
+The identity for \(\nu_D(T\subset\cdot)\) is Proposition~\ref{prop:nu-rn}
+summed over \(\Omega_T\).
 \end{proof}
 
 \begin{proposition}[Switch lower bound misses the bulk scale]
@@ -858,8 +1030,14 @@ Chebyshev about the mean of \(N\) is the wrong scale.
 Proposition~\ref{prop:host-switches} gives only \(N\to\infty\).
 Proposition~\ref{prop:sn-orbit} reduces the comparison to isomorphism types
 and does not close it.
-Proposition~\ref{prop:sprinkle-gap} blocks transferring the exact
+Remark~\ref{rem:small-n-inv} shows the inverse count already differs across
+the two \(2\)-regular types on six vertices.
+Proposition~\ref{prop:sprinkle-posterior-gap} blocks transferring the exact
 uniformity of a regular-plus-sprinkle posterior to a \(G(n,p)\) host.
+Proposition~\ref{prop:nu-sn} shows that edge densities cannot detect the gap.
+Proposition~\ref{prop:nu-rn} identifies item (iii) with \(\nu_D=\mu_D\).
+Proposition~\ref{prop:triangle-proxy} records that neither the unconditional
+nor the conditional first-moment triangle proxy supplies \(\EE[N_T/N]\).
 Proposition~\ref{prop:switch-not-bulk} shows that the switch lower bound
 reaches only \(D^{O(1)}\), not the bulk scale.
 The missing estimate is still an upper bound on \(\EE[1/N\mid\text{containment}]\)

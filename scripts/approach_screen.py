@@ -217,7 +217,7 @@ CHECKS = {
     "sprinkle-transfer": {
         "half": (
             "block",
-            "Proposition sprinkle-gap: regular-plus-sprinkle has degree variance Theta(eps D) while G(n,p) has Theta(D). TV tends to 1 as eps tends to 0. Exact posterior uniformity does not transfer.",
+            "Proposition sprinkle-posterior-gap: regular-plus-sprinkle has degree variance Theta(eps D) while G(n,p) has Theta(D). Ratio series eps/(1+eps). TV stays positive for vanishing or fixed eps. Exact posterior uniformity does not transfer.",
         ),
         "linear": (
             "block",
@@ -338,6 +338,42 @@ CHECKS = {
         "sparse": (
             "block",
             "Proposition jensen-inverse: a flat first moment of N does not flatten E[1/N].",
+        ),
+    },
+    "triangle-first-moment-as-nu": {
+        "half": (
+            "block",
+            "Proposition triangle-proxy: unconditional p^3 E[N_T]/E[N] equals mu_D(T). Conditional proxy is ((1+eps)/(2+eps))^3 pi^3 under edge independence. Selection uses E[N_T/N]. Neither first-moment proxy is nu_D.",
+        ),
+        "linear": (
+            "block",
+            "Proposition triangle-proxy: first-moment triangle proxies are not E[N_T/N].",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition triangle-proxy: first-moment triangle proxies are not E[N_T/N].",
+        ),
+        "sparse": (
+            "block",
+            "Proposition triangle-proxy: first-moment triangle proxies are not E[N_T/N].",
+        ),
+    },
+    "nu-rn-constant-from-edges": {
+        "half": (
+            "block",
+            "Proposition nu-sn: S_n forces edge densities to match mu_D. Proposition nu-rn: d nu/d mu is proportional to E[1/N|containment]. Matching edges does not force the Radon-Nikodym derivative to be 1.",
+        ),
+        "linear": (
+            "block",
+            "Edge agreement under nu_D is forced by S_n and does not prove item (iii).",
+        ),
+        "sublinear": (
+            "block",
+            "Edge agreement under nu_D is forced by S_n and does not prove item (iii).",
+        ),
+        "sparse": (
+            "block",
+            "Edge agreement under nu_D is forced by S_n and does not prove item (iii).",
         ),
     },
 }

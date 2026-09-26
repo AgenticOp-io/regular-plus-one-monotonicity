@@ -225,11 +225,14 @@ order | n^1
 log(((1 + e) D)/n) + log(n/D)
 
 
-Fallback for sprinkle variance ratio (Wolfram With[] Series no-result).
-Exact Fraction arithmetic in v2/scripts/_sprinkle_var.py:
-q=(p-D/(n-1))/(1-D/(n-1)) with p=(1+e)D/n;
-Var_sprinkle/Var_binom ~ e for e in {0.1,0.01,0.001} and
-(n,D) with q>0 (requires e > ~1/n).
+Reference prop:jensen-inverse — that lives in PlusOneV1, cited in text as
+Proposition jensen-inverse of the companion. OK as prose name.
+
+Also record variance ratio series:
+Query: Series[sprinkle/binom variance ratio]
+[Series expansion at n = ∞]
+e/(1 + e) + O((1/n)^1)
+
 
 Query: Simplify[Log[(1+e)*D/n] + Log[n/D] - Log[1+e]]
 [Expanded logarithmic form]
@@ -239,3 +242,121 @@ Query: Simplify[Log[(1+e)*D/n] + Log[n/D] - Log[1+e]]
 Query: Simplify[((1+e)*D/n - D/(n-1))/(1 - D/(n-1)) - ((1+e)*D*(n-1) - D*n)/((n - D)*n )]
 [Input interpretation]
 simplify | ((1 + e) × D/n - D/(n - 1))/(1 - D/(n - 1)) - ((1 + e) D (n - 1) - D n)/((n - D) n)
+
+
+Query: Series[((n-1-D)*((1+e)*D/n - D/(n-1))/(1-D/(n-1))*(1-((1+e)*D/n - D/(n-1))/(1-D/(n-1))))/((n-1)*(1+e)*D/n*(1-(1+e)*D/n)), {n, Infinity, 0}]
+[Input interpretation]
+series | ((n - 1 - D) × ((1 + e) × D/n - D/(n - 1))/(1 - D/(n - 1)) (1 - ((1 + e) × D/n - D/(n - 1))/(1 - D/(n - 1))))/((n - 1) (1 + e) × D/n (1 - (1 + e) × D/n)) | point | n = ∞
+order | n^0
+[Series expansion at n = ∞]
+e/(1 + e) + O((1/n)^1)
+(Taylor series)
+(converges when abs((D + 1)/n)<1)
+[Series representation at n = ∞]
+(e (n - 1) + n)/((1 + e) (D n + n - 1))
+
+
+Query: Simplify[e/(1+e) - e/(1+e)]
+[Input interpretation]
+simplify | e/(1 + e) - e/(1 + e)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[1/(1+(1+e)^3) * ((1+e)*D/n)^3 / (D/(n-1))^3]
+[Input interpretation]
+simplify | 1/(1 + (1 + e)^3) × ((1 + e) × D/n)^3/(D/(n - 1))^3
+[Results]
+((1 + e)^3 (n - 1)^3)/(((2 + e) (1 + e + e^2)) n^3)
+[Results]
+((1 + e)^3 (n - 1)^3)/((1 + (1 + e)^3) n^3)
+[Results]
+((1 + e)^3 (n - 1)^3)/((2 + 3 e + 3 e^2 + e^3) n^3)
+[Quotient and Remainder]
+(1 + e)^3 (n - 1)^3 = (1/(1 + (1 + e)^3) + (3 e)/(1 + (1 + e)^3) + (3 e^2)/(1 + (1 + e)^3) + e^3/(1 + (1 + e)^3))((1 + (1 + e)^3) n^3) + ((-3 - 9 e - 9 e^2 - 3 e^3) n^2 + (3 + 9 e + 9 e^2 + 3 e^3) n - e^3 - 3 e^2 - 3 e - 1)
+[Quotient and Remainder]
+quotient | 1/(1 + (1 + e)^3) + (3 e)/(1 + (1 + e)^3) + (3 e^2)/(1 + (1 + e)^3) + e^3/(1 + (1 + e)^3)
+remainder | (-3 - 9 e - 9 e^2 - 3 e^3) n^2 + (3 + 9 e + 9 e^2 + 3 e^3) n - e^3 - 3 e^2 - 3 e - 1
+
+
+Query: With[{pi=D/(n-1),p=(1+e)*D/n}, Series[(p*pi)/(pi+(1-pi)*p)/pi, {n,Infinity,1}]]
+[error]
+no result
+
+
+Query: With[{pi=D/(n-1),p=(1+e)*D/n}, Series[((p*pi)/(pi+(1-pi)*p))^3 / pi^3, {n,Infinity,0}]]
+[error]
+no result
+
+
+Query: assuming e>0 && D>0 && n>D+1, Simplify[((p*pi)/(pi+(1-pi)*p))/pi /. {pi->D/(n-1), p->(1+e)*D/n}]
+[error]
+no result
+
+
+Query: Series[ ((1+e)*D/n) / (D/(n-1) + (1-D/(n-1))*(1+e)*D/n) * (n-1)/D , {n, Infinity, 0}]
+[Input interpretation]
+series | ((1 + e) × D/n)/(D/(n - 1) + (1 - D/(n - 1)) (1 + e) × D/n) × (n - 1)/D | point | n = ∞
+order | n^0
+[Series expansion at n = ∞]
+((1 + e) n)/(e D + 2 D) + ((1 + e) (e D + D - e - 3))/((2 + e)^2 D) + O((1/n)^1)
+(Taylor series)
+[Series representation at n = ∞]
+-((1 + e) (n - 1)^2)/(D n (D n + e (D n + n - 1) + n - 2))
+
+
+Query: Simplify[ ((1+e)*D/n) / (D/(n-1) + (1-D/(n-1))*(1+e)*D/n) * (n-1)/D ]
+[Input interpretation]
+simplify | ((1 + e) × D/n)/(D/(n - 1) + (1 - D/(n - 1)) (1 + e) × D/n) × (n - 1)/D
+
+
+Query: Limit[((1+e)*a) / (a*n/(n-1) + (1 - a*n/(n-1))*(1+e)*a) * (n-1)/(a*n), n->Infinity]
+[Limit]
+lim_(n->∞) (((1 + e) a) (n - 1))/(((a n)/(n - 1) + (1 - (a n)/(n - 1)) (1 + e) a) (a n)) = -(1 + e)/(a (-2 + a + (-1 + a) e))
+[Values]
+a | 
+1 | 1 + e
+2 | -(1 + e)/(2 e)
+3 | (1 + e)/(-3 - 6 e)
+[Series expansion at n = ∞]
+(1 + e)/(a - (1 + e) (a - 1) a) + ((1 + e) (2 (1 + e) a - e - 3))/(a (e a + a - e - 2)^2 n) - ((1 + e) (e a + a - 1)^2)/(a (e a + a - e - 2)^3 n^2) + ((1 + e)^2 (e a + a - 1)^2)/(a (e a + a - e - 2)^4 n^3) - ((1 + e)^3 (e a + a - 1)^2)/(a (e a + a - e - 2)^5 n^4) + O((1/n)^5)
+(Laurent series)
+
+
+Query: Simplify[((1+e)*a) / (a*n/(n-1) + (1-a*n/(n-1))*(1+e)*a) * (n-1)/(a*n)]
+[Input interpretation]
+simplify | ((1 + e) a)/(a × n/(n - 1) + (1 - a × n/(n - 1)) (1 + e) a) × (n - 1)/(a n)
+
+
+Query: rational fallback: p/(pi+(1-pi)p) -> (1+e)/(2+e) (D=o(n), D->inf)
+[fallback]
+Wolfram Limit/With Series returned no usable sparse result; exact Fraction arithmetic:
+e=1/100 target=0.5024875622
+  n=10000 D=100 p/denom=0.5050002525 err=2.513e-03
+  n=100000 D=500 p/denom=0.5037507109 err=1.263e-03
+  n=1000000 D=2000 p/denom=0.5029928077 err=5.052e-04
+e=1/10 target=0.5238095238
+  n=10000 D=100 p/denom=0.5265428050 err=2.733e-03
+  n=100000 D=500 p/denom=0.5251825147 err=1.373e-03
+  n=1000000 D=2000 p/denom=0.5243586027 err=5.491e-04
+e=1 target=0.6666666667
+  n=10000 D=100 p/denom=0.6711188670 err=4.452e-03
+  n=100000 D=500 p/denom=0.6688941063 err=2.227e-03
+  n=1000000 D=2000 p/denom=0.6675565204 err=8.899e-04
+
+
+Query: Simplify[((1+e)/(2+e))^3 - 1]
+[Input interpretation]
+simplify | ((1 + e)/(2 + e))^3 - 1
+[Results]
+-(7 + 9 e + 3 e^2)/(2 + e)^3
+[Results]
+(1 + e)^3/(2 + e)^3 - 1
+[Results]
+-1/(2 + e)^3 + 3/(2 + e)^2 - 3/(2 + e)
+[Decimal approximation]
+-0.510587251584480249735819007021469549731604050398220985586287065...
+[Property]
+-1 + (1 + e)^3/(2 + e)^3 is a transcendental number
