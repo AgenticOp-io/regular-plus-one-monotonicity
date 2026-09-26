@@ -731,6 +731,27 @@ between isomorphism types, even though the \(\mu_2\)-average of \(a\) is exactly
 the only possible constant.
 \end{remark}
 
+\begin{proposition}[Switch connectivity does not flatten the inverse count]
+\label{prop:switch-not-flat-a}
+On six labelled vertices every simple \(2\)-regular graph is reachable from every
+other by a sequence of \(2\)-switches: the switch graph on \(\Omega_2\) is
+connected, with \(70\) vertices.
+A single \(2\)-switch can send a Hamiltonian cycle to a disjoint union of two
+triangles.
+At \(p=1/2\), the conditional inverse counts on the two ends of such a switch
+differ by a relative factor \(1.151\ldots\), matching Remark~\ref{rem:small-n-inv}.
+Thus \(a(\cdot)=\EE[1/N\mid\cdot\subset G(n,p)]\) is not constant on switch
+components, and a path of switches between two factors does not identify their
+inverse counts.
+\end{proposition}
+
+\begin{proof}
+Exact enumeration of \(2\)-switches: each Hamiltonian cycle has three switches
+to a \(C_3\cup C_3\), and the breadth-first search from either class covers all
+\(70\) graphs.
+The numerical ratio is Remark~\ref{rem:small-n-inv}.
+\end{proof}
+
 \begin{remark}[Contain-first mean is intersection-biased]
 \label{rem:mean-skew}
 Given \(G_0\subset G^*_0\),
@@ -920,6 +941,62 @@ concentrates on the window \(\EE K\pm\sqrt{\Var K}\,\omega_n\) of width
 \(o(\EE K)\), and on that window \(p^{-K}=p^{-\EE K}\exp(o(D^2\log(n/D)))\) with
 \(p^{-\EE K}=\exp(\Theta(D^2\log(n/D)))\) because
 \(\EE K=\Theta(D^2)\) and \(\log(1/p)=\Theta(\log(n/D))\).
+\end{proof}
+
+\begin{proposition}[Edge-exposure Azuma misses the bulk lower tail]
+\label{prop:azuma-miss}
+Given \(G_0\subset G^*_0\), realise the complement edges of \(G_0\) in any order
+as an edge-exposure martingale for \(N\).
+Flipping a single complement edge \(e\) changes \(N\) by at most
+\(N_e\), the number of \(D\)-regular spanning subgraphs of the host that contain
+both \(G_0\) and \(e\).
+In particular \(N_e\le N\le\lvert\Omega_D\rvert\), so every one-step Lipschitz
+constant is at most \(\lvert\Omega_D\rvert\).
+Azuma--Hoeffding over the \(\binom{n}{2}-Dn/2\) complement edges therefore yields
+only
+\[
+\PP\bigl(\lvert N-\EE N\rvert\ge t\bigm|G_0\subset G^*_0\bigr)
+\le
+2\exp\Bigl(\frac{-2t^2}{\bigl(\binom{n}{2}-Dn/2\bigr)\lvert\Omega_D\rvert^2}\Bigr).
+\]
+To place mass below the bulk threshold \(1/c_n=\lvert\Omega_D\rvert p^{Dn/2}/\PP(N\ge 1)\)
+one needs deviations of size
+\(t=\EE[N]-O(\lvert\Omega_D\rvert p^{Dn/2})\).
+Under contain-first,
+\(\EE[N]=\lvert\Omega_D\rvert p^{Dn/2}\EE[p^{-K}]=\exp(\Theta(Dn))\,\lvert\Omega_D\rvert p^{Dn/2}\),
+so \(t=\Theta(\EE N)\).
+The absolute value of the Azuma exponent is then of order
+\[
+\frac{(\EE N)^2}{n^2\lvert\Omega_D\rvert^2}
+=
+\frac{p^{Dn}\,\EE[p^{-K}]^2}{n^2}.
+\]
+The logarithm of that quantity is \(Dn\log p+\Theta(Dn)=Dn\log\bigl((2+\varepsilon)D/n\bigr)+O(\log n)\),
+which equals \(-\Theta(Dn\log(n/D))\) and was checked.
+Hence
+\[
+\frac{p^{Dn}\,\EE[p^{-K}]^2}{n^2}
+=
+\exp\bigl(-\Theta(Dn\log(n/D))\bigr)
+\to 0,
+\]
+and the Azuma probability bound tends to \(2\) rather than \(0\).
+Azuma therefore does not prove concentration of \(N\) about its mean, and does
+not prove a lower-tail bound at \(1/c_n\).
+(The same obstruction persists with the improved Lipschitz \(N_e\le N\), which is
+circular for estimating \(N\).)
+\end{proposition}
+
+\begin{proof}
+The Lipschitz bound \(N_e\le\lvert\Omega_D\rvert\) is immediate, and Azuma--Hoeffding
+is the displayed tail.
+The contain-first mean and the scale gap are
+Propositions~\ref{prop:target-cn} and~\ref{prop:indep-indicators-kill}.
+The identity
+\(p^{Dn}(1-\pi+\pi p^{-1})^{Dn}= \bigl(p(1-\pi+\pi p^{-1})\bigr)^{Dn}\)
+together with
+\(p(1-\pi+\pi p^{-1})=(1+o(1))(2+\varepsilon)D/n\)
+gives the displayed logarithm.
 \end{proof}
 
 \begin{proposition}[Regular-plus-sprinkle host is singular to \(G(n,p)\)]
@@ -1392,11 +1469,15 @@ restricted to factors with intersection \(o(D^2/\log(nD))\).
 Proposition~\ref{prop:indep-indicators-kill} shows that independent
 containment indicators would force \(N\) onto the intersection-biased mean and
 kill item (iii); dependence is necessary.
+Proposition~\ref{prop:azuma-miss} shows that edge-exposure Azuma with the
+crude Lipschitz \(\lvert\Omega_D\rvert\) does not see the bulk lower tail.
 Proposition~\ref{prop:host-switches} gives only \(N\to\infty\).
 Proposition~\ref{prop:sn-orbit} reduces the comparison to isomorphism types
 and does not close it.
 Remark~\ref{rem:small-n-inv} shows the inverse count already differs across
 the two \(2\)-regular types on six vertices.
+Proposition~\ref{prop:switch-not-flat-a} shows that the switch graph on those
+seventy graphs is connected, so switch adjacency does not flatten \(a\).
 Proposition~\ref{prop:sprinkle-posterior-gap} blocks transferring the exact
 uniformity of a regular-plus-sprinkle posterior to a \(G(n,p)\) host.
 Proposition~\ref{prop:nu-sn} shows that edge densities cannot detect the gap.

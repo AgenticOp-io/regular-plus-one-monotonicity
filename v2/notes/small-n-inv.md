@@ -55,3 +55,10 @@ c_n = P(N>=1)/(|Omega| p^6). Identity: a_bar = c_n exactly.
 | 1/2 | 1.0191 | 0.8853 | 1.0000 |
 
 Item (iii) fails on this finite instance: types disagree with c_n, average matches.
+
+## Switch connectivity on Omega_2
+
+The 2-switch graph on all 70 simple 2-regular graphs is connected.
+Each C6 has 3 switches to a C3+C3.
+At p=1/2, a differs by relative factor 1.151 across such a switch edge.
+So switch connectivity does not flatten a.

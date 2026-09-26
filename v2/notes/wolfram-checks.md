@@ -554,3 +554,55 @@ order | n^0
 (generalized Puiseux series)
 [Series representation at n = ∞]
 -(D^2 log(1/(D n + e D n)))/(2 (n - 1))
+
+
+Query: Simplify[1.1511944248672998 - 1511944248672998/10000000000000000]
+[Input interpretation]
+simplify | 1.1511944248672998 - 1511944248672998/10000000000000000
+[Result]
+1.0000000000000000
+[Quotient and Remainder]
+1.0000000000000000 = 1 × 1 + 0.×10^-16
+[Number name]
+one
+[Percent decrease]
+1.1511944248672998 - 1511944248672998/10000000000000000 = 1.0000000000000000 is 13.13% smaller than 1.1511944248672998 = 1.1511944248672998.
+
+
+Query: Series[D*n*Log[(1+e)*D/n] + D*n*Log[(2+e)/(1+e)], {n, Infinity, 0}]
+[Input interpretation]
+series | D n log((1 + e) × D/n) + D n log((2 + e)/(1 + e)) | point | n = ∞
+order | n^0
+[Series expansion at n = ∞]
+D n log(((2 + e) D)/n) + O((1/n)^1)
+(Puiseux series)
+
+
+Query: Simplify[D*n*Log[(1+e)*D/n] + D*n*Log[(2+e)/(1+e)] - D*n*Log[D/n]]
+[Input interpretation]
+simplify | D n log((1 + e) × D/n) + D n log((2 + e)/(1 + e)) - D n log(D/n)
+[Results]
+D n (log(D/n) + log(2 + e)) - D n log(D/n)
+[Results]
+D n (-log(D/n) + log(((1 + e) D)/n) + log((2 + e)/(1 + e)))
+[Expanded logarithmic form]
+D n log(2 + e)
+[Alternate form assuming D and n are real]
+D n log((2 + e)/(1 + e)) + D n log(1 + e)
+
+
+Query: Simplify[((1+e)*D/n)*(1 - D/(n-1) + (D/(n-1))*n/((1+e)*D)) - (2+e)*D/n]
+[Input interpretation]
+simplify | ((1 + e) × D/n) (1 - D/(n - 1) + D/(n - 1) × n/((1 + e) D)) - (2 + e) × D/n
+
+
+Query: Series[((1+e)*D/n)*(1-D/(n-1)+(D/(n-1))*n/((1+e)*D)), {n, Infinity, 1}]
+[Input interpretation]
+series | ((1 + e) × D/n) (1 - D/(n - 1) + D/(n - 1) × n/((1 + e) D)) | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+((2 + e) D)/n + O((1/n)^2)
+(Laurent series)
+(converges when (1 + e) D^2 = D ∨ abs(n)>1)
+[Series representation at n = ∞]
+(D n (D n + e (D n + n - 1) + n - 2))/(n - 1)
