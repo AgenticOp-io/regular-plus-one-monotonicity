@@ -44,10 +44,12 @@ factor second moment of~\cite{PlusOneV1} below \(n^{1/3}\) yields the same bound
 for near-complete lengths \(D-L=o(n^{1/3})\), including past \(\sqrt{n}\).
 The factor-rate conjecture holds on that side as well.
 A free split plus complementation yields a one-deletion of length \(\Theta(n)\)
-from degree \(o(n^{1/3})\) to a near-complete degree, so long deletions past
-\(\sqrt{n}\) are settled off the linear-margin regime.
+from degree \(o(n^{1/3})\) to a near-complete degree.
+The same complementation, fed by matching concentration in the linear band,
+gives a one-deletion of length \(\Theta(n)\) from every linear degree to an
+\((n-2)\)-regular graph.
 The balanced range \(\min(L,D-L)=\omega(n^{1/3})\) of the factor conjectures,
-the linear-margin long-step, and the other three named statements stay open.
+the four-linear-margin long-step, and the other three named statements stay open.
 \end{abstract}
 
 \tableofcontents
@@ -78,9 +80,10 @@ It records them, adds the second-moment identity for the binomial-host
 subgraph count, and closes the near-complete side of the factor second-moment
 and factor-rate conjectures by complementation in the host
 (Theorems~\ref{thm:factor-complementary} and~\ref{thm:factor-rate-complementary}),
-together with a sparse-to-near-complete long deletion past \(\sqrt{n}\)
-(Theorem~\ref{thm:long-sparse-near-complete}).
-The balanced factor range, the linear-margin Conjecture~\ref{conj:long-step},
+together with long deletions past \(\sqrt{n}\) from sparse degrees
+(Theorem~\ref{thm:long-sparse-near-complete}) and from every linear degree to
+an \((n-2)\)-regular host (Theorem~\ref{thm:long-linear-matching-gap}).
+The balanced factor range, the four-linear-margin Conjecture~\ref{conj:long-step},
 and the other three named statements stay open.
 
 The attacks that stop at a signed \(O(L^3/n)\) or a disjoint-support
@@ -289,6 +292,47 @@ Theorem~\ref{thm:long-sparse-near-complete} is a one-deletion of length
 \(o(n^{1/3})\) rather than \(\Theta(n)\). Conjecture~\ref{conj:long-step} asks
 for the same conclusion with all four margins linear, which
 Remark~\ref{rem:long-complement-empty} records as still open.
+\end{remark}
+
+\begin{theorem}[Long deletion from linear degree leaving a matching gap]
+\label{thm:long-linear-matching-gap}
+Let \(n\) be even and let \(d\) satisfy \(\min(d,n-d)=\Theta(n)\), \(dn\) even, and
+\(d\le n-3\). Set \(L:=n-2-d\). Then \(L=\Theta(n)\) with \(n^{1/2}=o(L)=o(n)\), and
+there is a coupling of a \(d\)-regular graph \(G\) and an \((n-2)\)-regular graph
+\(H\) with \(\PP(G\subset H)=1-o(1)\) and with both marginals exactly uniform.
+\end{theorem}
+
+\begin{proof}
+Sample \(G\sim\mu_d\). Write \(C\) for the complement of \(G\), so \(C\sim\mu_{n-1-d}\)
+and \(\min(n-1-d,d)=\Theta(n)\). Let \(Y\) be the number of perfect matchings of \(C\).
+Proposition~band-rate of~\cite{PlusOneV1} supplies
+\(\Var Y/(\EE Y)^2=O(1/n)\). Chebyshev's inequality at relative height \(1/4\)
+therefore yields \(\PP(Y=0)=O(1/n)=o(1)\); the identity \((1/n)/(1/4)^2=16/n\) was
+checked.
+On the event \(\{Y\ge 1\}\) let \(M\) be a uniform random perfect matching of \(C\);
+on the complementary event let \(M\) be an independent uniform perfect matching of
+\(K_n\). The law of \(G\) is invariant under the action of \(S_n\) on labelled
+graphs, and that action is transitive on the set of perfect matchings. The event
+\(\{Y\ge 1\}\) is likewise \(S_n\)-invariant. Hence on \(\{Y\ge 1\}\) the
+conditional law of \(M\) is exactly the uniform law \(\mu_1\). The mixture with the
+independent branch on \(\{Y=0\}\) is therefore exactly \(\mu_1\).
+Set \(H\) for the complement of \(M\). Complementation is a bijection between
+perfect matchings and \((n-2)\)-regular graphs, so \(H\sim\mu_{n-2}\) exactly.
+On \(\{Y\ge 1\}\) one has \(M\subset C\), hence \(G\cap M=\emptyset\), hence
+\(G\subset H\). The failure probability is \(o(1)\).
+The degree identities \(L=(n-2)-d\) and \(n-d-L=2\) were checked. The hypothesis
+\(\min(d,n-d)=\Theta(n)\) forces \(L=n-2-d=\Theta(n)\). The identity
+\(\lim_{n\to\infty}(n-2-n/3)/n^{1/2}=\infty\) was checked, so
+\(n^{1/2}=o(L)=o(n)\).
+\end{proof}
+
+\begin{remark}[Three linear margins]
+\label{rem:long-matching-gap-vs-conj}
+Theorem~\ref{thm:long-linear-matching-gap} has
+\(\min(d,n-d,d+L)=\Theta(n)\) and \(n-d-L=2\). The missing linear margin is the
+obstruction to Conjecture~\ref{conj:long-step}; the argument uses transitivity of
+\(S_n\) on perfect matchings and does not extend to a gap of length
+\(\omega(1)\) with more than one isomorphism type.
 \end{remark}
 
 \section{Reductions already proved}
@@ -1792,8 +1836,11 @@ Complementation in the host does: Theorems~\ref{thm:factor-complementary}
 and~\ref{thm:factor-rate-complementary} settle the near-complete side
 \(D-L=o(n^{1/3})\).
 The balanced range of Conjectures~\ref{conj:factor-moment} and
-\ref{conj:factor-rate}, and Conjecture~\ref{conj:long-step}, remain, and need a
+\ref{conj:factor-rate}, and the four-linear-margin case of
+Conjecture~\ref{conj:long-step}, remain, and need a
 comparison that is not this product.
+The matching-gap deletion of Theorem~\ref{thm:long-linear-matching-gap}
+is already past \(\sqrt{n}\) with three linear margins.
 
 \paragraph{Workstream B: the peel and the Chernoff window.}
 Proposition~\ref{prop:target-cn} is the scale of item (iii): the constant
@@ -1899,8 +1946,9 @@ Conjecture~\ref{conj:factor-moment} at degrees \(d+L\) and \(n-1-d\), under
 linear margins.
 That implication is Theorem~\ref{thm:long-from-moment}.
 Theorem~\ref{thm:long-sparse-near-complete} settles the sparse-to-near-complete
-regime; Remark~\ref{rem:long-complement-empty} records that the near-complete
-moment does not supply both ends under linear margins.
+regime; Theorem~\ref{thm:long-linear-matching-gap} settles the linear-to-\((n-2)\)
+regime with gap \(2\). Remark~\ref{rem:long-complement-empty} records that the
+near-complete moment does not supply both ends under four linear margins.
 
 \section*{Acknowledgements}
 The exact \(+1\) theorem, the recorded reductions, and the blocked attacks
