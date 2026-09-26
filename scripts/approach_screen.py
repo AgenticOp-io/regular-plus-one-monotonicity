@@ -1,6 +1,6 @@
 """Stop a proof approach before expanding it.
 
-Uses only obstructions already proved in paper/main.tex. A block means that
+Uses only obstructions already proved in v1/paper/main.tex. A block means that
 approach cannot close the claim. A clear result is not a proof.
 
   python scripts/approach_screen.py middle

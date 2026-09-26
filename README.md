@@ -1,40 +1,40 @@
-# Regular +1 monotonicity (v1.0)
+# Regular +1 monotonicity
 
-Private AgenticOp-io research repo. Canonical manuscript: `paper/main.tex`.
+Private AgenticOp-io research repo. Two manuscripts live in this tree.
 
-**v1.0 is the exact \(+1\) paper.** The theorem is a coupling \(G(n,d)\subset G(n,d+1)\) whenever \(d\to\infty\) and \(n-d\to\infty\), assuming Gao arXiv:2012.01492 Theorem 6 on the sublinear and dense sides. Chernoff sandwiching, peel identification, and long \(L\)-factors are stated as conjectures and live in the sequel project `regular-plus-one-sequel`.
+| Tree | Status | Manuscript |
+| --- | --- | --- |
+| `v1/` | frozen 1.0.0 | exact \(+1\) at every growing degree |
+| `v2/` | 2.0.0-dev | Chernoff sandwich, peel ID, long factors |
 
-## Main results (proved)
-
-1. **Exact +1** at every growing degree (`thm:plus-one`).
-2. **Short-range nesting** \(G(n,d)\subset G(n,D)\) when the gap is below the chain length at degree \(d\).
-3. **Matching-count chains**, including high-moment windows of every exponent strictly below \(1/2\), and linear-band chains of length \(o(n^{2/5})\).
-4. **Quantitative sandwich** rates \(1/9\), \(1/5\), and process-optimal \(1/3\).
-5. **Reductions** (not closes): BIM process conjecture \(\Rightarrow\) Q; factor-moment \(\Rightarrow\) long-step; container identification \(\Rightarrow\) Chernoff increments.
+Do not write v2 theorems into `v1/paper/main.tex`. Do not retitle a v2
+conjecture unless `v2/paper/main.tex` has a proof.
 
 ## Layout
 
 ```
-paper/     LaTeX (deliverable)
-notes/     workshop ledger
-scripts/   Wolfram checker and approach screen
-src/       experiments
-archive/   chat history
+v1/paper/     v1.0 LaTeX (deliverable sent for comment)
+v1/notes/     v1.0 workshop
+v2/paper/     v2.0 LaTeX (open problems until a proof lands)
+v2/notes/     v2.0 workshop
+scripts/      Wolfram checker and approach screen (shared)
+archive/      chat history
 ```
 
 ## Build
 
 ```bash
-pdflatex paper/main.tex
-pdflatex paper/main.tex
+pdflatex v1/paper/main.tex
+pdflatex v2/paper/main.tex
 ```
 
-MiKTeX on this machine: `pdflatex` from the `paper/` directory, twice.
+MiKTeX on this machine: run `pdflatex` twice from the chosen `paper/` directory.
 
 ## Policy
 
-Math intended as a theorem lives in `paper/main.tex`. New closed-form identities are checked with `python scripts/wolfram_check.py` (see `.cursor/rules/`). The Wolfram app id stays in `.wolfram-appid` and is not committed.
+New closed-form identities go through `python scripts/wolfram_check.py`.
+For v2 work append to `v2/notes/wolfram-checks.md`.
+The Wolfram app id stays in `.wolfram-appid` and is not committed.
 
-## Sequel
-
-`../regular-plus-one-sequel` — Conjectures Q, config-split, residual-moment, factor-moment, factor-rate, and long-step. Do not import those as theorems into this repo.
+The standalone directory `../regular-plus-one-sequel` was the first sequel
+copy. Active 2.0 work is `v2/` in this repo.

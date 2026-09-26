@@ -1,0 +1,129 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{lmodern}
+\usepackage[colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{microtype}
+
+\title{Nesting random regular graphs, II:\\
+Chernoff sandwiching and long factors}
+\author{David Peterson\\
+AgenticOps\\
+\texttt{david@agenticop.io}}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newcommand{\Gnp}{G(n,p)}
+\newcommand{\Gnd}{G(n,d)}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\dTV}{d_{\mathrm{TV}}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The companion paper~\cite{PlusOneV1} proves that uniform random regular graphs
+satisfy exact \(+1\) nesting at every growing degree.
+This manuscript collects the remaining problems: a Chernoff-scale sandwich,
+identification of the matching peel with the uniform regular law, and
+concentration of long \(L\)-factors past \(\sqrt{n}\).
+No new theorem is claimed here until a proof in this file supports it.
+\end{abstract}
+
+\section{Companion}
+
+\begin{theorem}[v1.0, recorded]
+\label{thm:plus-one-recorded}
+Let \(n\) be even and let \(d=d(n)\) satisfy \(d\to\infty\), \(n-d\to\infty\), and \(dn\) even.
+Assume~\cite[Theorem~6]{Gao20} whenever \(\min(d,n-d)=o(n)\).
+Then there is a coupling of \(G_d\sim\Gnd\) and \(G_{d+1}\sim G(n,d+1)\) with
+\(\PP(G_d\subset G_{d+1})=1-o(1)\).
+\end{theorem}
+
+This is Theorem~1 of~\cite{PlusOneV1}. The sandwich rates \(1/9\), \(1/5\), and
+process-optimal \(1/3\), the hybrid container, and the matching peel also live
+in that paper. They do not imply the conjectures below.
+
+\section{Open problems}
+
+\begin{conjecture}[Quantitative sandwich]
+\label{conj:Q}
+There is a constant \(C\) such that for every \(d\ge C\log n\) and
+\(\varepsilon\ge C\sqrt{(\log n)/d}\), a uniform \(d\)-regular graph can be coupled
+between \(G\bigl(n,(1-\varepsilon)d/n\bigr)\) and \(G\bigl(n,(1+\varepsilon)d/n\bigr)\)
+with failure probability \(o(1)\).
+\end{conjecture}
+
+\begin{conjecture}[Host-restricted splitting]
+\label{conj:config-split}
+The law of the \((d+m)\)-regular graph obtained by peeling an \(m\)-factor from
+the rate-\(1/3\) residual is within total variation \(o(1)\) of \(\mu_{d+m}\),
+for \(m=\Theta\sqrt{d\log n}\).
+\end{conjecture}
+
+\begin{conjecture}[Residual moment]
+\label{conj:residual-moment}
+The number of \(m\)-factors of the BIM residual \(R=G^*_0\setminus G\),
+conditionally on \(G\), has relative variance \(o(1)\).
+\end{conjecture}
+
+\begin{conjecture}[Factor second moment past \(\sqrt{n}\)]
+\label{conj:factor-moment}
+Let \(n\) be even, let \(\min(D,n-D)=\Theta(n)\), and let \(L\) satisfy \(Ln\) even,
+\(L\le D\), and \(n^{1/2}=o(L)=o(n)\).
+The number \(Z\) of \(L\)-factors of a uniform \(D\)-regular graph satisfies
+\(\Var Z/(\EE Z)^2=o(1)\).
+\end{conjecture}
+
+\begin{conjecture}[Factor moment at the repetition scale]
+\label{conj:factor-rate}
+Under the hypotheses of Conjecture~\ref{conj:factor-moment},
+\(\Var Z/(\EE Z)^2=o(L^3/n^3)\).
+\end{conjecture}
+
+\begin{conjecture}[One deletion of a long factor]
+\label{conj:long-step}
+There is a coupling of a \(d\)-regular graph and a \((d+L)\)-regular graph with
+\(n^{1/2}=o(L)=o(n)\) and \(\min(d,n-d,d+L,n-d-L)=\Theta(n)\) whose marginals
+are \(o(1)\) from uniform.
+\end{conjecture}
+
+\section{What v1.0 already forbids}
+
+A hybrid almost-regular supergraph at Chernoff scale is at total variation
+bounded away from both the binomial graph and \(\mu_D\).
+The origin-plus-binomial average of the \(L\)-factor second moment is not the
+relative variance: exact pairwise mass cancels the leftover cubic, and the
+remaining-degree main term is an unsigned \(O(L^3/n)\).
+An independent Bernoulli residual has a diverging factor-count second moment
+and is not the BIM residual.
+These blocks are proved in~\cite{PlusOneV1}. They are not attacks to retry here.
+
+\begin{thebibliography}{9}
+
+\bibitem{PlusOneV1}
+D.~Peterson,
+\emph{Nesting random regular graphs: exact \(+1\) at every growing degree, long chains, and a quantitative sandwich program},
+companion manuscript v1.0, 2026.
+
+\bibitem{Gao20}
+P.~Gao,
+\emph{Triangles and subgraph probabilities in random regular graphs},
+arXiv:2012.01492, 2020.
+
+\bibitem{BIM25}
+N.~Behague, D.~Il'kovi\v{c}, and R.~Montgomery,
+\emph{A proof of the Kim--Vu sandwich conjecture},
+arXiv:2510.20765, 2025.
+
+\end{thebibliography}
+
+\end{document}
