@@ -10,11 +10,12 @@ v1.0 is sent. Active manuscript: `v2/paper/main.tex`.
 | --- | --- |
 | factor-complementary | Linear host, \(D-L=o(n^{1/3})\), including past \(\sqrt{n}\) |
 | factor-rate-complementary | Same; \(O(1/n)\) when \(D-L=1\) |
-| factor-dense-host | Near-complete host, McKay range \(\ell(s+\ell)^2/n=o(1)\) (so \(n-D=o(n^{1/2})\)) |
+| factor-dense-host | Near-complete host, McKay range \(\ell(s+\ell)^2/n=o(1)\) for every \(\ell\ge 1\) (incl.\ co-length one with \(n-D=o(n^{1/2})\)) |
 | factor-rate-dense-host | Same |
 | factor-sublinear-colength-one | Co-length one on every host \(D=o(n)\), including past \(\sqrt{n}\) |
 
-Tools: host complementation \(Z_L=Z_{D-L}\); v1 factor-third; free-extension flatness; sublinear matching variance.
+Tools: host complementation \(Z_L=Z_{D-L}\); v1 factor-third; McKay
+enumeration (McK85) / free-extension flatness; sublinear matching variance.
 
 ### Long deletions past \(\sqrt{n}\)
 
