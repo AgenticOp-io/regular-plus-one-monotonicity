@@ -757,3 +757,33 @@ Query: d+(n-1-d-ell)-(n-1-ell) [exact rational fallback]
 [fallback]
 0 for all n,d,ell
 
+
+
+Query: Simplify[(n-2)-d - (n-2-d)]
+[Input interpretation]
+simplify | (n - 2) - d - (n - 2 - d)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[n-d-(n-2-d)]
+[Input interpretation]
+simplify | n - d - (n - 2 - d)
+[Result]
+2
+[Quotient and Remainder]
+2 = 2 × 1 + 0
+
+
+Query: Limit[(n-2-n/3)/Sqrt[n], n->Infinity]
+[Limit]
+lim_(n->∞) (n - 2 - n/3)/sqrt(n) = ∞
+
+
+Query: Assuming[n>4, (1/n)/(1/4)^2 == 16/n]
+[Input]
+Assuming[n>4, (1/n)/(1/4)^2 = 16/n]
+[Result]
+True

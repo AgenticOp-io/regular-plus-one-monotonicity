@@ -11,12 +11,17 @@ Bar is 2.0. v1.0 is sent.
   \(L=\Theta(n)\) forces \(o(1)=o(L^3/n^3)\).
 - Long deletion past \(\sqrt{n}\) from degree \(o(n^{1/3})\) to near-complete
   (Theorem long-sparse-near-complete): free split plus complementation.
+- Long deletion past \(\sqrt{n}\) from every linear degree to an \((n-2)\)-regular
+  graph (Theorem long-linear-matching-gap): matching concentration in the
+  complement plus \(S_n\)-transitivity on perfect matchings. Three margins
+  linear; gap \(n-d-L=2\).
 
 ## Still open (named)
 
 - Q, config-split, residual-moment: fully open.
 - factor-moment, factor-rate: open only for \(\min(L,D-L)=\omega(n^{1/3})\).
-- long-step: open under linear margins; sparse-to-near-complete is closed.
+- long-step: open under four linear margins; sparse-to-near-complete and
+  linear-to-\((n-2)\) are closed.
 
 ## Recorded negatives (not conjecture closes)
 
@@ -34,4 +39,4 @@ Bar is 2.0. v1.0 is sent.
 
 Lower-tail of \(N\) at \(1/c_n\) under the true tilted \(\mu_D\) dependence,
 or a signed comparison on the balanced factor range
-\(\min(L,D-L)=\omega(n^{1/3})\), or linear-margin long-step.
+\(\min(L,D-L)=\omega(n^{1/3})\), or four-linear-margin long-step.
