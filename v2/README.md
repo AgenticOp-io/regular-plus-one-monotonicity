@@ -13,7 +13,7 @@ that supports the claim.
 | Q | Chernoff sandwich \(\varepsilon\asymp\sqrt{(\log n)/d}\) | Open |
 | config-split | Peel law \(\mathcal{L}_{d,m}\) vs \(\mu_{d+m}\) | Open (iii on \(D\in\{1,n-2\}\) only) |
 | residual-moment | Second moment of \(m\)-factors of the BIM residual | Open |
-| factor-moment | Balanced \(L\)-factor second moment past \(\sqrt{n}\) | Open only for \(\min(L,D-L)=\omega(n^{1/3})\) on linear hosts; near-complete factors/hosts and sublinear co-length one closed |
+| factor-moment | Balanced \(L\)-factor second moment past \(\sqrt{n}\) | Open only for \(\min(L,D-L)=\omega(n^{1/3})\) on linear hosts; near-complete factors/hosts (incl.\ fixed co-length) and sublinear co-length one closed |
 | factor-rate | Relative variance \(o(L^3/n^3)\) on that balanced range | Same open/closed split as factor-moment |
 | long-step | One deletion with \(L=\omega(\sqrt{n})\) and linear margins | Open under four linear margins; sparse-to-near-complete and matching-gap-to-\((n-2)\) closed |
 
