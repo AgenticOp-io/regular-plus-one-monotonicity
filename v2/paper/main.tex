@@ -41,8 +41,11 @@ binomial-host subgraph count is not flattened by a first or second moment,
 and isolates the six named statements.
 Inside a \(D\)-regular host the \(L\)-factors are the \((D-L)\)-factors, so the
 factor second moment of~\cite{PlusOneV1} below \(n^{1/3}\) yields the same bound
-for near-complete lengths \(D-L=o(n^{1/3})\), including past \(\sqrt{n}\).
-The factor-rate conjecture holds on that side as well.
+for near-complete lengths \(D-L=o(n^{1/3})\) on linear hosts, including past
+\(\sqrt{n}\).
+Free-extension flatness yields the same bound for near-complete hosts
+\(n-D=o(n^{1/3})\).
+The factor-rate conjecture holds on both sides as well.
 A free split plus complementation yields a one-deletion of length \(\Theta(n)\)
 from degree \(o(n^{1/3})\) to a near-complete degree.
 The same complementation, fed by Dirac's theorem on the complement,
@@ -79,7 +82,9 @@ This paper does not re-prove the implications.
 It records them, adds the second-moment identity for the binomial-host
 subgraph count, and closes the near-complete side of the factor second-moment
 and factor-rate conjectures by complementation in the host
-(Theorems~\ref{thm:factor-complementary} and~\ref{thm:factor-rate-complementary}),
+(Theorems~\ref{thm:factor-complementary} and~\ref{thm:factor-rate-complementary})
+and by free-extension flatness for near-complete hosts
+(Theorems~\ref{thm:factor-dense-host} and~\ref{thm:factor-rate-dense-host}),
 together with long deletions past \(\sqrt{n}\) from sparse degrees
 (Theorem~\ref{thm:long-sparse-near-complete}) and from every degree
 \(d\le n/2-1\) to an \((n-2)\)-regular host
@@ -159,16 +164,18 @@ Let \(n\) be even, let \(\min(D,n-D)=\Theta(n)\), and let \(L\) satisfy \(Ln\) e
 \(L\le D\), \(n^{1/2}=o(L)=o(n)\), and \(\min(L,D-L)=\omega(n^{1/3})\).
 The number \(Z\) of \(L\)-factors of a uniform \(D\)-regular graph satisfies
 \(\Var Z/(\EE Z)^2=o(1)\).
-The complementary range \(\min(L,D-L)=o(n^{1/3})\) is
-Theorem~\ref{thm:factor-complementary}.
+The complementary range \(\min(L,D-L)=o(n^{1/3})\) on linear hosts is
+Theorem~\ref{thm:factor-complementary}; near-complete hosts are
+Theorem~\ref{thm:factor-dense-host}.
 \end{conjecture}
 
 \begin{conjecture}[Factor moment at the repetition scale]
 \label{conj:factor-rate}
 Under the hypotheses of Conjecture~\ref{conj:factor-moment},
 \(\Var Z/(\EE Z)^2=o(L^3/n^3)\).
-The complementary range \(\min(L,D-L)=o(n^{1/3})\) is
-Theorem~\ref{thm:factor-rate-complementary}.
+The complementary range \(\min(L,D-L)=o(n^{1/3})\) on linear hosts is
+Theorem~\ref{thm:factor-rate-complementary}; near-complete hosts are
+Theorem~\ref{thm:factor-rate-dense-host}.
 \end{conjecture}
 
 \begin{conjecture}[One deletion of a long factor]
@@ -240,6 +247,50 @@ If \(D-L=1\), Proposition~\ref{prop:factor-complement-bijection} identifies \(Z\
 the number of perfect matchings of a uniform \(D\)-regular graph.
 Proposition~band-rate of~\cite{PlusOneV1}, applied with host degree \(D\), supplies
 relative variance \(O(1/n)\).
+\end{proof}
+
+\begin{theorem}[Factor second moment for near-complete hosts]
+\label{thm:factor-dense-host}
+Let \(n\) be even, let \(s,\ell\to\infty\) satisfy \(sn\) and \(\ell n\) even,
+\(\ell\le s\), and \(s+\ell=o(n^{1/3})\). Set \(D:=n-1-s\) and \(L:=D-\ell\).
+Let \(Z\) be the number of \(L\)-factors of a uniform random \(D\)-regular graph.
+Then \(\Var Z/(\EE Z)^2=o(1)\). In particular \(L=\Theta(n)\) with
+\(n^{1/2}=o(L)=o(n)\), while \(n-D=s=o(n^{1/3})\) lies outside the linear-host
+hypothesis of Theorem~\ref{thm:factor-complementary}.
+\end{theorem}
+
+\begin{proof}
+Proposition~\ref{prop:factor-complement-bijection} gives \(Z=Z_\ell\) pathwise on every
+\(D\)-regular host. Complementation is a bijection between \(D\)-regular graphs and
+\(s\)-regular graphs; writing \(S\) for the complement of the host, an \(\ell\)-factor
+of the host is precisely an \(\ell\)-regular graph edge-disjoint from \(S\). Thus
+\(Z_\ell\) equals the free-extension count \(N_\ell(S)\) of~\cite{PlusOneV1}.
+The free-extension flatness lemma of~\cite{PlusOneV1} at length \(\ell\) against an
+\(s\)-regular host applies because
+\[
+\frac{\ell(s+\ell)^2}{n}=o(1)
+\]
+throughout \(s+\ell=o(n^{1/3})\): the identity
+\((n^{1/3})\cdot(n^{1/3})^2/n=1\) was checked, so any little-o forces the display
+to \(0\). Hence \(N_\ell(S)=(1+o(1))\,N_\ell(S')\) for every pair of \(s\)-regular
+graphs \(S,S'\), and \(Z\) is \((1+o(1))\) times a deterministic constant as the host
+varies over \(\mu_D\). Relative variance \(o(1)\) follows. The identity
+\(L=(n-1-s)-\ell\) with \(s+\ell=o(n^{1/3})\) forces \(L=\Theta(n)\); the identity
+\(\lim_{n\to\infty}(n-1-2n^{1/4})/n^{1/2}=\infty\) was checked, so
+\(n^{1/2}=o(L)=o(n)\).
+\end{proof}
+
+\begin{theorem}[Factor rate for near-complete hosts]
+\label{thm:factor-rate-dense-host}
+Under the hypotheses of Theorem~\ref{thm:factor-dense-host} one has
+\[
+\frac{\Var Z}{(\EE Z)^2}=o\Bigl(\frac{L^3}{n^3}\Bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Theorem~\ref{thm:factor-dense-host} supplies \(\Var Z/(\EE Z)^2=o(1)\) and
+\(L=\Theta(n)\), so \(o(1)=o(L^3/n^3)\).
 \end{proof}
 
 \begin{remark}[Long-step is empty on the complementary side]
@@ -1876,8 +1927,11 @@ The identified main term after a typical matching host is still
 \(p(1+\Theta(L/n))\).
 That product does not produce a theorem past \(L=o(n^{1/3})\).
 Complementation in the host does: Theorems~\ref{thm:factor-complementary}
-and~\ref{thm:factor-rate-complementary} settle the near-complete side
-\(D-L=o(n^{1/3})\).
+and~\ref{thm:factor-rate-complementary} settle the near-complete factor side
+\(D-L=o(n^{1/3})\) on linear hosts.
+Free-extension flatness does: Theorems~\ref{thm:factor-dense-host} and
+~\ref{thm:factor-rate-dense-host} settle near-complete hosts
+\(n-D=o(n^{1/3})\).
 The balanced range of Conjectures~\ref{conj:factor-moment} and
 \ref{conj:factor-rate}, and the four-linear-margin case of
 Conjecture~\ref{conj:long-step}, remain, and need a
@@ -1972,7 +2026,8 @@ Replacing \(R\) by an independent Bernoulli graph is blocked.
 A signed generating function for the intersection of two \(L\)-factors of a
 linear-degree host, with remainder \(o(1)\) throughout the balanced range
 \(\min(L,D-L)=\omega(n^{1/3})\).
-The near-complete side is Theorem~\ref{thm:factor-complementary}.
+The near-complete factor side is Theorem~\ref{thm:factor-complementary}; the
+near-complete host side is Theorem~\ref{thm:factor-dense-host}.
 The unsigned sequential product is \(\exp(O(L^3/n))\), which is the size of
 the signal past \(n^{1/3}\).
 The signed matching-host term of Proposition~\ref{prop:signed-matching-host}
@@ -1982,7 +2037,8 @@ Binomial leftover plus pairwise is not that generating function.
 \paragraph{Conjecture~\ref{conj:factor-rate}.}
 The same signed expansion, to remainder \(o(L^3/n^3)\), on the balanced
 range.
-The near-complete side is Theorem~\ref{thm:factor-rate-complementary}.
+The near-complete factor side is Theorem~\ref{thm:factor-rate-complementary};
+the near-complete host side is Theorem~\ref{thm:factor-rate-dense-host}.
 The formal cubic \(L^3/(4n)\) is not the relative variance.
 
 \paragraph{Conjecture~\ref{conj:long-step}.}

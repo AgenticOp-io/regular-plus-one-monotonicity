@@ -9,8 +9,11 @@ balanced lengths.
 
 Complementation in the host: \(Z_L=Z_{D-L}\) pathwise. With the v1 moment at
 length \(D-L=o(n^{1/3})\), the factor second moment and factor rate hold for
-near-complete \(L=D-o(n^{1/3})\), including past \(\sqrt{n}\)
-(Theorems factor-complementary, factor-rate-complementary in `v2/paper/main.tex`).
+near-complete \(L=D-o(n^{1/3})\) on linear hosts, including past \(\sqrt{n}\)
+(Theorems factor-complementary, factor-rate-complementary).
+Free-extension flatness on the sparse complement: the same bounds for
+near-complete hosts \(n-D=o(n^{1/3})\) (Theorems factor-dense-host,
+factor-rate-dense-host).
 
 Free split plus complementation: long deletion of length \(\Theta(n)\) from
 degree \(o(n^{1/3})\) to near-complete (Theorem long-sparse-near-complete).

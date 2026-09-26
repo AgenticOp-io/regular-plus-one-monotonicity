@@ -818,3 +818,17 @@ Assuming[n>4, n - 1 - (n/2 - 1)>=n/2]
 n/2>=n/2
 [Alternate form]
 True
+
+
+Query: Simplify[(n^(1/3))*(n^(1/3))^2/n]
+[Input interpretation]
+simplify | n^(1/3) × (n^(1/3))^2/n
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: Limit[(n-1-2*n^(1/4))/Sqrt[n], n->Infinity]
+[Limit]
+lim_(n->∞) (n - 1 - 2 n^(1/4))/sqrt(n) = ∞
