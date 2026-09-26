@@ -538,6 +538,24 @@ CHECKS = {
             "Proposition packing-miss: edge-disjoint alteration misses the bulk scale.",
         ),
     },
+    "tilt-dominates-delta": {
+        "half": (
+            "block",
+            "Proposition tilt-gap: on n=6, D=2, p=1/2 the p^{-K01-K02} tilt decreases E[p^{-Delta}] by factor ~0.55. Stochastic domination of Delta under the tilt is false on that instance; the mu_D tilt comparison remains open.",
+        ),
+        "linear": (
+            "block",
+            "Proposition tilt-gap: tilt need not increase E[p^{-Delta}]; n=6 counterexample to domination.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition tilt-gap: tilt need not increase E[p^{-Delta}]; n=6 counterexample to domination.",
+        ),
+        "sparse": (
+            "block",
+            "Proposition tilt-gap: tilt need not increase E[p^{-Delta}]; n=6 counterexample to domination.",
+        ),
+    },
 }
 
 
