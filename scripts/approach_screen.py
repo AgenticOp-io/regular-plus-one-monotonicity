@@ -520,6 +520,24 @@ CHECKS = {
             "Proposition azuma-miss: crude edge-exposure Azuma misses the bulk lower tail.",
         ),
     },
+    "disjoint-packing-as-bulk": {
+        "half": (
+            "block",
+            "Proposition packing-miss: an edge-disjoint packing of D-factors off G0 has size O(n/D), so expected contained count is O(n/D)p^{Dn/2}, which is exp(-Theta(nD log(n/D))) below the bulk |Omega|p^{Dn/2}.",
+        ),
+        "linear": (
+            "block",
+            "Proposition packing-miss: edge-disjoint alteration misses the bulk scale.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition packing-miss: edge-disjoint alteration misses the bulk scale.",
+        ),
+        "sparse": (
+            "block",
+            "Proposition packing-miss: edge-disjoint alteration misses the bulk scale.",
+        ),
+    },
 }
 
 

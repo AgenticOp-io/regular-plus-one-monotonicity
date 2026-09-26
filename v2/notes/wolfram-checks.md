@@ -617,3 +617,35 @@ order | n^0
 (generalized Puiseux series)
 [Series representation at n = ∞]
 -(D^2 (D n + n - 1) log(1/(D n + e D n)))/(2 (n - 1)^2)
+
+
+Query: Simplify[((1-u)^2+2*u*(1-u)/v+u^2/v^2)/((1-u)+u/v)^2]
+[Input interpretation]
+simplify | ((1 - u)^2 + 2 u × (1 - u)/v + u^2/v^2)/((1 - u) + u/v)^2
+[Results]
+1
+[Results]
+u^2/(v^2 (u/v - u + 1)^2) - (2 u^2)/(v (u/v - u + 1)^2) + u^2/(u/v - u + 1)^2 + (2 u)/(v (u/v - u + 1)^2) - (2 u)/(u/v - u + 1)^2 + 1/(u/v - u + 1)^2
+
+
+Query: Series[Binomial[n,2]*Log[1-(D/(n-1))^2+((D/(n-1))^2)/((1+e)*D/n)], {n, Infinity, 0}]
+[Input interpretation]
+series | binomial(n, 2) log(1 - (D/(n - 1))^2 + (D/(n - 1))^2/((1 + e) × D/n)) | point | n = ∞
+order | n^0
+[Series expansion at n = ∞]
+(D n)/(2 + 2 e) - (D ((3 + 4 e + 2 e^2) D - 2 (1 + e)))/(4 (1 + e)^2) + O((1/n)^1)
+(Taylor series)
+
+
+Query: Simplify[((1-u)^2+2*u*(1-u)/v+u^2/v^2)-((1-u)+u/v)^2]
+[Input interpretation]
+simplify | ((1 - u)^2 + 2 u × (1 - u)/v + u^2/v^2) - ((1 - u) + u/v)^2
+[Expanded form]
+0
+
+
+Query: rational fallback: (binom(n,2)-s)*log(1-pi^2+pi^2/p) ~ Dn/(2(1+e))
+[fallback]
+n=1000 D=20 logRV=8644.8467 target=9090.91
+n=10000 D=100 logRV=443104.6772 target=454545.45
+n=100000 D=200 logRV=9044655.6095 target=9090909.09
