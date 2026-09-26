@@ -25,6 +25,7 @@ enumeration (McK85) / free-extension flatness; sublinear matching variance.
 | long-matching-gap | Every \(d\le n/2-1\) to degree \(n-2\) (Dirac + \(S_n\)-transitivity); linear band \(d>n/2-1\) via matching concentration |
 | long-matching-into-dirac | Matching into every host \(D\ge n/2\) (Dirac + \(S_n\)-transitivity) |
 | long-matching-growing | Matching into every host \(D\to\infty\) (band-rate or sublinear variance below \(n/2\)) |
+| long-hamilton-dirac | Uniform Hamilton cycle inside every host \(D\ge n/2\); marginal is not \(\mu_2\) |
 
 ### Selection (iii)
 
