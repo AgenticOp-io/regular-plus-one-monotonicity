@@ -2,33 +2,50 @@
 
 v1.0 is sent. Active manuscript: `v2/paper/main.tex`.
 
-## Workstream A — sequential product closed as a negative; complementation positive
+## Closed (do not reopen)
+
+### Factor second moment / rate (short complementary length)
+
+| Theorem | Range |
+| --- | --- |
+| factor-complementary | Linear host, \(D-L=o(n^{1/3})\), including past \(\sqrt{n}\) |
+| factor-rate-complementary | Same; \(O(1/n)\) when \(D-L=1\) |
+| factor-dense-host | Near-complete host, McKay range \(\ell(s+\ell)^2/n=o(1)\) (so \(n-D=o(n^{1/2})\)) |
+| factor-rate-dense-host | Same |
+| factor-sublinear-colength-one | Co-length one on every host \(D=o(n)\), including past \(\sqrt{n}\) |
+
+Tools: host complementation \(Z_L=Z_{D-L}\); v1 factor-third; free-extension flatness; sublinear matching variance.
+
+### Long deletions past \(\sqrt{n}\)
+
+| Theorem | Range |
+| --- | --- |
+| long-sparse-near-complete | \(d+\ell=o(n^{1/3})\) to degree \(n-1-\ell\) |
+| long-matching-gap | Every \(d\le n/2-1\) to degree \(n-2\) (Dirac + \(S_n\)-transitivity); linear band \(d>n/2-1\) via matching concentration |
+
+### Selection (iii)
+
+| Result | Range |
+| --- | --- |
+| cor:iii-one-orbit | \(D\in\{1,n-2\}\) (single \(S_n\) orbit); not a Chernoff-scale config-split close |
+
+## Workstream A — balanced factors and four-linear long-step
 
 Signed Gao after a matching host leaves \(2t/(Ln)\). Not past \(n^{1/3}\) for
-balanced lengths.
+balanced lengths. Do not retry: binomial-PGF-without-pairwise,
+quadratic-PGF-without-leftover, origin-at-typical-k, signed-gao-matching-host.
 
-Complementation in the host: \(Z_L=Z_{D-L}\) pathwise. With the v1 moment at
-length \(D-L=o(n^{1/3})\), the factor second moment and factor rate hold for
-near-complete \(L=D-o(n^{1/3})\) on linear hosts, including past \(\sqrt{n}\)
-(Theorems factor-complementary, factor-rate-complementary).
-Free-extension flatness on the sparse complement: the same bounds for
-near-complete hosts throughout \(\ell(s+\ell)^2/n=o(1)\)
-(Theorems factor-dense-host, factor-rate-dense-host), so \(n-D\) may be as
-large as \(o(n^{1/2})\).
-Sublinear matching variance: co-length one on every host \(D=o(n)\)
-(Theorem factor-sublinear-colength-one), including past \(\sqrt{n}\).
+Still missing:
+1. Signed (or other) second-moment comparison on
+   \(\min(L,D-L)=\omega(n^{1/3})\) with linear host — Conjectures
+   factor-moment and factor-rate.
+2. Four-linear-margin long-step — Conjecture long-step. Complementary moment
+   cannot feed both ends (Remark long-complement-empty). Matching-gap needs a
+   single isomorphism type (gap \(2\) only).
 
-Free split plus complementation: long deletion of length \(\Theta(n)\) from
-degree \(o(n^{1/3})\) to near-complete (Theorem long-sparse-near-complete).
-Matching concentration plus \(S_n\)-transitivity, with Dirac on the complement
-for every \(d\le n/2-1\): long deletion to an \((n-2)\)-regular graph
-(Theorem long-matching-gap). Four-linear-margin long-step stays open:
-complementary moment cannot feed both ends, and the matching-gap argument
-needs a single isomorphism type.
+## Workstream B — peel, residual, Chernoff Q
 
-## Workstream B — hard gaps recorded
-
-Blocked / identified:
+Blocked / identified (do not retry):
 - Target \(c_n=1/(|\Omega|p^{Dn/2})\); contain-first mean is biased.
 - \(S_n\) to iso-types only; \(d\nu/d\mu\propto\mathbb{E}[1/N\mid\mathrm{containment}]\).
 - Edges under \(\nu_D\) match \(\mu_D\); triangles need flat class weights.
@@ -36,24 +53,41 @@ Blocked / identified:
   \(\bigl((1+\varepsilon)/(2+\varepsilon)\bigr)^3\pi^3\), not \(\pi^3\).
 - Switches: \(N\to\infty\), logarithmic bound only \(D^{O(1)}\);
   depth-\(D\) BFS only \(\exp(O(D\log D))\), still below bulk.
-- Sandwich posterior ≠ first peel flatness.
+- Sandwich posterior ≠ first peel flatness; free-flat ≠ residual flatness.
 - Second moment of \(N\): pairwise \(p^{-(K_{12}-K_{012})}\).
-- Free-flat ≠ residual flatness.
-- Regular-plus-sprinkle: degree variance \(\Theta(\varepsilon D)\) vs \(\Theta(D)\);
-  TV→1 as \(\varepsilon\to 0\); posterior uniformity does not transfer.
-
+- Bernoulli residual diverges; regular-plus-sprinkle TV stays positive.
 - Exact \(n=6\), \(D=2\): inverse-count ratio across iso-types in \([1.07,1.16]\);
-  triangle \(\nu/\mu\in[0.885,0.942]\) (ledger `v2/notes/small-n-inv.md`).
-- Literal \(Z_d\) flatness fails on \(K_6\) at \((d,m)=(1,1)\): \(Z_1(C_6)=2\),
-  \(Z_1(C_3\cup C_3)=0\).
+  triangle \(\nu/\mu\in[0.885,0.942]\); literal \(Z_1\) not flat on \(K_6\).
 
 Still missing (no fake closes):
 1. Lower-tail of \(N\) at threshold \(1/c_n\) (Proposition iii-as-tail) —
    not a moment about \(\mathbb{E}[N]\), not near-disjoint factors, not switches.
-2. Three peel-weight flatnesses on \(G^*_0\) (asymptotic \(Z_d\), not literal;
-   first flatness is not the sandwich posterior).
-3. Second moment on actual \(R=G^*_0\setminus G\).
+2. Three peel-weight flatnesses on \(G^*_0\) (asymptotic \(Z_d\), not literal).
+3. Second moment on actual \(R=G^*_0\setminus G\) (nearly regular of scale
+   \(\varepsilon_0 d\)).
 4. Binomial thinning or BIM Conjecture 1.3 — not hybrid, not sprinkle.
+   That is Conjecture Q at Chernoff scale.
+
+## Named status
+
+| Conjecture | Status |
+| --- | --- |
+| Q | Open |
+| config-split | Open (iii on single orbits only) |
+| residual-moment | Open |
+| factor-moment | Open only for \(\min(L,D-L)=\omega(n^{1/3})\) on linear hosts |
+| factor-rate | Open only on that same balanced range |
+| long-step | Open under four linear margins |
+
+## Next
+
+Priority order:
+1. Signed comparison on balanced \(\min(L,D-L)=\omega(n^{1/3})\) (Workstream A).
+2. Lower-tail of \(N\) at \(1/c_n\) under true \(\mu_D\) dependence (Workstream B).
+3. Four-linear-margin long-step, or residual-moment on the nearly regular window.
+
+Run `python scripts/approach_screen.py` before expanding an attack.
+Append Wolfram checks to `v2/notes/wolfram-checks.md`.
 
 ## v1
 

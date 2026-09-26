@@ -8,19 +8,16 @@ that supports the claim.
 
 ## Targets
 
-| Label | Claim |
-| --- | --- |
-| Q | Chernoff sandwich \(\varepsilon\asymp\sqrt{(\log n)/d}\) |
-| config-split | Peel law \(\mathcal{L}_{d,m}\) vs \(\mu_{d+m}\) |
-| residual-moment | Second moment of \(m\)-factors of the BIM residual |
-| factor-moment | Balanced \(L\)-factor second moment: \(n^{1/2}=o(L)\) and \(\min(L,D-L)=\omega(n^{1/3})\) (near-complete side closed) |
-| factor-rate | Relative variance \(o(L^3/n^3)\) on that balanced range (near-complete side closed) |
-| long-step | One deletion with \(L=\omega(\sqrt{n})\) and linear margins (sparse-to-near-complete closed) |
+| Label | Claim | Status |
+| --- | --- | --- |
+| Q | Chernoff sandwich \(\varepsilon\asymp\sqrt{(\log n)/d}\) | Open |
+| config-split | Peel law \(\mathcal{L}_{d,m}\) vs \(\mu_{d+m}\) | Open (iii on \(D\in\{1,n-2\}\) only) |
+| residual-moment | Second moment of \(m\)-factors of the BIM residual | Open |
+| factor-moment | Balanced \(L\)-factor second moment past \(\sqrt{n}\) | Open only for \(\min(L,D-L)=\omega(n^{1/3})\) on linear hosts; near-complete factors/hosts and sublinear co-length one closed |
+| factor-rate | Relative variance \(o(L^3/n^3)\) on that balanced range | Same open/closed split as factor-moment |
+| long-step | One deletion with \(L=\omega(\sqrt{n})\) and linear margins | Open under four linear margins; sparse-to-near-complete and matching-gap-to-\((n-2)\) closed |
 
-v1.0 is sent. This tree is the bar. The reductions are already proved;
-this tree must supply a missing hypothesis.
-
-Ordered jobs: `notes/PROGRAM.md`.
+Ordered jobs: `notes/PROGRAM.md`. Snapshot: `notes/STATUS.md`.
 
 ## Layout
 
