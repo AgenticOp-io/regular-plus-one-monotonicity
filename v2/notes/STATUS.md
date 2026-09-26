@@ -47,6 +47,10 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-Lower-tail of \(N\) at \(1/c_n\) under the true tilted \(\mu_D\) dependence,
-or a signed comparison on the balanced factor range
-\(\min(L,D-L)=\omega(n^{1/3})\), or four-linear-margin long-step.
+1. Signed comparison on balanced \(\min(L,D-L)=\omega(n^{1/3})\) (Workstream A).
+2. Lower-tail of \(N\) at \(1/c_n\) under true tilted \(\mu_D\) dependence
+   (Workstream B).
+3. Four-linear-margin long-step, or residual-moment on the nearly regular
+   window.
+
+See `PROGRAM.md` for the full closed/blocked ledger.
