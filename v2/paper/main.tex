@@ -503,6 +503,40 @@ Convexity of \(x\mapsto p^{-x}\) on \(\mathbb R\) for \(p\in(0,1)\) is Jensen's
 inequality, and the mean of \(\Delta\) is Proposition~\ref{prop:off-host}.
 \end{proof}
 
+\begin{proposition}[The remaining Chebyshev gap is a tilt comparison]
+\label{prop:tilt-gap}
+In the notation of Propositions~\ref{prop:host-count-second}
+and~\ref{prop:untilted-tilt}, write \(\mu\) for the law of two independent
+samples from \(\mu_D\) and \(\widetilde\mu\) for the reweighted law with
+Radon--Nikodym derivative proportional to \(p^{-K_{01}-K_{02}}\).
+The relative second-moment ratio equals \(\EE_{\widetilde\mu}[p^{-\Delta}]\).
+Under the edge-independence approximation,
+Proposition~\ref{prop:indep-rv-closed} evaluates that ratio as
+\(\exp(\Theta(Dn))\).
+Under the genuine \(\mu_D\)-law the untilted factor
+\(\EE_{\mu}[p^{-\Delta}]\) is already
+\(\exp\bigl(\Theta(D^2\log(n/D))\bigr)\) by Proposition~\ref{prop:untilted-tilt},
+but the tilt may raise or lower the expectation: on six vertices with
+\(D=2\) and \(p=1/2\), exact enumeration gives
+\[
+\frac{\EE_{\widetilde\mu}[p^{-\Delta}]}{\EE_{\mu}[p^{-\Delta}]}
+\approx
+0.551
+\]
+for a fixed Hamiltonian \(G_0\), so the tilt decreases the pairwise factor on
+that instance.
+A lower bound on \(\EE_{\widetilde\mu}[p^{-\Delta}]\) under \(\mu_D\) is
+therefore a separate correlation estimate, not a consequence of stochastic
+domination of \(\Delta\), and is not claimed here.
+\end{proposition}
+
+\begin{proof}
+The reweighting identity is the definition of the ratio in
+Proposition~\ref{prop:host-count-second}, since \(K_{01}\) and \(K_{02}\) are
+i.i.d.\ under \(\mu\) and the denominator normalises the tilt.
+The numerical ratio is exact summation over \(\Omega_2\times\Omega_2\).
+\end{proof}
+
 This does not disprove item (iii), and it does not close
 Conjecture~\ref{conj:config-split}.
 The peel still has to match \(\nu_D\), and the interesting range for that
@@ -1574,6 +1608,35 @@ The remaining routes are a proof of~\cite[Conjecture~1.3]{BIM25}, or a new
 coupling whose output is binomial rather than hybrid.
 \end{remark}
 
+\begin{proposition}[Residual moment lives on a nearly regular degree sequence]
+\label{prop:residual-nearly-reg}
+In the matching-peel setting of~\cite{PlusOneV1}, on the high-probability event
+of the residual lemmas there, every residual degree satisfies
+\[
+\deg_R(v)=(1+o(1))\varepsilon_0 d
+\]
+simultaneously in \(v\), with \(\varepsilon_0=\Theta((\log n/d)^{1/3})\) at the
+process-optimal rate.
+Conditionally on that degree sequence \(\mathbf{d}_R\), Conjecture~\ref{conj:residual-moment}
+asks for relative variance \(o(1)\) of the number of \(m\)-factors of a random
+graph with degree sequence \(\mathbf{d}_R\) constrained to the residual edge
+set---equivalently, concentration of \(N_m(R)\) inside the class of graphs with
+minimum degree \(\Theta(\varepsilon_0 d)\) and maximum degree
+\(O(\varepsilon_0 d)\).
+Replacing \(R\) by an independent Bernoulli graph of the same mean degree is
+blocked by~\cite[Proposition~bernoulli-moment]{PlusOneV1}.
+The remaining analytic target is a second-moment method (or small-subgraph
+conditioning) for \(m\)-factors in a host that is already degree-constrained at
+scale \(\varepsilon_0 d\), not an unconstrained binomial host.
+\end{proposition}
+
+\begin{proof}
+The degree assertion is~\cite[Lemma~residual-sharp]{PlusOneV1} (and the
+companion cut/expansion lemmas).
+The reformulation is the definition of Conjecture~\ref{conj:residual-moment}
+on that event, together with the blocked Bernoulli comparison.
+\end{proof}
+
 \section{Program}
 \label{sec:program}
 
@@ -1602,6 +1665,8 @@ comparison.
 Proposition~\ref{prop:indep-rv-closed} evaluates the relative second moment
 under edge independence as
 \((1-\pi^2+\pi^2 p^{-1})^{\binom{n}{2}-s}=\exp(\Theta(Dn))\).
+Proposition~\ref{prop:tilt-gap} isolates the remaining Chebyshev obstruction
+under \(\mu_D\) as a tilt comparison for \(\Delta=K_{12}-K_{012}\).
 Proposition~\ref{prop:near-disjoint-miss} blocks second-moment methods
 restricted to factors with intersection \(o(D^2/\log(nD))\).
 Proposition~\ref{prop:packing-miss} blocks edge-disjoint alteration.
@@ -1637,6 +1702,8 @@ Proposition~\ref{prop:nm-not-flat} shows that the second peel flatness fails
 literally for \((d,m)=(1,1)\) on six vertices.
 Proposition~\ref{prop:free-not-residual} keeps free complement flatness from
 supplying the peel.
+Proposition~\ref{prop:residual-nearly-reg} places Conjecture~\ref{conj:residual-moment}
+on the nearly regular residual degree sequence of scale \(\varepsilon_0 d\).
 Proposition~\ref{prop:zd-not-flat} shows that the third peel-weight flatness
 fails as a literal equality already on \(K_6\), so Conjecture~\ref{conj:config-split}
 needs asymptotic flatness of \(Z_d\) on the host.

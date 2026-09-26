@@ -649,3 +649,23 @@ Query: rational fallback: (binom(n,2)-s)*log(1-pi^2+pi^2/p) ~ Dn/(2(1+e))
 n=1000 D=20 logRV=8644.8467 target=9090.91
 n=10000 D=100 logRV=443104.6772 target=454545.45
 n=100000 D=200 logRV=9044655.6095 target=9090909.09
+
+
+Query: Simplify[1-(1-Exp[-t])*q - ((1-q)+q*Exp[-t])]
+[Input interpretation]
+simplify | 1 - (1 - exp(-t)) q - ((1 - q) + q exp(-t))
+[Expanded form]
+0
+
+
+Query: Simplify[551/1000]
+[Input interpretation]
+simplify | 551/1000
+[Result]
+551/1000
+[Quotient and Remainder]
+551 = (0) × 1000 + 551
+[Decimal form]
+0.551
+[Percentage]
+55.1%

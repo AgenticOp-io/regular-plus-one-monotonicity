@@ -62,3 +62,12 @@ The 2-switch graph on all 70 simple 2-regular graphs is connected.
 Each C6 has 3 switches to a C3+C3.
 At p=1/2, a differs by relative factor 1.151 across such a switch edge.
 So switch connectivity does not flatten a.
+
+## Tilt comparison for Delta = K12-K012 (n=6, D=2, p=1/2, G0=C6)
+
+Summation over Omega_2 x Omega_2:
+- E_mu[p^{-Delta}] = 3.69653...
+- E_tilt[p^{-Delta}] = 2.03587...
+- tilted/untilted ≈ 0.55075
+
+The p^{-K01-K02} tilt *decreases* the pairwise factor on this instance.
