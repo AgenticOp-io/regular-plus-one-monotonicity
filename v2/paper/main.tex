@@ -412,6 +412,52 @@ Equality throughout the expectation holds if and only if
 \(K_{12}=K_{012}\) almost surely.
 \end{proof}
 
+\begin{proposition}[Independence approximation of the relative second moment]
+\label{prop:indep-rv-closed}
+Assume the edge-independence approximation of
+Proposition~\ref{prop:near-disjoint-miss}, with \(\pi=D/(n-1)\) and
+\(s=Dn/2\).
+Under that model the relative second-moment ratio of
+Proposition~\ref{prop:host-count-second} factors over edges and equals
+\[
+\bigl(1-\pi^2+\pi^2 p^{-1}\bigr)^{\binom{n}{2}-s}.
+\]
+The contribution of every edge of \(G_0\) cancels exactly: the identity
+\[
+\frac{(1-\pi)^2+2\pi(1-\pi)p^{-1}+\pi^2 p^{-2}}
+{\bigl((1-\pi)+\pi p^{-1}\bigr)^2}
+=
+1
+\]
+was checked.
+The off-host factor satisfies
+\[
+\log\bigl(1-\pi^2+\pi^2 p^{-1}\bigr)^{\binom{n}{2}-s}
+=
+\frac{Dn}{2(1+\varepsilon)}+O(D^2)
+=
+\Theta(Dn)
+\]
+at \(n=\infty\) with \(p=(1+\varepsilon)D/n\), which was checked.
+In particular the independence approximation already makes the relative
+variance of \(N\) diverge as \(\exp(\Theta(Dn))\), so Chebyshev about
+\(\EE[N]\) fails by an exponential margin in that model.
+(The actual ratio is the same quantity with the \(\mu_D\)-law in place of
+independent edges; Proposition~\ref{prop:untilted-tilt} is the untilted
+piece of that comparison.)
+\end{proposition}
+
+\begin{proof}
+Under edge independence the weight
+\(p^{-K_{01}-K_{02}-K_{12}+K_{012}}\) is a product over pairs.
+On an edge of \(G_0\) the four occupancy patterns for \((H,H')\) give the
+displayed numerator, while \(\EE[p^{-K_{01}}]\) contributes the denominator
+factor \((1-\pi)+\pi p^{-1}\) once for each of \(H\) and \(H'\).
+On an edge outside \(G_0\) one has \(K_{01}=K_{02}=K_{012}=0\) and
+\(K_{12}\in\{0,1\}\), which produces \(1-\pi^2+\pi^2 p^{-1}\).
+Raising to the number of off-host edges is the claim.
+\end{proof}
+
 \begin{remark}[Chebyshev on \(N\) is not item (iii)]
 \label{rem:host-chebyshev}
 Item (iii) of Theorem~\ref{thm:selection-reduces} is an upper bound on
@@ -920,6 +966,61 @@ sufficient criterion fails on the same instance where \(a\) is not flat.
 On \(\{N\ge M\}\) one has \(1/N\le 1/M\), and on \(\{N<M\}\) one has
 \(1/N\le 1\), which is the first display.
 The converse is Markov applied to the nonnegative random variable \(1/N\).
+The numerical values are exact enumeration as in Remark~\ref{rem:small-n-inv}.
+\end{proof}
+
+\begin{proposition}[Integral representation of the inverse count]
+\label{prop:integral-a}
+For every positive integer-valued random variable \(N\ge 1\),
+\[
+\EE\bigl[1/N\bigr]
+=
+\int_0^\infty\EE\bigl[e^{-tN}\bigr]\,dt
+=
+\int_1^\infty\frac{\PP(N<u)}{u^2}\,du.
+\]
+In the setting of Theorem~\ref{thm:selection-reduces},
+\[
+a(G_0)
+=
+\int_0^\infty\EE\bigl[e^{-tN}\bigm|G_0\subset G^*_0\bigr]\,dt.
+\]
+Writing \(J_H=1_{H\subset G^*_0}\), one has
+\(e^{-tN}=\prod_{H\in\Omega_D}\bigl(1-(1-e^{-t})J_H\bigr)\) on the event
+\(G_0\subset G^*_0\) (every \(J_H\in\{0,1\}\)).
+Item (iii) is therefore an upper bound on the Laplace transform of \(N\)
+integrated over \(t>0\), equivalently a weighted integral of the lower-tail
+function \(u\mapsto\PP(N<u\mid\text{containment})\).
+\end{proposition}
+
+\begin{proof}
+The identity \(\int_0^\infty e^{-tN}\,dt=1/N\) holds for every integer \(N\ge 1\).
+Fubini gives the first display, and the substitution \(u=1/t\) in
+\(\int_0^1\PP(N<1/t)\,dt\) gives the Stieltjes form.
+The product formula is \(e^{-t\sum J_H}=\prod e^{-tJ_H}\) with
+\(e^{-tJ}=1-(1-e^{-t})J\) on \(\{0,1\}\).
+\end{proof}
+
+\begin{proposition}[Edge-disjoint packing misses the bulk]
+\label{prop:packing-miss}
+Given \(G_0\subset G^*_0\), let \(\mathcal P\) be any collection of pairwise
+edge-disjoint \(D\)-regular graphs on \([n]\), each edge-disjoint from \(G_0\).
+Then \(\lvert\mathcal P\rvert\le\bigl(\binom{n}{2}-Dn/2\bigr)/(Dn/2)=O(n/D)\).
+The expected number of members of \(\mathcal P\) contained in \(G^*_0\) is at most
+\(O(n/D)\,p^{Dn/2}\), whereas the bulk scale of Proposition~\ref{prop:target-cn}
+is \(\lvert\Omega_D\rvert p^{Dn/2}\).
+Already McKay's enumeration gives \(\log\lvert\Omega_D\rvert=\Theta(nD\log(n/D))\), so
+the packing expectation is \(\exp\bigl(-\Theta(nD\log(n/D))\bigr)\) times the bulk.
+An alteration or second-moment argument restricted to an edge-disjoint packing
+therefore cannot prove \(N=\Omega(\lvert\Omega_D\rvert p^{Dn/2})\).
+\end{proposition}
+
+\begin{proof}
+Each member of \(\mathcal P\) uses \(Dn/2\) edges outside \(G_0\), and those edge
+sets are disjoint, which is the cardinality bound.
+Containment probabilities are \(p^{Dn/2}\) by edge-disjointness from \(G_0\).
+The enumeration scale of \(\lvert\Omega_D\rvert\) is standard; the ratio of logs is
+\(\Theta(nD\log(n/D))\).
 \end{proof}
 
 \begin{proposition}[Independent containment indicators would kill item (iii)]
@@ -1496,8 +1597,14 @@ must be \(1/(\lvert\Omega_D\rvert p^{Dn/2})\), not \(1/\EE[N]\).
 Chebyshev about the mean of \(N\) is the wrong scale.
 Proposition~\ref{prop:iii-as-tail} rewrites item (iii) as a lower-tail bound
 on \(N\) at the threshold \(1/c_n\).
+Proposition~\ref{prop:integral-a} is the Laplace/Stieltjes form of that
+comparison.
+Proposition~\ref{prop:indep-rv-closed} evaluates the relative second moment
+under edge independence as
+\((1-\pi^2+\pi^2 p^{-1})^{\binom{n}{2}-s}=\exp(\Theta(Dn))\).
 Proposition~\ref{prop:near-disjoint-miss} blocks second-moment methods
 restricted to factors with intersection \(o(D^2/\log(nD))\).
+Proposition~\ref{prop:packing-miss} blocks edge-disjoint alteration.
 Proposition~\ref{prop:indep-indicators-kill} shows that independent
 containment indicators would force \(N\) onto the intersection-biased mean and
 kill item (iii); dependence is necessary.
