@@ -484,6 +484,42 @@ CHECKS = {
             "Proposition indep-indicators-kill: independent containment indicators kill item (iii).",
         ),
     },
+    "switch-path-as-flat-a": {
+        "half": (
+            "block",
+            "Proposition switch-not-flat-a: on n=6 the switch graph on Omega_2 is connected, but a(C6)/a(C3+C3)=1.15 at p=1/2. Switch connectivity does not flatten the inverse count.",
+        ),
+        "linear": (
+            "block",
+            "Proposition switch-not-flat-a: switch connectivity does not flatten a.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition switch-not-flat-a: switch connectivity does not flatten a.",
+        ),
+        "sparse": (
+            "block",
+            "Proposition switch-not-flat-a: switch connectivity does not flatten a.",
+        ),
+    },
+    "azuma-edge-exposure": {
+        "half": (
+            "block",
+            "Proposition azuma-miss: edge-exposure Azuma with Lipschitz |Omega| has exponent magnitude exp(-Theta(Dn log(n/D)))->0, so the tail bound tends to 2. It does not prove a lower tail at 1/c_n.",
+        ),
+        "linear": (
+            "block",
+            "Proposition azuma-miss: crude edge-exposure Azuma misses the bulk lower tail.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition azuma-miss: crude edge-exposure Azuma misses the bulk lower tail.",
+        ),
+        "sparse": (
+            "block",
+            "Proposition azuma-miss: crude edge-exposure Azuma misses the bulk lower tail.",
+        ),
+    },
 }
 
 
