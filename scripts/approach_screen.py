@@ -466,6 +466,24 @@ CHECKS = {
             "Proposition near-disjoint-miss: near-disjoint second moments miss the bulk inverse-count scale.",
         ),
     },
+    "independent-containment-indicators": {
+        "half": (
+            "block",
+            "Proposition indep-indicators-kill: independent containment indicators make Var N/(EN)^2=o(1) at the intersection-biased mean, so E[1/N] is exp(-Theta(Dn)) below c_n. Dependence among indicators is necessary for item (iii).",
+        ),
+        "linear": (
+            "block",
+            "Proposition indep-indicators-kill: independent containment indicators kill item (iii).",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition indep-indicators-kill: independent containment indicators kill item (iii).",
+        ),
+        "sparse": (
+            "block",
+            "Proposition indep-indicators-kill: independent containment indicators kill item (iii).",
+        ),
+    },
 }
 
 

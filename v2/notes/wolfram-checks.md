@@ -522,3 +522,35 @@ Query: rational fallback: s*pi/(p*(1-pi)) ~ D*n/(2(1+e)); (1-pi)^s*(Dn)^ell for 
 n=1000000 D=100 ratio=45459136.8 ell=5.4 log_contrib=-4904.5
 n=1000000 D=200 ratio=95257241.9 ell=20.9 log_contrib=-19617.5
 n=10000000 D=500 ratio=2272841142.1 ell=111.9 log_contrib=-122591.4
+
+
+Query: Series[(D^2/2)*Log[n/D], {n, Infinity, 0}]
+[Input interpretation]
+series | D^2/2 log(n/D) | point | n = ∞
+order | n^0
+[Series expansion at n = ∞]
+1/2 D^2 log(n/D)
+[Series representation at n = ∞]
+1/2 D^2 log(1/(D n))
+
+
+Query: Simplify[(D*n/2)*Log[2] - (D^2/2)*Log[n/D]]
+[Input interpretation]
+simplify | (D × n/2) log(2) - D^2/2 log(n/D)
+[Result]
+-1/2 D (D log(n/D) - n log(2))
+[Expanded logarithmic form]
+1/2 D n log(2) + 1/2 D^2 log(D) + -1/2 D^2 log(n)
+[Alternate form assuming D!=0, n!=0, and D n>0]
+1/2 D (n log(2) - D log(n/D))
+
+
+Query: Series[(D^2 * n /(2*(n-1)))*Log[n/((1+e)*D)], {n, Infinity, 0}]
+[Input interpretation]
+series | (D^2 × n/(2 (n - 1))) log(n/((1 + e) D)) | point | n = ∞
+order | n^0
+[Series expansion at n = ∞]
+1/2 D^2 log(n/(e D + D)) + O((1/n)^1)
+(generalized Puiseux series)
+[Series representation at n = ∞]
+-(D^2 log(1/(D n + e D n)))/(2 (n - 1))
