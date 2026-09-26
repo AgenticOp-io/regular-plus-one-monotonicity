@@ -947,3 +947,8 @@ lim_(n->∞) (sqrt(n) log(n) - 2)/sqrt(n) = ∞
 Query: Limit[2*Sqrt[n]*Log[n]/n, n->Infinity]
 [Limit]
 lim_(n->∞) (2 sqrt(n) log(n))/n = 0
+
+
+Query: Limit[10000000/(Sqrt[n]*Log[n]), n->Infinity]
+[Limit]
+lim_(n->∞) 10000000/(sqrt(n) log(n)) = 0
