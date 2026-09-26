@@ -17,8 +17,10 @@ that supports the claim.
 | factor-rate | Relative variance \(o(L^3/n^3)\) in that range |
 | long-step | One deletion of an \(L\)-factor with \(L=\omega(\sqrt{n})\) |
 
-v1.0 already proved the reductions. This tree must supply a missing
-hypothesis, not re-prove an implication.
+v1.0 is sent. This tree is the bar. The reductions are already proved;
+this tree must supply a missing hypothesis.
+
+Ordered jobs: `notes/PROGRAM.md`.
 
 ## Layout
 
