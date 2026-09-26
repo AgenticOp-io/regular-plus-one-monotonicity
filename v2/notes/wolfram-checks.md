@@ -410,3 +410,14 @@ Query: rational fallback: eps=(log(n)/D)^(1/3); compare (Dn/2)log(1+eps) vs 4 D 
 n=1000000 D=100 eps=0.516958 ln_bulk=20835365.828 ln_tree=1842.068
 n=1000000 D=1000 eps=0.239951 ln_bulk=107535875.393 ln_tree=27631.021
 n=1000000000 D=10000 eps=0.127493 ln_bulk=599982562457.456 ln_tree=368413.615
+
+
+Query: Simplify[16588-7080]
+[Input interpretation]
+simplify | 16588 - 7080
+[Result]
+9508
+[Quotient and Remainder]
+9508 = 9508 × 1 + 0
+[Percent decrease]
+16588 - 7080 = 9508 is 42.68% smaller than 16588.

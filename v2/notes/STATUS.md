@@ -12,6 +12,7 @@ Recorded negatives (not conjecture closes):
 - Exact \(n=6\), \(D=2\): \(\mathbb{E}[1/N\mid C_6]/\mathbb{E}[1/N\mid C_3\cup C_3]\in[1.07,1.16]\);
   triangle \(\nu/\mu\in[0.885,0.942]\).
 - Literal peel \(Z_d\) flatness fails on \(K_6\) at \((d,m)=(1,1)\).
+- Literal \(N_1\) residual flatness fails on \(7080/16588\) multi-matching hosts.
 - Sandwich posterior is not the first peel flatness.
 
 Six conjectures still open.
