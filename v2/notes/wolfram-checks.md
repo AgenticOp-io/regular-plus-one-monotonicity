@@ -179,3 +179,12 @@ simplify | (n^2 L^2) (L/n)^2 - L^4
 0
 [Quotient and Remainder]
 0 = (0) × 1 + 0
+
+
+Query: Simplify[n D^2/(2(n-1)) - (n D/2)*(D/(n-1))]
+[Input interpretation]
+simplify | n × D^2/(2 (n - 1)) - (n × D/2) × D/(n - 1)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
