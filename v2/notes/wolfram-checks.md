@@ -797,3 +797,24 @@ no result
 Query: Limit[(n-2-n/4)/Sqrt[n], n->Infinity]
 [Limit]
 lim_(n->∞) (n - 2 - n/4)/sqrt(n) = ∞
+
+
+Query: Simplify[(n-2)-(n/2-1)]
+[Input interpretation]
+simplify | (n - 2) - (n/2 - 1)
+[Result]
+(n - 2)/2
+
+
+Query: Limit[(n/2-1)/Sqrt[n], n->Infinity]
+[Limit]
+lim_(n->∞) (n/2 - 1)/sqrt(n) = ∞
+
+
+Query: Assuming[n>4, n-1-(n/2-1) >= n/2]
+[Input]
+Assuming[n>4, n - 1 - (n/2 - 1)>=n/2]
+[Result]
+n/2>=n/2
+[Alternate form]
+True

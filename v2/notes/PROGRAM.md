@@ -14,10 +14,11 @@ near-complete \(L=D-o(n^{1/3})\), including past \(\sqrt{n}\)
 
 Free split plus complementation: long deletion of length \(\Theta(n)\) from
 degree \(o(n^{1/3})\) to near-complete (Theorem long-sparse-near-complete).
-Matching concentration plus \(S_n\)-transitivity: long deletion from every
-linear degree to an \((n-2)\)-regular graph (Theorem long-linear-matching-gap).
-Four-linear-margin long-step stays open: complementary moment cannot feed both
-ends, and the matching-gap argument needs a single isomorphism type.
+Matching concentration plus \(S_n\)-transitivity, with Dirac on the complement
+for every \(d\le n/2-1\): long deletion to an \((n-2)\)-regular graph
+(Theorem long-matching-gap). Four-linear-margin long-step stays open:
+complementary moment cannot feed both ends, and the matching-gap argument
+needs a single isomorphism type.
 
 ## Workstream B — hard gaps recorded
 
