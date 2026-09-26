@@ -975,6 +975,29 @@ The map \(G\mapsto\sigma(G)\) preserves the binomial law of \(G^*_0\), the count
 \(N\), and containment.
 \end{proof}
 
+\begin{corollary}[Item (iii) on a single orbit]
+\label{cor:iii-one-orbit}
+If \(S_n\) acts transitively on the set of \(D\)-regular graphs on \([n]\), then
+item~(iii) of Theorem~\ref{thm:selection-reduces} holds for the binomial host
+of that theorem: the conditional expectation is exactly constant in \(G_0\).
+In particular this applies for \(D\in\{1,n-2\}\).
+\end{corollary}
+
+\begin{proof}
+Proposition~\ref{prop:sn-orbit} reduces item~(iii) to isomorphism types.
+A single orbit means a single type, so the conditional expectation is the same
+at every \(G_0\). Take that common value as \(c_n\).
+\end{proof}
+
+\begin{remark}[Not a config-split close]
+\label{rem:iii-orbit-not-split}
+Corollary~\ref{cor:iii-one-orbit} identifies \(\nu_D\) with \(\mu_D\) for
+\(D\in\{1,n-2\}\) once \(\PP(N\ge 1)\to 1\), but
+Conjecture~\ref{conj:config-split} asks for \(\mathcal{L}_{d,m}\) at
+Chernoff-scale \(D=d+m\) with \(m=\Theta\sqrt{d\log n}\), which is not
+concentrated on those two degrees.
+\end{remark}
+
 \begin{remark}[Exact gap on \(n=6\), \(D=2\)]
 \label{rem:small-n-inv}
 On six labelled vertices the simple \(2\)-regular graphs form two isomorphism

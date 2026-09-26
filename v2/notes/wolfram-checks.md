@@ -787,3 +787,13 @@ Query: Assuming[n>4, (1/n)/(1/4)^2 == 16/n]
 Assuming[n>4, (1/n)/(1/4)^2 = 16/n]
 [Result]
 True
+
+
+Query: Assuming[n>2 && 0<c<1/2, Limit[(n-2-c*n)/Sqrt[n], n->Infinity]]
+[error]
+no result
+
+
+Query: Limit[(n-2-n/4)/Sqrt[n], n->Infinity]
+[Limit]
+lim_(n->∞) (n - 2 - n/4)/sqrt(n) = ∞
