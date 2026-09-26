@@ -34,11 +34,15 @@ Bar is 2.0. v1.0 is sent.
 - Uniform Hamilton cycle inside every Dirac host \(D\ge n/2\)
   (Theorem long-hamilton-dirac). The cycle marginal is uniform on Hamilton
   cycles, not on \(2\)-regular graphs.
-- The same coupling below the Dirac threshold (Theorem long-hamilton-wide):
-  every fixed degree \(D\ge 3\), by Robinson–Wormald, and every degree
-  \(\sqrt{n}\log n<D<n/2\), by Krivelevich–Sudakov–Vu–Wormald. Failure
-  probability \(o(1)\); both marginals exact. The gap is still \(\omega(\sqrt{n})\)
-  above \(\sqrt{n}\log n\). Not \(\mu_2\), and not selection (iii).
+- The same coupling for every degree \(D\ge 3\) (Theorem long-hamilton-wide):
+  fixed degree by Robinson–Wormald, degrees from \(10^7\) up to a small linear
+  fraction by Cooper–Frieze–Reed, and degrees above \(\sqrt{n}\log n\) by
+  Krivelevich–Sudakov–Vu–Wormald. Failure probability \(o(1)\); both marginals
+  exact. The gap is still \(\omega(\sqrt{n})\) above \(\sqrt{n}\log n\). Not
+  \(\mu_2\), and not selection (iii).
+- Uniform perfect matching inside every fixed degree \(D\ge 3\)
+  (Theorem long-matching-at-least-three), from the same Hamiltonicity. The
+  growing-degree matching theorem needs \(D\to\infty\) for its variance bound.
 - Co-length one near half degree: relative variance \(O((t^2+1)/n^2)\) at
   host degree \(n/2+t\) (distance-rate), sharpening the \(O(1/n)\) bound.
 - Selection item (iii) on single \(S_n\) orbits \(D\in\{1,n-2\}\)
