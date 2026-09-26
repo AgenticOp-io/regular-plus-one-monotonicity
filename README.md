@@ -4,8 +4,10 @@ Private AgenticOp-io research repo. Two manuscripts live in this tree.
 
 | Tree | Status | Manuscript |
 | --- | --- | --- |
-| `v1/` | frozen 1.0.0 | exact \(+1\) at every growing degree |
-| `v2/` | 2.0.0-dev | Chernoff sandwich, peel ID, long factors |
+| `v1/` | sent 1.0.0 | exact \(+1\) at every growing degree |
+| `v2/` | **active bar** 2.0.0-dev | Chernoff sandwich, peel ID, long factors |
+
+Work program: `v2/notes/PROGRAM.md`. Do not edit v1 except Gao errata.
 
 Do not write v2 theorems into `v1/paper/main.tex`. Do not retitle a v2
 conjecture unless `v2/paper/main.tex` has a proof.

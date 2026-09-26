@@ -1,14 +1,8 @@
 # v2.0 status
 
-No named conjecture is proved here.
+Bar is 2.0. v1.0 is sent.
 
-Recorded from v1.0: plus-one, third-step, free-chernoff, process-to-Q,
-window, long-from-moment, selection-reduces.
+A is identified and does not extend factor-third.
+Next object: B1, an inverse-count upper bound that is not a moment of \(N\).
 
-New in this tree: intersection relative variance \(2/L^2+O(1/n)\); off-host
-mean \(\Theta(L^2)\); second-moment identity for the binomial-host subgraph
-count. Chebyshev on \(N\) is not item (iii) of selection-reduces. That does
-not close config-split.
-
-Still open: Q, config-split, residual-moment, factor-moment, factor-rate,
-long-step.
+No named conjecture is a theorem.

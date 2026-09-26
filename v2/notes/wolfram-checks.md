@@ -72,3 +72,38 @@ simplify | n × L^2/(2 (n - 1)) - n × L^3/(2 (n - 1)^2) - n L^2 × (n - 1 - L)/
 0
 [Results]
 -(L^2 n^2)/(2 n^2 - 4 n + 2) + (L^2 n)/(2 n^2 - 4 n + 2) + (L^2 n)/(2 (n - 1))
+
+
+Query: With[{M = L n - 2 t, M2 = n L (L-1) - 4 t (L-1), phi = L^2 - 4 L + 2 - 2 (L-1) M2/M, Wsum = 2 t (L-1)^2 / M^2, mom = 1 - M2^2/M^3 - M2/M^2 - Wsum, q = (L^2/M) mom (1 - phi/M), p = L/(n-1)}, Series[q/p - 1, {n, Infinity, 2}]]
+[error]
+no result
+
+
+Query: Series[L (n-1)/(L n - 2 t) - 1 - 2 t/(L n), {n, Infinity, 1}]
+[Input interpretation]
+series | L × (n - 1)/(L n - 2 t) - 1 - 2 × t/(L n) | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+-1/n + O((1/n)^2)
+(Laurent series)
+(converges when 2 abs(t/(L n))<1)
+[Series representation at n = ∞]
+-(n (L^2 - 4 n t^2))/(L (L - 2 n t))
+
+Fallback for the signed principal term after a t-matching host
+(Wolfram With[] Series of the full q/p returned no result).
+Exact Fraction arithmetic in v2/scripts/_signed_main.py:
+empty host recovers the checked series (-L^2+L-1)/n^2;
+unsigned L(n-1)/(Ln-2t)-1 = 2t/(Ln)-1/n+O(1/n^2) as above;
+signed q/p-1-2t/(Ln) has d*n^2 bounded in L,t for
+(L,t,n) in {(4,2,800),(4,2,3200),(4,8,3200),(4,16,3200),(4,16,12800),
+(10,2,800),(10,2,3200),(10,16,12800),(10,100,3200),(10,100,12800)},
+so the residual is O((L^2+t)/n^2). The leading signed relative error
+is 2t/(Ln), the same stub-total shift as the unsigned ratio.
+
+
+Query: Simplify[(L-1)(L n - 4 t) - (n L (L-1) - 4 t (L-1))]
+[Input interpretation]
+simplify | (L - 1) (L n - 4 t) - (n L (L - 1) - 4 t (L - 1))
+[Result]
+0

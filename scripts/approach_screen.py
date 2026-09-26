@@ -214,6 +214,24 @@ CHECKS = {
             "The typical-intersection rewrite is not an attack on the sparse matching expansion.",
         ),
     },
+    "signed-gao-matching-host": {
+        "half": (
+            "block",
+            "Proposition signed-matching-host: after a t-matching host the signed Gao principal term is p(1+2t/(Ln)+O((L^2+t)/n^2)). At typical t=Theta(L^2) this is p(1+Theta(L/n)). The phase does not cancel the stub-total shift.",
+        ),
+        "linear": (
+            "block",
+            "The signed matching-host expansion is for G(n,L), not a linear-degree host count. The leftover relative error is still Theta(L/n) at typical prefix.",
+        ),
+        "sublinear": (
+            "block",
+            "Signed sequential Gao after a matching host leaves relative error 2t/(Ln). Product error O(L^3/n). Not a path past n^{1/3}.",
+        ),
+        "sparse": (
+            "block",
+            "L=o(n^{1/3}) is already factor-third. This signed term does not enlarge that range.",
+        ),
+    },
     "host-count-chebyshev": {
         "half": (
             "block",

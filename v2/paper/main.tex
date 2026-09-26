@@ -434,6 +434,131 @@ Conjecture~\ref{conj:config-split}.
 The peel still has to match \(\nu_D\), and the interesting range for that
 conjecture has \(D=\Theta(d)\) past \(n^{1/3}\).
 
+\section{Signed sequential product}
+\label{sec:signed}
+
+Workstream A asks for the principal term of~\cite[Theorem~6]{Gao20} after a
+typical host, with remaining stubs and phase together.
+This section writes that term for a matching host and a disjoint next edge.
+The phase cancels the empty-host error of order \(1/n\).
+It does not cancel the stub-total shift of order \(t/(Ln)\).
+
+\begin{proposition}[Unsigned stub-total shift]
+\label{prop:unsigned-shift}
+Let \(n>2\), \(L\ge 2\), and \(0\le t<Ln/2\). The unsigned remaining-stub
+ratio for a pair of remaining degree \(L\) after a host of \(t\) edges is
+\(L^2/(Ln-2t)\). Divided by \(p=L/(n-1)\) this equals
+\[
+\frac{L(n-1)}{Ln-2t}
+=
+1+\frac{2t}{Ln}-\frac1n+O\Bigl(\frac{t+L}{n^2}\Bigr).
+\]
+The identity
+\(L(n-1)/(Ln-2t)-1-2t/(Ln)\)
+has series \(-1/n+O(n^{-2})\) at \(n=\infty\), which was checked.
+\end{proposition}
+
+\begin{proof}
+Clear the denominator:
+\(L(n-1)-(Ln-2t)=2t-L\), so the ratio minus one is
+\((2t-L)/(Ln-2t)\).
+The displayed series follows, and the checked expansion isolates the
+\(-1/n\) empty-host term from the stub-total shift \(2t/(Ln)\).
+\end{proof}
+
+\begin{proposition}[Signed Gao term after a matching host]
+\label{prop:signed-matching-host}
+Assume~\cite[Theorem~6]{Gao20}. Let \(n>8\), let \(L\ge 2\) satisfy
+\(Ln\) even and \(L\le n/10\), and let \(H\) be a matching of \(t\) edges
+with \(0\le t\le L^2\) and \(t<Ln/4\).
+Let \(uv\) be disjoint from \(H\).
+The remaining-stub sums are \(\widetilde M=Ln-2t\) and
+\(\widetilde M_2=(L-1)(Ln-4t)\), and the phase on \(uv\) is
+\[
+\bar\phi=L^2-4L+2-2(L-1)\frac{\widetilde M_2}{\widetilde M}.
+\]
+The set \(\mathcal W\) contributes \(2t(L-1)^2/\widetilde M^2\).
+The principal term
+\[
+q
+=
+\frac{L^2}{\widetilde M}
+\Bigl(1-\frac{\widetilde M_2^2}{\widetilde M^3}-\frac{\widetilde M_2}{\widetilde M^2}-\frac{2t(L-1)^2}{\widetilde M^2}\Bigr)
+\Bigl(1-\frac{\bar\phi}{\widetilde M}\Bigr)
+\]
+satisfies
+\[
+\frac{q}{p}-1
+=
+\frac{2t}{Ln}+O\Bigl(\frac{L^2+t}{n^2}\Bigr),
+\qquad
+p=\frac{L}{n-1}.
+\]
+At \(t=0\) this is the empty-host series \((-L^2+L-1)/n^2\) of~\cite{PlusOneV1}.
+The phase removes the unsigned \(-1/n\).
+It leaves the stub-total shift \(2t/(Ln)\).
+Wolfram returned no series for the full \(q/p\); exact rational arithmetic
+at \(L\in\{4,10\}\) and the listed \((n,t)\) in the ledger confirms the
+residual after subtracting \(2t/(Ln)\) is \(O((L^2+t)/n^2)\).
+\end{proposition}
+
+\begin{proof}
+The identities \(\widetilde M=Ln-2t\) and
+\(\widetilde M_2=(L-1)(Ln-4t)\) are the remaining-stub sums of an
+\(L\)-regular graph minus a matching of \(t\) edges (each matching vertex
+drops from \(L\) to \(L-1\)).
+The phase is~\cite[Theorem~6]{Gao20} with \(H_1=H\), \(H_2=\emptyset\),
+and empty host neighbourhoods at \(u\) and \(v\).
+Each matching edge contributes two ordered pairs to \(\mathcal W\).
+At \(t=0\) the display reduces to the empty-host principal term, whose
+ratio to \(p\) is \(1+O(L^2/n^2)\).
+For \(t>0\) the unsigned ratio already contributes \(2t/(Ln)-1/n\).
+The signed correction cancels the \(-1/n\) and does not cancel
+\(2t/(Ln)\), by the recorded rational values.
+\end{proof}
+
+\begin{remark}[Typical host still has relative error \(\Theta(L/n)\)]
+\label{rem:signed-typical}
+At the typical prefix \(t=\Theta(L^2)\) one has \(2t/(Ln)=\Theta(L/n)\).
+A product of \(Ln/2\) sequential factors of relative size \(1+\Theta(L/n)\)
+is again \(\exp(O(L^3/n))\).
+The signed main term therefore does not improve the range
+\(L=o(n^{1/3})\) of the factor second moment.
+Workstream A stops here: a further remainder \(o(L^3/n)\) needs a
+comparison that is not this sequential product.
+Conjectures~\ref{conj:factor-moment}, \ref{conj:factor-rate}, and
+\ref{conj:long-step} stay open.
+\end{remark}
+
+\section{Program}
+\label{sec:program}
+
+Version 1.0 is sent. This manuscript is the bar.
+Two workstreams, in the order they can move a theorem into this file.
+Neither workstream retries a blocked attack.
+
+\paragraph{Workstream A: a signed \(L\)-factor generating function.}
+Proposition~\ref{prop:signed-matching-host} is the sequential product
+with remaining stubs and phase together.
+The identified main term after a typical matching host is still
+\(p(1+\Theta(L/n))\).
+That workstream does not produce a theorem past \(L=o(n^{1/3})\).
+Conjectures~\ref{conj:factor-moment}, \ref{conj:factor-rate}, and
+\ref{conj:long-step} remain, and need a comparison that is not this
+product.
+
+\paragraph{Workstream B: the peel and the Chernoff window.}
+Item (iii) of Theorem~\ref{thm:selection-reduces} is an upper bound on
+\(\EE[1/N\mid G_0\subset G^*_0]\) that does not go through any moment of
+\(N\).
+The three peel-weight flatnesses of~\cite{PlusOneV1} are a separate
+identification of \(\mathcal{L}_{d,m}\) with \(\nu_D\).
+Together they are Conjecture~\ref{conj:config-split}.
+A second moment on the residual \(R=G^*_0\setminus G\) itself, not on an
+independent Bernoulli graph, is Conjecture~\ref{conj:residual-moment}.
+A thinning of that residual whose output is binomial, or a proof of
+~\cite[Conjecture~1.3]{BIM25}, is Conjecture~\ref{conj:Q}.
+
 \section{What would close each statement}
 
 \paragraph{Conjecture~\ref{conj:Q}.}
@@ -458,6 +583,8 @@ linear-degree host, with remainder \(o(1)\) throughout
 \(n^{1/2}=o(L)=o(n)\).
 The unsigned sequential product is \(\exp(O(L^3/n))\), which is the size of
 the signal past \(n^{1/3}\).
+The signed matching-host term of Proposition~\ref{prop:signed-matching-host}
+leaves the same order.
 Binomial leftover plus pairwise is not that generating function.
 
 \paragraph{Conjecture~\ref{conj:factor-rate}.}
