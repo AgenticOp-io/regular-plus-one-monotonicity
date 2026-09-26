@@ -869,6 +869,59 @@ On \(\{N\ge M\}\) one has \(1/N\le 1/M\), and on \(\{N<M\}\) one has
 The converse is Markov applied to the nonnegative random variable \(1/N\).
 \end{proof}
 
+\begin{proposition}[Independent containment indicators would kill item (iii)]
+\label{prop:indep-indicators-kill}
+Assume the contain-first hypotheses and the edge-independence approximation
+of Proposition~\ref{prop:near-disjoint-miss}.
+If the indicators \(1_{H\subset G^*_0}\) for \(H\in\Omega_D\) were independent
+given \(G_0\subset G^*_0\), with
+\(\PP(H\subset G^*_0\mid G_0\subset G^*_0)=p^{s-K(H)}\), then
+\[
+\EE[N\mid G_0\subset G^*_0]
+=
+\lvert\Omega_D\rvert\,p^{s}\,\EE[p^{-K}]
+=
+\exp\bigl(\Theta(Dn)\bigr)\,\lvert\Omega_D\rvert\,p^{s}
+\]
+and \(\Var(N\mid\text{containment})\le\EE[N\mid\text{containment}]\), so
+\[
+\frac{\Var N}{(\EE N)^2}
+\le
+\frac{1}{\EE N}
+\to 0.
+\]
+Chebyshev would force \(N=(1+o(1))\EE[N]\) in probability, hence
+\[
+\EE\bigl[1/N\bigm|G_0\subset G^*_0\bigr]
+=
+(1+o(1))\,\frac{1}{\EE[N]}
+=
+\exp\bigl(-\Theta(Dn)\bigr)\,c_n,
+\]
+using \(\PP(N\ge 1)\to 1\) and Proposition~\ref{prop:target-cn}.
+Item (iii) at scale \(c_n\) would fail by an exponential factor.
+The same conclusion holds under the weaker independence assumption that only
+the indicators with \(\lvert K(H)-\EE K\rvert\le\sqrt{\Var K}\,\omega_n\) are
+independent for some \(\omega_n\to\infty\): their contribution alone has mean
+\(\lvert\Omega_D\rvert p^{s}\exp\bigl(\Theta(D^2\log(n/D))\bigr)\) and relative
+variance \(o(1)\), which is still \(\exp\bigl(\Theta(D^2\log(n/D))\bigr)\) above
+the bulk scale.
+Dependence among containment indicators is therefore necessary for item (iii).
+Proposition~\ref{prop:host-count-second} records that the actual second moment
+is inflated by the pairwise intersection tilt, which is exactly that
+dependence.
+\end{proposition}
+
+\begin{proof}
+Bernoulli variances sum to at most the mean, which is the first relative
+variance bound.
+The truncated statement uses Proposition~\ref{prop:intersection-var}: \(K\)
+concentrates on the window \(\EE K\pm\sqrt{\Var K}\,\omega_n\) of width
+\(o(\EE K)\), and on that window \(p^{-K}=p^{-\EE K}\exp(o(D^2\log(n/D)))\) with
+\(p^{-\EE K}=\exp(\Theta(D^2\log(n/D)))\) because
+\(\EE K=\Theta(D^2)\) and \(\log(1/p)=\Theta(\log(n/D))\).
+\end{proof}
+
 \begin{proposition}[Regular-plus-sprinkle host is singular to \(G(n,p)\)]
 \label{prop:sprinkle-posterior-gap}
 Let \(D\ge 2\) with \(Dn\) even and \(D=o(n)\), and let
@@ -1336,6 +1389,9 @@ Proposition~\ref{prop:iii-as-tail} rewrites item (iii) as a lower-tail bound
 on \(N\) at the threshold \(1/c_n\).
 Proposition~\ref{prop:near-disjoint-miss} blocks second-moment methods
 restricted to factors with intersection \(o(D^2/\log(nD))\).
+Proposition~\ref{prop:indep-indicators-kill} shows that independent
+containment indicators would force \(N\) onto the intersection-biased mean and
+kill item (iii); dependence is necessary.
 Proposition~\ref{prop:host-switches} gives only \(N\to\infty\).
 Proposition~\ref{prop:sn-orbit} reduces the comparison to isomorphism types
 and does not close it.
