@@ -606,3 +606,14 @@ order | n^1
 (converges when (1 + e) D^2 = D ∨ abs(n)>1)
 [Series representation at n = ∞]
 (D n (D n + e (D n + n - 1) + n - 2))/(n - 1)
+
+
+Query: Series[(n*D^2*(n-1-D)/(2*(n-1)^2))*Log[n/((1+e)*D)], {n, Infinity, 0}]
+[Input interpretation]
+series | (n D^2 × (n - 1 - D)/(2 (n - 1)^2)) log(n/((1 + e) D)) | point | n = ∞
+order | n^0
+[Series expansion at n = ∞]
+1/2 D^2 log(n/(e D + D)) + O((1/n)^1)
+(generalized Puiseux series)
+[Series representation at n = ∞]
+-(D^2 (D n + n - 1) log(1/(D n + e D n)))/(2 (n - 1)^2)
