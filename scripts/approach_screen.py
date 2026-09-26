@@ -430,6 +430,24 @@ CHECKS = {
             "Proposition peel-first-not-free: sandwich posterior is not d-factor uniformity.",
         ),
     },
+    "nm-literal-as-peel-flat": {
+        "half": (
+            "block",
+            "Proposition nm-not-flat: on n=6, among 16588 hosts with at least two perfect matchings, 7080 have N_1(residual) depending on which matching was peeled. Literal second peel flatness fails at (d,m)=(1,1).",
+        ),
+        "linear": (
+            "block",
+            "Proposition nm-not-flat: literal N_m(residual) flatness fails on six vertices.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition nm-not-flat: literal N_m(residual) flatness fails on six vertices.",
+        ),
+        "sparse": (
+            "block",
+            "Proposition nm-not-flat: literal N_m(residual) flatness fails on six vertices.",
+        ),
+    },
 }
 
 

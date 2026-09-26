@@ -1102,6 +1102,26 @@ The sprinkle posterior is a different coupling, already blocked as a transfer
 to \(G(n,p)\).
 \end{proof}
 
+\begin{proposition}[Residual matching count depends on the peeled factor]
+\label{prop:nm-not-flat}
+Let \(n=6\). There are \(15\) perfect matchings on six labelled vertices.
+Among the \(2^{\binom{6}{2}}=32768\) labelled hosts, \(16588\) contain at least two
+perfect matchings.
+For \(7080\) of those hosts the number \(N_1(G^*_0\setminus G)\) of perfect
+matchings in the residual takes at least two distinct values as \(G\) ranges over
+the perfect matchings contained in \(G^*_0\).
+The second peel-weight flatness---constancy of \(N_m(G^*_0\setminus G)\) in the
+peeled \(d\)-factor---therefore fails as a literal identity already for
+\((d,m)=(1,1)\) on six vertices.
+\end{proposition}
+
+\begin{proof}
+Exact enumeration of the \(15\) perfect matchings and of all hosts.
+On a host with several perfect matchings \(G\), the residual
+\(G^*_0\setminus G\) omits different edge sets, and the count of perfect
+matchings supported in that residual is not constant.
+\end{proof}
+
 \begin{proposition}[Free complement flatness is not residual flatness]
 \label{prop:free-not-residual}
 The free-extension flatness of~\cite{PlusOneV1} states that for
@@ -1217,6 +1237,8 @@ The missing estimate is still an upper bound on \(\EE[1/N\mid\text{containment}]
 at the target scale, uniformly across isomorphism types.
 Proposition~\ref{prop:peel-first-not-free} records that the sandwich posterior
 is not the first peel flatness.
+Proposition~\ref{prop:nm-not-flat} shows that the second peel flatness fails
+literally for \((d,m)=(1,1)\) on six vertices.
 Proposition~\ref{prop:free-not-residual} keeps free complement flatness from
 supplying the peel.
 Proposition~\ref{prop:zd-not-flat} shows that the third peel-weight flatness
