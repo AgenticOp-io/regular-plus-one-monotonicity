@@ -10,12 +10,18 @@ Signed Gao after a matching host leaves \(2t/(Ln)\). Not past \(n^{1/3}\).
 
 Blocked / identified:
 - Target \(c_n=1/(|\Omega|p^{Dn/2})\); contain-first mean is biased.
-- \(S_n\) to iso-types only.
+- \(S_n\) to iso-types only; \(d\nu/d\mu\propto\mathbb{E}[1/N\mid\mathrm{containment}]\).
+- Edges under \(\nu_D\) match \(\mu_D\); triangles need flat class weights.
+- Conditional triangle first-moment proxy is
+  \(\bigl((1+\varepsilon)/(2+\varepsilon)\bigr)^3\pi^3\), not \(\pi^3\).
 - Switches: \(N\to\infty\), logarithmic bound only \(D^{O(1)}\).
 - Second moment of \(N\): pairwise \(p^{-(K_{12}-K_{012})}\).
 - Free-flat ≠ residual flatness.
 - Regular-plus-sprinkle: degree variance \(\Theta(\varepsilon D)\) vs \(\Theta(D)\);
   TV→1 as \(\varepsilon\to 0\); posterior uniformity does not transfer.
+
+- Exact \(n=6\), \(D=2\): inverse-count ratio across iso-types in \([1.07,1.16]\)
+  (Remark in manuscript; ledger `v2/notes/small-n-inv.md`).
 
 Still missing (no fake closes):
 1. \(\mathbb{E}[1/N\mid\text{containment}]\) at bulk scale across iso-types —
