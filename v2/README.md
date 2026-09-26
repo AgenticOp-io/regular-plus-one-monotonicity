@@ -13,8 +13,8 @@ that supports the claim.
 | Q | Chernoff sandwich \(\varepsilon\asymp\sqrt{(\log n)/d}\) |
 | config-split | Peel law \(\mathcal{L}_{d,m}\) vs \(\mu_{d+m}\) |
 | residual-moment | Second moment of \(m\)-factors of the BIM residual |
-| factor-moment | \(L\)-factor second moment for \(n^{1/2}=o(L)=o(n)\) |
-| factor-rate | Relative variance \(o(L^3/n^3)\) in that range |
+| factor-moment | Balanced \(L\)-factor second moment: \(n^{1/2}=o(L)\) and \(\min(L,D-L)=\omega(n^{1/3})\) (near-complete side closed) |
+| factor-rate | Relative variance \(o(L^3/n^3)\) on that balanced range (near-complete side closed) |
 | long-step | One deletion of an \(L\)-factor with \(L=\omega(\sqrt{n})\) |
 
 v1.0 is sent. This tree is the bar. The reductions are already proved;

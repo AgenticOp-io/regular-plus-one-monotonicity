@@ -669,3 +669,56 @@ simplify | 551/1000
 0.551
 [Percentage]
 55.1%
+
+
+Query: Assuming[n>1, Simplify[(n/2 - n^(1/4)) / Sqrt[n]]]
+[error]
+no result
+
+
+Query: Simplify[(n/2 - n^(1/4))/n^(1/2)]
+[Input interpretation]
+simplify | (n/2 - n^(1/4))/sqrt(n)
+[Result]
+(n^(3/4) - 2)/(2 n^(1/4))
+[Expanded form]
+sqrt(n)/2 - 1/n^(1/4)
+
+
+Query: Limit[(n/2 - n^(1/3))/Sqrt[n], n->Infinity]
+[Limit]
+lim_(n->∞) (n/2 - n^(1/3))/sqrt(n) = ∞
+
+
+Query: Limit[n^(1/2)/(n/2 - n^(1/3)), n->Infinity]
+[Limit]
+lim_(n->∞) sqrt(n)/(n/2 - n^(1/3)) = 0
+[Series expansion at n = ∞]
+2 sqrt(1/n) + 4 (1/n)^(7/6) + 8 (1/n)^(11/6) + 16 (1/n)^(5/2) + 32 (1/n)^(19/6) + 64 (1/n)^(23/6) + 128 (1/n)^(9/2) + O((1/n)^(31/6))
+(Puiseux series)
+
+
+Query: Limit[(n/2 - n^(1/4))/n^(1/2), n->Infinity]
+[Limit]
+lim_(n->∞) (n/2 - n^(1/4))/sqrt(n) = ∞
+
+
+Query: Simplify[L^3/n^3 /. L -> n/2]
+[error]
+no result
+
+
+Query: Simplify[(n/2)^3/n^3]
+[Input interpretation]
+simplify | (n/2)^3/n^3
+[Result]
+1/8
+[Quotient and Remainder]
+1 = (0) × 8 + 1
+
+
+Query: Assuming[n>1, (n/2)^3/n^3 == 1/8]
+[Input]
+Assuming[n>1, (n/2)^3/n^3 = 1/8]
+[Result]
+True
