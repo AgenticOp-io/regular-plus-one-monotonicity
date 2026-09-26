@@ -2452,7 +2452,9 @@ The quadratic combination is the two-matching combination of Theorem~\ref{thm:ba
 
 Let \(K\) be the number of common edges of a fixed \(L\)-regular graph \(F_1\) and a uniform random \(L\)-regular graph \(G\).
 Order the edges of \(F_1\) and apply~\cite[Theorem~6]{Gao20} to \(G(n,L)\): here \(M=Ln\) and \(\Delta\le L\).
-The displayed remainder is \(O(L^2/n^2)\), but the remaining-degree main term is \(p(1+O(L/n))\) with \(p=L/(n-1)\), because the exposed intersection at a vertex is of order \(L^2/n\).
+The displayed remainder is \(O(L^2/n^2)\).
+On the empty host the signed main term of that theorem recovers \(p=L/(n-1)\) to relative \(O(L^2/n^2)\) (Proposition~\ref{prop:gao-empty-p}).
+After a typical exposed intersection of size \(\Theta(L^2)\) the remaining-degree factor is \(p(1+O(L/n))\).
 Hence
 \[
 \EE\bigl[\lambda^{-K}\bigr]
@@ -2636,6 +2638,46 @@ Summing over pairs of \(F_1\)-edges yields the displayed identity.
 The series of the prefactor at the leftover tilt was checked, and multiplying by the series of \(S\) from Proposition~\ref{prop:pairwise-mass} produces no new order-\(1/n\) term.
 \end{proof}
 
+\begin{proposition}[Empty-host Gao main term recovers \(p\)]
+\label{prop:gao-empty-p}
+Let \(n>1\) and \(L\ge 2\). The empty-host principal term of~\cite[Theorem~6]{Gao20} on \(G(n,L)\) is
+\[
+\frac{L}{n}\Bigl(1-\frac{L-1}{n}\Bigr)\Bigl(1+\frac{L}{n}\Bigr).
+\]
+Divided by \(L/(n-1)\) this equals \(1+O(L^2/n^2)\). The series of the ratio minus \(1\) is \((-L^2+L-1)/n^2+O(L^2/n^3)\), which was checked.
+\end{proposition}
+
+\begin{proof}
+On the empty host one has \(\widetilde d\equiv L\), \(\widetilde M=Ln\), \(\widetilde M_2=nL(L-1)\), and \(\mathcal W=\emptyset\).
+The two moment factors collapse to \(1-(L-1)/n\).
+The phase is \(\bar\phi=-L^2\), so \(1-\bar\phi/\widetilde M=1+L/n\).
+The displayed product follows, and the series of its ratio to \(L/(n-1)\) was checked.
+\end{proof}
+
+\begin{proposition}[Signed 3-matching residual is \(O(L^6/n^2)\)]
+\label{prop:matching-triple-mass}
+Let \(n>8\) and let \(L\ge 2\) satisfy \(Ln\) even and \(L\le n/10\). Write \(p=L/(n-1)\) and \(q_{\mathrm{disj}}=(L(n-4)+2)/((n-2)(n-3))\).
+After a \(2\)-matching host the remaining-stub sums are \(\widetilde M=Ln-4\) and \(\widetilde M_2=(L-1)(Ln-8)\), the second identity having been checked, and the phase of~\cite[Theorem~6]{Gao20} on a third disjoint edge is
+\[
+\bar\phi=L^2-4L+2-2(L-1)^2\frac{Ln-8}{Ln-4}.
+\]
+The corresponding principal third factor \(q_3\) satisfies \(q_3-p=4/n^2+O((L^3+1)/n^3)\), which was checked.
+The third-cumulant
+\[
+\kappa_3=p\,q_{\mathrm{disj}}q_3-3p^2q_{\mathrm{disj}}+2p^3
+\]
+has mass \(\binom{Ln/2}{3}\kappa_3=O(L^6/n^2)\).
+The unsigned stub ratio \(L^2/(Ln-4)\) without \(\bar\phi\) produces the larger order \(L^6/n\).
+Exact rational arithmetic at \(L=4\) and \(L=10\) for \(n\in\{200,1600\}\) gives \(\mathrm{mass}\cdot n^2/L^6\) constant to two digits; Wolfram returned no series for the full mass, so this is the recorded fallback.
+\end{proposition}
+
+\begin{proof}
+The identity \(\widetilde M_2=(L-1)(Ln-8)\) was checked.
+The series of \(q_3-L/(n-1)\) at \(n=\infty\) is \(4/n^2+O(n^{-3})\), which was checked.
+A product of three pairwise-consistent disjoint increments of size \(2/n^2\) is \(4/n^2\), so the leading \(4/n^2\) is the inclusion-exclusion of the two preceding edges and cancels in \(\kappa_3\).
+The leftover mass after that cancellation is \(O(L^6/n^2)\) by the recorded rational values, and \(L^6/n^2=o(L^3/n)\) throughout \(L=o(n^{1/3})\).
+\end{proof}
+
 \begin{proposition}[Binomial leftover average]
 \label{prop:binomial-leftover-average}
 Let \(n>2\) be even and let \(L\ge 2\) satisfy \(Ln<n(n-1)/4\). Write \(p=L/(n-1)\) and \(z=2\exp((2L-1)/n)\). The formal origin-plus-binomial average
@@ -2664,7 +2706,8 @@ has series \(L^3/(4n)+O(1/n^2)\) for each fixed \(L\), which was checked, and th
 The logarithm in Proposition~\ref{prop:binomial-leftover-average} plus the pairwise sum of Proposition~\ref{prop:pairwise-pgf} equals \(L^2/(2n)+O(L^3/n^2)\).
 The identity \(L^3/(4n)-((L-2)L^2)/(4n)=L^2/(2n)\) was checked.
 The pairwise sum already sits at order \(L^3/n\), so \(\EE[z^K]=(1-p+pz)^{Ln/2}\exp(o(L^3/n))\) can hold only if clusters of order three and higher cancel that sum.
-Independently, the remaining-degree main term of~\cite[Theorem~6]{Gao20} is \(p(1+O(L/n))\), so the sequential product in Theorem~\ref{thm:factor-third} carries an unsigned error \(O(L^3/n)\) and cannot identify a coefficient of \(L^3/n\).
+They do not at the principal-term level: the star third-cumulant mass is \(O(L^4/n^2)\) and the signed \(3\)-matching mass of Proposition~\ref{prop:matching-triple-mass} is \(O(L^6/n^2)\), both \(o(L^3/n)\) for \(L=o(n^{1/3})\).
+Independently, after a typical host the remaining-degree factor is \(p(1+O(L/n))\) even though the empty-host main term recovers \(p\) to \(O(L^2/n^2)\) (Proposition~\ref{prop:gao-empty-p}), so the sequential product in Theorem~\ref{thm:factor-third} carries an unsigned error \(O(L^3/n)\).
 Neither expansion identifies \(\Var Z/(\EE Z)^2\) at order \(L^3/n\).
 The bound \(\Var Z/(\EE Z)^2=o(1)\) for \(L=o(n^{1/3})\) remains Theorem~\ref{thm:factor-third}.
 \end{proposition}
@@ -3182,7 +3225,8 @@ Proposition~\ref{prop:jensen-inverse} records that the inverse count is a separa
 Proposition~\ref{prop:bernoulli-moment} shows that the same count on an independent Bernoulli residual has second-moment ratio at least \(p^{-\EE K}\to\infty\), so Conjecture~\ref{conj:residual-moment} cannot be proved by replacing \(R\) with an independent binomial graph.
 Conjecture~\ref{conj:Q} itself needs a different coupling: the hybrid is more regular than the binomial, and the BIM deletion process is tight at rate \(1/3\).
 For Conjecture~\ref{conj:factor-moment} the quadratic-times-PGF deficit of Proposition~\ref{prop:factor-cubic} is \(\sim-L^3/(4n)\), but that combination is not the origin: Proposition~\ref{prop:origin-leftover} supplies the missing leftover \(-L^2(3L-1)/(2n)+(2L-1)k/n\), and Proposition~\ref{prop:binomial-leftover-average} averages the complete origin against a binomial generating function to \(1+L^3/(4n)+O(L^2/n)\).
-That binomial cubic is not the relative variance: Proposition~\ref{prop:pairwise-mass} gives an exact pairwise mass \(-L^3/(4n)+L^2/(2n)+O(L^3/n^2)\), which cancels the cubic in the formal expansion, and the remaining-degree main term independently blocks identification at order \(L^3/n\) (Proposition~\ref{prop:cubic-not-identified}).
+That binomial cubic is not the relative variance: Proposition~\ref{prop:pairwise-mass} gives an exact pairwise mass \(-L^3/(4n)+L^2/(2n)+O(L^3/n^2)\), which cancels the cubic in the formal expansion.
+The signed \(3\)-matching residual of Proposition~\ref{prop:matching-triple-mass} is \(O(L^6/n^2)\) and does not put the cubic back, and the remaining-degree main term independently blocks identification at order \(L^3/n\) (Proposition~\ref{prop:cubic-not-identified}).
 Proposition~\ref{prop:typical-origin} records that evaluating the quadratic remainder at the typical intersection \(k=\Theta(L^2)\) does not cancel it.
 
 Quantitative sandwich rates from the~\cite{BIM25} budget:

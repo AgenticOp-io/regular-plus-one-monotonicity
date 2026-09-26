@@ -2425,3 +2425,99 @@ Query: Simplify[L^3/(4*n) - (L-2)*L^2/(4*n) - L^2/(2*n)] == 0
 simplify | L^3/(4 n) - (L - 2) × L^2/(4 n) - L^2/(2 n) = 0
 [Expanded form]
 True
+
+
+Query: Series[(L*n/2)^3/6 * (L/(n-1)*(L*(n-4)+2)/((n-2)*(n-3))*L^2/(L*n-4) - 3*(L/(n-1))^2*(L*(n-4)+2)/((n-2)*(n-3)) + 2*(L/(n-1))^3), {n, Infinity, 2}]
+[Input interpretation]
+series | (1/6 (L × n/2)^3) (L/(n - 1) × (L (n - 4) + 2)/((n - 2) (n - 3)) × L^2/(L n - 4) - 3 (L/(n - 1))^2 × (L (n - 4) + 2)/((n - 2) (n - 3)) + 2 (L/(n - 1))^3) | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+-L^6/(48 n) + (L^4 (L^2 - 22 L + 24))/(48 n^2) + O((1/n)^3)
+(Laurent series)
+(converges when 4 abs(1/(L n))<1 ∧ abs(n)>3)
+[Series representation at n = ∞]
+(L^5 n (L^2 (4 n^2 - 9 n + 1) - 2 L (n - 9) n + 24 (n - 1) n))/(48 (n - 1)^3 (2 n - 1) (3 n - 1) (L - 4 n))
+
+
+Query: Series[(L/n)*(1-(L-1)/n)*(1+L/n)/(L/(n-1)) - 1, {n, Infinity, 2}]
+[Input interpretation]
+series | L/n (1 - (L - 1)/n) × (1 + L/n)/(L/(n - 1)) - 1 | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+(-L^2 + L - 1)/n^2 + ((L - 1) L)/n^3
+(Laurent series)
+(converges everywhere away from origin)
+[Series representation at n = ∞]
+n^2 (L^2 (n - 1) - L n + L - 1)
+
+
+Query: Series[With[{M=L*n-4, M2=4*(L-1)*(L-2)+(n-4)*L*(L-1)}, (L^2/M)*(1-M2^2/M^3-M2/M^2)*(1-(-4*L+2-2*(L-1)*M2/M+L^2)/M)], {n, Infinity, 2}]
+[error]
+no result
+
+
+Query: Series[L^2/(L*n-4)*(1-(L-1)^2*(L*n-8)^2/(L*n-4)^3-(L-1)*(L*n-8)/(L*n-4)^2)*(1-(L^2-4*L+2-2*(L-1)^2*(L*n-8)/(L*n-4))/(L*n-4)), {n, Infinity, 1}]
+[Input interpretation]
+series | L^2/(L n - 4) (1 - (L - 1)^2 × (L n - 8)^2/(L n - 4)^3 - (L - 1) × (L n - 8)/(L n - 4)^2) (1 - (L^2 - 4 L + 2 - 2 (L - 1)^2 × (L n - 8)/(L n - 4))/(L n - 4)) | point | n = ∞
+order | n^1
+[Series expansion at n = ∞]
+L/n + O((1/n)^2)
+(Laurent series)
+[Series representation at n = ∞]
+-(L^2 n (L^3 n + L^2 (1 - 12 n^2) + 8 L n (2 n - 1) + 8 n^2) (L^4 n - L^3 (16 n^2 + n + 1) + 4 L^2 n (16 n^2 + 5 n + 3) - 4 L n^2 (24 n + 13) + 96 n^3))/(L - 4 n)^6
+
+
+Query: Series[L^2/(L*n-4)*(1-(L-1)^2*(L*n-8)^2/(L*n-4)^3-(L-1)*(L*n-8)/(L*n-4)^2)*(1-(L^2-4*L+2-2*(L-1)^2*(L*n-8)/(L*n-4))/(L*n-4)) - L/(n-1), {n, Infinity, 2}]
+[Input interpretation]
+series | L^2/(L n - 4) (1 - (L - 1)^2 × (L n - 8)^2/(L n - 4)^3 - (L - 1) × (L n - 8)/(L n - 4)^2) (1 - (L^2 - 4 L + 2 - 2 (L - 1)^2 × (L n - 8)/(L n - 4))/(L n - 4)) - L/(n - 1) | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+4/n^2 + (-L^3 + L^2 - L + 12/L + 12)/n^3 + O((1/n)^4)
+(Laurent series)
+[Series representation at n = ∞]
+-(L n^2 (L^8 (n - 1) n + L^7 (-28 n^3 + 27 n^2 + n) + L^6 n (256 n^3 - 208 n^2 - 48 n - 1) + L^5 (-768 n^5 + 176 n^4 + 580 n^3 + 24 n^2 + 8 n + 4) + 4 L^4 n (544 n^4 - 444 n^3 - 118 n^2 - 21 n - 21) - 32 L^3 n^2 (68 n^3 - 71 n^2 - 16 n - 21) + 32 L^2 n^3 (24 n^2 - 61 n - 83) + 768 L n^4 (n + 7) - 4096 n^5))/((n - 1) (L - 4 n)^6)
+
+
+Query: Series[(L*n/2)^3/6 * (L/(n-1)*(L*(n-4)+2)/((n-2)*(n-3))* (L^2/(L*n-4)*(1-(L-1)^2*(L*n-8)^2/(L*n-4)^3-(L-1)*(L*n-8)/(L*n-4)^2)*(1-(L^2-4*L+2-2*(L-1)^2*(L*n-8)/(L*n-4))/(L*n-4))) - 3*(L/(n-1))^2*(L*(n-4)+2)/((n-2)*(n-3)) + 2*(L/(n-1))^3), {n, Infinity, 1}]
+[error]
+no result
+
+
+Query: Series[L/(n-1)*(L*(n-4)+2)/((n-2)*(n-3))* (L^2/(L*n-4)*(1-(L-1)^2*(L*n-8)^2/(L*n-4)^3-(L-1)*(L*n-8)/(L*n-4)^2)*(1-(L^2-4*L+2-2*(L-1)^2*(L*n-8)/(L*n-4))/(L*n-4))) - 3*(L/(n-1))^2*(L*(n-4)+2)/((n-2)*(n-3)) + 2*(L/(n-1))^3, {n, Infinity, 3}]
+[error]
+no result
+
+
+Query: Simplify[4*(L-1)*(L-2)+(n-4)*L*(L-1) - (L-1)*(L*n-8)] == 0
+[Input interpretation]
+simplify | 4 (L - 1) (L - 2) + (n - 4) L (L - 1) - (L - 1) (L n - 8) = 0
+[Expanded form]
+True
+
+
+Fallback: 3-matching third-cumulant mass with the Gao main term
+(including bar-phi; Wolfram Series of the full mass returned no result).
+Exact rational arithmetic for
+q3 = L^2/M * (1 - M2^2/M^3 - M2/M^2) * (1 - phi/M),
+M = L n - 4, M2 = (L-1)(L n - 8),
+phi = L^2 - 4 L + 2 - 2 (L-1)^2 (L n - 8)/M,
+kappa3 = p * q_disj * q3 - 3 p^2 q_disj + 2 p^3,
+mass = (L n / 2)^3 / 6 * kappa3.
+At L=4: mass * n^2 / L^6 = -0.203 at n=200 and n=1600.
+At L=10: mass * n^2 / L^6 = -1.84 at n=200 and -1.83 at n=1600.
+The mass is O(L^6/n^2), not O(L^6/n). The unsigned stub ratio L^2/(L n-4)
+without bar-phi produced the larger order -L^6/(48 n).
+
+
+Query: Simplify[L^6/n^2 / (L^3/n) - L^3/n] == 0
+[Input interpretation]
+simplify | (L^6/n^2)/(L^3/n) - L^3/n = 0
+[Result]
+True
+
+
+Query: Simplify[-2*(L+L)+2-(2*L-2)*(L-1)+L^2 + L^2] == 0
+[Input interpretation]
+simplify | -2 (L + L) + 2 - (2 L - 2) (L - 1) + L^2 + L^2 = 0
+[Expanded form]
+True
