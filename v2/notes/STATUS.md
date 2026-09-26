@@ -7,11 +7,15 @@ Bar is 2.0. v1.0 is sent.
 - Factor second moment for near-complete lengths \(D-L=o(n^{1/3})\), including
   past \(\sqrt{n}\) (Theorem factor-complementary): complementation in the host
   plus the \(o(n^{1/3})\) moment of v1.
-- Factor second moment for near-complete hosts \(n-D=o(n^{1/3})\)
-  (Theorem factor-dense-host): complementary length plus free-extension
-  flatness on the sparse complement.
-- Factor rate on both sides (Theorems factor-rate-complementary,
-  factor-rate-dense-host); strengthened to \(O(1/n)\) when \(D-L=1\).
+- Factor second moment for near-complete hosts throughout the McKay range
+  \(\ell(s+\ell)^2/n=o(1)\) (Theorem factor-dense-host), including
+  \(n-D=o(n^{1/2})\); free-extension flatness on the sparse complement.
+- Factor second moment for co-length one on every sublinear host \(D=o(n)\)
+  (Theorem factor-sublinear-colength-one), including past \(\sqrt{n}\); from the
+  matching variance in the sublinear nesting theorem of v1.
+- Factor rate on the linear and near-complete-host sides (Theorems
+  factor-rate-complementary, factor-rate-dense-host); strengthened to
+  \(O(1/n)\) when \(D-L=1\) on linear hosts.
 - Long deletion past \(\sqrt{n}\) from degree \(o(n^{1/3})\) to near-complete
   (Theorem long-sparse-near-complete): free split plus complementation.
 - Long deletion past \(\sqrt{n}\) leaving a matching gap

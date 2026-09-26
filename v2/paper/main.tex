@@ -44,8 +44,10 @@ factor second moment of~\cite{PlusOneV1} below \(n^{1/3}\) yields the same bound
 for near-complete lengths \(D-L=o(n^{1/3})\) on linear hosts, including past
 \(\sqrt{n}\).
 Free-extension flatness yields the same bound for near-complete hosts
-\(n-D=o(n^{1/3})\).
-The factor-rate conjecture holds on both sides as well.
+throughout the McKay range \(\ell(s+\ell)^2/n=o(1)\).
+The sublinear matching variance gives co-length one on every host of degree
+\(o(n)\), including past \(\sqrt{n}\).
+The factor-rate conjecture holds on the linear and near-complete-host sides as well.
 A free split plus complementation yields a one-deletion of length \(\Theta(n)\)
 from degree \(o(n^{1/3})\) to a near-complete degree.
 The same complementation, fed by Dirac's theorem on the complement,
@@ -85,6 +87,8 @@ and factor-rate conjectures by complementation in the host
 (Theorems~\ref{thm:factor-complementary} and~\ref{thm:factor-rate-complementary})
 and by free-extension flatness for near-complete hosts
 (Theorems~\ref{thm:factor-dense-host} and~\ref{thm:factor-rate-dense-host}),
+by the sublinear matching variance for co-length one
+(Theorem~\ref{thm:factor-sublinear-colength-one}),
 together with long deletions past \(\sqrt{n}\) from sparse degrees
 (Theorem~\ref{thm:long-sparse-near-complete}) and from every degree
 \(d\le n/2-1\) to an \((n-2)\)-regular host
@@ -166,7 +170,8 @@ The number \(Z\) of \(L\)-factors of a uniform \(D\)-regular graph satisfies
 \(\Var Z/(\EE Z)^2=o(1)\).
 The complementary range \(\min(L,D-L)=o(n^{1/3})\) on linear hosts is
 Theorem~\ref{thm:factor-complementary}; near-complete hosts are
-Theorem~\ref{thm:factor-dense-host}.
+Theorem~\ref{thm:factor-dense-host}; co-length one on sublinear hosts is
+Theorem~\ref{thm:factor-sublinear-colength-one}.
 \end{conjecture}
 
 \begin{conjecture}[Factor moment at the repetition scale]
@@ -249,14 +254,45 @@ Proposition~band-rate of~\cite{PlusOneV1}, applied with host degree \(D\), suppl
 relative variance \(O(1/n)\).
 \end{proof}
 
+\begin{theorem}[Factor second moment for co-length one on sublinear hosts]
+\label{thm:factor-sublinear-colength-one}
+Assume~\cite[Theorem~6]{Gao20}. Let \(n\) be even and let \(D\to\infty\) satisfy
+\(Dn\) even and \(D=o(n)\). Set \(L:=D-1\), and assume \(Ln\) even. Let \(Z\) be the
+number of \(L\)-factors of a uniform random \(D\)-regular graph. Then
+\[
+\frac{\Var Z}{(\EE Z)^2}
+=
+O\Bigl(\frac1{D^3}+\frac{D}{n}\Bigr)=o(1).
+\]
+In particular the bound holds with \(n^{1/2}=o(L)=o(n)\) throughout
+\(\omega(n^{1/2})=D=o(n)\).
+\end{theorem}
+
+\begin{proof}
+Proposition~\ref{prop:factor-complement-bijection} identifies \(Z\) with the number
+\(Y\) of perfect matchings of a uniform \(D\)-regular graph. The sublinear
+nesting theorem of~\cite{PlusOneV1} records
+\[
+\frac{\Var Y}{(\EE Y)^2}
+=
+\frac1{6D^3}+O(D^{-4})+O\Bigl(\frac{D}{n}\Bigr)+o(1),
+\]
+which is \(O(1/D^3+D/n)\) and tends to \(0\) under \(D\to\infty\) and \(D=o(n)\).
+Along \(\omega(n^{1/2})=D=o(n)\) one has \(L=D-1=\omega(n^{1/2})\) and \(L=o(n)\).
+\end{proof}
+
 \begin{theorem}[Factor second moment for near-complete hosts]
 \label{thm:factor-dense-host}
 Let \(n\) be even, let \(s,\ell\to\infty\) satisfy \(sn\) and \(\ell n\) even,
-\(\ell\le s\), and \(s+\ell=o(n^{1/3})\). Set \(D:=n-1-s\) and \(L:=D-\ell\).
+\(\ell\le s\), and
+\[
+\frac{\ell(s+\ell)^2}{n}=o(1).
+\]
+Set \(D:=n-1-s\) and \(L:=D-\ell\).
 Let \(Z\) be the number of \(L\)-factors of a uniform random \(D\)-regular graph.
-Then \(\Var Z/(\EE Z)^2=o(1)\). In particular \(L=\Theta(n)\) with
-\(n^{1/2}=o(L)=o(n)\), while \(n-D=s=o(n^{1/3})\) lies outside the linear-host
-hypothesis of Theorem~\ref{thm:factor-complementary}.
+Then \(\Var Z/(\EE Z)^2=o(1)\). In particular \(s+\ell=o(n^{1/2})\) and
+\(L=n-o(n^{1/2})\), so \(n^{1/2}=o(L)=o(n)\), while \(n-D=s\) may be as large as
+\(o(n^{1/2})\) and need not be \(o(n^{1/3})\).
 \end{theorem}
 
 \begin{proof}
@@ -266,18 +302,14 @@ Proposition~\ref{prop:factor-complement-bijection} gives \(Z=Z_\ell\) pathwise o
 of the host is precisely an \(\ell\)-regular graph edge-disjoint from \(S\). Thus
 \(Z_\ell\) equals the free-extension count \(N_\ell(S)\) of~\cite{PlusOneV1}.
 The free-extension flatness lemma of~\cite{PlusOneV1} at length \(\ell\) against an
-\(s\)-regular host applies because
-\[
-\frac{\ell(s+\ell)^2}{n}=o(1)
-\]
-throughout \(s+\ell=o(n^{1/3})\): the identity
-\((n^{1/3})\cdot(n^{1/3})^2/n=1\) was checked, so any little-o forces the display
-to \(0\). Hence \(N_\ell(S)=(1+o(1))\,N_\ell(S')\) for every pair of \(s\)-regular
-graphs \(S,S'\), and \(Z\) is \((1+o(1))\) times a deterministic constant as the host
-varies over \(\mu_D\). Relative variance \(o(1)\) follows. The identity
-\(L=(n-1-s)-\ell\) with \(s+\ell=o(n^{1/3})\) forces \(L=\Theta(n)\); the identity
-\(\lim_{n\to\infty}(n-1-2n^{1/4})/n^{1/2}=\infty\) was checked, so
-\(n^{1/2}=o(L)=o(n)\).
+\(s\)-regular host applies under the displayed hypothesis
+\(\ell(s+\ell)^2/n=o(1)\). Hence \(N_\ell(S)=(1+o(1))\,N_\ell(S')\) for every pair of
+\(s\)-regular graphs \(S,S'\), and \(Z\) is \((1+o(1))\) times a deterministic constant
+as the host varies over \(\mu_D\). Relative variance \(o(1)\) follows.
+The hypothesis with \(\ell\ge 1\) forces \((s+\ell)^2/n=o(1)\), so
+\(s+\ell=o(n^{1/2})\); the identity
+\(\lim_{n\to\infty}(s+\ell)/\sqrt{n}=0\) under that assumption was checked.
+Thus \(L=(n-1-s)-\ell=n-o(n^{1/2})\) and \(n^{1/2}=o(L)=o(n)\).
 \end{proof}
 
 \begin{theorem}[Factor rate for near-complete hosts]
@@ -1930,8 +1962,10 @@ Complementation in the host does: Theorems~\ref{thm:factor-complementary}
 and~\ref{thm:factor-rate-complementary} settle the near-complete factor side
 \(D-L=o(n^{1/3})\) on linear hosts.
 Free-extension flatness does: Theorems~\ref{thm:factor-dense-host} and
-~\ref{thm:factor-rate-dense-host} settle near-complete hosts
-\(n-D=o(n^{1/3})\).
+~\ref{thm:factor-rate-dense-host} settle near-complete hosts throughout
+\(\ell(s+\ell)^2/n=o(1)\).
+The sublinear matching variance does: Theorem~\ref{thm:factor-sublinear-colength-one}
+settles co-length one on every host of degree \(o(n)\).
 The balanced range of Conjectures~\ref{conj:factor-moment} and
 \ref{conj:factor-rate}, and the four-linear-margin case of
 Conjecture~\ref{conj:long-step}, remain, and need a
@@ -2027,7 +2061,8 @@ A signed generating function for the intersection of two \(L\)-factors of a
 linear-degree host, with remainder \(o(1)\) throughout the balanced range
 \(\min(L,D-L)=\omega(n^{1/3})\).
 The near-complete factor side is Theorem~\ref{thm:factor-complementary}; the
-near-complete host side is Theorem~\ref{thm:factor-dense-host}.
+near-complete host side is Theorem~\ref{thm:factor-dense-host}; co-length one
+on sublinear hosts is Theorem~\ref{thm:factor-sublinear-colength-one}.
 The unsigned sequential product is \(\exp(O(L^3/n))\), which is the size of
 the signal past \(n^{1/3}\).
 The signed matching-host term of Proposition~\ref{prop:signed-matching-host}

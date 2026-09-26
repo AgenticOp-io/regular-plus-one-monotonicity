@@ -832,3 +832,42 @@ simplify | n^(1/3) × (n^(1/3))^2/n
 Query: Limit[(n-1-2*n^(1/4))/Sqrt[n], n->Infinity]
 [Limit]
 lim_(n->∞) (n - 1 - 2 n^(1/4))/sqrt(n) = ∞
+
+
+Query: Assuming[ell>=1 && ell (s+ell)^2/n -> 0, Limit[(s+ell)/Sqrt[n], n->Infinity]]
+[Input interpretation]
+Assuming[ell>=1 ∧ ell × (s + ell)^2/n implies 0, lim_(n->∞) (s + ell)/sqrt(n)]
+[Result]
+0
+
+
+Query: Simplify[ell*((n^(2/5))/(Log[n]))^2/n] /. ell -> n^(1/5)
+[error]
+no result
+
+
+Query: Assuming[n>1 && s>0 && ell>0, (ell (s+ell)^2)/n == o(1) && ell==1 && Simplify[s^2/n]]
+[error]
+no result
+
+
+Query: Assuming[D>1 && D/n -> 0, Limit[1/(6 D^3) + D/n, n->Infinity]]
+[Input]
+Assuming[D>1 ∧ D/n implies 0, lim_(n->∞)(1/(6 D^3) + D/n)]
+[Result]
+1/(6 D^3)
+
+
+Query: Limit[n^(2/3)/Sqrt[n], n->Infinity]
+[Limit]
+lim_(n->∞) n^(2/3)/sqrt(n) = ∞
+
+
+Query: Limit[1/(6 n) + n^(2/3)/n, n->Infinity]
+[Limit]
+lim_(n->∞)(1/(6 n) + n^(2/3)/n) = 0
+
+
+Query: Limit[1/(6 (n^(2/3))^3) + n^(2/3)/n, n->Infinity]
+[Limit]
+lim_(n->∞)(1/(6 (n^(2/3))^3) + n^(2/3)/n) = 0
