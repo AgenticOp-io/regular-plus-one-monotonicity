@@ -1040,6 +1040,31 @@ The residual count forbids every edge of \(G\) and every non-edge of
 Those are different ground sets.
 \end{proof}
 
+\begin{proposition}[\(d\)-factor counts are not constant on \(\Omega_D\)]
+\label{prop:zd-not-flat}
+Let \(n=6\) and \(D=2\). Among the \(70\) simple \(2\)-regular graphs on six
+labelled vertices, every Hamiltonian cycle has exactly two perfect matchings,
+while every disjoint union of two triangles has none.
+Writing \(Z_1(F)\) for the number of \(1\)-factors of \(F\), one therefore has
+\(Z_1\in\{0,2\}\) on \(\Omega_2\), so \(Z_1\) is not constant.
+In particular the third flatness hypothesis of the peel-weight identity
+in~\cite{PlusOneV1}---that every \(D\)-regular spanning subgraph of the host
+has the same number of \(d\)-factors---fails for the complete host \(K_6\) at
+\((d,m)=(1,1)\).
+Literal equality of \(Z_d\) on \(\Omega_D\) is false in general.
+Any use of that identity for Conjecture~\ref{conj:config-split} needs
+asymptotic flatness of \(Z_d\) on the \(D\)-factors of the random host
+\(G^*_0\), in a range where \(1\)-factor obstructions of odd-cycle type are
+absent.
+\end{proposition}
+
+\begin{proof}
+A \(6\)-cycle has two perfect matchings (the two alternating edge sets).
+A disjoint union of two \(3\)-cycles has no perfect matching, since each
+component has odd order.
+The enumeration \(\lvert\Omega_2\rvert=60+10=70\) is Remark~\ref{rem:small-n-inv}.
+\end{proof}
+
 \begin{remark}[Residual moment and Chernoff]
 \label{rem:b3-b4}
 Conjecture~\ref{conj:residual-moment} asks for a second moment of \(m\)-factors
@@ -1091,6 +1116,9 @@ The missing estimate is still an upper bound on \(\EE[1/N\mid\text{containment}]
 at the target scale, uniformly across isomorphism types.
 Proposition~\ref{prop:free-not-residual} keeps free complement flatness from
 supplying the peel.
+Proposition~\ref{prop:zd-not-flat} shows that the third peel-weight flatness
+fails as a literal equality already on \(K_6\), so Conjecture~\ref{conj:config-split}
+needs asymptotic flatness of \(Z_d\) on the host.
 Conjectures~\ref{conj:config-split}, \ref{conj:residual-moment}, and
 \ref{conj:Q} stay open.
 The three peel-weight flatnesses of~\cite{PlusOneV1} are a separate

@@ -369,3 +369,12 @@ simplify | 60 + 10 - 70
 0
 [Quotient and Remainder]
 0 = (0) × 1 + 0
+
+
+Query: Simplify[2-0]
+[Input interpretation]
+simplify | 2 - 0
+[Result]
+2
+[Quotient and Remainder]
+2 = 2 × 1 + 0
