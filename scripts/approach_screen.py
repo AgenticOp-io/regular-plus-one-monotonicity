@@ -214,6 +214,24 @@ CHECKS = {
             "The typical-intersection rewrite is not an attack on the sparse matching expansion.",
         ),
     },
+    "free-flat-as-residual": {
+        "half": (
+            "block",
+            "Proposition free-not-residual: McKay flatness of N_m(K_n\\G) is not flatness of N_m(R) for the BIM residual R=G*_0\\G.",
+        ),
+        "linear": (
+            "block",
+            "Free complement flatness and residual flatness have different ground sets.",
+        ),
+        "sublinear": (
+            "block",
+            "Free-flat does not identify the peel with mu_{d+m}.",
+        ),
+        "sparse": (
+            "block",
+            "Free-flat is not residual flatness.",
+        ),
+    },
     "sn-orbit-as-iii": {
         "half": (
             "block",
