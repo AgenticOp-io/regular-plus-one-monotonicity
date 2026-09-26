@@ -12,8 +12,11 @@ length \(D-L=o(n^{1/3})\), the factor second moment and factor rate hold for
 near-complete \(L=D-o(n^{1/3})\) on linear hosts, including past \(\sqrt{n}\)
 (Theorems factor-complementary, factor-rate-complementary).
 Free-extension flatness on the sparse complement: the same bounds for
-near-complete hosts \(n-D=o(n^{1/3})\) (Theorems factor-dense-host,
-factor-rate-dense-host).
+near-complete hosts throughout \(\ell(s+\ell)^2/n=o(1)\)
+(Theorems factor-dense-host, factor-rate-dense-host), so \(n-D\) may be as
+large as \(o(n^{1/2})\).
+Sublinear matching variance: co-length one on every host \(D=o(n)\)
+(Theorem factor-sublinear-colength-one), including past \(\sqrt{n}\).
 
 Free split plus complementation: long deletion of length \(\Theta(n)\) from
 degree \(o(n^{1/3})\) to near-complete (Theorem long-sparse-near-complete).
