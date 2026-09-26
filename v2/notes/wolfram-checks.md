@@ -937,3 +937,13 @@ simplify | n/2 - 2
 Query: Limit[(n/2-2)/Sqrt[n], n->Infinity]
 [Limit]
 lim_(n->∞) (n/2 - 2)/sqrt(n) = ∞
+
+
+Query: Limit[(Sqrt[n]*Log[n]-2)/Sqrt[n], n->Infinity]
+[Limit]
+lim_(n->∞) (sqrt(n) log(n) - 2)/sqrt(n) = ∞
+
+
+Query: Limit[2*Sqrt[n]*Log[n]/n, n->Infinity]
+[Limit]
+lim_(n->∞) (2 sqrt(n) log(n))/n = 0

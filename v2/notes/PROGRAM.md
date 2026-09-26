@@ -26,6 +26,7 @@ enumeration (McK85) / free-extension flatness; sublinear matching variance.
 | long-matching-into-dirac | Matching into every host \(D\ge n/2\) (Dirac + \(S_n\)-transitivity) |
 | long-matching-growing | Matching into every host \(D\to\infty\) (band-rate or sublinear variance below \(n/2\)) |
 | long-hamilton-dirac | Uniform Hamilton cycle inside every host \(D\ge n/2\); marginal is not \(\mu_2\) |
+| long-hamilton-wide | Same coupling for every fixed \(D\ge 3\) and every \(D>\sqrt{n}\log n\); still not \(\mu_2\) |
 
 ### Selection (iii)
 
@@ -81,7 +82,7 @@ Still missing (no fake closes):
 | residual-moment | Open |
 | factor-moment | Open only for \(\min(L,D-L)=\omega(n^{1/3})\) on linear hosts |
 | factor-rate | Open only on that same balanced range |
-| long-step | Open under four linear margins; matching-gap and matching-into-Dirac closed |
+| long-step | Open under four linear margins; matching-gap and matching-into-Dirac closed. Hamilton coupling is not \(\mu_2\) |
 
 ## Next
 
