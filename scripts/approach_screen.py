@@ -394,6 +394,42 @@ CHECKS = {
             "Proposition zd-not-flat: literal Z_d flatness on Omega_D is false.",
         ),
     },
+    "switch-bfs-as-bulk": {
+        "half": (
+            "block",
+            "Proposition switch-iterated: depth-k switch BFS reaches at most exp(O(k log D)) factors. At k=D this is exp(O(D log D)), below the bulk exp(Theta(n D^{2/3}(log n)^{1/3})) at rate 1/3.",
+        ),
+        "linear": (
+            "block",
+            "Proposition switch-iterated: polynomial-depth switch exploration misses the bulk inverse-count scale.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition switch-iterated: polynomial-depth switch exploration misses the bulk inverse-count scale.",
+        ),
+        "sparse": (
+            "block",
+            "Proposition switch-iterated: polynomial-depth switch exploration misses the bulk inverse-count scale.",
+        ),
+    },
+    "sandwich-as-d-uniform": {
+        "half": (
+            "block",
+            "Proposition peel-first-not-free: the Kim-Vu sandwich posterior of G given G*_0 is not uniform on d-factors of G*_0. That uniformity is the first peel-weight flatness, not a sandwich consequence.",
+        ),
+        "linear": (
+            "block",
+            "Proposition peel-first-not-free: sandwich posterior is not d-factor uniformity.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition peel-first-not-free: sandwich posterior is not d-factor uniformity.",
+        ),
+        "sparse": (
+            "block",
+            "Proposition peel-first-not-free: sandwich posterior is not d-factor uniformity.",
+        ),
+    },
 }
 
 

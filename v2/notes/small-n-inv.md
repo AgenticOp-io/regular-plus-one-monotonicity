@@ -28,3 +28,18 @@ Via `v2/scripts/_small_n8_inv.py` (2000 trials, p=1/2, seed 0).
 
 Recorded in the manuscript as Remark `rem:small-n-inv`.
 Not a conjecture close: shows iso-type flatness is nontrivial already at n=6.
+
+## Exact triangle bias n=6, D=2
+
+Fixed T on vertices 0,1,2: |Omega_T|=1, mu=1/70.
+nu/mu = a(C3+C3)/a_bar (Corollary subgraph-bias), matched by direct host enumeration.
+
+| p | nu/mu |
+|---|-------|
+| 1/4 | 0.933621 |
+| 1/3 | 0.909366 |
+| 1/2 | 0.885273 |
+| 2/3 | 0.910459 |
+| 3/4 | 0.941463 |
+
+Script: v2/scripts/_small_n_triangle.py

@@ -14,21 +14,24 @@ Blocked / identified:
 - Edges under \(\nu_D\) match \(\mu_D\); triangles need flat class weights.
 - Conditional triangle first-moment proxy is
   \(\bigl((1+\varepsilon)/(2+\varepsilon)\bigr)^3\pi^3\), not \(\pi^3\).
-- Switches: \(N\to\infty\), logarithmic bound only \(D^{O(1)}\).
+- Switches: \(N\to\infty\), logarithmic bound only \(D^{O(1)}\);
+  depth-\(D\) BFS only \(\exp(O(D\log D))\), still below bulk.
+- Sandwich posterior ≠ first peel flatness.
 - Second moment of \(N\): pairwise \(p^{-(K_{12}-K_{012})}\).
 - Free-flat ≠ residual flatness.
 - Regular-plus-sprinkle: degree variance \(\Theta(\varepsilon D)\) vs \(\Theta(D)\);
   TV→1 as \(\varepsilon\to 0\); posterior uniformity does not transfer.
 
-- Exact \(n=6\), \(D=2\): inverse-count ratio across iso-types in \([1.07,1.16]\)
-  (Remark in manuscript; ledger `v2/notes/small-n-inv.md`).
+- Exact \(n=6\), \(D=2\): inverse-count ratio across iso-types in \([1.07,1.16]\);
+  triangle \(\nu/\mu\in[0.885,0.942]\) (ledger `v2/notes/small-n-inv.md`).
 - Literal \(Z_d\) flatness fails on \(K_6\) at \((d,m)=(1,1)\): \(Z_1(C_6)=2\),
   \(Z_1(C_3\cup C_3)=0\).
 
 Still missing (no fake closes):
 1. \(\mathbb{E}[1/N\mid\text{containment}]\) at bulk scale across iso-types —
    needs an argument that is not a moment of \(N\), not switches, not sprinkle.
-2. Three peel-weight flatnesses on \(G^*_0\) (asymptotic \(Z_d\), not literal).
+2. Three peel-weight flatnesses on \(G^*_0\) (asymptotic \(Z_d\), not literal;
+   first flatness is not the sandwich posterior).
 3. Second moment on actual \(R=G^*_0\setminus G\).
 4. Binomial thinning or BIM Conjecture 1.3 — not hybrid, not sprinkle.
 
