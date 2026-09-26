@@ -376,6 +376,24 @@ CHECKS = {
             "Edge agreement under nu_D is forced by S_n and does not prove item (iii).",
         ),
     },
+    "zd-literal-as-peel-flat": {
+        "half": (
+            "block",
+            "Proposition zd-not-flat: on n=6, D=2, Z_1 is 2 on C6 and 0 on C3+C3. Literal equality of d-factor counts on Omega_D fails on K_6 at (d,m)=(1,1). Peel-weights need asymptotic flatness on the host.",
+        ),
+        "linear": (
+            "block",
+            "Proposition zd-not-flat: literal Z_d flatness on Omega_D is false.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition zd-not-flat: literal Z_d flatness on Omega_D is false.",
+        ),
+        "sparse": (
+            "block",
+            "Proposition zd-not-flat: literal Z_d flatness on Omega_D is false.",
+        ),
+    },
 }
 
 

@@ -22,11 +22,13 @@ Blocked / identified:
 
 - Exact \(n=6\), \(D=2\): inverse-count ratio across iso-types in \([1.07,1.16]\)
   (Remark in manuscript; ledger `v2/notes/small-n-inv.md`).
+- Literal \(Z_d\) flatness fails on \(K_6\) at \((d,m)=(1,1)\): \(Z_1(C_6)=2\),
+  \(Z_1(C_3\cup C_3)=0\).
 
 Still missing (no fake closes):
 1. \(\mathbb{E}[1/N\mid\text{containment}]\) at bulk scale across iso-types —
    needs an argument that is not a moment of \(N\), not switches, not sprinkle.
-2. Three peel-weight flatnesses on \(G^*_0\).
+2. Three peel-weight flatnesses on \(G^*_0\) (asymptotic \(Z_d\), not literal).
 3. Second moment on actual \(R=G^*_0\setminus G\).
 4. Binomial thinning or BIM Conjecture 1.3 — not hybrid, not sprinkle.
 

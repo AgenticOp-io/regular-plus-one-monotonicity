@@ -10,6 +10,7 @@ Recorded negatives (not conjecture closes):
 - Triangle: unconditional first moment matches \(\mu_D\); conditional proxy
   \(\bigl((1+\varepsilon)/(2+\varepsilon)\bigr)^3\pi^3\); neither is \(\mathbb{E}[N_T/N]\).
 - Exact \(n=6\), \(D=2\): \(\mathbb{E}[1/N\mid C_6]/\mathbb{E}[1/N\mid C_3\cup C_3]\in[1.07,1.16]\).
+- Literal peel \(Z_d\) flatness fails on \(K_6\) at \((d,m)=(1,1)\).
 
 Six conjectures still open.
 
