@@ -13,8 +13,9 @@ pdflatex main.tex
 
 1. Upload `main.tex` (and `main.bbl` if using BibTeX later).
 2. Primary classification: **math.CO** (Combinatorics); cross-list **math.PR**.
-3. Title/abstract: copy from `main.tex`.
-4. Comments line suggestion: `Exact +1 nesting of random regular graphs at every growing degree. Assumes Gao arXiv:2012.01492 Thm 6.`
+3. Title: copy from `main.tex`.
+4. Abstract: copy the `abstract` environment from `main.tex` (plain text, no `\ref`).
+5. Comments line suggestion: `Exact +1 nesting of random regular graphs at every growing degree. Assumes Gao arXiv:2012.01492 Thm 6.`
 
 ## Policy
 

@@ -28,82 +28,27 @@ exact \(+1\) at every growing degree, long chains, and a quantitative sandwich p
 \maketitle
 
 \begin{abstract}
-Gao proved that the random regular graphs \(\Gnd\) and \(G(n,d+1)\) can be coupled
-so that \(\Gnd\subset G(n,d+1)\) with high probability whenever \(d\to\infty\) and
-\(d=o(n^{1/3})\), and observed that the same argument should extend to
-\(d=o(n^{1/2})\) via the sharper conditional edge probabilities of~\cite{Gao20},
-leaving the details for a simpler exposition.
-We supply those details, obtaining the range \(d=o(n^{1/2})\).
-Iterating the same switching count, then widening the overlap window, extends exact \(+1\) to every \(d=o(n)\)
-(Theorem~\ref{thm:sublinear}).
-The complementary range \(n-d=o(n)\) follows by complementation
-(Theorem~\ref{thm:dense}).
-At linear degree the edge estimate does not start; a Cauchy second moment for the matching count on the simple graph gives the remaining range
-(Theorem~\ref{thm:middle}).
-Combined, there is an exact \(+1\) coupling whenever \(d\to\infty\) and \(n-d\to\infty\)
-(Theorem~\ref{thm:plus-one}).
-The same estimates give \(G(n,d)\subset G(n,D)\) whenever the gap \(D-d\) is below the chain length at degree \(d\)
-(Theorem~\ref{thm:gim-gap}).
-In the linear band the matching count has relative fourth moment \(O(n^{-2})\), which nests \(o(n^{2/5})\) consecutive degrees
-(Theorem~\ref{thm:band-fourth-chains}).
-
-As a new consequence of the same error schedule, we prove long simultaneous
-nesting chains. The length is the Chebyshev optimum for the patched relative
-variance of perfect-matching counts. After the odd part of the Laplace expansion
-is removed (Lemma~\ref{lem:laplace}), that variance is of order
-\(D^{-3}+D/n\), so the window has length
-\(L=o(v(D)^{-1/3})\) (Theorem~\ref{thm:chains}).
-The term \(1/(6D^3)\) alone forces \(L=o(D)\). Chernoff-scale windows
-\(L=\Theta\sqrt{D\log n}\) are then available for
-\(\omega(\log n)=D=o\bigl(n^{2/7}/(\log n)^{3/7}\bigr)\)
-(Corollary~\ref{cor:chernoff-chains}).
-One further pass through the switching count, using the same edge estimate on the
-pairs that were previously bounded, replaces the ratio error \(O(d^2/n)\) by
-\(O(d/n)\). The same windows then run up to
-\(o\bigl(n^{2/5}/(\log n)^{3/5}\bigr)\)
-(Corollary~\ref{cor:chernoff-two-fifths}).
-The edge-linear part of that error cancels in moment ratios, and the centered
-fourth moment is then a constant times the square of the variance, so the same
-windows run up to \(o\bigl(n^{4/9}/(\log n)^{5/9}\bigr)\)
-(Theorem~\ref{thm:fourth-chains}).
-The same one-step bound sums from every \(D\to\infty\) up to
-\(\lfloor n^{2/7}/\log n\rfloor\) (Corollary~\ref{cor:fourth-span}).
-Carrying the expansion to an arbitrary fixed order \(q\) produces the moment
-bound \(O_q(v(d)^q)\) and moves the Chernoff window to
-\(o\bigl(n^{2q/(4q+1)}/(\log n)^{(2q+1)/(4q+1)}\bigr)\)
-(Lemma~\ref{lem:high-moment}, Theorem~\ref{thm:high-chains}).
-Every exponent strictly below \(1/2\) is attained
-(Corollary~\ref{cor:near-barrier}), and the summed chain reaches every
-exponent strictly below \(1/3\) (Corollary~\ref{cor:high-span}).
-For \(D=o(n^{1/6})\) the triangle projection gives a separate chain up to
-degree \(\lfloor n^{1/6}/\log n\rfloor\). The one-step total variation is
-\(O(d^{-6/5})\), which sums (Corollary~\ref{cor:summable}).
-
-Past \(\sqrt{n}\), the absolute matching probability is known only up to
-\(1+O(d^2/n)\). Concentration of the matching count cancels the universal part of
-that error, and the substitutions just cited push exact \(+1\) through every sublinear degree
-(Theorems~\ref{thm:two-thirds} and~\ref{thm:sublinear}).
-Tracking the error budget in the Kim--Vu sandwich proof of~\cite{BIM25} with
-absolute switching constants, we obtain the vanishing rates
-\(\varepsilon\ge C(\log n/d)^{1/9}\) in general,
-\(\varepsilon\ge C(\log n/d)^{1/5}\) via linear connecting sets, and the
-process-optimal \(\varepsilon\ge C(\log n/d)^{1/3}\) for all \(d\ge C\log n\), by a
-last-layer Bernstein upgrade of two-vertex path upper bounds to Chernoff scale.
-The Chernoff floor \(\varepsilon\asymp\sqrt{(\log n)/d}\) requires a different
-architecture (Conjecture~\ref{conj:Q}).
-We prove that the process conjecture of~\cite{BIM25} implies Conjecture~\ref{conj:Q},
-that for \(d\ge n^{\sigma}\) the Chernoff problem reduces to a final-window
-coupling through surplus degrees
-\(\sqrt{d\log n}\le\delta\le d^{2/3}(\log n)^{1/3}\), and that a hybrid
-thinning of the \(1/3\)-sandwich residual already yields a Chernoff-scale
-supergraph with the correct edge marginals (Theorem~\ref{thm:hybrid}), and that
-peeling \(m=\Theta\sqrt{d\log n}\) perfect matchings from the residual produces an
-exact \((d+m)\)-regular one-sided container inside the rate-\(1/3\) ER upper graph
-(Theorem~\ref{thm:matching-peel}, Corollary~\ref{cor:chernoff-container}), and that
-host-restricted identification of that container with \(G(n,d+m)\) is open
-(Conjecture~\ref{conj:config-split}). A sandwich coupling at degree \(d+m\)
-does not place a uniform copy of \(G(n,d+m)\) inside the upper graph already
-built at degree \(d\) (Proposition~\ref{prop:host-gap}).
+Let \(G(n,d)\) be the uniform random \(d\)-regular graph on \(n\) labelled vertices.
+Gao proved that \(G(n,d)\) and \(G(n,d+1)\) can be coupled so that
+\(G(n,d)\subset G(n,d+1)\) with high probability whenever \(d\to\infty\) and
+\(d=o(n^{1/3})\), and indicated that the sharper edge probabilities of~\cite{Gao20}
+should extend the same argument to \(d=o(n^{1/2})\).
+We carry out that extension, then continue it through every sublinear degree,
+the complementary dense range, and the linear band, where the edge estimate does
+not start and a Cauchy second moment of the matching count on the simple graph
+closes the remaining gap.
+The result is an exact \(+1\) coupling whenever \(d\to\infty\) and \(n-d\to\infty\),
+assuming~\cite[Theorem~6]{Gao20} on the two sparse sides.
+The same estimates nest \(G(n,d)\) in \(G(n,D)\) whenever the gap is below the
+matching-count chain length at degree \(d\), including linear-band chains of
+length \(o(n^{2/5})\) and, below \(\sqrt{n}\), simultaneous chains of every
+exponent strictly less than \(1/2\).
+Reading the error budget of the Kim--Vu sandwich proof of~\cite{BIM25} with
+absolute switching constants yields vanishing rates
+\(\varepsilon\ge C(\log n/d)^{1/9}\), \(\varepsilon\ge C(\log n/d)^{1/5}\), and the
+process-optimal \(\varepsilon\ge C(\log n/d)^{1/3}\) for all \(d\ge C\log n\).
+The Chernoff floor \(\varepsilon\asymp\sqrt{(\log n)/d}\) and the identification of
+the matching peel with the uniform regular law are left open.
 \end{abstract}
 
 \tableofcontents
