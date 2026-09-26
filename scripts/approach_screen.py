@@ -448,6 +448,24 @@ CHECKS = {
             "Proposition nm-not-flat: literal N_m(residual) flatness fails on six vertices.",
         ),
     },
+    "near-disjoint-second-moment": {
+        "half": (
+            "block",
+            "Proposition near-disjoint-miss: under the contain-first independence approximation, factors with K=o(D^2/log(nD)) contribute exp(-Theta(D^2)) times the bulk scale. A second-moment method on near-disjoint factors cannot prove N=Omega(bulk).",
+        ),
+        "linear": (
+            "block",
+            "Proposition near-disjoint-miss: near-disjoint second moments miss the bulk inverse-count scale.",
+        ),
+        "sublinear": (
+            "block",
+            "Proposition near-disjoint-miss: near-disjoint second moments miss the bulk inverse-count scale.",
+        ),
+        "sparse": (
+            "block",
+            "Proposition near-disjoint-miss: near-disjoint second moments miss the bulk inverse-count scale.",
+        ),
+    },
 }
 
 
