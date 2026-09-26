@@ -43,8 +43,11 @@ Inside a \(D\)-regular host the \(L\)-factors are the \((D-L)\)-factors, so the
 factor second moment of~\cite{PlusOneV1} below \(n^{1/3}\) yields the same bound
 for near-complete lengths \(D-L=o(n^{1/3})\), including past \(\sqrt{n}\).
 The factor-rate conjecture holds on that side as well.
-The balanced range \(\min(L,D-L)=\omega(n^{1/3})\) stays open, as do the other
-four named statements.
+A free split plus complementation yields a one-deletion of length \(\Theta(n)\)
+from degree \(o(n^{1/3})\) to a near-complete degree, so long deletions past
+\(\sqrt{n}\) are settled off the linear-margin regime.
+The balanced range \(\min(L,D-L)=\omega(n^{1/3})\) of the factor conjectures,
+the linear-margin long-step, and the other three named statements stay open.
 \end{abstract}
 
 \tableofcontents
@@ -74,9 +77,11 @@ This paper does not re-prove the implications.
 It records them, adds the second-moment identity for the binomial-host
 subgraph count, and closes the near-complete side of the factor second-moment
 and factor-rate conjectures by complementation in the host
-(Theorems~\ref{thm:factor-complementary} and~\ref{thm:factor-rate-complementary}).
-The balanced range of those two conjectures, and the other four named
-statements, stay open.
+(Theorems~\ref{thm:factor-complementary} and~\ref{thm:factor-rate-complementary}),
+together with a sparse-to-near-complete long deletion past \(\sqrt{n}\)
+(Theorem~\ref{thm:long-sparse-near-complete}).
+The balanced factor range, the linear-margin Conjecture~\ref{conj:long-step},
+and the other three named statements stay open.
 
 The attacks that stop at a signed \(O(L^3/n)\) or a disjoint-support
 comparison are proved in~\cite{PlusOneV1}.
@@ -236,6 +241,54 @@ Theorem~\ref{thm:long-from-moment} needs the moment bound at degrees \(d+L\) and
 bound of Theorem~\ref{thm:factor-complementary} therefore needs \(d=o(n^{1/3})\),
 which contradicts \(d=\Theta(n)\). The near-complete moment does not feed
 Conjecture~\ref{conj:long-step}.
+\end{remark}
+
+\begin{theorem}[Long deletion from sparse to near-complete]
+\label{thm:long-sparse-near-complete}
+Let \(n\) be even and let \(d,\ell\to\infty\) satisfy \(dn\) and \(\ell n\) even and
+\(d+\ell=o(n^{1/3})\). Set \(L:=n-1-d-\ell\). Then \(L=\Theta(n)\) with
+\(n^{1/2}=o(L)=o(n)\), and there is a coupling of a \(d\)-regular graph \(G\) and
+a \((d+L)\)-regular graph \(H\) with \(G\subset H\) such that each marginal is
+within total variation \(o(1)\) of the uniform regular graph of the same degree.
+\end{theorem}
+
+\begin{proof}
+Write \(\mu_d\oplus\mu_\ell\) for the law of an independent pair \((G',F')\) with
+\(G'\sim\mu_d\) and \(F'\sim\mu_\ell\), conditioned on being edge-disjoint.
+The free-splitting proposition of~\cite{PlusOneV1} realises a coupling whose union
+is contiguous to \(\mu_{d+\ell}\); the same configuration-model comparison
+of~\cite{Wormald99,JLR00} identifies that law with \(\mu_d\oplus\mu_\ell\) up to
+total variation \(o(1)\).
+The free-extension flatness lemma of~\cite{PlusOneV1} at length \(d\) against an
+\(\ell\)-regular host applies because
+\[
+\frac{d(d+\ell)^2}{n}=o(1)
+\]
+throughout \(d+\ell=o(n^{1/3})\): the identity \((n^{1/3})^3/n=1\) was checked, so
+any little-o forces the display to \(0\).
+Hence \(\PP(G'\cap F'=\emptyset\mid F')\) is \(1+o(1)\) times a constant independent
+of the \(\ell\)-regular host \(F'\), and the \(F'\)-marginal of \(\mu_d\oplus\mu_\ell\) is
+within total variation \(o(1)\) of \(\mu_\ell\).
+Contiguity passes that marginal bound to the free-split factor \(F\).
+Let \(H\) be the complement of \(F\). Complementation is a bijection of
+\(\ell\)-regular graphs with \((n-1-\ell)\)-regular graphs, so the marginal of
+\(H\) is within total variation \(o(1)\) of \(\mu_{n-1-\ell}\).
+The degree identity \(d+L=n-1-\ell\) was checked.
+On the event that \(G\) and \(F\) are edge-disjoint one has \(G\subset H\), and that
+event holds with probability \(1\) in the free-split coupling.
+The identity \(\lim_{n\to\infty}(n-1-2n^{1/4})/n^{1/2}=\infty\) was checked, so
+\(L=\Theta(n)\) throughout \(d+\ell=o(n^{1/3})\) forces \(n^{1/2}=o(L)=o(n)\).
+The \(G\)-marginal is within total variation \(o(1)\) of \(\mu_d\) by the same
+flatness-plus-contiguity argument with the roles of \(d\) and \(\ell\) exchanged.
+\end{proof}
+
+\begin{remark}[Relation to Conjecture~\ref{conj:long-step}]
+\label{rem:long-sparse-vs-conj}
+Theorem~\ref{thm:long-sparse-near-complete} is a one-deletion of length
+\(\omega(n^{1/2})\), but the short degrees \(d\) and \(n-d-L=\ell\) are
+\(o(n^{1/3})\) rather than \(\Theta(n)\). Conjecture~\ref{conj:long-step} asks
+for the same conclusion with all four margins linear, which
+Remark~\ref{rem:long-complement-empty} records as still open.
 \end{remark}
 
 \section{Reductions already proved}
@@ -1842,10 +1895,12 @@ The near-complete side is Theorem~\ref{thm:factor-rate-complementary}.
 The formal cubic \(L^3/(4n)\) is not the relative variance.
 
 \paragraph{Conjecture~\ref{conj:long-step}.}
-Conjecture~\ref{conj:factor-moment} at degrees \(d+L\) and \(n-1-d\).
+Conjecture~\ref{conj:factor-moment} at degrees \(d+L\) and \(n-1-d\), under
+linear margins.
 That implication is Theorem~\ref{thm:long-from-moment}.
-Remark~\ref{rem:long-complement-empty} records that the near-complete moment
-does not supply both ends under linear margins.
+Theorem~\ref{thm:long-sparse-near-complete} settles the sparse-to-near-complete
+regime; Remark~\ref{rem:long-complement-empty} records that the near-complete
+moment does not supply both ends under linear margins.
 
 \section*{Acknowledgements}
 The exact \(+1\) theorem, the recorded reductions, and the blocked attacks
