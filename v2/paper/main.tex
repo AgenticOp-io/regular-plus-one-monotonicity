@@ -56,7 +56,8 @@ gives a one-deletion of length \(\Theta(n)\) from every degree
 matching inside every host of degree at least \(n/2\), and, with failure
 probability \(o(1)\), inside every host of growing degree.
 Dirac's theorem likewise places a uniform Hamilton cycle inside every host of
-degree at least \(n/2\).
+degree at least \(n/2\), and the same transitivity extends that coupling to
+every fixed degree at least \(3\) and to every degree above \(\sqrt{n}\log n\).
 The balanced range \(\min(L,D-L)=\omega(n^{1/3})\) of the factor conjectures,
 the four-linear-margin long-step, and the other three named statements stay open.
 \end{abstract}
@@ -99,7 +100,9 @@ together with long deletions past \(\sqrt{n}\) from sparse degrees
 (Theorem~\ref{thm:long-matching-gap}), and from a matching into every host of
 degree at least \(n/2\) (Theorem~\ref{thm:long-matching-into-dirac}) and into
 every growing degree (Theorem~\ref{thm:long-matching-growing}), and a Hamilton
-cycle into every Dirac host (Theorem~\ref{thm:long-hamilton-dirac}).
+cycle into every Dirac host (Theorem~\ref{thm:long-hamilton-dirac}) and, with
+failure probability \(o(1)\), into every fixed degree at least \(3\) and every
+degree above \(\sqrt{n}\log n\) (Theorem~\ref{thm:long-hamilton-wide}).
 The balanced factor range, the four-linear-margin Conjecture~\ref{conj:long-step},
 and the other three named statements stay open.
 
@@ -549,12 +552,48 @@ surely. The identity \((n/2)-2=(n-4)/2\) was checked, so \(D-2\ge n/2-2\). The
 identity \(\lim_{n\to\infty}(n/2-2)/n^{1/2}=\infty\) was checked.
 \end{proof}
 
+\begin{theorem}[Hamilton cycle below the Dirac threshold]
+\label{thm:long-hamilton-wide}
+Let \(Dn\) be even and let \(3\le D\le n-1\). Suppose either that \(D\ge 3\) is
+independent of \(n\), or that \(\sqrt{n}\log n<D\). There is a coupling of a
+Hamilton cycle \(C\) and a \(D\)-regular graph \(H\) with both marginals exact and
+with \(\PP(C\subset H)=1-o(1)\). If \(D\ge n/2\) the containment holds almost surely,
+by Theorem~\ref{thm:long-hamilton-dirac}. If \(\sqrt{n}\log n<D\), then
+\(n^{1/2}=o(D-2)\).
+\end{theorem}
+
+\begin{proof}
+If \(D\ge n/2\), Theorem~\ref{thm:long-hamilton-dirac} supplies the coupling with
+failure probability \(0\). Assume therefore \(D<n/2\).
+Sample \(H\sim\mu_D\). If \(D\) is a fixed integer at least \(3\),
+\cite[Theorem~1]{RW94} gives \(\PP(H\text{ is Hamiltonian})=1-o(1)\).
+If instead \(\sqrt{n}\log n<D<n/2\), then \(D\le n-4\) for every \(n\ge 8\), so
+\cite[Theorem~2.4]{KSVW01} gives the same probability.
+On the event that \(H\) is Hamiltonian, let \(C\) be a uniform random Hamilton cycle
+of \(H\); on the complementary event let \(C\) be an independent uniform Hamilton
+cycle of \(K_n\).
+The law of \(H\) is \(S_n\)-invariant, the event that \(H\) is Hamiltonian is
+\(S_n\)-invariant, and \(S_n\) acts transitively on Hamilton-cycle edge sets, as in
+the proof of Theorem~\ref{thm:long-hamilton-dirac}.
+The conditional law of \(C\) on that event is therefore exactly uniform on Hamilton
+cycles, and the mixture is exactly that uniform law, while \(H\) is exactly
+\(\mu_D\). The failure probability is the probability that \(H\) is non-Hamiltonian,
+which is \(o(1)\).
+If \(\sqrt{n}\log n<D\), then \(D-2>\sqrt{n}\log n-2\), and the identity
+\(\lim_{n\to\infty}(\sqrt{n}\log n-2)/n^{1/2}=\infty\) was checked, so
+\(n^{1/2}=o(D-2)\). The same limit with \(n/2\) in the denominator is \(0\), which
+was checked, so this degree window lies below the Dirac threshold.
+\end{proof}
+
 \begin{remark}[Not a uniform \(2\)-factor]
 \label{rem:hamilton-not-mu2}
-The marginal of \(C\) in Theorem~\ref{thm:long-hamilton-dirac} is uniform on Hamilton
-cycles. A uniform \(2\)-regular graph is a disjoint union of cycles and is
+The marginal of \(C\) in Theorems~\ref{thm:long-hamilton-dirac}
+and~\ref{thm:long-hamilton-wide} is uniform on Hamilton cycles.
+A uniform \(2\)-regular graph is a disjoint union of cycles and is
 disconnected with probability \(1-o(1)\), so this marginal is at total variation
-\(1-o(1)\) from \(\mu_2\). The theorem does not feed Conjecture~\ref{conj:long-step}.
+\(1-o(1)\) from \(\mu_2\). Neither theorem feeds Conjecture~\ref{conj:long-step}.
+\(S_n\)-transitivity is used only to keep the Hamilton-cycle marginal exact.
+It does not identify selection item (iii) across isomorphism types.
 \end{remark}
 
 \section{Reductions already proved}
@@ -2205,7 +2244,9 @@ degree \(n-2\) for every \(d\le n/2-1\); Theorem~\ref{thm:long-matching-into-dir
 settles matching nesting into every Dirac host; Theorem~\ref{thm:long-matching-growing}
 settles matching nesting into every growing degree.
 Theorem~\ref{thm:long-hamilton-dirac} places a uniform Hamilton cycle in every
-Dirac host; Remark~\ref{rem:hamilton-not-mu2} records that this is not \(\mu_2\).
+Dirac host, and Theorem~\ref{thm:long-hamilton-wide} extends that coupling to
+every fixed degree at least \(3\) and every degree above \(\sqrt{n}\log n\).
+Remark~\ref{rem:hamilton-not-mu2} records that the cycle marginal is not \(\mu_2\).
 Remark~\ref{rem:long-complement-empty} records that the
 near-complete moment does not supply both ends under four linear margins.
 
@@ -2247,6 +2288,16 @@ LMS Lecture Note Ser.\ 267, Cambridge Univ.\ Press, 1999, pp.~239--298.
 B.~D.~McKay,
 \emph{Asymptotics for symmetric \(0\)-\(1\) matrices with prescribed row sums},
 Ars Combin.\ \textbf{19} (1985), 15--25.
+
+\bibitem{RW94}
+R.~W.~Robinson and N.~C.~Wormald,
+\emph{Almost all regular graphs are hamiltonian},
+Random Structures Algorithms \textbf{5} (1994), 363--374.
+
+\bibitem{KSVW01}
+M.~Krivelevich, B.~Sudakov, V.~H.~Vu, and N.~C.~Wormald,
+\emph{Random regular graphs of high degree},
+Random Structures Algorithms \textbf{18} (2001), 346--363.
 
 \end{thebibliography}
 
