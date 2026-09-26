@@ -27,6 +27,12 @@ Bar is 2.0. v1.0 is sent.
 - Long nesting from a matching into every Dirac host \(D\ge n/2\)
   (Theorem long-matching-into-dirac): same Dirac + transitivity, upper degree
   any \(D\in[n/2,n-1]\).
+- Long nesting of a matching into every growing degree
+  (Theorem long-matching-growing): below \(n/2\), band-rate or the sublinear
+  matching variance replaces Dirac; failure probability \(o(1)\); both
+  marginals exact. Includes \(\omega(\sqrt{n})=D=o(n)\).
+- Co-length one near half degree: relative variance \(O((t^2+1)/n^2)\) at
+  host degree \(n/2+t\) (distance-rate), sharpening the \(O(1/n)\) bound.
 - Selection item (iii) on single \(S_n\) orbits \(D\in\{1,n-2\}\)
   (Corollary iii-one-orbit); not a config-split close at Chernoff scale.
 

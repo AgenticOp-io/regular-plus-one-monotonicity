@@ -24,6 +24,7 @@ enumeration (McK85) / free-extension flatness; sublinear matching variance.
 | long-sparse-near-complete | \(d+\ell=o(n^{1/3})\) to degree \(n-1-\ell\) |
 | long-matching-gap | Every \(d\le n/2-1\) to degree \(n-2\) (Dirac + \(S_n\)-transitivity); linear band \(d>n/2-1\) via matching concentration |
 | long-matching-into-dirac | Matching into every host \(D\ge n/2\) (Dirac + \(S_n\)-transitivity) |
+| long-matching-growing | Matching into every host \(D\to\infty\) (band-rate or sublinear variance below \(n/2\)) |
 
 ### Selection (iii)
 

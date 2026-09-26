@@ -913,3 +913,15 @@ n<=2 D
 (-∞, 2 D]
 [Integer solution]
 D = m_1 + m_2 + m_3 - m_4, n = m_1 + 2 m_2 - 2 m_4 - m_5, m_5 element Z, m_5>=0, m_4 element Z, m_4>=0, m_3 element Z, m_3>=0, m_2 element Z, m_2>=0, m_1 element Z, m_1>=0
+
+
+Query: Assuming[n>2, (1/n)/(1/2)^2 == 4/n]
+[Input]
+Assuming[n>2, (1/n)/(1/2)^2 = 4/n]
+[Result]
+True
+
+
+Query: Limit[(n^(2/3)-1)/Sqrt[n], n->Infinity]
+[Limit]
+lim_(n->∞) (n^(2/3) - 1)/sqrt(n) = ∞
