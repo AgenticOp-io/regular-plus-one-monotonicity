@@ -952,3 +952,259 @@ lim_(n->∞) (2 sqrt(n) log(n))/n = 0
 Query: Limit[10000000/(Sqrt[n]*Log[n]), n->Infinity]
 [Limit]
 lim_(n->∞) 10000000/(sqrt(n) log(n)) = 0
+
+
+Query: Simplify[n*D - D^2 - D*(n - D)]
+[Input interpretation]
+simplify | n D - D^2 - D (n - D)
+[Result]
+0
+
+
+Query: Simplify[D*(n - D)/(2*D^2) - (n - D)/(2*D)]
+[Input interpretation]
+simplify | D × (n - D)/(2 D^2) - (n - D)/(2 D)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(8/3)*n^(1/2)*n/(n/4)^2 - (128/3)*n^(-1/2)]
+[Input interpretation]
+simplify | 8/3 sqrt(n) × n/(n/4)^2 - 128/3 n^(-1/2)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Assuming[D > L > 0 && n > 0, FullSimplify[(D*n/2)*Log[D/(D - L)] - (L*n/2)*Log[L/(D - L)] - (D*n/2)*Log[D] + (L*n/2)*Log[L] + ((D - L)*n/2)*Log[D - L]]]
+[error]
+no result
+
+
+Query: FullSimplify[d*Log[d/(d - l)] - l*Log[l/(d - l)] - d*Log[d] + l*Log[l] + (d - l)*Log[d - l]]
+[Input interpretation]
+simplify | d log(d/(d - l)) - l log(l/(d - l)) - d log(d) + l log(l) + (d - l) log(d - l)
+[Results]
+d (log(d/(d - l)) - log(d)) + (d - l) log(d - l) + l (log(l) - log(l/(d - l)))
+[Results]
+(d - l) log(d - l) + d (log(-d/l) - log((l - d)/l)) - l (log(-d/l) + log(l/d) - log((l - d)/l)) - d log(d) + l log(l)
+[Expanded logarithmic form]
+0
+[Alternate form assuming d>0, l>0, and d - l>0]
+-d log(d) + log((d/(d - l))^d) + (d - l) log(d - l) - l log(l/(d - l)) + log(l^l)
+
+
+Query: Assuming[d > l > 0, FullSimplify[d*Log[d/(d - l)] - l*Log[l/(d - l)] - d*Log[d] + l*Log[l] + (d - l)*Log[d - l]]]
+[error]
+no result
+
+
+Query: Simplify[(d^d/(d - l)^d)*((d - l)^l/l^l)*(1/d^d)*l^l*(d - l)^(d - l)]
+[Input interpretation]
+simplify | d^d/(d - l)^d × (d - l)^l/l^l × 1/d^d l^l (d - l)^(d - l)
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: Simplify[-d*((l/d)*Log[l/d] + ((d - l)/d)*Log[(d - l)/d]) - (d*Log[d] - l*Log[l] - (d - l)*Log[d - l])]
+[Input interpretation]
+simplify | -d (l/d log(l/d) + (d - l)/d log((d - l)/d)) - (d log(d) - l log(l) - (d - l) log(d - l))
+[Result]
+(d - l) log(d - l) + l (log(l) - log(l/d)) + (l - d) log(1 - l/d) - d log(d)
+[Expanded logarithmic form]
+0
+[Alternate form assuming d>0, l>0, and d - l>0]
+-log(d^d) + (d - l) log(d - l) - (d - l) log((d - l)/d) + l log(l) - l log(l/d)
+
+
+Query: Simplify[(d/l)^l*((d/(d - l))^(d - l))*(d^(-d))*l^l*(d - l)^(d - l)]
+[Input interpretation]
+simplify | (d/l)^l (d/(d - l))^(d - l) d^(-d) l^l (d - l)^(d - l)
+[Result]
+d^(-d) l^l (d - l)^(d - l) (-d/l)^(d - l) (d/l)^l ((l - d)/l)^(l - d)
+
+
+Query: Simplify[(d^l/l^l)*(d^(d - l)/(d - l)^(d - l))*d^(-d)*l^l*(d - l)^(d - l)]
+[Input interpretation]
+simplify | d^l/l^l × d^(d - l)/(d - l)^(d - l) d^(-d) l^l (d - l)^(d - l)
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: Simplify[(n - 1)/D + 1/D + (n - D)/D^2 - n/D - (n - D)/D^2]
+[Input interpretation]
+simplify | (n - 1)/D + 1/D + (n - D)/D^2 - n/D - (n - D)/D^2
+[Result]
+0
+
+
+Query: Simplify[16*n^(1/2)*n/(n/4)^3 - 1024*n^(-3/2)]
+[Input interpretation]
+simplify | 16 sqrt(n) × n/(n/4)^3 - 1024 n^(-3/2)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[1/(1/2)^4 - 16]
+[Input interpretation]
+simplify | 1/(1/2)^4 - 16
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[10*6/(10*6 + 60*4) - 1/5]
+[Input interpretation]
+simplify | 10 × 6/(10 × 6 + 60 × 4) - 1/5
+[Results]
+1/5 - 1/5
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[6/(300/70) - 7/5]
+[Input interpretation]
+simplify | 6/(300/70) - 7/5
+[Results]
+7/5 - 7/5
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[4/(300/70) - 14/15]
+[Input interpretation]
+simplify | 4/(300/70) - 14/15
+[Results]
+14/15 - 14/15
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[D - (D + 1)/2 + 1 - (D + 1)/2]
+[Input interpretation]
+simplify | D - (D + 1)/2 + 1 - (D + 1)/2
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[Binomial[6, 3]/2 - 10]
+[Input interpretation]
+simplify | binomial(6, 3)/2 - 10
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(6 - 1)!/2 - 60]
+[Input interpretation]
+simplify | 1/2 (6 - 1)! - 60
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[300/70 - 30/7]
+[Input interpretation]
+simplify | 300/70 - 30/7
+[Results]
+30/7 - 30/7
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[10*6 + 60*4 - 300]
+[Input interpretation]
+simplify | 10 × 6 + 60 × 4 - 300
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[Binomial[6, 2] - 6 - 9]
+[Input interpretation]
+simplify | binomial(6, 2) - 6 - 9
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[D*s - s*(s - 1) - s*(D - s + 1)]
+[Input interpretation]
+simplify | D s - s (s - 1) - s (D - s + 1)
+[Result]
+0
+
+
+Query: Simplify[4!*3!/2 + 3*3*2 - 90]
+[Input interpretation]
+simplify | 4! × (3!)/2 + 3 × 3 × 2 - 90
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[90/42 - 15/7]
+[Input interpretation]
+simplify | 90/42 - 15/7
+[Results]
+15/7 - 15/7
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[Binomial[8, 4]/2 - 35]
+[Input interpretation]
+simplify | binomial(8, 4)/2 - 35
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(9091/1610)/(198572/36225) - 409095/397144]
+[Input interpretation]
+simplify | (9091/1610)/(198572/36225) - 409095/397144
+[Results]
+409095/397144 - 409095/397144
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[1806808/371712775 * 200 - 1]
+[Input interpretation]
+simplify | 1806808/371712775 × 200 - 1
+[Result]
+-414047/14868511
+[Quotient and Remainder]
+-414047 = (0) × 14868511 + (-414047)
+[Decimal approximation]
+-0.027847240386074974151749290833493683395734784740718152611246680...

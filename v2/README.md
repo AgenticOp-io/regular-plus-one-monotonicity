@@ -15,7 +15,7 @@ that supports the claim.
 | residual-moment | Second moment of \(m\)-factors of the BIM residual | Open |
 | factor-moment | Balanced \(L\)-factor second moment past \(\sqrt{n}\) | Open only for \(\min(L,D-L)=\omega(n^{1/3})\) on linear hosts; near-complete factors/hosts (incl.\ fixed co-length) and sublinear co-length one closed |
 | factor-rate | Relative variance \(o(L^3/n^3)\) on that balanced range | Same open/closed split as factor-moment |
-| long-step | One deletion with \(L=\omega(\sqrt{n})\) and linear margins | Open under four linear margins; sparse-to-near-complete and matching-gap-to-\((n-2)\) closed |
+| long-step | One deletion with \(L=\omega(\sqrt{n})\) and linear margins | Open under four linear margins. The upper graph can be exact; the remaining weight is \(a(G)\). On eight vertices that weight varies by about \(3\%\), while the factor count varies by \(15/7\) |
 
 Ordered jobs: `notes/PROGRAM.md`. Snapshot: `notes/STATUS.md`.
 
