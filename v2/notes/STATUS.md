@@ -53,8 +53,14 @@ Bar is 2.0. v1.0 is sent.
 
 - Q, config-split, residual-moment: fully open.
 - factor-moment, factor-rate: open only for \(\min(L,D-L)=\omega(n^{1/3})\).
-- long-step: open under four linear margins; sparse-to-near-complete,
-  matching-gap-to-\((n-2)\), and matching-into-Dirac are closed.
+- long-step: open under four linear margins. The upper graph can be sampled
+  exactly (Theorem long-exact-upper); the coupling then needs
+  \(L^1\) flatness of the inverse-weighted extension count \(a(G)\) and an
+  \(L\)-factor with probability \(1-o(1)\). Flatness of both factor counts
+  remains sufficient (Theorem long-from-flat) and relative variance is
+  stronger still. On eight vertices, with deletion length \(2\), \(Z\) varies
+  by \(15/7\) while \(a\) varies by \(409095/397144\), and the lower total
+  variation is below \(1/200\).
 
 ## Recorded negatives (not conjecture closes)
 

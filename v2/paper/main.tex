@@ -711,9 +711,187 @@ count at degree \(n-1-d\).
 The same Chebyshev bound applies there.
 \end{proof}
 
-Retitling Conjecture~\ref{conj:long-step} as a theorem is not a close:
-the range \(L=\omega(\sqrt{n})\) of that conjecture is empty of a proved moment,
-and Theorem~\ref{thm:third-step-recorded} already occupies \(L=o(n^{1/3})\).
+\begin{theorem}[Long step from in-probability flatness]
+\label{thm:long-from-flat}
+Let \(n\) be even and let \(d,L\) satisfy the hypotheses of
+Conjecture~\ref{conj:long-step}.
+Write \(Z_D\) for the number of \(L\)-factors of a uniform random \(D\)-regular
+graph, and suppose that both
+\[
+\frac{Z_{d+L}}{\EE Z_{d+L}}
+\qquad\text{and}\qquad
+\frac{Z_{n-1-d}}{\EE Z_{n-1-d}}
+\]
+tend to \(1\) in probability.
+Then there is a coupling of a \(d\)-regular graph \(G\) and a \((d+L)\)-regular
+graph \(H\) with \(G\subset H\) such that each marginal is within total variation
+\(o(1)\) of the uniform regular graph of the same degree.
+\end{theorem}
+
+\begin{proof}
+Let \(D=d+L\) and let \(\mathcal T_D\) be the set of \(D\)-regular graphs on \([n]\).
+Let \(\mathcal S\) be the set of pairs \((G,H)\) with \(G\) \(d\)-regular,
+\(H\) \(D\)-regular, and \(G\subset H\).
+The complement in \(H\) of a \(d\)-regular spanning subgraph is an \(L\)-factor of
+\(H\), and every \(L\)-factor arises once this way, so the number of partners of
+\(H\) in \(\mathcal S\) is \(Z_D(H)\).
+Thus \(|\mathcal S|=|\mathcal T_D|\,\EE Z_D\), and the law \(\nu\) of the upper graph in a
+uniform pair from \(\mathcal S\) is \(\nu(H)=Z_D(H)/(|\mathcal T_D|\,\EE Z_D)\).
+The uniform law is \(\mu_D(H)=1/|\mathcal T_D|\), so
+\[
+\dTV(\nu,\mu_D)
+=
+\frac12\,\EE\Bigl|\frac{Z_D}{\EE Z_D}-1\Bigr|.
+\]
+Fix \(\alpha\in(0,1/2)\) and write \(B\) for the event
+\(|Z_D-\EE Z_D|\ge\alpha\,\EE Z_D\).
+In-probability flatness gives \(\PP(B)\le\delta\) for every fixed \(\delta\in(0,1)\)
+and all large \(n\).
+On the complement, \(Z_D\ge(1-\alpha)\EE Z_D\), and that complement contains at
+least \((1-\delta)|\mathcal T_D|\) graphs, so the sum of \(Z_D\) over \(B\) is at most
+\[
+|\mathcal T_D|\,\EE Z_D\bigl(1-(1-\delta)(1-\alpha)\bigr)
+=
+|\mathcal T_D|\,\EE Z_D\,(\alpha+\delta-\alpha\delta).
+\]
+Splitting \(\EE|Z_D/\EE Z_D-1|\) into \(B\) and its complement, the graphs off
+\(B\) contribute at most \(\alpha\), and the graphs on \(B\) contribute at most
+\(\alpha+\delta-\alpha\delta+\delta\).
+The sum is at most \(2\alpha+2\delta\), so
+\(\dTV(\nu,\mu_D)\le\alpha+\delta\).
+Sending \(n\to\infty\) and then \(\alpha\to 0\) yields total variation \(o(1)\).
+
+The lower graph in a uniform pair from \(\mathcal S\) is the uniform \(d\)-regular
+law reweighted by the number \(W\) of \((d+L)\)-regular supergraphs.
+The complement of a \(d\)-regular graph is \((n-1-d)\)-regular, and an
+\(L\)-factor of the complement is the edge set of such a supergraph, so \(W\) has
+the same distribution as \(Z_{n-1-d}\).
+The same splitting, using in-probability flatness at degree \(n-1-d\), places
+the lower marginal within total variation \(o(1)\) of \(\mu_d\).
+On \(\mathcal S\) one has \(G\subset H\).
+\end{proof}
+
+Relative variance \(o(1)\) implies the hypothesis, by Chebyshev's inequality, and
+that route is Theorem~\ref{thm:long-from-moment}.
+The converse fails: a single graph with an exponentially large factor count
+can dominate \(\EE[Z^2]\) while carrying an arbitrarily small fraction of
+\(\EE Z\), which is all the total-variation estimate sees.
+Retitling Conjecture~\ref{conj:long-step} as a theorem is not a close.
+The range \(L=\omega(\sqrt{n})\) is still empty of a proved flatness, and
+Theorem~\ref{thm:third-step-recorded} already occupies \(L=o(n^{1/3})\).
+Theorem~\ref{thm:long-exact-upper} removes the upper factor count from the list:
+the upper graph can be sampled exactly, and only one inverse-weighted extension
+count remains.
+
+\begin{theorem}[Long step with an exact upper graph]
+\label{thm:long-exact-upper}
+Let \(n\) be even and let \(d,L\) satisfy the hypotheses of
+Conjecture~\ref{conj:long-step}.
+Write \(Z(H)\) for the number of \(L\)-factors of a \((d+L)\)-regular graph \(H\), and
+write
+\[
+a(G)
+=
+\sum_{\substack{H\supset G\\ Z(H)>0}}\frac1{Z(H)}
+\]
+for the sum over \((d+L)\)-regular graphs containing a \(d\)-regular graph \(G\).
+Let \(\delta=\PP(Z=0)\) and let \(\bar a\) be the average of \(a\) over the
+\(d\)-regular graphs.
+Sample \(H\) from the uniform \((d+L)\)-regular law.
+If \(Z(H)\ge 1\), delete a uniform \(L\)-factor of \(H\) and call the remainder
+\(G\); if \(Z(H)=0\), sample \(G\) from the uniform \(d\)-regular law
+independently of \(H\).
+Then \(H\) is exactly uniform, \(\PP(G\subset H)=1-\delta\), and
+\[
+\dTV(G,\mu_d)
+=
+\frac{1-\delta}{2}\,
+\EE\Bigl|\frac{a}{\bar a}-1\Bigr|.
+\]
+In particular, \(\delta=o(1)\) and \(a/\bar a\to 1\) in \(L^1\) produce both
+marginals within total variation \(o(1)\) of uniform, with containment failing
+on an event of probability \(o(1)\).
+\end{theorem}
+
+\begin{proof}
+The graph \(H\) is drawn from \(\mu_{d+L}\), so its marginal is exact.
+Containment fails precisely on \(\{Z=0\}\).
+For a fixed \(d\)-regular graph \(g\),
+\[
+\PP(G=g)
+=
+\sum_{\substack{H\supset g\\ Z(H)>0}}\frac{1}{|\mathcal T_{d+L}|\,Z(H)}
++
+\frac{\delta}{|\mathcal T_d|}
+=
+\frac{a(g)}{|\mathcal T_{d+L}|}
++
+\frac{\delta}{|\mathcal T_d|},
+\]
+where \(\mathcal T_D\) is the set of \(D\)-regular graphs.
+Summing \(a\) over \(d\)-regular graphs counts each host with \(Z>0\) once, so
+\[
+\sum_g a(g)
+=
+(1-\delta)\,|\mathcal T_{d+L}|
+\]
+and therefore \(\bar a=(1-\delta)\,|\mathcal T_{d+L}|/|\mathcal T_d|\).
+The uniform probability is \(1/|\mathcal T_d|\), and
+\((1-\delta)/|\mathcal T_d|=\bar a/|\mathcal T_{d+L}|\), so
+\[
+\PP(G=g)-\frac1{|\mathcal T_d|}
+=
+\frac{a(g)}{|\mathcal T_{d+L}|}
+-
+\frac{1-\delta}{|\mathcal T_d|}
+=
+\frac{a(g)-\bar a}{|\mathcal T_{d+L}|}.
+\]
+Summing the absolute values and dividing by \(2\) produces
+\[
+\dTV(G,\mu_d)
+=
+\frac{|\mathcal T_d|}{2\,|\mathcal T_{d+L}|}\,\EE|a-\bar a|
+=
+\frac{1-\delta}{2}\,
+\EE\Bigl|\frac{a}{\bar a}-1\Bigr|,
+\]
+where the last step substitutes \(|\mathcal T_d|/|\mathcal T_{d+L}|=(1-\delta)/\bar a\).
+\end{proof}
+
+\begin{remark}[The upper count need not be flat]
+\label{rem:exact-upper-eight}
+Theorem~\ref{thm:long-from-flat} asks for flatness of both factor counts, because
+the uniform containment pair reweights each side by its own count.
+Theorem~\ref{thm:long-exact-upper} uses the upper count only through the
+weights \(1/Z\). A host with a large count contributes less per factor, so a
+spike in \(Z\) need not move \(a\).
+On eight vertices, with \(d=2\) and \(L=2\), every \(4\)-regular graph has a
+\(2\)-factor, so \(\delta=0\). There are \(19355\) such hosts and \(3507\)
+graphs of degree \(2\). The count \(Z\) attains \(90\) on each of the \(35\)
+copies of \(K_{4,4}\) and is at least \(42\) on every host, so its maximum-to-minimum
+ratio is \(15/7\). The same exhaustive count gives maximum-to-minimum ratio
+\(409095/397144\) for \(a\), and total variation \(1806808/371712775<1/200\) for
+the lower graph. The identities \(4!\,3!/2+3\cdot 3\cdot 2=90\),
+\(\binom{8}{4}/2=35\), \(90/42=15/7\), and
+\((9091/1610)/(198572/36225)=409095/397144\) were checked, as was
+\(200\cdot 1806808/371712775<1\).
+
+The value \(90\) is the number of \(2\)-factors of \(K_{4,4}\).
+On eight vertices a \(2\)-factor of a bipartite graph is an \(8\)-cycle or a
+disjoint pair of \(4\)-cycles.
+The number of Hamilton cycles in \(K_{4,4}\) is \(4!\,3!/2=72\): relative to a
+fixed vertex of the first part, order the remaining three vertices of that part
+in \(3!\) ways and the four vertices of the second part in \(4!\) ways, and divide
+by \(2\) for the direction of the cycle.
+A decomposition into two \(4\)-cycles uses a partition of each part into two
+pairs. There are three such partitions of a \(4\)-set. Matching the two
+partitions and placing a \(4\)-cycle on each matched pair can be done in
+\(3\cdot 3\cdot 2=18\) ways.
+The total is \(72+18=90\).
+The labelled copies of \(K_{4,4}\) are the unordered bipartitions into two sets
+of size \(4\), and there are \(\binom{8}{4}/2=35\) of them.
+\end{remark}
 
 \begin{theorem}[Selection reduction for the container]
 \label{thm:selection-reduces}
@@ -1115,6 +1293,331 @@ The near-complete side \(D-L=o(n^{1/3})\) is Theorem~\ref{thm:factor-complementa
 by complementation rather than a signed product.
 Conjecture~\ref{conj:long-step} and the balanced range of
 Conjectures~\ref{conj:factor-moment} and~\ref{conj:factor-rate} stay open.
+\end{remark}
+
+\section{The spectral determinant is not the gap}
+\label{sec:spectral-det}
+
+The signless Laplacian of a \(D\)-regular graph is \(DI+A_G\).
+Its determinant, and the trace of its resolvent, depend on the graph only
+through the nontrivial spectrum, and the first two power sums of that spectrum
+do not depend on the graph at all.
+On the event that the nontrivial spectral radius is \(O(\sqrt{n})\), both
+scalars are therefore functions of \(n\) and \(D\) up to a factor
+\(1+O(n^{-1/2})\).
+The factor-count second moment is an average of extension ratios of pairs of
+factors, so this cancellation does not prove
+Conjecture~\ref{conj:factor-moment}.
+
+\begin{proposition}[Signless-Laplacian determinant]
+\label{prop:spectral-det}
+Let \(G\) be a \(D\)-regular graph on \(n\) vertices, \(1\le D\le n-1\), and let
+\(\mu_1,\ldots,\mu_n\) be the eigenvalues of its adjacency matrix, with
+\(\mu_1=D\).
+Write \(\rho=\max_{2\le i\le n}|\mu_i|\) and assume \(\rho\le D/2\).
+Then
+\[
+\log\det(DI+A_G)
+=
+\log(2D)+(n-1)\log D-1-\frac{n-D}{2D}+\theta,
+\]
+where
+\[
+|\theta|
+\le
+\frac83\cdot\frac{\rho(n-D)}{D^2}.
+\]
+In particular, if \(D\ge n/4\) and \(\rho\le C\sqrt{n}\), then
+\(\theta=O(C n^{-1/2})\).
+The identities \(nD-D^2=D(n-D)\) and
+\(D(n-D)/(2D^2)=(n-D)/(2D)\) were checked.
+\end{proposition}
+
+\begin{proof}
+The trace of \(A_G\) is \(0\), so \(\sum_{i=2}^n\mu_i=-D\).
+The trace of \(A_G^2\) equals \(nD\), so
+\(\sum_{i=2}^n\mu_i^2=nD-D^2=D(n-D)\).
+The eigenvalues of \(DI+A_G\) are \(2D\) and \(D+\mu_i\) for \(i\ge 2\).
+For \(|x|\le 1/2\),
+\[
+\log(1+x)=x-\frac{x^2}{2}+r(x),
+\qquad
+|r(x)|\le\frac83|x|^3.
+\]
+The cubic bound is the Lagrange form of the remainder: the third derivative of
+\(\log(1+x)\) is \(2/(1+x)^3\), and \(1+x\ge 1/2\) on the segment from \(0\) to any
+such \(x\), so the remainder \(x^3/(3(1+\xi)^3)\) has absolute value at most
+\(\tfrac83|x|^3\).
+Apply this at \(x=\mu_i/D\). Then
+\begin{align*}
+\sum_{i=2}^n\log(D+\mu_i)
+&=
+(n-1)\log D+\sum_{i=2}^n\frac{\mu_i}{D}
+-\sum_{i=2}^n\frac{\mu_i^2}{2D^2}+\theta\\
+&=
+(n-1)\log D-1-\frac{n-D}{2D}+\theta,
+\end{align*}
+and
+\[
+|\theta|
+\le
+\frac83\sum_{i=2}^n\frac{|\mu_i|^3}{D^3}
+\le
+\frac83\cdot\frac{\rho}{D^3}\sum_{i=2}^n\mu_i^2
+=
+\frac83\cdot\frac{\rho(n-D)}{D^2}.
+\]
+Adding \(\log(2D)\) is the claim.
+If \(D\ge n/4\) and \(\rho\le C\sqrt{n}\), the bound is at most
+\(\tfrac83\cdot C\sqrt{n}\cdot n/(n/4)^2=(128/3)C n^{-1/2}\), which was checked.
+\end{proof}
+
+\begin{proposition}[Resolvent trace]
+\label{prop:resolvent-trace}
+Under the hypotheses of Proposition~\ref{prop:spectral-det},
+\[
+\sum_{i=1}^n\frac{1}{D+\mu_i}
+=
+\frac{1}{2D}+\frac{n}{D}+\frac{n-D}{D^2}+\theta,
+\]
+where the sum runs over the eigenvalues \(2D,D+\mu_2,\ldots,D+\mu_n\) of
+\(DI+A_G\) and
+\[
+|\theta|
+\le
+16\cdot\frac{\rho(n-D)}{D^3}.
+\]
+If \(D\ge n/4\) and \(\rho\le C\sqrt{n}\), then \(\theta=O(C n^{-3/2})\).
+The identities \((n-1)/D+1/D+(n-D)/D^2=n/D+(n-D)/D^2\) and
+\(1/(1/2)^4=16\) were checked, as was the bound
+\(16\cdot\sqrt{n}\cdot n/(n/4)^3=1024\,n^{-3/2}\).
+\end{proposition}
+
+\begin{proof}
+The eigenvalues of \(DI+A_G\) are \(2D\) and \(D+\mu_i\) for \(i\ge 2\), so the
+sum is \(1/(2D)\) plus \(\sum_{i=2}^n 1/(D+\mu_i)\).
+For \(|x|\le 1/2\),
+\[
+\frac{1}{1+x}=1-x+x^2+r(x),
+\qquad
+|r(x)|\le 16|x|^3.
+\]
+The cubic bound is the Lagrange form of the remainder.
+The third derivative of \(1/(1+x)\) is \(-6/(1+x)^4\), so the remainder is
+\(-x^3/(1+\xi)^4\).
+On the segment from \(0\) to any such \(x\) one has \(1+\xi\ge 1/2\), and
+\(1/(1/2)^4=16\).
+Apply this at \(x=\mu_i/D\). Then
+\begin{align*}
+\sum_{i=2}^n\frac{1}{D+\mu_i}
+&=
+\frac1D\sum_{i=2}^n\Bigl(1-\frac{\mu_i}{D}+\frac{\mu_i^2}{D^2}+r_i\Bigr)\\
+&=
+\frac{n-1}{D}+\frac1D+\frac{n-D}{D^2}+\theta,
+\end{align*}
+where the linear and quadratic sums are \(\sum_{i=2}^n\mu_i=-D\) and
+\(\sum_{i=2}^n\mu_i^2=D(n-D)\), as in Proposition~\ref{prop:spectral-det}, and
+\[
+|\theta|
+\le
+\frac1D\cdot 16\sum_{i=2}^n\frac{|\mu_i|^3}{D^3}
+\le
+16\cdot\frac{\rho}{D^4}\sum_{i=2}^n\mu_i^2
+=
+16\cdot\frac{\rho(n-D)}{D^3}.
+\]
+The displayed main term is \(n/D+(n-D)/D^2\).
+Adding \(1/(2D)\) is the claim.
+If \(D\ge n/4\) and \(\rho\le C\sqrt{n}\), the bound is at most
+\(16\cdot C\sqrt{n}\cdot n/(n/4)^3=1024\,C n^{-3/2}\), which was checked.
+\end{proof}
+
+\begin{remark}[Not a factor-moment close]
+\label{rem:spectral-not-moment}
+Propositions~\ref{prop:spectral-det} and~\ref{prop:resolvent-trace} make two
+scalars attached to the host universal on the event \(\rho=O(\sqrt{n})\).
+The ratio \(\EE[Z^2]/(\EE Z)^2\) is the average, over pairs of \(L\)-factors, of
+the extension ratio \(N(F_1\cup F_2)N(\emptyset)/(N(F_1)N(F_2))\).
+That ratio still depends on the intersection of the two factors.
+Flatness of these scalars does not flatten it.
+Theorem~\ref{thm:long-from-flat} needs the factor counts themselves to be flat
+in probability, which remains open on the balanced range.
+Proposition~\ref{prop:six-det-mass} shows that a vanishing determinant, on six
+vertices, contributes one fifth of the sum of the counts rather than the whole
+sum.
+\end{remark}
+
+\section{A uniform ceiling on the factor count}
+\label{sec:ceiling}
+
+The determinant and the resolvent trace are properties of one host.
+The number of \(L\)-factors itself has a uniform upper bound that depends
+on the host only through \(n\), \(D\), and \(L\).
+Every \(D\)-regular graph, expander or otherwise, sits under the same
+exponential.
+On six vertices the hosts for which that determinant vanishes are visible in
+the sum of the counts and do not carry the sum.
+
+\begin{proposition}[Entropy ceiling]
+\label{prop:entropy-ceiling}
+Let \(G\) be a simple \(D\)-regular graph on \(n\) vertices, and let \(L\) be an
+integer with \(1\le L\le D-1\) and \(Ln\) even.
+The number \(Z_L(G)\) of \(L\)-factors of \(G\) satisfies
+\[
+Z_L(G)
+\le
+\frac{D^{Dn/2}}{L^{Ln/2}(D-L)^{(D-L)n/2}}.
+\]
+The right-hand side equals
+\[
+\exp\Bigl(-\frac{Dn}{2}\bigl(\lambda\log\lambda+(1-\lambda)\log(1-\lambda)\bigr)\Bigr),
+\]
+where \(\lambda=L/D\).
+Both identities were checked.
+\end{proposition}
+
+\begin{proof}
+The polynomial \(\prod_{jk\in E(G)}(1+x_j x_k)\) has nonnegative coefficients,
+and \(Z_L(G)\) is the coefficient of \(\prod_v x_v^L\).
+For every \(t>0\),
+\[
+Z_L(G)\,t^{Ln}
+\le
+(1+t^2)^{Dn/2}.
+\]
+Set \(u=t^2=L/(D-L)\). Then \(1+u=D/(D-L)\), so
+\begin{align*}
+Z_L(G)
+&\le
+\frac{(1+u)^{Dn/2}}{u^{Ln/2}}
+=
+\frac{D^{Dn/2}}{(D-L)^{Dn/2}}\cdot\frac{(D-L)^{Ln/2}}{L^{Ln/2}}\\
+&=
+\frac{D^{Dn/2}}{L^{Ln/2}(D-L)^{(D-L)n/2}}.
+\end{align*}
+The generating-function value equals this monomial because
+\[
+\frac{d^{d}}{(d-l)^{d}}\cdot\frac{(d-l)^{l}}{l^{l}}\cdot\frac{l^{l}\,(d-l)^{d-l}}{d^{d}}
+=1,
+\]
+and the monomial equals the exponential because
+\[
+\frac{d^{l}}{l^{l}}\cdot\frac{d^{d-l}}{(d-l)^{d-l}}\cdot d^{-d}\cdot l^{l}\cdot(d-l)^{d-l}
+=1.
+\]
+Both identities were checked, at \(d=D\) and \(l=L\), and the factor \(n/2\) in
+the exponent is common to every term.
+\end{proof}
+
+\begin{lemma}[Small sets expand]
+\label{lem:small-set-expand}
+Let \(G\) be a simple \(D\)-regular graph and let \(S\) be a vertex set with
+\(1\le |S|\le (D+1)/2\).
+Then the number of edges leaving \(S\) is at least \(|S|(D+1)/2\).
+The identities \(Ds-s(s-1)=s(D-s+1)\) and \(D-(D+1)/2+1=(D+1)/2\) were
+checked.
+\end{lemma}
+
+\begin{proof}
+Write \(s=|S|\). A simple graph has at most \(s(s-1)/2\) edges inside \(S\), so
+the number of edges leaving \(S\) is at least
+\[
+Ds-s(s-1)=s(D-s+1).
+\]
+The hypothesis \(s\le (D+1)/2\) gives \(D-s+1\ge D-(D+1)/2+1=(D+1)/2\).
+\end{proof}
+
+\begin{proposition}[Six vertices, singular hosts]
+\label{prop:six-det-mass}
+Let \(n=6\) and \(D=3\).
+There are \(70\) labelled \(3\)-regular graphs.
+Ten of them are copies of \(K_{3,3}\).
+Each is bipartite, so \(\det(3I+A_G)=0\), and each has exactly six \(2\)-factors.
+The other sixty are complements of a \(6\)-cycle, and each has exactly four
+\(2\)-factors.
+The sum of the number of \(2\)-factors over the seventy graphs is \(300\), so the
+mean is \(30/7\).
+The ten graphs with vanishing determinant contribute \(1/5\) of that sum.
+On each of them the count is \(7/5\) of the mean; on each of the other sixty it
+is \(14/15\) of the mean.
+The counts \((6-1)!/2=60\), \(\binom{6}{3}/2=10\), \(\binom{6}{2}-6=9\),
+\(10\cdot 6+60\cdot 4=300\), \(300/70=30/7\), \(10\cdot 6/300=1/5\),
+\(6/(30/7)=7/5\), and \(4/(30/7)=14/15\) were checked.
+\end{proposition}
+
+\begin{proof}
+On six vertices the complement of a \(2\)-regular graph is \(3\)-regular, since
+the complete degree is \(5\), and every \(3\)-regular graph arises once this way.
+A \(2\)-regular graph is a disjoint union of cycles of length at least \(3\).
+The only such partitions of six are a single \(6\)-cycle and a pair of
+triangles.
+The number of distinct \(6\)-cycle edge sets is \((6-1)!/2=60\).
+The number of ways to partition six vertices into two unlabeled triples is
+\(\binom{6}{3}/2=10\), and each partition determines one pair of triangles.
+The complement of two disjoint triangles is the complete bipartite graph
+between them, hence a copy of \(K_{3,3}\).
+A bipartite \(D\)-regular graph has \(-D\) as an adjacency eigenvalue, because
+the spectrum is symmetric about zero, so \(D+(-D)=0\) is an eigenvalue of
+\(DI+A_G\) and the determinant vanishes.
+
+A \(2\)-factor of \(K_{3,3}\) is \(2\)-regular and bipartite, hence a \(6\)-cycle,
+hence a union of two disjoint perfect matchings.
+There are \(3!=6\) perfect matchings.
+Relative to a fixed perfect matching, a disjoint perfect matching is a
+derangement of three letters, and the derangements of three letters are the two
+\(3\)-cycles.
+Each \(2\)-factor arises from two ordered pairs of matchings, so the number of
+\(2\)-factors is \(6\cdot 2/2=6\).
+
+It remains to count the \(2\)-factors of the complement of a \(6\)-cycle.
+Label the cycle \((1\,2\,3\,4\,5\,6)\).
+The nine pairs at cyclic distance \(2\) or \(3\) are the triangle on \(\{1,3,5\}\),
+the triangle on \(\{2,4,6\}\), and the diameters \(14\), \(25\), and \(36\).
+None of them is a cycle edge, and the complement has \(\binom{6}{2}-6=9\) edges,
+so these are all the edges of the complement.
+In a \(2\)-factor the degree sum on \(\{1,3,5\}\) is \(6\).
+Each edge inside that triangle contributes \(2\) and each diameter contributes
+\(1\), so if \(e\) is the number of edges used inside the triangle and \(s\) is
+the number of diameters used, then \(2e+s=6\).
+Thus \(s\) is even.
+At most three diameters exist, so \(s\in\{0,2\}\).
+The same count on \(\{2,4,6\}\) gives the same value of \(s\).
+
+If \(s=0\), then \(e=3\), so both triangles are included in full.
+That is one \(2\)-factor.
+If \(s=2\), then \(e=2\) on each triangle.
+Two edges of a triangle form a path of length \(2\).
+The two endpoints of that path are the only vertices of internal degree \(1\),
+so they are the endpoints of the two diameters.
+There are three choices for the omitted edge of the odd triangle.
+Each choice determines the two odd endpoints, hence the two diameters, hence
+the two even endpoints, and the unique path of length \(2\) on the even
+triangle with those endpoints has the remaining even vertex as its middle.
+This produces three \(2\)-factors.
+The total is four.
+\end{proof}
+
+\begin{remark}[The ceiling sits above the gaussian scale]
+\label{rem:ceiling-gaussian}
+Write \(\Lambda=\lambda(1-\lambda)\) with \(\lambda=L/D\), and write \(M\) for the
+ceiling in Proposition~\ref{prop:entropy-ceiling}.
+The ratio of \(M\) to the gaussian normalisation \(M(2\pi\Lambda n)^{-n/2}\) is
+\((2\pi\Lambda n)^{n/2}\).
+An exceptional set \(B\) of \(D\)-regular graphs therefore contributes at most
+\(|B|\,M\) to the sum of the factor counts.
+That contribution is smaller than \(|\Omega_D|\) times the gaussian
+normalisation once
+\[
+\frac{|B|}{|\Omega_D|}
+=
+o\bigl((2\pi\Lambda n)^{-n/2}\bigr).
+\]
+Lemma~\ref{lem:small-set-expand} removes sets of size at most \((D+1)/2\) from
+the list of possible sparse cuts.
+It does not produce a probability of this strength, and the comparison is with
+the gaussian normalisation rather than with \(\EE Z_L\).
+Proposition~\ref{prop:six-det-mass} is the exact form of the same comparison
+at \(n=6\): the hosts with \(\det(DI+A_G)=0\) contribute one fifth of the sum.
 \end{remark}
 
 \section{The inverse-count scale}
@@ -2165,6 +2668,16 @@ The balanced range of Conjectures~\ref{conj:factor-moment} and
 \ref{conj:factor-rate}, and the four-linear-margin case of
 Conjecture~\ref{conj:long-step}, remain, and need a
 comparison that is not this product.
+Theorem~\ref{thm:long-from-flat} reduces that long step to in-probability
+flatness of the two factor counts.
+Theorem~\ref{thm:long-exact-upper} makes the upper graph exact and leaves
+only the inverse-weighted extension count \(a(G)\).
+Proposition~\ref{prop:spectral-det} shows that the signless-Laplacian
+determinant is not the missing comparison, and
+Proposition~\ref{prop:resolvent-trace} does the same for the resolvent trace.
+Proposition~\ref{prop:entropy-ceiling} places every host under one exponential,
+and Proposition~\ref{prop:six-det-mass} shows that on six vertices the hosts
+with vanishing determinant contribute one fifth of the sum of the counts.
 The matching-gap deletion of Theorem~\ref{thm:long-matching-gap}
 is already past \(\sqrt{n}\) for every \(d\le n/2-1\), and with three linear
 margins whenever \(\min(d,n-d)=\Theta(n)\).
@@ -2272,9 +2785,23 @@ the near-complete host side is Theorem~\ref{thm:factor-rate-dense-host}.
 The formal cubic \(L^3/(4n)\) is not the relative variance.
 
 \paragraph{Conjecture~\ref{conj:long-step}.}
-Conjecture~\ref{conj:factor-moment} at degrees \(d+L\) and \(n-1-d\), under
-linear margins.
-That implication is Theorem~\ref{thm:long-from-moment}.
+In-probability flatness of the single weight \(a(G)\) in
+Theorem~\ref{thm:long-exact-upper}, together with the existence of an
+\(L\)-factor in a uniform \((d+L)\)-regular graph with probability \(1-o(1)\).
+That coupling makes the upper graph exactly uniform.
+Flatness of both factor counts remains sufficient, by
+Theorem~\ref{thm:long-from-flat}, and is stronger than flatness of \(a\).
+Relative variance \(o(1)\) is a stronger sufficient condition, recorded as
+Theorem~\ref{thm:long-from-moment}, and is what
+Conjecture~\ref{conj:factor-moment} asks for.
+Proposition~\ref{prop:spectral-det} removes the signless-Laplacian determinant
+as an obstruction on the event that the nontrivial spectral radius is
+\(O(\sqrt{n})\), and Proposition~\ref{prop:resolvent-trace} removes the
+resolvent trace on the same event.
+Proposition~\ref{prop:entropy-ceiling} bounds every host by one exponential.
+Proposition~\ref{prop:six-det-mass} shows that a vanishing determinant
+contributes one fifth of the sum of the counts on six vertices.
+The extension ratio of a pair of factors is still open.
 Theorem~\ref{thm:long-sparse-near-complete} settles the sparse-to-near-complete
 regime; Theorem~\ref{thm:long-matching-gap} settles the matching-gap deletion to
 degree \(n-2\) for every \(d\le n/2-1\); Theorem~\ref{thm:long-matching-into-dirac}

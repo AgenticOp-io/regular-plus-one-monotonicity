@@ -45,9 +45,12 @@ Still missing:
 1. Signed (or other) second-moment comparison on
    \(\min(L,D-L)=\omega(n^{1/3})\) with linear host — Conjectures
    factor-moment and factor-rate.
-2. Four-linear-margin long-step — Conjecture long-step. Complementary moment
-   cannot feed both ends (Remark long-complement-empty). Matching-gap needs a
-   single isomorphism type (gap \(2\) only).
+2. Four-linear-margin long-step — Conjecture long-step. The upper graph can
+   be sampled exactly (Theorem long-exact-upper); what remains is \(L^1\)
+   flatness of \(a(G)=\sum_{H\supset G}1/Z(H)\) and existence of an \(L\)-factor
+   with probability \(1-o(1)\). Flatness of both factor counts is still
+   sufficient (Theorem long-from-flat). On eight vertices the \(Z\)-ratio is
+   \(15/7\) and the \(a\)-ratio is \(409095/397144\).
 
 ## Workstream B — peel, residual, Chernoff Q
 
@@ -83,14 +86,15 @@ Still missing (no fake closes):
 | residual-moment | Open |
 | factor-moment | Open only for \(\min(L,D-L)=\omega(n^{1/3})\) on linear hosts |
 | factor-rate | Open only on that same balanced range |
-| long-step | Open under four linear margins; matching-gap and matching-into-Dirac closed. Hamilton coupling is not \(\mu_2\) |
+| long-step | Open under four linear margins. Exact upper graph reduces it to flatness of \(a(G)\). On eight vertices \(Z\) varies by \(15/7\) and \(a\) by \(409095/397144\). Hamilton coupling is not \(\mu_2\) |
 
 ## Next
 
 Priority order:
 1. Signed comparison on balanced \(\min(L,D-L)=\omega(n^{1/3})\) (Workstream A).
 2. Lower-tail of \(N\) at \(1/c_n\) under true \(\mu_D\) dependence (Workstream B).
-3. Four-linear-margin long-step, or residual-moment on the nearly regular window.
+3. In-probability flatness of the two \(L\)-factor counts (Theorem long-from-flat),
+   or residual-moment on the nearly regular window.
 
 Run `python scripts/approach_screen.py` before expanding an attack.
 Append Wolfram checks to `v2/notes/wolfram-checks.md`.
