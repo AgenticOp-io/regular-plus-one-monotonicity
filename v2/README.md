@@ -13,9 +13,9 @@ that supports the claim.
 | Q | Chernoff sandwich \(\varepsilon\asymp\sqrt{(\log n)/d}\) | Open |
 | config-split | Peel law \(\mathcal{L}_{d,m}\) vs \(\mu_{d+m}\) | Open (iii on \(D\in\{1,n-2\}\) only) |
 | residual-moment | Second moment of \(m\)-factors of the BIM residual | Open |
-| factor-moment | Balanced \(L\)-factor second moment past \(\sqrt{n}\) | Open only for \(\min(L,D-L)=\omega(n^{1/3})\) on linear hosts; near-complete factors/hosts (incl.\ fixed co-length) and sublinear co-length one closed |
-| factor-rate | Relative variance \(o(L^3/n^3)\) on that balanced range | Same open/closed split as factor-moment |
-| long-step | One deletion with \(L=\omega(\sqrt{n})\) and linear margins | Open under four linear margins. The upper graph can be exact; the remaining weight is \(a(G)\). On eight vertices that weight varies by about \(3\%\), while the factor count varies by \(15/7\) |
+| factor-moment | Balanced \(L\)-factor second moment past \(\sqrt{n}\) | Every linear host with \(L^2=o(n)\) closed; still open for \(L=\omega(\sqrt{n})\) |
+| factor-rate | Relative variance \(o(L^3/n^3)\) on that balanced range | Open. The logarithm \(L(a-1)(L(a-1)+a)/(2a^2 n)\) is not this rate |
+| long-step | One deletion with \(L=\omega(\sqrt{n})\) and linear margins | Deletion of length \(L^2=o(n)\) closed; still open for \(L=\omega(\sqrt{n})\). The mean of the first two host traces is order \(L^2/n^2\) and does not cancel the identified logarithm of order \(L^2/n\). Flatness of an ordered sequence of \(L\) perfect matchings gives the coupling, and a matching-scale increment \(O(1/n)\) per step sums to relative variance \(O(L/n)\) on the whole range \(L=o(n)\). Cauchy--Schwarz against the complement matching count solves as \(O(L^2/n)\) and stops at \(\sqrt{n}\); the additive increment is a cancellation past that bound. Past \(\sqrt{n}\) the upper graph can be exact; the remaining weight on that route is \(a(G)\). On eight vertices that weight varies by about \(3\%\), while the factor count varies by \(15/7\) |
 
 Ordered jobs: `notes/PROGRAM.md`. Snapshot: `notes/STATUS.md`.
 

@@ -52,15 +52,46 @@ Bar is 2.0. v1.0 is sent.
 ## Still open (named)
 
 - Q, config-split, residual-moment: fully open.
-- factor-moment, factor-rate: open only for \(\min(L,D-L)=\omega(n^{1/3})\).
-- long-step: open under four linear margins. The upper graph can be sampled
-  exactly (Theorem long-exact-upper); the coupling then needs
-  \(L^1\) flatness of the inverse-weighted extension count \(a(G)\) and an
-  \(L\)-factor with probability \(1-o(1)\). Flatness of both factor counts
-  remains sufficient (Theorem long-from-flat) and relative variance is
-  stronger still. On eight vertices, with deletion length \(2\), \(Z\) varies
-  by \(15/7\) while \(a\) varies by \(409095/397144\), and the lower total
-  variation is below \(1/200\).
+- factor-moment: closed on every linear host for \(L^2=o(n)\)
+  (Theorem linear-below-sqrt; degree \(n/2\) is Theorem half-below-sqrt).
+  That is every length \(o(\sqrt{n})\), and it stops short of \(\sqrt{n}\). Still open for
+  \(L=\omega(\sqrt{n})\).
+- factor-rate: still open on the balanced range. At host density \(a=D/n\) the
+  logarithm is \(L(a-1)(L(a-1)+a)/(2a^2 n)\), which specialises to
+  \(L(L-1)/(2n)\) at degree \(n/2\) and is not \(o(L^3/n^3)\).
+- The signed three-matching principal mass is \(-L^8/(48n^2)\)
+  (Proposition triple-mass-order). It does not identify the cumulant.
+- long-step: open for one deletion of length \(\omega(\sqrt{n})\).
+  Theorem deletion-below-sqrt gives the deletion for \(L^2=o(n)\)
+  between linear degrees, for every length \(o(\sqrt{n})\). It stops short of
+  \(\sqrt{n}\). The length \(o(n^{1/3})\) remains Theorem third-step.
+  Proposition host-trace: at half degree the mean of the first two host traces
+  is order \(L^2/n^2\) and does not cancel the identified logarithm of order
+  \(L^2/n\).
+  Theorem long-from-peel: in-probability flatness of the ordered sequence of
+  \(L\) successive perfect matchings, at degrees \(d+L\) and \(n-1-d\), gives
+  the coupling. Proposition peel-budget: the matching count has relative
+  variance \(O(1/n)\), and if each added matching increases the relative
+  variance by a further \(O(1/n)\), the sequence has relative variance
+  \(O(L/n)\) and the long step follows for every \(L=o(n)\). That increment
+  is the remaining estimate.
+  Lemma deletion-density: the size-biased matching deletion has Radon--Nikodym
+  derivative equal to the complement matching count, with relative variance
+  \(O(1/n)\) and fourth moment \(O(1/n^2)\).
+  Proposition aligned-peel: Cauchy--Schwarz on that covariance solves as
+  relative variance \(O(L^2/n)\), which tends to \(0\) only for \(L=o(\sqrt{n})\).
+  The additive increment is a cancellation past this alignment.
+  On all 3507 five-regular graphs on eight vertices the peel excesses for
+  \(j=1,2,3\) are \(1024/1785375\), \(25079/11569230\), and \(77949/13712410\);
+  divided by \(j^2\) times the first excess they are \(626975/663552\) and
+  \(3092626575/2808301568\), near \(1\) rather than the additive quotients
+  \(1/2\) and \(1/3\).
+  Past \(\sqrt{n}\), the upper graph can be sampled exactly
+  (Theorem long-exact-upper); the coupling then needs \(L^1\) flatness of the
+  inverse-weighted extension count \(a(G)\) and an \(L\)-factor with
+  probability \(1-o(1)\). On eight vertices, with deletion length \(2\), \(Z\)
+  varies by \(15/7\) while \(a\) varies by \(409095/397144\), and the lower
+  total variation is below \(1/200\).
 
 ## Recorded negatives (not conjecture closes)
 
@@ -76,10 +107,12 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-1. Signed comparison on balanced \(\min(L,D-L)=\omega(n^{1/3})\) (Workstream A).
+1. Factor moment for \(L=\omega(\sqrt{n})\) (Workstream A). Every linear host
+   with \(L^2=o(n)\) is Theorem linear-below-sqrt.
 2. Lower-tail of \(N\) at \(1/c_n\) under true tilted \(\mu_D\) dependence
    (Workstream B).
-3. Four-linear-margin long-step, or residual-moment on the nearly regular
-   window.
+3. Four-linear-margin long-step of length \(\omega(\sqrt{n})\), or residual-moment
+   on the nearly regular window. The deletion of length \(L^2=o(n)\)
+   is Theorem deletion-below-sqrt.
 
 See `PROGRAM.md` for the full closed/blocked ledger.
