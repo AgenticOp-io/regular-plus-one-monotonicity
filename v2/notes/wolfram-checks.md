@@ -1208,3 +1208,400 @@ simplify | 1806808/371712775 × 200 - 1
 -414047 = (0) × 14868511 + (-414047)
 [Decimal approximation]
 -0.027847240386074974151749290833493683395734784740718152611246680...
+
+
+Query: Assuming[L>2, Limit[n^2*((L*n/2)*((L*n/2)-1)*((L*n/2)-2)/6)*(L/(n-1)*((L*(n-4)+2)/((n-2)*(n-3)))*(L^2/(L*n-4)*(1-(L-1)^2*(L*n-8)^2/(L*n-4)^3-(L-1)*(L*n-8)/(L*n-4)^2-4*(L-1)^2/(L*n-4)^2)*(1-(L^2-4*L+2-2*(L-1)^2*(L*n-8)/(L*n-4))/(L*n-4)))-3*(L/(n-1))^2*((L*(n-4)+2)/((n-2)*(n-3)))+2*(L/(n-1))^3)+L^8/48, n->Infinity]]
+[error]
+no result
+
+
+Query: Limit[n^2*(L^2/(L*n-4)*(1-(L-1)^2*(L*n-8)^2/(L*n-4)^3-(L-1)*(L*n-8)/(L*n-4)^2-4*(L-1)^2/(L*n-4)^2)*(1-(L^2-4*L+2-2*(L-1)^2*(L*n-8)/(L*n-4))/(L*n-4))-L/(n-1)), n->Infinity]
+[Limit]
+lim_(n->∞) n^2 ((L^2 (1 - ((L - 1)^2 (L n - 8)^2)/(L n - 4)^3 - ((L - 1) (L n - 8))/(L n - 4)^2 - (4 (L - 1)^2)/(L n - 4)^2) (1 - (L^2 - 4 L + 2 - (2 (L - 1)^2 (L n - 8))/(L n - 4))/(L n - 4)))/(L n - 4) - L/(n - 1)) = 4
+[Series expansion at n = ∞]
+4 + (-L^3 + L^2 - 5 L + 8/L + 20)/n + (-48/L^2 - 17 L + 216/L - 40)/n^2 + (-768/L^3 + 1824/L^2 + 47 L - 368/L - 224)/n^3 - (L^5 - 448 L^4 + 1792 L^3 + 2752 L^2 - 12928 L + 6528)/(L^4 n^4) + O((1/n)^5)
+(Laurent series)
+
+
+Query: Limit[n^5/L^5*(L/(n-1)*((L*(n-4)+2)/((n-2)*(n-3)))*(L^2/(L*n-4)*(1-(L-1)^2*(L*n-8)^2/(L*n-4)^3-(L-1)*(L*n-8)/(L*n-4)^2-4*(L-1)^2/(L*n-4)^2)*(1-(L^2-4*L+2-2*(L-1)^2*(L*n-8)/(L*n-4))/(L*n-4))-L/(n-1))-2*(L/(n-1))^2*(((L*(n-4)+2)/((n-2)*(n-3)))-L/(n-1))), n->Infinity]
+[error]
+no result
+
+
+Query: Simplify[(L*n/2)^3/6 * L^5/n^5 - L^8/(48*n^2)]
+[Input interpretation]
+simplify | (1/6 (L × n/2)^3) × L^5/n^5 - L^8/(48 n^2)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[4*L*(L^2-5*L+2) - L*(L^4 - L^3 + 5*L^2 - 20*L - 8) + L*(L^4 - L^3 + L^2 - 16)]
+[Input interpretation]
+simplify | 4 L (L^2 - 5 L + 2) - L (L^4 - L^3 + 5 L^2 - 20 L - 8) + L (L^4 - L^3 + L^2 - 16)
+[Result]
+0
+
+
+Query: Limit[n^5*(L/(n-1)*((L*(n-4)+2)/((n-2)*(n-3)))*(4/n^2)-2*(L/(n-1))^2*(((L*(n-4)+2)/((n-2)*(n-3)))-L/(n-1)))-4*L*(L^2-5*L+2), n->Infinity]
+[Limit]
+lim_(n->∞)(n^5 ((L (L (n - 4) + 2) 4)/((n - 1) ((n - 2) (n - 3)) n^2) - 2 (L/(n - 1))^2 ((L (n - 4) + 2)/((n - 2) (n - 3)) - L/(n - 1))) - 4 L (L^2 - 5 L + 2)) = 0
+[Series expansion at n = ∞]
+(4 L (8 L^2 - 31 L + 12))/n + (8 L (20 L^2 - 66 L + 25))/n^2 + (8 L (81 L^2 - 241 L + 90))/n^3 + (4 L (585 L^2 - 1627 L + 602))/n^4 + (12 L (658 L^2 - 1751 L + 644))/n^5 + O((1/n)^6)
+(Laurent series)
+
+
+Query: Limit[n*(n^2*(L^2/(L*n-4)*(1-(L-1)^2*(L*n-8)^2/(L*n-4)^3-(L-1)*(L*n-8)/(L*n-4)^2-4*(L-1)^2/(L*n-4)^2)*(1-(L^2-4*L+2-2*(L-1)^2*(L*n-8)/(L*n-4))/(L*n-4))-L/(n-1))-4)-(-L^3+L^2-5*L+20+8/L), n->Infinity]
+[error]
+no result
+
+
+Query: Limit[(n*(n^2*(L^2/(L*n-4)*(1-(L-1)^2*(L*n-8)^2/(L*n-4)^3-(L-1)*(L*n-8)/(L*n-4)^2-4*(L-1)^2/(L*n-4)^2)*(1-(L^2-4*L+2-2*(L-1)^2*(L*n-8)/(L*n-4))/(L*n-4))-L/(n-1))-4))/L^3, n->Infinity]
+[error]
+no result
+
+
+Query: Simplify[(L^8/(48*n^2))/(L^3/n) - L^5/(48*n)]
+[Input interpretation]
+simplify | (L^8/(48 n^2))/(L^3/n) - L^5/(48 n)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Series[L/(n-1)*(L*(n-4)+2)/((n-2)*(n-3)), {n, Infinity, 2}]
+[Input interpretation]
+series | L/(n - 1) × (L (n - 4) + 2)/((n - 2) (n - 3)) | point | n = ∞
+order | n^2
+[Series expansion at n = ∞]
+L^2/n^2 + (2 L (L + 1))/n^3 + O((1/n)^4)
+(Laurent series)
+(converges when abs(n)>3)
+[Series representation at n = ∞]
+(L n^2 (L (4 n - 1) - 2 n))/((n - 1) (2 n - 1) (3 n - 1))
+
+
+Query: Limit[n^2*L/(n-1)*(L*(n-4)+2)/((n-2)*(n-3)) - L^2, n->Infinity]
+[Limit]
+lim_(n->∞)((n^2 L (L (n - 4) + 2))/((n - 1) ((n - 2) (n - 3))) - L^2) = 0
+[Series expansion at n = ∞]
+(2 L (L + 1))/n + (L (L + 12))/n^2 - (10 ((L - 5) L))/n^3 - (L (59 L - 180))/n^4 - (14 (L (17 L - 43)))/n^5 + O((1/n)^6)
+(Laurent series)
+
+
+Query: Simplify[(L^6/n^2)/(L^3/n) - L^3/n]
+[Input interpretation]
+simplify | (L^6/n^2)/(L^3/n) - L^3/n
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Fallback: the limit identifying the coefficient of 1/n in n^2(q3-p)-4 returned no result. Exact rational arithmetic for
+n*(n^2*(q3-p)-4) - (-L^3+L^2-5*L+20+8/L),
+with q3 the signed principal term after a 2-matching (including the summand 4(L-1)^2/(Ln-4)^2),
+equals -6445528431584584717/30799677832475266995 at (L,n)=(5,400)
+and -26692586805897374537317/510146877521279604067995 at (5,1600).
+Both are O(1/n). The coefficient of L^3 in n^2(q3-p)-4 is therefore the one used for the L^8 mass.
+
+
+Query: Simplify[L^3/4 - L*(L^2 - 2*L + 2)/4 - L*(L-1)/2]
+[Input interpretation]
+simplify | L^3/4 - L (1/4 (L^2 - 2 L + 2)) - L × (L - 1)/2
+[Result]
+0
+
+
+Query: Limit[n*((L*n/2)*Log(1+(L/(n-1))*(2*Exp((2*L-1)/n)-1))-L^2/2-L^2*(3*L-1)/(2*n))-L^3/4, n->Infinity]
+[Limit]
+(insufficient time to determine limit)
+
+Fallback: that limit returned no value. The same combination is the logarithm in the binomial-leftover proposition of the companion paper. Its series at n=∞, computed symbolically with L held as an indeterminate, is L^3/(4n) + L^3(2L+6)/(12n^2) through order 1/n^2. The Bernoulli stub
+m(m-1)/(Ln) - N_adj α^2/L,
+with α = u/(1+u), u=(L/(n-1))(2e^{(2L-1)/n}-1), m=(Ln/2)α and N_adj=n L(L-1)/2, has series -L(L^2-2L+2)/(4n) through order 1/n. Adding the two leading coefficients is the identity Wolfram returned as 0 above, and the sum is L(L-1)/(2n). High precision of n times (origin + binomial + stub - L(L-1)/(2n)) equals about -1.037 at (L,n)=(5,400) and about -0.249 at (5,1600), consistent with an O(L^4/n^2) remainder.
+
+A separate numeric check of the conditional logarithm: with (L,t,Q,ru,rv,Nu,Nv,dW)=(5,10,3,1,0,4,0,0), n(n log(q/p) - log((L-ru)(L-rv)/L^2) - 2t/(Ln) - c1) equals about -16.75, -16.68, -16.67 at n=400,1600,6400, where c1=(Nu+Nv-ru rv-ru-rv)/L. The coefficient of 1/n is stable and the next term is O(1/n).
+
+
+Query: Simplify[L^3*(a-1)^2/(4*a^2) - L*(a-1)*(L^2*a - L^2 - 2*L*a + 2*L - 2*a)/(4*a^2) - L*(a-1)*(L*a - L + a)/(2*a^2)]
+[Input interpretation]
+simplify | L^3 × (a - 1)^2/(4 a^2) - L (a - 1) × (L^2 a - L^2 - 2 L a + 2 L - 2 a)/(4 a^2) - L (a - 1) × (L a - L + a)/(2 a^2)
+[Result]
+0
+
+
+Query: Simplify[-(a-1)*(-L^3*a-L^3-L^2*a+L^2+4*L*a*k-2*a*k)/(2*a^2) - L^2*(a-1)*(L*a+L+a-1)/(2*a^2) + (2*L-1)*(a-1)*k/a]
+[Input interpretation]
+simplify | -((a - 1) (-L^3 a - L^3 - L^2 a + L^2 + 4 L a k - 2 a k)/(2 a^2)) - L^2 (a - 1) × (L a + L + a - 1)/(2 a^2) + (2 L - 1) (a - 1) × k/a
+
+
+Query: Simplify[-(a-1)*(-a*L^3-L^3-a*L^2+L^2+4*a*L*k-2*a*k) - L^2*(a-1)*(a*L+L+a-1) - 2*a*(2*L-1)*(a-1)*k]
+[Input interpretation]
+simplify | -((a - 1) (-a L^3 - L^3 - a L^2 + L^2 + 4 a L k - 2 a k)) - L^2 (a - 1) (a L + L + a - 1) - 2 a (2 L - 1) (a - 1) k
+
+
+Query: Simplify[-(a-1)*(-a*L^3-L^3-a*L^2+L^2+4*a*L*k-2*a*k) - L^2*(a-1)*(a*L+L+a-1) + 2*a*(2*L-1)*(a-1)*k]
+[Input interpretation]
+simplify | -((a - 1) (-a L^3 - L^3 - a L^2 + L^2 + 4 a L k - 2 a k)) - L^2 (a - 1) (a L + L + a - 1) + 2 a (2 L - 1) (a - 1) k
+
+Fallback: the three Simplify queries above returned an input interpretation and no result pod. The first of them is the coefficient identity with denominators retained. The second clears the denominator 2 a^2 but carries the wrong sign on the last summand; its expansion is 4 a k (1-a)(2 L-1), not the identity. The third is the corrected numerator
+-(a-1)*(-a L^3 - L^3 - a L^2 + L^2 + 4 a L k - 2 a k) - L^2 (a-1)(a L + L + a - 1) + 2 a (2 L - 1)(a-1) k.
+Exact expansion in Q[a,L,k] is the zero polynomial. That is the coefficient of 1/n in the linear-density origin leftover.
+
+The averaged logarithm uses the Result 0 identity above. Its series, with a and L held fixed, is L(a-1)(L(a-1)+a)/(2 a^2 n) + O(L^4/n^2). At a=1/3 and L=6, n times the exact combination (origin at the fitted slope, binomial generating function, and Bernoulli stub) equals about 68.572 at n=2400 and about 66.303 at n=20000, against the predicted value 66. The gap shrinks proportionally to 1/n.
+
+At density 1/3 the origin leftover through order 1/n^2 is
+(-4 L^3 + 2 L^2 + 4 L k - 2 k)/n + (-91 L^4/6 + L^3 + 16 L^2 k + 5 L^2 - 2 L k - 2 k^2 - 3 k)/n^2.
+The coefficient of 1/n matches the displayed formula, and the coefficient of 1/n^2 is quadratic in k and of degree 4 in L. With k=2 L^2, n^2 times the remainder after the 1/n terms, divided by L^4, stays near 8.5 at a=1/3 and near 3.5 at a=1/2 as n/L^2 grows.
+
+
+Query: Simplify[4*(Log[4]-1) - 1]
+[Input interpretation]
+simplify | 4 (log(4) - 1) - 1
+[Result]
+log(256) - 5
+[Expanded logarithmic form]
+-5 + 8 log(2)
+[Quotient and Remainder]
+4 (log(4) - 1) - 1 = (0) × 1 + (4 (log(4) - 1) - 1)
+[Decimal approximation]
+0.5451774444795624753378569716654125446040010748820420329654400759...
+[Property]
+-1 + 4 (-1 + log(4)) is a transcendental number
+[Expanded form]
+4 log(4) - 5
+
+
+Query: 256 > Exp[5]
+[Input]
+256>exp(5)
+[Result]
+True
+
+
+Query: Limit[L^2*(1/L - (1 - Exp[-1/L])), L -> Infinity]
+[Limit]
+lim_(L->∞) L^2 (1/L - (1 - exp(-1/L))) = 1/2
+[Series expansion at L = ∞]
+1/2 - 1/(6 L) + 1/(24 L^2) - 1/(120 L^3) + 1/(720 L^4) + O((1/L)^5)
+(Laurent series)
+
+
+Query: Log[3/2] - 1/3 > 0
+[Input]
+log(3/2) - 1/3>0
+[Result]
+True
+
+
+Query: ForAll[x, 0 < x <= 1/2, -Log[1 - x] - x <= x^2]
+[Input]
+for all _(x, 0<x<=1/2)-log(1 - x) - x<=x^2
+
+
+Query: Minimize[{-Log[1 - x] - x - x^2, 0 <= x <= 1/2}, x]
+[Input interpretation]
+minimize | function | -log(1 - x) - x - x^2
+domain | 0<=x<=1/2 | for | x
+[Global minimum]
+min{-log(1 - x) - x - x^2|0<=x<=1/2} = log(2) - 3/4 at x = 1/2
+
+
+Query: Maximize[{-Log[1 - x] - x - x^2, 0 <= x <= 1/2}, x]
+[Input interpretation]
+maximize | function | -log(1 - x) - x - x^2
+domain | 0<=x<=1/2 | for | x
+[Global maximum]
+max{-log(1 - x) - x - x^2|0<=x<=1/2} = 0 at x = 0
+
+
+Query: (n*L^2*(1-4/(n-1)) + L*n + (L*n)^2/(n-1)^2)/(n-2)^2 - L^2/(n-1)^2 - ((n-4)*L^2 + n*L)/(n-2)^2 = 0 for n>2
+[Input interpretation]
+manipulate | plot | (n L^2 (1 - 4/(n - 1)) + L n + (L n)^2/(n - 1)^2)/(n - 2)^2 - L^2/(n - 1)^2 - ((n - 4) L^2 + n L)/(n - 2)^2 = 0
+varying n from >2
+
+
+Query: Assuming[n>2 && L>0, FullSimplify[(n*L^2*(1-4/(n-1)) + L*n + (L*n)^2/(n-1)^2)/(n-2)^2 - L^2/(n-1)^2 - ((n-4)*L^2 + n*L)/(n-2)^2]]
+[error]
+no result
+
+
+Query: Assuming[n>1 && L>0, FullSimplify[-(L^2*n)/(2*(n-1)^2) + L^2/(2*n) + L^2*(2*n-1)/(2*n*(n-1)^2)]]
+[error]
+no result
+
+
+Query: Assuming[n>4 && L>0, FullSimplify[(n-1)*L^2 - 2*L^2 + n*L - L^2 - ((n-4)*L^2 + n*L)]]
+[error]
+no result
+
+Sympy fallback. The two formulas for the square trace of an L-regular host,
+(n*L^2*(1-4/(n-1)) + L*n + (L*n)^2/(n-1)^2)/(n-2)^2
+and
+L^2/(n-1)^2 + ((n-4)*L^2 + n*L)/(n-2)^2,
+have difference whose numerator is the zero polynomial. Wolfram returned no
+result pod on FullSimplify of that difference.
+
+
+Query: simplify (n-1)*L^2 - 3*L^2 + n*L - (n-4)*L^2 - n*L
+[Input interpretation]
+simplify | (n - 1) L^2 - 3 L^2 + n L - (n - 4) L^2 - n L
+[Result]
+0
+
+
+Query: simplify -(L^2*n)/(2*(n-1)^2) + L^2/(2*n)
+[Input interpretation]
+simplify | -(L^2 n)/(2 (n - 1)^2) + L^2/(2 n)
+[Results]
+(L^2 (1 - 2 n))/(2 (n - 1)^2 n)
+[Results]
+(L^2 (1 - 2 n))/(2 (n - 1)^2 n)
+[Results]
+-(L^2 (2 n - 1))/(2 (n - 1)^2 n)
+
+
+Query: Limit[n^2*((L^2/(n-1)^2 + ((n-4)*L^2 + n*L)/(n-2)^2) - L^2/n^2), n->Infinity]
+[Limit]
+lim_(n->∞) n^2 ((L^2/(n - 1)^2 + ((n - 4) L^2 + n L)/(n - 2)^2) - L^2/n^2) = L (1 + L) ∞
+[Series expansion at n = ∞]
+L (L + 1) n + 4 L - (2 ((L - 6) L))/n + ((32 - 13 L) L)/n^2 + (4 (20 - 11 L) L)/n^3 + O((1/n)^4)
+(Laurent series)
+
+
+Query: Limit[n^2*((((4*n*L^2-8*L*k+Sigma)*(1-4/(n-1))+2*(n*L-k)+4*(n*L-k)^2/(n-1)^2)/(n-2)^2 - 2*(n*L^2*(1-4/(n-1))+n*L+(n*L)^2/(n-1)^2)/(n-2)^2)/4 - L^2/(2*n)), n->Infinity]
+[Limit]
+lim_(n->∞) n^2 (1/4 (((4 n L^2 - 8 L k + σ) (1 - 4/(n - 1)) + 2 (n L - k) + (4 (n L - k)^2)/(n - 1)^2)/(n - 2)^2 - (2 (n L^2 (1 - 4/(n - 1)) + n L + (n L)^2/(n - 1)^2))/(n - 2)^2) - L^2/(2 n)) = 1/4 (2 L^2 - 2 k (1 + 4 L) + σ)
+[Series expansion at n = ∞]
+1/4 (-2 k (4 L + 1) + 2 L^2 + σ) + (-2 k (L + 1) - L^2)/n + (k^2 + k (4 L - 6) - (13 L^2)/2 - 2 σ)/n^2 + (6 k^2 + 2 k (13 L - 8) - 22 L^2 - 9 σ)/n^3 + (23 k^2 + 8 k (11 L - 5) - (123 L^2)/2 - 29 σ)/n^4 + O((1/n)^5)
+(Laurent series)
+
+
+Query: simplify (1/(n-2))^2*(Sigma+2*e) - 8*(1/(n-2))*(1/(2*(n-1)*(n-2)))*Sigma + 16*(1/(2*(n-1)*(n-2)))^2*e^2 - (Sigma*(1-4/(n-1))+2*e+4*e^2/(n-1)^2)/(n-2)^2
+[Input interpretation]
+simplify | (1/(n - 2))^2 (σ + 2 e) - 8 × 1/(n - 2) × 1/(2 (n - 1) (n - 2)) σ + 16 (1/(2 (n - 1) (n - 2)))^2 e^2 - (σ (1 - 4/(n - 1)) + 2 e + 4 × e^2/(n - 1)^2)/(n - 2)^2
+[Results]
+0
+[Results]
+(4 e^2)/(n^4 - 6 n^3 + 13 n^2 - 12 n + 4) - (4 e^2)/((n^2 - 4 n + 4) (n^2 - 2 n + 1))
+
+
+Query: simplify (L/ell)*(ell^2/n) - (L*ell)/n
+[error]
+no result
+
+
+Query: simplify (L/m)*(m^2/n) - (L*m)/n
+[Input interpretation]
+simplify | L/m × m^2/n - (L m)/n
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Limit[(Log[n])^2/n, n -> Infinity]
+[Limit]
+lim_(n->∞) (log^2(n))/n = 0
+
+
+Query: simplify 2*alpha - alpha/(1-alpha)
+[Input interpretation]
+simplify | 2 α - α/(1 - α)
+[Results]
+(α (1 - 2 α))/(1 - α)
+[Results]
+2 α + 1/(α - 1) + 1
+[Results]
+(α (2 α - 1))/(α - 1)
+
+
+Query: Minimize 2*alpha - alpha/(1-alpha) for alpha from 0 to 1/2
+[Input interpretation]
+minimize | function | 2 α - α/(1 - α)
+domain | 0<=α<=1 2^(-1)
+[Global minima]
+min{2 α - α/(1 - α)|0<=α<=1/2} = 0 at α = 0
+[Global minima]
+min{2 α - α/(1 - α)|0<=α<=1/2} = 0 at α = 1/2
+
+
+Query: simplify 1 - (1-eta)*(1-alpha) - (alpha + eta - alpha*eta)
+[Input interpretation]
+simplify | 1 - (1 - η) (1 - α) - (α + η - α η)
+[Result]
+0
+
+
+Query: simplify 1 - 4*(1/8) - 2*(1/8)
+[Input interpretation]
+simplify | 1 - 4 × 1/8 - 2 × 1/8
+[Result]
+1/4
+[Quotient and Remainder]
+1 = (0) × 4 + 1
+[Decimal form]
+0.25
+
+
+Query: simplify (1 + 1/8 + 2/8)/(1/4)
+[Input interpretation]
+simplify | (1 + 1/8 + 2/8)/(1/4)
+[Result]
+11/2
+[Quotient and Remainder]
+11 = 5 × 2 + 1
+[Decimal form]
+5.5
+
+
+Query: simplify 2*((11/2)*6 + 3)/(7/8)
+[Input interpretation]
+simplify | 2 × (11/2 × 6 + 3)/(7/8)
+[Result]
+576/7
+[Quotient and Remainder]
+576 = 82 × 7 + 2
+[Decimal approximation]
+82.285714285714285714285714285714285714285714285714285714285714285...
+[Repeating decimal]
+82.285714^_ (period 6)
+
+
+Query: simplify (j/sqrt(n) + 1/sqrt(n))^2 - (j+1)^2/n
+[Input interpretation]
+simplify | (j/sqrt(n) + 1/sqrt(n))^2 - (j + 1)^2/n
+[Expanded form]
+0
+
+
+Query: simplify (j/sqrt(n) + 1/sqrt(n))^2 = (j+1)^2/n
+[Input interpretation]
+simplify | (j/sqrt(n) + 1/sqrt(n))^2 = (j + 1)^2/n
+[Expanded form]
+True
+
+
+Query: simplify (25079/11569230)/(4*(1024/1785375)) - 626975/663552
+[Input interpretation]
+simplify | (25079/11569230)/(4 × 1024/1785375) - 626975/663552
+[Results]
+626975/663552 - 626975/663552
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify (77949/13712410)/(9*(1024/1785375)) - 3092626575/2808301568
+[Input interpretation]
+simplify | (77949/13712410)/(9 × 1024/1785375) - 3092626575/2808301568
+[Results]
+3092626575/2808301568 - 3092626575/2808301568
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
