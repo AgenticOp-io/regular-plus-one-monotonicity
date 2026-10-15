@@ -1791,3 +1791,26 @@ Query: Sum[(1/3)^k/(2*k), {k, 3, Infinity}] - (Log[3/2] - 1/3 - 1/18)/2
 sum_(k=3)^∞ (1/3)^k/(2 k) - 1/2 (log(3/2) - 1/3 - 1/18)
 [Result]
 0
+
+
+Query: simplify (n - D + j - 2) - (n/2 - 1) + (D - j + 1 - n/2)
+[Input interpretation]
+simplify | (n - D + j - 2) - (n/2 - 1) + (D - j + 1 - n/2)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify W*(1/c - 1/W) - (W/c - 1)
+[Input interpretation]
+simplify | W (1/c - 1/W) - (W/c - 1)
+[Result]
+0
+
+
+Query: simplify (a/c - 1) - ((m/c)*(a/m - 1) + (m/c - 1))
+[Input interpretation]
+simplify | (a/c - 1) - (m/c (a/m - 1) + (m/c - 1))
+[Result]
+0

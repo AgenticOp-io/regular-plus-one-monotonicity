@@ -49,6 +49,16 @@ Bar is 2.0. v1.0 is sent.
 - Selection item (iii) on single \(S_n\) orbits \(D\in\{1,n-2\}\)
   (Corollary iii-one-orbit); not a config-split close at Chernoff scale.
 
+- Successive uniform peeling above half degree (Theorem successive-peel):
+  peel \(L\) uniform perfect matchings from a uniform \(D\)-regular graph,
+  \(D-L+1\ge n/2\), \(D\le(1-c)n\). Dirac makes every step defined,
+  containment is sure, the top is exact, and the bottom is within
+  \(C_cL/n\) of \(\mu_{D-L}\). Dual statement below half degree.
+- Bounded peel moments give peel flatness (Theorem peel-bounded-to-flat):
+  if shorter peel counts on the complementary degrees have relative second
+  moment at most \(1+B\), then \(\EE|P_L/\EE P_L-1|\le C_c\sqrt{1+B}\,L/n\).
+  Unconditional at \(L=2\): \(O(1/n)\). Concerns \(P_L\), not \(Z_L\).
+
 ## Still open (named)
 
 - Q, config-split, residual-moment: fully open.

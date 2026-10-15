@@ -88,6 +88,13 @@ Still missing:
    \(Z|1/Z-1/\mathbb{E}Z|=|1-Z/\mathbb{E}Z|\). A union bound of \(L\) steps
    is \(O(L/n)\). Factor-count flatness past \(\sqrt{n}\) stays open.
 
+3. Peel side, proved: Theorem successive-peel (explicit peel, sure
+   containment, \(O(L/n)\) for the lower law above half degree) and
+   Theorem peel-bounded-to-flat (bounded peel second moments imply
+   \(L^1\) flatness of \(P_L\) at rate \(\sqrt{1+B}\,L/n\); unconditional at
+   \(L=2\)). Next: a bounded second moment for \(P_j\), \(j\ge 2\), which
+   the theorem would then upgrade; and a passage from \(P_L\) to \(Z_L\).
+
 ## Workstream B — peel, residual, Chernoff Q
 
 Blocked / identified (do not retry):
