@@ -55,28 +55,38 @@ origin-at-typical-k, signed-gao-matching-host.
 Still missing:
 1. The factor moment for \(L=\omega(\sqrt{n})\) — the part of Conjectures
    factor-moment and factor-rate that Theorem linear-below-sqrt does not reach.
-2. Four-linear-margin long-step of length \(\omega(\sqrt{n})\) — Conjecture
-   long-step. Theorem deletion-below-sqrt gives the deletion for
-   \(L^2=o(n)\). Proposition host-trace: the mean of the first two host
-   traces is order \(L^2/n^2\) and does not cancel the identified logarithm
-   of order \(L^2/n\). Theorem long-from-peel reduces the coupling to
-   in-probability flatness of the ordered sequence of \(L\) successive
-   perfect matchings at degrees \(d+L\) and \(n-1-d\). Proposition
-   peel-budget: that count has relative variance \(O(L/n)\) if each added
-   matching increases the relative variance by \(O(1/n)\), which is the
-   scale of one matching (v1 Proposition band-rate). The increment is the
-   remaining estimate, and it covers every \(L=o(n)\).
-   Lemma deletion-density identifies the size-biased deletion weight with the
-   complement matching count. Proposition aligned-peel solves the
-   Cauchy--Schwarz recurrence on that covariance: the bound is \(O(L^2/n)\)
-   and stops at \(\sqrt{n}\). The additive increment has to cancel inside
-   that covariance. Past \(\sqrt{n}\), the upper graph can
-   be sampled exactly (Theorem long-exact-upper); what remains on that
-   route is \(L^1\)
-   flatness of \(a(G)=\sum_{H\supset G}1/Z(H)\) and existence of an \(L\)-factor
-   with probability \(1-o(1)\). Flatness of both factor counts is still
-   sufficient (Theorem long-from-flat). On eight vertices the \(Z\)-ratio is
-   \(15/7\) and the \(a\)-ratio is \(409095/397144\).
+   The logarithm \(L(L-1)/(2n)\) is not that moment: on all 19355 four-regular
+   graphs on eight vertices the \(L=2\) excess is \(89344/17363889\), about
+   \(1/24\) of \(1/8\) (Remark eight-factors). A sample of twenty-five
+   six-regular graphs on twelve vertices has \(2\)-factor relative variance
+   about \(5\cdot 10^{-4}\), against \(1/12\). The half-degree package
+   through order \(1/n^2\) is \(t/2-(4/3)t^2\) at \(t=L^2/n\), which is
+   negative for \(t>3/8\) and is therefore not the ratio.
+   The binomial factor \(\exp(L^2(1-p)/(2p))\) is the edge-count fluctuation
+   of \(G(n,p)\) (Gao, Random Structures Algorithms 2013, Theorem 2.1); in
+   \(G(n,m)\) the same count concentrates for \(L^3=o(p^2 n)\) (Theorem 2.4).
+   A regular host fixes the edge count, and Theorem linear-below-sqrt already
+   passes that restriction. Multiplying the switching error
+   \(O(\ell/(Ln)+L/n)\) through \(\ell\le\kappa L^2\) produces
+   \(\exp(O(L^3/n))\) (Proposition switching-accumulation), which is coarser
+   than the entropy remainder \(O(L^4/n^2)\) by the factor \(L/n\).
+   That switching precision does not pass \(\sqrt{n}\). The missing
+   cancellation is inside the entropy remainder.
+   Short-cycle prediction (Remark cycle-prediction): the factor/non-factor
+   chain along a path has second eigenvalue \(-1/(D-1)\) for every \(L\), so
+   small subgraph conditioning predicts excess
+   \(\tfrac12(-\log(1-x)-x-x^2/2)\), \(x=1/(D-1)\), independent of \(L\).
+   The counts at \(D=4,5,6\) are of that order. Not a proof: the
+   configuration-model input is blocked on linear hosts. The live route is
+   the cycle-count identification on the simple graph for all \(k\le n\).
+2. Four-linear-margin long-step — closed as Theorem long-step for every
+   \(L=o(n)\). Theorem matching-linear-rate is the matching variance
+   \(O(1/n^2)\): the origin, the vertex-radius correction \(-\gamma k/n\),
+   the Gaussian width, and the angular traces average to zero against the
+   intersection tilt. Lemma matching-step-l1 turns that variance into
+   total variation \(O(1/n)\) for one step, by the identity
+   \(Z|1/Z-1/\mathbb{E}Z|=|1-Z/\mathbb{E}Z|\). A union bound of \(L\) steps
+   is \(O(L/n)\). Factor-count flatness past \(\sqrt{n}\) stays open.
 
 ## Workstream B — peel, residual, Chernoff Q
 
@@ -112,7 +122,7 @@ Still missing (no fake closes):
 | residual-moment | Open |
 | factor-moment | Half degree with \(L^2=o(n)\) is Theorem half-below-sqrt. Every linear host in that range is Theorem linear-below-sqrt. Open for \(L=\omega(\sqrt{n})\) |
 | factor-rate | Open on the balanced range. The logarithm \(L(a-1)(L(a-1)+a)/(2a^2 n)\) is not \(o(L^3/n^3)\) |
-| long-step | Open for \(L=\omega(\sqrt{n})\). Theorem deletion-below-sqrt gives the deletion for \(L^2=o(n)\). Proposition host-trace: the mean of the first two host traces is order \(L^2/n^2\) and does not cancel the identified logarithm of order \(L^2/n\). Theorem long-from-peel reduces the coupling to flatness of an ordered sequence of \(L\) matchings. Proposition peel-budget: an increment \(O(1/n)\) per matching gives relative variance \(O(L/n)\) for every \(L=o(n)\); that increment is open. Proposition aligned-peel: Cauchy--Schwarz against the complement matching count solves as \(O(L^2/n)\) and stops at \(\sqrt{n}\). Past \(\sqrt{n}\), the exact upper graph also reduces it to flatness of \(a(G)\). On eight vertices \(Z\) varies by \(15/7\) and \(a\) by \(409095/397144\). Hamilton coupling is not \(\mu_2\) |
+| long-step | Closed for every \(L=o(n)\) with four linear margins (Theorem long-step). Matching variance \(O(1/n^2)\) is Theorem matching-linear-rate; one step has total variation \(O(1/n)\) (Lemma matching-step-l1). Factor-count flatness past \(\sqrt{n}\) stays open. Hamilton coupling is not \(\mu_2\) |
 
 ## Next
 
@@ -121,7 +131,7 @@ Priority order:
 2. Lower-tail of \(N\) at \(1/c_n\) under true \(\mu_D\) dependence (Workstream B).
 3. In-probability flatness of the two \(L\)-factor counts past \(\sqrt{n}\)
    (Theorem long-from-flat), or residual-moment on the nearly regular window.
-   The deletion of length \(L^2=o(n)\) is Theorem deletion-below-sqrt.
+   The four-linear deletion of length \(L=o(n)\) is Theorem long-step.
 
 Run `python scripts/approach_screen.py` before expanding an attack.
 Append Wolfram checks to `v2/notes/wolfram-checks.md`.

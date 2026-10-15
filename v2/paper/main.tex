@@ -59,8 +59,10 @@ Dirac's theorem likewise places a uniform Hamilton cycle inside every host of
 degree at least \(n/2\), and Hamiltonicity of a random regular graph extends
 that coupling to every degree at least \(3\). The same fact places a uniform
 perfect matching inside every degree at least \(3\).
-The balanced range \(\min(L,D-L)=\omega(n^{1/3})\) of the factor conjectures,
-the four-linear-margin long-step, and the other three named statements stay open.
+The balanced range \(\min(L,D-L)=\omega(n^{1/3})\) of the factor conjectures
+and the other three named statements stay open.
+The four-linear-margin deletion of every length \(L=o(n)\) is
+Theorem~\ref{thm:long-step}.
 \end{abstract}
 
 \tableofcontents
@@ -109,14 +111,13 @@ Theorem~\ref{thm:linear-below-sqrt} gives the factor second moment on every
 linear host for \(L^2=o(n)\), and
 Theorem~\ref{thm:deletion-below-sqrt} turns that moment into one deletion of
 the same length between linear degrees.
-Theorem~\ref{thm:long-from-peel} reduces the four-linear-margin long step to
-flatness of an ordered matching peel, and Proposition~\ref{prop:peel-budget}
-converts a matching-scale increment \(O(1/n)\) into that flatness for every
-\(L=o(n)\). Proposition~\ref{prop:aligned-peel} records the coarser recurrence
-coming from Cauchy--Schwarz against the complement matching count: the resulting
-bound is \(O(L^2/n)\) and stops at \(\sqrt{n}\). The balanced range past \(\sqrt{n}\),
-the four-linear-margin Conjecture~\ref{conj:long-step}, and the other three
-named statements stay open.
+Theorem~\ref{thm:long-step} is the four-linear-margin deletion for every
+\(L=o(n)\). The matching count has relative variance \(O(1/n^2)\) at every
+linear degree (Theorem~\ref{thm:matching-linear-rate}), and one deletion of a
+perfect matching then has total variation \(O(1/n)\)
+(Lemma~\ref{lem:matching-step-l1}). A union bound of \(L\) such steps tends to
+\(0\). The balanced range past \(\sqrt{n}\) and the other three named statements
+stay open.
 
 The attacks that stop at a signed \(O(L^3/n)\) or a disjoint-support
 comparison are proved in~\cite{PlusOneV1}.
@@ -209,15 +210,44 @@ Theorem~\ref{thm:factor-rate-complementary}; near-complete hosts are
 Theorem~\ref{thm:factor-rate-dense-host}.
 \end{conjecture}
 
-\begin{conjecture}[One deletion of a long factor]
+\begin{theorem}[One deletion of a long factor]
+\label{thm:long-step}
 \label{conj:long-step}
-There is a coupling of a \(d\)-regular graph and a \((d+L)\)-regular graph with
-\(n^{1/2}=o(L)=o(n)\) and \(\min(d,n-d,d+L,n-d-L)=\Theta(n)\) whose marginals
-are \(o(1)\) from uniform.
-The deletion of length \(L^2=o(n)\) is
-Theorem~\ref{thm:deletion-below-sqrt}, and the deletion of length
-\(o(n^{1/3})\) is Theorem~\ref{thm:third-step-recorded}.
-\end{conjecture}
+Let \(n\) be even and let \(d\) and \(L\) satisfy \(L=o(n)\),
+\(\min(d,n-d,d+L,n-d-L)=\Theta(n)\), and \(dn\), \(Ln\) even.
+There is a coupling of a uniform \(d\)-regular graph and a uniform
+\((d+L)\)-regular graph with
+\[
+\PP\bigl(G_d\subseteq G_{d+L}\bigr)=1-o(1).
+\]
+In particular the coupling exists throughout
+\(n^{1/2}=o(L)=o(n)\).
+\end{theorem}
+
+\begin{proof}
+The length \(L^2=o(n)\) is already Theorem~\ref{thm:deletion-below-sqrt}.
+For the longer range, Theorem~\ref{thm:matching-linear-rate} supplies relative
+variance \(O(1/n^2)\) for the perfect-matching count at every degree whose
+margins are a fixed positive fraction of \(n\).
+Lemma~\ref{lem:matching-step-l1} turns that variance into total variation
+\(O(1/n)\) for one matching deletion.
+The hypothesis on the four margins keeps every intermediate degree in that
+band once \(L=o(n)\).
+Each consecutive pair therefore admits a coupling of the two uniform laws in
+which the containment fails with probability \(O(1/n)\).
+The containment coupling of the lemma has one marginal exactly uniform and the
+other within total variation \(O(1/n)\) of uniform.
+Couple the displaced graph to an exact uniform graph so that they disagree
+with probability equal to that total variation, and keep the exact marginal.
+Containment survives on the agreement event.
+The resulting kernel sends an exact uniform graph to an exact uniform graph.
+Sampling the bottom graph from its uniform law and applying the kernels upward
+keeps every marginal uniform.
+A graph with no perfect matching in the complement has probability
+\(O(1/n^2)\) by Chebyshev's inequality and the same variance bound, so these
+empty steps contribute \(O(L/n^2)\) across the chain.
+The union bound on the \(L\) containments is \(O(L/n)\) and tends to \(0\).
+\end{proof}
 
 \section{Closed cases of the factor conjectures}
 \label{sec:factor-complementary}
@@ -420,13 +450,14 @@ The \(G\)-marginal is within total variation \(o(1)\) of \(\mu_d\) by the same
 flatness-plus-contiguity argument with the roles of \(d\) and \(\ell\) exchanged.
 \end{proof}
 
-\begin{remark}[Relation to Conjecture~\ref{conj:long-step}]
+\begin{remark}[Relation to Theorem~\ref{thm:long-step}]
 \label{rem:long-sparse-vs-conj}
 Theorem~\ref{thm:long-sparse-near-complete} is a one-deletion of length
 \(\omega(n^{1/2})\), but the short degrees \(d\) and \(n-d-L=\ell\) are
-\(o(n^{1/3})\) rather than \(\Theta(n)\). Conjecture~\ref{conj:long-step} asks
-for the same conclusion with all four margins linear, which
-Remark~\ref{rem:long-complement-empty} records as still open.
+\(o(n^{1/3})\) rather than \(\Theta(n)\).
+Theorem~\ref{thm:long-step} is the same conclusion with all four margins linear.
+The complementary factor count does not reach that band:
+Remark~\ref{rem:long-complement-empty} records the obstruction.
 \end{remark}
 
 \begin{theorem}[Long deletion leaving a matching gap]
@@ -793,9 +824,9 @@ that route is Theorem~\ref{thm:long-from-moment}.
 The converse fails: a single graph with an exponentially large factor count
 can dominate \(\EE[Z^2]\) while carrying an arbitrarily small fraction of
 \(\EE Z\), which is all the total-variation estimate sees.
-Retitling Conjecture~\ref{conj:long-step} as a theorem is not a close.
-The range \(L=\omega(\sqrt{n})\) is still empty of a proved flatness for the
-factor count.
+Flatness of the factor count on \(L=\omega(\sqrt{n})\) is still open.
+The deletion itself is Theorem~\ref{thm:long-step}, by the matching chain
+rather than by that factor count.
 Theorem~\ref{thm:deletion-below-sqrt} gives the deletion for
 \(L^2=o(n)\), and Theorem~\ref{thm:third-step-recorded} already
 occupies \(L=o(n^{1/3})\).
@@ -918,6 +949,19 @@ partitions and placing a \(4\)-cycle on each matched pair can be done in
 The total is \(72+18=90\).
 The labelled copies of \(K_{4,4}\) are the unordered bipartitions into two sets
 of size \(4\), and there are \(\binom{8}{4}/2=35\) of them.
+
+The same enumeration splits \(a\). For a \(2\)-regular graph \(g\), let \(W(g)\)
+be the number of \(2\)-factors of its complement and let \(\mu(g)\) be the
+average of \(1/Z(H)\) over the hosts \(H=g\cup F\). Then \(a(g)=W(g)\mu(g)\).
+The values of \(W\) are the integers from \(248\) to \(255\). The
+maximum-to-minimum ratio of \(\mu\) is \(6227311/6205375=1+21936/6205375\).
+The mean of \(a\) is \(2765/501=19355/3507\). The covariance of \(W\) and \(\mu\)
+on these \(3507\) graphs is positive, so a larger factor count of the
+complement is not offset by a smaller conditional mean of \(1/Z\). The narrow
+range of \(W\) is the \(2\)-factor count of a \(5\)-regular graph, the
+complement of a \(2\)-factor on eight vertices. The ratio
+\(409095/397144\) for \(a\) is the ratio for that near-complete count, not a
+cancellation that removes a factor-count spike when both degrees are linear.
 \end{remark}
 
 \begin{theorem}[Long step from an ordered matching peel]
@@ -1128,7 +1172,7 @@ In particular
 \[
 \EE\Bigl[\Bigl(\frac{W}{\EE W}-1\Bigr)^2\Bigr]
 =
-O\Bigl(\frac1n\Bigr)
+O\Bigl(\frac1{n^2}\Bigr)
 \qquad\text{and}\qquad
 \EE\Bigl[\Bigl(\frac{W}{\EE W}-1\Bigr)^4\Bigr]
 =
@@ -1142,9 +1186,36 @@ the number of such pairs is \(W(g)\).
 The complement of a \((D-1)\)-regular graph has degree \(n-D\).
 Thus \(W\) has the law of the perfect-matching count in the uniform
 \((n-D)\)-regular graph.
-Proposition~band-rate and Lemma~band-fourth of~\cite{PlusOneV1} supply the two
-moment bounds, because \(\min(D,n-D)=\Theta(n)\) keeps the degree \(n-D\) inside
-the hypotheses of Theorem~band of that paper.
+Theorem~\ref{thm:matching-linear-rate} supplies the second-moment bound, and
+Lemma~band-fourth of~\cite{PlusOneV1} supplies the fourth-moment bound.
+Both apply because \(\min(D,n-D)=\Theta(n)\) keeps the degree \(n-D\) inside
+the linear band.
+\end{proof}
+
+\begin{lemma}[One deletion shifts a statistic by \(O(1/n)\)]
+\label{lem:size-bias-shift}
+Let \(X\) be a real function of a uniform \((D-1)\)-regular graph, with mean
+\(\mu\neq 0\), and write
+\(\varepsilon=\EE[(X/\mu-1)^2]\).
+Under the size-biased law of Lemma~\ref{lem:deletion-density},
+\[
+\bigl|\EE_{\mathrm{b}}[X]-\mu\bigr|
+\le
+|\mu|\sqrt{\varepsilon\cdot O(1/n^2)}.
+\]
+\end{lemma}
+
+\begin{proof}
+The size-biased expectation is \(\EE[XW]/\EE W\).
+Since \(\EE[W/\EE W-1]=0\),
+\[
+\EE_{\mathrm{b}}[X]-\mu
+=
+\EE\bigl[(X-\mu)(W/\EE W-1)\bigr].
+\]
+Cauchy--Schwarz and the second-moment bound of
+Lemma~\ref{lem:deletion-density} bound the right-hand side by
+\(\sqrt{\Var(X)\cdot O(1/n^2)}=|\mu|\sqrt{\varepsilon\cdot O(1/n^2)}\).
 \end{proof}
 
 \begin{proposition}[Aligned peel recurrence stops at the square root]
@@ -1176,12 +1247,62 @@ The identity
 Lemma~\ref{lem:deletion-density} is the source of the square root in that
 recurrence.
 Under the uniform pair, a statistic of the remainder with relative variance
-\(\varepsilon\) has its mean shifted by the covariance against \(W/\EE W\), and
-Cauchy--Schwarz bounds the covariance by \(\sqrt{\varepsilon\cdot O(1/n)}\).
-Fed back as a recurrence for the peel variances, the same alignment is
-Proposition~\ref{prop:aligned-peel}, and it stops at \(\sqrt{n}\).
-The additive increment in Proposition~\ref{prop:peel-budget} is a cancellation
-past this bound. That cancellation is the remaining estimate.
+\(\varepsilon\) has its mean shifted by the covariance against \(W/\EE W\).
+Cauchy--Schwarz and the second-moment bound of the lemma bound that
+covariance by \(\sqrt{\varepsilon\cdot O(1/n^2)}\).
+The same alignment, fed with the older second-moment bound \(O(1/n)\), is
+Proposition~\ref{prop:aligned-peel} and stops at \(\sqrt{n}\).
+With the bound now in the lemma, the same formal recurrence solves through
+every length \(o(n)\).
+
+\begin{proposition}[Formal peel bound with the linear matching variance]
+\label{prop:aligned-peel-square}
+Let \(C>0\) and suppose \(\varepsilon_1\le C/n^2\) and
+\[
+\varepsilon_{j+1}
+\le
+\bigl(\sqrt{\varepsilon_j}+C/n\bigr)^2
+\]
+for every \(j<L\).
+Then \(\varepsilon_L\le C L^2/n^2\).
+Whenever \(L=o(n)\) the right-hand side tends to \(0\).
+\end{proposition}
+
+\begin{proof}
+The case \(L=1\) is the hypothesis.
+If \(\varepsilon_j\le C j^2/n^2\), then
+\(\sqrt{\varepsilon_j}+C/n\le \sqrt{C}\,(j+1)/n\),
+and squaring gives \(\varepsilon_{j+1}\le C(j+1)^2/n^2\).
+The identity \((j/n+1/n)^2=(j+1)^2/n^2\) was checked.
+\end{proof}
+
+The recurrence is not proved. Lemma~\ref{lem:size-bias-shift} is the mean
+shift of one statistic. The relative variance under the size-biased law is
+\[
+\EE_{\mathrm{b}}\bigl[(X/\mu-1)^2\bigr]
+=
+\varepsilon
++
+\Cov\bigl((X/\mu-1)^2,\,W/\EE W\bigr).
+\]
+Cauchy--Schwarz bounds the covariance by
+\(\sqrt{\EE[(X/\mu-1)^4]\cdot O(1/n^2)}\).
+The fourth-moment bound on \(W\) in Lemma~\ref{lem:deletion-density} is
+\(O(1/n^2)\), the same order as the second moment, so it does not put a factor
+\(1/n\) in front of \(\varepsilon\).
+Without a fourth-moment bound on the peel count, the covariance does not
+close the recurrence.
+Proposition~\ref{prop:aligned-peel-square} says
+what the ordered-peel variances would satisfy if each step obeyed that
+Cauchy--Schwarz alignment.
+It concerns \(P_j\), the number of ordered matching sequences.
+An \(L\)-factor \(F\) contributes its number \(D(F)\) of ordered decompositions
+into perfect matchings, so \(P_L=\sum_F D(F)\).
+For \(L=2\), a \(2\)-factor decomposes if and only if every cycle is even, and
+then \(D(F)=2^{c(F)}\) where \(c(F)\) is the number of cycles.
+Flatness of \(P_L\) does not identify flatness of the factor count \(Z_L\).
+The additive increment in Proposition~\ref{prop:peel-budget} remains a
+separate unproved cancellation.
 
 \begin{remark}[Eight-vertex peel excesses]
 \label{rem:peel-eight}
@@ -1195,6 +1316,251 @@ Dividing by \(j\) instead of \(j^2\) is the additive pattern, and it would give
 the quotients \(1/2\) and \(1/3\).
 The count is not an asymptotic statement.
 \end{remark}
+
+\begin{remark}[Matching traces leave a density coefficient]
+\label{rem:matching-trace-coefficient}
+Let \(c\in(0,1/2]\) and let \(a=D/n\) satisfy \(c\le a\le 1-c\).
+For each fixed overlap \(k\), Proposition~\ref{prop:origin-linear} at \(L=1\)
+gives the origin logarithm
+\[
+k\log\frac1\lambda-\frac12\bigl(\lambda^{-1}-1\bigr)
++\frac{1-a}{a}\cdot\frac{k-1}{n}
++O\Bigl(\frac{k^2+1}{n^2}\Bigr),
+\]
+where \(\lambda=(D-1)/(n-2)\).
+The same contraction as in Proposition~quad-host of~\cite{PlusOneV1} gives
+\(\operatorname{tr}(C)=2e/(n-1)\) for the host matrix of an edge set with \(e\)
+edges. The three hosts therefore contribute \(-k/(n-1)\) to the logarithm of
+the determinant ratio.
+For the union, \(e=n-k\) and the sum of squared degrees is \(4n-6k\); for one
+matching, \(e=n/2\) and the sum of squares is \(n\).
+Write \(M_0^{-1}=\alpha(I-\gamma\mathbf{1}\mathbf{1}^{\mathsf T})\) with
+\(\alpha=1/(n-2)\) and \(\gamma=1/(2(n-1))\), and write \(B\) for the host
+matrix. Then \(B\mathbf{1}=2\deg\), \(\operatorname{tr}(B^2)=\Sigma+2e\), and
+\[
+\operatorname{tr}(C^2)
+=
+\frac{\Sigma\bigl(1-4/(n-1)\bigr)+2e+4e^2/(n-1)^2}{(n-2)^2}.
+\]
+The second-trace
+combination \((\operatorname{tr}(C_U^2)-2\operatorname{tr}(C_M^2))/4\) equals
+\[
+\frac{2k^2-4kn^2+16kn-16k+n^3-5n^2+5n}{2(n^4-6n^3+13n^2-12n+4)}.
+\]
+Multiplied by \(n\), this tends to \(1/2\), so the second trace is
+\(1/(2n)+O((k+1)/n^2)\). The limit was checked.
+
+The factorial moments of the intersection of two uniform perfect matchings do
+not depend on \(D\). For \(z\) bounded,
+\[
+e^{-(z-1)/2}\EE[z^K]
+=
+1+\frac{z-1}{2(n-1)}+O\Bigl(\frac1{n^2}\Bigr),
+\]
+because \(\EE[(K)_r]=2^{-r}(1+r/(n-1)+O(r^2/n^2))\) and
+\(\EE[z^K]=\sum_r(z-1)^r\EE[(K)_r]/r!\).
+At \(z=1/a\) the excess is \((1-a)/(2an)\).
+
+Averaging \(\frac{1-a}{a}(k-1)-k+\frac12\) against the \(z^k\)-tilt of a
+Poisson random variable of mean \(1/2\), whose mean is \(1/(2a)\), and adding
+that excess, produces the coefficient \((a-1)(2a-1)/(2a^2)\). The identity
+was checked. It vanishes at \(a=1/2\) and not at a general density in
+\((0,1)\).
+
+The Gaussian factor \(-\frac{n-1}{2}\log(\lambda(1-\lambda))\), evaluated at
+the three host densities, has \(1/n\) coefficient
+\((4a^2 k-2a^2-2ak+1)/(2a^2)\).
+Added to the origin and the first trace, the coefficient of \(k\) cancels.
+The averaged coefficient becomes \((1-a)/(2a^2)\), which equals \(1\) at
+\(a=1/2\). Both identities were checked. That value is incompatible with the
+\(O(1/n^2)\) rate in Proposition~half-rate of~\cite{PlusOneV1}, so this
+Gaussian factor is not an additional term in the ratio.
+
+Those two packages leave a nonzero multiple of \(1/n\). The width by itself
+is the incompatible package. The adjustment of the vertex radii contributes
+the further term \(-\gamma k/n\), and with that term the width cancels, which
+is Theorem~\ref{thm:matching-linear-rate}.
+\end{remark}
+
+\begin{lemma}[Shifted radii for a matching union]
+\label{lem:mismatch-shift}
+Let \(\min(D,n-D)\ge cn\) and let \(k\le\log n\). On the union of two perfect
+matchings with intersection \(k\), the binary-entropy value at the
+degree-corrected radii differs from the equal-radius value by
+\(-\gamma k/n+O_c((k^2+1)/n^2)\), where \(\gamma=(1-a)/a\) and \(a=D/n\).
+The Gaussian determinant changes by the same order.
+\end{lemma}
+
+\begin{proof}
+Write \(w=\lambda(1-\lambda)\) and let \(\delta\) be the vector of degree
+mismatches at the equal-radius density of the union. The \(2k\) vertices of
+host degree \(1\) have mismatch \(1-a+O((k+1)/n)\), and the remaining vertices
+have mismatch \(O((k+1)/n)\), so
+\(\|\delta\|^2=2k(1-a)^2+O((k^2+1)/n)\). The sum of the mismatches is zero.
+The Hessian of the edge factors on the complete graph is
+\(w\bigl((n-2)I+J\bigr)\). On the hyperplane its inverse contributes
+\(\|\delta\|^2/(2w(n-2))\). Replacing \(n-2\) by \(n\), and using the checked
+limit
+\[
+\lim_{n\to\infty}
+\Bigl(
+n\cdot\frac{\|\delta\|^2}{2nw}-\gamma k
+\Bigr)
+=0,
+\]
+shows that this quadratic form equals \(\gamma k/n+O_c((k^2+1)/n^2)\).
+The entropy is the negative of the standard action, so the quadratic change
+is minus that quantity.
+
+The correcting potential is \(\varepsilon=H^{-1}\delta\). The inverse has
+diagonal \(O(1/n)\) and off-diagonal \(O(1/n^2)\), and \(\sum|\delta_v|=O(k+1)\),
+so \(\varepsilon\) is \(O_c(1/n)\) on the \(2k\)-set and \(O_c((k+1)/n^2)\)
+elsewhere. The third derivative of \(\log(1+e^{\theta_u+\theta_v})\) is bounded
+for densities in \([c/2,1-c/2]\). The cubic remainder is therefore at most a
+constant times \(\sum|\varepsilon_u+\varepsilon_v|^3\). Edges inside the
+\(2k\)-set contribute \(O(k^2/n^3)\), edges with one end in that set contribute
+\(O(k/n^2)\), and the remaining edges contribute \(O(k^3/n^4)\). For
+\(k\le\log n\) the remainder is \(O_c((k^2+1)/n^2)\).
+
+For the determinant, let \(\Delta\) be the change in the Hessian produced by
+replacing the common weight \(w\) with the corrected edge weights, and let
+\(B\) be \(w\) times the Laplacian of the host. The host has maximum degree
+\(2\), so \(\|B\|=O(1)\). The equal-radius inverse on the complete graph is
+\(\alpha I-c_n J\) with \(\alpha=1/(w(n-2))\). The trace identity for that
+inverse gives
+\[
+\operatorname{tr}(H^{-1}\Delta)
+=
+\frac{2}{w(n-1)}\sum_e\bigl(w_e-w\bigr),
+\]
+and \(\sum_e(w_e-w)=-\sum_e(\lambda_e-\lambda)^2\) because the corrected edge
+densities have the same sum as \(\lambda\). The squared density changes are
+\(O(1/n^2)\) on the \(O(kn)\) edges that meet the \(2k\)-set and
+\(O(k^2/n^4)\) elsewhere, so the trace is \(O(k/n^2)\).
+The resolvent expansion of the host-deleted inverse differs from the complete
+inverse by a series in \(BH^{-1}\). Each host edge \(\{x,y\}\) contributes a
+multiple of \((\Delta_{xx}+\Delta_{yy}-2\Delta_{xy})\), the diagonal changes
+are \(O(1)\) on the \(2k\)-set and \(O(k/n)\) elsewhere, and
+\(\alpha^2=O(1/n^2)\), so the first correction is \(O(k/n^2)\). Every further
+factor of \(BH^{-1}\) costs \(O(1/n)\). The squared Frobenius remainder in \(\log\det(I+H^{-1}\Delta)\) is at most
+\(\|H^{-1}\|^2\|\Delta\|_F^2\). The diagonal part of \(\Delta\) is \(O(1)\) on
+the \(2k\)-set, so \(\|\Delta\|_F=O(\sqrt{k})\), and
+\(\|H^{-1}\|=O(1/n)\). The product is \(O(k/n^2)\).
+\end{proof}
+
+\begin{theorem}[Matching variance throughout the linear band]
+\label{thm:matching-linear-rate}
+Let \(n\) be even and let \(\min(D,n-D)\ge cn\) for a fixed \(c\in(0,1/2]\),
+with \(Dn\) even. Let \(Y\) be the number of perfect matchings in the uniform
+\(D\)-regular graph. Then
+\[
+\frac{\Var Y}{(\EE Y)^2}=O_c\Bigl(\frac1{n^2}\Bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Write \(a=D/n\), \(\gamma=(1-a)/a\), and \(\lambda=(D-1)/(n-2)\).
+The ratio \(\EE[Y^2]/(\EE Y)^2\) is the average, over the intersection \(K\) of
+two uniform perfect matchings, of the extension ratio
+\(R(K)=N(H)N(\emptyset)/N(M)^2\).
+At \(L=1\) the edge counts of the three hosts are at most \(n\). The density
+deviation from \(a\) is \(O(1/n)\) for \(k\le\log n\), with the overlap entering
+only at order \(1/n^2\). The fourth derivative of \(\eta\) is bounded on
+\([c/2,1-c/2]\), so the Lagrange remainder in
+Proposition~\ref{prop:origin-linear} is \(O_c((k^4+1)/n^2)\) on this longer
+range, not only for a bounded overlap. The coefficient of \(1/n\) at \(L=1\)
+reduces to \(\gamma(k-1)\), and that reduction was checked. Thus
+\[
+\log R_{\mathrm{ent}}(k)
+=
+k\log\frac1\lambda-\frac12\bigl(\lambda^{-1}-1\bigr)
++\gamma\frac{k-1}{n}
++O_c\Bigl(\frac{k^4+1}{n^2}\Bigr).
+\]
+The empty host and one matching are regular, so their radii need no
+correction. Lemma~\ref{lem:mismatch-shift} subtracts \(\gamma k/n\) on the
+union and leaves \(-\gamma/n\), up to \(O_c((k^2+1)/n^2)\). The same lemma
+bounds the change in the Gaussian determinant.
+
+The Gaussian scale \(-\frac{n-1}{2}\log(\lambda_e(1-\lambda_e))\), evaluated at
+the three host densities and multiplied by \(n\), has constant term
+\[
+W(k)=\frac{4a^2 k-2a^2-2ak+1}{2a^2}.
+\]
+The series agrees with \(W(k)\), and the algebraic reduction of \(W\) was
+checked. The angular traces of Remark~\ref{rem:matching-trace-coefficient}
+contribute \((1/2-k)/n\).
+The logarithm of the ratio is therefore the main term plus \(c(k)/n\), where
+\[
+c(k)=-\gamma+W(k)+\frac12-k,
+\]
+up to an error \(O_c((k^4+1)/n^2)\) on \(k\le\log n\).
+
+The factorial moments give
+\[
+e^{-(\lambda^{-1}-1)/2}\EE[\lambda^{-K}]
+=
+1+\frac{\lambda^{-1}-1}{2(n-1)}+O\Bigl(\frac1{n^2}\Bigr),
+\]
+and \((\lambda^{-1}-1)/2=(1-a)/(2a)+O(1/n)\).
+The same tilt has mean \(1/(2a)+O(1/n)\).
+Substituting that mean into \(c\) and adding \((1-a)/(2a)\) produces \(0\).
+The identity was checked.
+The average of the ratio over \(k\le\log n\) is therefore \(1+O_c(1/n^2)\).
+The tail \(k>\log n\) is negligible, as in the linear-band argument
+of~\cite{PlusOneV1}, because it is bounded by a constant multiple of
+\(\EE[\lambda^{-K}1_{K>\log n}]\).
+\end{proof}
+
+\begin{lemma}[One matching deletion has total variation \(O(1/n)\)]
+\label{lem:matching-step-l1}
+Let \(n\) be even and let \(\min(d,n-d)\ge cn\) for a fixed \(c\in(0,1/2]\),
+with \(dn\) even and \(d\le n/2-1\).
+Let \(\mu_d\oplus\mu_1\) be the law of a uniform \(d\)-regular graph with a
+uniform perfect matching of its complement added.
+Then
+\[
+\dTV(\mu_d\oplus\mu_1,\mu_{d+1})
+=
+O_c\Bigl(\frac1n\Bigr).
+\]
+At degrees \(d\ge n/2\) the same bound holds after complementation.
+\end{lemma}
+
+\begin{proof}
+Let \(Z\) be the number of perfect matchings in the complement of a uniform
+\(d\)-regular graph, and let \(Y\) be the number in a uniform \((d+1)\)-regular
+graph. Theorem~\ref{thm:matching-linear-rate} gives relative variance
+\(O_c(1/n^2)\) for both, since the complement has degree \(n-1-d\).
+Write \(\mathcal T_d\) and \(\mathcal T_{d+1}\) for the two sets of graphs, and
+write \(B\) for the bipartite graph of containments that differ by a perfect
+matching, so \(|\mathcal T_d|\,\EE Z=|\mathcal T_{d+1}|\,\EE Y\).
+The containment law of an upper graph \(H\) is
+\[
+\PP(H)=\frac1{|\mathcal T_d|}\sum_{G\subset H}\frac1{Z(G)}.
+\]
+The comparison measure \(\nu(H)=\mu_{d+1}(H)\cdot Y(H)/\EE Y\) is
+\(Y(H)/(|\mathcal T_d|\,\EE Z)\). Their difference at \(H\) is
+\[
+\frac1{|\mathcal T_d|}\sum_{G\subset H}\Bigl(\frac1{Z(G)}-\frac1{\EE Z}\Bigr).
+\]
+Summing the absolute values and using that each \(G\) lies in \(Z(G)\) upper
+graphs produces
+\[
+\sum_H\bigl|\PP(H)-\nu(H)\bigr|
+=
+\EE\bigl|Z/\EE Z-1\bigr|
+\le
+\bigl(\Var Z/(\EE Z)^2\bigr)^{1/2},
+\]
+because \(Z\,|1/Z-1/\EE Z|=|1-Z/\EE Z|\) whenever \(Z>0\), and a graph with
+\(Z=0\) contributes to neither side.
+Thus the total variation between \(\PP\) and \(\nu\) is \(O_c(1/n)\).
+The total variation between \(\nu\) and \(\mu_{d+1}\) is half of
+\(\EE|Y/\EE Y-1|\), which is the same order.
+Complementation, as in the linear-band chain of~\cite{PlusOneV1}, treats
+\(d\ge n/2\).
+\end{proof}
 
 \begin{theorem}[Selection reduction for the container]
 \label{thm:selection-reduces}
@@ -1602,8 +1968,8 @@ Keeping the stub shift \(2t/(Ln)\) and subtracting the adjacent wedges cancels
 the cubic on every linear host; that is Theorem~\ref{thm:linear-below-sqrt},
 for \(L^2=o(n)\). Degree \(n/2\) is
 Theorem~\ref{thm:half-below-sqrt}.
-Conjecture~\ref{conj:long-step} and the factor moment past \(\sqrt{n}\) stay
-open.
+The factor moment past \(\sqrt{n}\) stays open.
+The long deletion is Theorem~\ref{thm:long-step}.
 \end{remark}
 
 \begin{proposition}[Principal three-matching mass]
@@ -2316,6 +2682,158 @@ That quantity is not \(o(L^3/n^3)\), and \(L^2/n\) leaves the expansion
 once \(L=\omega(\sqrt{n})\). Conjecture~\ref{conj:factor-rate} and the
 past-square-root half of Conjecture~\ref{conj:factor-moment} stay open.
 
+\begin{remark}[The square-root logarithm is not the excess]
+\label{rem:eight-factors}
+On all \(19355\) four-regular graphs on eight vertices, the relative
+variance of the number of \(L\)-factors is \(2363/657366\) for \(L=1\) and
+\(89344/17363889\) for \(L=2\). Both reductions were checked. At \(L=2\) the
+identified logarithm equals \(1/8\), and
+\[
+8\cdot\frac{89344}{17363889}
+=
+\frac{714752}{17363889}
+\]
+is about \(1/24\). The excess is the same order as the matching excess, not
+the order of \(L(L-1)/(2n)\). A uniform sample of forty five-regular graphs
+on ten vertices has \(3\)-factor counts between \(826\) and \(944\). On that
+sample the relative variance is about \(7\cdot 10^{-4}\), against the
+logarithm \(3/10\). The logarithm is a term in an expansion whose error is
+already larger than the term once \(L^2/n\) is bounded below; these counts
+say that the term is cancelled in the ratio, rather than that the ratio
+grows.
+A uniform sample of twenty-five six-regular graphs on twelve vertices has
+\(2\)-factor counts between \(24854\) and \(27195\), and relative variance
+about \(5\cdot 10^{-4}\), against the logarithm \(1/12\).
+
+The half-degree package of Theorem~\ref{thm:half-below-sqrt}, expanded in
+\(1/n\) at fixed \(L\), begins
+\[
+\frac{L(L-1)}{2n}
+-\frac{L(8L^3-24L^2+15L-3)}{6n^2}.
+\]
+The second coefficient equals
+\(-4L^4/3+4L^3-5L^2/2+L/2\), which was checked.
+Writing \(t=L^2/n\) and sending \(L\to\infty\), these two terms are
+\(t/2-(4/3)t^2+O(t^2/L)\).
+For \(t>3/8\) the quadratic is negative.
+A negative value cannot be a logarithm of \(\EE[Z^2]/(\EE Z)^2\).
+The package has left the range in which it approximates the ratio.
+The degree-variance correction of the entropy, of size \(L^2/(2n)\), and the
+Gaussian width, of size \(L^2/n\), are the same order as the logarithm and do
+not bring the package back to \(o(1)\).
+The cancelling term that the counts require is not among them.
+\end{remark}
+
+\begin{remark}[The binomial explosion is the edge count]
+\label{rem:binomial-edge}
+In \(G(n,p)\), throughout \(L^3=o(p^2 n)\), the number \(X\) of \(L\)-factors
+satisfies
+\[
+\frac{\EE[X^2]}{(\EE X)^2}
+\sim
+\exp\Bigl(\frac{L^2(1-p)}{2p}\Bigr)
+\]
+by~\cite[Theorem~2.1]{Gao13}.
+At a fixed density this tends to infinity with \(L\).
+In \(G(n,m)\) with \(m=p\binom{n}{2}\) and the same restriction on \(L\),
+~\cite[Theorem~2.4]{Gao13} gives \(X/\EE X\to 1\) in probability.
+The exponential is the fluctuation of the number of edges.
+A uniform regular host fixes that number, and fixes the degrees, so the
+exponential is not a lower bound on \(\Var Z/(\EE Z)^2\).
+Theorem~\ref{thm:linear-below-sqrt} already reaches every \(L^2=o(n)\) on a
+linear host, past the restriction \(L^3=o(n)\) of those two theorems.
+The switching ratio used for~\cite[Theorem~2.4]{Gao13} has a relative error
+\(O(\ell/(Ln)+L/n)\) at intersection \(\ell\).
+Proposition~\ref{prop:switching-accumulation} multiplies those errors through
+the window \(\ell\le\kappa L^2\). The product is \(\exp(O(L^3/n))\), which is
+the restriction \(L^3=o(n)\) of the two theorems just cited.
+The entropy remainder \(O(L^4/n^2)\) of Theorem~\ref{thm:linear-below-sqrt} is
+smaller than \(L^3/n\) by the factor \(L/n\).
+A switching argument kept at that relative error does not pass the range
+already proved for a regular host. The cancellation still required sits inside
+the entropy remainder.
+\end{remark}
+
+\begin{remark}[Short cycles predict an \(L\)-free excess]
+\label{rem:cycle-prediction}
+Walk along a path of a \(D\)-regular graph carrying a uniform \(L\)-factor.
+At each vertex, the next edge lies in the factor with probability
+\((L-1)/(D-1)\) if the previous edge does, and with probability \(L/(D-1)\)
+otherwise.
+The second eigenvalue of that two-state chain is
+\((L-1)/(D-1)-L/(D-1)=-1/(D-1)\), which was checked, and it does not depend
+on \(L\).
+In the small subgraph conditioning heuristic, a cycle of length \(k\) then
+has effect \(\delta_k=(-1/(D-1))^k\) and mean \(\lambda_k=(D-1)^k/(2k)\).
+The predicted logarithm of the second-moment ratio is
+\[
+\sum_{k\ge 3}\lambda_k\delta_k^2
+=
+\frac12\Bigl(-\log(1-x)-x-\frac{x^2}{2}\Bigr),
+\qquad
+x=\frac1{D-1},
+\]
+which is \(O(1/D^3)\) and does not depend on \(L\).
+The value at \(x=1/3\) was checked.
+At \(D=4,5,6\) the formula gives about \(0.0083\), \(0.0032\), and
+\(0.0016\). On the graphs of Remark~\ref{rem:eight-factors} the excesses are
+\(0.0036\) and \(0.0051\) for \(L=1,2\) at \(D=4\), about \(7\cdot 10^{-4}\) at
+\(D=5\), and about \(5\cdot 10^{-4}\) at \(D=6\).
+The counts are of the predicted order, nearly the same for the two lengths
+at \(D=4\), and far below \(L(L-1)/(2n)\).
+This is a prediction, not a proof.
+The method rests on a configuration-model second moment, and at linear degree
+that model has a loop with probability \(1-o(1)\), so the second-moment input
+is the open statement itself.
+A proof along these lines needs the cycle-count identification on the simple
+graph, with every \(k\le n\) controlled, not only fixed \(k\).
+\end{remark}
+
+\begin{proposition}[Switching errors accumulate as \(L^3/n\)]
+\label{prop:switching-accumulation}
+Let \(\kappa\ge 1\) and \(C>0\), and let \(L=o(n)\).
+Suppose that for every \(1\le\ell\le\kappa L^2\),
+\[
+\frac{f(\ell)}{f(\ell-1)}
+=
+\frac{L^2}{2\ell}\,(1+\theta_\ell),
+\qquad
+|\theta_\ell|
+\le
+C\Bigl(\frac{\ell}{Ln}+\frac{L}{n}\Bigr).
+\]
+Then for every \(m\le\kappa L^2\),
+\[
+\prod_{\ell=1}^{m}(1+\theta_\ell)
+=
+\exp\bigl(O_{C,\kappa}(L^3/n)\bigr).
+\]
+The exponent tends to \(0\) when \(L^3=o(n)\).
+The ratio of the entropy remainder \(L^4/n^2\) to \(L^3/n\) equals \(L/n\).
+\end{proposition}
+
+\begin{proof}
+The hypotheses \(L=o(n)\) and \(\ell\le\kappa L^2\) force
+\(\ell/(Ln)\le\kappa L/n\to 0\), so \(|\theta_\ell|\le 1/2\) for large \(n\).
+Thus \(\log(1+\theta_\ell)=\theta_\ell+O(\theta_\ell^2)\).
+The sum of the absolute values is at most
+\[
+C\sum_{\ell=1}^{m}\Bigl(\frac{\ell}{Ln}+\frac{L}{n}\Bigr)
+\le
+C\Bigl(\frac{m(m+1)}{2Ln}+\frac{mL}{n}\Bigr).
+\]
+At \(m=\kappa L^2\) the first summand equals
+\(\kappa L^2(\kappa L^2+1)/(2Ln)\).
+The identity
+\(L^2(L^2+1)/(2Ln)=L(L^2+1)/(2n)=L^3/(2n)+L/(2n)\)
+was checked, so both summands are \(O_{C,\kappa}(L^3/n)\).
+The quadratic error satisfies
+\(\sum\theta_\ell^2\le(\max|\theta_\ell|)\sum|\theta_\ell|=O(L^4/n^2)\),
+because \(\max|\theta_\ell|=O(L/n)\).
+The product is therefore \(\exp(O_{C,\kappa}(L^3/n))\).
+The identity \((L^4/n^2)/(L^3/n)=L/n\) was checked.
+\end{proof}
+
 \begin{theorem}[One deletion below the square root]
 \label{thm:deletion-below-sqrt}
 Let \(n\) be even and let \(d,L\) satisfy
@@ -2346,8 +2864,7 @@ The same bound places that marginal within total variation \(O(\alpha)\) of
 The range is every length \(o(\sqrt{n})\).
 The deletion of length \(o(n^{1/3})\) remains
 Theorem~\ref{thm:third-step-recorded}.
-Conjecture~\ref{conj:long-step} asks for one deletion of length
-\(\omega(\sqrt{n})\), which is still open.
+Theorem~\ref{thm:long-step} is the deletion of every length \(L=o(n)\).
 
 \begin{proposition}[Host traces do not cancel the square-root logarithm]
 \label{prop:host-trace}
@@ -3822,9 +4339,9 @@ Free-extension flatness does: Theorems~\ref{thm:factor-dense-host} and
 The sublinear matching variance does: Theorem~\ref{thm:factor-sublinear-colength-one}
 settles co-length one on every host of degree \(o(n)\).
 The balanced range of Conjectures~\ref{conj:factor-moment} and
-\ref{conj:factor-rate}, and the four-linear-margin case of
-Conjecture~\ref{conj:long-step}, remain, and need a
-comparison that is not this product.
+\ref{conj:factor-rate} remains, and needs a comparison that is not this
+product.
+The four-linear-margin deletion is Theorem~\ref{thm:long-step}.
 Theorem~\ref{thm:long-from-flat} reduces that long step to in-probability
 flatness of the two factor counts.
 Theorem~\ref{thm:long-exact-upper} makes the upper graph exact and leaves
@@ -3912,9 +4429,26 @@ A thinning of that residual whose output is binomial, or a proof of
 \section{What would close each statement}
 
 \paragraph{Conjecture~\ref{conj:Q}.}
-A proof of~\cite[Conjecture~1.3]{BIM25}, or a thinning of the rate-\(1/3\)
-residual down to surplus \(\sqrt{d\log n}\) whose output is binomial rather
-than hybrid.
+\cite[Theorem~1.1]{BIM25} gives, for each fixed \(\varepsilon>0\), a constant
+\(C\) such that the sandwich holds for every \(d\ge C\log n\) with both edge
+probabilities between \((1-\varepsilon)d/n\) and \((1+\varepsilon)d/n\).
+Conjecture~\ref{conj:Q} allows the gap to tend to \(0\), at size
+\(C\sqrt{(\log n)/d}\).
+Once \(d/\log n\to\infty\), that quantity tends to \(0\), and a fixed-gap
+theorem does not reach it. The dependence of their \(C\) on \(\varepsilon\) is
+not given.
+At \(d=\Theta(\log n)\) the same square root is a constant, and the
+introduction of~\cite{BIM25} records the minimum-degree obstruction: for each
+\(C>0\) there is an \(\varepsilon>0\) such that if \(d=C\log n\), then
+\(G(n,(1+\varepsilon)d/n)\) has minimum degree less than \(d\) with probability
+\(1-o(1)\).
+\cite[Conjecture~1.3]{BIM25} asks for one regular graph sandwiched in the
+whole random graph process. The authors state that a proof seems to require
+ideas beyond the proof of their Theorem~1.1.
+Theorem~\ref{thm:process-to-Q} is the deduction of
+Conjecture~\ref{conj:Q} from that process statement.
+A thinning of the rate-\(1/3\) residual down to surplus \(\sqrt{d\log n}\)
+whose output is binomial is the other route.
 Hybrid-to-binomial and freeze-and-sprinkle are blocked.
 
 \paragraph{Conjecture~\ref{conj:config-split}.}
@@ -3951,6 +4485,22 @@ and the following term has mass \(-L^8/(48n^2)\), which is smaller than the
 cubic only for \(L=o(n^{1/5})\). The error term of~\cite[Theorem~6]{Gao20}
 is the same order, so the coefficient does not identify the cumulant.
 Binomial leftover plus pairwise is not that generating function.
+The exponential \(\exp(L^2(1-p)/(2p))\) of~\cite[Theorem~2.1]{Gao13} is the
+edge-count fluctuation of \(G(n,p)\), and~\cite[Theorem~2.4]{Gao13} removes it
+once the number of edges is fixed, for \(L^3=o(p^2 n)\).
+Remark~\ref{rem:binomial-edge} records that a regular host has already fixed
+that number, and that Theorem~\ref{thm:linear-below-sqrt} passes the
+restriction \(L^3=o(n)\).
+The remaining expansion error on the regular host is \(O(L^4/n^2)\).
+Proposition~\ref{prop:switching-accumulation} shows that a relative switching
+error \(O(\ell/(Ln)+L/n)\), multiplied through the window \(\ell\le\kappa L^2\),
+produces \(\exp(O(L^3/n))\).
+That product tends to \(1\) only for \(L=o(n^{1/3})\), and \(L^4/n^2\) is
+smaller than \(L^3/n\) by the factor \(L/n\).
+Keeping the switching ratio at that precision does not pass
+Theorem~\ref{thm:linear-below-sqrt}.
+The balanced range still requires the coefficient of the entropy remainder to
+cancel.
 
 \paragraph{Conjecture~\ref{conj:factor-rate}.}
 The same signed expansion, to remainder \(o(L^3/n^3)\), on the balanced
@@ -3959,39 +4509,20 @@ The near-complete factor side is Theorem~\ref{thm:factor-rate-complementary};
 the near-complete host side is Theorem~\ref{thm:factor-rate-dense-host}.
 The formal cubic \(L^3/(4n)\) is not the relative variance.
 
-\paragraph{Conjecture~\ref{conj:long-step}.}
-In-probability flatness of the single weight \(a(G)\) in
-Theorem~\ref{thm:long-exact-upper}, together with the existence of an
-\(L\)-factor in a uniform \((d+L)\)-regular graph with probability \(1-o(1)\).
-That coupling makes the upper graph exactly uniform.
-Flatness of both factor counts remains sufficient, by
-Theorem~\ref{thm:long-from-flat}, and is stronger than flatness of \(a\).
-Relative variance \(o(1)\) is a stronger sufficient condition, recorded as
-Theorem~\ref{thm:long-from-moment}, and is what
-Conjecture~\ref{conj:factor-moment} asks for.
-On the range \(L^2=o(n)\) that variance is
+\paragraph{Theorem~\ref{thm:long-step}.}
+The deletion is the matching chain in that theorem.
+Theorem~\ref{thm:matching-linear-rate} is the \(O(1/n^2)\) matching variance,
+and Lemma~\ref{lem:matching-step-l1} is the resulting \(O(1/n)\) total variation
+of one step.
+Flatness of both factor counts remains a separate sufficient condition, by
+Theorem~\ref{thm:long-from-flat}, and is what
+Conjecture~\ref{conj:factor-moment} asks for on \(L=\omega(\sqrt{n})\).
+That factor flatness is still open.
+On the range \(L^2=o(n)\) the factor variance is
 Theorem~\ref{thm:linear-below-sqrt}, and the resulting deletion is
 Theorem~\ref{thm:deletion-below-sqrt}.
-Proposition~\ref{prop:host-trace} expands the first two host traces at half
-degree: their mean is of order \(L^2/n^2\) and does not cancel the identified
-logarithm of order \(L^2/n\).
-Theorem~\ref{thm:long-from-peel} gives another sufficient condition: in-probability
-flatness of the number of ordered sequences of \(L\) successive perfect
-matchings, at degrees \(d+L\) and \(n-1-d\).
-Proposition~\ref{prop:peel-budget} sums those matchings.
-The base count has relative variance \(O(1/n)\) by Proposition~band-rate
-of~\cite{PlusOneV1}.
-If each added matching increases the relative variance by a further \(O(1/n)\),
-the sequence of length \(L\) has relative variance \(O(L/n)\), and the coupling
-in Conjecture~\ref{conj:long-step} follows for every \(L=o(n)\).
-Lemma~\ref{lem:deletion-density} identifies the size-biased deletion weight with
-the complement matching count.
-Cauchy--Schwarz on that covariance is the recurrence of
-Proposition~\ref{prop:aligned-peel}, whose solution \(O(L^2/n)\) tends to \(0\)
-only for \(L=o(\sqrt{n})\).
-The additive increment is a cancellation past that alignment.
-On eight vertices the ordered-peel excesses track the aligned shape
-(Remark~\ref{rem:peel-eight}).
+Proposition~\ref{prop:aligned-peel} remains the Cauchy--Schwarz bound under a
+matching variance \(O(1/n)\): that coarser input stops at \(\sqrt{n}\).
 Proposition~\ref{prop:spectral-det} removes the signless-Laplacian determinant
 as an obstruction on the event that the nontrivial spectral radius is
 \(O(\sqrt{n})\), and Proposition~\ref{prop:resolvent-trace} removes the
@@ -4031,6 +4562,11 @@ companion manuscript v1.0, 2026.
 N.~Behague, D.~Il'kovi\v{c}, and R.~Montgomery,
 \emph{A proof of the Kim--Vu sandwich conjecture},
 arXiv:2510.20765, 2025.
+
+\bibitem{Gao13}
+P.~Gao,
+\emph{Distribution of the number of spanning regular subgraphs in random graphs},
+Random Structures Algorithms, 2013, doi:10.1002/rsa.20418.
 
 \bibitem{Gao20}
 P.~Gao,
