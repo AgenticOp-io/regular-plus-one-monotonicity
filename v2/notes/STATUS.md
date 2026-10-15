@@ -61,26 +61,47 @@ Bar is 2.0. v1.0 is sent.
   \(L(L-1)/(2n)\) at degree \(n/2\) and is not \(o(L^3/n^3)\).
 - The signed three-matching principal mass is \(-L^8/(48n^2)\)
   (Proposition triple-mass-order). It does not identify the cumulant.
-- long-step: open for one deletion of length \(\omega(\sqrt{n})\).
-  Theorem deletion-below-sqrt gives the deletion for \(L^2=o(n)\)
-  between linear degrees, for every length \(o(\sqrt{n})\). It stops short of
-  \(\sqrt{n}\). The length \(o(n^{1/3})\) remains Theorem third-step.
-  Proposition host-trace: at half degree the mean of the first two host traces
-  is order \(L^2/n^2\) and does not cancel the identified logarithm of order
-  \(L^2/n\).
-  Theorem long-from-peel: in-probability flatness of the ordered sequence of
-  \(L\) successive perfect matchings, at degrees \(d+L\) and \(n-1-d\), gives
-  the coupling. Proposition peel-budget: the matching count has relative
-  variance \(O(1/n)\), and if each added matching increases the relative
-  variance by a further \(O(1/n)\), the sequence has relative variance
-  \(O(L/n)\) and the long step follows for every \(L=o(n)\). That increment
-  is the remaining estimate.
-  Lemma deletion-density: the size-biased matching deletion has Radon--Nikodym
-  derivative equal to the complement matching count, with relative variance
-  \(O(1/n)\) and fourth moment \(O(1/n^2)\).
-  Proposition aligned-peel: Cauchy--Schwarz on that covariance solves as
-  relative variance \(O(L^2/n)\), which tends to \(0\) only for \(L=o(\sqrt{n})\).
-  The additive increment is a cancellation past this alignment.
+- long-step: closed for every \(L=o(n)\) with four linear margins
+  (Theorem long-step). The matching count has relative variance \(O(1/n^2)\)
+  at every linear degree (Theorem matching-linear-rate). One matching deletion
+  then has total variation \(O(1/n)\) (Lemma matching-step-l1), and \(L\) such
+  steps are a union bound \(O(L/n)\). The \(1/n\) coefficient in the matching
+  ratio is the equal-radius origin, the radius shift \(-\gamma k/n\), the
+  width, and the angular traces; the cubic remainder and the determinant
+  shift are both \(O(k/n^2)\) for \(k\le\log n\) (Lemma mismatch-shift).
+  Theorem deletion-below-sqrt remains the factor-moment route for \(L^2=o(n)\).
+  Factor-count flatness for \(L=\omega(\sqrt{n})\) stays open. On all 19355
+  four-regular graphs on eight vertices the \(L=2\) excess is
+  \(89344/17363889\), about \(1/24\) of the logarithm \(1/8\)
+  (Remark eight-factors). A sample of twenty-five six-regular graphs on
+  twelve vertices has \(2\)-factor relative variance about \(5\cdot 10^{-4}\),
+  against the logarithm \(1/12\). The half-degree package through order
+  \(1/n^2\) is \(L(L-1)/(2n)-L(8L^3-24L^2+15L-3)/(6n^2)\), which at
+  \(t=L^2/n\) is \(t/2-(4/3)t^2\) and is negative for \(t>3/8\). That
+  package is not the ratio, and the degree-variance correction together with
+  the Gaussian width does not restore \(o(1)\). The logarithm is not the
+  excess. In \(G(n,p)\) the second-moment ratio is
+  \(\exp(L^2(1-p)/(2p))\) for \(L^3=o(p^2 n)\) (Gao 2013, Theorem 2.1), and
+  that exponential is the edge count: the same count in \(G(n,m)\)
+  concentrates (Theorem 2.4). It is not a lower bound on a regular host
+  (Remark binomial-edge). Small subgraph conditioning predicts an excess
+  \(\tfrac12(-\log(1-x)-x-x^2/2)\) with \(x=1/(D-1)\), independent of \(L\),
+  because the factor chain along a path has eigenvalue \(-1/(D-1)\) for
+  every \(L\) (Remark cycle-prediction). The counts match that order. This
+  is a heuristic; the configuration second moment is blocked on linear
+  hosts. The coarser
+  Cauchy--Schwarz recurrence with the older input \(O(1/n)\)
+  (Proposition aligned-peel) still stops at \(\sqrt{n}\).
+  Lemma deletion-density now takes the second moment \(O(1/n^2)\) from
+  Theorem matching-linear-rate. One statistic then shifts by
+  \(|\mu|\sqrt{\varepsilon\cdot O(1/n^2)}\) under that size bias
+  (Lemma size-bias-shift). The formal recurrence with that input solves
+  as \(O(L^2/n^2)\) for every \(L=o(n)\) (Proposition aligned-peel-square).
+  The recurrence itself is not proved: the size-biased variance adds a
+  covariance against \(W\), and the fourth moment of \(W\) is only
+  \(O(1/n^2)\), the same order as its second moment. It also controls the
+  ordered peel count \(P_L=\sum D(F)\), not \(Z_L\). For a \(2\)-factor,
+  \(D(F)=2^{c(F)}\) when every cycle is even.
   On all 3507 five-regular graphs on eight vertices the peel excesses for
   \(j=1,2,3\) are \(1024/1785375\), \(25079/11569230\), and \(77949/13712410\);
   divided by \(j^2\) times the first excess they are \(626975/663552\) and
@@ -91,7 +112,12 @@ Bar is 2.0. v1.0 is sent.
   inverse-weighted extension count \(a(G)\) and an \(L\)-factor with
   probability \(1-o(1)\). On eight vertices, with deletion length \(2\), \(Z\)
   varies by \(15/7\) while \(a\) varies by \(409095/397144\), and the lower
-  total variation is below \(1/200\).
+  total variation is below \(1/200\). On that same enumeration \(a=W\mu\),
+  where \(W\) is the \(2\)-factor count of the complement and runs through the
+  integers \(248\) through \(255\), and the conditional mean \(\mu\) of \(1/Z\)
+  has maximum-to-minimum ratio \(6227311/6205375\). The covariance of \(W\) and
+  \(\mu\) is positive. The flatness of \(a\) is the flatness of a factor count
+  on a \(5\)-regular host, not a compensation between \(W\) and \(1/Z\).
 
 ## Recorded negatives (not conjecture closes)
 

@@ -1605,3 +1605,189 @@ simplify | (77949/13712410)/(9 × 1024/1785375) - 3092626575/2808301568
 0
 [Quotient and Remainder]
 0 = (0) × 1 + 0
+
+
+Query: simplify 19355/3507 - 2765/501
+[Input interpretation]
+simplify | 19355/3507 - 2765/501
+[Results]
+2765/501 - 2765/501
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify (200881/9056250)/(49643/2245950) - 6227311/6205375
+[Input interpretation]
+simplify | (200881/9056250)/(49643/2245950) - 6227311/6205375
+[Results]
+6227311/6205375 - 6227311/6205375
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify 6227311 - 6205375 - 21936
+[Input interpretation]
+simplify | 6227311 - 6205375 - 21936
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify ((1-a)/a)*(1/(2*a)-1) - 1/(2*a) + 1/2 + (1-a)/(2*a) - (a-1)*(2*a-1)/(2*a^2)
+[Input interpretation]
+simplify | (1 - a)/a (1/(2 a) - 1) - 1/(2 a) + 1/2 + (1 - a)/(2 a) - (a - 1) × (2 a - 1)/(2 a^2)
+[Result]
+0
+
+
+Query: simplify (1-a)/a + (2*a-1)/a - 1
+[Input interpretation]
+simplify | (1 - a)/a + (2 a - 1)/a - 1
+[Result]
+0
+
+
+Query: simplify -(1-a)/a + (1-2*a^2)/(2*a^2) + 1/2 + (1-a)/(2*a) - (1-a)/(2*a^2)
+[Input interpretation]
+simplify | -(1 - a)/a + (1 - 2 a^2)/(2 a^2) + 1/2 + (1 - a)/(2 a) - (1 - a)/(2 a^2)
+[Result]
+0
+
+
+Query: Limit n*(2*k^2 - 4*k*n^2 + 16*k*n - 16*k + n^3 - 5*n^2 + 5*n)/(2*(n^4 - 6*n^3 + 13*n^2 - 12*n + 4)) as n->infinity
+[Limit]
+lim_(n->∞) (n (2 k^2 - 4 k n^2 + 16 k n - 16 k + n^3 - 5 n^2 + 5 n))/(2 (n^4 - 6 n^3 + 13 n^2 - 12 n + 4)) = 1/2
+[Series expansion at n = ∞]
+1/2 + (1/2 - 2 k)/n + (-4 k - 1)/n^2 + (k^2 - 6 k - 13/2)/n^3 + (6 k^2 - 8 k - 22)/n^4 + O((1/n)^5)
+(Laurent series)
+
+
+Query: simplify (4*a^2*k - 2*a^2 - 2*a*k + 1)/(2*a^2) - (1-2*a^2)/(2*a^2) - k*(2*a-1)/a
+[Input interpretation]
+simplify | (4 a^2 k - 2 a^2 - 2 a k + 1)/(2 a^2) - (1 - 2 a^2)/(2 a^2) - k × (2 a - 1)/a
+[Result]
+0
+
+
+Query: Limit n*(-(n-1)/2)*(Log[(a*n/2 - (n-k))/((n*(n-1)/2) - (n-k)) * (1 - (a*n/2 - (n-k))/((n*(n-1)/2)-(n-k)))] + Log[(a*n/(n-1))*(1-a*n/(n-1))] - 2*Log[((a*n-1)/(n-2))*(1-(a*n-1)/(n-2))]) as n->infinity
+[Limit]
+(insufficient time to determine limit)
+
+Fallback: the query above used edge count \(an/2\) in place of \(an^2/2\). The corrected width, with \(\lambda(e)=(an^2/2-e)/(\binom{n}{2}-e)\), was expanded in sympy. The constant term of \(n\) times the width is \((4a^2 k-2a^2-2ak+1)/(2a^2)\). The algebraic reduction of that coefficient is the preceding Result 0. A later sympy series of \(n\) times the three-host width, minus that coefficient, is identically \(0\).
+
+
+Query: simplify -(1-a)/a + (4*a^2*(1/(2*a)) - 2*a^2 - 2*a*(1/(2*a)) + 1)/(2*a^2) + 1/2 - 1/(2*a) + (1-a)/(2*a)
+[Input interpretation]
+simplify | -(1 - a)/a + (4 a^2 × 1/(2 a) - 2 a^2 - 2 a × 1/(2 a) + 1)/(2 a^2) + 1/2 - 1/(2 a) + (1 - a)/(2 a)
+[Result]
+0
+
+
+Query: Limit k*(2*a^2*k*n - 2*a*k*n + 4*a*k - 3*a*n - 2*k + 2*n)/(a*(a*n^2 + 2*k - 2*n)) as n->infinity
+[Limit]
+lim_(n->∞) (k (2 a^2 k n - 2 a k n + 4 a k - 3 a n - 2 k + 2 n))/(a (a n^2 + 2 k - 2 n)) = 0
+[Series expansion at n = ∞]
+(k (2 a^2 k - a (2 k + 3) + 2))/(a^2 n) + (2 k (4 a^2 k - 3 a (k + 1) + 2))/(a^3 n^2) - (2 (k (2 a^3 k^2 - a^2 k (2 k + 11) + a (8 k + 6) - 4)))/(a^4 n^3) - (4 (k (6 a^3 k^2 - a^2 k (5 k + 14) + 2 a (5 k + 3) - 4)))/(a^5 n^4) + (4 k (2 a^4 k^3 - a^3 k^2 (2 k + 23) + 2 a^2 k (9 k + 17) - 12 a (2 k + 1) + 8))/(a^6 n^5) + O((1/n)^6)
+(Laurent series)
+
+
+Query: Limit n*k*(2*a^2*k*n - 2*a*k*n + 4*a*k - 3*a*n - 2*k + 2*n)/(a*(a*n^2 + 2*k - 2*n)) as n->infinity
+[Limit]
+lim_(n->∞) (n k (2 a^2 k n - 2 a k n + 4 a k - 3 a n - 2 k + 2 n))/(a (a n^2 + 2 k - 2 n)) = (k (2 - 3 a + 2 (-1 + a) a k))/a^2
+[Series expansion at n = ∞]
+(k (2 a^2 k - a (2 k + 3) + 2))/a^2 + (2 k (4 a^2 k - 3 a (k + 1) + 2))/(a^3 n) - (2 (k (2 a^3 k^2 - a^2 k (2 k + 11) + a (8 k + 6) - 4)))/(a^4 n^2) - (4 (k (6 a^3 k^2 - a^2 k (5 k + 14) + 2 a (5 k + 3) - 4)))/(a^5 n^3) + (4 k (2 a^4 k^3 - a^3 k^2 (2 k + 23) + 2 a^2 k (9 k + 17) - 12 a (2 k + 1) + 8))/(a^6 n^4) + O((1/n)^5)
+(Laurent series)
+
+
+Query: simplify k*(2 - 3*a + 2*(-1 + a)*a*k)/a^2 - k*(2*a^2*k - a*(2*k + 3) + 2)/a^2
+[Input interpretation]
+simplify | k × (2 - 3 a + 2 (-1 + a) a k)/a^2 - k × (2 a^2 k - a (2 k + 3) + 2)/a^2
+[Result]
+0
+
+
+Query: simplify (a-1)*(2*a)/(2*a^2) - (a-1)*k/a - (1-a)*(k-1)/a
+[Input interpretation]
+simplify | (a - 1) × (2 a)/(2 a^2) - (a - 1) × k/a - (1 - a) × (k - 1)/a
+[Result]
+0
+
+
+Query: simplify 3940070400/765747504900 - 89344/17363889
+[Input interpretation]
+simplify | 3940070400/765747504900 - 89344/17363889
+[Results]
+89344/17363889 - 89344/17363889
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify 277888800/77306241600 - 2363/657366
+[Input interpretation]
+simplify | 277888800/77306241600 - 2363/657366
+[Results]
+2363/657366 - 2363/657366
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify -L*(8*L^3 - 24*L^2 + 15*L - 3)/6 - (-4*L^4/3 + 4*L^3 - 5*L^2/2 + L/2)
+[Input interpretation]
+simplify | -L (1/6 (8 L^3 - 24 L^2 + 15 L - 3)) - (-4 × L^4/3 + 4 L^3 - 5 × L^2/2 + L/2)
+[Result]
+0
+
+
+Query: simplify (j/n + 1/n)^2 - (j+1)^2/n^2
+[Input interpretation]
+simplify | (j/n + 1/n)^2 - (j + 1)^2/n^2
+[Result]
+0
+
+
+Query: simplify (L^4/n^2)/(L^3/n) - L/n
+[Input interpretation]
+simplify | (L^4/n^2)/(L^3/n) - L/n
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify L*(L^2+1)/(2*n) - L^3/(2*n) - L/(2*n)
+[Input interpretation]
+simplify | L × (L^2 + 1)/(2 n) - L^3/(2 n) - L/(2 n)
+[Result]
+0
+
+
+Query: simplify L^2*(L^2+1)/(2*L*n) - L*(L^2+1)/(2*n)
+[Input interpretation]
+simplify | L^2 × (L^2 + 1)/(2 L n) - L × (L^2 + 1)/(2 n)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify (L-1)/(D-1) - L/(D-1) + 1/(D-1)
+[Input interpretation]
+simplify | (L - 1)/(D - 1) - L/(D - 1) + 1/(D - 1)
+[Result]
+0
+
+
+Query: Sum[(1/3)^k/(2*k), {k, 3, Infinity}] - (Log[3/2] - 1/3 - 1/18)/2
+[Input interpretation]
+sum_(k=3)^∞ (1/3)^k/(2 k) - 1/2 (log(3/2) - 1/3 - 1/18)
+[Result]
+0
