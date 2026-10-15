@@ -116,7 +116,12 @@ Theorem~\ref{thm:long-step} is the four-linear-margin deletion for every
 linear degree (Theorem~\ref{thm:matching-linear-rate}), and one deletion of a
 perfect matching then has total variation \(O(1/n)\)
 (Lemma~\ref{lem:matching-step-l1}). A union bound of \(L\) such steps tends to
-\(0\). The balanced range past \(\sqrt{n}\) and the other three named statements
+\(0\). Peeling \(L\) successive uniform perfect matchings from a uniform graph
+above half degree keeps containment sure and the lower law within \(O(L/n)\)
+of uniform (Theorem~\ref{thm:successive-peel}), and bounded second moments of
+shorter peel counts give \(L^1\) flatness of the ordered peel count
+(Theorem~\ref{thm:peel-bounded-to-flat}).
+The balanced range past \(\sqrt{n}\) and the other three named statements
 stay open.
 
 The attacks that stop at a signed \(O(L^3/n)\) or a disjoint-support
@@ -1283,7 +1288,7 @@ shift of one statistic. The relative variance under the size-biased law is
 =
 \varepsilon
 +
-\Cov\bigl((X/\mu-1)^2,\,W/\EE W\bigr).
+\operatorname{Cov}\bigl((X/\mu-1)^2,\,W/\EE W\bigr).
 \]
 Cauchy--Schwarz bounds the covariance by
 \(\sqrt{\EE[(X/\mu-1)^4]\cdot O(1/n^2)}\).
@@ -1303,6 +1308,168 @@ then \(D(F)=2^{c(F)}\) where \(c(F)\) is the number of cycles.
 Flatness of \(P_L\) does not identify flatness of the factor count \(Z_L\).
 The additive increment in Proposition~\ref{prop:peel-budget} remains a
 separate unproved cancellation.
+
+\begin{theorem}[Successive uniform peeling above half degree]
+\label{thm:successive-peel}
+Let \(n\) be even, let \(c\in(0,1/2]\), and let \(D\) and \(L\ge 1\) satisfy
+\(D\le(1-c)n\) and \(D-L+1\ge n/2\).
+Let \(H_0\) be a uniform \(D\)-regular graph, and for \(1\le j\le L\) let
+\(H_j=H_{j-1}\setminus M_j\), where \(M_j\) is a uniform perfect matching of
+\(H_{j-1}\) chosen independently of the past given \(H_{j-1}\).
+Every step is defined, \(H_L\subset H_0\) surely, \(H_0\) has law \(\mu_D\), and
+\[
+\dTV\bigl(\mathcal L(H_L),\mu_{D-L}\bigr)\le C_c\,\frac{L}{n}.
+\]
+\end{theorem}
+
+\begin{proof}
+For \(j\le L\) the graph \(H_{j-1}\) has degree \(D-j+1\ge D-L+1\ge n/2\), so
+Dirac's theorem gives a Hamilton cycle, and \(n\) even gives a perfect
+matching. Every step is therefore defined, and \(H_L\subset H_0\).
+
+Write \(K_j\) for the kernel that sends a \((D-j+1)\)-regular graph to the
+graph left by removing a uniform perfect matching.
+Complementation turns \(K_j\) into the kernel that adds a uniform perfect
+matching of the complement to a graph of degree \(d_j=n-D+j-2\).
+The identity
+\((n-D+j-2)-(n/2-1)+(D-j+1-n/2)=0\)
+was checked, so \(d_j\le n/2-1\) exactly when \(D-j+1\ge n/2\).
+Also \(d_j\ge n-D-1\ge cn-1\) and \(n-d_j\ge n/2+1\).
+Lemma~\ref{lem:matching-step-l1}, applied with \(c/2\) for large \(n\), gives
+\[
+\dTV\bigl(\mu_{D-j+1}K_j,\mu_{D-j}\bigr)\le\frac{C_c}{n},
+\]
+because complementation is a bijection and preserves total variation.
+A Markov kernel does not increase total variation, so for every law
+\(\lambda\) of a \((D-j+1)\)-regular graph,
+\[
+\dTV(\lambda K_j,\mu_{D-j})
+\le
+\dTV(\lambda,\mu_{D-j+1})+\frac{C_c}{n}.
+\]
+Starting from \(\lambda=\mu_D\) and iterating \(L\) times gives the bound.
+\end{proof}
+
+The theorem holds for every \(L\le D-n/2+1\), with no restriction
+\(L=o(n)\). The bound tends to \(0\) when \(L=o(n)\).
+Unlike Theorem~\ref{thm:long-step}, the containment is sure, the algorithm is
+the natural one, and only the upper marginal is exact.
+Below half degree the same argument, applied by complementation, adds
+successive uniform perfect matchings of the complement to a uniform
+\(d\)-regular graph with \(d+L-1\le n/2-1\) and \(d\ge cn\): the lower marginal is exact,
+containment is sure, and the upper law is within \(C_cL/n\) of
+\(\mu_{d+L}\).
+
+\begin{theorem}[Bounded peel moments give peel flatness]
+\label{thm:peel-bounded-to-flat}
+Assume the hypotheses of Theorem~\ref{thm:successive-peel}.
+Write \(P_j^{(e)}\) for the number of ordered sequences of \(j\) successive
+perfect matchings in a uniform \(e\)-regular graph.
+Suppose there is \(B\ge 0\) such that, for every \(1\le j<L\),
+\[
+\frac{\EE\bigl[(P_{j}^{(e_j)})^2\bigr]}{\bigl(\EE P_{j}^{(e_j)}\bigr)^2}
+\le
+1+B,
+\qquad
+e_j=n-D+j-1.
+\]
+Then
+\[
+\EE\Bigl|\frac{P_L^{(D)}}{\EE P_L^{(D)}}-1\Bigr|
+\le
+C_c\,\sqrt{1+B}\,\frac{L}{n}.
+\]
+\end{theorem}
+
+\begin{proof}
+A \(j\)-prefix is a sequence \((H_0,M_1,\ldots,M_j)\) with \(H_0\)
+\(D\)-regular and each \(M_i\) a perfect matching of
+\(H_{i-1}=H_0\setminus(M_1\cup\cdots\cup M_{i-1})\).
+Let \(N_j\) be the number of \(j\)-prefixes, so \(N_0=|\mathcal T_D|\) and
+\(N_L=|\mathcal T_D|\,\EE P_L^{(D)}\).
+Let \(U_j\) be the uniform law on \(j\)-prefixes.
+
+For a \((D-j+1)\)-regular graph \(g\), the \((j-1)\)-prefixes ending at \(g\)
+are obtained by adding successive perfect matchings of the complement, so their
+number is \(Q(g)=P_{j-1}(C(g))\), where \(C(g)\) is the complement, of degree
+\(e_{j-1}=n-D+j-2\).
+Under \(U_{j-1}\) the endpoint \(H_{j-1}\) therefore has density
+\(Q/\EE Q\) with respect to \(\mu_{D-j+1}\), and \(C(H_{j-1})\) is uniform
+when \(H_{j-1}\) is.
+For \(j=1\) the density is \(1\).
+
+Let \(S\) be the law of the prefix produced by the successive peel of
+Theorem~\ref{thm:successive-peel}; it gives the \(L\)-prefix \(\tau\) the mass
+\(|\mathcal T_D|^{-1}\prod_{i\le L}W(H_{i-1})^{-1}\), where \(W(g)\) is the
+number of perfect matchings of \(g\).
+For \(0\le j\le L\) define the probability law \(\rho_j\) on \(L\)-prefixes by
+\[
+\rho_j(\tau)
+=
+\frac1{N_j}\prod_{i>j}\frac1{W(H_{i-1})},
+\]
+so \(\rho_0=S\) and \(\rho_L=U_L\).
+Write \(c_j=N_j/N_{j-1}\), the mean of \(W(H_{j-1})\) under \(U_{j-1}\).
+Then
+\[
+\rho_j(\tau)-\rho_{j-1}(\tau)
+=
+\frac1{N_{j-1}}
+\Bigl(\frac1{c_j}-\frac1{W(H_{j-1})}\Bigr)
+\prod_{i>j}\frac1{W(H_{i-1})}.
+\]
+Sum over the continuations after step \(j\): the product sums to \(1\).
+Sum over the \(W(H_{j-1})\) choices of \(M_j\): the identity
+\(W(1/c-1/W)=W/c-1\) was checked, so
+\[
+\sum_\tau\bigl|\rho_j(\tau)-\rho_{j-1}(\tau)\bigr|
+=
+\EE_{U_{j-1}}\Bigl|\frac{W(H_{j-1})}{c_j}-1\Bigr|.
+\]
+
+Write \(m=\EE W\) under \(\mu_{D-j+1}\) and \(\omega=W/m-1\).
+Theorem~\ref{thm:matching-linear-rate} applies at degree \(D-j+1\in[n/2,(1-c)n]\)
+and gives \(\EE[\omega^2]\le C_c/n^2\).
+Write \(q=Q/\EE Q\), so \(\EE[q^2]\le 1+B\), by the hypothesis at
+\(j-1\) when \(j\ge 2\) and trivially when \(j=1\).
+Cauchy--Schwarz gives
+\[
+\EE_{U_{j-1}}|\omega|=\EE[q|\omega|]\le\sqrt{1+B}\,\sqrt{C_c}/n,
+\qquad
+\Bigl|\frac{c_j}{m}-1\Bigr|=\bigl|\EE[q\,\omega]\bigr|\le\sqrt{1+B}\,\sqrt{C_c}/n.
+\]
+The identity \(a/c-1=(m/c)(a/m-1)+(m/c-1)\) was checked.
+Applied with \(a=W\) it gives
+\[
+\EE_{U_{j-1}}\Bigl|\frac{W}{c_j}-1\Bigr|
+\le
+\frac{m}{c_j}\,\EE_{U_{j-1}}|\omega|+\Bigl|\frac{m}{c_j}-1\Bigr|
+\le
+C'_c\,\frac{\sqrt{1+B}}{n},
+\]
+for large \(n\), once \(\sqrt{1+B}/n\) is small; otherwise the claimed bound
+exceeds \(2\) and holds trivially.
+
+Summing over \(j\),
+\[
+\sum_\tau\bigl|S(\tau)-U_L(\tau)\bigr|
+\le
+C'_c\sqrt{1+B}\,\frac{L}{n}.
+\]
+Projection onto \(H_0\) does not increase the sum.
+The projection of \(S\) is \(\mu_D\), because every step is defined.
+The projection of \(U_L\) gives \(H\) the mass \(P_L^{(D)}(H)/N_L\).
+The sum of the absolute differences of the projections is
+\(\EE|P_L^{(D)}/\EE P_L^{(D)}-1|\), which is the claim.
+\end{proof}
+
+For \(L=2\) the hypothesis is the matching variance at degree \(e_1=n-D\),
+which Theorem~\ref{thm:matching-linear-rate} supplies.
+Thus \(\EE|P_2/\EE P_2-1|=O_c(1/n)\) unconditionally above half degree.
+For \(L\ge 3\) the hypothesis asks for bounded, not vanishing, relative
+second moments of shorter peel counts on the complementary degrees.
+The conclusion concerns the ordered peel count, so it does not give
+Conjecture~\ref{conj:factor-moment}.
 
 \begin{remark}[Eight-vertex peel excesses]
 \label{rem:peel-eight}
