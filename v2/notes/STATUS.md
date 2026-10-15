@@ -58,6 +58,12 @@ Bar is 2.0. v1.0 is sent.
   if shorter peel counts on the complementary degrees have relative second
   moment at most \(1+B\), then \(\EE|P_L/\EE P_L-1|\le C_c\sqrt{1+B}\,L/n\).
   Unconditional at \(L=2\): \(O(1/n)\). Concerns \(P_L\), not \(Z_L\).
+- Two-matching peel variance (Theorem two-peel-variance): \(\Var P_2/(\EE P_2)^2
+  =O(1/n)\) at every linear degree, from fourth moments of the matching count
+  (v1 Lemma band-fourth) and the pair measure. Hence
+  \(\EE|P_3/\EE P_3-1|=O(1/n)\) above half degree (Corollary
+  three-peel-flat). The same step for \(P_3\) needs eighth moments of the
+  matching count; the induction stops at length three.
 
 ## Still open (named)
 

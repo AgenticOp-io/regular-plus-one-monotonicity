@@ -1814,3 +1814,30 @@ Query: simplify (a/c - 1) - ((m/c)*(a/m - 1) + (m/c - 1))
 simplify | (a/c - 1) - (m/c (a/m - 1) + (m/c - 1))
 [Result]
 0
+
+
+Query: expand (1+e)*(1+w)^2 - (1 + e + 2*w + 2*e*w + w^2 + e*w^2)
+[Input interpretation]
+expand | (1 + e) (1 + w)^2 - (1 + e + 2 w + 2 e w + w^2 + e w^2)
+[Result]
+0
+[Expansion over finite field]
+GF(2) | 0
+
+
+Query: simplify (n^(-3/2))^(1/2)*(n^(-1))^(1/2) - n^(-5/4) for n>0
+[Input interpretation]
+simplify | sqrt(n^(-3/2)) sqrt(1/n) - n^(-5/4) | assuming n>0
+[Result]
+0
+[Integer root]
+n = 0
+
+
+Query: simplify (n^(-3/2))^(1/3)*(n^(-3/2))^(2/3) - n^(-3/2) for n>0
+[Input interpretation]
+simplify | (n^(-3/2))^(1/3) (n^(-3/2))^(2/3) - n^(-3/2) | assuming n>0
+[Result]
+0
+[Integer root]
+n = 0

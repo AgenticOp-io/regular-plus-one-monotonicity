@@ -1471,6 +1471,117 @@ second moments of shorter peel counts on the complementary degrees.
 The conclusion concerns the ordered peel count, so it does not give
 Conjecture~\ref{conj:factor-moment}.
 
+\begin{theorem}[Two-matching peel variance]
+\label{thm:two-peel-variance}
+Let \(n\) be even, let \(c\in(0,1/2]\), and let \(e\) satisfy
+\(\min(e-1,n-e)\ge cn\).
+Write \(P_2(G)\) for the number of ordered pairs \((M_1,M_2)\) with \(M_1\) a
+perfect matching of \(G\) and \(M_2\) a perfect matching of \(G\setminus M_1\).
+For a uniform \(e\)-regular graph,
+\[
+\frac{\Var P_2}{(\EE P_2)^2}=O_c\Bigl(\frac1n\Bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Write \(Y(G)\) for the number of perfect matchings of \(G\), \(W(h)\) for the
+number of perfect matchings of a graph \(h\), and \(W'(h)=W(C(h))\) for the
+number in its complement.
+Then \(P_2(G)=\sum_{M}W(G\setminus M)\), the sum over the \(Y(G)\) perfect
+matchings of \(G\).
+Let \(\pi\) be the uniform law on pairs \((G,M)\), with \(G\) an \(e\)-regular
+graph and \(M\) a perfect matching of \(G\). For every function \(\varphi\),
+\[
+\sum_G\mu_e(G)\sum_M\varphi(G,M)=\EE Y\cdot\EE_\pi[\varphi].
+\]
+The pairs with \(G\setminus M=h\) are the perfect matchings of \(C(h)\), so under
+\(\pi\) the graph \(h=G\setminus M\) has density \(A=W'/\EE W'\) with respect
+to \(\mu_{e-1}\), and \(G\) has density \(Y/\EE Y\) with respect to \(\mu_e\).
+The complement \(C(h)\) is uniform of degree \(n-e\) when \(h\) is uniform.
+
+Set \(y=Y/\EE Y\), \(\eta=y-1\), \(m=\EE W\) under \(\mu_{e-1}\),
+\(w=W/m\), \(\omega=w-1\), and \(\alpha=A-1\).
+Lemma~band-fourth of~\cite{PlusOneV1}, at the linear degrees \(e\), \(e-1\),
+and \(n-e\), gives
+\(\EE[\eta^4],\EE[\omega^4],\EE[\alpha^4]=O_c(1/n^2)\) under the uniform laws.
+Hence every lower absolute moment is controlled:
+\(\EE|\xi|^r\le\EE[\xi^4]^{r/4}\) for \(r\le 4\), so \(\EE[\xi^2]=O(1/n)\) and
+\(\EE|\xi|^3=O(n^{-3/2})\) for each \(\xi\in\{\eta,\omega,\alpha\}\).
+
+\emph{Mean.}
+\(\EE P_2=\EE Y\cdot m\cdot\EE[Aw]\), with the last expectation under
+\(\mu_{e-1}\), and \(\EE[Aw]=1+\EE[\alpha\omega]\) because
+\(\EE\alpha=\EE\omega=0\).
+Cauchy--Schwarz gives \(|\EE[\alpha\omega]|=O(1/n)\).
+
+\emph{Second moment.}
+Cauchy--Schwarz over the \(Y(G)\) summands gives
+\(P_2(G)^2\le Y(G)\sum_M W(G\setminus M)^2\), so
+\[
+\EE[P_2^2]
+\le
+\EE Y\cdot\EE_\pi\bigl[Y(G)\,W(h)^2\bigr]
+=
+(\EE Y)^2m^2\,\EE_\pi\bigl[y\,w^2\bigr].
+\]
+The expansion
+\((1+\eta)(1+\omega)^2=1+\eta+2\omega+2\eta\omega+\omega^2+\eta\omega^2\)
+was checked. Each term is bounded as follows.
+\begin{itemize}
+\item \(\EE_\pi[1+\eta]=\EE[y^2]=1+\EE[\eta^2]=1+O(1/n)\).
+\item \(\EE_\pi[\omega]=\EE[A\omega]=\EE[\alpha\omega]=O(1/n)\).
+\item \(\EE_\pi[\omega^2]=\EE[A\omega^2]\le\EE[A^2]^{1/2}\EE[\omega^4]^{1/2}=O(1/n)\).
+\item \(\EE_\pi[\eta^2]=\EE[y\eta^2]=\EE[\eta^2]+\EE[\eta^3]=O(1/n)\), so
+Cauchy--Schwarz under \(\pi\) gives \(|\EE_\pi[\eta\omega]|=O(1/n)\).
+\item \(\EE_\pi|\eta|^3=\EE[y|\eta|^3]\le\EE|\eta|^3+\EE[\eta^4]=O(n^{-3/2})\),
+and \(\EE_\pi|\omega|^3=\EE[A|\omega|^3]\le\EE[A^4]^{1/4}\EE[\omega^4]^{3/4}
+=O(n^{-3/2})\). Hölder with exponents \(3\) and \(3/2\) gives
+\[
+|\EE_\pi[\eta\omega^2]|
+\le
+(\EE_\pi|\eta|^3)^{1/3}(\EE_\pi|\omega|^3)^{2/3}
+=O(n^{-3/2}),
+\]
+and the identity
+\((n^{-3/2})^{1/3}(n^{-3/2})^{2/3}=n^{-3/2}\) was checked.
+\end{itemize}
+Therefore \(\EE_\pi[yw^2]=1+O_c(1/n)\), and
+\[
+\frac{\EE[P_2^2]}{(\EE P_2)^2}
+\le
+\frac{1+O_c(1/n)}{\bigl(1+O_c(1/n)\bigr)^2}
+=
+1+O_c\Bigl(\frac1n\Bigr).
+\]
+\end{proof}
+
+\begin{corollary}[Three-matching peel flatness]
+\label{cor:three-peel-flat}
+Under the hypotheses of Theorem~\ref{thm:successive-peel} with \(L=3\),
+\[
+\EE\Bigl|\frac{P_3}{\EE P_3}-1\Bigr|=O_c\Bigl(\frac1n\Bigr).
+\]
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:peel-bounded-to-flat} with \(L=3\) needs the bound at
+\(j=1\) and \(j=2\).
+At \(j=1\) the count is the perfect-matching count at degree \(e_1=n-D\), and
+Theorem~\ref{thm:matching-linear-rate} gives relative second moment
+\(1+O_c(1/n^2)\).
+At \(j=2\) the degree is \(e_2=n-D+1\).
+The hypotheses \(D\le(1-c)n\) and \(D-2\ge n/2\) give
+\(e_2-1=n-D\ge cn\) and \(n-e_2=D-1\ge n/2\), so
+Theorem~\ref{thm:two-peel-variance} gives \(1+O_c(1/n)\).
+Thus \(B=O_c(1/n)\), and the theorem gives \(O_c(3/n)\).
+\end{proof}
+
+The proof of Theorem~\ref{thm:two-peel-variance} uses fourth moments of the
+matching count to control a second moment of \(P_2\).
+The same step for \(P_3\) would need fourth moments of \(P_2\), and through
+the Hölder exponents above, eighth moments of the matching count.
+That loss is why the induction stops at length three.
+
 \begin{remark}[Eight-vertex peel excesses]
 \label{rem:peel-eight}
 On all \(3507\) five-regular graphs on eight vertices, the excesses

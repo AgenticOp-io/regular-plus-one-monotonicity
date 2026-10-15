@@ -92,8 +92,11 @@ Still missing:
    containment, \(O(L/n)\) for the lower law above half degree) and
    Theorem peel-bounded-to-flat (bounded peel second moments imply
    \(L^1\) flatness of \(P_L\) at rate \(\sqrt{1+B}\,L/n\); unconditional at
-   \(L=2\)). Next: a bounded second moment for \(P_j\), \(j\ge 2\), which
-   the theorem would then upgrade; and a passage from \(P_L\) to \(Z_L\).
+   \(L=2\)). Theorem two-peel-variance gives \(P_2\) relative variance
+   \(O(1/n)\), so \(L=3\) is unconditional (Corollary three-peel-flat).
+   Next: moments of the matching count beyond the fourth (each extra peel
+   step doubles the order needed), a lower tail for \(Y\) to bound
+   \(\EE[\EE Y/Y]\), and a passage from \(P_L\) to \(Z_L\).
 
 ## Workstream B — peel, residual, Chernoff Q
 
