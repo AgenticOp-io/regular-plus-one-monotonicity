@@ -1951,3 +1951,28 @@ N[1/3 (e^3 - 1)]
 6.36185
 [Number name]
 six point three six one eight four five six four one zero six two five five six
+
+
+Query: expand 2*L*(2*L-2) - 2*L*(L-2) - 2*L^2
+[Input interpretation]
+expand | 2 L (2 L - 2) - 2 L (L - 2) - 2 L^2
+[Result]
+0
+[Expansion over finite field]
+GF(2) | 0
+
+
+Query: simplify -(1-l)*2*L^2/(4*l) + L^2*(1/l - 1)/2
+[Input interpretation]
+simplify | -((1 - l) (2 × L^2/(4 l))) + L^2 (1/2 (1/l - 1))
+[Result]
+0
+
+
+Query: simplify Sum[(b-1)/2, {b, 1, L}] - L*(L-1)/4
+[Input interpretation]
+simplify | sum_(b=1)^L (b - 1)/2 - L × (L - 1)/4
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0

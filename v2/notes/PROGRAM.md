@@ -98,8 +98,11 @@ Still missing:
    unconditional (Corollary fixed-peel-flat, \(O_L(1/n)\)).
    Theorem uniform-moments (McKay 2011, Corollary 5) and Theorem
    log-peel-flat reach \(L\le\varepsilon_1\log n\).
-   Next: a peel induction that loses less than a factor 4 in moment order
-   per step (needed for polynomial \(L\)); an edge-probability theorem for
+   Theorem peel-second-moment and Corollary poly-peel-flat reach
+   \(L\le n^{\varepsilon_2}\) directly.
+   Next: replace McKay's dense formula by one valid for host degree up to
+   \(n^{1/3}\) (would give \(L=o(n^{1/3})\)); past \(n^{1/3}\) the \(L^3/n\)
+   error is the same obstruction as v1 factor-third. An edge-probability theorem for
    the uniform ordered-matching-decomposition law (needed for \(P_L\to Z_L\)
    via the v1 factor-third route). The lower tail of \(Y\) is blocked (see STATUS).
 
