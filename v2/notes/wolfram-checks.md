@@ -1983,3 +1983,19 @@ Query: simplify (D - x) - l*(n-1-x) + (1-l)*(x - xb) - (D - l*(n-1) - (1-l)*xb)
 simplify | (D - x) - l (n - 1 - x) + (1 - l) (x - x b) - (D - l (n - 1) - (1 - l) x b)
 [Result]
 0
+
+
+Query: simplify (L*n/2)*(L^2*n)/n^3 - L^3/(2*n)
+[Input interpretation]
+simplify | (L × n/2) × (L^2 n)/n^3 - L^3/(2 n)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify (1-l)/l^2 - (1-l)^2/(2*l^2) - (1-l^2)/l^2 - 3*(1-l)/l + (1-l)*(1+7*l)/(2*l^2)
+[Input interpretation]
+simplify | (1 - l)/l^2 - (1 - l)^2/(2 l^2) - (1 - l^2)/l^2 - 3 × (1 - l)/l + (1 - l) × (1 + 7 l)/(2 l^2)
+[Result]
+0
