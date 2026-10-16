@@ -231,6 +231,8 @@ On every linear host, Theorem~\ref{thm:linear-below-sqrt} gives the moment for
 every \(L\to\infty\) with \(L^2=o(n)\), that is every length \(o(\sqrt{n})\).
 It stops short of \(\sqrt{n}\). Degree \(n/2\) is the special case
 Theorem~\ref{thm:half-below-sqrt}.
+At the top of the range, Corollary~\ref{cor:factor-moment-diagonal} gives the
+moment for \(L\ge c_n(n-1)\), for some non-explicit \(c_n\to0\).
 \end{conjecture}
 
 \begin{conjecture}[Factor moment at the repetition scale]
@@ -2634,6 +2636,35 @@ Corollary~\ref{cor:long-step-linear} with \(\min(c,\alpha/2)\) gives a
 contradiction.
 \end{proof}
 
+\begin{corollary}[Slowly vanishing densities]
+\label{cor:factor-moment-diagonal}
+There is a sequence \(c_n\to0\) such that
+\[
+\max\Bigl\{\frac{\Var Z_L}{(\EE Z_L)^2}:\ L,\ D-L,\ n-1-D\ge c_n(n-1)\Bigr\}\to0
+\]
+over even \(n\). In particular, Conjecture~\ref{conj:factor-moment} holds
+whenever, in addition, \(L\ge c_n(n-1)\).
+\end{corollary}
+
+\begin{proof}
+For \(c\in(0,1/4]\) let \(\epsilon_n(c)\) be the maximum over the finitely many
+\((D,L)\) with \(L,D-L,n-1-D\ge c(n-1)\).
+Then \(\epsilon_n(c)\to0\) for each fixed \(c\).
+Otherwise there are \(\epsilon>0\) and infinitely many even \(n\) whose maximisers
+\((D_n,L_n)\) have ratio at least \(\epsilon\). Completing them to a full
+sequence of admissible pairs contradicts
+Theorem~\ref{thm:factor-moment-conditional}.
+Choose \(n_1<n_2<\cdots\) with \(\epsilon_n(1/(k+4))\le1/k\) for \(n\ge n_k\), and put
+\(c_n=1/(k+4)\) for \(n_k\le n<n_{k+1}\), and \(c_n=1/4\) for \(n<n_1\).
+Then \(c_n\to0\) and \(\epsilon_n(c_n)\le1/k\to0\).
+Under the hypotheses of Conjecture~\ref{conj:factor-moment},
+\(D-L\) and \(n-1-D\) are at least a constant times \(n\), hence at least
+\(c_n(n-1)\) for large \(n\).
+\end{proof}
+
+The sequence \(c_n\) is not explicit, because the \(o(1)\) in
+Theorem~\ref{thm:mllt} is not quantified.
+
 \begin{lemma}[Dominant points and the far region]
 \label{lem:mllt-far}
 Fix \(c\in(0,1/4]\), and let \(m,a,\lambda,D,L\) be as in
@@ -2861,8 +2892,10 @@ degrees. The equal degrees remove the \(\boldsymbol\delta\) terms, and the
 host \(K_n\) gives the product bound of Step 2.
 The general Gaussian approximation for 0-1 points in polytopes omits the
 constant \(e^{c_m}\), so it does not suffice.
-Theorem~\ref{thm:factor-moment-conditional} does not reach
-Conjecture~\ref{conj:factor-moment}, which needs \(L=o(n)\). That requires
+Theorem~\ref{thm:factor-moment-conditional} reaches
+Conjecture~\ref{conj:factor-moment} only for \(L\ge c_n(n-1)\) with a
+non-explicit \(c_n\to0\) (Corollary~\ref{cor:factor-moment-diagonal}).
+The full conjecture requires
 Theorem~\ref{thm:mllt} uniformly down to \(a\ge n^{-1/2+\varepsilon}\), where
 \(p_0\to0\), the constants above degenerate, and higher cumulants enter at
 relative order \(n/L^2\). Conjecture~\ref{conj:factor-moment} remains open.
