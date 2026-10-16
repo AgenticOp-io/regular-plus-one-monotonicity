@@ -62,8 +62,19 @@ Bar is 2.0. v1.0 is sent.
   =O(1/n)\) at every linear degree, from fourth moments of the matching count
   (v1 Lemma band-fourth) and the pair measure. Hence
   \(\EE|P_3/\EE P_3-1|=O(1/n)\) above half degree (Corollary
-  three-peel-flat). The same step for \(P_3\) needs eighth moments of the
-  matching count; the induction stops at length three.
+  three-peel-flat).
+- Fixed moments of the matching count (Lemma fixed-moments): every fixed
+  moment of \(Y/\EE Y\) is bounded at linear degree (v1 pair-saddle for fixed
+  \(r\), overlap factorial moments at most 1). Hence every fixed moment of
+  \(P_j\), fixed \(j\), is bounded (Theorem peel-moments, induction with the
+  pair measure), and \(\EE|P_L/\EE P_L-1|=O_L(1/n)\) for every fixed \(L\)
+  (Corollary fixed-peel-flat). Not uniform in \(L\): the moment order needed
+  is \(2\cdot4^{L-2}\). For fixed \(L\), \(Z_L\) is already v1 factor-third, so
+  this is new only for the ordered peel.
+- Lower tail of \(Y\) (target for \(\EE[\EE Y/Y]\)): blocked. Polynomial
+  moments give only polynomially small \(\PP(Y<\EE Y/2)\), and on that event
+  \(1/Y\) is controlled only by \(Y\ge1\), against an exponentially large
+  \(\EE Y\).
 
 ## Still open (named)
 

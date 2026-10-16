@@ -94,9 +94,11 @@ Still missing:
    \(L^1\) flatness of \(P_L\) at rate \(\sqrt{1+B}\,L/n\); unconditional at
    \(L=2\)). Theorem two-peel-variance gives \(P_2\) relative variance
    \(O(1/n)\), so \(L=3\) is unconditional (Corollary three-peel-flat).
-   Next: moments of the matching count beyond the fourth (each extra peel
-   step doubles the order needed), a lower tail for \(Y\) to bound
-   \(\EE[\EE Y/Y]\), and a passage from \(P_L\) to \(Z_L\).
+   Lemma fixed-moments and Theorem peel-moments make every fixed \(L\)
+   unconditional (Corollary fixed-peel-flat, \(O_L(1/n)\)).
+   Next: a version of v1 pair-saddle uniform in \(r\le n^{\varepsilon}\)
+   (would reach \(L\asymp\varepsilon\log n\)); a passage from \(P_L\) to
+   \(Z_L\) at growing \(L\). The lower tail of \(Y\) is blocked (see STATUS).
 
 ## Workstream B — peel, residual, Chernoff Q
 
