@@ -103,6 +103,9 @@ Still missing:
    Proposition im-containment (Isaev--McKay 2025) supplies containment
    probabilities to any precision for subgraphs of degree \(\le n^{1/2}\),
    so the enumeration range is no longer the obstruction.
+   Lemma containment-ratio, Theorem peel-second-moment-third and Corollary
+   peel-flat-third use it for an upper bound with error \(O((L^3+1)/n)\):
+   peel flatness \(O(L/n)\) for every \(L\le n^{1/3}\).
    Next: expand the Isaev--McKay cumulant formula for \(K_n-F_1\cup F_2\)
    against \(K_n-F_1\), \(K_n-F_2\), \(K_n\) through order \(L^4/n^2\) and average
    over the overlap structure; this is the remaining content of

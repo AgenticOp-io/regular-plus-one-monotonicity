@@ -2033,3 +2033,68 @@ Query: FullSimplify[(-(a^2/l) Log[a^2/l] - 2 (a - a^2/l) Log[a - a^2/l] - (l - 2
 simplify | (-a^2/l log(a^2/l) - 2 (a - a^2/l) log(a - a^2/l) - (l - 2 a + a^2/l) log(l - 2 a + a^2/l)) - l log(l) - 2 (-a log(a) - (l - a) log(l - a)) | assuming | 0<a<l<1
 [Result]
 0
+
+
+Query: FullSimplify[D[(N0 - e) (-(E0 - e)/(N0 - e) Log[(E0 - e)/(N0 - e)] - (1 - (E0 - e)/(N0 - e)) Log[1 - (E0 - e)/(N0 - e)]), e] - Log[(E0 - e)/(N0 - e)], 0 < e < E0 < N0]
+[Input interpretation]
+simplify | d/(d e)((N0 - e) (-(e × 0 - e)/(N0 - e) log((e × 0 - e)/(N0 - e)) - (1 - (e × 0 - e)/(N0 - e)) log(1 - (e × 0 - e)/(N0 - e)))) - log((e × 0 - e)/(N0 - e)) | assuming | 0<e<e × 0<N0
+[Result]
+d/(d e)(e log(e/(e - N0)) - N0 log(-N0/(e - N0))) - log(e/(e - N0))
+[Alternate forms]
+-log(1/(e - N0)) + d/(d e)(e log(1/(e - N0)) - N0 log(N0/(N0 - e)) + e) - 1
+[Alternate forms]
+-log(1/(e - N0)) + d/(d e)(e (log(1/(e - N0)) + 1) - N0 (log(-N0) - log(e - N0))) - 1
+[Alternate form assuming N0>0]
+-2 i π floor((arg(e - N0) + π)/(2 π)) + d/(d e)(2 i e π floor((arg(e - N0) + π)/(2 π)) - i π N0 + N0 (-log(N0)) + (N0 - e) log(e - N0) + e) + log(e - N0) - 1
+[Alternate form assuming N0>0]
+-2 i π floor(arg(e - N0)/(2 π) + 1/2) + d/(d e)(e (2 i π floor(arg(e - N0)/(2 π) + 1/2) - log(e - N0) + 1) - N0 (-log(e - N0) + log(N0) + i π)) + log(e - N0) - 1
+
+
+Query: simplify (L*n/2)^2/(n*(n-1)/2) - L^2*n/(2*(n-1))
+[Input interpretation]
+simplify | (L × n/2)^2/(n × (n - 1)/2) - L^2 × n/(2 (n - 1))
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: FullSimplify[-Log[1-l] - l Log[l/(1-l)] - (-l Log[l] - (1-l) Log[1-l]), 0<l<1]
+[Input interpretation]
+simplify | -log(1 - l) - l log(l/(1 - l)) - (-l log(l) - (1 - l) log(1 - l)) | assuming | 0<l<1
+[Result]
+0
+
+
+Query: FullSimplify[D[(K - y) (-((M - y)/(K - y)) Log[(M - y)/(K - y)] - ((K - M)/(K - y)) Log[(K - M)/(K - y)]), y] - Log[(M - y)/(K - y)], 0 < y < M < K]
+[Input interpretation]
+simplify | d/(dy)((K - y) (-(M - y)/(K - y) log((M - y)/(K - y)) - (K - M)/(K - y) log((K - M)/(K - y)))) - log((M - y)/(K - y)) | assuming | 0<y<M<K
+[Result]
+0
+
+
+Query: simplify 8*E^2*x^2*(1/(4*E^(8/5)*x))^2 - E^(-6/5)/2
+[Input interpretation]
+simplify | 8 e^2 x^2 (1/(4 e^(8/5) x))^2 - e^(-6/5)/2
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify D[Log[(M - y)/(K - y)], y] + (1 - (M - y)/(K - y))/(((M - y)/(K - y)) (K - y))
+[Input interpretation]
+simplify | d/(dy) log((M - y)/(K - y)) + (1 - (M - y)/(K - y))/((M - y)/(K - y) (K - y))
+[Result]
+0
+[Expanded form]
+y^2/((K - y)^2 (M - y)) + (2 y)/((K - y) (M - y)) - (K y)/((K - y)^2 (M - y)) - (M y)/((K - y)^2 (M - y)) - K/((K - y) (M - y)) - M/((K - y) (M - y)) + (K M)/((K - y)^2 (M - y)) + 1/(M - y)
+
+
+Query: N[E^(-6/5)/2]
+[Input]
+N[e^(-6/5)/2]
+[Result]
+0.150597
+[Number name]
+zero point one five zero five nine seven one zero five nine five six one zero one zero seven

@@ -133,7 +133,12 @@ independent matchings conditioned on disjointness, gives relative variance
 \(O(L^3/n+n^{-b})\) for \(L\le n^{\varepsilon_2}\)
 (Theorem~\ref{thm:peel-second-moment}), hence peel flatness \(O(L/n)\) at that
 polynomial length (Corollary~\ref{cor:poly-peel-flat}).
-The balanced range past \(\sqrt{n}\) and the other three named statements
+Replacing McKay's formula with the Isaev--McKay \(\beta\)-model
+asymptotics~\cite{IM25} gives
+\(\EE[P_L^2]/(\EE P_L)^2\le\exp(C(L^3+1)/n)\) for \(L\le c_1\sqrt n\)
+(Theorem~\ref{thm:peel-second-moment-third}), and so peel flatness
+\(O(L/n)\) for every \(L\le n^{1/3}\) (Corollary~\ref{cor:peel-flat-third}).
+The balanced range past \(n^{1/3}\) and the other three named statements
 stay open.
 
 The attacks that stop at a signed \(O(L^3/n)\) or a disjoint-support
@@ -1748,7 +1753,8 @@ checked.
 \begin{lemma}[Overlap with one matching]
 \label{lem:overlap-one}
 Fix \(x_0>1\).
-Let \(n\) be large, let \(1\le r\le n^{1/5}\), and let \(U\) be a graph on
+Let \(n\) be large, let \(1\le r\le c_0n^{1/2}\) with
+\(c_0=c_0(x_0)=1/(4e^{1.6}x_0)\), and let \(U\) be a graph on
 \(n\) vertices with \(|U|\le rn/2\).
 Let \(M\) be a uniform perfect matching of \(K_n\) and let \(1\le x\le x_0\).
 Then
@@ -1778,13 +1784,13 @@ since \((e^3-1)/3<7\). These terms sum to at most
 \(e^{\mu}\bigl(1+14(\mu^2+\mu)/(n-1)\bigr)\), using the Poisson moment
 \(\sum_k k^2\mu^k/k!=e^\mu(\mu^2+\mu)\).
 \item For \(\sqrt n<k\le n/4\), \(e^{2k^2/(n-1)}\le e^{0.6k}\), so the term is
-at most \((e^{1.6}\mu/k)^k\le(e^{1.6}x_0n^{1/5-1/2})^k\). These sum to at
+at most \((e^{1.6}\mu/k)^k\le(e^{1.6}x_0r/\sqrt n)^k\le4^{-k}\). These sum to at
 most \(e^{-\sqrt n}\) for large \(n\).
 \item For \(k>n/4\), \(p_k\le p_{\lceil n/4\rceil}\le(n/2)^{-n/4}\) and
 \((x-1)^km_k(U)\le(e\,x_0rn/(2k))^k\le(2ex_0r)^k\). There are at most \(n\)
 such terms, so they sum to at most
-\(n\bigl(8e^2x_0^2r^2/n\bigr)^{n/4}\), which is at most \(e^{-\sqrt n}\) because
-\(r\le n^{1/5}\).
+\(n\bigl(8e^2x_0^2r^2/n\bigr)^{n/4}\le n4^{-n/4}\), which is at most
+\(e^{-\sqrt n}\), because \(8e^2x_0^2c_0^2=e^{-1.2}/2<1/4\).
 \end{itemize}
 Since \(e^\mu\ge1\) and \(\mu^2+\mu\le C_{x_0}r^2\), the total is at most
 \(e^\mu\exp(C_{x_0}r^2/n)\).
@@ -1927,7 +1933,8 @@ perfect matching avoids \(X\) with probability
 
 \begin{lemma}[One matching with a forbidden graph]
 \label{lem:avoid-overlap}
-Fix \(x_0>1\). Let \(n\) be large and even, let \(1\le L\le n^{1/5}\), let
+Fix \(x_0>1\). Let \(n\) be large and even, let \(1\le L\le c_0(2x_0)\,n^{1/2}\)
+with \(c_0\) as in Lemma~\ref{lem:overlap-one}, let
 \(U_1\) be a graph on \(n\) vertices with maximum degree at most \(L\), and let
 \(U_2\) be a graph with \(|U_2|\le Ln/2\).
 Let \(M\) be a uniform perfect matching and \(1\le x\le x_0\). Then
@@ -1978,7 +1985,8 @@ pairwise disjoint.
 
 \begin{lemma}[Overlap of two matching decompositions]
 \label{lem:decomp-overlap}
-Fix \(x_0>1\). Let \(n\) be large and even, and let \(1\le L\le n^{1/5}/2\).
+Fix \(x_0>1\). Let \(n\) be large and even, and let
+\(1\le L\le c_0(2x_0)\,n^{1/2}\).
 Let \(F_1,F_2\) be independent with law \(\nu_L\), and let \(1\le x\le x_0\).
 Then
 \[
@@ -2253,6 +2261,234 @@ overlap level competes at exponential order.
 The naive cubic coefficient recorded in the notes, which is negative, is
 consistent with this: it omits terms that the colouring count includes.
 \end{remark}
+
+Proposition~\ref{prop:im-containment} does give a rigorous upper bound on
+the containment ratio, with error of cubic order.
+That bound extends Theorem~\ref{thm:peel-second-moment} to every
+\(L\le n^{1/3}\) without McKay's exponent \(\varepsilon\).
+
+\begin{lemma}[Containment ratio to cubic order]
+\label{lem:containment-ratio}
+Fix \(c\in(0,1/2]\). There is \(C=C(c)\) with the following property.
+Let \(n\) be large and even, let \(\min(D,n-1-D)\ge cn\), and write
+\(\lambda=D/(n-1)\). Let \(1\le L\le n^{1/2}/2\), and let \(G\) be a uniform
+\(D\)-regular graph.
+\begin{enumerate}
+\item[(a)] There is \(\ell_L=\ell_L(n,D)\) such that
+\(|\log\PP(F\subseteq G)-\ell_L|\le CL^2/n\) for every \(L\)-regular \(F\).
+\item[(b)] For \(L\)-regular \(F_1,F_2\) with \(T=|F_1\cap F_2|\),
+\[
+\log\frac{\PP(F_1\cup F_2\subseteq G)}{\PP(F_1\subseteq G)\PP(F_2\subseteq G)}
+\le
+T\log\frac1\lambda-\frac{L^2(\lambda^{-1}-1)}2
++C\Bigl(\frac{L^3+1}{n}+\frac{LT}{n}\Bigr).
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+For a graph \(X\) of maximum degree at most \(2L\), write
+\(N(X)=N(K_n-X,\boldsymbol d^X)\), so that
+\(\PP(X\subseteq G)=N(X)/N(\emptyset)\).
+Apply~\cite[Theorem~1.2]{IM25} with \(\sigma=1\) and \(p=1\), so that
+\(\ell_0=4\) and \(r_0=2\). The assumptions hold as in the proof of
+Proposition~\ref{prop:im-containment}, because the hypothesis
+of~\cite[Theorem~1.3]{IM25} with \(\sigma=1\) is
+\(\|\boldsymbol d^X-\lambda\boldsymbol g\|_\infty=O(n^{1/2})\), and here
+this norm is at most \(2L\le n^{1/2}\).
+Let \(W_X=\sum_{jk\in K_n-X}\lambda_{jk}(1-\lambda_{jk})(e_j+e_k)(e_j+e_k)^{\mathsf T}\),
+which equals \(\varLambda nA\) and is the inverse covariance of
+\(\boldsymbol Y\). Then
+\[
+\log N(X)=\log2-\tfrac n2\log2\pi+\log M-\tfrac12\log\det W_X
++\kappa_1+\tfrac12\kappa_2+O(n^{-1}).
+\]
+For (b) we bound
+\(\Delta[\phi]=\phi(U)-\phi(F_1)-\phi(F_2)+\phi(\emptyset)\), with
+\(U=F_1\cup F_2\), for each term \(\phi\) of \(\log N\).
+The constants cancel in \(\Delta\), and the four errors \(O(n^{-1})\) are
+within the claim.
+
+Write \(s=Ln/2\), \(N_0=\binom n2\), and
+\(\lambda(e)=(Dn/2-e)/(N_0-e)\), so that \(K_n-X\) has density
+\(\lambda_X=\lambda(|X|)\) and \(\lambda(0)=\lambda\).
+Take \(\boldsymbol\beta\) from~\cite[Theorem~1.3]{IM25}:
+\(\beta_j=b_X+\gamma_j\), with \(b_X=\frac12\log(\lambda_X/(1-\lambda_X))\),
+\(\boldsymbol\gamma=\varLambda^{-1}Q(K_n-X)^{-1}\boldsymbol v\), and
+\(v_j=d^X_j-\lambda_Xg_j=-(1-\lambda_X)(x_j-\bar x)\).
+If \(X\) is regular, then \(\boldsymbol v=\boldsymbol\gamma=0\), \(\lambda_{jk}\equiv\lambda_X\),
+and \(\boldsymbol\delta=0\).
+For \(X=U\), we have \(|v_j|\le2L\) and \(\|\boldsymbol v\|_1\le4T\), since
+\(x_j=2L-t_j\) and \(\sum_jt_j=2T\).
+By~\cite[Theorem~A.1(a)]{IM25}, \(\|Q^{-1}\|_\infty=O(1/n)\), so
+\(\|\boldsymbol\gamma\|_\infty=O(L/n)\) and \(\|\boldsymbol\gamma\|_1=O(T/n)\).
+By~\cite[(1.3)]{IM25},
+\(\|\boldsymbol\delta\|_1=O(\|\boldsymbol v\|_2^2/n)=O(LT/n)\).
+
+\emph{Entropy.}
+The gradient of \(\log M\) in \(\boldsymbol\beta\) at \(b_X\mathbf1\) is
+\(-\boldsymbol v\), and the Hessian is \(\varLambda Q(K_n-X)\).
+Each third derivative is a sum over pairs of bounded functions of
+\(\beta_j+\beta_k\). Hence
+\[
+\log M=(N_0-|X|)H(\lambda_X)-\tfrac12\varLambda^{-1}\boldsymbol v^{\mathsf T}Q^{-1}\boldsymbol v
++O\Bigl(\sum_{jk}|\gamma_j+\gamma_k|^3\Bigr),
+\]
+where \(H\) is the binary entropy; the value at \(b_X\mathbf 1\) was checked.
+The quadratic term is nonpositive and vanishes unless \(X=U\), and the
+remainder is \(O(n^2(L/n)^3)=O(L^3/n)\).
+Let \(\psi(e)=(N_0-e)H(\lambda(e))\).
+Then \(\psi'(e)=\log\lambda(e)\), as checked, and
+\(\psi''(e)=-(1-\lambda(e))/(\lambda(e)(N_0-e))\), also checked, with
+\(\psi'''=O(n^{-4})\) on \([0,2s]\).
+Since \(|U|=2s-T\) and \(T\le s\),
+\[
+\psi(2s-T)-2\psi(s)+\psi(0)
+=-T\log\lambda(2s)+O\Bigl(\frac{T^2}{n^2}\Bigr)+s^2\psi''(0)+O\Bigl(\frac{s^3}{n^4}\Bigr).
+\]
+Here \(s^2/N_0=L^2n/(2(n-1))\), as checked, so
+\(s^2\psi''(0)=-L^2(\lambda^{-1}-1)/2+O(L^2/n)\).
+Also \(-\log\lambda(2s)=\log(1/\lambda)+O(L/n)\) and \(T^2/n^2\le LT/n\).
+So \(\Delta[\log M]\) is at most the two main terms of (b) plus
+\(O(L^3/n+LT/n)\).
+
+\emph{Determinant.}
+Write \(W_X=W_\emptyset-\varDelta_X\), with
+\(\varDelta_X=w_0Q(X)+E_X\), where \(w_0=\lambda(1-\lambda)\) and
+\(E_X=\sum_{jk\notin X}\bigl(w_0-\lambda_{jk}(1-\lambda_{jk})\bigr)(e_j+e_k)(e_j+e_k)^{\mathsf T}\).
+The weight changes are \(O(L/n+|\gamma_j+\gamma_k|)=O(L/n)\), so every row of
+\(\varDelta_X\) has \(\ell_1\)-norm \(O(L)\) and \(\|\varDelta_X\|=O(L)\).
+Since \(W_\emptyset=w_0((n-2)I+J)\succeq w_0(n-2)I\), the matrix
+\(M_X=W_\emptyset^{-1}\varDelta_X\) has \(\|M_X\|=O(L/n)\). Then
+\[
+\log\det W_X=\log\det W_\emptyset-\operatorname{tr}M_X-\tfrac12\operatorname{tr}M_X^2
++O(n\|M_X\|^3),
+\]
+and the remainder is \(O(L^3/n^2)\).
+Also \(|\operatorname{tr}M_X^2|\le n\|M_X\|^2=O(L^2/n)\).
+For the linear term, \(\tau_0=e^{\mathsf T}W_\emptyset^{-1}e\) is the same for
+every \(e=e_j+e_k\), and \(\tau_0=O(1/n)\). So
+\(\operatorname{tr}M_X=\tau_0\bigl(w_0|X|+\sum_{jk\notin X}(w_0-\lambda_{jk}(1-\lambda_{jk}))\bigr)\).
+\begin{itemize}
+\item The part \(\tau_0w_0|X|\) has second difference \(-\tau_0w_0T=O(T/n)\).
+\item For regular \(X\), the sum is \(g(|X|)\) with
+\(g(e)=(N_0-e)\bigl(w_0-\lambda(e)(1-\lambda(e))\bigr)\). Here
+\(g'=O(1)\) and \(g''=O(n^{-2})\), so the second difference of
+\(g\) over \(2s-T,s,s,0\) is \(O(T+L^2)\).
+\item For \(X=U\), the sum differs from \(g(|U|)\) by
+\(O(\sum_{jk}|\gamma_j+\gamma_k|)=O(n\|\boldsymbol\gamma\|_1)=O(T)\).
+\end{itemize}
+Hence \(\Delta[-\frac12\log\det W]=O((L^2+T)/n)\).
+For a single regular \(X\), the same expansion gives
+\(-\frac12\log\det W_X=-\frac12\log\det W_\emptyset+\frac12\tau_0(w_0|X|+g(|X|))+O(L^2/n)\),
+which depends on \(X\) only through \(|X|\) up to \(O(L^2/n)\).
+
+\emph{Cumulants.}
+We compare each host with \(\emptyset\) using~\cite[Theorem~2.5]{IM25}.
+First, the covariances. From
+\(W_X^{-1}=W_\emptyset^{-1}+W_\emptyset^{-1}\varDelta_XW_\emptyset^{-1}
++W_\emptyset^{-1}\varDelta_XW_X^{-1}\varDelta_XW_\emptyset^{-1}\) and
+\(W_\emptyset^{-1}=aI-bJ\), with \(a=O(1/n)\) and \(b=O(1/n^2)\), the following
+bounds hold.
+\begin{itemize}
+\item The middle term has entries \(a^2(\varDelta_X)_{jk}+O(L/n^3)\), because the row sums of
+\(\varDelta_X\) are \(O(L)\).
+\item The last term has entries \(O(L^2/n^3)\), because
+\(\|\varDelta_XW_\emptyset^{-1}e_j\|_2=O(L/n)\) and \(\|W_X^{-1}\|=O(1/n)\).
+\end{itemize}
+The diagonal entries of \(\varDelta_X\) are \(O(L)\).
+Averaged over \(S_n\), the off-diagonal entries are
+\(O(L/n)\), since \(X\) has density \(O(L/n)\).
+So the covariance differences, averaged over \(S_n\) as
+in~\cite[Theorem~2.5]{IM25}, are \(O(\mu)\) times the size of the covariances, with
+\(\mu=O(L^2/n)\).
+This holds both for pairs sharing a vertex and for disjoint pairs.
+Second, the coefficients \(c_\ell(\lambda_{jk})\), \(\ell=3,4\). They are
+deleted on at most \(2Ln\) pairs and shifted by \(O(L/n)\) on the rest, so
+\(\mu_3,\mu_4=O(L/n)\).
+At the scale of~\cite[Theorem~2.4]{IM25}, \(n^{r+1}C_{\ell_1}\cdots C_{\ell_r}=O(1)\)
+for \(r\le2\) and \(\ell_i\in\{3,4\}\) with even sum.
+So the non-\(\boldsymbol\delta\) parts of \(\kappa_1\) and \(\kappa_2\) at each host differ
+from their values at \(\emptyset\) by \(O(L^2/n)\).
+At \(U\) there are also the \(\boldsymbol\delta\) terms.
+\begin{itemize}
+\item Since \(\EE\boldsymbol Y=0\), the term \(i\boldsymbol\delta^{\mathsf T}\boldsymbol Y\) adds nothing to \(\kappa_1\).
+\item It contributes
+\(\frac12\operatorname{Var}(i\boldsymbol\delta^{\mathsf T}\boldsymbol Y)
+=-\frac12\boldsymbol\delta^{\mathsf T}W_U^{-1}\boldsymbol\delta\le0\) to \(\frac12\kappa_2\).
+\item Its covariance with the cubic part is \(O(\|\boldsymbol\delta\|_1/n)=O(LT/n^2)\),
+because \(\sum_{jk}|\EE[Y_u(Y_j+Y_k)^3]|=O(1/n)\) for every \(u\).
+\item Its covariance with the quartic part vanishes by parity.
+\end{itemize}
+Hence \(\Delta[\kappa_1+\frac12\kappa_2]\le O(L^2/n+LT/n^2)\).
+
+Adding the three parts, and using \(L^2/n\le L^3/n\) and \(T/n\le LT/n\),
+proves (b).
+For (a), take \(X=F\) regular. Then \(\log M\) is \(\psi(Ln/2)\). The
+determinant depends on \(F\) only through \(|F|\) up to \(O(L^2/n)\). The
+cumulants are within \(O(L^2/n)\) of their values at \(\emptyset\).
+\end{proof}
+
+\begin{theorem}[Peel second moment up to \(n^{1/3}\)]
+\label{thm:peel-second-moment-third}
+Fix \(c\in(0,1/2]\). There are \(c_1=c_1(c)>0\) and \(C=C(c)\) such that the
+following holds for \(n\) large and even, \(\min(e,n-1-e)\ge cn\), and
+\(1\le L\le c_1n^{1/2}\).
+Let \(P_L\) be the number of ordered \(L\)-tuples of pairwise disjoint perfect
+matchings of the uniform \(e\)-regular graph. Then
+\[
+\frac{\EE[P_L^2]}{(\EE P_L)^2}\le\exp\Bigl(C\,\frac{L^3+1}{n}\Bigr).
+\]
+In particular \(\Var P_L/(\EE P_L)^2=O_c(L^3/n)\) for \(L\le n^{1/3}\).
+\end{theorem}
+
+\begin{proof}
+Write \(\lambda=e/(n-1)\).
+As in the proof of Theorem~\ref{thm:peel-second-moment},
+\[
+\frac{\EE[P_L^2]}{(\EE P_L)^2}
+=\frac{\EE_{\nu_L\otimes\nu_L}[\PP(F_1\cup F_2\subseteq G)]}
+{\bigl(\EE_{\nu_L}[\PP(F\subseteq G)]\bigr)^2}.
+\]
+Every \(F\) in the support of \(\nu_L\) is \(L\)-regular.
+By Lemma~\ref{lem:containment-ratio}(a), the denominator is at least
+\(e^{2\ell_L-2CL^2/n}\), and \(\PP(F_1\subseteq G)\PP(F_2\subseteq G)\le e^{2\ell_L+2CL^2/n}\).
+By Lemma~\ref{lem:containment-ratio}(b), the ratio is therefore at most
+\[
+\exp\Bigl(-\frac{L^2(\lambda^{-1}-1)}2+C'\frac{L^3+1}{n}\Bigr)
+\EE_{\nu_L\otimes\nu_L}\bigl[x^T\bigr],
+\qquad x=\lambda^{-1}e^{CL/n}\le x_0=4/c.
+\]
+Take \(c_1=\min(1/2,c_0(2x_0))\).
+Lemma~\ref{lem:decomp-overlap} gives
+\(\EE[x^T]\le\exp(L^2(x-1)n/(2(n-1))+CL^3/n)\), and
+\((x-1)n/(2(n-1))-(\lambda^{-1}-1)/2=O(L/n)\).
+The quadratic terms cancel up to \(O(L^3/n)\).
+\end{proof}
+
+\begin{corollary}[Peel flatness up to \(n^{1/3}\)]
+\label{cor:peel-flat-third}
+Fix \(c\in(0,1/2]\).
+Under the hypotheses of Theorem~\ref{thm:successive-peel}, with \(n\) large
+and \(L\le n^{1/3}\),
+\[
+\EE\Bigl|\frac{P_L^{(D)}}{\EE P_L^{(D)}}-1\Bigr|=O_c\Bigl(\frac Ln\Bigr).
+\]
+\end{corollary}
+
+\begin{proof}
+For \(1\le j<L\), apply Theorem~\ref{thm:peel-second-moment-third} with
+\(c/2\) in place of \(c\) at degree \(e_j=n-D+j-1\).
+Here \(e_j\ge cn\), \(n-1-e_j=D-j\ge n/2-1\), and
+\(j<n^{1/3}\le c_1n^{1/2}\) for large \(n\).
+It gives \(1+B\le e^{2C}\) in Theorem~\ref{thm:peel-bounded-to-flat}.
+\end{proof}
+
+Chebyshev and Theorem~\ref{thm:peel-second-moment-third} give
+\(P_L=(1+o(1))\EE P_L\) in probability for every \(L=o(n^{1/3})\).
+Beyond \(n^{1/3}\) the bound \(e^{CL^3/n}\) is no longer useful. Closing
+that gap is the cancellation discussed after
+Proposition~\ref{prop:im-containment}.
 Conjecture~\ref{conj:factor-moment} and the analogous statement for \(P_L\)
 past \(n^{1/3}\) stay open.
 For \(L=o(n^{1/3})\) the factor count \(Z_L\) is already controlled by
