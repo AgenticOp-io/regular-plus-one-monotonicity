@@ -85,6 +85,14 @@ Bar is 2.0. v1.0 is sent.
   Hence peel flatness \(O(L/n)\) for \(L\le n^{\varepsilon_2}\) (Corollary
   poly-peel-flat). \(\varepsilon_2\) is McKay's non-explicit \(\varepsilon(a,b)\)
   capped at \(1/6\); the error itself would allow \(L=o(n^{1/3})\).
+- Enumeration input past \(n^{1/3}\) (Proposition im-containment):
+  Isaev--McKay 2025 (arXiv:2508.18731, Theorems 1.2--1.3) gives
+  \(\PP(X\subseteq G)\) to precision \(n^{-p}\) uniformly for every \(X\) of
+  maximum degree \(\le n^{1/2}\); assumptions checked for host \(K_n-X\).
+  So the second moments of \(Z_L\) and \(P_L\) for \(L\le n^{1/2}/2\) are
+  exact averages of explicit cumulant expressions. Open: expanding them and
+  showing the \(L^3/n\), \(L^4/n^2\) terms cancel on average (v1
+  factor-cubic, cubic-not-identified show they do not vanish termwise).
 - Lower tail of \(Y\) (target for \(\EE[\EE Y/Y]\)): blocked. Polynomial
   moments give only polynomially small \(\PP(Y<\EE Y/2)\), and on that event
   \(1/Y\) is controlled only by \(Y\ge1\), against an exponentially large

@@ -2093,6 +2093,82 @@ The exponent \(\varepsilon_2\) comes from McKay's \(\varepsilon(a,b)\), which is
 explicit; the error \(L^3/n\) would allow every \(L=o(n^{1/3})\).
 The lengths in Conjecture~\ref{conj:factor-moment} exceed \(n^{1/2}\), so
 the conjecture remains open.
+
+Two separate obstacles stop Theorem~\ref{thm:peel-second-moment} near
+\(n^{1/3}\).
+First, \eqref{eq:mckay-hit} holds only for subgraphs with
+\(O(n^{1+2\varepsilon})\) edges.
+Second, the error \(L^3/n\) is no longer small.
+The first obstacle is removed by~\cite{IM25}, as follows.
+Write \(N(G,\boldsymbol d)\) for the number of subgraphs of \(G\) with degree
+sequence \(\boldsymbol d\).
+
+\begin{proposition}[Containment probabilities past \(n^{1/3}\)]
+\label{prop:im-containment}
+Fix \(c\in(0,1/2]\) and \(p>0\).
+Let \(n\) be large, let \(\min(D,n-1-D)\ge cn\) with \(Dn\) even, and let \(X\) be
+a graph on \([n]\) with degrees \(x_j\) and maximum degree at most \(n^{1/2}\).
+For a uniform \(D\)-regular graph \(G\),
+\[
+\PP(X\subseteq G)=\frac{N(K_n-X,\boldsymbol d^X)}{N(K_n,D\mathbf 1)},
+\qquad d^X_j=D-x_j,
+\]
+and both counts are given by~\cite[Theorem~1.2]{IM25}, with \(\boldsymbol\beta\)
+from~\cite[Theorem~1.3]{IM25}, to relative precision \(O(n^{-p})\) uniformly
+in \(X\).
+\end{proposition}
+
+\begin{proof}
+Deleting \(X\) is a bijection from the \(D\)-regular graphs containing \(X\)
+to the \(\boldsymbol d^X\)-factors of \(K_n-X\), which gives the identity.
+We check Assumptions~1.1(a,c,d) of~\cite{IM25} for \(G=K_n-X\), with
+\(g_j=n-1-x_j\) and \(\boldsymbol d=\boldsymbol d^X\).
+Then we check the hypotheses of~\cite[Theorem~1.3]{IM25}, which supply
+(b) and (e). Take \(\sigma=1/2\) and \(\tau_Q=1/2\).
+\begin{itemize}
+\item[(a)] \(d^X_j=D-x_j\le n-1-x_j=g_j\).
+\item[(c)] The ratio \(\lambda=\sum_jd^X_j/\sum_jg_j\) differs from
+\(D/(n-1)\) by \(O(n^{-1/2})\), so \(\varLambda=\lambda(1-\lambda)\ge c^2/2\ge
+Bn^{\sigma-1}\).
+\item[(d)] For \(|U|\le n/2\), at least \(|U|(n-|U|)-|U|n^{1/2}\ge|U|(n/2-n^{1/2})\)
+edges of \(G\) leave \(U\), so the Cheeger constant is at least
+\(n/3\ge\varLambda^{-1}\log^2n\).
+The signless Laplacian satisfies \(Q(G)=Q(K_n)-Q(X)\).
+The least eigenvalue of \(Q(K_n)=(n-2)I+J\) is \(n-2\), and
+\(0\preceq Q(X)\preceq 2n^{1/2}I\), so \(q(G)\ge n-2-2n^{1/2}\ge\tau_Qn\).
+\item[(Theorem~1.3)] Since \(\sum_j(d^X_j-\lambda g_j)=0\), the deviation is
+\(d^X_j-\lambda g_j=-(1-\lambda)(x_j-\bar x)\), as checked, with \(\bar x\) the mean
+degree of \(X\).
+Hence \(\|\boldsymbol d^X-\lambda\boldsymbol g\|_\infty\le n^{1/2}=O(n^{5/8})
+=O(\varLambda^{3/4}n^{3/4-\sigma/4})\) and
+\(\|\boldsymbol d^X-\lambda\boldsymbol g\|_2\le n^{1/2}\cdot n^{1/2}=O(n^{1+\varepsilon/2})\).
+\end{itemize}
+The constants \(B,C,\sigma,\tau_Q\) depend only on \(c\), so the error term of
+\cite[Theorem~1.2]{IM25} is uniform in \(X\).
+The case \(X=\emptyset\) gives the denominator.
+\end{proof}
+
+Proposition~\ref{prop:im-containment} applies to \(X=F_1\cup F_2\) for any
+two \(L\)-factors with \(L\le n^{1/2}/2\), and to their unions with the
+exposed graphs used above.
+Consequently, for \(W=Z_L\) or \(W=P_L\) in that range,
+\(\EE[W^2]/(\EE W)^2\) equals the average, over a pair of independent factors
+(uniform, respectively from \(\nu_L\)), of
+\[
+\frac{N(K_n-F_1\cup F_2,\boldsymbol d^{F_1\cup F_2})\,N(K_n,D\mathbf 1)}
+{N(K_n-F_1,(D-L)\mathbf 1)\,N(K_n-F_2,(D-L)\mathbf 1)},
+\]
+where every count is an explicit Gaussian-cumulant expression with error
+\(O(n^{-p})\).
+The second obstacle is still there.
+That expression has to be expanded far enough to show that the terms of
+order \(L^3/n\) and \(L^4/n^2\) cancel after averaging over \(F_1,F_2\).
+These terms do not vanish individually, by
+Proposition~factor-cubic and Proposition~cubic-not-identified
+of~\cite{PlusOneV1}.
+No such expansion is carried out here.
+Conjecture~\ref{conj:factor-moment} and the analogous statement for \(P_L\)
+past \(n^{1/3}\) stay open.
 For \(L=o(n^{1/3})\) the factor count \(Z_L\) is already controlled by
 Theorem~factor-third of~\cite{PlusOneV1}, so the new content is the ordered
 peel, which weights each \(L\)-factor by its number of ordered decompositions
@@ -5382,6 +5458,11 @@ LMS Lecture Note Ser.\ 267, Cambridge Univ.\ Press, 1999, pp.~239--298.
 B.~D.~McKay,
 \emph{Asymptotics for symmetric \(0\)-\(1\) matrices with prescribed row sums},
 Ars Combin.\ \textbf{19} (1985), 15--25.
+
+\bibitem{IM25}
+M.~Isaev and B.~D.~McKay,
+\emph{Asymptotic enumeration of graph factors by cumulant expansion},
+preprint, 2025; arXiv:2508.18731.
 
 \bibitem{McK11}
 B.~D.~McKay,

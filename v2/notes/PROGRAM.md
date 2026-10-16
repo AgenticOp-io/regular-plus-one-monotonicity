@@ -100,9 +100,13 @@ Still missing:
    log-peel-flat reach \(L\le\varepsilon_1\log n\).
    Theorem peel-second-moment and Corollary poly-peel-flat reach
    \(L\le n^{\varepsilon_2}\) directly.
-   Next: replace McKay's dense formula by one valid for host degree up to
-   \(n^{1/3}\) (would give \(L=o(n^{1/3})\)); past \(n^{1/3}\) the \(L^3/n\)
-   error is the same obstruction as v1 factor-third. An edge-probability theorem for
+   Proposition im-containment (Isaev--McKay 2025) supplies containment
+   probabilities to any precision for subgraphs of degree \(\le n^{1/2}\),
+   so the enumeration range is no longer the obstruction.
+   Next: expand the Isaev--McKay cumulant formula for \(K_n-F_1\cup F_2\)
+   against \(K_n-F_1\), \(K_n-F_2\), \(K_n\) through order \(L^4/n^2\) and average
+   over the overlap structure; this is the remaining content of
+   factor-moment between \(n^{1/3}\) and \(n^{1/2}\). An edge-probability theorem for
    the uniform ordered-matching-decomposition law (needed for \(P_L\to Z_L\)
    via the v1 factor-third route). The lower tail of \(Y\) is blocked (see STATUS).
 
