@@ -124,6 +124,12 @@ Bar is 2.0. v1.0 is sent.
   \(\PP(G_d\subseteq G_{d+L})=1-o(1)\) holds for EVERY \(L\ge1\) with \(d,n-d-L\ge cn\)
   (linear \(L\) via Theorem long-from-flat, whose proof never uses \(L=o(n)\);
   \(L=o(n)\) via Theorem long-step; subsequence argument).
+  Corollary factor-moment-diagonal: there is a non-explicit \(c_n\to0\) with
+  \(\Var Z_L/(\EE Z_L)^2\to0\) uniformly over \(L,D-L,n-1-D\ge c_n(n-1)\); so
+  Conjecture factor-moment holds at its top end \(L\ge c_nn\). Making \(c_n\)
+  explicit (e.g. \(n^{-\delta}\)) is blocked by the method of moments step:
+  \(\Var X\asymp1/a\), so \(\EE e^{iX}\approx e^{-C/a}\) needs relative, not
+  absolute, accuracy (cumulant expansion with error control).
   Conjecture factor-moment (\(\sqrt n\ll L=o(n)\)) still open: sparse range
   \(a\ge n^{-1/2+\varepsilon}\) for factor-moment proper; order-\(n/L^2\) term for
   factor-rate.
