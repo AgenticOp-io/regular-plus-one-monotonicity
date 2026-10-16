@@ -124,6 +124,10 @@ shorter peel counts give \(L^1\) flatness of the ordered peel count
 Every fixed moment of the peel count at fixed length is bounded
 (Theorem~\ref{thm:peel-moments}), so for each fixed \(L\) the ordered peel
 count is flat at rate \(O(1/n)\) (Corollary~\ref{cor:fixed-peel-flat}).
+McKay's subgraph formula bounds the moments of the matching count uniformly
+up to order \(n^{\varepsilon_0}\) (Theorem~\ref{thm:uniform-moments}), which
+extends peel flatness to \(L\le\varepsilon_1\log n\) at rate \(O(L/n)\)
+(Theorem~\ref{thm:log-peel-flat}).
 The balanced range past \(\sqrt{n}\) and the other three named statements
 stay open.
 
@@ -1700,18 +1704,212 @@ Theorem~\ref{thm:peel-moments} with \(q=2\) gives \(1+B\le C_{L,c}\).
 
 Corollary~\ref{cor:fixed-peel-flat} contains Corollary~\ref{cor:three-peel-flat}
 up to the constant.
-The constant is not uniform in \(L\).
 Reaching a second moment of \(P_{L-1}\) costs a moment of order
 \(2\cdot4^{L-2}\) of the matching count. Lemma~\ref{lem:fixed-moments}
 is uniform only over bounded \(r\), because Lemma~pair-saddle
 of~\cite{PlusOneV1} has an error \(O_r((\sigma+1)/n)\) with unspecified
 dependence on \(r\).
-A version uniform in \(r\le n^{\varepsilon}\) would give
-\(L\) of order \(\varepsilon\log n\), which is still far below the lengths in
-Conjecture~\ref{conj:factor-moment}.
-For fixed \(L\) the factor count \(Z_L\) is already controlled by
-Theorem~factor-third of~\cite{PlusOneV1}, so the corollary is new only as a
-statement about the ordered peel.
+McKay's subgraph formula has an error uniform over all hosts of polynomially
+small degree, and it removes this restriction.
+
+We use~\cite[Corollary~5]{McK11}, which specializes~\cite[Theorem~3]{McK11}
+to regular degree sequences.
+Fix constants \(a,b>0\) with \(a+b<1/2\), and let \(\varepsilon=\varepsilon(a,b)>0\)
+be the constant of~\cite[Theorem~3]{McK11}.
+Let \(G\) be a uniform \(d\)-regular graph on \(n\) vertices with
+\(\min(d,n-d-1)\ge n/(3a\log n)\), and write \(\lambda=d/(n-1)\).
+Let \(X\) be a graph on the same vertices with degrees \(x_j=O(n^{1/2+\varepsilon})\)
+and \(|X|=O(n^{1+2\varepsilon})\) edges, and write
+\(X_\ell=\sum_jx_j^\ell\) and \(H=\sum_{jk\in X}x_jx_k\).
+Then
+\begin{equation}
+\label{eq:mckay-hit}
+\frac{\PP(X\subseteq G)}{\lambda^{|X|}}
+=
+\exp\Bigl(
+\frac{(1-\lambda)|X|}{\lambda n}
+-\frac{(1-\lambda)X_2}{2\lambda n}
+-\frac{(1-\lambda^2)X_3}{6\lambda^2n^2}
++\frac{(1-\lambda)|X|^2}{\lambda n^2}
+-\frac{(1-\lambda)H}{\lambda n^2}
++O(n^{-b})\Bigr).
+\end{equation}
+The error is uniform over all \(d\) and \(X\) that satisfy these hypotheses
+with fixed implied constants.
+For a perfect matching the exponent is \((1-\lambda)/(4\lambda)+O(1/n)\),
+which agrees with~\cite[Corollary~6]{McK11} at \(x=1\); both reductions were
+checked.
+
+\begin{lemma}[Overlap with one matching]
+\label{lem:overlap-one}
+Fix \(x_0>1\).
+Let \(n\) be large, let \(1\le r\le n^{1/5}\), and let \(U\) be a graph on
+\(n\) vertices with \(|U|\le rn/2\).
+Let \(M\) be a uniform perfect matching of \(K_n\) and let \(1\le x\le x_0\).
+Then
+\[
+\EE\bigl[x^{|M\cap U|}\bigr]
+\le
+\exp\Bigl(\frac{(x-1)|U|}{n-1}+C_{x_0}\frac{r^2}{n}\Bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+Expanding \(\prod_{e\in U}(1+(x-1)1_{e\in M})\) gives
+\[
+\EE\bigl[x^{|M\cap U|}\bigr]=\sum_{k\ge0}(x-1)^k m_k(U)\,p_k,
+\qquad
+p_k=\prod_{i<k}\frac1{n-1-2i},
+\]
+where \(m_k(U)\le|U|^k/k!\) is the number of \(k\)-edge matchings in \(U\).
+Write \(\mu=(x-1)|U|/(n-1)\le x_0r\).
+The \(k\)-th term is at most \((\mu^k/k!)\,(n-1)^kp_k\).
+For \(k\le n/4\), every factor satisfies \(2i/(n-1)\le1/2\), and
+\((1-t)^{-1}\le e^{2t}\) on \([0,1/2]\) gives
+\((n-1)^kp_k\le e^{2k^2/(n-1)}\).
+\begin{itemize}
+\item For \(k\le\sqrt n\), \(2k^2/(n-1)\le3\), and \(e^t\le1+7t\) on \([0,3]\),
+since \((e^3-1)/3<7\). These terms sum to at most
+\(e^{\mu}\bigl(1+14(\mu^2+\mu)/(n-1)\bigr)\), using the Poisson moment
+\(\sum_k k^2\mu^k/k!=e^\mu(\mu^2+\mu)\).
+\item For \(\sqrt n<k\le n/4\), \(e^{2k^2/(n-1)}\le e^{0.6k}\), so the term is
+at most \((e^{1.6}\mu/k)^k\le(e^{1.6}x_0n^{1/5-1/2})^k\). These sum to at
+most \(e^{-\sqrt n}\) for large \(n\).
+\item For \(k>n/4\), \(p_k\le p_{\lceil n/4\rceil}\le(n/2)^{-n/4}\) and
+\((x-1)^km_k(U)\le(e\,x_0rn/(2k))^k\le(2ex_0r)^k\). There are at most \(n\)
+such terms, so they sum to at most
+\(n\bigl(8e^2x_0^2r^2/n\bigr)^{n/4}\), which is at most \(e^{-\sqrt n}\) because
+\(r\le n^{1/5}\).
+\end{itemize}
+Since \(e^\mu\ge1\) and \(\mu^2+\mu\le C_{x_0}r^2\), the total is at most
+\(e^\mu\exp(C_{x_0}r^2/n)\).
+\end{proof}
+
+\begin{theorem}[Moments of the matching count, uniform in the order]
+\label{thm:uniform-moments}
+Fix \(c\in(0,1/2]\).
+There are \(\varepsilon_0=\varepsilon_0(c)>0\) and \(C=C(c)\) with the
+following property.
+Let \(n\) be even, let \(\min(D,n-D)\ge cn\), and let \(Y\) be the number of
+perfect matchings in the uniform \(D\)-regular graph.
+For every integer \(1\le r\le n^{\varepsilon_0}\),
+\[
+\frac{\EE[Y^r]}{(\EE Y)^r}\le\exp\Bigl(C\Bigl(\frac{r^3}{n}+\frac{r}{n^{b}}\Bigr)\Bigr)\le e^{2C}.
+\]
+\end{theorem}
+
+\begin{proof}
+Take \(a=b=1/5\) in~\eqref{eq:mckay-hit}, with \(\varepsilon=\varepsilon(1/5,1/5)\), and
+set \(\varepsilon_0=\min(\varepsilon,b,1/5)\).
+Every perfect matching has the same containment probability, so
+\(\EE[Y^r]/(\EE Y)^r\) is the average of
+\(\PP(U\subseteq G)/\PP(M\subseteq G)^r\) over independent uniform perfect
+matchings \(M_1,\ldots,M_r\) of \(K_n\), where \(U=\bigcup_iM_i\).
+The union has degrees \(x_j\le r\le n^{\varepsilon}\) and at most
+\(rn/2\le n^{1+2\varepsilon}\) edges, so~\eqref{eq:mckay-hit} applies to \(U\)
+and to each \(M_i\) with fixed implied constants, and also
+\(\lambda\ge c/2\) and \(\min(D,n-D-1)\ge n/(15\log n)\) for large \(n\).
+
+Let \(T=rn/2-|U|\) be the number of repeated edges, counted with multiplicity
+minus one, and write \(x_j=r-t_j\) with \(t_j\ge0\) and \(\sum_jt_j=2T\).
+Write \(F(X)\) for the exponent in~\eqref{eq:mckay-hit} without the error.
+At the values \(|X|=rn/2\), \(X_2=r^2n\), \(X_3=r^3n\), \(H=r^3n/2\) of an
+\(r\)-regular graph, \(F\) equals
+\(-(1-\lambda)r(r-2)/(4\lambda)+O(r^3/n)\).
+Subtracting \(rF(M)\) leaves
+\(-\binom r2(\lambda^{-1}-1)/2+O(r^3/n)\).
+Both reductions were checked.
+Moving from these values to those of \(U\), each term of \(F\) changes as
+follows.
+\begin{itemize}
+\item The edge term changes by \(-(1-\lambda)T/(\lambda n)\le0\).
+\item \(X_2=r^2n-4rT+\sum_jt_j^2\), so the \(X_2\) term changes by at most
+\(2(1-\lambda)rT/(\lambda n)\).
+\item \(X_3\ge r^3n-6r^2T\), so the \(X_3\) term changes by at most
+\(O(r^2T/n^2)\).
+\item \(|X|^2-(rn/2)^2=-rnT+T^2\), as checked, and \(T\le rn/2\), so the
+\(|X|^2\) term changes by at most \(-(1-\lambda)rT/(\lambda n)+O(rT/n)\).
+\item \(H\ge r^2|U|-r\sum_jx_jt_j\ge r^3n/2-3r^2T\), so the \(H\) term changes
+by at most \(O(r^2T/n^2)\).
+\end{itemize}
+Hence, with \(\kappa=(\lambda^{-1}-1)/2\) and \(x=\lambda^{-1}e^{C_1r/n}\),
+\[
+\frac{\PP(U\subseteq G)}{\PP(M\subseteq G)^r}
+\le
+x^{T}\exp\Bigl(-\binom r2\kappa+C_1\frac{r^3}{n}+C_1\frac{r+1}{n^{b}}\Bigr).
+\]
+For large \(n\), \(1\le x\le x_0=4/c\).
+
+Write \(U_b=M_1\cup\cdots\cup M_b\) and \(T_b=bn/2-|U_b|\).
+Then \(T_b=T_{b-1}+|M_b\cap U_{b-1}|\), and \(|U_{b-1}|\le(b-1)n/2\).
+Lemma~\ref{lem:overlap-one}, applied conditionally on \(M_1,\ldots,M_{b-1}\),
+gives
+\[
+\EE\bigl[x^{T_b}\bigm|M_1,\ldots,M_{b-1}\bigr]
+\le
+x^{T_{b-1}}\exp\Bigl(\frac{(x-1)(b-1)n}{2(n-1)}+C_2\frac{b^2}{n}\Bigr).
+\]
+Iterating from \(b=r\) down to \(b=2\) gives
+\[
+\EE[x^T]\le\exp\Bigl(\binom r2\frac{(x-1)n}{2(n-1)}+C_2\frac{r^3}{n}\Bigr).
+\]
+Finally \((x-1)n/(2(n-1))-\kappa=O(r/n)\), so the two quadratic exponents
+cancel up to \(O(r^3/n)\).
+The last inequality uses \(r\le n^{\varepsilon_0}\) with \(\varepsilon_0\le\min(b,1/3)\).
+\end{proof}
+
+\begin{theorem}[Peel flatness at logarithmic length]
+\label{thm:log-peel-flat}
+Fix \(c\in(0,1/2]\).
+There is \(\varepsilon_1=\varepsilon_1(c)>0\) such that, under the hypotheses
+of Theorem~\ref{thm:successive-peel} with \(L\le\varepsilon_1\log n\),
+\[
+\EE\Bigl|\frac{P_L^{(D)}}{\EE P_L^{(D)}}-1\Bigr|=O_c\Bigl(\frac Ln\Bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Write \(\kappa_j(q)\) for the supremum of
+\(\log\bigl(\EE[(P_j^{(e)})^q]/(\EE P_j^{(e)})^q\bigr)\) over degrees \(e\) with
+\(e-j+1\ge cn\) and \(n-e\ge cn/2\). This quantity is nonnegative by Jensen.
+Theorem~\ref{thm:uniform-moments} gives \(\kappa_1(q)\le\kappa_*\) for
+\(1\le q\le n^{\varepsilon_0}\), first for integers and then for real
+\(q\) by Lyapunov, with \(\kappa_*\) depending only on \(c\).
+The same theorem at degree \(n-e\) bounds \(\EE[A^2]\) by \(e^{\kappa_*}\).
+The inductive step in the proof of Theorem~\ref{thm:peel-moments} gives
+\[
+\kappa_j(q)\le\tfrac12\kappa_1(2q)+\tfrac14\kappa_*+\tfrac14\kappa_{j-1}(4q)
+-q\log\bigl(1-\delta_{j-1}\bigr),
+\]
+where \(\delta_{j-1}=O_c(1/n)\,e^{\kappa_{j-1}(2)/2}\) comes from the
+denominator \(\EE[Ap]\ge1-\delta_{j-1}\).
+Unrolling for \(j\le L\) and \(q\le n^{\varepsilon_0}4^{-L}\) gives
+\[
+\kappa_j(q)\le\tfrac34\kappa_*\sum_{i\ge0}4^{-i}+\kappa_*+O\Bigl(\frac{jq}{n}\Bigr)e^{\kappa_*}
+\le2\kappa_*+o(1),
+\]
+because the geometric sum equals \(4/3\), as checked, and because every
+intermediate \(\kappa_{i}(2)\) is already bounded by \(2\kappa_*+o(1)\),
+by the same unrolling at \(q=2\).
+The unrolling needs \(2\cdot4^{L}\le n^{\varepsilon_0}\), which holds when
+\(\varepsilon_1<\varepsilon_0/\log 4\).
+The degrees \(e_j=n-D+j-1\) of Theorem~\ref{thm:peel-bounded-to-flat} satisfy
+\(e_j-j+1=n-D\ge cn\) and \(n-e_j\ge n/2-1\).
+Hence the hypothesis of that theorem holds with \(1+B\le e^{2\kappa_*+1}\), and
+its conclusion is \(O_c(L/n)\).
+\end{proof}
+
+Theorem~\ref{thm:log-peel-flat} extends Corollary~\ref{cor:fixed-peel-flat}
+to \(L\) of order \(\log n\).
+The factor \(4\) in the moment order per peel step is what limits the length:
+each step spends one Cauchy--Schwarz on the matching count and one on the
+pair-measure density.
+The lengths in Conjecture~\ref{conj:factor-moment} are powers of \(n\), so
+the conjecture remains open.
+For \(L=o(n^{1/3})\) the factor count \(Z_L\) is already controlled by
+Theorem~factor-third of~\cite{PlusOneV1}, so the new content is the ordered
+peel, which weights each \(L\)-factor by its number of ordered decompositions
+into perfect matchings.
 
 \begin{remark}[Eight-vertex peel excesses]
 \label{rem:peel-eight}
@@ -4997,6 +5195,12 @@ LMS Lecture Note Ser.\ 267, Cambridge Univ.\ Press, 1999, pp.~239--298.
 B.~D.~McKay,
 \emph{Asymptotics for symmetric \(0\)-\(1\) matrices with prescribed row sums},
 Ars Combin.\ \textbf{19} (1985), 15--25.
+
+\bibitem{McK11}
+B.~D.~McKay,
+\emph{Subgraphs of dense random graphs with specified degrees},
+Combin.\ Probab.\ Comput.\ (2011), doi:10.1017/S0963548311000034;
+arXiv:1002.3018.
 
 \bibitem{RW94}
 R.~W.~Robinson and N.~C.~Wormald,

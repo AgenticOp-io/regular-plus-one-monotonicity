@@ -1903,3 +1903,51 @@ Query: PowerExpand[Exp[(x^K-1)/K]^K] - Exp[x^K-1]
 PowerExpand[exp^K((x^K - 1)/K)] - exp(x^K - 1)
 [Result]
 0
+
+
+Query: simplify (1-l)*(n/2)/(l*n) - (1-l)*n/(2*l*n) + (1-l)*(n/2)^2/(l*n^2) - (1-l)/(4*l)
+[Input interpretation]
+simplify | (1 - l) × (n/2)/(l n) - (1 - l) × n/(2 l n) + (1 - l) × (n/2)^2/(l n^2) - (1 - l)/(4 l)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify (1-l)*(r*n/2)/(l*n) - (1-l)*r^2*n/(2*l*n) + (1-l)*(r*n/2)^2/(l*n^2) + (1-l)*r*(r-2)/(4*l)
+[Input interpretation]
+simplify | (1 - l) × (r × n/2)/(l n) - (1 - l) r^2 × n/(2 l n) + (1 - l) × (r × n/2)^2/(l n^2) + (1 - l) r × (r - 2)/(4 l)
+[Result]
+0
+
+
+Query: simplify -(1-l)*r*(r-2)/(4*l) - r*(1-l)/(4*l) + (1-l)*r*(r-1)/(4*l)
+[Input interpretation]
+simplify | -((1 - l) (r × (r - 2)/(4 l))) - r × (1 - l)/(4 l) + (1 - l) r × (r - 1)/(4 l)
+[Result]
+0
+
+
+Query: expand (r*n/2 - T)^2 - (r*n/2)^2 - (-r*n*T + T^2)
+[Input interpretation]
+expand | (r × n/2 - T)^2 - (r × n/2)^2 - (-r (n T) + T^2)
+[Result]
+0
+
+
+Query: Sum[(3/4)*4^(-i), {i, 0, Infinity}]
+[Infinite sum]
+sum_(i=0)^∞ (3 4^(-i))/4 = 1
+[Sum convergence]
+sum_(i=0)^∞ (3 4^(-i))/4 converges
+[Partial sum formula]
+sum_(i=0)^n (3 4^(-i))/4 = 1 - 4^(-1 - n)
+
+
+Query: N[(E^3-1)/3]
+[Input]
+N[1/3 (e^3 - 1)]
+[Result]
+6.36185
+[Number name]
+six point three six one eight four five six four one zero six two five five six
