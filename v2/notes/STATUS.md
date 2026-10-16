@@ -93,6 +93,13 @@ Bar is 2.0. v1.0 is sent.
   exact averages of explicit cumulant expressions. Open: expanding them and
   showing the \(L^3/n\), \(L^4/n^2\) terms cancel on average (v1
   factor-cubic, cubic-not-identified show they do not vanish termwise).
+- Cubic expansion attempt (notes/cubic-expansion-attempt.md): McKay's
+  displayed terms give cubic coefficient \(-(1-\lambda)(1+7\lambda)/(2\lambda^2)<0\),
+  impossible; terms like \(|X|X_2/n^3\) hidden in McKay's error are cubic for
+  \(L\)-regular \(X\). A correct expansion needs the full Isaev--McKay entropy,
+  determinant (source of v1's \(+L^2/(2n)\)), and an exact tilted overlap law.
+  Whether \(L^2/(2n)\) cancels decides whether factor-moment past \(\sqrt n\) is
+  even true.
 - Lower tail of \(Y\) (target for \(\EE[\EE Y/Y]\)): blocked. Polynomial
   moments give only polynomially small \(\PP(Y<\EE Y/2)\), and on that event
   \(1/Y\) is controlled only by \(Y\ge1\), against an exponentially large
