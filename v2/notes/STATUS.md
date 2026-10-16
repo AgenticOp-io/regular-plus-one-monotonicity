@@ -106,6 +106,12 @@ Bar is 2.0. v1.0 is sent.
   peel flatness \(O(L/n)\) for every \(L\le n^{1/3}\). Supersedes the
   \(n^{\varepsilon_2}\) range. Past \(n^{1/3}\) needs the cubic cancellation
   (two-sided expansion), still open.
+- Multi-colour local limit skeleton (notes/multicolour-llt-skeleton.md,
+  UNPROVED): \(\EE Z_L^2/(\EE Z_L)^2=N_3N_1/N_2^2\) as 5-, 4-, 2-state
+  colouring counts with uniform tilts (no \(\delta\), no overlap average);
+  8 dominant points, parity, entropy and determinant all cancel; what is
+  left is one cumulant constant \(C(\alpha,\lambda)\). Open: compute \(C\);
+  vector outside-region bound; sparse-colour range \(L=n^\sigma\).
 - Cubic expansion attempt (notes/cubic-expansion-attempt.md): McKay's
   displayed terms give cubic coefficient \(-(1-\lambda)(1+7\lambda)/(2\lambda^2)<0\),
   impossible; terms like \(|X|X_2/n^3\) hidden in McKay's error are cubic for
