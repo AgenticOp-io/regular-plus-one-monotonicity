@@ -145,6 +145,9 @@ the formal local expansion cancels, including the cumulant constant
 \(K_n\) (Theorem~\ref{thm:mllt}) makes this rigorous, so
 \(\Var Z_L/(\EE Z_L)^2\to0\) whenever \(L\), \(D-L\) and \(n-D\) are all linear
 (Theorem~\ref{thm:factor-moment-conditional}).
+With Theorem~\ref{thm:long-step} this gives the long-step coupling
+\(\PP(G_d\subseteq G_{d+L})=1-o(1)\) for every \(L\ge1\) when \(d\) and
+\(n-d-L\) are linear (Corollary~\ref{cor:long-step-all}).
 The balanced range past \(n^{1/3}\) and the other three named statements
 stay open.
 
@@ -2583,6 +2586,52 @@ by the same lemma.
 \item Constant: \(c_3+c_1-2c_2+o(1)=o(1)\), by Lemma~\ref{lem:cumulant-constant}.
 \end{itemize}
 Hence \(\EE[Z_L^2]/(\EE Z_L)^2=N_3N_1/N_2^2=1+o(1)\).
+\end{proof}
+
+\begin{corollary}[Long step at linear length]
+\label{cor:long-step-linear}
+Fix \(c\in(0,1/4]\), let \(n\) be even, and let \(d,L\) satisfy \(d\ge cn\),
+\(L\ge cn\) and \(n-1-d-L\ge cn\).
+There is a coupling of a uniform \(d\)-regular graph and a uniform
+\((d+L)\)-regular graph with \(\PP(G_d\subseteq G_{d+L})=1-o(1)\).
+\end{corollary}
+
+\begin{proof}
+The proof of Theorem~\ref{thm:long-from-flat} uses only the in-probability
+flatness of \(Z_L\) at host degrees \(d+L\) and \(n-1-d\), not \(L=o(n)\).
+At host degree \(d+L\), the factor length is \(L\), the co-length is \(d\), and
+the complement degree is \(n-1-d-L\). At host degree \(n-1-d\), they are \(L\),
+\(n-1-d-L\) and \(d\).
+All of these are at least \(cn\ge\frac c2(n-1)\), so
+Theorem~\ref{thm:factor-moment-conditional} and Chebyshev's inequality give
+both flatnesses.
+Theorem~\ref{thm:long-from-flat} then gives \(G\subset H\) surely, with both
+marginals within total variation \(o(1)\) of uniform.
+Gluing maximal couplings of each marginal with its uniform law gives exact
+uniform marginals with \(G_d\subseteq G_{d+L}\) with probability \(1-o(1)\).
+\end{proof}
+
+\begin{corollary}[Long step at every length]
+\label{cor:long-step-all}
+Fix \(c\in(0,1/4]\), let \(n\) be even, and let \(d\ge cn\), \(L\ge1\) and
+\(n-1-d-L\ge cn\).
+There is a coupling of a uniform \(d\)-regular graph and a uniform
+\((d+L)\)-regular graph with \(\PP(G_d\subseteq G_{d+L})=1-o(1)\), uniformly
+in \(L\).
+\end{corollary}
+
+\begin{proof}
+Let \(\eta_n(d,L)\) be the least failure probability over couplings, and suppose
+\(\sup_{d,L}\eta_n(d,L)\not\to0\) over the admissible range.
+Then there are \(\epsilon>0\) and a subsequence with admissible \((d_n,L_n)\)
+and \(\eta_n(d_n,L_n)\ge\epsilon\). Pass to a further subsequence with
+\(L_n/n\to\alpha\in[0,1]\).
+If \(\alpha=0\), then \(L_n=o(n)\) and
+\(\min(d,n-d,d+L,n-d-L)\ge cn-1\), so Theorem~\ref{thm:long-step} gives a
+contradiction.
+If \(\alpha>0\), then \(L_n\ge\frac\alpha2n\) eventually, and
+Corollary~\ref{cor:long-step-linear} with \(\min(c,\alpha/2)\) gives a
+contradiction.
 \end{proof}
 
 \begin{lemma}[Dominant points and the far region]

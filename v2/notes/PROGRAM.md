@@ -111,7 +111,9 @@ Still missing:
    \(C(\alpha,\lambda)\) plus a vector outside-region estimate. \(C\equiv0\) is now
    Lemma cumulant-constant, so Theorem factor-moment-conditional holds under
    Hypothesis mllt, and Theorem mllt proves the hypothesis on \(K_n\): the
-   factor second moment at linear length is now unconditional.
+   factor second moment at linear length is now unconditional, and with
+   Theorem long-step the long-step coupling holds at every length with two
+   linear margins (Corollary long-step-all).
    Remaining: (ii) extend Theorem mllt to \(a\ge n^{-1/2+\varepsilon}\) (sparse
    colours, \(p_0\to0\)); (iii) compute the order-\(n/L^2\) second difference
    (factor-rate).

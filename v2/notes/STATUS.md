@@ -120,6 +120,10 @@ Bar is 2.0. v1.0 is sent.
   in-box expansion with Lemma edge-cumulants (\(\kappa_r=O(n^{r+1-r\ell/2})\)) and
   method of moments. So Theorem factor-moment-conditional is now
   UNCONDITIONAL: \(\Var Z_L/(\EE Z_L)^2\to0\) when \(L,D-L,n-D\) are linear.
+  Corollaries long-step-linear and long-step-all: the long-step coupling
+  \(\PP(G_d\subseteq G_{d+L})=1-o(1)\) holds for EVERY \(L\ge1\) with \(d,n-d-L\ge cn\)
+  (linear \(L\) via Theorem long-from-flat, whose proof never uses \(L=o(n)\);
+  \(L=o(n)\) via Theorem long-step; subsequence argument).
   Conjecture factor-moment (\(\sqrt n\ll L=o(n)\)) still open: sparse range
   \(a\ge n^{-1/2+\varepsilon}\) for factor-moment proper; order-\(n/L^2\) term for
   factor-rate.
