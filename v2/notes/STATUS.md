@@ -114,9 +114,13 @@ Bar is 2.0. v1.0 is sent.
   Computed: \(C\equiv0\) (Lemma cumulant-constant; not termwise). Hence
   Theorem factor-moment-conditional: under Hypothesis mllt (multi-colour
   analogue of IM25 Thm 1.2, linear densities, UNPROVED), \(\Var Z_L/(\EE Z_L)^2\to0\)
-  at linear \(L\). Lemma mllt-far proves the dominant points and the far region
-  \(\sum\|u\|^2\ge Kn\log n\); no existing theorem covers the rest (BH 0903.5223
-  lacks the Edgeworth constant). Open: intermediate region + in-box Edgeworth; sparse range
+  at linear \(L\). PROVED: Theorem mllt (Hypothesis mllt holds on \(K_n\) at
+  linear densities): far region (Lemma mllt-far), localisation, product
+  bound from dropping the rank-one \(J\) term (replaces IM25 shifted boxes),
+  in-box expansion with Lemma edge-cumulants (\(\kappa_r=O(n^{r+1-r\ell/2})\)) and
+  method of moments. So Theorem factor-moment-conditional is now
+  UNCONDITIONAL: \(\Var Z_L/(\EE Z_L)^2\to0\) when \(L,D-L,n-D\) are linear.
+  Conjecture factor-moment (\(\sqrt n\ll L=o(n)\)) still open: sparse range
   \(a\ge n^{-1/2+\varepsilon}\) for factor-moment proper; order-\(n/L^2\) term for
   factor-rate.
 - Cubic expansion attempt (notes/cubic-expansion-attempt.md): McKay's

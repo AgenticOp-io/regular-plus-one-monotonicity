@@ -2140,3 +2140,60 @@ Query: Det[4 IdentityMatrix[6] + ConstantArray[1, {6, 6}]]
 left bracketing bar 4 I_6 + ConstantArray[1, {6, 6}] right bracketing bar
 [Result]
 10240
+
+
+Query: simplify 2*(1/(n-2))*(1-1/(2n-2)) - 2/((n-2)(2n-2)) - 2/(n-1)
+[Input interpretation]
+simplify | 2 × 1/(n - 2) (1 - 1/(2 n - 2)) - 2/((n - 2) (2 n - 2)) - 2/(n - 1)
+[Results]
+0
+[Results]
+-2/(n - 1) - 4/((2 n - 2) (n - 2)) + 2/(n - 2)
+
+
+Query: simplify (1/(n-2))*(1-1/(2n-2)) - 3/((n-2)(2n-2)) - (n-3)/((n-1)(n-2))
+[Input interpretation]
+simplify | 1/(n - 2) (1 - 1/(2 n - 2)) - 3/((n - 2) (2 n - 2)) - (n - 3)/((n - 1) (n - 2))
+[Results]
+0
+[Results]
+-n/((n - 2) (n - 1)) + 1/(n - 2) + 3/((n - 2) (n - 1)) - 4/((n - 2) (2 n - 2))
+
+
+Query: simplify -4/((n-2)(2n-2)) + 2/((n-1)(n-2))
+[Input interpretation]
+simplify | -4/((n - 2) (2 n - 2)) + 2/((n - 1) (n - 2))
+[Result]
+0
+
+
+Query: limit n(n-1)(n-2)*9*(2/(n-1))^2*((n-3)/((n-1)(n-2))) as n->infinity
+[Limit]
+lim_(n->∞) (n (n - 1) ((n - 2) 9 (2/(n - 1))^2 (n - 3)))/((n - 1) (n - 2)) = 36
+[Series expansion at n = ∞]
+36 - 36/n - 108/n^2 - 180/n^3 - 252/n^4 + O((1/n)^5)
+(Laurent series)
+
+
+Query: limit (n(n-1)/2)*((n-2)(n-3)/2)*9*(2/(n-1))^2*(-2/((n-1)(n-2))) as n->infinity
+[Limit]
+lim_(n->∞) ((n (n - 1)) ((n - 2) (n - 3)) 9 (2/(n - 1))^2 (-2))/(2 2 ((n - 1) (n - 2))) = -18
+[Series expansion at n = ∞]
+-18 + 18/n + 54/n^2 + 90/n^3 + 126/n^4 + O((1/n)^5)
+(Laurent series)
+
+
+Query: limit (n(n-1)/2)*(3/24)*(2/(n-1))^2 as n->infinity
+[Limit]
+lim_(n->∞) ((n (n - 1)) 3 (2/(n - 1))^2)/(2 24) = 1/4
+[Series expansion at n = ∞]
+1/4 + 1/(4 n) + 1/(4 n^2) + 1/(4 n^3) + 1/(4 n^4) + O((1/n)^5)
+(Laurent series)
+
+
+Query: limit n(n-1)(n-2)*6*((n-3)/((n-1)(n-2)))^3 as n->infinity
+[Limit]
+lim_(n->∞) n (n - 1) ((n - 2) 6 ((n - 3)/((n - 1) (n - 2)))^3) = 6
+[Series expansion at n = ∞]
+6 - 18/n - 24/n^2 + 72/n^4 + 216/n^5 + O((1/n)^6)
+(Laurent series)

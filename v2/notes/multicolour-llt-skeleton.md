@@ -1,4 +1,12 @@
-# Multi-colour local limit theorem: skeleton (UNPROVED)
+# Multi-colour local limit theorem: skeleton
+
+UPDATE: the linear-density case is now PROVED in the paper (Theorem mllt,
+Lemma edge-cumulants, Lemma mllt-far). The key simplification on \(K_n\):
+\(\sum_{j<k}u^{\mathsf T}\Sigma u=(n-2)\sum_j\Theta_j^{\mathsf T}\Sigma\Theta_j+S^{\mathsf T}\Sigma S\); dropping
+\(S^{\mathsf T}\Sigma S\ge0\) gives a vertex-product bound costing only \(2^{m/2}\), and
+\(\log|\chi(u)|\le-\frac12u^{\mathsf T}\Sigma u+\frac{m^2}{48}|u|^4\) globally (\(|\chi|^2\) is even).
+The sections below are the original plan; section 6 items 1 and 3 are
+resolved, item 2 (sparse colours) remains.
 
 Status: workshop note. Nothing here is a theorem. No conjecture changes
 status. The goal is a rigorous version of Remark no-l2n in

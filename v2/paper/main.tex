@@ -141,9 +141,10 @@ asymptotics~\cite{IM25} gives
 \(O(L/n)\) for every \(L\le n^{1/3}\) (Corollary~\ref{cor:peel-flat-third}).
 Writing \(\EE[Z_L^2]/(\EE Z_L)^2\) as a ratio of colouring counts, every term of
 the formal local expansion cancels, including the cumulant constant
-(Lemma~\ref{lem:cumulant-constant}). So the factor second moment at linear
-length follows from a multi-colour local limit hypothesis
-(Theorem~\ref{thm:factor-moment-conditional}), which is not proved here.
+(Lemma~\ref{lem:cumulant-constant}). A multi-colour local limit theorem on
+\(K_n\) (Theorem~\ref{thm:mllt}) makes this rigorous, so
+\(\Var Z_L/(\EE Z_L)^2\to0\) whenever \(L\), \(D-L\) and \(n-D\) are all linear
+(Theorem~\ref{thm:factor-moment-conditional}).
 The balanced range past \(n^{1/3}\) and the other three named statements
 stay open.
 
@@ -2562,15 +2563,15 @@ arithmetic, so it is identically zero.
 The termwise second differences were computed the same way.
 \end{proof}
 
-\begin{theorem}[Factor second moment at linear length, conditional]
+\begin{theorem}[Factor second moment at linear length]
 \label{thm:factor-moment-conditional}
-Assume Hypothesis~\ref{hyp:mllt}. Fix \(c\in(0,1/4]\), and let \(D\) and
-\(L\) satisfy \(L\ge c(n-1)\), \(D-L\ge c(n-1)\), \(n-1-D\ge c(n-1)\), and
-\(Ln\) even. Then \(\Var Z_L/(\EE Z_L)^2\to0\).
+Fix \(c\in(0,1/4]\), let \(n\) be even, and let \(D\) and
+\(L\) satisfy \(L\ge c(n-1)\), \(D-L\ge c(n-1)\) and \(n-1-D\ge c(n-1)\).
+Then \(\Var Z_L/(\EE Z_L)^2\to0\).
 \end{theorem}
 
 \begin{proof}
-By Hypothesis~\ref{hyp:mllt},
+Hypothesis~\ref{hyp:mllt} holds by Theorem~\ref{thm:mllt} below. By it,
 \(\log(N_3N_1/N_2^2)\) is the sum of the following terms.
 \begin{itemize}
 \item Parity: \(\log(2^3\cdot2/(2^2)^2)=0\).
@@ -2649,44 +2650,173 @@ So the ratio of the two bounds is at most \(e^{C}(4\pi)^{mn/2}n^{-n}\le e^{-n}\)
 for large \(n\).
 \end{proof}
 
-So Hypothesis~\ref{hyp:mllt} is equivalent to
-\(\int_{\Omega_K^c}F=I_m(1+o(1))\), where
-\(\sum_i\sum_{j<k}\|\theta^{(i)}_j+\theta^{(i)}_k\|^2<Kn\log n\).
-On that set, for each family, all but \(O(n/M)\) vertices \(j\) satisfy
-\(\sum_k\|\theta^{(i)}_j+\theta^{(i)}_k\|^2\le M\log n\).
+So it suffices to evaluate \(\int_{\Omega_K^c}F\).
+The host is \(K_n\), so the quadratic form splits as
+\[
+\sum_{j<k}u_{jk}^{\mathsf T}\Sigma_mu_{jk}
+=(n-2)\sum_j\Theta_j^{\mathsf T}\Sigma_m\Theta_j+\Bigl(\sum_j\Theta_j\Bigr)^{\mathsf T}\Sigma_m\Bigl(\sum_j\Theta_j\Bigr),
+\]
+where \(\Theta_j=(\theta^{(i)}_j)_{i\le m}\). Dropping the last term turns the
+integrand into a product over vertices, at the cost of a bounded factor.
+That replaces the shifted-box comparison of~\cite{IM25}.
 
-\begin{remark}[Status of Hypothesis~\ref{hyp:mllt}]
-\label{rem:mllt-status}
-The constant \(c_m\) is \(\kappa_1+\frac12\kappa_2\) of the cubic and quartic
-terms of the formal expansion of the Cauchy integral for \(N_m\) at the
-uniform saddle, evaluated at leading order.
-There \(\boldsymbol\Theta\in(\mathbb R^m)^n\) is Gaussian with precision
-\(\Sigma_m\otimes Q_n\), and \(u_{jk}=\Theta_j+\Theta_k\) has covariance
-\(\frac2{n-1}\Sigma_m^{-1}\). Pairs sharing one vertex have cross-covariance
-\(\frac{n-3}{(n-1)(n-2)}\Sigma_m^{-1}\), and disjoint pairs
-\(-\frac2{(n-1)(n-2)}\Sigma_m^{-1}\).
-This gives \(\frac14K_4\) from the quartic term, and \(-\frac1{12}T_3-\frac14T_1\) from the
-variance of the cubic term.
-The eight dominant points come from shifting each colour family by \(\pi\)
-at every vertex, which is where the factor \(2^m\) comes from.
-Hypothesis~\ref{hyp:mllt} is the \(m\)-family analogue of~\cite[Theorem~1.2]{IM25}
-at \(\sigma=1\). It is not proved here.
-Lemma~\ref{lem:mllt-far} handles the dominant points and the far region.
-Two steps are missing.
+\begin{lemma}[Cumulants of edge sums]
+\label{lem:edge-cumulants}
+Let \(\boldsymbol\Theta\) be Gaussian on \((\mathbb R^m)^n\) with covariance
+\(\Sigma_m^{-1}\otimes Q_n^{-1}\), and for each pair \(P=jk\) let \(f_P\) be a
+homogeneous polynomial of degree \(\ell\) in \(u_P\), with coefficients bounded
+by \(B\). For fixed \(r\ge2\) and \(\ell\),
+\(\kappa_r\bigl(\sum_Pf_P(u_P)\bigr)=O(n^{r+1-r\ell/2})\), with the constant depending
+on \(r,\ell,m,B\) and \(\|\Sigma_m^{-1}\|\).
+\end{lemma}
+
+\begin{proof}
+Since \(Q_n^{-1}=\frac1{n-2}\bigl(I-\frac{J}{2n-2}\bigr)\),
+\(\operatorname{Cov}(u_P,u_{P'})=\gamma(P,P')\Sigma_m^{-1}\), with
+\(\gamma=\frac2{n-1}\) if \(P=P'\), \(\gamma=\frac{n-3}{(n-1)(n-2)}\) if \(P,P'\)
+share one vertex, and \(\gamma=-\frac2{(n-1)(n-2)}\) if they are disjoint; these
+were checked. So every entry is \(O(1/n)\), and \(O(1/n^2)\) for disjoint pairs.
+By multilinearity, \(\kappa_r\) is a sum over \((P_1,\ldots,P_r)\) of joint cumulants
+of products of Gaussian coordinates. Each joint cumulant is the sum, over
+Wick pairings of the \(r\ell\) factors that connect all \(r\) groups, of
+products of \(r\ell/2\) covariances.
+Fix such a pairing and a spanning tree of the induced graph on the \(r\)
+groups. Choose \(P_1\) in at most \(n^2\) ways, then each further \(P_s\)
+along the tree. If its tree edge joins pairs that share a vertex, there are
+at most \(2n\) choices; otherwise there are at most \(n^2\) choices, but the
+covariance on that edge is \(O(n^{-2})\) instead of \(O(n^{-1})\).
+Every covariance is \(O(n^{-1})\), so the total is
+\(O(n^2\cdot n^{r-1}\cdot n^{-r\ell/2})\).
+The number of pairings is bounded.
+\end{proof}
+
+\begin{theorem}[Multi-colour local limit at linear densities]
+\label{thm:mllt}
+Hypothesis~\ref{hyp:mllt} holds.
+\end{theorem}
+
+\begin{proof}
+All constants below depend only on \(c\) and \(m\).
+We have \(p_0\ge c^2\), and \(u^{\mathsf T}\Sigma_mu=\frac12\EE\langle u,S-S'\rangle^2\ge p_0^2|u|^2\)
+for independent \(S,S'\sim\pi_m\), by the pairs used in
+Lemma~\ref{lem:mllt-far}(a).
+Write \(\Sigma=\Sigma_m\), \(\rho=n^{-1/2+\varepsilon}\) with
+\(\varepsilon=1/20\), \(r=p_0/(3m^{3/2})\), and
+\(G_1(n)=(2\pi/(n-2))^{m/2}\det(\Sigma)^{-1/2}\).
+Then \(G_1(n)^n=I_m\,e^{-c_m}2^{-m}\bigl((2n-2)/(n-2)\bigr)^{m/2}\le CI_m\).
+
+\emph{Step 1: local bounds.}
+For all \(u\in\mathbb R^m\), \(\cos x\le1-x^2/2+x^4/24\) and
+\(|\langle u,S-S'\rangle|\le\sqrt m|u|\) give
+\(|\chi(u)|^2\le1-u^{\mathsf T}\Sigma u+m^2|u|^4/24\), hence
+\[
+\log|\chi(u)|\le-\tfrac12u^{\mathsf T}\Sigma u+\tfrac{m^2}{48}|u|^4 .
+\]
+Near \(0\), \(\log\chi\) is analytic, with
+\(\log\chi(u)=i\langle u,\mu\rangle-\frac12u^{\mathsf T}\Sigma u-\frac i6\kappa^{(3)}(u)
++\frac1{24}\kappa^{(4)}(u)+O(|u|^5)\), where \(\mu=\EE_{\pi_m}S\) and
+\(\kappa^{(\ell)}(u)=\kappa^{(\ell)}_{a_1\cdots a_\ell}u_{a_1}\cdots u_{a_\ell}\).
+
+\emph{Step 2: the product bound.}
+Let \(R\) be the set where \(|\theta^{(i)}_j|\le r\) for all \(i,j\), using
+representatives in \((-\pi,\pi]\).
+On \(R\), the splitting above, \(|u_{jk}|^4\le8(|\Theta_j|^4+|\Theta_k|^4)\) and Step 1 give
+\(|F|\le\prod_jg(\Theta_j)\), with
+\(g(x)=\exp\bigl(-\frac12(n-2)x^{\mathsf T}\Sigma x+\frac{m^2}6(n-1)|x|^4\bigr)\).
+For \(|x|_\infty\le r\), \(\frac{m^2}6(n-1)|x|^4\le\frac{m^3r^2}6(n-1)|x|^2\le\frac{p_0^2}4(n-2)|x|^2\),
+so \(g(x)\le\exp(-\frac{p_0^2}4(n-2)|x|^2)\).
+Put \(x=t/\sqrt{n-2}\), and use \(e^\eta\le1+\eta e^\eta\) with
+\(\eta=O(|t|^4/n)\le\frac{p_0^2}4|t|^2\). This gives
+\(\int_{[-r,r]^m}g\le(1+C/n)G_1(n)\).
+Restricting to \(|x|_\infty>\rho\) gives at most \(e^{-p_0^2n^{2\varepsilon}/10}G_1(n)\).
+Hence
+\[
+\int_R|F|\le CI_m,
+\qquad
+\int_{R\setminus B}|F|\le n\,e^{-p_0^2n^{2\varepsilon}/10}(1+C/n)^nG_1(n)^n=o(I_m),
+\]
+where \(B\subset R\) is the box \(|\theta^{(i)}_j|\le\rho\).
+
+\emph{Step 3: localisation.}
+Fix \(K\) as in Lemma~\ref{lem:mllt-far}(c), let \(\delta=r/8\), and take
+\(\boldsymbol\Theta\in\Omega_K^c\).
+Call \(j\) exceptional if \(s^{(i)}_j=\sum_{k}\|\theta^{(i)}_j+\theta^{(i)}_k\|^2>n\delta^2/16\)
+for some \(i\). Since \(\sum_js^{(i)}_j\le2Kn\log n\), at most
+\(E=32mK\log n/\delta^2\) vertices are exceptional.
+For non-exceptional \(j\), all but \(n/4\) vertices \(k\) have
+\(\|\theta^{(i)}_j+\theta^{(i)}_k\|\le\delta/2\). So any two non-exceptional \(j,j'\)
+share such a \(k\), and \(\|\theta^{(i)}_j-\theta^{(i)}_{j'}\|\le\delta\).
+Taking \(j'\) non-exceptional with \(\|\theta^{(i)}_j+\theta^{(i)}_{j'}\|\le\delta/2\)
+gives \(\|2\theta^{(i)}_j\|\le3\delta/2\).
+So there is \(c_i\in\{0,\pi\}\) with \(\|\theta^{(i)}_j-c_i\|<2\delta=r/4\) for every
+non-exceptional \(j\).
+\(F\) is invariant under shifting a family by \(\pi\) at every vertex,
+because \(\chi(u+2\pi e_i)=\chi(u)\) and \(\boldsymbol d^{(i)}n\) is even. So we may
+take \(c=0\), at the cost of a factor \(2^m\).
+
+\emph{Step 4: far vertices.}
+With \(c=0\), let \(Y\) be the set of vertices with \(|\theta^{(i)}_x|>r\) for some
+\(i\). Then \(Y\) consists of exceptional vertices, so \(|Y|\le E\). If \(Y=\emptyset\),
+then \(\boldsymbol\Theta\in R\).
+For \(x\in Y\) and non-exceptional \(k\),
+\(\|\theta^{(i)}_x+\theta^{(i)}_k\|>3r/4\), so
+Lemma~\ref{lem:mllt-far}(a) gives
+\(\prod_k|\chi(u_{xk})|\le e^{-c_rn}\) with \(c_r=p_0^2r^2/(2\pi^2)\), for large \(n\),
+because there are at least \(n-E-1\) such \(k\).
+Bound the pairs inside \(Y\), and the pairs from \(Y\) to exceptional vertices,
+by \(1\). Integrate \(\Theta_x\) over a volume \((2\pi)^m\). Apply Step 2 to the
+\(n'=n-|Y|\) remaining vertices; the splitting holds on \(K_{n'}\).
+The result is at most \((C n^{m/2}e^{-c_rn})^{|Y|}G_1(n)^n\).
+Summing over \(Y\) with \(1\le|Y|\le E\) gives
+\(\sum_{y\ge1}(Cn^{m/2+1}e^{-c_rn})^y\,G_1(n)^n=o(I_m)\).
+
+\emph{Step 5: the box.}
+On \(B\), \(|u_{jk}|\le2\sqrt m\rho\), and the phases cancel, since
+\(\boldsymbol d^{(i)}=(n-1)\mu_i\). So Step 1 gives
+\(F=\exp\bigl(-\frac12\boldsymbol\Theta^{\mathsf T}(\Sigma\otimes Q_n)\boldsymbol\Theta+iX+W+O(n^2\rho^5)\bigr)\),
+with \(X=-\frac16\sum_{j<k}\kappa^{(3)}(u_{jk})\), \(W=\frac1{24}\sum_{j<k}\kappa^{(4)}(u_{jk})\),
+and \(n^2\rho^5=n^{-1/4}\). Hence
+\[
+\int_BF=G\,\EE\bigl[e^{iX+W}1_B\bigr](1+o(1)),
+\qquad G=(2\pi)^{mn/2}\det(\Sigma)^{-n/2}\det(Q_n)^{-m/2}=\frac{I_m}{2^me^{c_m}},
+\]
+with \(\boldsymbol\Theta\) Gaussian as in Lemma~\ref{lem:edge-cumulants}.
 \begin{itemize}
-\item The intermediate region: \(\Omega_K^c\) minus the boxes of radius
-\(n^{-1/2+\varepsilon}\) around the dominant points. The crude bound of
-Lemma~\ref{lem:mllt-far}(a) loses a constant factor per vertex there, so it
-is not enough.
-\item The Edgeworth expansion inside the boxes, for the \(mn\)-dimensional
-integrand.
+\item By the bound \(|W|\le C(n-1)\sum_j|\Theta_j|^4\), and the comparison of the
+density with the product density of precision \((n-2)\Sigma\) per vertex
+(which costs a factor at most \(2^{m}\)), we get \(\EE[e^{2|W|}1_B]=O(1)\), as in Step 2.
+\item \(\EE W=\binom n2\frac{3}{24}\bigl(\frac2{n-1}\bigr)^2K_4\to\frac14K_4\), and
+\(\operatorname{Var}W=O(1/n)\) by Lemma~\ref{lem:edge-cumulants} with \(\ell=4\), \(r=2\).
+So \(\EE|e^W-e^{\EE W}|1_B\to0\) by Cauchy--Schwarz.
+\item \(\PP(B^c)\le2mn\,e^{-cn^{2\varepsilon}}\).
+\item \(\EE X=0\). By the covariances in the proof of
+Lemma~\ref{lem:edge-cumulants}, \(\operatorname{Var}X\to\frac1{36}(6T_3+18T_1)\):
+pairs sharing a vertex give \(6T_3+36T_1\), disjoint pairs give \(-18T_1\), and
+equal pairs give \(O(1/n)\); these limits were checked.
+For \(r\ge3\), \(\kappa_r(X)=O(n^{1-r/2})\to0\) by
+Lemma~\ref{lem:edge-cumulants} with \(\ell=3\). By the method of moments,
+\(X\) is asymptotically normal, so
+\(\EE e^{iX}\to\exp(-\frac{T_3}{12}-\frac{T_1}4)\).
 \end{itemize}
-Neither is covered by the general Gaussian approximation for 0-1 points in
-polytopes, which omits the constant \(e^{c_m}\).
+Therefore \(\int_BF=G\exp(\frac14K_4-\frac1{12}T_3-\frac14T_1+o(1))=Ge^{c_m+o(1)}\).
+The same holds at each of the \(2^m\) shifted boxes, by invariance.
+Adding Steps 2--5 and Lemma~\ref{lem:mllt-far}(c) gives
+\(\int F=2^mGe^{c_m}(1+o(1))=I_m(1+o(1))\).
+\end{proof}
+
+\begin{remark}[Scope]
+\label{rem:mllt-status}
+Theorem~\ref{thm:mllt} is the \(m\)-family analogue
+of~\cite[Theorem~1.2]{IM25} at \(\sigma=1\) for the host \(K_n\) with equal
+degrees. The equal degrees remove the \(\boldsymbol\delta\) terms, and the
+host \(K_n\) gives the product bound of Step 2.
+The general Gaussian approximation for 0-1 points in polytopes omits the
+constant \(e^{c_m}\), so it does not suffice.
 Theorem~\ref{thm:factor-moment-conditional} does not reach
-Conjecture~\ref{conj:factor-moment}, which needs \(L=o(n)\). That requires the
-hypothesis uniformly down to \(a\ge n^{-1/2+\varepsilon}\), where higher cumulants
-enter at relative order \(n/L^2\). Conjecture~\ref{conj:factor-moment} remains open.
+Conjecture~\ref{conj:factor-moment}, which needs \(L=o(n)\). That requires
+Theorem~\ref{thm:mllt} uniformly down to \(a\ge n^{-1/2+\varepsilon}\), where
+\(p_0\to0\), the constants above degenerate, and higher cumulants enter at
+relative order \(n/L^2\). Conjecture~\ref{conj:factor-moment} remains open.
 \end{remark}
 Conjecture~\ref{conj:factor-moment} and the analogous statement for \(P_L\)
 past \(n^{1/3}\) stay open.
