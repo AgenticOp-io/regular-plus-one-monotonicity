@@ -126,10 +126,18 @@ Bar is 2.0. v1.0 is sent.
   \(L=o(n)\) via Theorem long-step; subsequence argument).
   Corollary factor-moment-diagonal: there is a non-explicit \(c_n\to0\) with
   \(\Var Z_L/(\EE Z_L)^2\to0\) uniformly over \(L,D-L,n-1-D\ge c_n(n-1)\); so
-  Conjecture factor-moment holds at its top end \(L\ge c_nn\). Making \(c_n\)
-  explicit (e.g. \(n^{-\delta}\)) is blocked by the method of moments step:
-  \(\Var X\asymp1/a\), so \(\EE e^{iX}\approx e^{-C/a}\) needs relative, not
-  absolute, accuracy (cumulant expansion with error control).
+  Conjecture factor-moment holds at its top end \(L\ge c_nn\).
+  EXPLICIT: Theorem mllt-sparse (uniform for \(a\ge n^{-1/1000}\), error
+  \(O(n^{-1/5})\)) replaces the method of moments by IM25 Theorem 2.6
+  (truncated cumulant expansion, \(s=2\)) with IM25 Lemma 2.7, after
+  \(\boldsymbol\Theta=T\boldsymbol x\), \(T=\Sigma^{-1/2}\otimes Q_n^{-1/2}\); derivative bounds
+  from analyticity of \(\log\chi\) on the polydisc of radius \(1/(4m)\)
+  (independent of \(a\)); all \(a\)-loss via \(p_0\ge c^2a^2\).
+  Theorem factor-moment-sparse: \(\Var Z_L/(\EE Z_L)^2=O(n^{-1/5})\) for
+  \(L\ge n^{1-1/1000}\), \(D-L,n-1-D\) linear. Conjecture factor-moment open only
+  on \(\sqrt n\ll L<n^{1-1/1000}\). Lowering the exponent needs the true
+  scale \((na)^{-1/2}\) of the factor coordinates (anisotropic \(T\)) instead of
+  \(\Sigma\ge p_0^2I\); reaching \(\sqrt n\) needs larger \(s\).
   Conjecture factor-moment (\(\sqrt n\ll L=o(n)\)) still open: sparse range
   \(a\ge n^{-1/2+\varepsilon}\) for factor-moment proper; order-\(n/L^2\) term for
   factor-rate.

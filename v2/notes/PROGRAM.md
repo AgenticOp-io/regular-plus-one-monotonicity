@@ -113,7 +113,10 @@ Still missing:
    Hypothesis mllt, and Theorem mllt proves the hypothesis on \(K_n\): the
    factor second moment at linear length is now unconditional, and with
    Theorem long-step the long-step coupling holds at every length with two
-   linear margins (Corollary long-step-all).
+   linear margins (Corollary long-step-all). Theorem factor-moment-sparse
+   extends the factor moment to \(L\ge n^{1-1/1000}\) (rate \(O(n^{-1/5})\)) via
+   IM25 Theorem 2.6; factor-moment is open only on
+   \(\sqrt n\ll L<n^{1-1/1000}\).
    Remaining: (ii) extend Theorem mllt to \(a\ge n^{-1/2+\varepsilon}\) (sparse
    colours, \(p_0\to0\)); (iii) compute the order-\(n/L^2\) second difference
    (factor-rate).

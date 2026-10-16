@@ -2197,3 +2197,69 @@ lim_(n->∞) n (n - 1) ((n - 2) 6 ((n - 3)/((n - 1) (n - 2)))^3) = 6
 [Series expansion at n = ∞]
 6 - 18/n - 24/n^2 + 72/n^4 + 216/n^5 + O((1/n)^6)
 (Laurent series)
+
+
+Query: simplify n + n(n-3) - n(n-3)/2 - n(n-1)/2
+[Input interpretation]
+simplify | n + n (n - 3) - n × (n - 3)/2 - n × (n - 1)/2
+[Result]
+0
+
+
+Query: limit as n->infinity of (n(n-1)/2)(2/(n-1))^3 + n(n-1)(n-2)((n-3)/((n-1)(n-2)))^3 + (n(n-1)/2)((n-2)(n-3)/2)(-2/((n-1)(n-2)))^3
+[Limit]
+lim_(n->∞)(1/2 (n (n - 1)) (2/(n - 1))^3 + n (n - 1) (n - 2) ((n - 3)/((n - 1) (n - 2)))^3 + ((n (n - 1)) ((n - 2) (n - 3)) (-2/((n - 1) (n - 2)))^3)/(2 2)) = 1
+[Series expansion at n = ∞]
+1 + 1/n + 2/n^2 + 6/n^3 + 18/n^4 + O((1/n)^5)
+(Laurent series)
+
+
+Query: simplify (n(n-1)/2)(3/24)(2/(n-1))^2 - n/(4(n-1))
+[Input interpretation]
+simplify | (n × (n - 1)/2) × 3/24 (2/(n - 1))^2 - n/(4 (n - 1))
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify 9 (2/(n-1))^2 (n(n-1)/2) - 18 n/(n-1)
+[Input interpretation]
+simplify | 9 (2/(n - 1))^2 (n × (n - 1)/2) - 18 × n/(n - 1)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: 4 + 9(-1/2 + 1/40 + 1/500) + 1/5
+[Input]
+4 + 9 (-1/2 + 1/40 + 1/500) + 1/5
+[Exact result]
+-57/1000
+[Decimal form]
+-0.057
+[Continued fraction]
+- [0; 17, 1, 1, 5, 5]
+[Egyptian fraction expansion]
+-1 + 1/2 + 1/3 + 1/10 + 1/104 + 1/19500
+[Equivalent fractions]
+-57/1000 | -114/2000 | -171/3000 | -228/4000 | -285/5000 | ...
+[Occurrence in convergents]
+(26 π)/1433≈0, 1/17, 1/18, 2/35, 11/193, 46/807, 57/1000, 160/2807, 217/3807, ...
+(simple continued fraction convergent sequence)
+
+
+Query: 2 + 6(-1/2 + 1/40 + 1/500) + 4/5
+[Input]
+2 + 6 (-1/2 + 1/40 + 1/500) + 4/5
+[Exact result]
+-19/500
+[Decimal form]
+-0.038
+[Continued fraction]
+- [0; 26, 3, 6]
+[Egyptian fraction expansion]
+-1 + 1/2 + 1/3 + 1/8 + 1/273 + 1/273000
+[Equivalent fractions]
+-19/500 | -38/1000 | -57/1500 | -76/2000 | -95/2500 | ...
