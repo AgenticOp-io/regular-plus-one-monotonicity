@@ -2098,3 +2098,21 @@ N[e^(-6/5)/2]
 0.150597
 [Number name]
 zero point one five zero five nine seven one zero five nine five six one zero one zero seven
+
+
+Query: simplify -(8 a^2 l^2 - 10 a^2 l + a^2 - 8 a l^3 + 10 a l^2 - a l - 2 l^3 + 2 l^2)/(12 a l (a - l)(l - 1)) + (-1/6 - 1/(12 l (1 - l))) + 2 (5 a^2 l - 6 a^2 - 5 a l^2 + 6 a l - l^2 + l)/(12 a (a - l)(l - 1))
+[error]
+no result
+
+
+Query: Together[-(8 a^2 l^2 - 10 a^2 l + a^2 - 8 a l^3 + 10 a l^2 - a l - 2 l^3 + 2 l^2)/(12 a l (a - l) (l - 1)) - 1/6 - 1/(12 l (1 - l)) + 2 (5 a^2 l - 6 a^2 - 5 a l^2 + 6 a l - l^2 + l)/(12 a (a - l) (l - 1))]
+[error]
+no result
+
+Fallback (exact rational arithmetic, Wolfram returned no result for the two queries above):
+Identity c3 + c1 - 2 c2 = 0 with c1 = -1/6 - 1/(12 l(1-l)) and c2, c3 as in the queries.
+Substituting a = t l, the cleared numerator has degree < 7 in t and in l.
+Evaluated with Python Fractions on the product grid l in {9/17,...,15/17}, t in {1/19,...,7/19}: 49 points, all exactly 0.
+Independent check from raw cumulant tensors (scripts/multicolour_constant.py --grid) at (a,l) = (1/10,1/2), (1/7,2/5), (1/20,3/4), (1/5,1/2): C = 0.
+Also c1 = -1/6 - 1/(12 l(1-l)) symbolically (sympy), matching the McKay-Wormald constant.
+Separate invariants: Delta K4 = Delta T1 = 2(1-l)/l, Delta T3 = 0 (sympy).

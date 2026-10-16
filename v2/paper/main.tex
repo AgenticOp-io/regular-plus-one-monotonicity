@@ -18,6 +18,7 @@ AgenticOps\\
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
 
 \newcommand{\Gnp}{G(n,p)}
 \newcommand{\Gnd}{G(n,d)}
@@ -138,6 +139,11 @@ asymptotics~\cite{IM25} gives
 \(\EE[P_L^2]/(\EE P_L)^2\le\exp(C(L^3+1)/n)\) for \(L\le c_1\sqrt n\)
 (Theorem~\ref{thm:peel-second-moment-third}), and so peel flatness
 \(O(L/n)\) for every \(L\le n^{1/3}\) (Corollary~\ref{cor:peel-flat-third}).
+Writing \(\EE[Z_L^2]/(\EE Z_L)^2\) as a ratio of colouring counts, every term of
+the formal local expansion cancels, including the cumulant constant
+(Lemma~\ref{lem:cumulant-constant}). So the factor second moment at linear
+length follows from a multi-colour local limit hypothesis
+(Theorem~\ref{thm:factor-moment-conditional}), which is not proved here.
 The balanced range past \(n^{1/3}\) and the other three named statements
 stay open.
 
@@ -2489,6 +2495,118 @@ Chebyshev and Theorem~\ref{thm:peel-second-moment-third} give
 Beyond \(n^{1/3}\) the bound \(e^{CL^3/n}\) is no longer useful. Closing
 that gap is the cancellation discussed after
 Proposition~\ref{prop:im-containment}.
+
+\subsection*{The factor second moment as a colouring count}
+
+The overlap average can be avoided altogether.
+Colour each pair of \(K_n\) by its membership vector in \((G,F_1,F_2)\).
+Then \(|\mathcal T_D|\,\EE[Z_L^2]=N_3\), the number of colourings with five
+states (Lemma~\ref{lem:two-factor-identities}) in which every vertex has
+\(G\)-degree \(D\) and \(F_1\)- and \(F_2\)-degree \(L\).
+Likewise \(|\mathcal T_D|\EE Z_L=N_2\), with states \((0,0),(1,0),(1,1)\)
+for \((1_G,1_F)\), and \(|\mathcal T_D|=N_1\). Hence
+\[
+\frac{\EE[Z_L^2]}{(\EE Z_L)^2}=\frac{N_3N_1}{N_2^2}.
+\]
+All prescribed degrees are equal, so the natural tilt is uniform and the
+pair law is exactly the law \(\pi_m\) of Lemma~\ref{lem:two-factor-identities}
+(\(m=3\)), its two-state marginal (\(m=2\)), or Bernoulli\((\lambda)\) (\(m=1\)),
+with \(\lambda=D/(n-1)\) and \(a=L/(n-1)\).
+For the state vector \(S\in\{0,1\}^m\) under \(\pi_m\), let \(\Sigma_m\) be
+its covariance, \(\kappa^{(3)},\kappa^{(4)}\) its third and fourth cumulant
+tensors, and \(P=\Sigma_m^{-1}\). Define
+\[
+K_4=\kappa^{(4)}_{abcd}P_{ab}P_{cd},\quad
+T_3=\kappa^{(3)}_{abc}\kappa^{(3)}_{def}P_{ad}P_{be}P_{cf},\quad
+T_1=w_cP_{cf}w_f,\ \ w_c=\kappa^{(3)}_{abc}P_{ab},
+\]
+summing over repeated indices, and \(c_m=\tfrac14K_4-\tfrac1{12}T_3-\tfrac14T_1\).
+
+\begin{hypothesis}[Multi-colour local limit at linear densities]
+\label{hyp:mllt}
+Fix \(c\in(0,1/4]\). Uniformly for \(n\) even, \(m\in\{1,2,3\}\), and
+\(a\ge c\), \(\lambda-a\ge c\), \(1-\lambda\ge c\) with \(Dn\) and \(Ln\) even,
+\[
+N_m=\frac{2^m\exp\bigl(\binom n2H(\pi_m)\bigr)}
+{(2\pi)^{mn/2}\det(\Sigma_m)^{n/2}\det(Q_n)^{m/2}}
+\exp\bigl(c_m+o(1)\bigr),
+\qquad Q_n=(n-2)I+J,
+\]
+where \(H\) is the Shannon entropy.
+\end{hypothesis}
+
+\begin{lemma}[The cumulant constant cancels]
+\label{lem:cumulant-constant}
+For \(0<a<\lambda<1\), write \(\varLambda=\lambda(1-\lambda)\). Then
+\(c_1=-\frac16-\frac1{12\varLambda}\),
+\[
+c_2=-\frac{5a^2\lambda-6a^2-5a\lambda^2+6a\lambda-\lambda^2+\lambda}{12a(a-\lambda)(\lambda-1)},
+\qquad
+c_3=-\frac{8a^2\lambda^2-10a^2\lambda+a^2-8a\lambda^3+10a\lambda^2-a\lambda-2\lambda^3+2\lambda^2}{12a\lambda(a-\lambda)(\lambda-1)},
+\]
+and \(c_3+c_1-2c_2=0\) identically.
+The cancellation is not termwise: the same second difference is
+\(2(1-\lambda)/\lambda\) for \(K_4\) and for \(T_1\), and \(0\) for \(T_3\).
+\end{lemma}
+
+\begin{proof}
+The moments of \(S\) under \(\pi_m\) are polynomials in \(a\), \(\lambda\) and
+\(a^2/\lambda\), so \(c_m\) is a rational function, computed exactly by
+symbolic algebra from the definitions.
+For the identity, put \(a=t\lambda\). After clearing the denominator
+\(12t\lambda^3(1-t)(1-\lambda)\), the numerator of \(c_3+c_1-2c_2\) is a
+polynomial of degree less than \(7\) in \(t\) and in \(\lambda\).
+It vanishes at all \(49\) points of the grid
+\(\lambda\in\{9/17,\ldots,15/17\}\), \(t\in\{1/19,\ldots,7/19\}\), by exact rational
+arithmetic, so it is identically zero.
+The termwise second differences were computed the same way.
+\end{proof}
+
+\begin{theorem}[Factor second moment at linear length, conditional]
+\label{thm:factor-moment-conditional}
+Assume Hypothesis~\ref{hyp:mllt}. Fix \(c\in(0,1/4]\), and let \(D\) and
+\(L\) satisfy \(L\ge c(n-1)\), \(D-L\ge c(n-1)\), \(n-1-D\ge c(n-1)\), and
+\(Ln\) even. Then \(\Var Z_L/(\EE Z_L)^2\to0\).
+\end{theorem}
+
+\begin{proof}
+By Hypothesis~\ref{hyp:mllt},
+\(\log(N_3N_1/N_2^2)\) is the sum of the following terms.
+\begin{itemize}
+\item Parity: \(\log(2^3\cdot2/(2^2)^2)=0\).
+\item Entropy: \(\binom n2\bigl(H(\pi_3)+H(\pi_1)-2H(\pi_2)\bigr)=0\), by
+Lemma~\ref{lem:two-factor-identities}.
+\item Covariance: \(-\frac n2\log\bigl(\det\Sigma_3\det\Sigma_1/(\det\Sigma_2)^2\bigr)=0\),
+by the same lemma.
+\item Laplacian: \(-\frac12(3+1-4)\log\det Q_n=0\).
+\item Constant: \(c_3+c_1-2c_2+o(1)=o(1)\), by Lemma~\ref{lem:cumulant-constant}.
+\end{itemize}
+Hence \(\EE[Z_L^2]/(\EE Z_L)^2=N_3N_1/N_2^2=1+o(1)\).
+\end{proof}
+
+\begin{remark}[Status of Hypothesis~\ref{hyp:mllt}]
+\label{rem:mllt-status}
+The constant \(c_m\) is \(\kappa_1+\frac12\kappa_2\) of the cubic and quartic
+terms of the formal expansion of the Cauchy integral for \(N_m\) at the
+uniform saddle, evaluated at leading order.
+There \(\boldsymbol\Theta\in(\mathbb R^m)^n\) is Gaussian with precision
+\(\Sigma_m\otimes Q_n\), and \(u_{jk}=\Theta_j+\Theta_k\) has covariance
+\(\frac2{n-1}\Sigma_m^{-1}\). Pairs sharing one vertex have cross-covariance
+\(\frac{n-3}{(n-1)(n-2)}\Sigma_m^{-1}\), and disjoint pairs
+\(-\frac2{(n-1)(n-2)}\Sigma_m^{-1}\).
+This gives \(\frac14K_4\) from the quartic term, and \(-\frac1{12}T_3-\frac14T_1\) from the
+variance of the cubic term.
+The eight dominant points come from shifting each colour family by \(\pi\)
+at every vertex, which is where the factor \(2^m\) comes from.
+Hypothesis~\ref{hyp:mllt} is the \(m\)-family analogue of~\cite[Theorem~1.2]{IM25}
+at \(\sigma=1\). It is not proved here. The missing step is the estimate of
+the integral away from the \(2^m\) dominant points for a vector-valued
+integrand.
+Theorem~\ref{thm:factor-moment-conditional} does not reach
+Conjecture~\ref{conj:factor-moment}, which needs \(L=o(n)\). That requires the
+hypothesis uniformly down to \(a\ge n^{-1/2+\varepsilon}\), where higher cumulants
+enter at relative order \(n/L^2\). Conjecture~\ref{conj:factor-moment} remains open.
+\end{remark}
 Conjecture~\ref{conj:factor-moment} and the analogous statement for \(P_L\)
 past \(n^{1/3}\) stay open.
 For \(L=o(n^{1/3})\) the factor count \(Z_L\) is already controlled by

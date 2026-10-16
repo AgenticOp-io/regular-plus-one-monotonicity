@@ -110,8 +110,13 @@ Bar is 2.0. v1.0 is sent.
   UNPROVED): \(\EE Z_L^2/(\EE Z_L)^2=N_3N_1/N_2^2\) as 5-, 4-, 2-state
   colouring counts with uniform tilts (no \(\delta\), no overlap average);
   8 dominant points, parity, entropy and determinant all cancel; what is
-  left is one cumulant constant \(C(\alpha,\lambda)\). Open: compute \(C\);
-  vector outside-region bound; sparse-colour range \(L=n^\sigma\).
+  left is one cumulant constant \(C(\alpha,\lambda)\).
+  Computed: \(C\equiv0\) (Lemma cumulant-constant; not termwise). Hence
+  Theorem factor-moment-conditional: under Hypothesis mllt (multi-colour
+  analogue of IM25 Thm 1.2, linear densities, UNPROVED), \(\Var Z_L/(\EE Z_L)^2\to0\)
+  at linear \(L\). Open: prove the hypothesis (outside region); sparse range
+  \(a\ge n^{-1/2+\varepsilon}\) for factor-moment proper; order-\(n/L^2\) term for
+  factor-rate.
 - Cubic expansion attempt (notes/cubic-expansion-attempt.md): McKay's
   displayed terms give cubic coefficient \(-(1-\lambda)(1+7\lambda)/(2\lambda^2)<0\),
   impossible; terms like \(|X|X_2/n^3\) hidden in McKay's error are cubic for
