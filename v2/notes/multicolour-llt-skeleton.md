@@ -107,7 +107,36 @@ In \(N_3N_1/N_2^2\):
 So, granted 4 and 6,
 \(\EE[Z_L^2]/(\EE Z_L)^2\to e^{C(\alpha,\lambda)}\) at linear \(L\).
 
-Next concrete step (not done): compute \(C(\alpha,\lambda)\). At leading order,
+**Done: \(C(\alpha,\lambda)\equiv0\)** (Lemma cumulant-constant in the paper,
+`scripts/multicolour_constant.py`). With
+\(c_m=\tfrac14K_4-\tfrac1{12}T_3-\tfrac14T_1\):
+
+- \(c_1=-1/6-1/(12\varLambda)\). This matches McKay–Wormald: the
+  \(\sqrt2e^{1/4}\) constant together with Stirling's \(e^{1/12-1/(12\varLambda)}\) per-vertex
+  binomial correction and \(((n-1)/(n-2))^{(n-1)/2}/\sqrt2\to e^{1/2}/\sqrt2\) from
+  \(\det Q_n\). This pins the \(K_4\) coefficient (\(1/4\)) and the combined
+  \(T\) coefficient (\(-1/3\)).
+- The split \(-1/12\,T_3-1/4\,T_1\) is checked independently: the linear
+  (Hermite-1) part of the cubic term is \(3v(n-1)\,w\cdot\sum_j\Theta_j\), and
+  \(\operatorname{Var}\sum_j\Theta_j=\frac{n}{2n-2}P\), giving \(18T_1\) and hence \(-18/72=-1/4\).
+- \(\Delta K_4=\Delta T_1=2(1-\lambda)/\lambda\) and \(\Delta T_3=0\), so the
+  cancellation is genuinely between the quartic mean and the cubic variance.
+- Wolfram gave no result; exact rational grid fallback recorded in the ledger.
+
+So, conditional on Hypothesis mllt (paper), Theorem
+factor-moment-conditional gives \(\Var Z_L/(\EE Z_L)^2\to0\) at linear \(L\).
+This is also consistent with factor-rate at fixed \(\alpha\).
+
+Sparse order count (heuristic): at \(a=L/n\to0\), a cumulant of order \(\ell\)
+contributes about \(n^2\cdot a^{1-\ell/2}\cdot n^{-\ell/2}\). Beyond \(\kappa_1,\kappa_2\) the
+corrections are powers of \(n/L^2\), which is small exactly when \(L\gg\sqrt n\),
+the threshold of factor-moment. Factor-rate (\(o(L^3/n^3)\)) would also need
+the order-\(n/L^2\) second difference to cancel whenever \(L\ll n^{4/5}\).
+The short-cycle prediction (excess \(O(D^{-3})\), independent of \(L\))
+suggests it does. Next computation: the order-\(n/L^2\) term (\(\kappa_6\), \(\kappa_3\kappa_5\),
+\(\kappa_4^2\), \(\kappa_3^2\kappa_4\), \(\kappa_3^4\) contractions), and its second difference.
+
+Previous plan text: compute \(C(\alpha,\lambda)\). At leading order,
 \(\kappa_1^{(m)}\) is a contraction of \(\kappa_4^\pi\) with \(\Sigma_m^{-1}\otimes\Sigma_m^{-1}\),
 and \(\kappa_2^{(m)}\) is a contraction of \(\kappa_3^\pi\otimes\kappa_3^\pi\) with three
 copies of \(\Sigma_m^{-1}\) (from pairs of edges sharing a vertex), plus

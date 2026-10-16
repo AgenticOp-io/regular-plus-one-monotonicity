@@ -108,7 +108,11 @@ Still missing:
    peel flatness \(O(L/n)\) for every \(L\le n^{1/3}\).
    Route past \(n^{1/3}\): notes/multicolour-llt-skeleton.md (unproved)
    reduces factor-moment at linear \(L\) to a cumulant constant
-   \(C(\alpha,\lambda)\) plus a vector outside-region estimate.
+   \(C(\alpha,\lambda)\) plus a vector outside-region estimate. \(C\equiv0\) is now
+   Lemma cumulant-constant, so Theorem factor-moment-conditional holds under
+   Hypothesis mllt. Remaining: (i) prove Hypothesis mllt (vector version of
+   IM25 Sections 4.2–4.3); (ii) extend it to \(a\ge n^{-1/2+\varepsilon}\);
+   (iii) compute the order-\(n/L^2\) second difference (factor-rate).
    Alternative next: expand the Isaev--McKay cumulant formula for \(K_n-F_1\cup F_2\)
    against \(K_n-F_1\), \(K_n-F_2\), \(K_n\) through order \(L^4/n^2\) and average
    over the overlap structure; this is the remaining content of
