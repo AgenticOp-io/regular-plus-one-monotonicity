@@ -2116,3 +2116,27 @@ Evaluated with Python Fractions on the product grid l in {9/17,...,15/17}, t in 
 Independent check from raw cumulant tensors (scripts/multicolour_constant.py --grid) at (a,l) = (1/10,1/2), (1/7,2/5), (1/20,3/4), (1/5,1/2): C = 0.
 Also c1 = -1/6 - 1/(12 l(1-l)) symbolically (sympy), matching the McKay-Wormald constant.
 Separate invariants: Delta K4 = Delta T1 = 2(1-l)/l, Delta T3 = 0 (sympy).
+
+
+Query: minimize 1 - cos(x) - 2 x^2/pi^2 for -pi <= x <= pi
+[Input interpretation]
+minimize | function | 1 - cos(x) - 2 × x^2/π^2
+domain | -π<=x<=π
+[Global minima]
+min{1 - cos(x) - (2 x^2)/π^2|-π<=x<=π} = 0 at x = -π
+[Global minima]
+min{1 - cos(x) - (2 x^2)/π^2|-π<=x<=π} = 0 at x = π
+
+
+Query: Det[4 IdentityMatrix[6] + ConstantArray[1, {6, 6}]] - 4^5*10
+[Input interpretation]
+left bracketing bar (4 I_6 + ConstantArray[1, {6, 6}]) - 4^5 × 10 right bracketing bar
+[Result]
+-62904320
+
+
+Query: Det[4 IdentityMatrix[6] + ConstantArray[1, {6, 6}]]
+[Input interpretation]
+left bracketing bar 4 I_6 + ConstantArray[1, {6, 6}] right bracketing bar
+[Result]
+10240

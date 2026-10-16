@@ -145,6 +145,28 @@ the corrections from the \(J\) part of \(Q(K_n)^{-1}\). Test whether
 of Conjecture factor-moment. Check by exact rational arithmetic on a grid of
 \((a,\lambda)\), then by Wolfram.
 
+## 5b. Proved pieces (Lemma mllt-far in the paper)
+
+- Exact integral with prefactor \(e^{\binom n2H(\pi_m)}\) (log-affine pair law).
+- \(|\chi(u)|\le\exp(-\frac{2p_0^2}{\pi^2}\sum_i\|u_i\|^2)\); the modulus factorises over
+  families in this crude form.
+- Exactly \(2^m\) points with \(|F|=1\), and \(F=1\) there.
+- Far region \(\sum\|u_{jk}\|^2\ge Kn\log n\) is \(\le e^{-n}I_m\).
+
+Literature check (Oct 2026): no existing theorem gives Hypothesis mllt.
+Barvinok–Hartigan (arXiv:0903.5223, Thm 2.6) is the plain Gaussian formula,
+off by the Edgeworth constant (already \(e^{1/4}\)-type for one family).
+arXiv:2601.18994 (edge-coloured regular multigraphs, half-edge labelled) and
+arXiv:2608.07239 (bounded/slowly growing degrees) do not cover dense simple
+graphs.
+
+Why the crude bound is not enough: in \(\Omega_K^c\), up to \(O(n/M)\) vertices
+can be off-centre, and the crude constant loses a factor \((C''/C)^{1/2}\)
+per vertex. The proof needs the sharp local bound
+\(|\chi(u)|\le\exp(-\frac12u^{\mathsf T}\Sigma u+C|u|^3)\) together with a shifted-box
+comparison (Isaev–McKay Section 4.3 style), where vertices outside the
+\(n^{-1/2+\varepsilon}\) box pay \(e^{-cn^{2\varepsilon}}\) each.
+
 ## 6. Obstacles (unproved)
 
 1. Outside region. The modulus \(|\prod\chi(u_{jk})|\) away from the 8 points
