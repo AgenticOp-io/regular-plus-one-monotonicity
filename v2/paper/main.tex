@@ -128,6 +128,11 @@ McKay's subgraph formula bounds the moments of the matching count uniformly
 up to order \(n^{\varepsilon_0}\) (Theorem~\ref{thm:uniform-moments}), which
 extends peel flatness to \(L\le\varepsilon_1\log n\) at rate \(O(L/n)\)
 (Theorem~\ref{thm:log-peel-flat}).
+A direct second moment, with the ordered-decomposition law written as
+independent matchings conditioned on disjointness, gives relative variance
+\(O(L^3/n+n^{-b})\) for \(L\le n^{\varepsilon_2}\)
+(Theorem~\ref{thm:peel-second-moment}), hence peel flatness \(O(L/n)\) at that
+polynomial length (Corollary~\ref{cor:poly-peel-flat}).
 The balanced range past \(\sqrt{n}\) and the other three named statements
 stay open.
 
@@ -1840,16 +1845,16 @@ x^{T}\exp\Bigl(-\binom r2\kappa+C_1\frac{r^3}{n}+C_1\frac{r+1}{n^{b}}\Bigr).
 \]
 For large \(n\), \(1\le x\le x_0=4/c\).
 
-Write \(U_b=M_1\cup\cdots\cup M_b\) and \(T_b=bn/2-|U_b|\).
-Then \(T_b=T_{b-1}+|M_b\cap U_{b-1}|\), and \(|U_{b-1}|\le(b-1)n/2\).
-Lemma~\ref{lem:overlap-one}, applied conditionally on \(M_1,\ldots,M_{b-1}\),
+Write \(U_i=M_1\cup\cdots\cup M_i\) and \(T_i=in/2-|U_i|\).
+Then \(T_i=T_{i-1}+|M_i\cap U_{i-1}|\), and \(|U_{i-1}|\le(i-1)n/2\).
+Lemma~\ref{lem:overlap-one}, applied conditionally on \(M_1,\ldots,M_{i-1}\),
 gives
 \[
-\EE\bigl[x^{T_b}\bigm|M_1,\ldots,M_{b-1}\bigr]
+\EE\bigl[x^{T_i}\bigm|M_1,\ldots,M_{i-1}\bigr]
 \le
-x^{T_{b-1}}\exp\Bigl(\frac{(x-1)(b-1)n}{2(n-1)}+C_2\frac{b^2}{n}\Bigr).
+x^{T_{i-1}}\exp\Bigl(\frac{(x-1)(i-1)n}{2(n-1)}+C_2\frac{i^2}{n}\Bigr).
 \]
-Iterating from \(b=r\) down to \(b=2\) gives
+Iterating from \(i=r\) down to \(i=2\) gives
 \[
 \EE[x^T]\le\exp\Bigl(\binom r2\frac{(x-1)n}{2(n-1)}+C_2\frac{r^3}{n}\Bigr).
 \]
@@ -1904,7 +1909,189 @@ to \(L\) of order \(\log n\).
 The factor \(4\) in the moment order per peel step is what limits the length:
 each step spends one Cauchy--Schwarz on the matching count and one on the
 pair-measure density.
-The lengths in Conjecture~\ref{conj:factor-moment} are powers of \(n\), so
+A direct second moment of \(P_L\) avoids the induction and reaches a power
+of \(n\).
+It uses the sparse formula~\cite[Theorem~1]{McK11}, which restates~\cite{McK85}.
+For degrees \(d_j\) with \(d_{\max}\ge1\), \(E=\frac12\sum_jd_j\),
+\(\Delta=d_{\max}(d_{\max}+x_{\max})=o(E)\), and a graph \(X\) with maximum
+degree \(x_{\max}\), the number of graphs with degrees \(d_j\) and no edge in
+\(X\) is
+\[
+\frac{(2E)!}{E!\,2^E\prod_jd_j!}
+\exp\Bigl(-\sum_j\frac{d_j(d_j-1)}{4E}-\sum_j\frac{d_j^2(d_j-1)^2}{16E^2}
+-\sum_{jk\in X}\frac{d_jd_k}{2E}+O\Bigl(\frac{\Delta^2}{E}\Bigr)\Bigr).
+\]
+At \(d_j\equiv1\) on \(n'\) vertices the first two sums vanish, so a uniform
+perfect matching avoids \(X\) with probability
+\(\exp(-|X|/n'+O(x_{\max}^2/n'))\).
+
+\begin{lemma}[One matching with a forbidden graph]
+\label{lem:avoid-overlap}
+Fix \(x_0>1\). Let \(n\) be large and even, let \(1\le L\le n^{1/5}\), let
+\(U_1\) be a graph on \(n\) vertices with maximum degree at most \(L\), and let
+\(U_2\) be a graph with \(|U_2|\le Ln/2\).
+Let \(M\) be a uniform perfect matching and \(1\le x\le x_0\). Then
+\[
+\PP(M\cap U_1=\emptyset)=\exp\Bigl(-\frac{|U_1|}{n}+O\Bigl(\frac{L^2}{n}\Bigr)\Bigr),
+\]
+\[
+\EE\bigl[x^{|M\cap U_2|}1_{M\cap U_1=\emptyset}\bigr]
+\le
+\exp\Bigl(-\frac{|U_1|}{n}+\frac{(x-1)|U_2|}{n-1}+C_{x_0}\frac{L^2}{n}\Bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+The first display is the case \(n'=n\), \(X=U_1\) of the formula above.
+For the second, expand over \(k\)-edge matchings \(S\subseteq U_2\):
+\[
+\EE\bigl[x^{|M\cap U_2|}1_{M\cap U_1=\emptyset}\bigr]
+=
+\sum_{S}(x-1)^{|S|}\,\PP(S\subseteq M,\ M\cap U_1=\emptyset).
+\]
+Given \(S\subseteq M\), the rest of \(M\) is a uniform perfect matching of the
+remaining \(n'=n-2k\) vertices.
+For \(k\le n/4\), the formula gives probability at most
+\(\exp(-|U_1'|/n'+CL^2/n)\), where \(U_1'\) is \(U_1\) restricted to those
+vertices.
+Removing \(2k\) vertices deletes at most \(2kL\) edges of \(U_1\), and
+\(n'\le n\), so this is at most
+\(\exp(-|U_1|/n+2kL/n+CL^2/n)\).
+The sum over \(k\le n/4\) is therefore at most
+\(e^{-|U_1|/n+CL^2/n}\sum_k\bigl((x-1)e^{2L/n}\bigr)^km_k(U_2)p_k\).
+The proof of Lemma~\ref{lem:overlap-one}, with \(x-1\) replaced by
+\((x-1)e^{2L/n}\), bounds that sum by
+\(\exp\bigl((x-1)|U_2|/(n-1)+CL^2/n\bigr)\).
+For \(k>n/4\), drop the avoidance event.
+The same proof bounds those terms by \(e^{-\sqrt n}\), which is
+\(e^{-\sqrt n/2}\) times the lower bound \(e^{-L/2}\le e^{-|U_1|/n}\), so it is
+absorbed.
+\end{proof}
+
+Write \(\nu_L\) for the law of \(M_1\cup\cdots\cup M_L\), where
+\((M_1,\ldots,M_L)\) is uniform among ordered \(L\)-tuples of pairwise
+disjoint perfect matchings of \(K_n\).
+Every such tuple has the same probability under independent uniform
+matchings, so \(\nu_L\) is the law of the union of \(L\) independent uniform
+perfect matchings conditioned on the event \(\mathcal D\) that they are
+pairwise disjoint.
+
+\begin{lemma}[Overlap of two matching decompositions]
+\label{lem:decomp-overlap}
+Fix \(x_0>1\). Let \(n\) be large and even, and let \(1\le L\le n^{1/5}/2\).
+Let \(F_1,F_2\) be independent with law \(\nu_L\), and let \(1\le x\le x_0\).
+Then
+\[
+\PP(\mathcal D)\ge\exp\Bigl(-\frac12\binom L2-C\frac{L^3}{n}\Bigr)
+\quad\text{and}\quad
+\EE\bigl[x^{|F_1\cap F_2|}\bigr]
+\le
+\exp\Bigl(\frac{L^2(x-1)n}{2(n-1)}+C_{x_0}\frac{L^3}{n}\Bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+Expose independent uniform perfect matchings \(M_1,\ldots,M_L\) one at a time.
+On the event that the first \(i-1\) are disjoint, their union has
+\((i-1)n/2\) edges and maximum degree \(i-1\le L\).
+The first part of Lemma~\ref{lem:avoid-overlap} gives conditional
+probability at least \(\exp(-(i-1)/2-CL^2/n)\) that \(M_i\) avoids it.
+Multiplying over \(i\le L\) gives the first claim, since
+\(\sum_{i\le L}(i-1)/2=\binom L2/2\), as checked.
+
+For the second claim, take \(2L\) independent uniform perfect matchings
+\(M_1,\ldots,M_L,M_1',\ldots,M_L'\), and let \(\mathcal D_1,\mathcal D_2\) be
+the disjointness events of the two groups.
+Then \(\EE[x^{|F_1\cap F_2|}]=\EE[x^{K}1_{\mathcal D_1}1_{\mathcal D_2}]/\PP(\mathcal D)^2\),
+where \(K=\sum_i|M_i'\cap F_1|\) and \(F_1=\bigcup_iM_i\).
+Expose the first group, then the second.
+\begin{itemize}
+\item In the first group, \(M_i\) avoids the previous union with conditional
+probability at most \(\exp(-(i-1)/2+CL^2/n)\).
+\item In the second group, apply the second part of
+Lemma~\ref{lem:avoid-overlap} to \(M_i'\) with \(U_1=M_1'\cup\cdots\cup M_{i-1}'\)
+and \(U_2=F_1\). Here \(|U_1|=(i-1)n/2\) and \(|U_2|=Ln/2\) on the event
+exposed so far. The conditional factor is at most
+\(\exp\bigl(-(i-1)/2+(x-1)Ln/(2(n-1))+CL^2/n\bigr)\).
+\end{itemize}
+Multiplying the \(2L\) factors and dividing by the lower bound for
+\(\PP(\mathcal D)^2\), the terms \(\pm\binom L2\) cancel. What remains is
+\(L^2(x-1)n/(2(n-1))\) plus \(O(L^3/n)\).
+\end{proof}
+
+\begin{theorem}[Second moment of the peel count at polynomial length]
+\label{thm:peel-second-moment}
+Fix \(c\in(0,1/2]\), and let \(b\) and \(\varepsilon\) be as in the proof of
+Theorem~\ref{thm:uniform-moments}.
+There is \(\varepsilon_2=\varepsilon_2(c)>0\) such that the following holds.
+Let \(n\) be even, let \(\min(e,n-e)\ge cn\), and let \(1\le L\le n^{\varepsilon_2}\).
+Let \(P_L\) be the number of ordered \(L\)-tuples of pairwise disjoint perfect
+matchings of the uniform \(e\)-regular graph. Then
+\[
+\frac{\Var P_L}{(\EE P_L)^2}=O_c\Bigl(\frac{L^3}{n}+n^{-b}\Bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Take \(\varepsilon_2=\min(\varepsilon,1/6)\), and write \(\lambda=e/(n-1)\).
+Let \(N_L\) be the number of ordered \(L\)-tuples of disjoint perfect
+matchings of \(K_n\).
+Then \(\EE P_L=N_L\EE_{\nu_L}[\PP(F\subseteq G)]\) and
+\(\EE[P_L^2]=N_L^2\EE_{\nu_L\otimes\nu_L}[\PP(F_1\cup F_2\subseteq G)]\).
+Every \(F\) in the support of \(\nu_L\) is \(L\)-regular, and
+\eqref{eq:mckay-hit} gives the same value
+\(\lambda^{Ln/2}\exp(F_L+O(n^{-b}))\) for all of them, where \(F_L\) is the
+exponent at an \(L\)-regular graph. Hence
+\[
+\frac{\EE[P_L^2]}{(\EE P_L)^2}
+=
+e^{O(n^{-b})}\,
+\EE_{\nu_L\otimes\nu_L}\Bigl[\frac{\PP(F_1\cup F_2\subseteq G)}{\lambda^{Ln}e^{2F_L}}\Bigr].
+\]
+Write \(T=|F_1\cap F_2|\), so that \(U=F_1\cup F_2\) has \(Ln-T\) edges and
+degrees \(2L-t_j\), with \(\sum_jt_j=2T\).
+The computation in the proof of Theorem~\ref{thm:uniform-moments}, with
+\(r=2L\), bounds the exponent of~\eqref{eq:mckay-hit} at \(U\) by its value
+at a \(2L\)-regular graph plus \(C_1LT/n\).
+At a \(2L\)-regular graph, subtracting \(2F_L\) leaves
+\(-(1-\lambda)L^2/(2\lambda)+O(L^3/n)=-L^2(\lambda^{-1}-1)/2+O(L^3/n)\),
+since \(2L(2L-2)-2L(L-2)=2L^2\); both reductions were checked.
+With \(x=\lambda^{-1}e^{C_1L/n}\le4/c\),
+\[
+\frac{\EE[P_L^2]}{(\EE P_L)^2}
+\le
+\exp\Bigl(-\frac{L^2(\lambda^{-1}-1)}2+C\frac{L^3}n+Cn^{-b}\Bigr)\,
+\EE_{\nu_L\otimes\nu_L}\bigl[x^{T}\bigr].
+\]
+Lemma~\ref{lem:decomp-overlap} bounds the expectation by
+\(\exp(L^2(x-1)n/(2(n-1))+CL^3/n)\), and
+\((x-1)n/(2(n-1))-(\lambda^{-1}-1)/2=O(L/n)\).
+The quadratic terms cancel up to \(O(L^3/n)\), and the bound is
+\(\exp(O(L^3/n+n^{-b}))=1+O(L^3/n+n^{-b})\), because \(L^3/n\le n^{-1/2}\).
+\end{proof}
+
+\begin{corollary}[Peel flatness at polynomial length]
+\label{cor:poly-peel-flat}
+Fix \(c\in(0,1/2]\).
+Under the hypotheses of Theorem~\ref{thm:successive-peel} with
+\(L\le n^{\varepsilon_2}\),
+\[
+\EE\Bigl|\frac{P_L^{(D)}}{\EE P_L^{(D)}}-1\Bigr|=O_c\Bigl(\frac Ln\Bigr).
+\]
+\end{corollary}
+
+\begin{proof}
+For \(1\le j<L\), Theorem~\ref{thm:peel-second-moment} at degree
+\(e_j=n-D+j-1\) applies. Here \(e_j\ge cn\) and \(n-e_j\ge n/2-1\), and
+\(j<n^{\varepsilon_2}\).
+It gives \(B=O_c(1)\) in Theorem~\ref{thm:peel-bounded-to-flat}.
+\end{proof}
+
+Chebyshev and Theorem~\ref{thm:peel-second-moment} give the weaker
+\(P_L=(1+o(1))\EE P_L\) in probability for \(L\le n^{\varepsilon_2}\) directly.
+The exponent \(\varepsilon_2\) comes from McKay's \(\varepsilon(a,b)\), which is not
+explicit; the error \(L^3/n\) would allow every \(L=o(n^{1/3})\).
+The lengths in Conjecture~\ref{conj:factor-moment} exceed \(n^{1/2}\), so
 the conjecture remains open.
 For \(L=o(n^{1/3})\) the factor count \(Z_L\) is already controlled by
 Theorem~factor-third of~\cite{PlusOneV1}, so the new content is the ordered

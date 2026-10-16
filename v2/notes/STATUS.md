@@ -77,6 +77,14 @@ Bar is 2.0. v1.0 is sent.
   matching against a graph of \(\le rn/2\) edges). Hence peel flatness
   \(O(L/n)\) for \(L\le\varepsilon_1\log n\) (Theorem log-peel-flat).
   Limit: moment order grows by 4 per peel step.
+- Direct peel second moment (Theorem peel-second-moment):
+  \(\Var P_L/(\EE P_L)^2=O(L^3/n+n^{-b})\) for \(L\le n^{\varepsilon_2}\).
+  The ordered-decomposition law is \(L\) independent matchings conditioned
+  on disjointness; McKay 2011 Theorem 1 (sparse avoidance, two-sided) and
+  Lemma avoid-overlap expose one matching at a time (Lemma decomp-overlap).
+  Hence peel flatness \(O(L/n)\) for \(L\le n^{\varepsilon_2}\) (Corollary
+  poly-peel-flat). \(\varepsilon_2\) is McKay's non-explicit \(\varepsilon(a,b)\)
+  capped at \(1/6\); the error itself would allow \(L=o(n^{1/3})\).
 - Lower tail of \(Y\) (target for \(\EE[\EE Y/Y]\)): blocked. Polynomial
   moments give only polynomially small \(\PP(Y<\EE Y/2)\), and on that event
   \(1/Y\) is controlled only by \(Y\ge1\), against an exponentially large
