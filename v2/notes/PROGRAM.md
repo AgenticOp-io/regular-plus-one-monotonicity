@@ -96,9 +96,12 @@ Still missing:
    \(O(1/n)\), so \(L=3\) is unconditional (Corollary three-peel-flat).
    Lemma fixed-moments and Theorem peel-moments make every fixed \(L\)
    unconditional (Corollary fixed-peel-flat, \(O_L(1/n)\)).
-   Next: a version of v1 pair-saddle uniform in \(r\le n^{\varepsilon}\)
-   (would reach \(L\asymp\varepsilon\log n\)); a passage from \(P_L\) to
-   \(Z_L\) at growing \(L\). The lower tail of \(Y\) is blocked (see STATUS).
+   Theorem uniform-moments (McKay 2011, Corollary 5) and Theorem
+   log-peel-flat reach \(L\le\varepsilon_1\log n\).
+   Next: a peel induction that loses less than a factor 4 in moment order
+   per step (needed for polynomial \(L\)); an edge-probability theorem for
+   the uniform ordered-matching-decomposition law (needed for \(P_L\to Z_L\)
+   via the v1 factor-third route). The lower tail of \(Y\) is blocked (see STATUS).
 
 ## Workstream B — peel, residual, Chernoff Q
 

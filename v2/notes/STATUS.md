@@ -71,6 +71,12 @@ Bar is 2.0. v1.0 is sent.
   (Corollary fixed-peel-flat). Not uniform in \(L\): the moment order needed
   is \(2\cdot4^{L-2}\). For fixed \(L\), \(Z_L\) is already v1 factor-third, so
   this is new only for the ordered peel.
+- Uniform moments (Theorem uniform-moments): \(\EE[Y^r]/(\EE Y)^r\le
+  \exp(C(r^3/n+rn^{-b}))\) for \(r\le n^{\varepsilon_0}\), from McKay 2011
+  (arXiv:1002.3018, Corollary 5 of Theorem 3) and Lemma overlap-one (one
+  matching against a graph of \(\le rn/2\) edges). Hence peel flatness
+  \(O(L/n)\) for \(L\le\varepsilon_1\log n\) (Theorem log-peel-flat).
+  Limit: moment order grows by 4 per peel step.
 - Lower tail of \(Y\) (target for \(\EE[\EE Y/Y]\)): blocked. Polynomial
   moments give only polynomially small \(\PP(Y<\EE Y/2)\), and on that event
   \(1/Y\) is controlled only by \(Y\ge1\), against an exponentially large
