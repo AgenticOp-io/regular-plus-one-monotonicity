@@ -148,6 +148,9 @@ the formal local expansion cancels, including the cumulant constant
 With Theorem~\ref{thm:long-step} this gives the long-step coupling
 \(\PP(G_d\subseteq G_{d+L})=1-o(1)\) for every \(L\ge1\) when \(d\) and
 \(n-d-L\) are linear (Corollary~\ref{cor:long-step-all}).
+A truncated cumulant expansion extends the factor moment to
+\(L\ge n^{1-1/1000}\) with relative variance \(O(n^{-1/5})\)
+(Theorem~\ref{thm:factor-moment-sparse}).
 The balanced range past \(n^{1/3}\) and the other three named statements
 stay open.
 
@@ -231,8 +234,9 @@ On every linear host, Theorem~\ref{thm:linear-below-sqrt} gives the moment for
 every \(L\to\infty\) with \(L^2=o(n)\), that is every length \(o(\sqrt{n})\).
 It stops short of \(\sqrt{n}\). Degree \(n/2\) is the special case
 Theorem~\ref{thm:half-below-sqrt}.
-At the top of the range, Corollary~\ref{cor:factor-moment-diagonal} gives the
-moment for \(L\ge c_n(n-1)\), for some non-explicit \(c_n\to0\).
+At the top of the range, Theorem~\ref{thm:factor-moment-sparse} gives the
+moment, with relative variance \(O(n^{-1/5})\), for \(L\ge n^{1-1/1000}\).
+The conjecture is open for \(n^{1/2}\ll L<n^{1-1/1000}\).
 \end{conjecture}
 
 \begin{conjecture}[Factor moment at the repetition scale]
@@ -2662,8 +2666,8 @@ Under the hypotheses of Conjecture~\ref{conj:factor-moment},
 \(c_n(n-1)\) for large \(n\).
 \end{proof}
 
-The sequence \(c_n\) is not explicit, because the \(o(1)\) in
-Theorem~\ref{thm:mllt} is not quantified.
+Theorem~\ref{thm:factor-moment-sparse} below makes this explicit with
+\(c_n=n^{-1/1000}\).
 
 \begin{lemma}[Dominant points and the far region]
 \label{lem:mllt-far}
@@ -2748,6 +2752,11 @@ homogeneous polynomial of degree \(\ell\) in \(u_P\), with coefficients bounded
 by \(B\). For fixed \(r\ge2\) and \(\ell\),
 \(\kappa_r\bigl(\sum_Pf_P(u_P)\bigr)=O(n^{r+1-r\ell/2})\), with the constant depending
 on \(r,\ell,m,B\) and \(\|\Sigma_m^{-1}\|\).
+More generally, if \(f^{(s)}_P\) is homogeneous of degree \(\ell_s\) for
+\(s\le r\), with coefficients bounded by \(B\), and \(\ell=\ell_1+\cdots+\ell_r\), then
+the joint cumulant of \(\sum_Pf^{(1)}_P(u_P),\ldots,\sum_Pf^{(r)}_P(u_P)\) is at most
+\(C\,B^r\|\Sigma_m^{-1}\|^{\ell/2}n^{r+1-\ell/2}\) in absolute value, with
+\(C=C(r,\ell_1,\ldots,\ell_r,m)\).
 \end{lemma}
 
 \begin{proof}
@@ -2768,6 +2777,9 @@ covariance on that edge is \(O(n^{-2})\) instead of \(O(n^{-1})\).
 Every covariance is \(O(n^{-1})\), so the total is
 \(O(n^2\cdot n^{r-1}\cdot n^{-r\ell/2})\).
 The number of pairings is bounded.
+For mixed degrees the same count applies with \(\ell/2\) covariances, each
+at most \(\frac2{n-1}\|\Sigma_m^{-1}\|\) in absolute value, and at most
+\(\frac2{(n-1)(n-2)}\|\Sigma_m^{-1}\|\) for disjoint pairs.
 \end{proof}
 
 \begin{theorem}[Multi-colour local limit at linear densities]
@@ -2884,6 +2896,181 @@ Adding Steps 2--5 and Lemma~\ref{lem:mllt-far}(c) gives
 \(\int F=2^mGe^{c_m}(1+o(1))=I_m(1+o(1))\).
 \end{proof}
 
+The method of moments in Step~5 gives only an absolute error in
+\(\EE e^{iX}\), which is enough while \(c_m\) is bounded. When \(a\to0\), the
+variance of \(X\) is of order \(1/a\), and a relative error is needed. The
+truncated cumulant expansion~\cite[Theorem~2.6]{IM25} supplies it.
+We use it in the following form, for a random vector
+\(\boldsymbol X=(X_1,\ldots,X_N)\) with independent components in a product
+\(\boldsymbol S=S_1\times\cdots\times S_N\) and bounded measurable
+\(g:\boldsymbol S\to\mathbb C\), with \(\widehat\Delta_t(g)\) as defined there.
+If \(0<\alpha\le\frac1{100}\) and
+\(\sum_{t=u}^N\binom{t-1}{u-1}e^{3\alpha t/2}2^u\widehat\Delta_t(g)\le\alpha\) for
+\(u\in\{1,2\}\), then
+\(\EE e^{g(\boldsymbol X)}=(1+K)^N\exp\bigl(\kappa_1(g(\boldsymbol X))+\frac12\kappa_2(g(\boldsymbol X))\bigr)\)
+with \(|K|\le e^{(100\alpha)^3}-1\).
+By~\cite[Lemma~2.7]{IM25}, if each \(S_j\) is an interval of length at most
+\(\zeta\), \(T\) is real invertible, and \(g(\boldsymbol x)=\Phi(T\boldsymbol x)\)
+with \(\Phi\) smooth, then
+\[
+\widehat\Delta_t(g)\le\frac{\|T\|_\infty^{t-1}\|T\|_1\zeta^t}{(t-1)!}
+\max_{v_1}\sum_{v_2,\ldots,v_t}\sup_{T(\boldsymbol S)}
+\Bigl|\frac{\partial^t\Phi}{\partial\theta_{v_1}\cdots\partial\theta_{v_t}}\Bigr|.
+\]
+
+\begin{theorem}[Multi-colour local limit at polynomially small factor density]
+\label{thm:mllt-sparse}
+Fix \(c\in(0,1/4]\) and let \(\delta_0=1/1000\).
+Uniformly for \(n\) even, \(m\in\{1,2,3\}\), and \(a\ge n^{-\delta_0}\),
+\(\lambda-a\ge c\), \(1-\lambda\ge c\), with \(Dn\) and \(Ln\) even,
+\[
+N_m=\frac{2^m\exp\bigl(\binom n2H(\pi_m)\bigr)}
+{(2\pi)^{mn/2}\det(\Sigma_m)^{n/2}\det(Q_n)^{m/2}}
+\exp\bigl(c_m+O(n^{-1/5})\bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Constants \(C\) depend only on \(c\) and \(m\), and change from line to line.
+\emph{Parameters.} From Lemma~\ref{lem:two-factor-identities}, the state
+probabilities are \(a^2/\lambda\), \(a(\lambda-a)/\lambda\), \((\lambda-a)^2/\lambda\) and
+\(1-\lambda\) for \(m=3\), and \(a,\lambda-a,1-\lambda\) for \(m=2\). Hence
+\(p_0\ge c^2a^2\).
+As in the proof of Theorem~\ref{thm:mllt}, \(\Sigma\ge p_0^2I\), so
+\(\|\Sigma^{-1}\|\le p_0^{-2}\le Ca^{-4}\).
+The cumulant tensors of \(S\) have entries bounded by an absolute constant, so
+\(|K_4|,|T_3|,|T_1|,|c_m|\le Ca^{-12}\).
+Since \(a\ge n^{-\delta_0}\), every power \(a^{-k}\) with \(k\le40\) is at most
+\(n^{k/1000}\).
+
+\emph{Steps 1--4 with explicit constants.}
+Lemma~\ref{lem:mllt-far} and Steps 1--4 of the proof of
+Theorem~\ref{thm:mllt} hold with the following changes; Step~1 and
+Lemma~\ref{lem:mllt-far}(a),(b) do not involve \(c\) at all.
+In Lemma~\ref{lem:mllt-far}(c), \(e^{c_m}\ge e^{-Cn^{0.012}}\), which is
+still \(e^{o(n)}\).
+In Step~2, the factor \(1+C/n\) becomes \(1+C_a/n\) with
+\(C_a\le Cp_0^{-4-m}\le Ca^{-14}\): the correction term is at most
+\(\frac{m^2}{3n}\int|t|^4e^{-p_0^2|t|^2/4}dt\) divided by
+\((2\pi)^{m/2}\det\Sigma^{-1/2}\ge(2\pi)^{m/2}\).
+Replace \(\rho\) by \(\rho_s=n^{-1/2+\varepsilon}/(2m)\) with
+\(\varepsilon=1/40\), and let \(B_s\) be the box \(|\theta^{(i)}_j|\le\rho_s\).
+A vertex with \(|x|_\infty>\rho_s\) contributes at most
+\(e^{-p_0^2(n-2)\rho_s^2/8}(4/p_0^2)^{m/2}G_1(n)\), using
+\(\det\Sigma\le1\). Since \((n-2)\rho_s^2\ge n^{2\varepsilon}/(8m^2)\),
+\[
+\int_{R\setminus B_s}|F|\le Cn\,p_0^{-m}e^{-p_0^2n^{2\varepsilon}/(64m^2)}e^{C_a}G_1(n)^n
+\le e^{-n^{0.04}}G,
+\]
+because \(p_0^2n^{2\varepsilon}\ge c^4n^{0.046}\) while \(C_a\le Cn^{0.014}\).
+In Steps 3 and 4, \(K\le Cp_0^{-2}\), \(r\ge p_0/C\), \(E\le Cp_0^{-4}\log n\le n^{1/2}\),
+and \(c_r\ge p_0^4/C\ge n^{-0.009}\), so the far-vertex sum is at most
+\(\sum_{y\ge1}(Ca^{-C}n^{m/2+1}e^{-c_r n/2})^ye^{C_a}G_1(n)^n\le e^{-n^{0.9}}G\).
+All of these are \(o(e^{-n^{0.02}}Ge^{c_m})\), since \(|c_m|\le Cn^{0.012}\).
+
+\emph{Step 5: the parallelepiped.}
+Let \(A=\Sigma\otimes Q_n\) and \(T=\Sigma^{-1/2}\otimes Q_n^{-1/2}\), so that
+\(T^{\mathsf T}AT=I\). Here
+\(Q_n^{\pm1/2}=(n-2)^{\pm1/2}\bigl(I+\beta_\pm J/n\bigr)\) with
+\(|\beta_\pm|\le1\), so
+\(\|Q_n^{-1/2}\|_{\infty}=\|Q_n^{-1/2}\|_1\le2(n-2)^{-1/2}\) and
+\(\|Q_n^{1/2}\|_\infty\le2n^{1/2}\). Also
+\(\|\Sigma^{-1/2}\|_\infty\le\sqrt m/p_0\) and \(\|\Sigma^{1/2}\|_\infty\le m\).
+Let \(\boldsymbol S=[-n^\varepsilon,n^\varepsilon]^{mn}\).
+Then \(B_s\subseteq T(\boldsymbol S)\), because \(\|T^{-1}\|_\infty\rho_s\le n^\varepsilon\).
+Every point of \(T(\boldsymbol S)\) has \(|\theta^{(i)}_j|\le\tau/2\), where
+\[
+\tau=2n^\varepsilon\max(\|T\|_\infty,\|T\|_1)\le Cp_0^{-1}n^{-1/2+\varepsilon}\le Cn^{-1/2+\varepsilon+0.002}.
+\]
+In particular \(T(\boldsymbol S)\subseteq R\) for large \(n\).
+
+For complex \(u\) with \(|u_i|\le\rho_1=1/(4m)\),
+\(|\chi(u)-1|\le m\rho_1e^{m\rho_1}<\frac12\). So
+\(\varphi(u)=\log\chi(u)-i\langle u,\mu\rangle+\frac12u^{\mathsf T}\Sigma u\) is
+analytic there, with \(|\varphi|\le3\), and it vanishes to third order at \(0\).
+By Cauchy's estimates, for real \(|u|_\infty\le1/(8m)\) and \(|\alpha|=t\),
+\(|\partial^\alpha\varphi(u)|\le3\,t!\,(8m)^t\), and
+\(|\partial\varphi(u)|\le C|u|^2\), \(|\partial^2\varphi(u)|\le C|u|\).
+On \(T(\boldsymbol S)\) the phases cancel as in Step~5 of
+Theorem~\ref{thm:mllt}, and
+\(F=\exp\bigl(-\frac12\boldsymbol\Theta^{\mathsf T}A\boldsymbol\Theta+\Phi(\boldsymbol\Theta)\bigr)\)
+with \(\Phi=\sum_{j<k}\varphi(u_{jk})\).
+
+A \(t\)-th partial derivative of \(\Phi\) is nonzero only if its coordinates lie at
+the two ends of a single pair. Given the first coordinate at vertex \(j\), the
+others lie at \(j\) and at one other vertex \(k\). The derivative is a sum of
+\(n-1\) terms if all coordinates lie at \(j\), and a single term otherwise.
+So the sum in~\cite[Lemma~2.7]{IM25} is at most \(2n(2m)^{t-1}M_t\), where
+\(M_t\) is the supremum of the \(t\)-th derivatives of \(\varphi\) at
+\(|u|_\infty\le\tau\).
+With \(\zeta=2n^\varepsilon\) and \(g(\boldsymbol x)=\Phi(T\boldsymbol x)\), this gives
+\(\widehat\Delta_1(g),\widehat\Delta_2(g)\le Cn\tau^3\) and
+\(\widehat\Delta_t(g)\le Cnt(C\tau)^t\) for \(t\ge3\).
+So the condition of~\cite[Theorem~2.6]{IM25} with \(s=2\) holds with
+\(\alpha=Cn\tau^3\le Cn^{-1/2+3\varepsilon+0.006}\).
+
+Let \(\boldsymbol X\) have independent standard normal components conditioned on
+\([-n^\varepsilon,n^\varepsilon]\), and let \(\boldsymbol\Xi\) be standard normal. Then
+\[
+\int_{T(\boldsymbol S)}F=G\,\PP(\boldsymbol\Xi\in\boldsymbol S)\,\EE e^{g(\boldsymbol X)}
+=G\,(1+O(e^{-n^{2\varepsilon}/3}))\,(1+K)^{mn}e^{\kappa_1+\kappa_2/2},
+\]
+and \(|(1+K)^{mn}-1|\le Cn\alpha^3\le Cn^{-1/2+9\varepsilon+0.018}\le n^{-1/5}\).
+
+\emph{The two cumulants.}
+Write \(\Phi=\Phi_3+\Phi_4+\Phi_5+\Phi_{\ge6}\), where
+\(\Phi_\ell=\sum_{j<k}\frac{i^\ell}{\ell!}\kappa^{(\ell)}(u_{jk})\) and
+\(|\Phi_{\ge6}|\le Cn^2\tau^6\le n^{-4/5}\) on \(T(\boldsymbol S)\).
+So \(\Phi_3=-iX\) and \(\Phi_4=W\).
+The law of \(\boldsymbol X\) is symmetric, so odd polynomials have mean zero.
+Replacing \(\boldsymbol X\) by \(\boldsymbol\Xi\) in the moments of order at most
+two of \(\Phi_3,\Phi_4,\Phi_5\) changes them by \(e^{-n^{2\varepsilon}/5}\), by
+Cauchy--Schwarz against \(\PP(\boldsymbol\Xi\notin\boldsymbol S)\).
+Under \(\boldsymbol\Xi\), \(T\boldsymbol\Xi\) has covariance
+\(\Sigma^{-1}\otimes Q_n^{-1}\), as in Lemma~\ref{lem:edge-cumulants}.
+\begin{itemize}
+\item \(\EE W=\binom n2\frac3{24}\bigl(\frac2{n-1}\bigr)^2K_4=\frac n{n-1}\cdot\frac{K_4}4\).
+\item \(\EE X^2=\frac1{36}\bigl(6S_3T_3+18\frac n{n-1}T_1\bigr)\), by Wick's
+formula with the covariances \(\gamma\) of Lemma~\ref{lem:edge-cumulants}.
+Here \(\sum_{P,P'}\gamma(P,P')=\frac{n(n-1)}2\) gives the \(T_1\) coefficient,
+and \(S_3=\sum_{P,P'}\gamma(P,P')^3=1+O(1/n)\).
+\item \(\operatorname{Var}W\), \(\EE\Phi_5^2\) and \(|\EE\Phi_3\Phi_5|\) are at
+most \(Ca^{-20}/n\), by Lemma~\ref{lem:edge-cumulants} with
+\(\|\Sigma^{-1}\|\le Ca^{-4}\).
+\end{itemize}
+Odd--even cross terms vanish. The term \(\Phi_{\ge6}\) changes \(\kappa_1\) by at
+most \(n^{-4/5}\) and \(\kappa_2\) by at most \(n^{-4/5}(1+(\EE|h|^2)^{1/2})\), where
+\(h=\Phi_3+\Phi_4+\Phi_5-\EE\Phi_4\) and \(\EE|h|^2\le Ca^{-12}\).
+Hence
+\[
+\kappa_1+\tfrac12\kappa_2=\tfrac14K_4-\tfrac1{12}T_3-\tfrac14T_1+O(n^{-1/5})
+=c_m+O(n^{-1/5}).
+\]
+So \(\int_{T(\boldsymbol S)}F=Ge^{c_m+O(n^{-1/5})}\), and the same holds at
+each of the \(2^m\) shifted copies.
+Moreover \(|\int_{R\setminus T(\boldsymbol S)}F|\le\int_{R\setminus B_s}|F|\).
+Adding the pieces gives \(\int F=2^mGe^{c_m+O(n^{-1/5})}\).
+\end{proof}
+
+\begin{theorem}[Factor second moment down to \(n^{1-\delta_0}\)]
+\label{thm:factor-moment-sparse}
+Fix \(c\in(0,1/4]\), let \(n\) be even, and let \(D\) and \(L\) satisfy
+\(L\ge n^{-\delta_0}(n-1)\), \(D-L\ge c(n-1)\) and \(n-1-D\ge c(n-1)\), where
+\(\delta_0=1/1000\). Then \(\Var Z_L/(\EE Z_L)^2=O(n^{-1/5})\).
+In particular, Conjecture~\ref{conj:factor-moment} holds for
+\(L\ge n^{1-\delta_0}\).
+\end{theorem}
+
+\begin{proof}
+Repeat the proof of Theorem~\ref{thm:factor-moment-conditional}, using
+Theorem~\ref{thm:mllt-sparse} in place of Hypothesis~\ref{hyp:mllt}.
+The parity, entropy, covariance and Laplacian terms cancel exactly, and
+\(c_3+c_1-2c_2=0\) by Lemma~\ref{lem:cumulant-constant}. So
+\(\EE[Z_L^2]/(\EE Z_L)^2=e^{O(n^{-1/5})}\).
+Under the hypotheses of Conjecture~\ref{conj:factor-moment}, \(D-L\) and
+\(n-1-D\) are at least a constant times \(n\).
+\end{proof}
+
 \begin{remark}[Scope]
 \label{rem:mllt-status}
 Theorem~\ref{thm:mllt} is the \(m\)-family analogue
@@ -2892,13 +3079,16 @@ degrees. The equal degrees remove the \(\boldsymbol\delta\) terms, and the
 host \(K_n\) gives the product bound of Step 2.
 The general Gaussian approximation for 0-1 points in polytopes omits the
 constant \(e^{c_m}\), so it does not suffice.
-Theorem~\ref{thm:factor-moment-conditional} reaches
-Conjecture~\ref{conj:factor-moment} only for \(L\ge c_n(n-1)\) with a
-non-explicit \(c_n\to0\) (Corollary~\ref{cor:factor-moment-diagonal}).
-The full conjecture requires
-Theorem~\ref{thm:mllt} uniformly down to \(a\ge n^{-1/2+\varepsilon}\), where
-\(p_0\to0\), the constants above degenerate, and higher cumulants enter at
-relative order \(n/L^2\). Conjecture~\ref{conj:factor-moment} remains open.
+Theorem~\ref{thm:mllt-sparse} extends Theorem~\ref{thm:mllt} to
+\(a\ge n^{-1/1000}\), so Theorem~\ref{thm:factor-moment-sparse} covers
+Conjecture~\ref{conj:factor-moment} for \(L\ge n^{1-1/1000}\).
+The exponent comes from the crude bounds \(p_0\ge c^2a^2\) and
+\(\Sigma\ge p_0^2I\), which lose powers of \(a\); the true scale of the factor
+coordinates is \((na)^{-1/2}\).
+The full conjecture requires the expansion down to \(a\ge n^{-1/2+\varepsilon}\),
+where the truncation at \(s=2\) fails and higher cumulants enter at relative
+order \(n/L^2\). Conjecture~\ref{conj:factor-moment} remains open between
+\(\sqrt n\) and \(n^{1-1/1000}\).
 \end{remark}
 Conjecture~\ref{conj:factor-moment} and the analogous statement for \(P_L\)
 past \(n^{1/3}\) stay open.
