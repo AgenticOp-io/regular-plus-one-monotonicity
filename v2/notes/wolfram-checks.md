@@ -1976,3 +1976,10 @@ simplify | sum_(b=1)^L (b - 1)/2 - L × (L - 1)/4
 0
 [Quotient and Remainder]
 0 = (0) × 1 + 0
+
+
+Query: simplify (D - x) - l*(n-1-x) + (1-l)*(x - xb) - (D - l*(n-1) - (1-l)*xb)
+[Input interpretation]
+simplify | (D - x) - l (n - 1 - x) + (1 - l) (x - x b) - (D - l (n - 1) - (1 - l) x b)
+[Result]
+0
