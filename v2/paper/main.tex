@@ -2174,6 +2174,85 @@ order. In McKay's range \(|X|=O(n^{1+2\varepsilon})\), the same term is
 The cubic coefficient therefore requires the full expression
 of~\cite[Theorem~1.2]{IM25}, including the entropy at the density of
 \(K_n-X\) and the determinant.
+
+The second difference of \(-\frac12\log|A|\) over the four hosts
+\(F_1\cup F_2,F_1,F_2,\emptyset\) is \(+L^2/(2n)\) at leading order.
+This is the leftover of Proposition~cubic-not-identified of~\cite{PlusOneV1}.
+If nothing cancelled it, it would make the relative variance diverge for
+\(L\gg n^{1/2}\).
+The following identities show that, at linear \(L\), every contribution of
+exponential order cancels exactly.
+
+\begin{lemma}[Exponential-order identities for two factors]
+\label{lem:two-factor-identities}
+Let \(0<a<\lambda<1\), and write \(h(x)=-x\log x\).
+Consider one pair of vertices whose state is one of: in \(F_1\cap F_2\), in
+\(F_1\) only, in \(F_2\) only, in \(G\) only, or not an edge of \(G\).
+Give these states the probabilities
+\(\pi_{11}=a^2/\lambda\), \(\pi_{10}=\pi_{01}=a-a^2/\lambda\),
+\(\pi_{00}=\lambda-2a+a^2/\lambda\) and \(1-\lambda\).
+These are the maximum-entropy probabilities with edge density \(\lambda\) and
+factor densities \(a\).
+Let \(\Sigma_3\) be the covariance matrix of
+\((1_{F_1},1_{F_2},1_G)\), let \(\Sigma_2\) be that of \((1_F,1_G)\) under
+\((a,\lambda-a,1-\lambda)\), and let \(\Sigma_1=\lambda(1-\lambda)\). Then
+\[
+\Bigl[\sum h(\pi_{4\text{-}\mathrm{state}})\Bigr]+H(\lambda)-2H_2=0,
+\qquad
+\det\Sigma_3\cdot\det\Sigma_1=(\det\Sigma_2)^2,
+\]
+where \(H(\lambda)=h(\lambda)+h(1-\lambda)\),
+\(H_2=h(a)+h(\lambda-a)+h(1-\lambda)\), and the first sum is the entropy of
+the five states.
+Explicitly, \(\det\Sigma_2=a(1-\lambda)(\lambda-a)\) and
+\(\det\Sigma_3=a^2(1-\lambda)(\lambda-a)^2/\lambda\).
+\end{lemma}
+
+\begin{proof}
+Lagrange multipliers for the constraints give
+\(\pi_{11}\pi_{00}=\pi_{10}\pi_{01}\): given an edge of \(G\), membership in
+\(F_1\) and in \(F_2\) are independent with probability \(a/\lambda\) each.
+The chain rule for entropy then gives the first identity, which was also
+checked.
+For \(\Sigma_3\), the variances are \(a(1-a)\) and \(\lambda(1-\lambda)\), the
+covariance of the two factor indicators is \(a^2/\lambda-a^2\), and each
+factor indicator has covariance \(a(1-\lambda)\) with \(1_G\).
+The two determinants were computed by exact rational arithmetic on a grid
+larger than their degrees, which proves them; their product identity was
+checked.
+\end{proof}
+
+\begin{remark}[Heuristic: no term of order \(L^2/n\) survives]
+\label{rem:no-l2n}
+This remark is not a proof.
+Write \(\EE[Z_L^2]\) as a count of 5-colourings of \(E(K_n)\) with prescribed
+colour degrees at each vertex: \(L\) for each factor and \(D\) for \(G\).
+Use a local limit theorem in the \(\beta\)-model form of~\cite{IM25}, which
+is not proved here for several colours.
+The count is then the per-pair entropy times a Gaussian factor whose
+covariance is \(\Sigma_m\otimes Q(K_n)\), with \(m=3\) constraints per vertex.
+The first moment has \(m=2\) and \(|\mathcal T_D|\) has \(m=1\).
+Hence the exponential order of \(\EE[Z_L^2]|\mathcal T_D|/(\EE Z_L)^2|\mathcal T_D|^2\)
+at \(L=\alpha n\) consists of the following pieces.
+\begin{itemize}
+\item \(\binom n2\) times the entropy combination of
+Lemma~\ref{lem:two-factor-identities}.
+\item \(-\frac n2\log(\det\Sigma_3\det\Sigma_1/\det\Sigma_2^2)\).
+\item \(-\frac12(3+1-4)\log\det Q(K_n)\).
+\end{itemize}
+All three vanish.
+A term \(cL^2/n=c\alpha^2n\) with \(c\ne0\) would be of exponential order, so
+the heuristic predicts that the \(+L^2/(2n)\) from the single determinant
+cancels against \(L^2/n\) terms from the overlap average.
+What remains at linear \(L\) is a constant \(C(\alpha,\lambda)\) from
+Gaussian fluctuations. Under this heuristic,
+Conjecture~\ref{conj:factor-moment} is the statement
+\(C(\alpha,\lambda)\to1\) as \(\alpha\to0\).
+The entropy is strictly concave under the linear constraints, so no other
+overlap level competes at exponential order.
+The naive cubic coefficient recorded in the notes, which is negative, is
+consistent with this: it omits terms that the colouring count includes.
+\end{remark}
 Conjecture~\ref{conj:factor-moment} and the analogous statement for \(P_L\)
 past \(n^{1/3}\) stay open.
 For \(L=o(n^{1/3})\) the factor count \(Z_L\) is already controlled by

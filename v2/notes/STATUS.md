@@ -100,6 +100,13 @@ Bar is 2.0. v1.0 is sent.
   determinant (source of v1's \(+L^2/(2n)\)), and an exact tilted overlap law.
   Whether \(L^2/(2n)\) cancels decides whether factor-moment past \(\sqrt n\) is
   even true.
+- \(L^2/n\) question, heuristic answer (Lemma two-factor-identities, Remark
+  no-l2n): in the 5-colouring count at \(L=\alpha n\), the entropy and the
+  per-vertex determinant factors cancel exactly, so no \(c\,L^2/n\) term
+  survives. Factor-moment is heuristically consistent; under the heuristic it
+  is \(C(\alpha,\lambda)\to1\) as \(\alpha\to0\). Rigorous version needs a
+  multi-colour local limit theorem (Isaev--McKay type) for the colouring
+  count.
 - Lower tail of \(Y\) (target for \(\EE[\EE Y/Y]\)): blocked. Polynomial
   moments give only polynomially small \(\PP(Y<\EE Y/2)\), and on that event
   \(1/Y\) is controlled only by \(Y\ge1\), against an exponentially large

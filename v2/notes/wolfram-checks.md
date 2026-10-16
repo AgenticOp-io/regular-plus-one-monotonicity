@@ -1999,3 +1999,37 @@ Query: simplify (1-l)/l^2 - (1-l)^2/(2*l^2) - (1-l^2)/l^2 - 3*(1-l)/l + (1-l)*(1
 simplify | (1 - l)/l^2 - (1 - l)^2/(2 l^2) - (1 - l^2)/l^2 - 3 × (1 - l)/l + (1 - l) × (1 + 7 l)/(2 l^2)
 [Result]
 0
+
+
+Query: Simplify[Det[{{a(1-a), a^2/l - a^2, a(1-l)},{a^2/l - a^2, a(1-a), a(1-l)},{a(1-l), a(1-l), l(1-l)}}] - a^2 (1-l) (l-a)^2/l]
+[Input interpretation]
+simplify | left bracketing bar a (1 - a) | a^2/l - a^2 | a (1 - l)
+a^2/l - a^2 | a (1 - a) | a (1 - l)
+a (1 - l) | a (1 - l) | l (1 - l) right bracketing bar - a^2 (1 - l) × (l - a)^2/l
+
+
+Query: Simplify[Det[{{a(1-a), a(1-l)},{a(1-l), l(1-l)}}] - a (1-l) (l-a)]
+[Input interpretation]
+simplify | left bracketing bar a (1 - a) | a (1 - l)
+a (1 - l) | l (1 - l) right bracketing bar - a (1 - l) (l - a)
+
+
+Query: Simplify[(a^2 (1-l) (l-a)^2/l) * l (1-l) - (a (1-l) (l-a))^2]
+[Input interpretation]
+simplify | (a^2 (1 - l) × (l - a)^2/l) l (1 - l) - (a (1 - l) (l - a))^2
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+### Fallback (exact rational): 3x3 and 2x2 covariance determinants
+
+Wolfram returned no result pod for Det[...] - a^2(1-l)(l-a)^2/l and Det[...] - a(1-l)(l-a). Exact Fraction arithmetic on the 9x9 grid a=i/23, l=j/11 (i,j=1..9) gave 0 at all 81 points for both differences. After multiplying by l, both differences are polynomials of degree at most 6 in a and 4 in l, so the grid proves the identities.
+
+
+
+Query: FullSimplify[(-(a^2/l) Log[a^2/l] - 2 (a - a^2/l) Log[a - a^2/l] - (l - 2 a + a^2/l) Log[l - 2 a + a^2/l]) - l Log[l] - 2 (-a Log[a] - (l - a) Log[l - a]), 0 < a < l < 1]
+[Input interpretation]
+simplify | (-a^2/l log(a^2/l) - 2 (a - a^2/l) log(a - a^2/l) - (l - 2 a + a^2/l) log(l - 2 a + a^2/l)) - l log(l) - 2 (-a log(a) - (l - a) log(l - a)) | assuming | 0<a<l<1
+[Result]
+0
