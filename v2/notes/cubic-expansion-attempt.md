@@ -48,7 +48,22 @@ McKay's displayed terms cannot fix the cubic coefficient. One also needs:
    \(\sum_{A\subseteq F_1}(x-1)^{|A|}N(K_n-A,L\mathbf 1-\boldsymbol a)\), with each term
    from Isaev--McKay Theorem 1.2, and this sum has to be resummed.
 
-## Open questions this exposes
+## Resolution of the \(L^2/n\) question (heuristic, 2026-10-16)
+
+Count \(\EE[Z_L^2]\) as 5-colourings of \(E(K_n)\) with colour degrees fixed at
+each vertex. At linear \(L\), both exponential-order pieces cancel exactly:
+
+- Entropy: \(H_4+H(\lambda)-2H_2=0\) (checked).
+- Per-vertex constraint determinants: \(\det\Sigma_3\det\Sigma_1=\det\Sigma_2^2\)
+  (exact rational grid).
+
+The \(\log\det Q(K_n)\) multiplicities \(3+1-2\cdot2=0\). So any \(cL^2/n\) with
+\(c\ne0\) would be exponential order, and the heuristic says none survives.
+The \(+L^2/(2n)\) from the single determinant must cancel against overlap
+terms. The paper records this as Lemma two-factor-identities (rigorous
+algebra) and Remark no-l2n (heuristic).
+
+## Open questions this exposes (superseded in part by the resolution above)
 
 - Is the \(L^2/(2n)\) term cancelled by other \(L^2/n\) terms, such as the edge
   term \(-(1-\lambda)T/(\lambda n)\) at the tilted mean, or the \(n/(n-1)\) in \(\mu\)?
