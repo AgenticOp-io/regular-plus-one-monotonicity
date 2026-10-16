@@ -93,6 +93,19 @@ Bar is 2.0. v1.0 is sent.
   exact averages of explicit cumulant expressions. Open: expanding them and
   showing the \(L^3/n\), \(L^4/n^2\) terms cancel on average (v1
   factor-cubic, cubic-not-identified show they do not vanish termwise).
+- Peel second moment and flatness up to \(n^{1/3}\) (Lemma containment-ratio,
+  Theorem peel-second-moment-third, Corollary peel-flat-third):
+  Isaev--McKay Theorem 1.2 at \(\sigma=1,p=1\) (\(\ell_0=4,r_0=2\)), Theorem 1.3
+  \(\beta\), (1.3) for \(\|\delta\|_1\), Theorem 2.5 for cumulant perturbation,
+  Theorem A.1(a) for \(\|Q^{-1}\|_\infty\). One-sided bound:
+  log containment ratio \(\le T\log(1/\lambda)-L^2(\lambda^{-1}-1)/2+C((L^3+1)/n+LT/n)\);
+  containment probabilities of \(L\)-regular graphs agree up to \(e^{O(L^2/n)}\).
+  Overlap lemmas (overlap-one, avoid-overlap, decomp-overlap) extended to
+  \(r,L\le c_0\sqrt n\), \(c_0=1/(4e^{1.6}x_0)\).
+  Result: \(\EE P_L^2/(\EE P_L)^2\le e^{C(L^3+1)/n}\) for \(L\le c_1\sqrt n\);
+  peel flatness \(O(L/n)\) for every \(L\le n^{1/3}\). Supersedes the
+  \(n^{\varepsilon_2}\) range. Past \(n^{1/3}\) needs the cubic cancellation
+  (two-sided expansion), still open.
 - Cubic expansion attempt (notes/cubic-expansion-attempt.md): McKay's
   displayed terms give cubic coefficient \(-(1-\lambda)(1+7\lambda)/(2\lambda^2)<0\),
   impossible; terms like \(|X|X_2/n^3\) hidden in McKay's error are cubic for
