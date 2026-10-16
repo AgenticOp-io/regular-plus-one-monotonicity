@@ -1841,3 +1841,65 @@ simplify | (n^(-3/2))^(1/3) (n^(-3/2))^(2/3) - n^(-3/2) | assuming n>0
 0
 [Integer root]
 n = 0
+
+
+Query: simplify y*y^(q-1)*m^q/(y^q*m^q) for y>0, m>0
+[Input interpretation]
+simplify | y y^(q - 1) × m^q/(y^q m^q) y>0 | assuming | m>0
+[Result]
+y>0
+
+
+Query: RSolve[{a[k+1]==4 a[k], a[0]==2}, a[k], k]
+[Input interpretation]
+solve a(k + 1) = 4 a(k)
+a(0) = 2 for a(k)
+[Input interpretation]
+solve a(k + 1) = 4 a(k)
+a(0) = 2 for a(k)
+[Values]
+k | 0 | 1 | 2 | 3 | 4
+a(k) | 2 | 8 | 32 | 128 | 512
+
+
+Query: simplify y^1*y^(q-1)*m^q - y^q*m^q
+[Input interpretation]
+simplify | y^1 y^(q - 1) m^q - y^q m^q
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Table[2*4^k, {k, 0, 4}]
+[Input]
+Table[2 × 4^k, {k, 0, 4}]
+[Result]
+{2, 8, 32, 128, 512}
+[Table of values]
+k | 0 | 1 | 2 | 3 | 4
+2^(2 k + 1) | 2 | 8 | 32 | 128 | 512
+
+
+Query: simplify (Exp[(x^K-1)/K])^K - Exp[x^K-1] for K>0, x>0
+[Input interpretation]
+simplify | exp^K((x^K - 1)/K) - exp(x^K - 1) K>0 | assuming | x>0
+[Result]
+e (e^((x^K - 1)/K))^K>K e^(x^K)
+[Alternate forms]
+e (e^(x^K/K - 1/K))^K>K e^(x^K)
+[Alternate forms]
+K e^(x^K)<e (e^(x^K/K - 1/K))^K
+[Alternate form assuming K and x are positive]
+(K - 1) e^(x^K)<0
+[Alternate form assuming K and x are positive]
+e^(x^K)>K e^(x^K)
+[Alternate form assuming K and x are positive]
+K<1
+
+
+Query: PowerExpand[Exp[(x^K-1)/K]^K] - Exp[x^K-1]
+[Input]
+PowerExpand[exp^K((x^K - 1)/K)] - exp(x^K - 1)
+[Result]
+0

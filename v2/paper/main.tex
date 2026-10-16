@@ -121,6 +121,9 @@ above half degree keeps containment sure and the lower law within \(O(L/n)\)
 of uniform (Theorem~\ref{thm:successive-peel}), and bounded second moments of
 shorter peel counts give \(L^1\) flatness of the ordered peel count
 (Theorem~\ref{thm:peel-bounded-to-flat}).
+Every fixed moment of the peel count at fixed length is bounded
+(Theorem~\ref{thm:peel-moments}), so for each fixed \(L\) the ordered peel
+count is flat at rate \(O(1/n)\) (Corollary~\ref{cor:fixed-peel-flat}).
 The balanced range past \(\sqrt{n}\) and the other three named statements
 stay open.
 
@@ -1578,9 +1581,137 @@ Thus \(B=O_c(1/n)\), and the theorem gives \(O_c(3/n)\).
 
 The proof of Theorem~\ref{thm:two-peel-variance} uses fourth moments of the
 matching count to control a second moment of \(P_2\).
-The same step for \(P_3\) would need fourth moments of \(P_2\), and through
-the Hölder exponents above, eighth moments of the matching count.
-That loss is why the induction stops at length three.
+Theorem~\ref{thm:peel-bounded-to-flat} needs only a bounded second moment,
+not a small one, so the step can be iterated once every fixed moment of the
+matching count is bounded.
+
+\begin{lemma}[Fixed moments of the matching count]
+\label{lem:fixed-moments}
+Fix \(c\in(0,1/2]\) and an integer \(r\ge 1\).
+Let \(n\) be even, let \(\min(D,n-D)\ge cn\), and let \(Y\) be the number of
+perfect matchings in the uniform \(D\)-regular graph.
+Then \(\EE[Y^r]\le C_{r,c}(\EE Y)^r\).
+Consequently \(\EE[Y^q]\le C_{q,c}(\EE Y)^q\) for every real \(q\ge 1\).
+\end{lemma}
+
+\begin{proof}
+This is the proof of Lemma~band-fourth of~\cite{PlusOneV1} with \(4\)
+replaced by \(r\), stopped before the finite difference.
+The ratio \(\EE[Y^r]/(\EE Y)^r\) is the average, over \(r\) independent
+uniform perfect matchings \(M_1,\ldots,M_r\) of \(K_n\), of the extension ratio
+\(N(\bigcup_i M_i)N(\emptyset)^{r-1}/N(M)^r\).
+The union has maximum degree at most \(r\), so the coercive bound
+of~\cite{PlusOneV1} keeps the phase coercive with a positive multiple of
+\(n\), and the integral outside the saddle box is \(\exp(-c'n^{1/10})\)
+uniformly in such hosts.
+Tuples in which some pair shares more than \(\log n\) edges contribute
+\(o(n^{-C})\) for every fixed \(C\), as in that proof.
+On the remaining tuples, Lemma~pair-saddle of~\cite{PlusOneV1}, which holds
+for every fixed \(r\ge2\), bounds the ratio by
+\(C_r\lambda^{-\sigma}\le C_r\lambda^{-S}\), where \(\lambda=(D-1)/(n-2)\),
+\(\sigma\) is the total pairwise overlap, and
+\(S=\sum_{a<b}|M_a\cap M_b|\ge\sigma\).
+Write \(s=|M_1\cap M_2|\) for the overlap of two independent uniform perfect
+matchings. Its factorial moments are
+\[
+\EE[(s)_k]=\frac{(n/2)_k}{(n-1)(n-3)\cdots(n-2k+1)}\le1,
+\]
+so \(\EE[x^{s}]=\sum_k(x-1)^k\EE[(s)_k]/k!\le e^{x-1}\) for \(x\ge1\).
+Hölder over the \(\binom r2\) pairs gives
+\(\EE[\lambda^{-S}]\le\prod_{a<b}\EE[\lambda^{-\binom r2 s}]^{1/\binom r2}
+\le\exp\bigl(\lambda^{-\binom r2}-1\bigr)\),
+which is bounded because \(\lambda\ge c/2\) for large \(n\).
+For real \(q\), Lyapunov's inequality gives
+\(\EE[Y^q]\le\EE[Y^{\lceil q\rceil}]^{q/\lceil q\rceil}\).
+\end{proof}
+
+\begin{theorem}[Bounded peel moments at fixed length]
+\label{thm:peel-moments}
+Fix \(c\in(0,1/2]\), an integer \(j\ge1\), and a real \(q\ge1\).
+Let \(n\) be even and let \(e\) satisfy \(\min(e-j+1,n-e)\ge cn\).
+Write \(P_j^{(e)}\) for the number of ordered \(j\)-tuples of pairwise disjoint
+perfect matchings of the uniform \(e\)-regular graph. Then
+\[
+\EE\bigl[(P_j^{(e)})^q\bigr]\le C_{j,q,c}\bigl(\EE P_j^{(e)}\bigr)^q .
+\]
+\end{theorem}
+
+\begin{proof}
+Induct on \(j\).
+At \(j=1\) the count is the matching count, and Lemma~\ref{lem:fixed-moments}
+applies.
+Let \(j\ge2\). Splitting off the first matching gives
+\(P_j^{(e)}(G)=\sum_M P_{j-1}^{(e-1)}(G\setminus M)\), the sum over the
+\(Y(G)\) perfect matchings of \(G\).
+The power-mean inequality gives
+\(P_j^{(e)}(G)^q\le Y(G)^{q-1}\sum_M P_{j-1}^{(e-1)}(G\setminus M)^q\).
+
+Use the pair measure \(\pi\) of the proof of
+Theorem~\ref{thm:two-peel-variance}: under \(\pi\), \(G\) has density
+\(y=Y/\EE Y\) with respect to \(\mu_e\), and \(h=G\setminus M\) has density
+\(A=W'/\EE W'\) with respect to \(\mu_{e-1}\), where \(W'(h)\) counts the
+perfect matchings of the complement of \(h\).
+Write \(p=P_{j-1}^{(e-1)}/\EE P_{j-1}^{(e-1)}\) on \((e-1)\)-regular graphs.
+Then
+\(\EE P_j^{(e)}=\EE Y\cdot\EE P_{j-1}^{(e-1)}\cdot\EE[Ap]\), and the
+normalizations cancel, as checked, to give
+\[
+\frac{\EE[(P_j^{(e)})^q]}{(\EE P_j^{(e)})^q}
+\le
+\frac{\EE_\pi[y^{q-1}p^q]}{\EE[Ap]^q}.
+\]
+For the numerator, Cauchy--Schwarz under \(\pi\), then under \(\mu_{e-1}\),
+gives
+\[
+\EE_\pi[y^{q-1}p^q]
+\le
+\EE_\pi[y^{2q-2}]^{1/2}\,\EE[Ap^{2q}]^{1/2}
+\le
+\EE[y^{2q-1}]^{1/2}\,\EE[A^2]^{1/4}\,\EE[p^{4q}]^{1/4}.
+\]
+The first factor is bounded by Lemma~\ref{lem:fixed-moments} at degree \(e\).
+The second is bounded by the same lemma at degree \(n-e\), the degree of the
+complement of \(h\).
+The third is bounded by the induction hypothesis for \(j-1\), order \(4q\),
+and degree \(e-1\), whose condition
+\(\min\bigl((e-1)-(j-1)+1,\,n-(e-1)\bigr)\ge cn\) holds.
+For the denominator, \(\EE[Ap]=1+\EE[(A-1)(p-1)]\), and Cauchy--Schwarz with
+Theorem~\ref{thm:matching-linear-rate} at degree \(n-e\) gives
+\(|\EE[(A-1)(p-1)]|\le O_c(1/n)\,\EE[p^2]^{1/2}\), which is at most \(1/2\)
+for large \(n\) by the induction hypothesis.
+For the finitely many smaller \(n\) the ratio is finite.
+\end{proof}
+
+\begin{corollary}[Fixed-length peel flatness]
+\label{cor:fixed-peel-flat}
+Fix an integer \(L\ge1\).
+Under the hypotheses of Theorem~\ref{thm:successive-peel},
+\[
+\EE\Bigl|\frac{P_L^{(D)}}{\EE P_L^{(D)}}-1\Bigr|=O_{L,c}\Bigl(\frac1n\Bigr).
+\]
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:peel-bounded-to-flat} needs, for \(1\le j<L\), a bounded
+relative second moment of \(P_j\) at degree \(e_j=n-D+j-1\).
+Here \(e_j-j+1=n-D\ge cn\) and \(n-e_j=D-j+1\ge n/2\), so
+Theorem~\ref{thm:peel-moments} with \(q=2\) gives \(1+B\le C_{L,c}\).
+\end{proof}
+
+Corollary~\ref{cor:fixed-peel-flat} contains Corollary~\ref{cor:three-peel-flat}
+up to the constant.
+The constant is not uniform in \(L\).
+Reaching a second moment of \(P_{L-1}\) costs a moment of order
+\(2\cdot4^{L-2}\) of the matching count. Lemma~\ref{lem:fixed-moments}
+is uniform only over bounded \(r\), because Lemma~pair-saddle
+of~\cite{PlusOneV1} has an error \(O_r((\sigma+1)/n)\) with unspecified
+dependence on \(r\).
+A version uniform in \(r\le n^{\varepsilon}\) would give
+\(L\) of order \(\varepsilon\log n\), which is still far below the lengths in
+Conjecture~\ref{conj:factor-moment}.
+For fixed \(L\) the factor count \(Z_L\) is already controlled by
+Theorem~factor-third of~\cite{PlusOneV1}, so the corollary is new only as a
+statement about the ordered peel.
 
 \begin{remark}[Eight-vertex peel excesses]
 \label{rem:peel-eight}
