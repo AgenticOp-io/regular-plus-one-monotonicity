@@ -2263,3 +2263,17 @@ Query: 2 + 6(-1/2 + 1/40 + 1/500) + 4/5
 -1 + 1/2 + 1/3 + 1/8 + 1/273 + 1/273000
 [Equivalent fractions]
 -19/500 | -38/1000 | -57/1500 | -76/2000 | -95/2500 | ...
+
+
+Query: simplify 1 + 3(-1/2 + 1/8) - (1/2)(-1/4 + h)
+[Input interpretation]
+simplify | 1 + 3 (-1/2 + 1/8) - 1/2 (-1/4 + h)
+[Result]
+-h/2
+
+
+Query: simplify 2 - (8s+49)/4 + 2s + 10
+[Input interpretation]
+simplify | 2 - 1/4 (8 s + 49) + 2 s + 10
+[Result]
+-1/4
