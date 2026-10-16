@@ -2584,6 +2584,77 @@ by the same lemma.
 Hence \(\EE[Z_L^2]/(\EE Z_L)^2=N_3N_1/N_2^2=1+o(1)\).
 \end{proof}
 
+\begin{lemma}[Dominant points and the far region]
+\label{lem:mllt-far}
+Fix \(c\in(0,1/4]\), and let \(m,a,\lambda,D,L\) be as in
+Hypothesis~\ref{hyp:mllt}, with \(n\ge3\).
+Let \(p_0\) be the least state probability of \(\pi_m\), and let
+\(\chi(u)=\EE_{\pi_m}e^{i\langle u,S\rangle}\) for \(u\in\mathbb R^m\).
+Write \(\boldsymbol\Theta=(\theta^{(i)}_j)\) with \(i\le m\) and \(j\le n\), let
+\(u_{jk}=(\theta^{(i)}_j+\theta^{(i)}_k)_{i\le m}\), and let
+\(\boldsymbol d^{(i)}\) be the prescribed degree of family \(i\)
+(\(D\) for \(G\), and \(L\) for each factor). Then
+\[
+N_m=\frac{e^{\binom n2H(\pi_m)}}{(2\pi)^{mn}}\int_{(-\pi,\pi]^{mn}}F(\boldsymbol\Theta)\,d\boldsymbol\Theta,
+\qquad
+F(\boldsymbol\Theta)=\prod_{j<k}\chi(u_{jk})\,
+e^{-i\sum_{i,j}\boldsymbol d^{(i)}\theta^{(i)}_j},
+\]
+and the following hold, with \(\|x\|\) the distance from \(x\) to
+\(2\pi\mathbb Z\).
+\begin{enumerate}
+\item[(a)] \(|\chi(u)|\le\exp\bigl(-\frac{2p_0^2}{\pi^2}\sum_i\|u_i\|^2\bigr)\).
+\item[(b)] \(|F(\boldsymbol\Theta)|=1\) exactly at the \(2^m\) points where, for
+each \(i\), all \(\theta^{(i)}_j\) equal \(0\) or all equal \(\pi\); and \(F=1\) there.
+\item[(c)] Let \(\Omega_K\) be the set where
+\(\sum_i\sum_{j<k}\|\theta^{(i)}_j+\theta^{(i)}_k\|^2\ge Kn\log n\). If
+\(K\ge(m+2)\pi^2/(4p_0^2)\), then
+\(\int_{\Omega_K}|F|\le(2\pi)^{mn}n^{-(m/2+1)n}\), which is at most
+\(e^{-n}I_m\) for large \(n\), where
+\(I_m=2^m(2\pi)^{mn/2}\det(\Sigma_m)^{-n/2}\det(Q_n)^{-m/2}e^{c_m}\) is the
+value of \(\int F\) predicted by Hypothesis~\ref{hyp:mllt}.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Expanding \(\prod_{j<k}\sum_s\pi_m(s)e^{i\langle u_{jk},s\rangle}\) and extracting the
+coefficient of the prescribed degrees gives the integral, times
+\(\prod_{j<k}\prod_s\pi_m(s)^{-\#\{jk\text{ in state }s\}}\).
+Since \(\pi_{11}\pi_{00}=\pi_{10}\pi_{01}\) (Lemma~\ref{lem:two-factor-identities}),
+\(\log\pi_m(s)=\langle\beta,s\rangle-\log Z\) is affine in \(s\). So the product
+probability of a colouring depends only on its colour degree totals, which are
+\(\binom n2\EE_{\pi_m}S\) for every colouring with the prescribed degrees.
+That probability is therefore \(e^{-\binom n2H(\pi_m)}\), which gives the prefactor.
+
+For (a), \(|\chi(u)|^2=1-\sum_{s,s'}\pi_m(s)\pi_m(s')\bigl(1-\cos\langle u,s-s'\rangle\bigr)\).
+The support of \(\pi_m\) contains pairs \(s,s'\) with \(s-s'=e_i\) for every
+\(i\le m\). For \(m=3\) these are \((1,0,0)-(0,0,0)\), \((1,1,0)-(1,0,0)\) and
+\((1,0,1)-(1,0,0)\), and similarly for \(m\le2\).
+Keeping these \(2m\) ordered pairs and using \(1-\cos x\ge2\|x\|^2/\pi^2\) gives
+\(|\chi(u)|^2\le1-\frac{4p_0^2}{\pi^2}\sum_i\|u_i\|^2\le\exp(-\frac{4p_0^2}{\pi^2}\sum_i\|u_i\|^2)\).
+
+For (b), by (a), \(|F|=1\) forces \(\theta^{(i)}_j+\theta^{(i)}_k\in2\pi\mathbb Z\)
+for all \(j\ne k\). Three distinct vertices give
+\(2\theta^{(i)}_j\in2\pi\mathbb Z\), so every \(\theta^{(i)}_j\in\{0,\pi\}\), and the
+sums force them to be equal.
+At such a point \(\chi(u_{jk})=1\), and the phase is
+\(e^{-i\pi\boldsymbol d^{(i)}n}=1\) for each shifted family, because \(Dn\) and
+\(Ln\) are even.
+
+For (c), (a) gives \(|F|\le\exp(-\frac{2p_0^2}{\pi^2}Kn\log n)\le n^{-(m/2+1)n}\)
+on \(\Omega_K\), and the volume is at most \((2\pi)^{mn}\).
+Since \(\det\Sigma_m\le1\), \(\det Q_n=(n-2)^{n-1}(2n-2)\le(2n)^n\) and \(c_m\) is
+bounded in terms of \(c\), we have \(I_m\ge e^{-C}(2\pi)^{mn/2}(2n)^{-mn/2}\).
+So the ratio of the two bounds is at most \(e^{C}(4\pi)^{mn/2}n^{-n}\le e^{-n}\)
+for large \(n\).
+\end{proof}
+
+So Hypothesis~\ref{hyp:mllt} is equivalent to
+\(\int_{\Omega_K^c}F=I_m(1+o(1))\), where
+\(\sum_i\sum_{j<k}\|\theta^{(i)}_j+\theta^{(i)}_k\|^2<Kn\log n\).
+On that set, for each family, all but \(O(n/M)\) vertices \(j\) satisfy
+\(\sum_k\|\theta^{(i)}_j+\theta^{(i)}_k\|^2\le M\log n\).
+
 \begin{remark}[Status of Hypothesis~\ref{hyp:mllt}]
 \label{rem:mllt-status}
 The constant \(c_m\) is \(\kappa_1+\frac12\kappa_2\) of the cubic and quartic
@@ -2599,9 +2670,19 @@ variance of the cubic term.
 The eight dominant points come from shifting each colour family by \(\pi\)
 at every vertex, which is where the factor \(2^m\) comes from.
 Hypothesis~\ref{hyp:mllt} is the \(m\)-family analogue of~\cite[Theorem~1.2]{IM25}
-at \(\sigma=1\). It is not proved here. The missing step is the estimate of
-the integral away from the \(2^m\) dominant points for a vector-valued
+at \(\sigma=1\). It is not proved here.
+Lemma~\ref{lem:mllt-far} handles the dominant points and the far region.
+Two steps are missing.
+\begin{itemize}
+\item The intermediate region: \(\Omega_K^c\) minus the boxes of radius
+\(n^{-1/2+\varepsilon}\) around the dominant points. The crude bound of
+Lemma~\ref{lem:mllt-far}(a) loses a constant factor per vertex there, so it
+is not enough.
+\item The Edgeworth expansion inside the boxes, for the \(mn\)-dimensional
 integrand.
+\end{itemize}
+Neither is covered by the general Gaussian approximation for 0-1 points in
+polytopes, which omits the constant \(e^{c_m}\).
 Theorem~\ref{thm:factor-moment-conditional} does not reach
 Conjecture~\ref{conj:factor-moment}, which needs \(L=o(n)\). That requires the
 hypothesis uniformly down to \(a\ge n^{-1/2+\varepsilon}\), where higher cumulants
