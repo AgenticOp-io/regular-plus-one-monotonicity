@@ -134,12 +134,17 @@ Bar is 2.0. v1.0 is sent.
   factor index are \(O(a)\) (via \(\psi=\log\chi(u)-\log\chi(u_Ge_G)\)); weighted
   quartic \(\frac{m^2}{3a}\|\Theta\|_D^4\) per vertex costs \(e^{C/a}\); box
   \(n^{1/8}\) s.d.
-  Theorem factor-moment-sparse: \(\Var Z_L/(\EE Z_L)^2=O(n^{-1/8})\) for
+  Theorem factor-moment-sparse: \(\Var Z_L/(\EE Z_L)^2=O(n^{-1/2}a^{-3/2})\) for
   \(L\ge n^{3/4+\eta}\), \(D-L,n-1-D\) linear. Conjecture factor-moment open only
-  on \(\sqrt n\ll L\le n^{3/4+o(1)}\). Barrier at \(3/4\): box integral
-  \(\approx Ge^{c_m}\), \(|c_m|\asymp1/a\), outer bounds on \(|F|\) only Gaussian, so
-  \(n^{2\varepsilon}\gg1/a\); needs signed outer control (IM25 Sec. 4 shifted
-  boxes). Below \(n^{2/3}\) the third cumulant must be computed.
+  on \(\sqrt n\ll L\le n^{3/4+o(1)}\). Barrier at \(3/4\) is sharp for \(|F|\)
+  bounds (quartic \(e^{C/a}\) vs \(e^{c_m}\)); needs signed outer control
+  (IM25 Sec. 4.3). Lemma mllt-tilt: multi-colour form of IM25 (4.7)
+  (complex tilt \(\chi(y+z)=\chi(z)\chi_z(y)\)); shifted-box comparison itself
+  still open. Below \(n^{2/3}\) the third cumulant must be computed.
+  Factor-rate: Corollary factor-rate-linear (linear \(L\)); Corollary
+  factor-rate-sparse for \(L\ge n^{8/9+\eta}\) (error \(O(n^{-1/2}a^{-3/2})\)
+  is \(o(a^3)\) there). Conjecture factor-rate open on
+  \(\sqrt n\ll L<n^{8/9}\).
   Conjecture factor-moment (\(\sqrt n\ll L=o(n)\)) still open: sparse range
   \(a\ge n^{-1/2+\varepsilon}\) for factor-moment proper; order-\(n/L^2\) term for
   factor-rate.

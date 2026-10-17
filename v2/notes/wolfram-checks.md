@@ -2277,3 +2277,10 @@ Query: simplify 2 - (8s+49)/4 + 2s + 10
 simplify | 2 - 1/4 (8 s + 49) + 2 s + 10
 [Result]
 -1/4
+
+
+Query: simplify -1/2 + (3/2)(1/9 - h) + 1/3 - 3 h
+[Input interpretation]
+simplify | -1/2 + 3/2 (1/9 - h) + 1/3 - 3 h
+[Result]
+-(9 h)/2

@@ -114,9 +114,13 @@ Still missing:
    factor second moment at linear length is now unconditional, and with
    Theorem long-step the long-step coupling holds at every length with two
    linear margins (Corollary long-step-all). Theorem factor-moment-sparse
-   extends the factor moment to \(L\ge n^{3/4+\eta}\) (rate \(O(n^{-1/8})\)) via
-   IM25 Theorem 2.6 in density-rescaled coordinates; factor-moment is open
-   only on \(\sqrt n\ll L\le n^{3/4+o(1)}\).
+   extends the factor moment to \(L\ge n^{3/4+\eta}\) (rate
+   \(O(n^{-1/2}a^{-3/2})\)) via IM25 Theorem 2.6 in density-rescaled
+   coordinates; factor-rate to \(L\ge n^{8/9+\eta}\) (Corollary
+   factor-rate-sparse) and at linear length (Corollary factor-rate-linear).
+   Factor-moment open on \(\sqrt n\ll L\le n^{3/4+o(1)}\); factor-rate open on
+   \(\sqrt n\ll L<n^{8/9}\). Next past \(3/4\): shifted boxes via Lemma
+   mllt-tilt.
    Remaining: (ii) extend Theorem mllt to \(a\ge n^{-1/2+\varepsilon}\) (sparse
    colours, \(p_0\to0\)); (iii) compute the order-\(n/L^2\) second difference
    (factor-rate).
@@ -159,9 +163,9 @@ Still missing (no fake closes):
 | Q | Open |
 | config-split | Open (iii on single orbits only) |
 | residual-moment | Open |
-| factor-moment | Half degree with \(L^2=o(n)\) is Theorem half-below-sqrt. Every linear host in that range is Theorem linear-below-sqrt. Open for \(L=\omega(\sqrt{n})\) |
-| factor-rate | Open on the balanced range. The logarithm \(L(a-1)(L(a-1)+a)/(2a^2 n)\) is not \(o(L^3/n^3)\) |
-| long-step | Closed for every \(L=o(n)\) with four linear margins (Theorem long-step). Matching variance \(O(1/n^2)\) is Theorem matching-linear-rate; one step has total variation \(O(1/n)\) (Lemma matching-step-l1). Factor-count flatness past \(\sqrt{n}\) stays open. Hamilton coupling is not \(\mu_2\) |
+| factor-moment | Closed for \(L=o(\sqrt n)\) (linear-below-sqrt) and \(L\ge n^{3/4+\eta}\) (factor-moment-sparse). Open for \(\sqrt n\ll L\le n^{3/4+o(1)}\) |
+| factor-rate | Closed for linear \(L\) (factor-rate-linear) and \(L\ge n^{8/9+\eta}\) (factor-rate-sparse); complementary/dense-host sides already closed. Open for \(\sqrt n\ll L<n^{8/9}\) |
+| long-step | Closed for every \(L\ge1\) with two linear margins (long-step-all). Matching variance \(O(1/n^2)\) is Theorem matching-linear-rate |
 
 ## Next
 
