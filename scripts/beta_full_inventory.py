@@ -176,7 +176,7 @@ def inventory(a_val, lam_val=0.5):
         if m == 1:
             k4 = c35 = k3xw = 0.0
         else:
-            k4, _, _ = kappa4_star_path_num(S, kappa, m)
+            k4, _, _, _ = kappa4_star_path_num(S, kappa, m)
             c35 = cov_x_phi5_coeff(S, kappa, m)
             k3xw = kappa3_xxw_star(S, kappa, m)
         total = p64 + k4 + c35 + k3xw
