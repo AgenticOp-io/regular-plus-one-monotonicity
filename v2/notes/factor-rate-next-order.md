@@ -75,11 +75,12 @@ the two exact packages. Full inventoried sum (`beta_inventory_run.py`):
 | 1/20  | 0.901 |
 | 1/40  | 1.111 |
 
-Linear extrapolation suggests \(\beta_{\mathrm{inv}}\approx\frac43>0\). Four-vertex
-diagrams and \(\operatorname{Var}(\Im\Phi_5)\) are \(O(n^{-2})\). A matching
-lower bound \(\Delta\operatorname{Re}h\sim c/(na)\) with \(c>0\) would refute
-the \(o(a^3)\) rate for \(L=O(n^{3/4})\); the gap is controlling the
-un-inventoried tail of the cumulant expansion.
+Linear extrapolation suggests \(\beta_{\mathrm{inv}}\approx\frac43>0\).
+Lemma a-minus-two-class in the paper asserts these five packages exhaust the
+\(a^{-2}\) class (so the tail is \(o(1/(na))\) for \(a=\omega(n^{-1/2})\)).
+The remaining gap is an exact evaluation of
+\(\lim_{a\to0}a\Delta(\kappa_4/24-\kappa_3/6)\); if that limit is greater than
+\(-\frac{13}{6}\), Conjecture factor-rate-mid fails.
 
 ## What would close the mid window
 

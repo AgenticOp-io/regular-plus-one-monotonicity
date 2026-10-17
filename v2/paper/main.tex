@@ -3378,26 +3378,58 @@ adjacent edges, produces the displayed rational function of \(a\) at
 \(\frac5{3a}-14+O(a)\).
 \end{proof}
 
+\begin{lemma}[Packages at the \(a^{-2}\) weight]
+\label{lem:a-minus-two-class}
+Under the hypotheses of Theorem~\ref{thm:mllt-sparse}, write
+\(\operatorname{Re}h_m=c_m+e_m\) as in Lemma~\ref{lem:sparse-second-diff}.
+Every contribution to \(e_m\) of size \(O(n^{-1}a^{-2})\) arises from a joint
+cumulant of total degree \(\ell=2r+4\) in the edge variables (equivalently
+\(r-\ell/2=-2\)). Cumulants with \(r-\ell/2\le-3\) are
+\(O(n^{-2}a^{-3})=o(n^{-1}a^{-1})\) throughout \(a=\omega(n^{-1/2})\).
+Consequently the only packages that can affect the residue
+\(\lim_{a\to0}a\Delta\operatorname{Re}h\) are
+\[
+\EE\Phi_6,\qquad
+\tfrac12\operatorname{Var}W,\qquad
+-\operatorname{Cov}(X,\Im\Phi_5),\qquad
+\frac1{24}\kappa_4(X),\qquad
+-\frac1{6}\kappa_3(X,X,W),
+\]
+together with the finitely many diagrams of those cumulants on the share graph
+of \(K_n\).
+\end{lemma}
+
+\begin{proof}
+Lemma~\ref{lem:edge-cumulants} bounds a joint cumulant of \(r\) edge
+polynomials of total degree \(\ell\) by \(Cn\,(na)^{r-\ell/2}\). The weight
+\(n^{-1}a^{-2}\) is exactly \(r-\ell/2=-2\). For \(r-\ell/2\le-3\) the same
+bound is \(O(n^{-2}a^{-3})\), which is \(o(n^{-1}a^{-1})\) once
+\(na^2\to\infty\). Expanding
+\(\operatorname{Re}h\) in cumulants of \(\Im\tilde\Phi\) and \(\Re\tilde\Phi\)
+as in Theorem~\ref{thm:mllt-sparse}, the only terms with \(\ell=2r+4\) and
+\(r\le s\) built from \(\Phi_3=iX\), \(\Phi_4=W\), and \(\Phi_5\) are the five
+displayed packages (higher \(\Phi_{\ell}\) force \(r-\ell/2\le-3\) or reduce to
+these after the mean-zero constraints on \(X\)).
+\end{proof}
+
 \begin{remark}[Obstruction for the mid window]
 \label{rem:factor-rate-mid-obstruction}
-Lemmas~\ref{lem:phi6-varw-delta} and~\ref{lem:c35-delta} show that any proof of
-Conjecture~\ref{conj:factor-rate-mid} via the truncated cumulant expansion must
-cancel at least
+Lemmas~\ref{lem:phi6-varw-delta} and~\ref{lem:c35-delta} give
 \[
-\frac{1-\lambda}{2\lambda\,na}+\frac{5}{3na}
+\Delta\bigl(\EE\Phi_6+\tfrac12\operatorname{Var}W-\operatorname{Cov}(X,\Im\Phi_5)\bigr)
 =
-\frac{13}{6na}
+\frac{13}{6na}+O(n^{-1})
 \]
-at \(\lambda=\tfrac12\) (the sum of the \(\Phi_6+\tfrac12\operatorname{Var}W\) and
-\(-\operatorname{Cov}(X,\Im\Phi_5)\) residues) against the remaining packages
-(\(\kappa_4(X)/24\), \(\kappa_3(X,X,W)\), and higher even total degree).
+at \(\lambda=\tfrac12\). Lemma~\ref{lem:a-minus-two-class} says the only
+remaining residue comes from \(\kappa_4(X)/24\) and \(\kappa_3(X,X,W)/6\).
 All three \(n^5\)-scale trees in \(\kappa_4(X)\) and both \(n^4\)-scale diagrams
-in \(\kappa_3(X,X,W)\) change the numerical coefficient of \(a^{-1}\) by
-\(O(1)\) residues on the sparse grid, leaving roughly \(\frac{3}{2na}\) still
-uncancelled against \(\frac{13}{6na}\). Until a full cancellation among all
-packages is proved, the bound \(\Delta\operatorname{Re}h=O(n^{-1}a^{-1})\) of
-Lemma~\ref{lem:sparse-second-diff} is the natural limit of this method, and
-Theorem~\ref{thm:factor-rate} stops at \(n^{3/4}=o(L)\).
+in \(\kappa_3(X,X,W)\) have been evaluated on the sparse grid: their net
+residue is about \(-0.7\), so the inventoried total is about \(\frac43/(na)\).
+In particular Conjecture~\ref{conj:factor-rate-mid} cannot hold unless those
+two packages cancel \(\frac{13}{6}\) exactly (they do not, numerically). A
+matching lower bound \(\Delta\operatorname{Re}h\sim c/(na)\) with \(c>0\) would
+replace the conjecture by \(\Var Z/(\EE Z)^2=\Theta(1/L)\). Until that residue
+is made exact, Theorem~\ref{thm:factor-rate} stops at \(n^{3/4}=o(L)\).
 \end{remark}
 
 \begin{theorem}[Factor second moment past \(\sqrt n\)]

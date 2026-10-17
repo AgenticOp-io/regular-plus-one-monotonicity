@@ -18,12 +18,12 @@ Bar is 2.0. v1.0 is sent.
 ## Open (named)
 
 - **factor-rate-mid**: \(\sqrt n\ll L=O(n^{3/4})\).
-  Obstruction: at \(\lambda=1/2\), \(\Phi_6+\tfrac12\operatorname{Var}W\) and
-  \(-\operatorname{Cov}(X,\Im\Phi_5)\) together give
-  \(\Delta=\frac{13}{6na}+O(n^{-1})\) (Lemmas phi6-varw-delta, c35-delta).
-  All \(\kappa_4\) trees and both \(\kappa_3(X,X,W)\) diagrams leave
-  \(\sim 1.5/(na)\) uncancelled (notes/factor-rate-next-order.md). Full cancel
-  or matching lower bound still needed.
+  Lemma a-minus-two-class: only five packages can affect the \(a^{-1}\)
+  residue. At \(\lambda=1/2\) the first three give \(\frac{13}{6na}\); the
+  \(\kappa_4\) trees and \(\kappa_3\) diagrams leave inventoried total
+  \(\sim\frac43/(na)>0\) (notes/factor-rate-next-order.md). Exact residue for
+  \(\kappa_4+\kappa_3\) (or a matching lower bound) would refute the
+  conjecture.
 - **Q**, **config-split**, **residual-moment** (BIM-constrained): open.
   Selection (iii) only on single orbits \(D\in\{1,n-2\}\).
   Unconstrained residual is closed; the host restriction is the obstruction.
@@ -36,8 +36,7 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-1. Factor-rate-mid: remaining packages vs \(\frac{1-\lambda}{2\lambda\,na}\)
-   (cancel or match).
+1. Factor-rate-mid: exact \(\kappa_4+\kappa_3\) residue (refute if \(>-13/6\)).
 2. Host-restricted residual-moment → config-split → Q.
 3. Ordered peel \(P_L\) past \(n^{1/3}\).
 
