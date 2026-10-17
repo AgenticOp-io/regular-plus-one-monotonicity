@@ -127,24 +127,18 @@ Bar is 2.0. v1.0 is sent.
   Corollary factor-moment-diagonal: there is a non-explicit \(c_n\to0\) with
   \(\Var Z_L/(\EE Z_L)^2\to0\) uniformly over \(L,D-L,n-1-D\ge c_n(n-1)\); so
   Conjecture factor-moment holds at its top end \(L\ge c_nn\).
-  EXPLICIT: Theorem mllt-sparse (uniform for \(a\ge n^{-1/4+\eta}\), error
-  \(O(n^{-1/8})\)) uses IM25 Theorem 2.6 (truncated cumulant expansion,
-  \(s=\lceil4/\eta\rceil\)) with IM25 Lemma 2.7, in coordinates rescaled by
-  \(D_a=\mathrm{diag}(a,a,1)\): \(c^3D_a\le\Sigma\le mD_a\); derivatives with a
-  factor index are \(O(a)\) (via \(\psi=\log\chi(u)-\log\chi(u_Ge_G)\)); weighted
-  quartic \(\frac{m^2}{3a}\|\Theta\|_D^4\) per vertex costs \(e^{C/a}\); box
-  \(n^{1/8}\) s.d.
-  Theorem factor-moment-sparse: \(\Var Z_L/(\EE Z_L)^2=O(n^{-1/2}a^{-3/2})\) for
-  \(L\ge n^{3/4+\eta}\), \(D-L,n-1-D\) linear. Conjecture factor-moment open only
-  on \(\sqrt n\ll L\le n^{3/4+o(1)}\). Barrier at \(3/4\) is sharp for \(|F|\)
-  bounds (quartic \(e^{C/a}\) vs \(e^{c_m}\)); needs signed outer control
-  (IM25 Sec. 4.3). Lemma mllt-tilt: multi-colour form of IM25 (4.7)
-  (complex tilt \(\chi(y+z)=\chi(z)\chi_z(y)\)); shifted-box comparison itself
-  still open. Below \(n^{2/3}\) the third cumulant must be computed.
+  EXPLICIT: Theorem mllt-sparse (uniform for \(a\ge n^{-1/2+\eta}\), error
+  \(O(n^{-1}a^{-2})\)) uses IM25 Theorem 2.6 with Lemma 2.7, density-rescaled
+  coordinates \(D_a=\mathrm{diag}(a,a,1)\), signed annulus via Lemma mllt-tilt,
+  and even-cumulant control of the modulus.
+  Theorem factor-moment-sparse: \(\Var Z_L/(\EE Z_L)^2=O(n^{-1}a^{-2})\) for
+  \(L\ge n^{1/2+\eta}\), \(D-L,n-1-D\) linear. Signed annulus (Lemma mllt-tilt
+  + completing the square) beats the old \(3/4\) \(|F|\)-barrier; odd cumulants
+  are pure phase, even cumulants of degree \(\ge8\) are \(O(n^{-1}a^{-2})\).
+  Conjecture factor-moment open only for \(\sqrt n\ll L=n^{1/2+o(1)}\).
   Factor-rate: Corollary factor-rate-linear (linear \(L\)); Corollary
-  factor-rate-sparse for \(L\ge n^{8/9+\eta}\) (error \(O(n^{-1/2}a^{-3/2})\)
-  is \(o(a^3)\) there). Conjecture factor-rate open on
-  \(\sqrt n\ll L<n^{8/9}\).
+  factor-rate-sparse for \(L\ge n^{4/5+\eta}\). Open on
+  \(\sqrt n\ll L<n^{4/5}\).
 - Cubic expansion attempt (notes/cubic-expansion-attempt.md): McKay's
   displayed terms give cubic coefficient \(-(1-\lambda)(1+7\lambda)/(2\lambda^2)<0\),
   impossible; terms like \(|X|X_2/n^3\) hidden in McKay's error are cubic for
@@ -167,13 +161,12 @@ Bar is 2.0. v1.0 is sent.
 ## Still open (named)
 
 - Q, config-split, residual-moment: fully open.
-- factor-moment: closed on every linear host for \(L^2=o(n)\)
-  (Theorem linear-below-sqrt; degree \(n/2\) is Theorem half-below-sqrt).
-  That is every length \(o(\sqrt{n})\), and it stops short of \(\sqrt{n}\). Still open for
-  \(L=\omega(\sqrt{n})\).
-- factor-rate: closed for linear \(L\) and for \(L\ge n^{8/9+\eta}\)
+- factor-moment: closed for \(L=o(\sqrt n)\) (linear-below-sqrt) and for
+  \(L\ge n^{1/2+\eta}\) (factor-moment-sparse). Open only for
+  \(\sqrt n\ll L=n^{1/2+o(1)}\).
+- factor-rate: closed for linear \(L\) and for \(L\ge n^{4/5+\eta}\)
   (Corollaries factor-rate-linear, factor-rate-sparse). Open for
-  \(\sqrt n\ll L<n^{8/9}\).
+  \(\sqrt n\ll L<n^{4/5}\).
 - The signed three-matching principal mass is \(-L^8/(48n^2)\)
   (Proposition triple-mass-order). It does not identify the cumulant.
 - long-step: closed for every \(L=o(n)\) with four linear margins

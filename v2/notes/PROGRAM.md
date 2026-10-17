@@ -114,20 +114,14 @@ Still missing:
    factor second moment at linear length is now unconditional, and with
    Theorem long-step the long-step coupling holds at every length with two
    linear margins (Corollary long-step-all). Theorem factor-moment-sparse
-   extends the factor moment to \(L\ge n^{3/4+\eta}\) (rate
-   \(O(n^{-1/2}a^{-3/2})\)) via IM25 Theorem 2.6 in density-rescaled
-   coordinates; factor-rate to \(L\ge n^{8/9+\eta}\) (Corollary
-   factor-rate-sparse) and at linear length (Corollary factor-rate-linear).
-   Factor-moment open on \(\sqrt n\ll L\le n^{3/4+o(1)}\); factor-rate open on
-   \(\sqrt n\ll L<n^{8/9}\). Next past \(3/4\): shifted boxes via Lemma
-   mllt-tilt.
-   Remaining: (ii) extend Theorem mllt to \(a\ge n^{-1/2+\varepsilon}\) (sparse
-   colours, \(p_0\to0\)); (iii) compute the order-\(n/L^2\) second difference
-   (factor-rate).
-   Alternative next: expand the Isaev--McKay cumulant formula for \(K_n-F_1\cup F_2\)
-   against \(K_n-F_1\), \(K_n-F_2\), \(K_n\) through order \(L^4/n^2\) and average
-   over the overlap structure; this is the remaining content of
-   factor-moment between \(n^{1/3}\) and \(n^{1/2}\). An edge-probability theorem for
+   extends the factor moment to \(L\ge n^{1/2+\eta}\) (rate
+   \(O(n^{-1}a^{-2})\)) via signed annulus + even-cumulant modulus control;
+   factor-rate to \(L\ge n^{4/5+\eta}\) (Corollary factor-rate-sparse) and at
+   linear length (Corollary factor-rate-linear). Factor-moment open only on
+   \(\sqrt n\ll L=n^{1/2+o(1)}\); factor-rate open on \(\sqrt n\ll L<n^{4/5}\).
+   Remaining: (ii) the thin window \(\sqrt n\ll L=n^{1/2+o(1)}\);
+   (iii) the order-\(n/L^2\) second difference (factor-rate below \(n^{4/5}\)).
+   An edge-probability theorem for
    the uniform ordered-matching-decomposition law (needed for \(P_L\to Z_L\)
    via the v1 factor-third route). The lower tail of \(Y\) is blocked (see STATUS).
 
@@ -163,18 +157,17 @@ Still missing (no fake closes):
 | Q | Open |
 | config-split | Open (iii on single orbits only) |
 | residual-moment | Open |
-| factor-moment | Closed for \(L=o(\sqrt n)\) (linear-below-sqrt) and \(L\ge n^{3/4+\eta}\) (factor-moment-sparse). Open for \(\sqrt n\ll L\le n^{3/4+o(1)}\) |
-| factor-rate | Closed for linear \(L\) (factor-rate-linear) and \(L\ge n^{8/9+\eta}\) (factor-rate-sparse); complementary/dense-host sides already closed. Open for \(\sqrt n\ll L<n^{8/9}\) |
+| factor-moment | Closed for \(L=o(\sqrt n)\) (linear-below-sqrt) and \(L\ge n^{1/2+\eta}\) (factor-moment-sparse). Open only for \(\sqrt n\ll L=n^{1/2+o(1)}\) |
+| factor-rate | Closed for linear \(L\) (factor-rate-linear) and \(L\ge n^{4/5+\eta}\) (factor-rate-sparse); complementary/dense-host sides already closed. Open for \(\sqrt n\ll L<n^{4/5}\) |
 | long-step | Closed for every \(L\ge1\) with two linear margins (long-step-all). Matching variance \(O(1/n^2)\) is Theorem matching-linear-rate |
 
 ## Next
 
 Priority order:
-1. Factor moment for \(L=\omega(\sqrt{n})\) (Workstream A). Every linear host with \(L^2=o(n)\) is Theorem linear-below-sqrt.
+1. Thin window \(\sqrt n\ll L=n^{1/2+o(1)}\) of factor-moment, or factor-rate
+   on \(\sqrt n\ll L<n^{4/5}\) (need the \(n/L^2\) second difference).
 2. Lower-tail of \(N\) at \(1/c_n\) under true \(\mu_D\) dependence (Workstream B).
-3. In-probability flatness of the two \(L\)-factor counts past \(\sqrt{n}\)
-   (Theorem long-from-flat), or residual-moment on the nearly regular window.
-   The four-linear deletion of length \(L=o(n)\) is Theorem long-step.
+3. residual-moment / config-split / Q.
 
 Run `python scripts/approach_screen.py` before expanding an attack.
 Append Wolfram checks to `v2/notes/wolfram-checks.md`.
