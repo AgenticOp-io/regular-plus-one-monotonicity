@@ -18,10 +18,12 @@ Bar is 2.0. v1.0 is sent.
 ## Open (named)
 
 - **factor-rate-mid**: \(\sqrt n\ll L=O(n^{3/4})\).
-  Obstruction: \(\EE\Phi_6+\tfrac12\operatorname{Var}W\) alone gives
-  \(\Delta=1/(2na)+O(1/n)\) (Lemma phi6-varw-delta); star/path \(\kappa_4\)
-  does not cancel it (notes/factor-rate-next-order.md). Full cancel or matching
-  lower bound still needed.
+  Obstruction: at \(\lambda=1/2\), \(\Phi_6+\tfrac12\operatorname{Var}W\) and
+  \(-\operatorname{Cov}(X,\Im\Phi_5)\) together give
+  \(\Delta=\frac{13}{6na}+O(n^{-1})\) (Lemmas phi6-varw-delta, c35-delta).
+  Star/path \(\kappa_4\) and star \(\kappa_3(X,X,W)\) do not cancel
+  (notes/factor-rate-next-order.md). Full cancel or matching lower bound still
+  needed.
 - **Q**, **config-split**, **residual-moment** (BIM-constrained): open.
   Selection (iii) only on single orbits \(D\in\{1,n-2\}\).
   Unconstrained residual is closed; the host restriction is the obstruction.
@@ -34,7 +36,8 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-1. Factor-rate-mid: remaining packages vs \(\frac1{2na}\) (cancel or match).
+1. Factor-rate-mid: remaining packages vs \(\frac{1-\lambda}{2\lambda\,na}\)
+   (cancel or match).
 2. Host-restricted residual-moment → config-split → Q.
 3. Ordered peel \(P_L\) past \(n^{1/3}\).
 

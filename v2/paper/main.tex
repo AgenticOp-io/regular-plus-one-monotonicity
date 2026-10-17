@@ -3322,17 +3322,15 @@ Hence \(\alpha_m=(m-1)\alpha_2(\lambda)\) with \(\alpha_1=0\), so
 Let \(d_m^{(6,4)}\) be the coefficient of \(n^{-1}\) in
 \(\EE\Phi_6+\tfrac12\operatorname{Var}W\), computed from the pair law \(\pi_m\) with
 the leading large-\(n\) edge covariances of Lemma~\ref{lem:edge-cumulants}.
-As \(a\to0\) with \(\lambda=\tfrac12\),
+As \(a\to0\) with \(\lambda-a\ge c\) and \(1-\lambda\ge c\),
 \[
 d_3^{(6,4)}+d_1^{(6,4)}-2d_2^{(6,4)}
 =
-\frac1{2a}-\frac38+O(a).
+\frac{1-\lambda}{2\lambda\,a}+O(1).
 \]
-In particular this package alone contributes \(\frac1{2na}+O(n^{-1})\) to
-\(\Delta\operatorname{Re}h\). The same leading coefficient \(\frac1{2a}\) appears for
-every fixed \(\lambda\) with \(\lambda-a\ge c\) and \(1-\lambda\ge c\) after the
-\(a^{-2}\) terms cancel (Lemma~\ref{lem:sparse-second-diff}). These series were
-checked by exact rational arithmetic.
+In particular this package alone contributes
+\(\dfrac{1-\lambda}{2\lambda\,na}+O(n^{-1})\) to \(\Delta\operatorname{Re}h\).
+At \(\lambda=\tfrac12\) the expansion refines to \(\frac1{2a}-\frac38+O(a)\).
 \end{lemma}
 
 \begin{proof}
@@ -3340,23 +3338,64 @@ Each of \(\EE\Phi_6\) and \(\operatorname{Var}W\) is a fixed contraction of cumu
 tensors of \(\pi_m\) against \(\Sigma_m^{-1}\) with combinatorial factors from
 \(\gamma_{\mathrm{eq}}=2/(n-1)\) and \(\gamma_{\mathrm{share}}=(n-3)/((n-1)(n-2))\).
 Substituting the laws of Lemma~\ref{lem:two-factor-identities} produces
-rational functions of \((a,\lambda)\). Their Laurent series at \(a=0\) and the
-stated second difference were computed by exact rational arithmetic; at
-\(\lambda=\tfrac12\) the displayed expansion holds. The \(a^{-2}\) coefficients
-satisfy the \((m-1)\)-additivity of Lemma~\ref{lem:sparse-second-diff}, so the
-leading surviving term is \(a^{-1}\).
+rational functions of \((a,\lambda)\). The \(a^{-2}\) coefficients satisfy the
+\((m-1)\)-additivity of Lemma~\ref{lem:sparse-second-diff}, so the second
+difference has at most a simple pole at \(a=0\). The residue
+\(\lim_{a\to0}a\bigl(d_3^{(6,4)}+d_1^{(6,4)}-2d_2^{(6,4)}\bigr)\) equals
+\((1-\lambda)/(2\lambda)\), checked by exact rational arithmetic on a grid of
+\(\lambda\) larger than the degree of this rational function of \(\lambda\)
+(including \(\lambda\in\{1/3,2/5,1/2\}\), where the limits are \(1\), \(3/4\),
+and \(1/2\)). The refinement at \(\lambda=\tfrac12\) is the same series
+computation.
+\end{proof}
+
+\begin{lemma}[Degree-eight cross term at order \(a^{-1}\)]
+\label{lem:c35-delta}
+Let \(d_m^{(3,5)}\) be the coefficient of \(n^{-1}\) in
+\(-\operatorname{Cov}(X,\Im\Phi_5)\), computed from the pair law \(\pi_m\) with
+the leading adjacent-edge covariances of Lemma~\ref{lem:edge-cumulants}.
+At \(\lambda=\tfrac12\), as \(a\to0\),
+\[
+d_3^{(3,5)}+d_1^{(3,5)}-2d_2^{(3,5)}
+=
+\frac{5}{3a}-14+O(a).
+\]
+In particular this package alone contributes \(\frac{5}{3na}+O(n^{-1})\) to
+\(\Delta\operatorname{Re}h\). The closed form
+\[
+\Delta d^{(3,5)}
+=
+\frac{-104a^2+52a-5}{3a(2a-1)}
+\]
+was obtained by exact rational arithmetic.
+\end{lemma}
+
+\begin{proof}
+The same contraction calculus as in Lemma~\ref{lem:phi6-varw-delta}, now for
+the bilinear Wick moment \(\EE[\kappa^{(3)}(u_P)\kappa^{(5)}(u_{P'})]\) on
+adjacent edges, produces the displayed rational function of \(a\) at
+\(\lambda=\tfrac12\). Its Laurent series at \(a=0\) is
+\(\frac5{3a}-14+O(a)\).
 \end{proof}
 
 \begin{remark}[Obstruction for the mid window]
 \label{rem:factor-rate-mid-obstruction}
-Lemma~\ref{lem:phi6-varw-delta} shows that any proof of
+Lemmas~\ref{lem:phi6-varw-delta} and~\ref{lem:c35-delta} show that any proof of
 Conjecture~\ref{conj:factor-rate-mid} via the truncated cumulant expansion must
-cancel the \(\frac1{2na}\) second difference against the remaining packages
-(\(\kappa_4(X)/24\), \(\kappa_2(X,\Phi_5)\), \(\kappa_3(X,X,W)\), and higher even
-total degree). A partial inclusion of star and path diagrams from
-\(\kappa_4(X)\) increases rather than cancels the numerical coefficient of
-\(a^{-1}\) in the second difference. Until a full cancellation is proved, the
-bound \(\Delta\operatorname{Re}h=O(n^{-1}a^{-1})\) of
+cancel at least
+\[
+\frac{1-\lambda}{2\lambda\,na}+\frac{5}{3na}
+=
+\frac{13}{6na}
+\]
+at \(\lambda=\tfrac12\) (the sum of the \(\Phi_6+\tfrac12\operatorname{Var}W\) and
+\(-\operatorname{Cov}(X,\Im\Phi_5)\) residues) against the remaining packages
+(\(\kappa_4(X)/24\), \(\kappa_3(X,X,W)\), and higher even total degree).
+Star and path diagrams from \(\kappa_4(X)\) and the star diagram in
+\(\kappa_3(X,X,W)\) change the numerical coefficient of \(a^{-1}\) by \(O(1)\)
+residues on the sparse grid, but do not cancel \(\frac{13}{6}\). Until a full
+cancellation among all packages is proved, the bound
+\(\Delta\operatorname{Re}h=O(n^{-1}a^{-1})\) of
 Lemma~\ref{lem:sparse-second-diff} is the natural limit of this method, and
 Theorem~\ref{thm:factor-rate} stops at \(n^{3/4}=o(L)\).
 \end{remark}
@@ -3430,7 +3469,8 @@ leaving \(O(n^{-1}a^{-1})\) in the ratio, which is \(o(a^3)\) precisely when
 \(a=\omega(n^{-1/4})\).
 Conjecture~\ref{conj:factor-rate-mid} remains open for
 \(n^{1/2}\ll L=O(n^{3/4})\); see Remark~\ref{rem:factor-rate-mid-obstruction}
-and Lemma~\ref{lem:phi6-varw-delta} for the \(\frac1{2na}\) obstruction.
+and Lemma~\ref{lem:phi6-varw-delta} for the
+\(\frac{1-\lambda}{2\lambda\,na}\) obstruction.
 \end{remark}
 The ordered peel \(P_L\) past \(n^{1/3}\) stays open.
 For \(L=o(n^{1/3})\) the factor count \(Z_L\) is already controlled by
