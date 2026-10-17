@@ -38,7 +38,8 @@ def main() -> None:
             S = np.array(
                 [[float(sig.inv()[i, j]) for j in range(m)] for i in range(m)]
             )
-            k4, _, _ = kappa4_star_path_num(S, kappa, m)
+            k4, star, path, fork = kappa4_star_path_num(S, kappa, m)
+            _ = star, path, fork  # available for diagnostics
             k3 = kappa3_xxw_star(S, kappa, m)
             k4s.append(k4)
             k3s.append(k3)

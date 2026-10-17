@@ -60,31 +60,55 @@ def ee_k3_vec(S, cols, vals, cov):
     return float(np.dot(base, acc))
 
 
+def _kappa4_from_cov(S, cols, vals, cov, n5_over_n5):
+    """kappa_4(f1..f4)/24 coeff of 1/n for one diagram type.
+
+    n5_over_n5 = (#configs)/n^5, using scale-free cov (g0=2,g=1) so that
+    (#configs)*(1/n)^6 * kappa_f = (n5_over_n5) * kappa_f / n.
+    Then divide by 24: reh = n5_over_n5 * kappa_f / 24.
+    """
+    g0 = float(cov[0, 0])
+
+    def e2(i, j):
+        return ee_k3_vec(
+            S, cols, vals, np.array([[g0, cov[i, j]], [cov[i, j], g0]])
+        )
+
+    E4 = ee_k3_vec(S, cols, vals, cov)
+    # disconnected pairings of four mean-zero vars
+    disc = e2(0, 1) * e2(2, 3) + e2(0, 2) * e2(1, 3) + e2(0, 3) * e2(1, 2)
+    kap_f = (E4 - disc) / 1296.0
+    return n5_over_n5 * kap_f / 24.0
+
+
 def kappa4_star_path_num(S, kappa, m):
+    """Star + path + fork (branched tree) 4-edge diagrams for kappa_4(X)/24."""
     cols, vals = _pack_k3(kappa, m)
     g0, g = 2.0, 1.0
+
+    # Star K_{1,4}: # = n*C(n-1,4) / n^5 → 1/24
     cov_star = np.full((4, 4), g)
     np.fill_diagonal(cov_star, g0)
-    E4s = ee_k3_vec(S, cols, vals, cov_star)
-    E2s = ee_k3_vec(S, cols, vals, np.array([[g0, g], [g, g0]]))
-    kap_star = (E4s - 3.0 * E2s * E2s) / 1296.0
-    star_reh = kap_star / 576.0
+    star_reh = _kappa4_from_cov(S, cols, vals, cov_star, 1.0 / 24.0)
 
+    # Path of 4 edges (5 verts): # ≈ n^5/2
     cov_path = np.zeros((4, 4))
     np.fill_diagonal(cov_path, g0)
     for i in range(3):
         cov_path[i, i + 1] = cov_path[i + 1, i] = g
-    E4p = ee_k3_vec(S, cols, vals, cov_path)
+    path_reh = _kappa4_from_cov(S, cols, vals, cov_path, 0.5)
 
-    def e2(c01):
-        return ee_k3_vec(S, cols, vals, np.array([[g0, c01], [c01, g0]]))
+    # Fork: hub edges 0,1,2; edge 3 attached to 2's far end.
+    # # ≈ n * C(n-1,3) * 3 * (n-4) / n^5 → 1/2
+    # (choose hub, 3 neighbours, which arm extends, extension vertex)
+    cov_fork = np.zeros((4, 4))
+    np.fill_diagonal(cov_fork, g0)
+    for i, j in [(0, 1), (0, 2), (1, 2), (2, 3)]:
+        cov_fork[i, j] = cov_fork[j, i] = g
+    fork_reh = _kappa4_from_cov(S, cols, vals, cov_fork, 0.5)
 
-    E01, E23 = e2(g), e2(g)
-    E02, E03, E13 = e2(0.0), e2(0.0), e2(0.0)
-    E12 = e2(g)
-    kap_path = (E4p - E01 * E23 - E02 * E13 - E03 * E12) / 1296.0
-    path_reh = kap_path / 48.0
-    return star_reh + path_reh, star_reh, path_reh
+    total = star_reh + path_reh + fork_reh
+    return total, star_reh, path_reh, fork_reh
 
 
 def pieces_num(a_val, lam_val=0.5):
@@ -100,11 +124,19 @@ def pieces_num(a_val, lam_val=0.5):
         dw = float(var_w_coeff(sig, kappa, m))
         S = np.array([[float(sig.inv()[i, j]) for j in range(m)] for i in range(m)])
         if m == 1:
-            dk4 = star = path = 0.0
+            dk4 = star = path = fork = 0.0
         else:
-            dk4, star, path = kappa4_star_path_num(S, kappa, m)
+            dk4, star, path, fork = kappa4_star_path_num(S, kappa, m)
         rows.append(
-            dict(d6=d6, dw=dw, dk4=dk4, star=star, path=path, total=d6 + dw + dk4)
+            dict(
+                d6=d6,
+                dw=dw,
+                dk4=dk4,
+                star=star,
+                path=path,
+                fork=fork,
+                total=d6 + dw + dk4,
+            )
         )
     D = rows[2]["total"] + rows[0]["total"] - 2 * rows[1]["total"]
     return D, rows
@@ -126,7 +158,7 @@ def main():
         for i, r in enumerate(rows):
             print(
                 f"  m{i+1}: d6={r['d6']:.5f} dw={r['dw']:.5f} dk4={r['dk4']:.5f} "
-                f"star={r['star']:.5f} path={r['path']:.5f}",
+                f"star={r['star']:.5f} path={r['path']:.5f} fork={r['fork']:.5f}",
                 flush=True,
             )
 

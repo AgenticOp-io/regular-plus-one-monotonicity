@@ -55,20 +55,21 @@ At \(\lambda=1/2\), second-difference residues \(a\Delta d\) on a grid:
 | 1/16  | 0.485 | 0.104 | 0.821 | −0.209 | 1.202 |
 | 1/20  | 0.487 | 0.112 | 0.985 | −0.231 | 1.353 |
 
-Star/path \(\kappa_4\) and star \(\kappa_3(X,X,W)\) shift the residue by \(O(1)\)
-but do not cancel \(\frac{13}{6}\). Extrapolating \(a\Delta\) for those two at
-\(a\le 1/40\) suggests
+All three \(n^5\)-scale trees for \(\kappa_4(X)\) (star, path, fork) and the
+star diagram in \(\kappa_3(X,X,W)\) shift the residue by \(O(1)\) but do not
+cancel \(\frac{13}{6}\). At \(a=1/40\),
 \[
-\beta_{\kappa_4}+\beta_{\kappa_3}\approx -\tfrac16,
-\qquad
-\beta_{\mathrm{p64}}+\beta_{\mathrm{C35}}+\beta_{\kappa_4}+\beta_{\kappa_3}
-\approx 2.
+a\Delta_{\mathrm{star}}\approx0.092,\;
+a\Delta_{\mathrm{path}}\approx0.037,\;
+a\Delta_{\mathrm{fork}}\approx0.200,\;
+a\Delta_{\kappa_3}\approx-0.277,
 \]
-(\(\operatorname{Var}(\Im\Phi_5)\) is \(O(n^{-2})\) by Wick counting.) Other
-\(\kappa_4\) diagrams and higher packages could still cancel the \(2\); mid
-window needs that full cancel or a matching lower bound
-\(\Delta\operatorname{Re}h\sim c/(na)\) with \(c>0\) (which would refute the
-\(o(a^3)\) rate for \(L=O(n^{3/4})\)).
+so the trees add rather than subtract. Four-vertex diagrams (\(C_4\),
+triangle+pendant) are \(O(n^{-2})\) by Wick counting.
+(\(\operatorname{Var}(\Im\Phi_5)\) likewise \(O(n^{-2})\).)
+Mid window needs a still-missing cancel of size \(\gtrsim 2/(na)\) or a
+matching lower bound \(\Delta\operatorname{Re}h\sim c/(na)\) with \(c>0\)
+(which would refute the \(o(a^3)\) rate for \(L=O(n^{3/4})\)).
 
 ## What would close the mid window
 
