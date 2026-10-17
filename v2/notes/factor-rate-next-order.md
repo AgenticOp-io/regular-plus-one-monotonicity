@@ -56,9 +56,19 @@ At \(\lambda=1/2\), second-difference residues \(a\Delta d\) on a grid:
 | 1/20  | 0.487 | 0.112 | 0.985 | −0.231 | 1.353 |
 
 Star/path \(\kappa_4\) and star \(\kappa_3(X,X,W)\) shift the residue by \(O(1)\)
-but do not cancel \(\frac{13}{6}\). \(\operatorname{Var}(\Im\Phi_5)\) is
-\(O(n^{-2})\) by Wick counting. Mid window still needs full cancel or a
-matching lower bound.
+but do not cancel \(\frac{13}{6}\). Extrapolating \(a\Delta\) for those two at
+\(a\le 1/40\) suggests
+\[
+\beta_{\kappa_4}+\beta_{\kappa_3}\approx -\tfrac16,
+\qquad
+\beta_{\mathrm{p64}}+\beta_{\mathrm{C35}}+\beta_{\kappa_4}+\beta_{\kappa_3}
+\approx 2.
+\]
+(\(\operatorname{Var}(\Im\Phi_5)\) is \(O(n^{-2})\) by Wick counting.) Other
+\(\kappa_4\) diagrams and higher packages could still cancel the \(2\); mid
+window needs that full cancel or a matching lower bound
+\(\Delta\operatorname{Re}h\sim c/(na)\) with \(c>0\) (which would refute the
+\(o(a^3)\) rate for \(L=O(n^{3/4})\)).
 
 ## What would close the mid window
 
