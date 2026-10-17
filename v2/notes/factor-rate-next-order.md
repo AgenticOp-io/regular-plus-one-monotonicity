@@ -1,27 +1,35 @@
-# Next-order constant for factor-rate-mid
+# Factor-rate-mid: \(a^{-1}\) second difference
 
-Status: Theorem factor-rate closed for \(n^{3/4}=o(L)\). Workshop below is for
-Conjecture factor-rate-mid (\(\sqrt n\ll L=O(n^{3/4})\)).
+Status: obstruction recorded (Lemma phi6-varw-delta, Remark
+factor-rate-mid-obstruction). Mid window still open.
 
-## Settled
+## Exact package
 
-- \(a^{-2}\) second difference vanishes (Lemma sparse-second-diff).
-- Ratio error \(O(1/(na))\), hence rate when \(a=\omega(n^{-1/4})\).
+At \(\lambda=1/2\), the coefficient of \(n^{-1}\) in
+\(\EE\Phi_6+\tfrac12\operatorname{Var}W\) has second difference
+\[
+\Delta d^{(6,4)}=\frac1{2a}-\frac38+O(a)
+\]
+(`scripts/next_order_sparse.py`, exact sympy series). So this package alone
+gives \(\frac1{2na}+O(n^{-1})\) in \(\Delta\operatorname{Re}h\).
 
-## Partial computation
+## Partial \(\kappa_4\)
 
-`scripts/next_order_sparse.py`: the \(\EE\Phi_6+\tfrac12\operatorname{Var}W\) second
-difference is \(\sim 1/(2a)\) as \(a\to0\) (exact series at \(\lambda=1/2\)).
-Star diagrams in \(\kappa_4(X)/24\) are additive (\(\Delta=0\) under the
-\((m-1)\) law). If no further cancellation occurs, the true ratio excess is
-\(\Theta(1/(nL))\) and Conjecture factor-rate-mid fails; a matching lower bound
-is not yet a theorem.
+`scripts/beta_second_diff.py` adds star+path diagrams for \(\kappa_4(X)/24\).
+On the grid \(a\in\{1/5,\ldots,1/20\}\),
+\[
+D\cdot a\in[0.56,0.60]
+\]
+(larger than \(1/2\)), so those diagrams do not cancel the \(a^{-1}\) pole.
+Mixed-factor (non-additive) pieces are visible: at \(a=1/10\),
+\(d_3^{(\kappa_4)}\approx4.31>2\cdot1.74\approx d_2\) additivity.
 
-## Attack
+## What would close the mid window
 
-Compute the full coefficient \(\beta_3+\beta_1-2\beta_2\) of \(a^{-1}\) over every
-degree-\(8\) (and degree-\(6\)) contraction in \(\operatorname{Re}h_m\). If it
-vanishes, extend Theorem factor-rate to every \(n^{1/2}=o(L)\). If it equals
-\(1/2\), prove the matching lower bound and close the mid window in the negative.
+1. **Cancel:** full \(\beta_3+\beta_1-2\beta_2=0\) over every degree-6/8/10/12
+   contraction in \(\operatorname{Re}h\) → extend Theorem factor-rate to all
+   \(L\gg\sqrt n\).
+2. **Match:** prove \(\Delta\operatorname{Re}h\sim\frac{c}{na}\) with \(c>0\) →
+   Conjecture factor-rate-mid fails (relative variance \(\Theta(1/L)\)).
 
 Screen: no blocked approach.
