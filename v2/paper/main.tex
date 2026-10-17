@@ -149,10 +149,10 @@ With Theorem~\ref{thm:long-step} this gives the long-step coupling
 \(\PP(G_d\subseteq G_{d+L})=1-o(1)\) for every \(L\ge1\) when \(d\) and
 \(n-d-L\) are linear (Corollary~\ref{cor:long-step-all}).
 A truncated cumulant expansion in coordinates rescaled by the factor density,
-with a signed annulus in place of \(|F|\) outer bounds, extends the factor
-moment to \(L\ge n^{1/2+\eta}\) with relative variance
-\(O(n^{-1}a^{-2})\) (Theorem~\ref{thm:factor-moment-sparse}), and the
-factor rate \(o(L^3/n^3)\) to \(L\ge n^{4/5+\eta}\)
+with a signed annulus in place of \(|F|\) outer bounds, proves the factor
+second moment for every \(n^{1/2}=o(L)\)
+(Theorems~\ref{thm:factor-moment-sparse} and~\ref{thm:factor-moment}), and the
+factor rate \(o(L^3/n^3)\) whenever \(n^{4/5}=o(L)\)
 (Corollary~\ref{cor:factor-rate-sparse}).
 The balanced range past \(n^{1/3}\) and the other three named statements
 stay open.
@@ -223,36 +223,38 @@ The number of \(m\)-factors of the BIM residual \(R=G^*_0\setminus G\),
 conditionally on \(G\), has relative variance \(o(1)\).
 \end{conjecture}
 
-\begin{conjecture}[Factor second moment past \(\sqrt{n}\)]
+\begin{theorem}[Factor second moment past \(\sqrt{n}\)]
+\label{thm:factor-moment}
 \label{conj:factor-moment}
 Let \(n\) be even, let \(\min(D,n-D)=\Theta(n)\), and let \(L\) satisfy \(Ln\) even,
 \(L\le D\), \(n^{1/2}=o(L)=o(n)\), and \(\min(L,D-L)=\omega(n^{1/3})\).
 The number \(Z\) of \(L\)-factors of a uniform \(D\)-regular graph satisfies
 \(\Var Z/(\EE Z)^2=o(1)\).
+\end{theorem}
+
+\begin{proof}
 The complementary range \(\min(L,D-L)=o(n^{1/3})\) on linear hosts is
 Theorem~\ref{thm:factor-complementary}; near-complete hosts are
 Theorem~\ref{thm:factor-dense-host}; co-length one on sublinear hosts is
 Theorem~\ref{thm:factor-sublinear-colength-one}.
-On every linear host, Theorem~\ref{thm:linear-below-sqrt} gives the moment for
-every \(L\to\infty\) with \(L^2=o(n)\), that is every length \(o(\sqrt{n})\).
-It stops short of \(\sqrt{n}\). Degree \(n/2\) is the special case
-Theorem~\ref{thm:half-below-sqrt}.
-At the top of the range, Theorem~\ref{thm:factor-moment-sparse} gives the
-moment, with relative variance \(O(n^{-1}a^{-2})\), for \(L\ge n^{1/2+\eta}\)
-with any fixed \(\eta>0\).
-The conjecture is open only for \(\sqrt n\ll L=n^{1/2+o(1)}\).
-\end{conjecture}
+On every linear host with \(L^2=o(n)\), Theorem~\ref{thm:linear-below-sqrt}
+gives the moment (degree \(n/2\) is Theorem~\ref{thm:half-below-sqrt}).
+Now suppose \(n^{1/2}=o(L)\) and \(\min(D,n-D)=\Theta(n)\). The \(L\)-factor
+count equals the \((D-L)\)-factor count, so replace \(L\) by \(\min(L,D-L)\).
+Then \(L\le D/2\), hence \(D-L\ge D/2=\Theta(n)\) and
+\(n-1-D=\Theta(n)\). Theorem~\ref{thm:factor-moment-sparse} applies.
+\end{proof}
 
 \begin{conjecture}[Factor moment at the repetition scale]
 \label{conj:factor-rate}
-Under the hypotheses of Conjecture~\ref{conj:factor-moment},
+Under the hypotheses of Theorem~\ref{thm:factor-moment},
 \(\Var Z/(\EE Z)^2=o(L^3/n^3)\).
 The complementary range \(\min(L,D-L)=o(n^{1/3})\) on linear hosts is
 Theorem~\ref{thm:factor-rate-complementary}; near-complete hosts are
 Theorem~\ref{thm:factor-rate-dense-host}.
 At linear length the rate is Corollary~\ref{cor:factor-rate-linear}; for
-\(L\ge n^{4/5+\eta}\) it is Corollary~\ref{cor:factor-rate-sparse}.
-The conjecture is open for \(n^{1/2}\ll L<n^{4/5}\).
+\(n^{4/5}=o(L)\) it is Corollary~\ref{cor:factor-rate-sparse}.
+The conjecture is open for \(n^{1/2}\ll L=O(n^{4/5})\).
 \end{conjecture}
 
 \begin{theorem}[One deletion of a long factor]
@@ -2653,8 +2655,8 @@ There is a sequence \(c_n\to0\) such that
 \[
 \max\Bigl\{\frac{\Var Z_L}{(\EE Z_L)^2}:\ L,\ D-L,\ n-1-D\ge c_n(n-1)\Bigr\}\to0
 \]
-over even \(n\). In particular, Conjecture~\ref{conj:factor-moment} holds
-whenever, in addition, \(L\ge c_n(n-1)\).
+over even \(n\). Theorem~\ref{thm:factor-moment-sparse} makes the
+past-\(\sqrt{n}\) range fully explicit.
 \end{corollary}
 
 \begin{proof}
@@ -2673,8 +2675,8 @@ Under the hypotheses of Conjecture~\ref{conj:factor-moment},
 \(c_n(n-1)\) for large \(n\).
 \end{proof}
 
-Theorem~\ref{thm:factor-moment-sparse} below makes the consequence for
-Conjecture~\ref{conj:factor-moment} explicit: \(L\ge n^{1/2+\eta}\) suffices.
+Theorem~\ref{thm:factor-moment-sparse} below, with complementation in the host,
+is Theorem~\ref{thm:factor-moment}.
 
 \begin{lemma}[Dominant points and the far region]
 \label{lem:mllt-far}
@@ -2946,24 +2948,25 @@ Expand \(\chi(y+z)=\sum_s\pi_m(s)e^{i\langle y+z,s\rangle}
 =\chi(z)\sum_s\pi_z(s)e^{i\langle y,s\rangle}=\chi(z)\,\chi_z(y)\).
 \end{proof}
 
-\begin{theorem}[Multi-colour local limit at polynomially small factor density]
+\begin{theorem}[Multi-colour local limit past the square-root density]
 \label{thm:mllt-sparse}
-Fix \(c\in(0,1/4]\) and \(\eta\in(0,1/2)\).
-Uniformly for \(n\) even, \(m\in\{1,2,3\}\), and \(a\ge n^{-1/2+\eta}\),
-\(\lambda-a\ge c\), \(1-\lambda\ge c\), with \(Dn\) and \(Ln\) even,
+Fix \(c\in(0,1/4]\). Let \(\omega(n)\to\infty\) with \(\omega(n)\le n^{1/4}\).
+Uniformly for \(n\) even, \(m\in\{1,2,3\}\), and
+\(a\ge\omega(n)\,n^{-1/2}\), \(\lambda-a\ge c\), \(1-\lambda\ge c\), with \(Dn\)
+and \(Ln\) even,
 \[
 N_m=\frac{2^m\exp\bigl(\binom n2H(\pi_m)\bigr)}
 {(2\pi)^{mn/2}\det(\Sigma_m)^{n/2}\det(Q_n)^{m/2}}
 \exp\bigl(c_m+O(n^{-1}a^{-2})\bigr),
 \]
-where the implied constant depends on \(c\) and \(\eta\).
-In particular the error is \(O(n^{-2\eta})\to0\).
+where the implied constant depends on \(c\) and \(m\) (not on \(\omega\)).
+In particular the error is \(O(\omega(n)^{-2})\to0\).
 \end{theorem}
 
 \begin{proof}
-Constants \(C,c_1,c_2,\ldots\) depend only on \(c\), \(m\) and \(\eta\).
-Put \(\varepsilon=1/24\) and \(\delta=\eta/2\), so that
-\(na\ge n^{1/2+\eta}\) and \(n^{-1}a^{-2}=O(n^{-2\eta})\).
+Constants \(C,c_1,c_2,\ldots\) depend only on \(c\) and \(m\).
+Put \(\varepsilon=1/24\) and let \(K\ge1\) be a constant fixed below.
+Then \(na\ge\omega(n)\,n^{1/2}\) and \(n^{-1}a^{-2}\le\omega(n)^{-2}\).
 
 \emph{Weights.} Give the \(G\) coordinate weight \(w=1\) and each factor
 coordinate weight \(w=a\); let \(D_a\) be the diagonal matrix of weights and
@@ -2987,8 +2990,8 @@ A joint cumulant of \(S\) with at least one factor index is at most \(Ca\), sinc
 every term of the moment expansion contains a moment of that indicator.
 So in the rescaled coordinates \(\tilde u=D_a^{1/2}u\), the cumulant tensors
 \(\tilde\kappa^{(\ell)}\) have entries at most \(Ca^{1-\ell/2}\) for \(\ell\ge2\), and
-\(|K_4|,|T_3|,|T_1|,|c_m|\le C/a\le Cn^{1/4-\eta}\), as these contractions are invariant
-under the rescaling.
+\(|K_4|,|T_3|,|T_1|,|c_m|\le C/a\le C\sqrt n/\omega(n)\), as these contractions are
+invariant under the rescaling.
 
 \emph{A weighted local bound.}
 Using \(1-\cos x\ge x^2/2-x^4/24\) and \(\langle u,s-s'\rangle^2\le m|u|^2\) in the
@@ -3011,20 +3014,24 @@ Expanding \(e^\eta\le1+\eta e^\eta\) as in Step~2 of Theorem~\ref{thm:mllt}, wit
 \(\int_{R_1}g\le(1+C/(na))G_1(n)\), where \(R_1\) is the one-vertex box.
 Let \(B_s\) be the set where \(|\tilde\theta^{(i)}_j|\le\rho_s=n^{-1/2+\varepsilon}/(2m)\) for all
 \(i,j\), with \(\tilde\Theta_j=D_a^{1/2}\Theta_j\), and put
-\(\beta=n^{-1/2+\delta}a^{-1/2}\). Then \(\rho_s<\beta\) for large \(n\), since
-\(a^{-1/2}\le n^{1/4-\eta/2}\) and \(\delta=\eta/2>\varepsilon\).
+\(\beta=K\,n^{-1/2}a^{-1/2}\). Then \(\rho_s<\beta\) for large \(n\), since
+\(a^{-1/2}\le n^{1/4}\omega(n)^{-1/2}\) and \(n^{\varepsilon-1/4}\omega(n)^{1/2}\to0\).
+Choose \(K\) large enough that \(c_2K^2>2C\), where \(C\) is the quartic
+constant in \(e^{C/a}\) from \(\int g\) and \(c_2\) is the Gaussian constant in
+\(g(x)\le e^{-c_2(n-2)\|x\|_D^2}\).
 
 To bound \(\int_{R\setminus B_s}F\), split into the annulus
 \(\rho_s\le\|\tilde\Theta_j\|_D\le\beta\) for some \(j\), and the region where some
 \(\|\tilde\Theta_j\|_D>\beta\).
 On \(\|\tilde\Theta_j\|_D>\beta\), the product bound gives a factor
-\(e^{-c_2n\beta^2}=e^{-c_2n^{2\delta}/a}\) from that vertex, so
+\(e^{-c_2n\beta^2}=e^{-c_2K^2/a}\) from that vertex, so
 \[
 \int_{\|\tilde\Theta_j\|_D>\beta}|F|
-\le Cn\,e^{-c_2n^{2\delta}/a}\,e^{C/a}\,G_1(n)^n
-\le e^{-(c_2n^{2\delta}-C)/a}G.
+\le Cn\,e^{-c_2K^2/a}\,e^{C/a}\,G_1(n)^n
+\le e^{-(c_2K^2-C)/a}G.
 \]
-Since \(|c_m|\le C/a\), this is \(e^{-\Omega(n^{2\delta}/a)}Ge^{c_m}\).
+Since \(|c_m|\le C'/a\) and \(c_2K^2-C>C'\), this is
+\(e^{-\Omega(1/a)}Ge^{c_m}\).
 
 On the annulus, fix vertex \(x\) and \(\xi\) with
 \(\rho_s\le\|\xi\|_D\le\beta\), and write \(I(\xi)\) for the integral of \(F\) over
@@ -3035,7 +3042,7 @@ F=\Bigl(\prod_{k\ne x}\chi(\xi+\Theta_k)\,e^{-i\langle\boldsymbol d_x,\xi\rangle
 \cdot F^\sharp(\boldsymbol\Theta_{-x}),
 \]
 where \(F^\sharp\) uses the complex tilt \(\pi_{\xi+\Theta_k}\) on edges from \(x\).
-Since \(\|\Theta_k\|_D\le\rho_s\le\|\xi\|_D/2\),
+Since \(\|\Theta_k\|_D\le\rho_s\le\|\xi\|_D/2\) for large \(n\),
 \[
 \prod_{k\ne x}|\chi(\xi+\Theta_k)|
 \le\exp\bigl(-c_1'(n-1)\|\xi\|_D^2/4\bigr),\qquad c_1'=\tfrac{2c^3}{\pi^2}.
@@ -3044,9 +3051,9 @@ Expand
 \(\log\chi_\xi(y)=\log\chi(y)-y^{\mathsf T}\Sigma\xi+R(\xi,y)\) with
 \(|R|\le C(|\xi|\,|y|^2+|\xi|^2|y|+|\xi|^3)\) on the polydisc of radius
 \(1/(8m)\). Here
-\(|\xi|_\infty\le a^{-1/2}\beta=n^{-1/2+\delta}a^{-1}\le n^{\delta-\eta}\to0\).
+\(|\xi|_\infty\le a^{-1/2}\beta=K/(n^{1/2}a)\le K/\omega(n)\to0\).
 Summing \(R\) over \(k\ne x\) on \(B_s\) costs
-\(Cn(\beta\rho_s^2+\beta^2\rho_s+\beta^3)=O(n^{-1/6})\).
+\(Cn(\beta\rho_s^2+\beta^2\rho_s+\beta^3)=O(n^{-1/8}\omega(n)^{-1/2})\to0\).
 The cross term \(-\sum_ky^{\mathsf T}\Sigma\xi\) completes the square in the
 Gaussian on the remaining vertices, multiplying by at most
 \(e^{Cn\|\xi\|_D^2}\). Shrinking \(r\) if needed so that
@@ -3056,8 +3063,8 @@ The untitled integral over \(B_s^{n-1}\) is
 \(G_{n-1}e^{c_m+O(n^{-1}a^{-2})}\) by the parallelepiped expansion of
 Step~5 below, applied to \(K_{n-1}\) (that expansion does not use the
 outer-region bound); the tilt changes each cumulant of order at most
-\(s=\lceil4/\eta\rceil\) by \(O(n^{-1/6})\). Hence
-\(|I(\xi)|\le e^{-c_1'n\|\xi\|_D^2/2}\,e^{O(n^{-1/6})}Ge^{c_m}\), and
+\(s=10\) by \(o(1)\). Hence
+\(|I(\xi)|\le e^{-c_1'n\|\xi\|_D^2/2}\,e^{o(1)}Ge^{c_m}\), and
 \[
 \sum_x\int_{\rho_s\le\|\xi\|_D\le\beta}|I(\xi)|\,d\xi
 \le e^{-\Omega(n^{2\varepsilon})}Ge^{c_m}.
@@ -3065,16 +3072,17 @@ outer-region bound); the tilt changes each cumulant of order at most
 Thus \(\bigl|\int_{R\setminus B_s}F\bigr|\le e^{-\Omega(n^{2\varepsilon})}Ge^{c_m}\).
 
 In Lemma~\ref{lem:mllt-far}(c) and Steps 3--4 of Theorem~\ref{thm:mllt}, replace
-\(\sum_i\) by \(\sum_iw_i\) in \(\Omega_K\), take \(K=(m+2)\pi^2/(4c^3)\), call \(j\)
-exceptional if \(s^{(i)}_j>nr_i^2/1024\) for some \(i\), and use \(r_i\) in place of
-\(r\). The far region is then at most \(e^{-n}I_m\), because
-\(e^{c_m}\ge e^{-Cn^{1/2}}\). At most \(E\le C\log n/a\le n^{1/2-\eta}\log n\) vertices
-are exceptional, since \(w_ir_i^2=ar^2\). Non-exceptional vertices satisfy
-\(\|\theta^{(i)}_j-c_i\|<r_i/4\), and a far vertex loses a factor
-\(e^{-c_1w_i(3r_i/4)^2}=e^{-c_4a}\) on each of at least \(n/2\) pairs. So
-the far-vertex sum is at most
-\(\sum_{y\ge1}(Cn^{m/2+1}e^{-c_4an/2})^ye^{C/a}G_1(n)^n\le e^{-n^{1/2+\eta}/2}G\).
-All of these are \(o(Ge^{c_m}n^{-1})\), since \(|c_m|\le Cn^{1/2-\eta}\).
+\(\sum_i\) by \(\sum_iw_i\) in \(\Omega_K\), take \(K_\Omega=(m+2)\pi^2/(4c^3)\), call
+\(j\) exceptional if \(s^{(i)}_j>nr_i^2/1024\) for some \(i\), and use \(r_i\) in
+place of \(r\). The far region is then at most \(e^{-n}I_m\), because
+\(e^{c_m}\ge e^{-C\sqrt n/\omega(n)}\). At most
+\(E\le C\log n/a\le n^{1/2}\omega(n)^{-1}\log n\) vertices are exceptional.
+Non-exceptional vertices satisfy \(\|\theta^{(i)}_j-c_i\|<r_i/4\), and a far
+vertex loses a factor \(e^{-c_1w_i(3r_i/4)^2}=e^{-c_4a}\) on each of at least
+\(n/2\) pairs. So the far-vertex sum is at most
+\(\sum_{y\ge1}(Cn^{m/2+1}e^{-c_4an/2})^ye^{C/a}G_1(n)^n
+\le e^{-\omega(n)n^{1/2}/2}G\).
+All of these are \(o(Ge^{c_m}n^{-1})\), since \(|c_m|\le C\sqrt n/\omega(n)\).
 
 \emph{Step 5: the parallelepiped.}
 Let \(A=\Sigma\otimes Q_n\). Work in the rescaled coordinates
@@ -3092,9 +3100,10 @@ Every point of \(T(\boldsymbol S)\) has \(|\tilde\theta^{(i)}_j|\le\tau/2\), whe
 \[
 \tau=2n^\varepsilon\max(\|T\|_\infty,\|T\|_1)\le Cn^{-1/2+\varepsilon}=Cn^{-11/24}.
 \]
-So \(|\theta^{(i)}_j|\le a^{-1/2}\tau\le Cn^{-1/4+\varepsilon-\eta/2}\) for factor coordinates and
-\(\le\tau\) for the \(G\) coordinate; in particular \(T(\boldsymbol S)\) lies in \(R\)
-for large \(n\). Put \(q=C_0\tau a^{-1/2}\le Cn^{-1/4+\varepsilon}\), with \(C_0\) fixed below.
+So \(|\theta^{(i)}_j|\le a^{-1/2}\tau\le Cn^{-1/4+\varepsilon}\omega(n)^{-1/2}\) for factor
+coordinates and \(\le\tau\) for the \(G\) coordinate; in particular
+\(T(\boldsymbol S)\) lies in \(R\) for large \(n\). Put
+\(q=C_0\tau a^{-1/2}\le Cn^{-1/4+\varepsilon}\omega(n)^{-1/2}\), with \(C_0\) fixed below.
 
 For complex \(u\) with \(|u_i|\le\rho_1=1/(4m)\),
 \(|\chi(u)-1|\le m\rho_1e^{m\rho_1}<\frac12\). So
@@ -3129,8 +3138,9 @@ With \(\zeta=2n^\varepsilon\) and \(g(\boldsymbol x)=\tilde\Phi(T\boldsymbol x)\
 Since \(naq^3=C_0^3n\tau^3a^{-1/2}\) and \(q\to0\), the condition
 of~\cite[Theorem~2.6]{IM25} holds for every fixed \(s\) with
 \(\alpha=C_sn\tau^3a^{-1/2}\le C_sn^{-1/2+3\varepsilon}a^{-1/2}
-\le C_sn^{-1/4+3\varepsilon-\eta/2}\).
-Take \(s=\lceil4/\eta\rceil\).
+\le C_sn^{-1/4+3\varepsilon}\omega(n)^{-1/2}\).
+Take \(s=10\); then
+\(n\alpha^{s+1}=O\bigl(n^{1-11/8}\omega(n)^{-11/2}\bigr)=O(n^{-3/8})\to0\).
 
 Let \(\boldsymbol X\) have independent standard normal components conditioned on
 \([-n^\varepsilon,n^\varepsilon]\), and let \(\boldsymbol\Xi\) be standard normal. Then
@@ -3202,22 +3212,21 @@ Adding the pieces gives \(\int F=2^mGe^{c_m+O(n^{-1}a^{-2})}\).
 
 \begin{theorem}[Factor second moment past \(\sqrt n\)]
 \label{thm:factor-moment-sparse}
-Fix \(c\in(0,1/4]\) and \(\eta\in(0,1/2)\), let \(n\) be even, and let \(D\) and
-\(L\) satisfy \(L\ge n^{1/2+\eta}\), \(D-L\ge c(n-1)\) and \(n-1-D\ge c(n-1)\).
-Then \(\Var Z_L/(\EE Z_L)^2=O(n^{-1}a^{-2})\) with \(a=L/(n-1)\).
-In particular, Conjecture~\ref{conj:factor-moment} holds for
-\(L\ge n^{1/2+\eta}\), for every fixed \(\eta>0\).
+Fix \(c\in(0,1/4]\), let \(n\) be even, and let \(D\) and \(L\) satisfy
+\(n^{1/2}=o(L)\), \(D-L\ge c(n-1)\) and \(n-1-D\ge c(n-1)\), with \(Dn\) and
+\(Ln\) even. Then \(\Var Z_L/(\EE Z_L)^2=O(n^{-1}a^{-2})\to0\) with
+\(a=L/(n-1)\).
 \end{theorem}
 
 \begin{proof}
-Repeat the proof of Theorem~\ref{thm:factor-moment-conditional}, using
-Theorem~\ref{thm:mllt-sparse} in place of Hypothesis~\ref{hyp:mllt}.
-The parity, entropy, covariance and Laplacian terms cancel exactly, and
-\(c_3+c_1-2c_2=0\) by Lemma~\ref{lem:cumulant-constant}. Since
-\(a=L/(n-1)\ge n^{-1/2+\eta}\), we get
-\(\EE[Z_L^2]/(\EE Z_L)^2=e^{O(n^{-1}a^{-2})}\).
-Under the hypotheses of Conjecture~\ref{conj:factor-moment}, \(D-L\) and
-\(n-1-D\) are at least a constant times \(n\).
+If \(L\ge c(n-1)/2\), apply Theorem~\ref{thm:factor-moment-conditional}.
+Otherwise \(a\to0\). Set \(\omega(n)=L/\sqrt n\to\infty\). Then
+\(a=L/(n-1)\ge\frac12\omega(n)\,n^{-1/2}\) for large \(n\), so
+Theorem~\ref{thm:mllt-sparse} applies. The parity, entropy, covariance and
+Laplacian terms cancel exactly, and \(c_3+c_1-2c_2=0\) by
+Lemma~\ref{lem:cumulant-constant}. Hence
+\(\EE[Z_L^2]/(\EE Z_L)^2=e^{O(n^{-1}a^{-2})}=e^{O(\omega(n)^{-2})}\to1\).
+The hypothesis \(D-L\ge c(n-1)\) is exactly \(\lambda-a\ge c\).
 \end{proof}
 
 \begin{corollary}[Factor rate at linear length]
@@ -3231,21 +3240,20 @@ Theorem~\ref{thm:factor-moment-conditional} gives \(\Var Z_L/(\EE Z_L)^2\to0\),
 while \(L^3/n^3\ge c^3/8\) for large \(n\).
 \end{proof}
 
-\begin{corollary}[Factor rate down to \(n^{4/5+\eta}\)]
+\begin{corollary}[Factor rate past \(n^{4/5}\)]
 \label{cor:factor-rate-sparse}
-Fix \(c\in(0,1/4]\) and \(\eta\in(0,1/5)\), let \(n\) be even, and let \(D\) and
-\(L\) satisfy \(L\ge n^{4/5+\eta}\), \(D-L\ge c(n-1)\) and \(n-1-D\ge c(n-1)\).
+Fix \(c\in(0,1/4]\), let \(n\) be even, and let \(D\) and \(L\) satisfy
+\(n^{4/5}=o(L)\), \(D-L\ge c(n-1)\) and \(n-1-D\ge c(n-1)\).
 Then \(\Var Z_L/(\EE Z_L)^2=o(L^3/n^3)\).
-In particular, Conjecture~\ref{conj:factor-rate} holds for
-\(L\ge n^{4/5+\eta}\).
+In particular, Conjecture~\ref{conj:factor-rate} holds whenever
+\(n^{4/5}=o(L)=o(n)\) and \(\min(D,n-D)=\Theta(n)\).
 \end{corollary}
 
 \begin{proof}
-Here \(a=L/(n-1)\ge\frac12 n^{-1/5+\eta}\) for large \(n\), so
-Theorem~\ref{thm:factor-moment-sparse} applies and gives
+Theorem~\ref{thm:factor-moment-sparse} gives
 \(\Var Z_L/(\EE Z_L)^2=O(n^{-1}a^{-2})\).
-Also \(L^3/n^3\ge\frac18 n^{-3/5+3\eta}\). The quotient of these two bounds is
-\(O(n^{-1+2(1/5-\eta)+3/5-3\eta})=O(n^{-5\eta})\to0\).
+Also \(L^3/n^3=a^3(n/(n-1))^3\). The quotient is
+\(O\bigl(1/(na^5)\bigr)\to0\) because \(a=\omega(n^{4/5})/n=\omega(n^{-1/5})\).
 \end{proof}
 
 \begin{remark}[Scope]
@@ -3257,20 +3265,18 @@ host \(K_n\) gives the product bound of Step 2.
 The general Gaussian approximation for 0-1 points in polytopes omits the
 constant \(e^{c_m}\), so it does not suffice.
 Theorem~\ref{thm:mllt-sparse} extends Theorem~\ref{thm:mllt} to
-\(a\ge n^{-1/2+\eta}\), so Theorem~\ref{thm:factor-moment-sparse} covers
-Conjecture~\ref{conj:factor-moment} for every \(L\ge n^{1/2+\eta}\), and
+\(a\ge\omega(n)\,n^{-1/2}\) with \(\omega\to\infty\), so
+Theorem~\ref{thm:factor-moment} settles the former Conjecture~factor-moment, and
 Corollary~\ref{cor:factor-rate-sparse} covers Conjecture~\ref{conj:factor-rate}
-for \(L\ge n^{4/5+\eta}\).
+whenever \(n^{4/5}=o(L)\).
 The threshold \(3/4\) was sharp for crude bounds on \(|F|\). The signed
-annulus argument (Lemma~\ref{lem:mllt-tilt} plus completing the square)
-removes that barrier. Odd cumulants of the cubic term contribute only to the
-phase of \(e^h\); the modulus is controlled by even cumulants of total degree
-at least \(8\), which are \(O(n^{-1}a^{-2})\to0\) for \(a\ge n^{-1/2+\eta}\).
-Conjecture~\ref{conj:factor-moment} remains open only for
-\(\sqrt n\ll L=n^{1/2+o(1)}\).
+annulus (Lemma~\ref{lem:mllt-tilt}, width \(K(na)^{-1/2}\) for large \(K\))
+removes that barrier. Odd cumulants contribute only to the phase; even
+cumulants of total degree at least \(8\) are \(O(n^{-1}a^{-2})=O(\omega^{-2})\to0\).
+Conjecture~\ref{conj:factor-rate} remains open for
+\(n^{1/2}\ll L=O(n^{4/5})\).
 \end{remark}
-Conjecture~\ref{conj:factor-moment} and the analogous statement for \(P_L\)
-past \(n^{1/3}\) stay open.
+The ordered peel \(P_L\) past \(n^{1/3}\) stays open.
 For \(L=o(n^{1/3})\) the factor count \(Z_L\) is already controlled by
 Theorem~factor-third of~\cite{PlusOneV1}, so the new content is the ordered
 peel, which weights each \(L\)-factor by its number of ordered decompositions
@@ -4651,8 +4657,9 @@ At \(a=1/2\) this is \(L(L-1)/(2n)\), in agreement with
 Theorem~\ref{thm:half-below-sqrt}, and for every fixed density it is
 asymptotic to \(L^2(1-a)^2/(2a^2 n)\).
 That quantity is not \(o(L^3/n^3)\), and \(L^2/n\) leaves the expansion
-once \(L=\omega(\sqrt{n})\). Conjecture~\ref{conj:factor-rate} and the
-past-square-root half of Conjecture~\ref{conj:factor-moment} stay open.
+once \(L=\omega(\sqrt{n})\). The past-square-root moment is
+Theorem~\ref{thm:factor-moment}; Conjecture~\ref{conj:factor-rate} stays open
+for \(n^{1/2}\ll L=O(n^{4/5})\).
 
 \begin{remark}[The square-root logarithm is not the excess]
 \label{rem:eight-factors}
@@ -6229,20 +6236,18 @@ component has odd order.
 The enumeration \(\lvert\Omega_2\rvert=60+10=70\) is Remark~\ref{rem:small-n-inv}.
 \end{proof}
 
-\begin{remark}[Asymptotic \(Z_d\) and the factor-moment conjecture]
+\begin{remark}[Asymptotic \(Z_d\) and the factor moment]
 \label{rem:zd-vs-factor}
-Conjecture~\ref{conj:factor-moment} asks for relative variance \(o(1)\) of the
+Theorem~\ref{thm:factor-moment} gives relative variance \(o(1)\) of the
 number of \(L\)-factors of a uniform \(D\)-regular graph throughout the
-balanced past-\(\sqrt{n}\) range \(\min(L,D-L)=\omega(n^{1/3})\).
-Theorem~\ref{thm:factor-complementary} settles the near-complete side.
+balanced past-\(\sqrt{n}\) range.
 That is asymptotic flatness of \(Z_L\) under \(\mu_D\).
 The third peel-weight flatness needs the same count to be flat among
 \(D\)-regular spanning subgraphs of the random host \(G^*_0\), which is the
 law \(\nu_D\) rather than \(\mu_D\).
-Even a proof of the remaining balanced conjecture would not automatically
-supply that host-restricted flatness, unless item (iii) of
-Theorem~\ref{thm:selection-reduces} has already identified \(\nu_D\) with
-\(\mu_D\).
+Flatness under \(\mu_D\) does not automatically supply that host-restricted
+flatness, unless item (iii) of Theorem~\ref{thm:selection-reduces} has
+already identified \(\nu_D\) with \(\mu_D\).
 The two flatnesses are coupled through the inverse-count problem.
 \end{remark}
 
@@ -6434,45 +6439,13 @@ A second moment on the actual BIM residual \(R=G^*_0\setminus G\), in the
 nearly regular degree window of Proposition~\ref{prop:residual-nearly-reg}.
 Replacing \(R\) by an independent Bernoulli graph is blocked.
 
-\paragraph{Conjecture~\ref{conj:factor-moment}.}
-A signed generating function for the intersection of two \(L\)-factors of a
-linear-degree host, with remainder \(o(1)\) throughout the balanced range
-\(\min(L,D-L)=\omega(n^{1/3})\).
-The near-complete factor side is Theorem~\ref{thm:factor-complementary}; the
-near-complete host side is Theorem~\ref{thm:factor-dense-host}; co-length one
-on sublinear hosts is Theorem~\ref{thm:factor-sublinear-colength-one}.
-The unsigned sequential product is \(\exp(O(L^3/n))\), which is the size of
-the signal past \(n^{1/3}\).
-The signed matching-host term of Proposition~\ref{prop:signed-matching-host}
-leaves the same order.
-Keeping that stub shift and the adjacent falling factorial cancels the cubic
-at every linear density: Theorem~\ref{thm:linear-below-sqrt} gives relative
-variance \(o(1)\) for \(L^2=o(n)\). The logarithm that remains is
-\(L(a-1)(L(a-1)+a)/(2a^2 n)\) at host density \(a=D/n\), which specialises to
-\(L(L-1)/(2n)\) at degree \(n/2\). It does not reach \(\sqrt{n}\) and it does
-not give the rate in Conjecture~\ref{conj:factor-rate}.
-Proposition~\ref{prop:triple-mass-order} sums that principal term on
-three-edge matchings: the constant \(4/n^2\) cancels through order \(1/n^4\),
-and the following term has mass \(-L^8/(48n^2)\), which is smaller than the
-cubic only for \(L=o(n^{1/5})\). The error term of~\cite[Theorem~6]{Gao20}
-is the same order, so the coefficient does not identify the cumulant.
-Binomial leftover plus pairwise is not that generating function.
-The exponential \(\exp(L^2(1-p)/(2p))\) of~\cite[Theorem~2.1]{Gao13} is the
-edge-count fluctuation of \(G(n,p)\), and~\cite[Theorem~2.4]{Gao13} removes it
-once the number of edges is fixed, for \(L^3=o(p^2 n)\).
-Remark~\ref{rem:binomial-edge} records that a regular host has already fixed
-that number, and that Theorem~\ref{thm:linear-below-sqrt} passes the
-restriction \(L^3=o(n)\).
-The remaining expansion error on the regular host is \(O(L^4/n^2)\).
-Proposition~\ref{prop:switching-accumulation} shows that a relative switching
-error \(O(\ell/(Ln)+L/n)\), multiplied through the window \(\ell\le\kappa L^2\),
-produces \(\exp(O(L^3/n))\).
-That product tends to \(1\) only for \(L=o(n^{1/3})\), and \(L^4/n^2\) is
-smaller than \(L^3/n\) by the factor \(L/n\).
-Keeping the switching ratio at that precision does not pass
-Theorem~\ref{thm:linear-below-sqrt}.
-The balanced range still requires the coefficient of the entropy remainder to
-cancel.
+\paragraph{Theorem~\ref{thm:factor-moment}.}
+Settled. The past-\(\sqrt{n}\) half is the multi-colour local limit
+(Theorems~\ref{thm:mllt},~\ref{thm:mllt-sparse}) with
+\(c_3+c_1-2c_2=0\) (Lemma~\ref{lem:cumulant-constant}); the
+below-\(\sqrt{n}\) half is Theorem~\ref{thm:linear-below-sqrt}; the short
+complementary lengths are Theorems~\ref{thm:factor-complementary},
+~\ref{thm:factor-dense-host}, and~\ref{thm:factor-sublinear-colength-one}.
 
 \paragraph{Conjecture~\ref{conj:factor-rate}.}
 The same signed expansion, to remainder \(o(L^3/n^3)\), on the balanced
@@ -6486,10 +6459,9 @@ The deletion is the matching chain in that theorem.
 Theorem~\ref{thm:matching-linear-rate} is the \(O(1/n^2)\) matching variance,
 and Lemma~\ref{lem:matching-step-l1} is the resulting \(O(1/n)\) total variation
 of one step.
-Flatness of both factor counts remains a separate sufficient condition, by
-Theorem~\ref{thm:long-from-flat}, and is what
-Conjecture~\ref{conj:factor-moment} asks for on \(L=\omega(\sqrt{n})\).
-That factor flatness is still open.
+Flatness of both factor counts is a separate sufficient condition, by
+Theorem~\ref{thm:long-from-flat}, and is Theorem~\ref{thm:factor-moment} on
+\(L=\omega(\sqrt{n})\).
 On the range \(L^2=o(n)\) the factor variance is
 Theorem~\ref{thm:linear-below-sqrt}, and the resulting deletion is
 Theorem~\ref{thm:deletion-below-sqrt}.
