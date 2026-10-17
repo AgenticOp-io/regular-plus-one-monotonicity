@@ -145,9 +145,6 @@ Bar is 2.0. v1.0 is sent.
   factor-rate-sparse for \(L\ge n^{8/9+\eta}\) (error \(O(n^{-1/2}a^{-3/2})\)
   is \(o(a^3)\) there). Conjecture factor-rate open on
   \(\sqrt n\ll L<n^{8/9}\).
-  Conjecture factor-moment (\(\sqrt n\ll L=o(n)\)) still open: sparse range
-  \(a\ge n^{-1/2+\varepsilon}\) for factor-moment proper; order-\(n/L^2\) term for
-  factor-rate.
 - Cubic expansion attempt (notes/cubic-expansion-attempt.md): McKay's
   displayed terms give cubic coefficient \(-(1-\lambda)(1+7\lambda)/(2\lambda^2)<0\),
   impossible; terms like \(|X|X_2/n^3\) hidden in McKay's error are cubic for
@@ -174,9 +171,9 @@ Bar is 2.0. v1.0 is sent.
   (Theorem linear-below-sqrt; degree \(n/2\) is Theorem half-below-sqrt).
   That is every length \(o(\sqrt{n})\), and it stops short of \(\sqrt{n}\). Still open for
   \(L=\omega(\sqrt{n})\).
-- factor-rate: still open on the balanced range. At host density \(a=D/n\) the
-  logarithm is \(L(a-1)(L(a-1)+a)/(2a^2 n)\), which specialises to
-  \(L(L-1)/(2n)\) at degree \(n/2\) and is not \(o(L^3/n^3)\).
+- factor-rate: closed for linear \(L\) and for \(L\ge n^{8/9+\eta}\)
+  (Corollaries factor-rate-linear, factor-rate-sparse). Open for
+  \(\sqrt n\ll L<n^{8/9}\).
 - The signed three-matching principal mass is \(-L^8/(48n^2)\)
   (Proposition triple-mass-order). It does not identify the cumulant.
 - long-step: closed for every \(L=o(n)\) with four linear margins
