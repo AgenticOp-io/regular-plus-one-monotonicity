@@ -116,11 +116,11 @@ Still missing:
    linear margins (Corollary long-step-all). Theorem factor-moment-sparse
    extends the factor moment to \(L\ge n^{1/2+\eta}\) (rate
    \(O(n^{-1}a^{-2})\)) via signed annulus + even-cumulant modulus control;
-   factor-rate to \(L\ge n^{4/5+\eta}\) (Corollary factor-rate-sparse) and at
-   linear length (Corollary factor-rate-linear). Factor-moment open only on
-   \(\sqrt n\ll L=n^{1/2+o(1)}\); factor-rate open on \(\sqrt n\ll L<n^{4/5}\).
-   Factor-moment is closed (Theorem factor-moment). Remaining for Workstream A:
-   the order-\(1/(na^2)\) second difference (factor-rate below \(n^{4/5}\)).
+   factor-rate to \(L\ge n^{3/4+\eta}\) (Corollary factor-rate-sparse; the
+   \(a^{-2}\) second difference cancels by Lemma sparse-second-diff) and at
+   linear length (Corollary factor-rate-linear). Factor-moment is closed
+   (Theorem factor-moment). Remaining for Workstream A: the order-\(1/(na)\)
+   second difference (factor-rate below \(n^{3/4}\)).
    An edge-probability theorem for
    the uniform ordered-matching-decomposition law (needed for \(P_L\to Z_L\)
    via the v1 factor-third route). The lower tail of \(Y\) is blocked (see STATUS).
@@ -158,13 +158,13 @@ Still missing (no fake closes):
 | config-split | Open (iii on single orbits only) |
 | residual-moment | Open |
 | factor-moment | **Closed** (Theorem factor-moment): complementary + linear-below-sqrt + mllt-sparse for every \(n^{1/2}=o(L)\) |
-| factor-rate | Closed for linear \(L\) and \(n^{4/5}=o(L)\); open for \(n^{1/2}\ll L=O(n^{4/5})\) |
+| factor-rate | Closed for linear \(L\) and \(n^{3/4}=o(L)\); open for \(n^{1/2}\ll L=O(n^{3/4})\) |
 | long-step | **Closed** for every \(L\ge1\) with two linear margins (long-step-all) |
 
 ## Next
 
 Priority order:
-1. Factor-rate on \(\sqrt n\ll L=O(n^{4/5})\) (coefficient of \(1/(na^2)\)).
+1. Factor-rate on \(\sqrt n\ll L=O(n^{3/4})\) (coefficient of \(1/(na)\)).
 2. residual-moment / config-split / Q (Workstream B).
 3. Ordered peel \(P_L\) past \(n^{1/3}\).
 
