@@ -2315,3 +2315,14 @@ Query: simplify -1 + 2*(1/5 - h) + 3/5 - 3*h
 simplify | -1 + 2 (1/5 - h) + 3/5 - 3 h
 [Result]
 -5 h
+
+
+Query: simplify -1/2 + 3/24 + (1/2)*(1/2 - h)
+[Input interpretation]
+simplify | -1/2 + 3/24 + 1/2 (1/2 - h)
+[Results]
+-1/8 (4 h + 1)
+[Results]
+-h/2 - 1/8
+[Results]
+1/8 (-4 h - 1)
