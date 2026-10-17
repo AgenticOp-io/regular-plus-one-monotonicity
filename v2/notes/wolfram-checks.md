@@ -2337,3 +2337,78 @@ simplify | 1 + (11 × (-1))/8
 -3 = (0) × 8 + (-3)
 [Decimal form]
 -0.375
+
+
+Query: Simplify[(-1/6) - 2*(-1/12)]
+[Input interpretation]
+simplify | -1/6 - (2 × (-1))/12
+[Results]
+1/6 - 1/6
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(13/24) - 2*(13/48)]
+[Input interpretation]
+simplify | 13/24 - 2 × 13/48
+[Results]
+13/24 - 13/24
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(3/8) - 2*(3/16)]
+[Input interpretation]
+simplify | 3/8 - 2 × 3/16
+[Results]
+3/8 - 3/8
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[lam/(a*(lam-a)) - 1/a]
+[Input interpretation]
+simplify | λ/(a (λ - a)) - 1/a
+[Results]
+-1/(a - λ)
+[Results]
+1/(λ - a)
+
+
+Query: Assuming[a>0&&lam>a, Series[lam/(a*(lam-a)),{a,0,1}]]
+[error]
+no result
+
+
+Query: Simplify[lam/(a*(lam-a)) - (1/a + 1/(lam-a))]
+[Input interpretation]
+simplify | λ/(a (λ - a)) - (1/a + 1/(λ - a))
+[Result]
+0
+
+
+Query: Simplify[1/(n*a^4) /. a -> n^(-1/4)*w]
+[error]
+no result
+
+
+Query: Simplify[1/(n*(n^(-1/4))^4)]
+[Input interpretation]
+simplify | 1/(n (n^(-1/4))^4)
+[Result]
+1
+[Quotient and Remainder]
+1 = 1 × 1 + 0
+
+
+Query: Simplify[Sqrt[d^(2/3)] / d^(1/2)]
+[Input interpretation]
+simplify | sqrt(d^(2/3))/sqrt(d)
+[Result]
+1/d^(1/6)

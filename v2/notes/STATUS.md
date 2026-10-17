@@ -18,11 +18,12 @@ Bar is 2.0. v1.0 is sent.
 
 ## Partially closed (named)
 
-- **factor-rate**: closed for linear \(L\) and for \(n^{4/5}=o(L)\)
+- **factor-rate**: closed for linear \(L\) and for \(n^{3/4}=o(L)\)
   (Corollaries factor-rate-linear, factor-rate-sparse); complementary /
-  dense-host sides closed. Open for \(n^{1/2}\ll L=O(n^{4/5})\).
-  Next: coefficient of \(1/(na^2)\) in the second difference
-  (notes/factor-rate-next-order.md).
+  dense-host sides closed. Open for \(n^{1/2}\ll L=O(n^{3/4})\).
+  The \(a^{-2}\) second difference vanishes
+  (Lemma sparse-second-diff / precision-lead); error in the ratio is
+  \(O(1/(na))\), hence the \(n^{3/4}\) threshold.
 
 ## Still open (named)
 
@@ -36,8 +37,8 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-1. Factor-rate on \(\sqrt n\ll L=O(n^{4/5})\): compute \(d_3+d_1-2d_2\) at
-   order \(1/(na^2)\).
+1. Factor-rate on \(\sqrt n\ll L=O(n^{3/4})\): cancel the \(1/(na)\)
+   second difference (or prove a matching lower bound).
 2. Residual-moment on the nearly regular BIM window → config-split → Q.
 3. Ordered peel \(P_L\) past \(n^{1/3}\).
 
