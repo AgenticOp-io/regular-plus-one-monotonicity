@@ -2284,3 +2284,34 @@ Query: simplify -1/2 + (3/2)(1/9 - h) + 1/3 - 3 h
 simplify | -1/2 + 3/2 (1/9 - h) + 1/3 - 3 h
 [Result]
 -(9 h)/2
+
+
+Query: simplify -1/2 + 3*(1/20) + (1/2)*(1/3)
+[Input interpretation]
+simplify | -1/2 + 3 × 1/20 + 1/2 × 1/3
+[Result]
+-11/60
+[Quotient and Remainder]
+-11 = (0) × 60 + (-11)
+[Decimal approximation]
+-0.183333333333333333333333333333333333333333333333333333333333333...
+[Repeating decimal]
+-0.183^_ (period 1)
+
+
+Query: simplify -1/2 + 1/30 + 2/20 + 1/6
+[Input interpretation]
+simplify | -1/2 + 1/30 + 2/20 + 1/6
+[Result]
+-1/5
+[Quotient and Remainder]
+-1 = (0) × 5 + (-1)
+[Decimal form]
+-0.2
+
+
+Query: simplify -1 + 2*(1/5 - h) + 3/5 - 3*h
+[Input interpretation]
+simplify | -1 + 2 (1/5 - h) + 3/5 - 3 h
+[Result]
+-5 h

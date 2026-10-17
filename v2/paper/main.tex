@@ -148,10 +148,11 @@ the formal local expansion cancels, including the cumulant constant
 With Theorem~\ref{thm:long-step} this gives the long-step coupling
 \(\PP(G_d\subseteq G_{d+L})=1-o(1)\) for every \(L\ge1\) when \(d\) and
 \(n-d-L\) are linear (Corollary~\ref{cor:long-step-all}).
-A truncated cumulant expansion in coordinates rescaled by the factor density
-extends the factor moment to \(L\ge n^{3/4+\eta}\) with relative variance
-\(O(n^{-1/2}a^{-3/2})\) (Theorem~\ref{thm:factor-moment-sparse}), and the
-factor rate \(o(L^3/n^3)\) to \(L\ge n^{8/9+\eta}\)
+A truncated cumulant expansion in coordinates rescaled by the factor density,
+with a signed annulus in place of \(|F|\) outer bounds, extends the factor
+moment to \(L\ge n^{1/2+\eta}\) with relative variance
+\(O(n^{-1}a^{-2})\) (Theorem~\ref{thm:factor-moment-sparse}), and the
+factor rate \(o(L^3/n^3)\) to \(L\ge n^{4/5+\eta}\)
 (Corollary~\ref{cor:factor-rate-sparse}).
 The balanced range past \(n^{1/3}\) and the other three named statements
 stay open.
@@ -237,9 +238,9 @@ every \(L\to\infty\) with \(L^2=o(n)\), that is every length \(o(\sqrt{n})\).
 It stops short of \(\sqrt{n}\). Degree \(n/2\) is the special case
 Theorem~\ref{thm:half-below-sqrt}.
 At the top of the range, Theorem~\ref{thm:factor-moment-sparse} gives the
-moment, with relative variance \(O(n^{-1/2}a^{-3/2})\), for \(L\ge n^{3/4+\eta}\)
+moment, with relative variance \(O(n^{-1}a^{-2})\), for \(L\ge n^{1/2+\eta}\)
 with any fixed \(\eta>0\).
-The conjecture is open for \(n^{1/2}\ll L\le n^{3/4+o(1)}\).
+The conjecture is open only for \(\sqrt n\ll L=n^{1/2+o(1)}\).
 \end{conjecture}
 
 \begin{conjecture}[Factor moment at the repetition scale]
@@ -250,8 +251,8 @@ The complementary range \(\min(L,D-L)=o(n^{1/3})\) on linear hosts is
 Theorem~\ref{thm:factor-rate-complementary}; near-complete hosts are
 Theorem~\ref{thm:factor-rate-dense-host}.
 At linear length the rate is Corollary~\ref{cor:factor-rate-linear}; for
-\(L\ge n^{8/9+\eta}\) it is Corollary~\ref{cor:factor-rate-sparse}.
-The conjecture is open for \(n^{1/2}\ll L<n^{8/9}\).
+\(L\ge n^{4/5+\eta}\) it is Corollary~\ref{cor:factor-rate-sparse}.
+The conjecture is open for \(n^{1/2}\ll L<n^{4/5}\).
 \end{conjecture}
 
 \begin{theorem}[One deletion of a long factor]
@@ -2673,7 +2674,7 @@ Under the hypotheses of Conjecture~\ref{conj:factor-moment},
 \end{proof}
 
 Theorem~\ref{thm:factor-moment-sparse} below makes the consequence for
-Conjecture~\ref{conj:factor-moment} explicit: \(L\ge n^{3/4+\eta}\) suffices.
+Conjecture~\ref{conj:factor-moment} explicit: \(L\ge n^{1/2+\eta}\) suffices.
 
 \begin{lemma}[Dominant points and the far region]
 \label{lem:mllt-far}
@@ -2925,24 +2926,44 @@ with \(\Phi\) smooth, then
 \Bigl|\frac{\partial^t\Phi}{\partial\theta_{v_1}\cdots\partial\theta_{v_t}}\Bigr|.
 \]
 
+\begin{lemma}[Complex tilt of a pair law]
+\label{lem:mllt-tilt}
+Let \(\chi(u)=\EE_{\pi_m}e^{i\langle u,S\rangle}\) and, for \(v\in\mathbb C^m\) with
+\(\chi(v)\ne0\), define the complex tilt
+\(\pi_v(s)=\pi_m(s)e^{i\langle v,s\rangle}/\chi(v)\) and its characteristic
+function \(\chi_v(w)=\sum_s\pi_v(s)e^{i\langle w,s\rangle}\). Then
+\(\chi(y+z)=\chi(z)\,\chi_z(y)\) whenever \(\chi(z)\ne0\).
+Consequently, writing \(u_{jk}=y_{jk}+z_{jk}\),
+\[
+\prod_{j<k}\chi(u_{jk})
+=\Bigl(\prod_{j<k}\chi(z_{jk})\Bigr)
+\Bigl(\prod_{j<k}\chi_{z_{jk}}(y_{jk})\Bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+Expand \(\chi(y+z)=\sum_s\pi_m(s)e^{i\langle y+z,s\rangle}
+=\chi(z)\sum_s\pi_z(s)e^{i\langle y,s\rangle}=\chi(z)\,\chi_z(y)\).
+\end{proof}
+
 \begin{theorem}[Multi-colour local limit at polynomially small factor density]
 \label{thm:mllt-sparse}
-Fix \(c\in(0,1/4]\) and \(\eta\in(0,1/4)\).
-Uniformly for \(n\) even, \(m\in\{1,2,3\}\), and \(a\ge n^{-1/4+\eta}\),
+Fix \(c\in(0,1/4]\) and \(\eta\in(0,1/2)\).
+Uniformly for \(n\) even, \(m\in\{1,2,3\}\), and \(a\ge n^{-1/2+\eta}\),
 \(\lambda-a\ge c\), \(1-\lambda\ge c\), with \(Dn\) and \(Ln\) even,
 \[
 N_m=\frac{2^m\exp\bigl(\binom n2H(\pi_m)\bigr)}
 {(2\pi)^{mn/2}\det(\Sigma_m)^{n/2}\det(Q_n)^{m/2}}
-\exp\bigl(c_m+O(n^{-1/2}a^{-3/2})\bigr),
+\exp\bigl(c_m+O(n^{-1}a^{-2})\bigr),
 \]
 where the implied constant depends on \(c\) and \(\eta\).
-In particular the error is \(O(n^{-1/8})\) throughout the range.
+In particular the error is \(O(n^{-2\eta})\to0\).
 \end{theorem}
 
 \begin{proof}
 Constants \(C,c_1,c_2,\ldots\) depend only on \(c\), \(m\) and \(\eta\).
-Put \(\varepsilon=1/8\), so that \(1/a\le n^{1/4-\eta}=o(n^{2\varepsilon})\) and
-\(na\ge n^{3/4+\eta}\).
+Put \(\varepsilon=1/24\) and \(\delta=\eta/2\), so that
+\(na\ge n^{1/2+\eta}\) and \(n^{-1}a^{-2}=O(n^{-2\eta})\).
 
 \emph{Weights.} Give the \(G\) coordinate weight \(w=1\) and each factor
 coordinate weight \(w=a\); let \(D_a\) be the diagonal matrix of weights and
@@ -2989,22 +3010,71 @@ Expanding \(e^\eta\le1+\eta e^\eta\) as in Step~2 of Theorem~\ref{thm:mllt}, wit
 \(y=\sqrt{n-2}\,D_a^{1/2}x\) and \(\Sigma\le mD_a\), gives
 \(\int_{R_1}g\le(1+C/(na))G_1(n)\), where \(R_1\) is the one-vertex box.
 Let \(B_s\) be the set where \(|\tilde\theta^{(i)}_j|\le\rho_s=n^{-1/2+\varepsilon}/(2m)\) for all
-\(i,j\), with \(\tilde\Theta_j=D_a^{1/2}\Theta_j\). A vertex outside \(B_s\) has
-\(\|x\|_D\ge\rho_s\) and contributes at most \(Ce^{-c_2n^{2\varepsilon}}G_1(n)\). Hence
+\(i,j\), with \(\tilde\Theta_j=D_a^{1/2}\Theta_j\), and put
+\(\beta=n^{-1/2+\delta}a^{-1/2}\). Then \(\rho_s<\beta\) for large \(n\), since
+\(a^{-1/2}\le n^{1/4-\eta/2}\) and \(\delta=\eta/2>\varepsilon\).
+
+To bound \(\int_{R\setminus B_s}F\), split into the annulus
+\(\rho_s\le\|\tilde\Theta_j\|_D\le\beta\) for some \(j\), and the region where some
+\(\|\tilde\Theta_j\|_D>\beta\).
+On \(\|\tilde\Theta_j\|_D>\beta\), the product bound gives a factor
+\(e^{-c_2n\beta^2}=e^{-c_2n^{2\delta}/a}\) from that vertex, so
 \[
-\int_{R\setminus B_s}|F|\le Cn\,e^{-c_2n^{1/4}}e^{C/a}G_1(n)^n\le e^{-c_3n^{1/4}}G .
+\int_{\|\tilde\Theta_j\|_D>\beta}|F|
+\le Cn\,e^{-c_2n^{2\delta}/a}\,e^{C/a}\,G_1(n)^n
+\le e^{-(c_2n^{2\delta}-C)/a}G.
 \]
+Since \(|c_m|\le C/a\), this is \(e^{-\Omega(n^{2\delta}/a)}Ge^{c_m}\).
+
+On the annulus, fix vertex \(x\) and \(\xi\) with
+\(\rho_s\le\|\xi\|_D\le\beta\), and write \(I(\xi)\) for the integral of \(F\) over
+\(\Theta_x=\xi\) and \(\tilde\Theta_k\in B_s\) for \(k\ne x\).
+Lemma~\ref{lem:mllt-tilt} with \(z_{xk}=\xi\) and \(y_{xk}=\Theta_k\) gives
+\[
+F=\Bigl(\prod_{k\ne x}\chi(\xi+\Theta_k)\,e^{-i\langle\boldsymbol d_x,\xi\rangle}\Bigr)
+\cdot F^\sharp(\boldsymbol\Theta_{-x}),
+\]
+where \(F^\sharp\) uses the complex tilt \(\pi_{\xi+\Theta_k}\) on edges from \(x\).
+Since \(\|\Theta_k\|_D\le\rho_s\le\|\xi\|_D/2\),
+\[
+\prod_{k\ne x}|\chi(\xi+\Theta_k)|
+\le\exp\bigl(-c_1'(n-1)\|\xi\|_D^2/4\bigr),\qquad c_1'=\tfrac{2c^3}{\pi^2}.
+\]
+Expand
+\(\log\chi_\xi(y)=\log\chi(y)-y^{\mathsf T}\Sigma\xi+R(\xi,y)\) with
+\(|R|\le C(|\xi|\,|y|^2+|\xi|^2|y|+|\xi|^3)\) on the polydisc of radius
+\(1/(8m)\). Here
+\(|\xi|_\infty\le a^{-1/2}\beta=n^{-1/2+\delta}a^{-1}\le n^{\delta-\eta}\to0\).
+Summing \(R\) over \(k\ne x\) on \(B_s\) costs
+\(Cn(\beta\rho_s^2+\beta^2\rho_s+\beta^3)=O(n^{-1/6})\).
+The cross term \(-\sum_ky^{\mathsf T}\Sigma\xi\) completes the square in the
+Gaussian on the remaining vertices, multiplying by at most
+\(e^{Cn\|\xi\|_D^2}\). Shrinking \(r\) if needed so that
+\(c_1'(n-1)/4\) beats this constant, the net factor in \(\|\xi\|_D^2\) is at most
+\(e^{-c_1'n\|\xi\|_D^2/2}\).
+The untitled integral over \(B_s^{n-1}\) is
+\(G_{n-1}e^{c_m+O(n^{-1}a^{-2})}\) by the parallelepiped expansion of
+Step~5 below, applied to \(K_{n-1}\) (that expansion does not use the
+outer-region bound); the tilt changes each cumulant of order at most
+\(s=\lceil4/\eta\rceil\) by \(O(n^{-1/6})\). Hence
+\(|I(\xi)|\le e^{-c_1'n\|\xi\|_D^2/2}\,e^{O(n^{-1/6})}Ge^{c_m}\), and
+\[
+\sum_x\int_{\rho_s\le\|\xi\|_D\le\beta}|I(\xi)|\,d\xi
+\le e^{-\Omega(n^{2\varepsilon})}Ge^{c_m}.
+\]
+Thus \(\bigl|\int_{R\setminus B_s}F\bigr|\le e^{-\Omega(n^{2\varepsilon})}Ge^{c_m}\).
+
 In Lemma~\ref{lem:mllt-far}(c) and Steps 3--4 of Theorem~\ref{thm:mllt}, replace
 \(\sum_i\) by \(\sum_iw_i\) in \(\Omega_K\), take \(K=(m+2)\pi^2/(4c^3)\), call \(j\)
 exceptional if \(s^{(i)}_j>nr_i^2/1024\) for some \(i\), and use \(r_i\) in place of
 \(r\). The far region is then at most \(e^{-n}I_m\), because
-\(e^{c_m}\ge e^{-Cn^{1/4}}\). At most \(E\le C\log n/a\le n^{1/2}\) vertices are
-exceptional, since \(w_ir_i^2=ar^2\). Non-exceptional vertices satisfy
+\(e^{c_m}\ge e^{-Cn^{1/2}}\). At most \(E\le C\log n/a\le n^{1/2-\eta}\log n\) vertices
+are exceptional, since \(w_ir_i^2=ar^2\). Non-exceptional vertices satisfy
 \(\|\theta^{(i)}_j-c_i\|<r_i/4\), and a far vertex loses a factor
 \(e^{-c_1w_i(3r_i/4)^2}=e^{-c_4a}\) on each of at least \(n/2\) pairs. So
 the far-vertex sum is at most
-\(\sum_{y\ge1}(Cn^{m/2+1}e^{-c_4an/2})^ye^{C/a}G_1(n)^n\le e^{-n^{3/4}}G\).
-All of these are \(o(Ge^{c_m}n^{-1})\), since \(|c_m|\le Cn^{1/4-\eta}\).
+\(\sum_{y\ge1}(Cn^{m/2+1}e^{-c_4an/2})^ye^{C/a}G_1(n)^n\le e^{-n^{1/2+\eta}/2}G\).
+All of these are \(o(Ge^{c_m}n^{-1})\), since \(|c_m|\le Cn^{1/2-\eta}\).
 
 \emph{Step 5: the parallelepiped.}
 Let \(A=\Sigma\otimes Q_n\). Work in the rescaled coordinates
@@ -3020,11 +3090,11 @@ Let \(\boldsymbol S=[-n^\varepsilon,n^\varepsilon]^{mn}\).
 Then \(B_s\subseteq T(\boldsymbol S)\), because \(\|T^{-1}\|_\infty\rho_s\le n^\varepsilon\).
 Every point of \(T(\boldsymbol S)\) has \(|\tilde\theta^{(i)}_j|\le\tau/2\), where
 \[
-\tau=2n^\varepsilon\max(\|T\|_\infty,\|T\|_1)\le Cn^{-1/2+\varepsilon}=Cn^{-3/8}.
+\tau=2n^\varepsilon\max(\|T\|_\infty,\|T\|_1)\le Cn^{-1/2+\varepsilon}=Cn^{-11/24}.
 \]
-So \(|\theta^{(i)}_j|\le a^{-1/2}\tau\le Cn^{-1/4}\) for factor coordinates and
+So \(|\theta^{(i)}_j|\le a^{-1/2}\tau\le Cn^{-1/4+\varepsilon-\eta/2}\) for factor coordinates and
 \(\le\tau\) for the \(G\) coordinate; in particular \(T(\boldsymbol S)\) lies in \(R\)
-for large \(n\). Put \(q=C_0\tau a^{-1/2}\le Cn^{-1/4}\), with \(C_0\) fixed below.
+for large \(n\). Put \(q=C_0\tau a^{-1/2}\le Cn^{-1/4+\varepsilon}\), with \(C_0\) fixed below.
 
 For complex \(u\) with \(|u_i|\le\rho_1=1/(4m)\),
 \(|\chi(u)-1|\le m\rho_1e^{m\rho_1}<\frac12\). So
@@ -3058,18 +3128,19 @@ With \(\zeta=2n^\varepsilon\) and \(g(\boldsymbol x)=\tilde\Phi(T\boldsymbol x)\
 \(\widehat\Delta_t(g)\le Cnat\,q^t\) for \(t\ge3\), for a suitable \(C_0\).
 Since \(naq^3=C_0^3n\tau^3a^{-1/2}\) and \(q\to0\), the condition
 of~\cite[Theorem~2.6]{IM25} holds for every fixed \(s\) with
-\(\alpha=C_sn\tau^3a^{-1/2}\le C_sn^{1-9/8+1/8-\eta/2}=C_sn^{-\eta/2}\).
+\(\alpha=C_sn\tau^3a^{-1/2}\le C_sn^{-1/2+3\varepsilon}a^{-1/2}
+\le C_sn^{-1/4+3\varepsilon-\eta/2}\).
 Take \(s=\lceil4/\eta\rceil\).
 
 Let \(\boldsymbol X\) have independent standard normal components conditioned on
 \([-n^\varepsilon,n^\varepsilon]\), and let \(\boldsymbol\Xi\) be standard normal. Then
 \[
 \int_{T(\boldsymbol S)}F=G\,\PP(\boldsymbol\Xi\in\boldsymbol S)\,\EE e^{g(\boldsymbol X)}
-=G\,(1+O(e^{-n^{1/4}/3}))\,(1+K)^{mn}\exp\Bigl(\sum_{r=1}^s\frac{\kappa_r}{r!}\Bigr),
+=G\,(1+O(e^{-n^{2\varepsilon}/3}))\,(1+K)^{mn}\exp\Bigl(\sum_{r=1}^s\frac{\kappa_r}{r!}\Bigr),
 \]
 because \(\det\tilde A^{-1/2}\) and \(\det A^{-1/2}\) differ by the Jacobian
 \(\det(D_a)^{n/2}\) of the rescaling. Moreover
-\(|(1+K)^{mn}-1|\le Cn(100\alpha)^{s+1}\le Cn^{1-2}\le n^{-1}\).
+\(|(1+K)^{mn}-1|\le Cn(100\alpha)^{s+1}\le n^{-1}\).
 
 \emph{The cumulants.}
 Let \(\ell_0=8s+48\) and write \(\tilde\Phi=\sum_{\ell=3}^{\ell_0}\tilde\Phi_\ell+\tilde\Phi_{>\ell_0}\),
@@ -3079,7 +3150,7 @@ By the derivative bounds,
 \(|g|\le Cn^2\) there. Each cumulant \(\kappa_r\), \(r\le s\), is a polynomial in
 moments of order at most \(r\), so dropping \(\tilde\Phi_{>\ell_0}\) changes it by at
 most \(n^{-8}\). Replacing \(\boldsymbol X\) by \(\boldsymbol\Xi\) in moments of order at
-most \(s\) of the remaining polynomial changes them by \(e^{-n^{1/4}/5}\), by
+most \(s\) of the remaining polynomial changes them by \(e^{-n^{2\varepsilon}/5}\), by
 Cauchy--Schwarz against \(\PP(\boldsymbol\Xi\notin\boldsymbol S)\).
 Under \(\boldsymbol\Xi\), \(T\boldsymbol\Xi\) has covariance
 \(\tilde\Sigma^{-1}\otimes Q_n^{-1}\), with \(\|\tilde\Sigma^{-1}\|\le c^{-3}\), and
@@ -3090,42 +3161,52 @@ Lemma~\ref{lem:edge-cumulants}, the joint cumulant of
 Ca^{r-(\ell_1+\cdots+\ell_r)/2}n^{r+1-(\ell_1+\cdots+\ell_r)/2}
 =Cn\,(na)^{r-(\ell_1+\cdots+\ell_r)/2}.
 \]
-The law of \(\boldsymbol\Xi\) is symmetric, so joint cumulants with
-\(\ell_1+\cdots+\ell_r\) odd vanish.
-\begin{itemize}
-\item For \(3\le r\le s\), every \(\ell_i\ge3\), so
-\(|\kappa_r|\le Cn(na)^{-r/2}\le Cn(na)^{-3/2}=Cn^{-1/2}a^{-3/2}\).
-\item For \(r=1\), the term \(\ell=4\) is \(\EE W\), where \(W=\tilde\Phi_4\) is the quartic
-term of Theorem~\ref{thm:mllt}, and
-\(\EE W=\binom n2\frac3{24}\bigl(\frac2{n-1}\bigr)^2K_4=\frac n{n-1}\cdot\frac{K_4}4\).
-The terms \(\ell\ge6\) are at most \(Cn(na)^{-2}=O(n^{-1}a^{-2})\).
-\item For \(r=2\), the term \(\ell_1=\ell_2=3\) is \(-\EE X^2\), with
-\(\tilde\Phi_3=-iX\) and
-\(\EE X^2=\frac1{36}\bigl(6S_3T_3+18\frac n{n-1}T_1\bigr)\), by Wick's
-formula with the covariances \(\gamma\) of Lemma~\ref{lem:edge-cumulants}.
-Here \(\sum_{P,P'}\gamma(P,P')=\frac{n(n-1)}2\) gives the \(T_1\) coefficient,
-and \(S_3=\sum_{P,P'}\gamma(P,P')^3=1+O(1/n)\).
-The other terms have \(\ell_1+\ell_2\ge8\) and are at most \(Cn(na)^{-2}\).
-\end{itemize}
-Since \(|K_4|,|T_3|,|T_1|\le C/a\), the \(O(1/n)\) corrections are \(O(1/(na))\).
-Also \(n^{-1}a^{-2}=o(n^{-1/2}a^{-3/2})\) because \(na\to\infty\). Hence
+Write \(h=\sum_{r=1}^s\kappa_r/r!\). Only the real part of \(h\) enters
+\(|e^h|\), and
 \[
-\sum_{r=1}^s\frac{\kappa_r}{r!}=\tfrac14K_4-\tfrac1{12}T_3-\tfrac14T_1+O(n^{-1/2}a^{-3/2})
-=c_m+O(n^{-1/2}a^{-3/2}).
+\operatorname{Re}h
+=\sum_{k\ge1}\frac{(-1)^k}{(2k)!}\kappa_{2k}(\Im\tilde\Phi)
++\sum_{k\ge0}\frac{(-1)^k}{(2k)!}\kappa_{2k}(\Re\tilde\Phi)
++\text{cross terms of total degree \(\ge4\)},
 \]
-So \(\int_{T(\boldsymbol S)}F=Ge^{c_m+O(n^{-1/2}a^{-3/2})}\), and the same holds at
-each of the \(2^m\) shifted copies.
-Moreover \(|\int_{R\setminus T(\boldsymbol S)}F|\le\int_{R\setminus B_s}|F|\).
-Adding the pieces gives \(\int F=2^mGe^{c_m+O(n^{-1/2}a^{-3/2})}\).
+after splitting \(\tilde\Phi=iX+W+\tilde\Phi_{\ge5}\) with \(X,W\) real as in
+Theorem~\ref{thm:mllt}. (Odd cumulants of a purely imaginary random variable
+are purely imaginary.) By Lemma~\ref{lem:edge-cumulants}:
+\begin{itemize}
+\item \(\EE W=\binom n2\frac3{24}\bigl(\frac2{n-1}\bigr)^2K_4=\frac n{n-1}\cdot\frac{K_4}4\),
+and \(\EE X^2=\frac1{36}\bigl(6S_3T_3+18\frac n{n-1}T_1\bigr)\) with
+\(S_3=\sum\gamma(P,P')^3=1+O(1/n)\), so the order-\(1\) and order-\(2\)
+contributions are \(c_m+O(1/(na))\).
+\item Every even cumulant of total degree at least \(8\) in the \(u_P\), and every
+mixed cumulant of total degree at least \(8\), is
+\(O(n(na)^{-2})=O(n^{-1}a^{-2})\).
+\item Odd cumulants contribute only to \(\operatorname{Im}h\), hence only to the
+phase of \(e^h\). Since \(N_m\) is a positive integer, the \(2^m\) boxes sum to a
+positive real, and the phase error is absorbed in the \(O(n^{-1}a^{-2})\) after
+taking absolute values box by box (each box has the same
+\(|e^h|=e^{\operatorname{Re}h}\)).
+\end{itemize}
+Hence
+\[
+\sum_{r=1}^s\frac{\kappa_r}{r!}=c_m+i\vartheta+O(n^{-1}a^{-2})
+\]
+with \(\vartheta\in\mathbb R\), and
+\(\bigl|\int_{T(\boldsymbol S)}F\bigr|=Ge^{c_m+O(n^{-1}a^{-2})}\).
+The same holds at each of the \(2^m\) shifted copies, with phases that sum to a
+positive real.
+Moreover \(T(\boldsymbol S)\supseteq B_s\), so
+\(|\int_{R\setminus T(\boldsymbol S)}F|\le|\int_{R\setminus B_s}F|
+\le e^{-\Omega(n^{2\varepsilon})}Ge^{c_m}\).
+Adding the pieces gives \(\int F=2^mGe^{c_m+O(n^{-1}a^{-2})}\).
 \end{proof}
 
-\begin{theorem}[Factor second moment down to \(n^{3/4+\eta}\)]
+\begin{theorem}[Factor second moment past \(\sqrt n\)]
 \label{thm:factor-moment-sparse}
-Fix \(c\in(0,1/4]\) and \(\eta\in(0,1/4)\), let \(n\) be even, and let \(D\) and
-\(L\) satisfy \(L\ge n^{3/4+\eta}\), \(D-L\ge c(n-1)\) and \(n-1-D\ge c(n-1)\).
-Then \(\Var Z_L/(\EE Z_L)^2=O(n^{-1/2}a^{-3/2})\) with \(a=L/(n-1)\).
+Fix \(c\in(0,1/4]\) and \(\eta\in(0,1/2)\), let \(n\) be even, and let \(D\) and
+\(L\) satisfy \(L\ge n^{1/2+\eta}\), \(D-L\ge c(n-1)\) and \(n-1-D\ge c(n-1)\).
+Then \(\Var Z_L/(\EE Z_L)^2=O(n^{-1}a^{-2})\) with \(a=L/(n-1)\).
 In particular, Conjecture~\ref{conj:factor-moment} holds for
-\(L\ge n^{3/4+\eta}\), for every fixed \(\eta>0\).
+\(L\ge n^{1/2+\eta}\), for every fixed \(\eta>0\).
 \end{theorem}
 
 \begin{proof}
@@ -3133,8 +3214,8 @@ Repeat the proof of Theorem~\ref{thm:factor-moment-conditional}, using
 Theorem~\ref{thm:mllt-sparse} in place of Hypothesis~\ref{hyp:mllt}.
 The parity, entropy, covariance and Laplacian terms cancel exactly, and
 \(c_3+c_1-2c_2=0\) by Lemma~\ref{lem:cumulant-constant}. Since
-\(a=L/(n-1)\ge n^{-1/4+\eta}\), we get
-\(\EE[Z_L^2]/(\EE Z_L)^2=e^{O(n^{-1/2}a^{-3/2})}\).
+\(a=L/(n-1)\ge n^{-1/2+\eta}\), we get
+\(\EE[Z_L^2]/(\EE Z_L)^2=e^{O(n^{-1}a^{-2})}\).
 Under the hypotheses of Conjecture~\ref{conj:factor-moment}, \(D-L\) and
 \(n-1-D\) are at least a constant times \(n\).
 \end{proof}
@@ -3150,48 +3231,22 @@ Theorem~\ref{thm:factor-moment-conditional} gives \(\Var Z_L/(\EE Z_L)^2\to0\),
 while \(L^3/n^3\ge c^3/8\) for large \(n\).
 \end{proof}
 
-\begin{corollary}[Factor rate down to \(n^{8/9+\eta}\)]
+\begin{corollary}[Factor rate down to \(n^{4/5+\eta}\)]
 \label{cor:factor-rate-sparse}
-Fix \(c\in(0,1/4]\) and \(\eta\in(0,1/9)\), let \(n\) be even, and let \(D\) and
-\(L\) satisfy \(L\ge n^{8/9+\eta}\), \(D-L\ge c(n-1)\) and \(n-1-D\ge c(n-1)\).
+Fix \(c\in(0,1/4]\) and \(\eta\in(0,1/5)\), let \(n\) be even, and let \(D\) and
+\(L\) satisfy \(L\ge n^{4/5+\eta}\), \(D-L\ge c(n-1)\) and \(n-1-D\ge c(n-1)\).
 Then \(\Var Z_L/(\EE Z_L)^2=o(L^3/n^3)\).
 In particular, Conjecture~\ref{conj:factor-rate} holds for
-\(L\ge n^{8/9+\eta}\).
+\(L\ge n^{4/5+\eta}\).
 \end{corollary}
 
 \begin{proof}
-Here \(a=L/(n-1)\ge\frac12 n^{-1/9+\eta}\) for large \(n\), so
+Here \(a=L/(n-1)\ge\frac12 n^{-1/5+\eta}\) for large \(n\), so
 Theorem~\ref{thm:factor-moment-sparse} applies and gives
-\(\Var Z_L/(\EE Z_L)^2=O(n^{-1/2}a^{-3/2})\).
-Also \(L^3/n^3\ge\frac18 n^{-1/3+3\eta}\). The quotient of these two bounds is
-\(O(n^{-1/2+(3/2)(1/9-\eta)+1/3-3\eta})=O(n^{-(9/2)\eta})\to0\).
+\(\Var Z_L/(\EE Z_L)^2=O(n^{-1}a^{-2})\).
+Also \(L^3/n^3\ge\frac18 n^{-3/5+3\eta}\). The quotient of these two bounds is
+\(O(n^{-1+2(1/5-\eta)+3/5-3\eta})=O(n^{-5\eta})\to0\).
 \end{proof}
-
-\begin{lemma}[Complex tilt of a pair law]
-\label{lem:mllt-tilt}
-Let \(\chi(u)=\EE_{\pi_m}e^{i\langle u,S\rangle}\) and, for \(v\in\mathbb C^m\) with
-\(\chi(v)\ne0\), define the complex tilt
-\(\pi_v(s)=\pi_m(s)e^{i\langle v,s\rangle}/\chi(v)\) and its characteristic
-function \(\chi_v(w)=\sum_s\pi_v(s)e^{i\langle w,s\rangle}\). Then
-\(\chi(y+z)=\chi(z)\,\chi_z(y)\) whenever \(\chi(z)\ne0\).
-Consequently, writing \(u_{jk}=y_{jk}+z_{jk}\),
-\[
-\prod_{j<k}\chi(u_{jk})
-=\Bigl(\prod_{j<k}\chi(z_{jk})\Bigr)
-\Bigl(\prod_{j<k}\chi_{z_{jk}}(y_{jk})\Bigr).
-\]
-\end{lemma}
-
-\begin{proof}
-Expand \(\chi(y+z)=\sum_s\pi_m(s)e^{i\langle y+z,s\rangle}
-=\chi(z)\sum_s\pi_z(s)e^{i\langle y,s\rangle}=\chi(z)\,\chi_z(y)\).
-\end{proof}
-
-This is the multi-colour form of~\cite[(4.7)]{IM25}. A shifted-box comparison
-in the sense of~\cite[Corollary~4.14]{IM25} would bound the integral over
-the \(y\)-variables by comparing the tilted expansion to the untitled one,
-with prefactor \(\prod|\chi(z_{jk})|\le\exp(-c\sum_iw_i\|z^{(i)}\|^2_{\mathrm{pairs}})\).
-That argument is not carried out here; it is the route past \(n^{3/4}\).
 
 \begin{remark}[Scope]
 \label{rem:mllt-status}
@@ -3202,22 +3257,17 @@ host \(K_n\) gives the product bound of Step 2.
 The general Gaussian approximation for 0-1 points in polytopes omits the
 constant \(e^{c_m}\), so it does not suffice.
 Theorem~\ref{thm:mllt-sparse} extends Theorem~\ref{thm:mllt} to
-\(a\ge n^{-1/4+\eta}\), so Theorem~\ref{thm:factor-moment-sparse} covers
-Conjecture~\ref{conj:factor-moment} for \(L\ge n^{3/4+\eta}\), and
+\(a\ge n^{-1/2+\eta}\), so Theorem~\ref{thm:factor-moment-sparse} covers
+Conjecture~\ref{conj:factor-moment} for every \(L\ge n^{1/2+\eta}\), and
 Corollary~\ref{cor:factor-rate-sparse} covers Conjecture~\ref{conj:factor-rate}
-for \(L\ge n^{8/9+\eta}\).
-The threshold \(3/4\) is sharp for bounds on \(|F|\): the box integral is
-\(Ge^{c_m}\) with \(|c_m|\asymp1/a\), while \(\int|F|\) outside the box carries
-an extra \(e^{C/a}\) from the quartic, so one needs \(n^{2\varepsilon}\gg1/a\), and the
-expansion needs \(n\tau^3a^{-1/2}\to0\) with \(\tau\asymp n^{-1/2+\varepsilon}\). These force
-\(a\gg n^{-1/4}\).
-Going lower needs signed control of the outer regions, as in the shifted-box
-comparison of~\cite[Section~4.3]{IM25}. Lemma~\ref{lem:mllt-tilt} is the
-multi-colour form of~\cite[(4.7)]{IM25}; the rest of that comparison is open.
-For \(a\le n^{-1/3}\) the third cumulant \(n(na)^{-3/2}\) is no longer small, and
-higher cumulants must be computed, not just bounded.
-Conjecture~\ref{conj:factor-moment} remains open for
-\(\sqrt n\ll L\le n^{3/4+o(1)}\).
+for \(L\ge n^{4/5+\eta}\).
+The threshold \(3/4\) was sharp for crude bounds on \(|F|\). The signed
+annulus argument (Lemma~\ref{lem:mllt-tilt} plus completing the square)
+removes that barrier. Odd cumulants of the cubic term contribute only to the
+phase of \(e^h\); the modulus is controlled by even cumulants of total degree
+at least \(8\), which are \(O(n^{-1}a^{-2})\to0\) for \(a\ge n^{-1/2+\eta}\).
+Conjecture~\ref{conj:factor-moment} remains open only for
+\(\sqrt n\ll L=n^{1/2+o(1)}\).
 \end{remark}
 Conjecture~\ref{conj:factor-moment} and the analogous statement for \(P_L\)
 past \(n^{1/3}\) stay open.
