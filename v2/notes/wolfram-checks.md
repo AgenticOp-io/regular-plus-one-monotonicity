@@ -2536,3 +2536,30 @@ simplify | 5/3 + 1/2 - 13/6
 0
 [Quotient and Remainder]
 0 = (0) × 1 + 0
+
+
+Query: Simplify[13/6 - 5/6 - 4/3]
+[Input interpretation]
+simplify | 13/6 - 5/6 - 4/3
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: N[-5/6, 20]
+[Input]
+-5/6 | 20 digits
+[Result]
+-0.83333333333333333333
+[Number name]
+negative zero point eight three three three three three three three three three three three three three three four
+
+
+Query: N[4/3, 20]
+[Input]
+4/3 | 20 digits
+[Result]
+1.3333333333333333333
+[Number name]
+one point three three three three three three three three three three three three three three three three

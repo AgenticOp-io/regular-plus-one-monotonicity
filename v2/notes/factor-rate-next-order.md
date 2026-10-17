@@ -75,12 +75,18 @@ the two exact packages. Full inventoried sum (`beta_inventory_run.py`):
 | 1/20  | 0.901 |
 | 1/40  | 1.111 |
 
-Linear extrapolation suggests \(\beta_{\mathrm{inv}}\approx\frac43>0\).
-Lemma a-minus-two-class in the paper asserts these five packages exhaust the
-\(a^{-2}\) class (so the tail is \(o(1/(na))\) for \(a=\omega(n^{-1/2})\)).
-The remaining gap is an exact evaluation of
-\(\lim_{a\to0}a\Delta(\kappa_4/24-\kappa_3/6)\); if that limit is greater than
-\(-\frac{13}{6}\), Conjecture factor-rate-mid fails.
+Cubic extrapolation of \(a\Delta(\kappa_4+\kappa_3)\) on \(a\in[1/60,1/30]\)
+gives residue \(\approx-0.838\), matching \(-\frac56\) to three digits
+(`scripts/beta_k4k3_residue.py`). Combined with \(\frac{13}{6}\) from the
+exact packages this yields
+\[
+\beta_{\mathrm{inv}}=\frac{13}{6}-\frac56=\frac43>0.
+\]
+Lemma a-minus-two-class asserts these five packages exhaust the \(a^{-2}\)
+class. The remaining gap is a rigorous evaluation of
+\(\lim_{a\to0}a\Delta(\kappa_4/24-\kappa_3/6)=-\frac56\) (or any upper bound
+strictly less than \(\frac{13}{6}\) in absolute value); that would refute
+Conjecture factor-rate-mid and give \(\Var Z/(\EE Z)^2=\Theta(1/L)\).
 
 ## What would close the mid window
 
