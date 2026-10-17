@@ -2412,3 +2412,10 @@ Query: Simplify[Sqrt[d^(2/3)] / d^(1/2)]
 simplify | sqrt(d^(2/3))/sqrt(d)
 [Result]
 1/d^(1/6)
+
+
+Query: Simplify[Sqrt[d^(2/3)]/Sqrt[d]]
+[Input interpretation]
+simplify | sqrt(d^(2/3))/sqrt(d)
+[Result]
+1/d^(1/6)
