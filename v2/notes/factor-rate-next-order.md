@@ -55,21 +55,24 @@ At \(\lambda=1/2\), second-difference residues \(a\Delta d\) on a grid:
 | 1/16  | 0.485 | 0.104 | 0.821 | −0.209 | 1.202 |
 | 1/20  | 0.487 | 0.112 | 0.985 | −0.231 | 1.353 |
 
-All three \(n^5\)-scale trees for \(\kappa_4(X)\) (star, path, fork) and the
-star diagram in \(\kappa_3(X,X,W)\) shift the residue by \(O(1)\) but do not
-cancel \(\frac{13}{6}\). At \(a=1/40\),
+All three \(n^5\)-scale trees for \(\kappa_4(X)\) (star, path, fork) and both
+\(n^4\)-scale diagrams for \(\kappa_3(X,X,W)\) (star and path) shift the
+residue by \(O(1)\) but do not cancel \(\frac{13}{6}\). At \(a=1/40\),
 \[
-a\Delta_{\mathrm{star}}\approx0.092,\;
-a\Delta_{\mathrm{path}}\approx0.037,\;
-a\Delta_{\mathrm{fork}}\approx0.200,\;
-a\Delta_{\kappa_3}\approx-0.277,
+\begin{align*}
+a\Delta_{\kappa_4}&\approx0.328
+\quad(\mathrm{star}\,0.092+\mathrm{path}\,0.037+\mathrm{fork}\,0.200),\\
+a\Delta_{\kappa_3}&\approx-1.030
+\quad(\mathrm{star}\,-0.277+\mathrm{path}\,-0.754).
+\end{align*}
 \]
-so the trees add rather than subtract. Four-vertex diagrams (\(C_4\),
-triangle+pendant) are \(O(n^{-2})\) by Wick counting.
-(\(\operatorname{Var}(\Im\Phi_5)\) likewise \(O(n^{-2})\).)
-Mid window needs a still-missing cancel of size \(\gtrsim 2/(na)\) or a
-matching lower bound \(\Delta\operatorname{Re}h\sim c/(na)\) with \(c>0\)
-(which would refute the \(o(a^3)\) rate for \(L=O(n^{3/4})\)).
+Net \(\kappa_4+\kappa_3\approx-0.70\), against \(\frac{13}{6}\approx2.17\) from
+the two exact packages — still \(\sim 1.5/(na)\) left. Four-vertex diagrams
+(\(C_4\), triangle+pendant) and \(\operatorname{Var}(\Im\Phi_5)\) are
+\(O(n^{-2})\) by Wick counting. Mid window needs a still-missing cancel of
+size \(\gtrsim 3/(2na)\) or a matching lower bound
+\(\Delta\operatorname{Re}h\sim c/(na)\) with \(c>0\) (which would refute the
+\(o(a^3)\) rate for \(L=O(n^{3/4})\)).
 
 ## What would close the mid window
 

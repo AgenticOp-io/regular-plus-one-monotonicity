@@ -113,6 +113,23 @@ def cov_x_phi5_coeff(S, kappa, m):
     return C / 1440.0
 
 
+def _e_k4(S, k4c, k4v, g0):
+    E4 = 0.0
+    pair4 = list(_matchings(4))
+    p4 = np.asarray(pair4, dtype=np.intp).reshape(len(pair4), 2, 2)
+    for k in range(len(k4v)):
+        idxs = k4c[k]
+        wsum = 0.0
+        for p in range(len(pair4)):
+            pt = 1.0
+            for e in range(2):
+                ia, ib = int(p4[p, e, 0]), int(p4[p, e, 1])
+                pt *= g0 * S[idxs[ia], idxs[ib]]
+            wsum += pt
+        E4 += k4v[k] * wsum
+    return E4
+
+
 def kappa3_xxw_star(S, kappa, m):
     """Coeff of 1/n in -kappa_3(X,X,W)/6 from star 3-edge config (vectorized)."""
     k3c, k3v = _pack_k3(kappa, m)
@@ -128,25 +145,65 @@ def kappa3_xxw_star(S, kappa, m):
     )
     cov2 = np.array([[g0, g], [g, g0]])
     E33 = ee_k3_vec(S, k3c, k3v, cov2)
-
-    # E[k4(u)] with Cov = g0 S
-    E4 = 0.0
-    pair4 = list(_matchings(4))
-    p4 = np.asarray(pair4, dtype=np.intp).reshape(len(pair4), 2, 2)
-    for k in range(len(k4v)):
-        idxs = k4c[k]
-        wsum = 0.0
-        for p in range(len(pair4)):
-            pt = 1.0
-            for e in range(2):
-                ia, ib = int(p4[p, e, 0]), int(p4[p, e, 1])
-                pt *= g0 * S[idxs[ia], idxs[ib]]
-            wsum += pt
-        E4 += k4v[k] * wsum
-
+    E4 = _e_k4(S, k4c, k4v, g0)
     E_conn = E334 - E33 * E4
-    # -kappa_3/6: see prior docstring → -E_conn/(31104 n)
+    # Star: # = n*C(n-1,3) ~ n^4/6; (1/n)^5 → 1/(6n)
+    # (-1/6)^2*(1/24)*(1/6) / 6 for -kappa3/6 → -1/31104
     return -E_conn / 31104.0
+
+
+def kappa3_xxw_path(S, kappa, m):
+    """Coeff of 1/n in -kappa_3(X,X,W)/6 from a 3-edge path.
+
+    Two placements of W: at the middle edge, or at an end (×2 by symmetry).
+    #paths of 3 edges ~ n^4/2; (1/n)^5 → 1/(2n).
+    """
+    k3c, k3v = _pack_k3(kappa, m)
+    k4c, k4v = _pack_kl(kappa, m, 4)
+    if len(k3v) == 0 or len(k4v) == 0:
+        return 0.0
+    g0, g = 2.0, 1.0
+
+    def path_cov():
+        c = np.zeros((3, 3))
+        np.fill_diagonal(c, g0)
+        c[0, 1] = c[1, 0] = g
+        c[1, 2] = c[2, 1] = g
+        return c
+
+    cov = path_cov()
+    packs_x = (k3c, k3v)
+    packs_w = (k4c, k4v)
+
+    # W in middle: edges (X, W, X)
+    E_mid = ee_mixed_vec(S, [packs_x, packs_w, packs_x], cov, [3, 4, 3])
+    # W at end: (W, X, X) — double for the other end via the same count factor
+    E_end = ee_mixed_vec(S, [packs_w, packs_x, packs_x], cov, [4, 3, 3])
+
+    # Connected: subtract E[X X] E[W] for pairs that factor along the cut.
+    # For path, the only O(1) disconnected pattern at this scale is
+    # E[f_i f_j] E[f_k] when one edge is isolated in the cov graph — but with
+    # EX=0 and path cov, use full moment-cumulant for 3 mean-zero vars:
+    # kappa3 = E[123] - E[12]E[3] - E[13]E[2] - E[23]E[1]
+    # E[single]=0 for centered f from odd/even? W has nonzero mean; X has mean 0.
+    # So kappa3(X,X,W) = E[XXW] - E[XX]E[W]  (other terms have E[X]=0).
+
+    cov_xx_adj = np.array([[g0, g], [g, g0]])
+    cov_xx_end = np.array([[g0, 0.0], [0.0, g0]])  # ends of path: disjoint
+    E_xx_adj = ee_k3_vec(S, k3c, k3v, cov_xx_adj)
+    E_xx_dis = ee_k3_vec(S, k3c, k3v, cov_xx_end)
+    E4 = _e_k4(S, k4c, k4v, g0)
+
+    # Mid: the two X's are at the ends → disjoint
+    kap_mid = E_mid - E_xx_dis * E4
+    # End: the two X's are adjacent
+    kap_end = E_end - E_xx_adj * E4
+
+    # Factors: X factors (-1/6)^2, W 1/24, #paths/n^5 = 1/2, -kappa3/6
+    # (-1/6)^2*(1/24)*(1/2)/6 = 1/864 * 1/12 = 1/10368
+    # Mid once, end twice (two ends)
+    E_conn = kap_mid + 2.0 * kap_end
+    return -E_conn / 10368.0
 
 
 def var_phi5_coeff(S, kappa, m):
@@ -178,7 +235,7 @@ def inventory(a_val, lam_val=0.5):
         else:
             k4, _, _, _ = kappa4_star_path_num(S, kappa, m)
             c35 = cov_x_phi5_coeff(S, kappa, m)
-            k3xw = kappa3_xxw_star(S, kappa, m)
+            k3xw = kappa3_xxw_star(S, kappa, m) + kappa3_xxw_path(S, kappa, m)
         total = p64 + k4 + c35 + k3xw
         rows.append(dict(p64=p64, k4=k4, c35=c35, k3xw=k3xw, total=total))
 
