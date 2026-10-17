@@ -67,12 +67,19 @@ a\Delta_{\kappa_3}&\approx-1.030
 \end{align*}
 \]
 Net \(\kappa_4+\kappa_3\approx-0.70\), against \(\frac{13}{6}\approx2.17\) from
-the two exact packages — still \(\sim 1.5/(na)\) left. Four-vertex diagrams
-(\(C_4\), triangle+pendant) and \(\operatorname{Var}(\Im\Phi_5)\) are
-\(O(n^{-2})\) by Wick counting. Mid window needs a still-missing cancel of
-size \(\gtrsim 3/(2na)\) or a matching lower bound
-\(\Delta\operatorname{Re}h\sim c/(na)\) with \(c>0\) (which would refute the
-\(o(a^3)\) rate for \(L=O(n^{3/4})\)).
+the two exact packages. Full inventoried sum (`beta_inventory_run.py`):
+
+| \(a\) | \(a\Delta_{\mathrm{tot}}\) |
+|------:|---------------------------:|
+| 1/10  | 0.510 |
+| 1/20  | 0.901 |
+| 1/40  | 1.111 |
+
+Linear extrapolation suggests \(\beta_{\mathrm{inv}}\approx\frac43>0\). Four-vertex
+diagrams and \(\operatorname{Var}(\Im\Phi_5)\) are \(O(n^{-2})\). A matching
+lower bound \(\Delta\operatorname{Re}h\sim c/(na)\) with \(c>0\) would refute
+the \(o(a^3)\) rate for \(L=O(n^{3/4})\); the gap is controlling the
+un-inventoried tail of the cumulant expansion.
 
 ## What would close the mid window
 
