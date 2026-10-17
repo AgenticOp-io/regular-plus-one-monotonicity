@@ -1,37 +1,27 @@
-# Next-order constant for factor-rate below \(n^{3/4}\)
+# Next-order constant for factor-rate-mid
 
-Status: the \(a^{-2}\) second difference is settled
-(Lemma sparse-second-diff in the paper). Workshop below is for the
-remaining \(1/(na)\) term.
+Status: Theorem factor-rate closed for \(n^{3/4}=o(L)\). Workshop below is for
+Conjecture factor-rate-mid (\(\sqrt n\ll L=O(n^{3/4})\)).
 
-## Current theorem
+## Settled
 
-Corollary factor-rate-sparse: if \(n^{3/4}=o(L)\) with linear co-length and
-complement, then \(\Var Z_L/(\EE Z_L)^2=o(L^3/n^3)\).
-Proof: Lemma sparse-second-diff gives error \(O(n^{-1}a^{-1})\) in the
-ratio, and \(1/(na^4)\to0\) iff \(a=\omega(n^{-1/4})\).
+- \(a^{-2}\) second difference vanishes (Lemma sparse-second-diff).
+- Ratio error \(O(1/(na))\), hence rate when \(a=\omega(n^{-1/4})\).
 
-## What cancelled
+## Partial computation
 
-Precision \(\Sigma_m^{-1}=a^{-1}J_m+O(1)\) with \(J_m\) an orthogonal sum of
-\(m-1\) factor projectors and \((\Sigma_3^{-1})_{F_1F_2}=0\)
-(Lemma precision-lead). Weight-\(a^{-2}\) Wick diagrams are additive over
-factor colours, so \(\alpha_m=(m-1)\alpha_2\) and
-\(\alpha_3+\alpha_1-2\alpha_2=0\).
+`scripts/next_order_sparse.py`: the \(\EE\Phi_6+\tfrac12\operatorname{Var}W\) second
+difference is \(\sim 1/(2a)\) as \(a\to0\) (exact series at \(\lambda=1/2\)).
+Star diagrams in \(\kappa_4(X)/24\) are additive (\(\Delta=0\) under the
+\((m-1)\) law). If no further cancellation occurs, the true ratio excess is
+\(\Theta(1/(nL))\) and Conjecture factor-rate-mid fails; a matching lower bound
+is not yet a theorem.
 
-Checked explicitly (scripts/next_order_sparse.py): for \(\EE\Phi_6\) and
-\(\tfrac12\operatorname{Var}W\) at \(\lambda\in\{1/2,2/5,3/4\}\),
-\[
-[a^{-2}]\,d_3=2\,[a^{-2}]\,d_2,\qquad [a^{-2}]\,d_1=0,
-\]
-and the residual second difference is \(\sim 1/(2a)\) (coefficient of
-\(1/(na)\)).
+## Attack
 
-## Still open
-
-The coefficient \(\beta_3+\beta_1-2\beta_2\) of \(a^{-1}\) in the second
-difference. If it vanishes, factor-rate extends to every
-\(n^{1/2}=o(L)\). If not, the true rate on \(\sqrt n\ll L=O(n^{3/4})\) is
-\(\Theta(1/(nL))\) and the conjecture fails there.
+Compute the full coefficient \(\beta_3+\beta_1-2\beta_2\) of \(a^{-1}\) over every
+degree-\(8\) (and degree-\(6\)) contraction in \(\operatorname{Re}h_m\). If it
+vanishes, extend Theorem factor-rate to every \(n^{1/2}=o(L)\). If it equals
+\(1/2\), prove the matching lower bound and close the mid window in the negative.
 
 Screen: no blocked approach.
