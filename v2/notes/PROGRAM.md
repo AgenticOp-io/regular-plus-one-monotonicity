@@ -157,17 +157,16 @@ Still missing (no fake closes):
 | Q | Open |
 | config-split | Open (iii on single orbits only) |
 | residual-moment | Open |
-| factor-moment | Closed for \(L=o(\sqrt n)\) (linear-below-sqrt) and \(L\ge n^{1/2+\eta}\) (factor-moment-sparse). Open only for \(\sqrt n\ll L=n^{1/2+o(1)}\) |
-| factor-rate | Closed for linear \(L\) (factor-rate-linear) and \(L\ge n^{4/5+\eta}\) (factor-rate-sparse); complementary/dense-host sides already closed. Open for \(\sqrt n\ll L<n^{4/5}\) |
-| long-step | Closed for every \(L\ge1\) with two linear margins (long-step-all). Matching variance \(O(1/n^2)\) is Theorem matching-linear-rate |
+| factor-moment | **Closed** (Theorem factor-moment): complementary + linear-below-sqrt + mllt-sparse for every \(n^{1/2}=o(L)\) |
+| factor-rate | Closed for linear \(L\) and \(n^{4/5}=o(L)\); open for \(n^{1/2}\ll L=O(n^{4/5})\) |
+| long-step | **Closed** for every \(L\ge1\) with two linear margins (long-step-all) |
 
 ## Next
 
 Priority order:
-1. Thin window \(\sqrt n\ll L=n^{1/2+o(1)}\) of factor-moment, or factor-rate
-   on \(\sqrt n\ll L<n^{4/5}\) (need the \(n/L^2\) second difference).
-2. Lower-tail of \(N\) at \(1/c_n\) under true \(\mu_D\) dependence (Workstream B).
-3. residual-moment / config-split / Q.
+1. Factor-rate on \(\sqrt n\ll L=O(n^{4/5})\) (coefficient of \(1/(na^2)\)).
+2. residual-moment / config-split / Q (Workstream B).
+3. Ordered peel \(P_L\) past \(n^{1/3}\).
 
 Run `python scripts/approach_screen.py` before expanding an attack.
 Append Wolfram checks to `v2/notes/wolfram-checks.md`.

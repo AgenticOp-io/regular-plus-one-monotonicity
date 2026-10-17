@@ -2326,3 +2326,14 @@ simplify | -1/2 + 3/24 + 1/2 (1/2 - h)
 -h/2 - 1/8
 [Results]
 1/8 (-4 h - 1)
+
+
+Query: simplify 1 + 11*(-1/8)
+[Input interpretation]
+simplify | 1 + (11 × (-1))/8
+[Result]
+-3/8
+[Quotient and Remainder]
+-3 = (0) × 8 + (-3)
+[Decimal form]
+-0.375
