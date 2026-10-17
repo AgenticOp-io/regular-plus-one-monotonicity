@@ -21,9 +21,9 @@ Bar is 2.0. v1.0 is sent.
   Obstruction: at \(\lambda=1/2\), \(\Phi_6+\tfrac12\operatorname{Var}W\) and
   \(-\operatorname{Cov}(X,\Im\Phi_5)\) together give
   \(\Delta=\frac{13}{6na}+O(n^{-1})\) (Lemmas phi6-varw-delta, c35-delta).
-  Star/path \(\kappa_4\) and star \(\kappa_3(X,X,W)\) do not cancel
-  (notes/factor-rate-next-order.md). Full cancel or matching lower bound still
-  needed.
+  All \(\kappa_4\) trees and both \(\kappa_3(X,X,W)\) diagrams leave
+  \(\sim 1.5/(na)\) uncancelled (notes/factor-rate-next-order.md). Full cancel
+  or matching lower bound still needed.
 - **Q**, **config-split**, **residual-moment** (BIM-constrained): open.
   Selection (iii) only on single orbits \(D\in\{1,n-2\}\).
   Unconstrained residual is closed; the host restriction is the obstruction.
