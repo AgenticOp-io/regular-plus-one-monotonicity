@@ -2419,3 +2419,45 @@ Query: Simplify[Sqrt[d^(2/3)]/Sqrt[d]]
 simplify | sqrt(d^(2/3))/sqrt(d)
 [Result]
 1/d^(1/6)
+
+
+Query: Series[1/(2*a) - 3/8 + 2*a, {a, 0, 2}]
+[Input interpretation]
+series | 1/(2 a) - 3/8 + 2 a | point | a = 0
+order | a^2
+[Series expansion at a = 0]
+2 a + 1/(2 a) - 3/8
+(Laurent series)
+(converges when a!=0)
+[Approximations about a = 0 up to order 1]
+(order n approximation shown with n dots)
+[Series representations]
+-3/8 + 1/(2 a) + 2 a = sum_(n=-∞)^∞ ( piecewise | -3/8 | n = 0
+1/2 | n = -1
+2 | n = 1) a^n
+[Series representations]
+-3/8 + 1/(2 a) + 2 a = sum_(n=-∞)^∞ ( piecewise | (-1)^n/2 | n>1
+3/2 | n = 1
+17/8 | n = 0) (-1 + a)^n
+
+
+Query: Simplify[(3/8) - 2*(3/16) + 0]
+[Input interpretation]
+simplify | 3/8 - 2 × 3/16 + 0
+[Results]
+3/8 - 3/8
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(-3/4) - 2*(-5/8) + (-1/4)]
+[Input interpretation]
+simplify | -3/4 - 2 (-5/8) - 1/4
+[Result]
+1/4
+[Quotient and Remainder]
+1 = (0) × 4 + 1
+[Decimal form]
+0.25

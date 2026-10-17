@@ -17,8 +17,11 @@ Bar is 2.0. v1.0 is sent.
 
 ## Open (named)
 
-- **factor-rate-mid**: \(\sqrt n\ll L=O(n^{3/4})\) still needs
-  \(o(L^3/n^3)\) (Conjecture factor-rate-mid).
+- **factor-rate-mid**: \(\sqrt n\ll L=O(n^{3/4})\).
+  Obstruction: \(\EE\Phi_6+\tfrac12\operatorname{Var}W\) alone gives
+  \(\Delta=1/(2na)+O(1/n)\) (Lemma phi6-varw-delta); star/path \(\kappa_4\)
+  does not cancel it (notes/factor-rate-next-order.md). Full cancel or matching
+  lower bound still needed.
 - **Q**, **config-split**, **residual-moment** (BIM-constrained): open.
   Selection (iii) only on single orbits \(D\in\{1,n-2\}\).
   Unconstrained residual is closed; the host restriction is the obstruction.
@@ -31,7 +34,7 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-1. Factor-rate-mid: cancel or match the \(1/(na)\) second difference.
+1. Factor-rate-mid: remaining packages vs \(\frac1{2na}\) (cancel or match).
 2. Host-restricted residual-moment → config-split → Q.
 3. Ordered peel \(P_L\) past \(n^{1/3}\).
 

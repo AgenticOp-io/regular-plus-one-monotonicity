@@ -3317,6 +3317,50 @@ Hence \(\alpha_m=(m-1)\alpha_2(\lambda)\) with \(\alpha_1=0\), so
 \(\Delta\alpha=0\) and \(\Delta e=O(n^{-1}a^{-1})\).
 \end{proof}
 
+\begin{lemma}[Sextic--quartic package at order \(a^{-1}\)]
+\label{lem:phi6-varw-delta}
+Let \(d_m^{(6,4)}\) be the coefficient of \(n^{-1}\) in
+\(\EE\Phi_6+\tfrac12\operatorname{Var}W\), computed from the pair law \(\pi_m\) with
+the leading large-\(n\) edge covariances of Lemma~\ref{lem:edge-cumulants}.
+As \(a\to0\) with \(\lambda=\tfrac12\),
+\[
+d_3^{(6,4)}+d_1^{(6,4)}-2d_2^{(6,4)}
+=
+\frac1{2a}-\frac38+O(a).
+\]
+In particular this package alone contributes \(\frac1{2na}+O(n^{-1})\) to
+\(\Delta\operatorname{Re}h\). The same leading coefficient \(\frac1{2a}\) appears for
+every fixed \(\lambda\) with \(\lambda-a\ge c\) and \(1-\lambda\ge c\) after the
+\(a^{-2}\) terms cancel (Lemma~\ref{lem:sparse-second-diff}). These series were
+checked by exact rational arithmetic.
+\end{lemma}
+
+\begin{proof}
+Each of \(\EE\Phi_6\) and \(\operatorname{Var}W\) is a fixed contraction of cumulant
+tensors of \(\pi_m\) against \(\Sigma_m^{-1}\) with combinatorial factors from
+\(\gamma_{\mathrm{eq}}=2/(n-1)\) and \(\gamma_{\mathrm{share}}=(n-3)/((n-1)(n-2))\).
+Substituting the laws of Lemma~\ref{lem:two-factor-identities} produces
+rational functions of \((a,\lambda)\). Their Laurent series at \(a=0\) and the
+stated second difference were computed by exact rational arithmetic; at
+\(\lambda=\tfrac12\) the displayed expansion holds. The \(a^{-2}\) coefficients
+satisfy the \((m-1)\)-additivity of Lemma~\ref{lem:sparse-second-diff}, so the
+leading surviving term is \(a^{-1}\).
+\end{proof}
+
+\begin{remark}[Obstruction for the mid window]
+\label{rem:factor-rate-mid-obstruction}
+Lemma~\ref{lem:phi6-varw-delta} shows that any proof of
+Conjecture~\ref{conj:factor-rate-mid} via the truncated cumulant expansion must
+cancel the \(\frac1{2na}\) second difference against the remaining packages
+(\(\kappa_4(X)/24\), \(\kappa_2(X,\Phi_5)\), \(\kappa_3(X,X,W)\), and higher even
+total degree). A partial inclusion of star and path diagrams from
+\(\kappa_4(X)\) increases rather than cancels the numerical coefficient of
+\(a^{-1}\) in the second difference. Until a full cancellation is proved, the
+bound \(\Delta\operatorname{Re}h=O(n^{-1}a^{-1})\) of
+Lemma~\ref{lem:sparse-second-diff} is the natural limit of this method, and
+Theorem~\ref{thm:factor-rate} stops at \(n^{3/4}=o(L)\).
+\end{remark}
+
 \begin{theorem}[Factor second moment past \(\sqrt n\)]
 \label{thm:factor-moment-sparse}
 Fix \(c\in(0,1/4]\), let \(n\) be even, and let \(D\) and \(L\) satisfy
@@ -3385,7 +3429,8 @@ removes that barrier. Odd cumulants contribute only to the phase; the
 leaving \(O(n^{-1}a^{-1})\) in the ratio, which is \(o(a^3)\) precisely when
 \(a=\omega(n^{-1/4})\).
 Conjecture~\ref{conj:factor-rate-mid} remains open for
-\(n^{1/2}\ll L=O(n^{3/4})\).
+\(n^{1/2}\ll L=O(n^{3/4})\); see Remark~\ref{rem:factor-rate-mid-obstruction}
+and Lemma~\ref{lem:phi6-varw-delta} for the \(\frac1{2na}\) obstruction.
 \end{remark}
 The ordered peel \(P_L\) past \(n^{1/3}\) stays open.
 For \(L=o(n^{1/3})\) the factor count \(Z_L\) is already controlled by
