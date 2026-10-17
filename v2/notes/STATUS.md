@@ -144,8 +144,8 @@ Bar is 2.0. v1.0 is sent.
   impossible; terms like \(|X|X_2/n^3\) hidden in McKay's error are cubic for
   \(L\)-regular \(X\). A correct expansion needs the full Isaev--McKay entropy,
   determinant (source of v1's \(+L^2/(2n)\)), and an exact tilted overlap law.
-  Whether \(L^2/(2n)\) cancels decides whether factor-moment past \(\sqrt n\) is
-  even true.
+  Settled affirmatively: the multi-colour LLT cancels \(L^2/(2n)\), and
+  Theorem factor-moment-sparse proves the moment for \(L\ge n^{1/2+\eta}\).
 - \(L^2/n\) question, heuristic answer (Lemma two-factor-identities, Remark
   no-l2n): in the 5-colouring count at \(L=\alpha n\), the entropy and the
   per-vertex determinant factors cancel exactly, so no \(c\,L^2/n\) term
