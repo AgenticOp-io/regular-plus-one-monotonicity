@@ -119,8 +119,8 @@ Still missing:
    factor-rate to \(L\ge n^{4/5+\eta}\) (Corollary factor-rate-sparse) and at
    linear length (Corollary factor-rate-linear). Factor-moment open only on
    \(\sqrt n\ll L=n^{1/2+o(1)}\); factor-rate open on \(\sqrt n\ll L<n^{4/5}\).
-   Remaining: (ii) the thin window \(\sqrt n\ll L=n^{1/2+o(1)}\);
-   (iii) the order-\(n/L^2\) second difference (factor-rate below \(n^{4/5}\)).
+   Factor-moment is closed (Theorem factor-moment). Remaining for Workstream A:
+   the order-\(1/(na^2)\) second difference (factor-rate below \(n^{4/5}\)).
    An edge-probability theorem for
    the uniform ordered-matching-decomposition law (needed for \(P_L\to Z_L\)
    via the v1 factor-third route). The lower tail of \(Y\) is blocked (see STATUS).

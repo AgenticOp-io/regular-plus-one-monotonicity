@@ -2,15 +2,12 @@
 
 Status: workshop. Not a theorem.
 
-## Setup
+## Current theorem
 
-Theorem mllt-sparse gives
-\[
-\log\frac{N_3N_1}{N_2^2}=O(n^{-1}a^{-2})
-\]
-after the exact cancellation \(c_3+c_1-2c_2=0\). Factor-rate needs
-\(o(a^3)\). The bound \(O(1/(na^2))\) is \(o(a^3)\) iff \(a\gg n^{-1/5}\),
-i.e. \(L\gg n^{4/5}\) (Corollary factor-rate-sparse).
+Corollary factor-rate-sparse: if \(n^{4/5}=o(L)\) with linear co-length and
+complement, then \(\Var Z_L/(\EE Z_L)^2=o(L^3/n^3)\).
+Proof: Theorem factor-moment-sparse gives error \(O(n^{-1}a^{-2})\), and
+\(1/(na^5)\to0\) iff \(a=\omega(n^{-1/5})\).
 
 ## Sources of the \(1/(na^2)\) term
 
@@ -20,8 +17,9 @@ cumulant of total degree \(\ge8\) in the edge variables is
 
 - \(\kappa_1(\Phi_6)\), \(\kappa_1(\Phi_8),\ldots\) (even homogeneous means)
 - \(\operatorname{Var}W=\kappa_2(\Phi_4)\)
-- \(\kappa_4(X)\) and \(\kappa(X,X,W)\), \(\kappa(X,W,W)\), \ldots
-- cross terms in \(\operatorname{Re}(\sum\kappa_r/r!)\)
+- \(\kappa_4(X)\) and mixed \(\kappa(X,X,W)\), \(\kappa(X,W,W)\), \ldots
+- For \(m=1\) (no factor coordinate) the same graphs give only \(O(1/n)\),
+  since \(\Sigma=\varLambda\) is bounded away from zero.
 
 Odd cumulants affect only the phase and drop from the modulus.
 
@@ -35,9 +33,8 @@ degree 8 (leading sparse order). Then test
 D:=d_3+d_1-2d_2
 \]
 on a rational grid. If \(D\equiv0\), factor-rate extends to the next
-threshold (likely \(a\gg n^{-1/4}\) or better, depending on the following
-term). If \(D\not\equiv0\), the true rate is \(\Theta(1/(na^2))\) and
-factor-rate fails below \(n^{4/5}\).
+threshold. If \(D\not\equiv0\), the true rate is \(\Theta(1/(na^2))\) on
+that range and Conjecture factor-rate fails below \(n^{4/5}\).
 
 Screen: no blocked approach. Do not confuse with the blocked
 config-second-moment or binomial-PGF attacks.
