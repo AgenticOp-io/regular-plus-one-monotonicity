@@ -2461,3 +2461,78 @@ simplify | -3/4 - 2 (-5/8) - 1/4
 1 = (0) × 4 + 1
 [Decimal form]
 0.25
+
+
+Query: Simplify[(1-1/2)/(2*(1/2)) - 1/2]
+[Input interpretation]
+simplify | (1 - 1/2)/(2 × 1/2) - 1/2
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(1-2/5)/(2*(2/5)) - 3/4]
+[Input interpretation]
+simplify | (1 - 2/5)/(2 × 2/5) - 3/4
+[Results]
+3/4 - 3/4
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(1-1/3)/(2*(1/3)) - 1]
+[Input interpretation]
+simplify | (1 - 1/3)/(2 × 1/3) - 1
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(1-3/4)/(2*(3/4)) - 1/6]
+[Input interpretation]
+simplify | (1 - 3/4)/(2 × 3/4) - 1/6
+[Results]
+1/6 - 1/6
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Series[(-104*a^2+52*a-5)/(3*a*(2*a-1)), {a, 0, 2}]
+[Input interpretation]
+series | (-104 a^2 + 52 a - 5)/(3 a (2 a - 1)) | point | a = 0
+order | a^2
+[Series expansion at a = 0]
+5/(3 a) - 14 + (20 a)/3 + (40 a^2)/3 + O(a^3)
+(Laurent series)
+(converges when 2 abs(a)<1 ∧ a!=0)
+[Approximations about a = 0 up to order 2]
+(order n approximation shown with n dots)
+[Series representations]
+(5 - 52 a + 104 a^2)/(3 a - 6 a^2) = -19 + sum_(n=1)^∞ 1/3 (-1 + a)^n (-5) ((-1)^n (-1 + 2^(1 + n)))
+[Series representations]
+(5 - 52 a + 104 a^2)/(3 a - 6 a^2) = sum_(n=-∞)^∞ ( piecewise | 5/3 | n = -1
+(5 2^(1 + n))/3 | n>0
+-14 | n = 0) a^n
+
+
+Query: Limit[a*(-104*a^2+52*a-5)/(3*a*(2*a-1)), a->0]
+[Limit]
+lim_(a->0) (a (-104 a^2 + 52 a - 5))/(3 a (2 a - 1)) = 5/3
+[Series expansion at a = 0]
+5/3 - 14 a + (20 a^2)/3 + (40 a^3)/3 + (80 a^4)/3 + (160 a^5)/3 + O(a^6)
+(Taylor series)
+
+
+Query: Simplify[5/3 + 1/2 - 13/6]
+[Input interpretation]
+simplify | 5/3 + 1/2 - 13/6
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
