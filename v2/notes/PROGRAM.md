@@ -142,8 +142,11 @@ Blocked / identified (do not retry):
   triangle \(\nu/\mu\in[0.885,0.942]\); literal \(Z_1\) not flat on \(K_6\).
 
 Still missing (no fake closes):
-1. Lower-tail of \(N\) at threshold \(1/c_n\) (Proposition iii-as-tail) —
-   not a moment about \(\mathbb{E}[N]\), not near-disjoint factors, not switches.
+1. Lower-tail of \(N\) at threshold \(1/c_n\) (Proposition iii-as-tail),
+   or the weaker weighted integral
+   \(\int_1^{1/c_n}\PP(N<u)/u^2\,du=o(c_n)\)
+   (Proposition iii-weighted-tail) — not a moment about \(\mathbb{E}[N]\),
+   not near-disjoint factors, not switches.
 2. Three peel-weight flatnesses on \(G^*_0\) (asymptotic \(Z_d\), not literal).
 3. Residual moment: unconstrained fixed \(m\) closed
    (Theorem residual-factor-fixed). At \(m=1\), Bernoulli first moment closed

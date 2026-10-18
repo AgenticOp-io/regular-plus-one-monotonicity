@@ -44,8 +44,10 @@ Bar is 2.0. v1.0 is sent.
   comparison still open (Proposition residual-two-gaps). Linear
   unconstrained is Theorem residual-unconstrained.
 - **config-split**: open. Selection (iii) only on single orbits
-  \(D\in\{1,n-2\}\); needs lower-tail of \(N\) at \(1/c_n\) plus asymptotic
-  peel-weight flatnesses on \(G^*_0\).
+  \(D\in\{1,n-2\}\); needs lower-tail of \(N\) at \(1/c_n\) (pointwise
+  Proposition iii-as-tail, or the weaker weighted integral
+  Proposition iii-weighted-tail) plus asymptotic peel-weight flatnesses
+  on \(G^*_0\).
 - **Q**: open; conditional on BIM Conjecture 1.3 (Theorem process-to-Q).
 
 ## Also open (not named)
