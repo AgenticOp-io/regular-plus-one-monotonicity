@@ -28,8 +28,10 @@ Bar is 2.0. v1.0 is sent.
 
 - **residual-moment** (BIM-constrained): open.
   Unconstrained fixed-length \(m\)-factor moment at \(\delta=o(n^{1/2})\) is
-  Theorem residual-factor-fixed. At \(m=1\), gap is contiguity of \(R\) with
-  \(\mu_\delta\) (Corollary residual-matching-proxy). At BIM length
+  Theorem residual-factor-fixed. At \(m=1\), second-moment gap on \(\mu_\delta\)
+  is closed; remaining gap is first-moment/contiguity of \(R\) with
+  \(\mu_\delta\) (Corollary residual-matching-proxy,
+  Proposition residual-to-peel-weight). At BIM length
   \(m=\Theta\sqrt{d\log n}\) one has \(m\gg\sqrt\delta\), so unconstrained
   item needs sparse MLLT; residual-law comparison still open
   (Proposition residual-two-gaps). Linear unconstrained is
