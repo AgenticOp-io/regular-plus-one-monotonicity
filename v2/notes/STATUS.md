@@ -36,8 +36,9 @@ Bar is 2.0. v1.0 is sent.
   (Corollary residual-first-moment); literal TV with \(\mu_\delta\) blocked
   (Proposition residual-not-tv); unconstrained nearly regular matching
   moment is Proposition residual-nearly-regular-matching (Gao for degree
-  sequences). Gap is host-restricted residual second moment
-  (Proposition residual-nearly-reg). At BIM length
+  sequences). Gap is the degree-conditioned Bernoulli residual matching
+  moment (Proposition residual-degree-conditioned), then comparison with
+  \(\mu_g\). At BIM length
   \(m=\Theta\sqrt{d\log n}\) one has \(m\gg\sqrt\delta\), so unconstrained
   item needs sparse MLLT; package residues as \(\lambda\to0\) with
   \(a=o(\lambda)\) are Lemma sparse-package-residues. Residual-law

@@ -6813,6 +6813,45 @@ in a uniform random graph with degree sequence \(g\). Then
 uniformly in such \(g\).
 \end{proposition}
 
+\begin{proposition}[Degree-conditioned Bernoulli residual is the \(m=1\) target]
+\label{prop:residual-degree-conditioned}
+In the matching-peel setting of~\cite{PlusOneV1}, write
+\(p=(1+\varepsilon_0)d/n\) and \(\delta:=\lfloor\varepsilon_0 d\rfloor\). Conditionally on
+\(G\subset G^*_0\), the residual \(R=G^*_0\setminus G\) is an independent
+Bernoulli(\(p\)) graph on the complement of \(G\). Let \(\mathcal E_\delta\) be the
+event that every residual degree lies in
+\([(1-\varepsilon_0/2)\delta,(1+\varepsilon_0/2)\delta]\)
+(Lemma~residual-sharp of~\cite{PlusOneV1}). The unconditional Bernoulli
+matching second moment diverges
+(\cite[Proposition~bernoulli-moment]{PlusOneV1}), but Conjecture~\ref{conj:residual-moment}
+at \(m=1\) asks only for
+\[
+\frac{\Var\bigl(Y(R)\bigm|G,\,\mathcal E_\delta\bigr)}
+{\bigl(\EE[Y(R)\mid G,\,\mathcal E_\delta]\bigr)^2}
+\to0
+\]
+uniformly in the peeled \(d\)-factor \(G\). Equivalently: the matching count
+of a Bernoulli(\(p\)) graph on \(K_n\setminus G\), conditioned on a
+nearly \(\delta\)-regular degree sequence, has relative variance \(o(1)\).
+When \(d=o\bigl(n^{3/4}/(\log n)^{1/2}\bigr)\) one has \(\delta=o(n^{1/2})\), so a
+configuration-model attack on that conditioned law is not blocked by
+Proposition~config-loops of~\cite{PlusOneV1}.
+Proposition~\ref{prop:residual-nearly-regular-matching} would settle the
+same moment after replacing the conditioned Bernoulli law by the uniform
+law \(\mu_g\); the remaining step is contiguity (or total-variation comparison)
+of those two nearly regular models on the complement of \(G\).
+\end{proposition}
+
+\begin{proof}
+The Bernoulli representation is Theorem~\ref{thm:residual-matching-mean}.
+The degree event is~\cite[Lemma~residual-sharp]{PlusOneV1}.
+The divergent unconditional moment is~\cite[Proposition~bernoulli-moment]{PlusOneV1}.
+The scale \(\delta=o(n^{1/2})\) is Proposition~\ref{prop:residual-sublinear}
+with the sharper hypothesis recorded in Proposition~\ref{prop:residual-two-gaps}.
+The reformulation is the definition of Conjecture~\ref{conj:residual-moment}
+at \(m=1\) on \(\mathcal E_\delta\).
+\end{proof}
+
 \begin{proof}
 The argument is the same as the \(m=1\) case of
 Theorem~\ref{thm:residual-factor-fixed} (equivalently, the sublinear nesting
@@ -7268,7 +7307,8 @@ Corollary~\ref{cor:residual-first-moment}, the unconstrained nearly regular
 matching moment is Proposition~\ref{prop:residual-nearly-regular-matching}
 (assuming Gao for degree sequences), and literal TV with \(\mu_\delta\) is
 blocked (Proposition~\ref{prop:residual-not-tv}). The gap is the
-host-restricted residual second moment.
+degree-conditioned Bernoulli residual matching moment
+(Proposition~\ref{prop:residual-degree-conditioned}).
 At BIM length \(m\gg\sqrt\delta\) a sparse-host multi-colour LLT and the
 residual-law comparison remain (Proposition~\ref{prop:residual-two-gaps});
 Lemma~\ref{lem:sparse-package-residues} records the leading package residues
