@@ -2833,3 +2833,12 @@ sympy: integrate(u**(-2), (u, M, oo)) - 1/M == 0 for M>0.
 Query: Simplify[Integrate[1/u^2, {u, 1, M}] - (1 - 1/M)]
 [fallback]
 sympy: integrate(u**(-2), (u, 1, M)) - (1 - 1/M) == 0 for M>1.
+
+
+Query: Simplify[(M/m)^2 - 1 /. M/m -> 1 + eps]
+[error]
+no result
+
+Query: Simplify[(M/m)^2 - 1 /. M/m -> 1 + eps]
+[fallback]
+sympy: (1+eps)**2 - 1 = 2*eps + eps**2; tends to 0 as eps->0.

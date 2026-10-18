@@ -159,8 +159,9 @@ Still missing (no fake closes):
    leading residues as \(\lambda\to0\)).
 4. Binomial thinning or BIM Conjecture 1.3 — not hybrid, not sprinkle.
    That is Conjecture Q at Chernoff scale.
-5. Ordered peel past \(n^{1/3}\): IM25 cubic cancellation, or \(D(F)\) with
-   \(M/m\to1\) (Lemma peel-from-factor; FJS insufficient).
+5. Ordered peel past \(n^{1/3}\): IM25 cubic cancellation, or \(D(F)\)
+   multiplicatively flat on the \(\mu_L\)-bulk
+   (Proposition peel-transfer-threshold; FJS insufficient).
 
 ## Named status
 
