@@ -32,17 +32,17 @@ Bar is 2.0. v1.0 is sent.
 
 - **residual-moment** (BIM-constrained): open.
   Unconstrained fixed-length \(m\)-factor moment at \(\delta=o(n^{1/2})\) is
-  Theorem residual-factor-fixed. At \(m=1\), first-moment formula is closed
-  (Corollary residual-first-moment); remaining gap is second-moment /
-  contiguity of the degree-conditioned residual with \(\mu_\delta\)
-  (Corollary residual-matching-proxy, Proposition residual-to-peel-weight).
-  At BIM length \(m=\Theta\sqrt{d\log n}\) one has \(m\gg\sqrt\delta\), so
-  unconstrained item needs sparse MLLT; package residues as \(\lambda\to0\)
-  with \(a=o(\lambda)\) are Lemma sparse-package-residues (exact C35 at
-  \(\lambda\in\{1/10,1/5\}\); \(\Phi_6+\tfrac12\mathrm{Var}W\) extrapolation
-  at \(\lambda\in\{1/10,1/15,1/20\}\)). Residual-law comparison still open
-  (Proposition residual-two-gaps). Linear unconstrained is
-  Theorem residual-unconstrained.
+  Theorem residual-factor-fixed. At \(m=1\): first-moment formula closed
+  (Corollary residual-first-moment); literal TV with \(\mu_\delta\) blocked
+  (Proposition residual-not-tv); unconstrained nearly regular matching
+  moment is Proposition residual-nearly-regular-matching (Gao for degree
+  sequences). Gap is host-restricted residual second moment
+  (Proposition residual-nearly-reg). At BIM length
+  \(m=\Theta\sqrt{d\log n}\) one has \(m\gg\sqrt\delta\), so unconstrained
+  item needs sparse MLLT; package residues as \(\lambda\to0\) with
+  \(a=o(\lambda)\) are Lemma sparse-package-residues. Residual-law
+  comparison still open (Proposition residual-two-gaps). Linear
+  unconstrained is Theorem residual-unconstrained.
 - **config-split**: open. Selection (iii) only on single orbits
   \(D\in\{1,n-2\}\); needs lower-tail of \(N\) at \(1/c_n\) plus asymptotic
   peel-weight flatnesses on \(G^*_0\).
@@ -57,8 +57,8 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-1. Contiguity of degree-conditioned BIM residual with \(\mu_\delta\) (\(m=1\)),
-   or config-model \(m\)-factor moment / sparse MLLT at \(\delta=o(n^{1/2})\).
+1. Host-restricted residual second moment at \(m=1\) (nearly regular);
+   sparse MLLT at \(\delta=o(n^{1/2})\) for BIM length.
 2. Selection (iii) / lower-tail of \(N\) → config-split → Q.
 3. IM25 cancellation for ordered peel past \(n^{1/3}\).
 
