@@ -2563,3 +2563,60 @@ Query: N[4/3, 20]
 1.3333333333333333333
 [Number name]
 one point three three three three three three three three three three three three three three three three
+
+
+Query: Simplify[-1997/5184 - (-1997/5184)]
+[Input interpretation]
+simplify | -1997/5184 - -1997/5184
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(4258*(1/10)^2 - 2129*(1/10) + 262)/(216*(2*(1/10) - 1)) + 191/360]
+[Input interpretation]
+simplify | (4258 (1/10)^2 - 2129 × 1/10 + 262)/(216 (2 × 1/10 - 1)) + 191/360
+[Results]
+191/360 - 191/360
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(4258*(1/8)^2 - 2129*(1/8) + 262)/(216*(2*(1/8) - 1)) + 1997/5184]
+[Input interpretation]
+simplify | (4258 (1/8)^2 - 2129 × 1/8 + 262)/(216 (2 × 1/8 - 1)) + 1997/5184
+[Results]
+1997/5184 - 1997/5184
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Limit[a*(4258*a^2 - 2129*a + 262)/(216*a*(2*a - 1)), a->0]
+[Limit]
+lim_(a->0) (a (4258 a^2 - 2129 a + 262))/(216 a (2 a - 1)) = -131/108
+[Series expansion at a = 0]
+-131/108 + (535 a)/72 - (131 a^2)/27 - (262 a^3)/27 - (524 a^4)/27 - (1048 a^5)/27 + O(a^6)
+(Taylor series)
+
+
+Query: Simplify[-131/108 + 41/108 + 5/6]
+[Input interpretation]
+simplify | -131/108 + 41/108 + 5/6
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[13/6 - 131/108 - 103/108]
+[Input interpretation]
+simplify | 13/6 - 131/108 - 103/108
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
