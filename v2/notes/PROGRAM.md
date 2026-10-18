@@ -146,9 +146,12 @@ Still missing (no fake closes):
    not a moment about \(\mathbb{E}[N]\), not near-disjoint factors, not switches.
 2. Three peel-weight flatnesses on \(G^*_0\) (asymptotic \(Z_d\), not literal).
 3. Residual moment: unconstrained fixed \(m\) closed
-   (Theorem residual-factor-fixed). At \(m=1\), contiguity of \(R\) with
-   \(\mu_\delta\). At BIM length \(m\gg\sqrt\delta\), sparse MLLT plus
-   residual-law comparison (Proposition residual-two-gaps).
+   (Theorem residual-factor-fixed). At \(m=1\), Bernoulli first moment closed
+   (Theorem residual-matching-mean); gap is contiguity of the
+   degree-conditioned residual with \(\mu_\delta\). At BIM length
+   \(m\gg\sqrt\delta\), sparse MLLT plus residual-law comparison
+   (Proposition residual-two-gaps; Lemma sparse-package-residues for
+   leading residues as \(\lambda\to0\)).
 4. Binomial thinning or BIM Conjecture 1.3 — not hybrid, not sprinkle.
    That is Conjecture Q at Chernoff scale.
 5. Ordered peel past \(n^{1/3}\): IM25 cubic cancellation, or \(D(F)\) with
@@ -160,7 +163,7 @@ Still missing (no fake closes):
 | --- | --- |
 | Q | Open |
 | config-split | Open (iii on single orbits only) |
-| residual-moment | Open |
+| residual-moment | Open (first moment at \(m=1\) closed; second-moment/contiguity open) |
 | factor-moment | **Closed** (Theorem factor-moment): complementary + linear-below-sqrt + mllt-sparse for every \(n^{1/2}=o(L)\) |
 | factor-rate | **Closed** as Theorem factor-rate (complementary / dense / linear / \(n^{3/4}=o(L)\)) |
 | factor-rate-mid | **Closed** as Theorem factor-rate-mid-fail: residue \(287(1-\lambda)/(216\lambda\,na)\) |
@@ -169,8 +172,8 @@ Still missing (no fake closes):
 ## Next
 
 Priority order:
-1. First-moment flatness / contiguity of residual \(R\) with \(\mu_\delta\)
-   (\(m=1\)); sparse MLLT for BIM-length unconstrained \(m\)-factors.
+1. Contiguity of degree-conditioned residual with \(\mu_\delta\) (\(m=1\));
+   sparse MLLT for BIM-length unconstrained \(m\)-factors.
 2. Selection (iii) / config-split / Q (second peel-weight follows from
    residual-moment + first-moment flatness by Proposition residual-to-peel-weight).
 3. Ordered peel \(P_L\) past \(n^{1/3}\).

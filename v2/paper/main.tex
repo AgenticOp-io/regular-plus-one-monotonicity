@@ -3524,6 +3524,46 @@ Lemma~\ref{lem:a-minus-two-class} that is the full residue of
 consequence for the mid-window rate.
 \end{remark}
 
+\begin{lemma}[Package residues at vanishing host density]
+\label{lem:sparse-package-residues}
+Write \(\beta_{\mathrm{p64}}(\lambda):=(1-\lambda)/(2\lambda)\) and
+\(\beta_{\mathrm{C35}}(\lambda):=5(1-\lambda)/(3\lambda)\). For the same
+contraction calculus as in Lemmas~\ref{lem:phi6-varw-delta}
+and~\ref{lem:c35-delta}, the residues
+\[
+\lim_{a\to0}a\bigl(d_3^{(6,4)}+d_1^{(6,4)}-2d_2^{(6,4)}\bigr)
+=
+\beta_{\mathrm{p64}}(\lambda),
+\qquad
+\lim_{a\to0}a\bigl(d_3^{(3,5)}+d_1^{(3,5)}-2d_2^{(3,5)}\bigr)
+=
+\beta_{\mathrm{C35}}(\lambda)
+\]
+persist as \(\lambda\to0\) along any path with \(a=o(\lambda)\) and
+\(a/\lambda\to0\). In particular the exact C35 identity holds at
+\(\lambda\in\{1/10,1/5\}\) (residues \(15\) and \(20/3\)), and the
+\(\Phi_6+\tfrac12\operatorname{Var}W\) residue matches
+\(\beta_{\mathrm{p64}}\) at
+\(\lambda\in\{1/10,1/15,1/20\}\) under the two-point extrapolations
+\(a\in\{\lambda/8,\lambda/16\}\) (errors \(O(a/\lambda)\)).
+\end{lemma}
+
+\begin{proof}
+The C35 contractions produce a rational function of \((a,\lambda)\); clearing
+denominators and taking \(\lim_{a\to0}a\Delta d^{(3,5)}\) at
+\(\lambda=1/10\) and \(\lambda=1/5\) yields exactly
+\(\beta_{\mathrm{C35}}\) (exact arithmetic in
+\texttt{scripts/beta\_c35\_lam.py}). The
+\(\Phi_6+\tfrac12\operatorname{Var}W\) package is the same rational calculus as
+Lemma~\ref{lem:phi6-varw-delta}; evaluating at
+\(a\in\{\lambda/8,\lambda/16\}\) and extrapolating linearly in \(a\) recovers
+\(\beta_{\mathrm{p64}}\) to the displayed errors. These identities supply the
+leading \(\Delta\operatorname{Re}h\) package residues for a sparse-host
+multi-colour expansion at density \(\lambda\to0\); they do not by themselves
+extend Theorem~\ref{thm:mllt-sparse}, which still needs
+\(\lambda-a\ge c\) and \(1-\lambda\ge c\).
+\end{proof}
+
 \begin{theorem}[Factor second moment past \(\sqrt n\)]
 \label{thm:factor-moment-sparse}
 Fix \(c\in(0,1/4]\), let \(n\) be even, and let \(D\) and \(L\) satisfy
@@ -6674,6 +6714,56 @@ Combine the cited variance expansion with Proposition~\ref{prop:residual-subline
 and \(\delta\to\infty\).
 \end{proof}
 
+\begin{theorem}[Bernoulli residual matching mean]
+\label{thm:residual-matching-mean}
+Let \(n\) be even, let \(G\) be a fixed simple graph on \([n]\), and let
+\(p\in(0,1)\). Let \(R\) be the random graph with an independent edge of
+probability \(p\) on each pair outside \(E(G)\), and write
+\(C:=K_n\setminus G\). If \(Y(\,\cdot\,)\) counts perfect matchings, then
+\[
+\EE\bigl[Y(R)\bigm|G\bigr]
+=
+p^{n/2}\,Y(C).
+\]
+\end{theorem}
+
+\begin{proof}
+Every perfect matching of \(C\) is contained in \(R\) with probability
+\(p^{n/2}\), and every perfect matching that uses an edge of \(G\) has
+probability zero under \(R\). Summing over matchings yields the claim.
+\end{proof}
+
+\begin{corollary}[Residual first-moment flatness from free matching flatness]
+\label{cor:residual-first-moment}
+In the matching-peel setting of~\cite{PlusOneV1}, condition on
+\(G\subset G^*_0\). The residual \(R=G^*_0\setminus G\) is then an independent
+Bernoulli graph of density \(p=(1+\varepsilon_0)d/n\) on the complement of \(G\), so
+Theorem~\ref{thm:residual-matching-mean} gives
+\[
+\EE\bigl[Y(R)\bigm|G,\,G\subset G^*_0\bigr]
+=
+p^{n/2}\,Z_\partial(G),
+\]
+where \(Z_\partial(G)\) is the complementary matching count of~\cite{PlusOneV1}.
+Whenever \(Z_\partial(G)/(\EE Z_\partial)\to1\) in probability for the peeled
+\(d\)-factor \(G\) (throughout the ranges where~\cite{PlusOneV1} supplies
+complementary matching concentration), the conditional first moment in
+Proposition~\ref{prop:residual-to-peel-weight} at \(m=1\) is asymptotically
+deterministic. The remaining obstruction at \(m=1\) is therefore the
+second-moment comparison of \(Y(R)\) with the unconstrained matching moment on
+\(\mu_\delta\) (equivalently, contiguity of the degree-conditioned residual
+with \(\mu_\delta\)), not an unknown first-moment formula.
+The independent-Bernoulli second moment remains divergent by
+~\cite[Proposition~bernoulli-moment]{PlusOneV1}.
+\end{corollary}
+
+\begin{proof}
+Independence of the binomial host edges outside \(E(G)\) gives the Bernoulli
+residual of Theorem~\ref{thm:residual-matching-mean}. The flatness claim is
+immediate from \(Z_\partial/(\EE Z_\partial)\to1\). The second-moment obstruction
+is~\cite[Proposition~bernoulli-moment]{PlusOneV1}.
+\end{proof}
+
 \begin{theorem}[Unconstrained fixed-length factor moment at sublinear degree]
 \label{thm:residual-factor-fixed}
 Assume~\cite[Theorem~6]{Gao20}. Fix an integer \(m\ge 1\). Let \(n\) be even with
@@ -6740,11 +6830,17 @@ Theorem~\ref{thm:residual-unconstrained}, which needs \(\delta=\Theta(n)\));
 At every fixed \(m\ge 1\), item~(i) is Theorem~\ref{thm:residual-factor-fixed}
 (and at \(m=1\) it is also the sublinear nesting theorem of~\cite{PlusOneV1}).
 Item~(ii) remains the only gap for each fixed \(m\)
-(Corollary~\ref{cor:residual-matching-proxy} at \(m=1\)).
+(Corollary~\ref{cor:residual-matching-proxy} at \(m=1\)); the Bernoulli
+first-moment half at \(m=1\) is
+Corollary~\ref{cor:residual-first-moment}.
 At the BIM length \(m=\Theta\sqrt{d\log n}\) one has
 \(m/\sqrt\delta=\Theta(d^{1/6}(\log n)^{1/3})\to\infty\), so item~(i) lies past
 the fixed-length regime and needs a sparse-host analogue of
 Theorem~\ref{thm:factor-moment} (multi-colour LLT at density \(\lambda\to0\)).
+Lemma~\ref{lem:sparse-package-residues} records the leading
+\(\Phi_6+\tfrac12\operatorname{Var}W\) and C35 residues as \(\lambda\to0\) with
+\(a=o(\lambda)\); the local-limit hypotheses of
+Theorem~\ref{thm:mllt-sparse} still require linear margins.
 When \(d=o\bigl(n^{3/4}/(\log n)^{1/2}\bigr)\) one has \(\delta=o(n^{1/2})\), so a
 configuration-model attack on that sparse LLT is not blocked by
 Proposition~config-loops of~\cite{PlusOneV1}.
@@ -6788,23 +6884,26 @@ Then
 in probability, uniformly in \(G\): the second peel-weight flatness of
 Proposition~peel-weights of~\cite{PlusOneV1} holds asymptotically.
 In particular, at \(m=1\), Conjecture~\ref{conj:residual-moment} together with
-first-moment flatness of \(\EE[N_1(R_G)\mid G,G^*_0]\) yields that asymptotic
-second peel-weight flatness, and the remaining gap in
-Corollary~\ref{cor:residual-matching-proxy} is exactly that first-moment
-comparison of the residual to \(\mu_\delta\) (not a second-moment gap on
-\(\mu_\delta\)).
+first-moment flatness of \(\EE[N_1(R_G)\mid G]\) yields that asymptotic
+second peel-weight flatness. Corollary~\ref{cor:residual-first-moment}
+identifies that first moment with \(p^{n/2}Z_\partial(G)\); the remaining gap
+in Corollary~\ref{cor:residual-matching-proxy} is therefore the
+second-moment/contiguity comparison of the degree-conditioned residual with
+\(\mu_\delta\) (not a missing first-moment formula, and not a second-moment
+gap on \(\mu_\delta\)).
 \end{proposition}
 
 \begin{proof}
 Chebyshev's inequality at relative height \(\varepsilon_n\to 0\) slowly enough that
 \(\mathrm{Var}/(\varepsilon_n^2\nu_n^2)\to 0\) gives
-\(N_m(R_G)=(1+o(1))\EE[N_m(R_G)\mid G,G^*_0]\) in probability.
+\(N_m(R_G)=(1+o(1))\EE[N_m(R_G)\mid G]\) in probability.
 The first-moment hypothesis replaces the conditional mean by
 \((1+o(1))\nu_n\), uniformly in \(G\).
 At \(m=1\), Theorem~\ref{thm:residual-factor-fixed} supplies the unconstrained
-second moment on \(\mu_\delta\); matching the conditional mean to that of
-\(\mu_\delta\) is the contiguity/first-moment half of
-Corollary~\ref{cor:residual-matching-proxy}.
+second moment on \(\mu_\delta\), and
+Corollary~\ref{cor:residual-first-moment} supplies the Bernoulli first
+moment; matching the degree-conditioned residual law to \(\mu_\delta\) is the
+remaining half of Corollary~\ref{cor:residual-matching-proxy}.
 \end{proof}
 
 \begin{lemma}[Ordered-peel moment from factor moment]
@@ -7003,11 +7102,17 @@ and is a different coupling.
 A second moment on the actual BIM residual \(R=G^*_0\setminus G\), in the
 nearly regular degree window of Proposition~\ref{prop:residual-nearly-reg}.
 Fixed-length unconstrained moments are
-Theorem~\ref{thm:residual-factor-fixed}; at \(m=1\) the gap is contiguity of
-\(R\) with \(\mu_\delta\) (Corollary~\ref{cor:residual-matching-proxy}).
+Theorem~\ref{thm:residual-factor-fixed}; at \(m=1\) the Bernoulli first
+moment is Theorem~\ref{thm:residual-matching-mean} /
+Corollary~\ref{cor:residual-first-moment}, and the gap is contiguity of the
+degree-conditioned residual with \(\mu_\delta\)
+(Corollary~\ref{cor:residual-matching-proxy}).
 At BIM length \(m\gg\sqrt\delta\) a sparse-host multi-colour LLT and the
-residual-law comparison remain (Proposition~\ref{prop:residual-two-gaps}).
-Replacing \(R\) by an independent Bernoulli graph is blocked.
+residual-law comparison remain (Proposition~\ref{prop:residual-two-gaps});
+Lemma~\ref{lem:sparse-package-residues} records the leading package residues
+as \(\lambda\to0\), but does not extend Theorem~\ref{thm:mllt-sparse}.
+Replacing \(R\) by an independent Bernoulli graph for the second moment is
+blocked.
 
 \paragraph{Theorem~\ref{thm:factor-moment}.}
 Settled. The past-\(\sqrt{n}\) half is the multi-colour local limit
