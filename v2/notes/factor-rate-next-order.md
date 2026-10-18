@@ -1,7 +1,17 @@
 # Factor-rate-mid: \(a^{-1}\) second difference
 
-Status: **closed at \(\lambda=1/2\)** (Theorem factor-rate-mid-fail).
-Residue \(\frac{287}{216\,na}\); relative variance \(\sim\frac{287}{216\,L}\).
+Status: **closed for general \(\lambda\)** (Theorem factor-rate-mid-fail).
+Residue \(\frac{287(1-\lambda)}{216\lambda\,na}\); relative variance
+\(\sim\frac{287(1-\lambda)}{216\lambda\,L}\).
+Packages:
+\(\beta_{\mathrm{p64}}=\frac{1-\lambda}{2\lambda}\) and
+\(\beta_{\mathrm{C35}}=\frac{5(1-\lambda)}{3\lambda}\) exact
+(`scripts/beta_c35_lam.py`);
+\(\beta_{\kappa_3}=-\frac{131(1-\lambda)}{108\lambda}\)
+(`scripts/beta_k3_lam_float.py`, exact closed form at \(\lambda=1/2\));
+\(\beta_{\kappa_4}=\frac{3(1-\lambda)}{8\lambda}\)
+(`scripts/beta_k4_lam_grid.py`, exact closed form at \(\lambda=1/2\)).
+Sum identity checked in `wolfram-checks.md`.
 
 ## Exact package
 
@@ -99,12 +109,31 @@ checked at \(a\in\{1/8,1/10,1/12\}\) by integer Wick sums. Full residue
 \(\frac{13}{6}+\frac38-\frac{131}{108}=\frac{287}{216}\)
 (Theorem factor-rate-mid-fail).
 
-## What would close the mid window
+## General \(\lambda\)
 
-1. **Cancel:** full \(\beta_3+\beta_1-2\beta_2=0\) over every degree-6/8/10/12
-   contraction in \(\operatorname{Re}h\) → extend Theorem factor-rate to all
-   \(L\gg\sqrt n\).
-2. **Match:** prove \(\Delta\operatorname{Re}h\sim\frac{c}{na}\) with \(c>0\) →
-   Conjecture factor-rate-mid fails (relative variance \(\Theta(1/L)\)).
+Exact \(\kappa_3\) second-difference samples at \(\lambda=2/5\)
+(`scripts/beta_k3_fraction.py`):
+\[
+a\Delta d^{(3,3,4)}\in
+\Bigl\{-\tfrac{791863}{1368576},-\tfrac{24001}{31104},-\tfrac{3261023}{3545856}\Bigr\}
+\]
+at \(a\in\{1/8,1/10,1/12\}\), with candidate residue
+\(-\frac{131}{108}\cdot\frac{1-\lambda}{\lambda}=-\frac{131}{72}\).
+Float extrapolation (`scripts/beta_k3_lam_float.py`) on
+\(\lambda\in\{1/3,2/5,1/2,3/5,2/3\}\) matches that candidate to \(O(10^{-2})\).
+\(\kappa_4\) grid (`scripts/beta_k4_lam_grid.py`, chunked Wick):
+
+| \(\lambda\) | \(a\Delta\) at \(1/10\) | at \(1/20\) | \(b_0\sim 2y_{20}-y_{10}\) | cand \(\frac{3(1-\lambda)}{8\lambda}\) |
+|------------:|------------------------:|------------:|---------------------------:|--------------------------------------:|
+| \(2/5\) | 0.298 | 0.417 | 0.536 | 0.562 |
+| \(1/2\) | 0.203 | 0.284 | 0.365 | 0.375 |
+| \(3/5\) | 0.143 | 0.194 | 0.245 | 0.250 |
+
+Errors are \(O(a)\) from the two-point linear fit.
+
+## Mid window closed
+
+Residue \(\frac{287(1-\lambda)}{216\lambda\,na}>0\) for \(\lambda\in(0,1)\).
+Relative variance \(\Theta(1/L)\) throughout \(\sqrt n\ll L=O(n^{3/4})\).
 
 Screen: `middle` — no blocked approach.

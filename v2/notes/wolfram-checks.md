@@ -2681,3 +2681,54 @@ simplify | (-1022 (1/12)^2 + 511 × 1/12 - 72)/(192 (2 × 1/12 - 1)) - 2629/1152
 0
 [Quotient and Remainder]
 0 = (0) × 1 + 0
+
+
+Query: Simplify[5*(1-1/3)/(3*(1/3)) - 10/3]
+[Input interpretation]
+simplify | 5 × (1 - 1/3)/(3 × 1/3) - 10/3
+[Results]
+10/3 - 10/3
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[5*(1-2/5)/(3*(2/5)) - 5/2]
+[Input interpretation]
+simplify | 5 × (1 - 2/5)/(3 × 2/5) - 5/2
+[Results]
+5/2 - 5/2
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[5*(1-2/3)/(3*(2/3)) - 5/6]
+[Input interpretation]
+simplify | 5 × (1 - 2/3)/(3 × 2/3) - 5/6
+[Results]
+5/6 - 5/6
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(1-lam)/(2*lam) + 5*(1-lam)/(3*lam) - 13*(1-lam)/(6*lam)]
+[Input interpretation]
+simplify | (1 - λ)/(2 λ) + 5 × (1 - λ)/(3 λ) - 13 × (1 - λ)/(6 λ)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(1-lam)/(2*lam)+5*(1-lam)/(3*lam)+3*(1-lam)/(8*lam)-131*(1-lam)/(108*lam) - 287*(1-lam)/(216*lam)]
+[Input interpretation]
+simplify | (1 - λ)/(2 λ) + 5 × (1 - λ)/(3 λ) + 3 × (1 - λ)/(8 λ) - 131 × (1 - λ)/(108 λ) - 287 × (1 - λ)/(216 λ)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0

@@ -49,14 +49,27 @@ def ee_k3_vec(S, cols, vals, cov):
     ib = pairs[:, :, 1]
     ra, rb = ia // 3, ib // 3
     cov_f = cov[ra, rb]  # (n_pair, n_edge)
+    cov_w = np.prod(cov_f, axis=1)
+    keep = np.abs(cov_w) > 1e-18
+    if not np.any(keep):
+        return 0.0
+    ia = ia[keep]
+    ib = ib[keep]
+    cov_w = cov_w[keep]
+    n_keep = cov_w.shape[0]
 
-    # Product over pairing edges, sum over pairings (loop pairings; vectorize N)
+    # Chunk pairings; vectorize over configs (N). Pruning helps path/fork.
     acc = np.zeros(N, dtype=np.float64)
-    for p in range(n_pair):
-        pt = np.ones(N, dtype=np.float64)
+    chunk = 16 if N > 100_000 else 64
+    for p0 in range(0, n_keep, chunk):
+        p1 = min(p0 + chunk, n_keep)
+        pt = np.broadcast_to(cov_w[p0:p1, None], (p1 - p0, N)).copy()
         for e in range(n_edge):
-            pt *= cov_f[p, e] * S[idxs[:, ia[p, e]], idxs[:, ib[p, e]]]
-        acc += pt
+            ia_e = ia[p0:p1, e]
+            ib_e = ib[p0:p1, e]
+            # idxs[:, ia_e] -> (N, pc); transpose to (pc, N)
+            pt *= S[idxs[:, ia_e].T, idxs[:, ib_e].T]
+        acc += pt.sum(axis=0)
     return float(np.dot(base, acc))
 
 

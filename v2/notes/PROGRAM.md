@@ -159,7 +159,7 @@ Still missing (no fake closes):
 | residual-moment | Open |
 | factor-moment | **Closed** (Theorem factor-moment): complementary + linear-below-sqrt + mllt-sparse for every \(n^{1/2}=o(L)\) |
 | factor-rate | **Closed** as Theorem factor-rate (complementary / dense / linear / \(n^{3/4}=o(L)\)) |
-| factor-rate-mid | **Closed** at \(\lambda=1/2\) as Theorem factor-rate-mid-fail (residue \(287/(216\,na)\)); general \(\lambda\) open |
+| factor-rate-mid | **Closed** as Theorem factor-rate-mid-fail: residue \(287(1-\lambda)/(216\lambda\,na)\) |
 | long-step | **Closed** for every \(L\ge1\) with two linear margins (long-step-all) |
 
 ## Next

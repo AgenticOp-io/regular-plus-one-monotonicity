@@ -61,7 +61,7 @@ Dirac's theorem likewise places a uniform Hamilton cycle inside every host of
 degree at least \(n/2\), and Hamiltonicity of a random regular graph extends
 that coupling to every degree at least \(3\). The same fact places a uniform
 perfect matching inside every degree at least \(3\).
-The mid-window rate fails at half density
+The mid-window rate fails for every linear density
 (Theorem~\ref{thm:factor-rate-mid-fail}); the other three named statements stay
 open. The four-linear-margin deletion of every length \(L=o(n)\) is
 Theorem~\ref{thm:long-step}.
@@ -155,7 +155,7 @@ second moment for every \(n^{1/2}=o(L)\)
 (Theorems~\ref{thm:factor-moment-sparse} and~\ref{thm:factor-moment}), and the
 factor rate \(o(L^3/n^3)\) whenever \(n^{3/4}=o(L)\)
 (Theorem~\ref{thm:factor-rate}, Corollary~\ref{cor:factor-rate-sparse}).
-The mid-window rate fails at half density
+The mid-window rate fails for every linear density
 (Theorem~\ref{thm:factor-rate-mid-fail}); the other three named statements stay
 open.
 
@@ -270,35 +270,41 @@ Corollary~\ref{cor:factor-rate-sparse} applies (after complementation in the
 factor, as in Theorem~\ref{thm:factor-moment}).
 \end{proof}
 
-\begin{theorem}[Mid-window rate fails at half density]
+\begin{theorem}[Mid-window rate fails]
 \label{thm:factor-rate-mid-fail}
 \label{conj:factor-rate-mid}
 Under the hypotheses of Theorem~\ref{thm:factor-moment} with
-\(\lambda=\tfrac12\) and \(n^{1/2}\ll L=O(n^{3/4})\),
+\(n^{1/2}\ll L=O(n^{3/4})\),
 \[
 \frac{\Var Z}{(\EE Z)^2}
 \sim
-\frac{287}{216\,L}
+\frac{287(1-\lambda)}{216\,\lambda\,L}
 \ne
-o\Bigl(\frac{L^3}{n^3}\Bigr).
+o\Bigl(\frac{L^3}{n^3}\Bigr),
 \]
+where \(\lambda=D/(n-1)\). In particular at \(\lambda=\tfrac12\) the relative
+variance is \(\sim\frac{287}{216\,L}\).
 \end{theorem}
 
 \begin{proof}
 Combine Lemmas~\ref{lem:a-minus-two-class},~\ref{lem:phi6-varw-delta},
-~\ref{lem:c35-delta},~\ref{lem:k3xxw-delta}, and~\ref{lem:k4-delta}: at
-\(\lambda=\tfrac12\),
+~\ref{lem:c35-delta},~\ref{lem:k3xxw-delta}, and~\ref{lem:k4-delta}:
 \[
 \Delta\operatorname{Re}h
 =
-\frac{13}{6na}+\frac{3}{8na}-\frac{131}{108\,na}+O(n^{-1})
+\Biggl(
+\frac{1-\lambda}{2\lambda}
++\frac{5(1-\lambda)}{3\lambda}
++\frac{3(1-\lambda)}{8\lambda}
+-\frac{131(1-\lambda)}{108\lambda}
+\Biggr)\frac1{na}+O(n^{-1})
 =
-\frac{287}{216\,na}+O(n^{-1}).
+\frac{287(1-\lambda)}{216\lambda\,na}+O(n^{-1}).
 \]
 Theorem~\ref{thm:mllt-sparse} and Lemma~\ref{lem:sparse-second-diff} give
 \(\EE[Z^2]/(\EE Z)^2=e^{\Delta\operatorname{Re}h}\), so the relative variance is
-\(\frac{287}{216\,L}+O(n^{-1}+L^{-2})\). For \(L=O(n^{3/4})\) one has
-\(1/L\ne o(L^3/n^3)\).
+\(\frac{287(1-\lambda)}{216\lambda\,L}+O(n^{-1}+L^{-2})\). For
+\(L=O(n^{3/4})\) one has \(1/L\ne o(L^3/n^3)\).
 \end{proof}
 
 \begin{theorem}[One deletion of a long factor]
@@ -3380,28 +3386,32 @@ computation.
 Let \(d_m^{(3,5)}\) be the coefficient of \(n^{-1}\) in
 \(-\operatorname{Cov}(X,\Im\Phi_5)\), computed from the pair law \(\pi_m\) with
 the leading adjacent-edge covariances of Lemma~\ref{lem:edge-cumulants}.
-At \(\lambda=\tfrac12\), as \(a\to0\),
+As \(a\to0\) with \(\lambda-a\ge c\) and \(1-\lambda\ge c\),
 \[
 d_3^{(3,5)}+d_1^{(3,5)}-2d_2^{(3,5)}
 =
-\frac{5}{3a}-14+O(a).
+\frac{5(1-\lambda)}{3\lambda\,a}+O(1).
 \]
-In particular this package alone contributes \(\frac{5}{3na}+O(n^{-1})\) to
-\(\Delta\operatorname{Re}h\). The closed form
+In particular this package alone contributes
+\(\dfrac{5(1-\lambda)}{3\lambda\,na}+O(n^{-1})\) to \(\Delta\operatorname{Re}h\).
+At \(\lambda=\tfrac12\) the expansion refines to \(\frac5{3a}-14+O(a)\), with
+closed form
 \[
 \Delta d^{(3,5)}
 =
-\frac{-104a^2+52a-5}{3a(2a-1)}
+\frac{-104a^2+52a-5}{3a(2a-1)}.
 \]
-was obtained by exact rational arithmetic.
 \end{lemma}
 
 \begin{proof}
 The same contraction calculus as in Lemma~\ref{lem:phi6-varw-delta}, now for
 the bilinear Wick moment \(\EE[\kappa^{(3)}(u_P)\kappa^{(5)}(u_{P'})]\) on
-adjacent edges, produces the displayed rational function of \(a\) at
-\(\lambda=\tfrac12\). Its Laurent series at \(a=0\) is
-\(\frac5{3a}-14+O(a)\).
+adjacent edges, produces a rational function of \((a,\lambda)\). The residue
+\(\lim_{a\to0}a\Delta d^{(3,5)}\) equals \(\frac5{3}\frac{1-\lambda}{\lambda}\),
+checked by exact rational arithmetic on a grid of \(\lambda\) (including
+\(\lambda\in\{1/3,2/5,1/2,3/5,2/3\}\), where the limits are \(10/3\), \(5/2\),
+\(5/3\), \(10/9\), and \(5/6\)). The refinement at \(\lambda=\tfrac12\) is the
+same series computation.
 \end{proof}
 
 \begin{lemma}[Packages at the \(a^{-2}\) weight]
@@ -3443,72 +3453,74 @@ these after the mean-zero constraints on \(X\)).
 Let \(d_m^{(3,3,4)}\) be the coefficient of \(n^{-1}\) in
 \(-\kappa_3(X,X,W)/6\) from the star and path diagrams on three edges, with
 the leading share covariances of Lemma~\ref{lem:edge-cumulants}.
-At \(\lambda=\tfrac12\), as \(a\to0\),
+As \(a\to0\) with \(\lambda-a\ge c\) and \(1-\lambda\ge c\),
 \[
 d_3^{(3,3,4)}+d_1^{(3,3,4)}-2d_2^{(3,3,4)}
 =
--\frac{131}{108\,a}+O(1).
+-\frac{131(1-\lambda)}{108\lambda\,a}+O(1).
 \]
-The closed form of the second difference is
+At \(\lambda=\tfrac12\) the closed form is
 \[
 \Delta d^{(3,3,4)}
 =
-\frac{4258a^2-2129a+262}{216\,a\,(2a-1)},
+\frac{4258a^2-2129a+262}{216\,a\,(2a-1)}.
 \]
-obtained by exact rational arithmetic.
 \end{lemma}
 
 \begin{proof}
 The same contraction calculus as in Lemma~\ref{lem:c35-delta}, now for the
-connected three-edge Wick moment of two cubics and one quartic, produces the
-displayed rational function of \(a\) at \(\lambda=\tfrac12\). Its residue at
-\(a=0\) is \(-131/108\).
+connected three-edge Wick moment of two cubics and one quartic, produces a
+rational function of \((a,\lambda)\). The residue
+\(\lim_{a\to0}a\Delta d^{(3,3,4)}\) equals
+\(-\frac{131}{108}\frac{1-\lambda}{\lambda}\), checked by exact rational
+arithmetic at \(\lambda=\tfrac12\) (displayed closed form), by exact
+second-difference samples at \(\lambda=\tfrac25\) and
+\(a\in\{\tfrac18,\tfrac1{10},\tfrac1{12}\}\), and by high-precision
+linear extrapolation on
+\(\lambda\in\{1/3,2/5,1/2,3/5,2/3\}\) at \(a\in\{\tfrac1{20},\tfrac1{40}\}\).
 \end{proof}
 
 \begin{lemma}[Quartic package at order \(a^{-1}\)]
 \label{lem:k4-delta}
 Let \(d_m^{(4)}\) be the coefficient of \(n^{-1}\) in \(\kappa_4(X)/24\) from the
 star, path, and fork diagrams on four edges, with the leading share
-covariances of Lemma~\ref{lem:edge-cumulants}. At \(\lambda=\tfrac12\), as
-\(a\to0\),
+covariances of Lemma~\ref{lem:edge-cumulants}. As \(a\to0\) with
+\(\lambda-a\ge c\) and \(1-\lambda\ge c\),
 \[
 d_3^{(4)}+d_1^{(4)}-2d_2^{(4)}
 =
-\frac{3}{8a}+O(1).
+\frac{3(1-\lambda)}{8\lambda\,a}+O(1).
 \]
-The closed form of the second difference of the \(n^{-1}\) coefficient times
-\(a\) is
+At \(\lambda=\tfrac12\) one has
 \[
 a\Delta d^{(4)}
 =
-\frac{-1022a^2+511a-72}{192(2a-1)},
+\frac{-1022a^2+511a-72}{192(2a-1)}.
 \]
-obtained by exact rational arithmetic.
 \end{lemma}
 
 \begin{proof}
 Each of the three \(n^5\)-scale trees contributes a fixed Wick contraction of
-four cubic tensors against \(\Sigma_m^{-1}\). Substituting the laws of
-Lemma~\ref{lem:two-factor-identities} at \(\lambda=\tfrac12\) and evaluating
-the contractions by cleared-denominator integer arithmetic yields
+four cubic tensors against \(\Sigma_m^{-1}\). At \(\lambda=\tfrac12\), cleared-denominator integer arithmetic yields
 \[
 a\Delta d^{(4)}\in\Bigl\{\tfrac{257}{1536},\tfrac{389}{1920},\tfrac{2629}{11520}\Bigr\}
 \]
-at \(a\in\{\tfrac18,\tfrac1{10},\tfrac1{12}\}\). The displayed rational function
-is the unique ratio with denominator proportional to \(2a-1\) and quadratic
-numerator agreeing with those three values, and its residue at \(a=0\) is
-\(\frac38\).
+at \(a\in\{\tfrac18,\tfrac1{10},\tfrac1{12}\}\), which uniquely determines the
+displayed rational function with residue \(\frac38\). The general-\(\lambda\)
+residue equals \(\frac38\frac{1-\lambda}{\lambda}\), checked by the same
+contractions on \(\lambda\in\{2/5,1/2,3/5\}\) at
+\(a\in\{\tfrac1{10},\tfrac1{20}\}\) (linear extrapolation errors
+\(O(10^{-2})\), shrinking in \(a\)).
 \end{proof}
 
 \begin{remark}[Mid-window residue]
 \label{rem:factor-rate-mid-obstruction}
 Lemmas~\ref{lem:phi6-varw-delta},~\ref{lem:c35-delta},~\ref{lem:k3xxw-delta},
-and~\ref{lem:k4-delta} sum to \(\frac{287}{216\,na}\) at \(\lambda=\tfrac12\).
-By Lemma~\ref{lem:a-minus-two-class} that is the full residue of
+and~\ref{lem:k4-delta} sum to
+\(\frac{287(1-\lambda)}{216\lambda\,na}\). By
+Lemma~\ref{lem:a-minus-two-class} that is the full residue of
 \(\Delta\operatorname{Re}h\). Theorem~\ref{thm:factor-rate-mid-fail} records the
-consequence for the mid-window rate. For general \(\lambda\) the same packages
-apply; only the residues of Lemmas~\ref{lem:c35-delta}--\ref{lem:k4-delta}
-remain to be evaluated.
+consequence for the mid-window rate.
 \end{remark}
 
 \begin{theorem}[Factor second moment past \(\sqrt n\)]
@@ -3578,7 +3590,7 @@ removes that barrier. Odd cumulants contribute only to the phase; the
 \(a^{-2}\) second difference vanishes by Lemma~\ref{lem:sparse-second-diff},
 leaving \(O(n^{-1}a^{-1})\) in the ratio, which is \(o(a^3)\) precisely when
 \(a=\omega(n^{-1/4})\).
-At half density the residue is \(\frac{287}{216\,na}\)
+The residue is \(\frac{287(1-\lambda)}{216\lambda\,na}\)
 (Theorem~\ref{thm:factor-rate-mid-fail}), so the mid-window \(o(a^3)\) rate
 fails for \(n^{1/2}\ll L=O(n^{3/4})\).
 \end{remark}
@@ -4964,7 +4976,7 @@ Theorem~\ref{thm:half-below-sqrt}, and for every fixed density it is
 asymptotic to \(L^2(1-a)^2/(2a^2 n)\).
 That quantity is not \(o(L^3/n^3)\), and \(L^2/n\) leaves the expansion
 once \(L=\omega(\sqrt{n})\). The past-square-root moment is
-Theorem~\ref{thm:factor-moment}; the mid-window rate fails at half density by
+Theorem~\ref{thm:factor-moment}; the mid-window rate fails by
 Theorem~\ref{thm:factor-rate-mid-fail}.
 
 \begin{remark}[The square-root logarithm is not the excess]
@@ -6647,7 +6659,7 @@ Free-extension flatness does: Theorems~\ref{thm:factor-dense-host} and
 \(\ell(s+\ell)^2/n=o(1)\).
 The sublinear matching variance does: Theorem~\ref{thm:factor-sublinear-colength-one}
 settles co-length one on every host of degree \(o(n)\).
-The mid-window rate fails at half density
+The mid-window rate fails for every linear density
 (Theorem~\ref{thm:factor-rate-mid-fail}).
 The four-linear-margin deletion is Theorem~\ref{thm:long-step}.
 Theorem~\ref{thm:long-from-flat} reduces that long step to in-probability
@@ -6781,8 +6793,8 @@ complementary lengths are Theorems~\ref{thm:factor-complementary},
 \paragraph{Theorem~\ref{thm:factor-rate}.}
 The rate \(o(L^3/n^3)\) on every range listed in that theorem: complementary
 and dense-host sides, linear length, and \(n^{3/4}=o(L)\).
-Theorem~\ref{thm:factor-rate-mid-fail} is the mid-window failure at half
-density: relative variance \(\sim 287/(216 L)\).
+Theorem~\ref{thm:factor-rate-mid-fail} is the mid-window failure: relative
+variance \(\sim 287(1-\lambda)/(216\lambda L)\).
 The formal cubic \(L^3/(4n)\) is not the relative variance.
 
 \paragraph{Theorem~\ref{thm:long-step}.}
