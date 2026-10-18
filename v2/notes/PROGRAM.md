@@ -158,13 +158,14 @@ Still missing (no fake closes):
 | config-split | Open (iii on single orbits only) |
 | residual-moment | Open |
 | factor-moment | **Closed** (Theorem factor-moment): complementary + linear-below-sqrt + mllt-sparse for every \(n^{1/2}=o(L)\) |
-| factor-rate | **Closed** as Theorem factor-rate (complementary / dense / linear / \(n^{3/4}=o(L)\)); mid window is Conjecture factor-rate-mid |
+| factor-rate | **Closed** as Theorem factor-rate (complementary / dense / linear / \(n^{3/4}=o(L)\)) |
+| factor-rate-mid | **Closed** at \(\lambda=1/2\) as Theorem factor-rate-mid-fail (residue \(287/(216\,na)\)); general \(\lambda\) open |
 | long-step | **Closed** for every \(L\ge1\) with two linear margins (long-step-all) |
 
 ## Next
 
 Priority order:
-1. Conjecture factor-rate-mid (\(\sqrt n\ll L=O(n^{3/4})\); coefficient of \(1/(na)\)).
+1. Mid-window residues at general \(\lambda\ne\tfrac12\).
 2. Host-restricted residual-moment / config-split / Q (Workstream B).
 3. Ordered peel \(P_L\) past \(n^{1/3}\).
 

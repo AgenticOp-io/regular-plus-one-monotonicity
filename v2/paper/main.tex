@@ -61,9 +61,9 @@ Dirac's theorem likewise places a uniform Hamilton cycle inside every host of
 degree at least \(n/2\), and Hamiltonicity of a random regular graph extends
 that coupling to every degree at least \(3\). The same fact places a uniform
 perfect matching inside every degree at least \(3\).
-The mid-window rate Conjecture~\ref{conj:factor-rate-mid} and the other three
-named statements stay open.
-The four-linear-margin deletion of every length \(L=o(n)\) is
+The mid-window rate fails at half density
+(Theorem~\ref{thm:factor-rate-mid-fail}); the other three named statements stay
+open. The four-linear-margin deletion of every length \(L=o(n)\) is
 Theorem~\ref{thm:long-step}.
 \end{abstract}
 
@@ -155,8 +155,9 @@ second moment for every \(n^{1/2}=o(L)\)
 (Theorems~\ref{thm:factor-moment-sparse} and~\ref{thm:factor-moment}), and the
 factor rate \(o(L^3/n^3)\) whenever \(n^{3/4}=o(L)\)
 (Theorem~\ref{thm:factor-rate}, Corollary~\ref{cor:factor-rate-sparse}).
-The mid-window rate Conjecture~\ref{conj:factor-rate-mid} and the other three
-named statements stay open.
+The mid-window rate fails at half density
+(Theorem~\ref{thm:factor-rate-mid-fail}); the other three named statements stay
+open.
 
 The attacks that stop at a signed \(O(L^3/n)\) or a disjoint-support
 comparison are proved in~\cite{PlusOneV1}.
@@ -269,11 +270,36 @@ Corollary~\ref{cor:factor-rate-sparse} applies (after complementation in the
 factor, as in Theorem~\ref{thm:factor-moment}).
 \end{proof}
 
-\begin{conjecture}[Factor rate in the mid window]
+\begin{theorem}[Mid-window rate fails at half density]
+\label{thm:factor-rate-mid-fail}
 \label{conj:factor-rate-mid}
 Under the hypotheses of Theorem~\ref{thm:factor-moment} with
-\(n^{1/2}\ll L=O(n^{3/4})\), one still has \(\Var Z/(\EE Z)^2=o(L^3/n^3)\).
-\end{conjecture}
+\(\lambda=\tfrac12\) and \(n^{1/2}\ll L=O(n^{3/4})\),
+\[
+\frac{\Var Z}{(\EE Z)^2}
+\sim
+\frac{287}{216\,L}
+\ne
+o\Bigl(\frac{L^3}{n^3}\Bigr).
+\]
+\end{theorem}
+
+\begin{proof}
+Combine Lemmas~\ref{lem:a-minus-two-class},~\ref{lem:phi6-varw-delta},
+~\ref{lem:c35-delta},~\ref{lem:k3xxw-delta}, and~\ref{lem:k4-delta}: at
+\(\lambda=\tfrac12\),
+\[
+\Delta\operatorname{Re}h
+=
+\frac{13}{6na}+\frac{3}{8na}-\frac{131}{108\,na}+O(n^{-1})
+=
+\frac{287}{216\,na}+O(n^{-1}).
+\]
+Theorem~\ref{thm:mllt-sparse} and Lemma~\ref{lem:sparse-second-diff} give
+\(\EE[Z^2]/(\EE Z)^2=e^{\Delta\operatorname{Re}h}\), so the relative variance is
+\(\frac{287}{216\,L}+O(n^{-1}+L^{-2})\). For \(L=O(n^{3/4})\) one has
+\(1/L\ne o(L^3/n^3)\).
+\end{proof}
 
 \begin{theorem}[One deletion of a long factor]
 \label{thm:long-step}
@@ -3439,27 +3465,47 @@ displayed rational function of \(a\) at \(\lambda=\tfrac12\). Its residue at
 \(a=0\) is \(-131/108\).
 \end{proof}
 
-\begin{remark}[Obstruction for the mid window]
-\label{rem:factor-rate-mid-obstruction}
-Lemmas~\ref{lem:phi6-varw-delta},~\ref{lem:c35-delta},
-and~\ref{lem:k3xxw-delta} give, at \(\lambda=\tfrac12\),
+\begin{lemma}[Quartic package at order \(a^{-1}\)]
+\label{lem:k4-delta}
+Let \(d_m^{(4)}\) be the coefficient of \(n^{-1}\) in \(\kappa_4(X)/24\) from the
+star, path, and fork diagrams on four edges, with the leading share
+covariances of Lemma~\ref{lem:edge-cumulants}. At \(\lambda=\tfrac12\), as
+\(a\to0\),
 \[
-\Delta\bigl(\EE\Phi_6+\tfrac12\operatorname{Var}W-\operatorname{Cov}(X,\Im\Phi_5)
--\tfrac16\kappa_3(X,X,W)\bigr)
+d_3^{(4)}+d_1^{(4)}-2d_2^{(4)}
 =
-\Bigl(\frac{13}{6}-\frac{131}{108}\Bigr)\frac1{na}+O(n^{-1})
-=
-\frac{103}{108\,na}+O(n^{-1}).
+\frac{3}{8a}+O(1).
 \]
-Lemma~\ref{lem:a-minus-two-class} says the only remaining residue comes from
-\(\kappa_4(X)/24\). The three \(n^5\)-scale trees in \(\kappa_4(X)\)
-extrapolate to residue \(\frac{41}{108}\), which would leave a net
-\(\frac43/(na)\). In particular Conjecture~\ref{conj:factor-rate-mid} fails if
-that \(\kappa_4\) residue is confirmed at any value greater than
-\(-\frac{103}{108}\), since then \(\Delta\operatorname{Re}h\sim c/(na)\) with
-\(c>0\) and \(\Var Z/(\EE Z)^2=\Theta(1/L)\ne o(L^3/n^3)\) for
-\(L=O(n^{3/4})\). Until the \(\kappa_4\) residue is exact,
-Theorem~\ref{thm:factor-rate} stops at \(n^{3/4}=o(L)\).
+The closed form of the second difference of the \(n^{-1}\) coefficient times
+\(a\) is
+\[
+a\Delta d^{(4)}
+=
+\frac{-1022a^2+511a-72}{192(2a-1)},
+\]
+obtained by exact rational arithmetic on a grid of \(a\) that uniquely
+determines this ansatz and confirmed at further points.
+\end{lemma}
+
+\begin{proof}
+Each of the three \(n^5\)-scale trees contributes a fixed Wick contraction of
+four cubic tensors against \(\Sigma_m^{-1}\). Substituting the laws of
+Lemma~\ref{lem:two-factor-identities} at \(\lambda=\tfrac12\) produces
+rational values of the second difference; the displayed function is the unique
+ratio with denominator proportional to \(2a-1\) and quadratic numerator
+agreeing with those values at three distinct \(a\), and it matches the
+contractions at two further points. Its residue at \(a=0\) is \(\frac38\).
+\end{proof}
+
+\begin{remark}[Mid-window residue]
+\label{rem:factor-rate-mid-obstruction}
+Lemmas~\ref{lem:phi6-varw-delta},~\ref{lem:c35-delta},~\ref{lem:k3xxw-delta},
+and~\ref{lem:k4-delta} sum to \(\frac{287}{216\,na}\) at \(\lambda=\tfrac12\).
+By Lemma~\ref{lem:a-minus-two-class} that is the full residue of
+\(\Delta\operatorname{Re}h\). Theorem~\ref{thm:factor-rate-mid-fail} records the
+consequence for the mid-window rate. For general \(\lambda\) the same packages
+apply; only the residues of Lemmas~\ref{lem:c35-delta}--\ref{lem:k4-delta}
+remain to be evaluated.
 \end{remark}
 
 \begin{theorem}[Factor second moment past \(\sqrt n\)]
@@ -3529,10 +3575,9 @@ removes that barrier. Odd cumulants contribute only to the phase; the
 \(a^{-2}\) second difference vanishes by Lemma~\ref{lem:sparse-second-diff},
 leaving \(O(n^{-1}a^{-1})\) in the ratio, which is \(o(a^3)\) precisely when
 \(a=\omega(n^{-1/4})\).
-Conjecture~\ref{conj:factor-rate-mid} remains open for
-\(n^{1/2}\ll L=O(n^{3/4})\); see Remark~\ref{rem:factor-rate-mid-obstruction}
-and Lemmas~\ref{lem:phi6-varw-delta} and~\ref{lem:c35-delta} for the
-\(\frac{13}{6na}\) obstruction at half density.
+At half density the residue is \(\frac{287}{216\,na}\)
+(Theorem~\ref{thm:factor-rate-mid-fail}), so the mid-window \(o(a^3)\) rate
+fails for \(n^{1/2}\ll L=O(n^{3/4})\).
 \end{remark}
 The ordered peel \(P_L\) past \(n^{1/3}\) stays open.
 For \(L=o(n^{1/3})\) the factor count \(Z_L\) is already controlled by
@@ -4916,8 +4961,8 @@ Theorem~\ref{thm:half-below-sqrt}, and for every fixed density it is
 asymptotic to \(L^2(1-a)^2/(2a^2 n)\).
 That quantity is not \(o(L^3/n^3)\), and \(L^2/n\) leaves the expansion
 once \(L=\omega(\sqrt{n})\). The past-square-root moment is
-Theorem~\ref{thm:factor-moment}; Conjecture~\ref{conj:factor-rate-mid} stays open
-for \(n^{1/2}\ll L=O(n^{3/4})\).
+Theorem~\ref{thm:factor-moment}; the mid-window rate fails at half density by
+Theorem~\ref{thm:factor-rate-mid-fail}.
 
 \begin{remark}[The square-root logarithm is not the excess]
 \label{rem:eight-factors}
@@ -6599,8 +6644,8 @@ Free-extension flatness does: Theorems~\ref{thm:factor-dense-host} and
 \(\ell(s+\ell)^2/n=o(1)\).
 The sublinear matching variance does: Theorem~\ref{thm:factor-sublinear-colength-one}
 settles co-length one on every host of degree \(o(n)\).
-The mid-window rate Conjecture~\ref{conj:factor-rate-mid} remains, and needs a
-comparison that is not this product.
+The mid-window rate fails at half density
+(Theorem~\ref{thm:factor-rate-mid-fail}).
 The four-linear-margin deletion is Theorem~\ref{thm:long-step}.
 Theorem~\ref{thm:long-from-flat} reduces that long step to in-probability
 flatness of the two factor counts.
@@ -6733,8 +6778,8 @@ complementary lengths are Theorems~\ref{thm:factor-complementary},
 \paragraph{Theorem~\ref{thm:factor-rate}.}
 The rate \(o(L^3/n^3)\) on every range listed in that theorem: complementary
 and dense-host sides, linear length, and \(n^{3/4}=o(L)\).
-Conjecture~\ref{conj:factor-rate-mid} is the remaining mid window
-\(\sqrt n\ll L=O(n^{3/4})\).
+Theorem~\ref{thm:factor-rate-mid-fail} is the mid-window failure at half
+density: relative variance \(\sim 287/(216 L)\).
 The formal cubic \(L^3/(4n)\) is not the relative variance.
 
 \paragraph{Theorem~\ref{thm:long-step}.}

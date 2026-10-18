@@ -2620,3 +2620,42 @@ simplify | 13/6 - 131/108 - 103/108
 0
 [Quotient and Remainder]
 0 = (0) × 1 + 0
+
+
+Query: Simplify[(-1022*(1/10)^2+511*(1/10)-72)/(192*(2*(1/10)-1)) - 389/1920]
+[Input interpretation]
+simplify | (-1022 (1/10)^2 + 511 × 1/10 - 72)/(192 (2 × 1/10 - 1)) - 389/1920
+[Results]
+389/1920 - 389/1920
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Limit[(-1022*a^2+511*a-72)/(192*(2*a-1)), a->0]
+[Limit]
+lim_(a->0) (-1022 a^2 + 511 a - 72)/(192 (2 a - 1)) = 3/8
+[Series expansion at a = 0]
+3/8 - (367 a)/192 + (3 a^2)/2 + 3 a^3 + 6 a^4 + 12 a^5 + O(a^6)
+(Taylor series)
+
+
+Query: Simplify[13/6 + 3/8 - 131/108 - 287/216]
+[Input interpretation]
+simplify | 13/6 + 3/8 - 131/108 - 287/216
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(-1022*(1/20)^2+511*(1/20)-72)/(192*(2*(1/20)-1)) - 363/1280]
+[Input interpretation]
+simplify | (-1022 (1/20)^2 + 511 × 1/20 - 72)/(192 (2 × 1/20 - 1)) - 363/1280
+[Results]
+363/1280 - 363/1280
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
