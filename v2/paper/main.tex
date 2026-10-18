@@ -7073,6 +7073,40 @@ The ordered peel past \(n^{1/3}\) remains the cancellation after
 Proposition~\ref{prop:im-containment}, or a sharper enumeration of \(D(F)\).
 \end{remark}
 
+\begin{proposition}[Peel transfer threshold from factor moment]
+\label{prop:peel-transfer-threshold}
+Let \(n\) be even and let \(D,L\) satisfy the hypotheses of
+Theorem~\ref{thm:factor-moment}, so \(\Var Z_L/(\EE Z_L)^2\to0\). Write
+\(D(F)\) for the number of ordered \(1\)-factorizations of an \(L\)-factor \(F\),
+and suppose there exist \(m_n\le M_n\) with \(M_n/m_n\to1\) such that
+\[
+\mu_L\bigl(\{F:D(F)\notin[m_n,M_n]\}\bigr)=o(1)
+\]
+and the contribution of that exceptional set to \(\EE[Z_L^2]\) and
+\(\EE[P_L^2]\) is \(o((\EE Z_L)^2)\) (respectively \(o((\EE P_L)^2)\)).
+Then \(\Var P_L/(\EE P_L)^2\to0\).
+In particular, once \(1\)-factorization counts are multiplicatively flat on the
+\(\mu_L\)-bulk, Theorem~\ref{thm:factor-moment} upgrades to an ordered-peel
+second moment throughout \(n^{1/2}=o(L)=o(n)\) with two linear margins---past
+the \(n^{1/3}\) barrier of Theorem~\ref{thm:peel-second-moment-third}.
+Remark~\ref{rem:fjs-not-flat} records that the available dense
+enumeration is not flat enough for this transfer.
+\end{proposition}
+
+\begin{proof}
+On the bulk event write \(m_n\le D(F)\le M_n\). Restricting the sums in
+Lemma~\ref{lem:peel-from-factor} to that event loses \(o(1)\) in both the
+\(Z_L\) and \(P_L\) second-moment ratios by the exceptional-set hypothesis.
+The lemma then gives
+\[
+\frac{\EE[P_L^2]}{(\EE P_L)^2}
+\le
+\Bigl(\frac{M_n}{m_n}\Bigr)^2
+\frac{\EE[Z_L^2]}{(\EE Z_L)^2}+o(1)
+\to1.
+\]
+\end{proof}
+
 \section{Program}
 \label{sec:program}
 

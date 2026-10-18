@@ -53,15 +53,18 @@ Bar is 2.0. v1.0 is sent.
 ## Also open (not named)
 
 - Peel second moment past \(n^{1/3}\) (ordered peel \(P_L\)).
-  Lemma peel-from-factor: \(D(F)\)-flatness would transfer factor-moment;
-  FJS precision is not enough for \(M/m\to1\) (Remark fjs-not-flat).
+  Proposition peel-transfer-threshold: multiplicative \(D(F)\)-flatness on
+  the \(\mu_L\)-bulk would transfer Theorem factor-moment past
+  \(n^{1/3}\); FJS precision is not enough (Remark fjs-not-flat). Alternate
+  route: IM25 cubic cancellation after Proposition im-containment.
 - Lower tail of the matching count \(Y\) (blocked routes unchanged).
 
 ## Next
 
 1. Host-restricted residual second moment at \(m=1\) (nearly regular);
    sparse MLLT at \(\delta=o(n^{1/2})\) for BIM length.
-2. Selection (iii) / lower-tail of \(N\) → config-split → Q.
-3. IM25 cancellation for ordered peel past \(n^{1/3}\).
+2. Weighted/pointwise lower-tail of \(N\) at \(1/c_n\) → config-split → Q
+   (Q still needs BIM Conjecture 1.3 or binomial thinning).
+3. \(D(F)\)-flatness or IM25 cancellation for ordered peel past \(n^{1/3}\).
 
 See `PROGRAM.md` for the full closed/blocked ledger.
