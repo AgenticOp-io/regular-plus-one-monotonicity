@@ -6049,6 +6049,50 @@ The product formula is \(e^{-t\sum J_H}=\prod e^{-tJ_H}\) with
 \(e^{-tJ}=1-(1-e^{-t})J\) on \(\{0,1\}\).
 \end{proof}
 
+\begin{proposition}[Weighted lower-tail criterion for item (iii)]
+\label{prop:iii-weighted-tail}
+In the setting of Theorem~\ref{thm:selection-reduces}, write
+\(a(G_0):=\EE[1/N\mid G_0\subset G^*_0]\) and let \(c_n\) be the constant of
+Proposition~\ref{prop:target-cn}. Proposition~\ref{prop:integral-a} gives
+\[
+a(G_0)
+=
+\int_1^\infty\frac{\PP(N<u\mid G_0\subset G^*_0)}{u^2}\,du.
+\]
+Splitting at \(M=1/c_n\) and using \(\PP(N<u)\le 1\) on \([M,\infty)\) yields
+\[
+a(G_0)
+\le
+c_n
++
+\int_1^{1/c_n}\frac{\PP(N<u\mid G_0\subset G^*_0)}{u^2}\,du.
+\]
+Consequently the uniform bound
+\[
+\int_1^{1/c_n}\frac{\PP(N<u\mid\text{containment})}{u^2}\,du
+=
+o(c_n)
+\]
+implies item (iii) at scale \(c_n\). This is strictly weaker than the pointwise
+demand \(\PP(N<1/c_n\mid\text{containment})=o(c_n)\) of
+Proposition~\ref{prop:iii-as-tail}: a lower-tail mass concentrated near
+\(u=1/c_n\) contributes only \(O\bigl(\PP(N<1/c_n)\,c_n\bigr)\) to the
+integral, while mass near \(u=O(1)\) is charged at full strength.
+\end{proposition}
+
+\begin{proof}
+On \([M,\infty)\) one has \(\int_M^\infty u^{-2}\,du=1/M=c_n\). The comparison
+with Proposition~\ref{prop:iii-as-tail} is
+\[
+\int_1^{M}\frac{\PP(N<u)}{u^2}\,du
+\le
+\PP(N<M)\int_1^{M}u^{-2}\,du
+\le
+\PP(N<M),
+\]
+so the pointwise criterion implies the weighted one, but not conversely.
+\end{proof}
+
 \begin{proposition}[Edge-disjoint packing misses the bulk]
 \label{prop:packing-miss}
 Given \(G_0\subset G^*_0\), let \(\mathcal P\) be any collection of pairwise
@@ -7064,7 +7108,9 @@ Chebyshev about the mean of \(N\) is the wrong scale.
 Proposition~\ref{prop:iii-as-tail} rewrites item (iii) as a lower-tail bound
 on \(N\) at the threshold \(1/c_n\).
 Proposition~\ref{prop:integral-a} is the Laplace/Stieltjes form of that
-comparison.
+comparison, and Proposition~\ref{prop:iii-weighted-tail} weakens the
+pointwise demand to
+\(\int_1^{1/c_n}\PP(N<u\mid\text{containment})/u^2\,du=o(c_n)\).
 Proposition~\ref{prop:indep-rv-closed} evaluates the relative second moment
 under edge independence as
 \((1-\pi^2+\pi^2 p^{-1})^{\binom{n}{2}-s}=\exp(\Theta(Dn))\).
@@ -7152,6 +7198,9 @@ Hybrid-to-binomial and freeze-and-sprinkle are blocked.
 \paragraph{Conjecture~\ref{conj:config-split}.}
 Item (iii) of Theorem~\ref{thm:selection-reduces} together with the three
 peel-weight flatnesses of~\cite{PlusOneV1}.
+A sufficient criterion for (iii) is the weighted lower-tail bound of
+Proposition~\ref{prop:iii-weighted-tail} (weaker than the pointwise
+criterion of Proposition~\ref{prop:iii-as-tail}).
 Free splitting already gives the increment throughout \(d+m=o(n^{1/3})\),
 and is a different coupling.
 

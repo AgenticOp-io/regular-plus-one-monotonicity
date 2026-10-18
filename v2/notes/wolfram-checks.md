@@ -2815,3 +2815,21 @@ Query: Limit[1/d + d^2/n, n->Infinity, Assumptions -> d==n^(2/5)]
 [fallback]
 sympy Limit(1/d + d**2/n, n, oo) with d=n**(2/5) equals 0.
 Hence O(1/delta + delta**2/n) -> 0 throughout delta = o(n**(1/2)).
+
+
+Query: Simplify[Integrate[1/u^2, {u, M, Infinity}] - 1/M]
+[error]
+no result
+
+
+Query: Simplify[Integrate[1/u^2, {u, 1, M}] - (1 - 1/M)]
+[error]
+no result
+
+Query: Simplify[Integrate[1/u^2, {u, M, Infinity}] - 1/M]
+[fallback]
+sympy: integrate(u**(-2), (u, M, oo)) - 1/M == 0 for M>0.
+
+Query: Simplify[Integrate[1/u^2, {u, 1, M}] - (1 - 1/M)]
+[fallback]
+sympy: integrate(u**(-2), (u, 1, M)) - (1 - 1/M) == 0 for M>1.
