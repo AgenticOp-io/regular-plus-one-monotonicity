@@ -27,10 +27,11 @@ Bar is 2.0. v1.0 is sent.
 ## Open (named)
 
 - **residual-moment** (BIM-constrained): open.
-  At \(m=1\), unconstrained matching moment is settled (v1 sublinear nesting);
-  gap is contiguity of \(R\) with \(\mu_\delta\)
-  (Corollary residual-matching-proxy). At general \(m\), both sublinear
-  unconstrained \(m\)-factor moment and residual-law comparison are open
+  Unconstrained fixed-length \(m\)-factor moment at \(\delta=o(n^{1/2})\) is
+  Theorem residual-factor-fixed. At \(m=1\), gap is contiguity of \(R\) with
+  \(\mu_\delta\) (Corollary residual-matching-proxy). At BIM length
+  \(m=\Theta\sqrt{d\log n}\) one has \(m\gg\sqrt\delta\), so unconstrained
+  item needs sparse MLLT; residual-law comparison still open
   (Proposition residual-two-gaps). Linear unconstrained is
   Theorem residual-unconstrained.
 - **config-split**: open. Selection (iii) only on single orbits

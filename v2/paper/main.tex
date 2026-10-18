@@ -6674,6 +6674,57 @@ Combine the cited variance expansion with Proposition~\ref{prop:residual-subline
 and \(\delta\to\infty\).
 \end{proof}
 
+\begin{theorem}[Unconstrained fixed-length factor moment at sublinear degree]
+\label{thm:residual-factor-fixed}
+Assume~\cite[Theorem~6]{Gao20}. Fix an integer \(m\ge 1\). Let \(n\) be even with
+\(mn\) even, and let \(\delta\to\infty\) satisfy \(\delta n\) even, \(m\le\delta\), and
+\(\delta=o(n^{1/2})\). The number \(Z\) of \(m\)-factors of a uniform
+\(\delta\)-regular graph satisfies
+\[
+\frac{\Var Z}{(\EE Z)^2}\to 0.
+\]
+\end{theorem}
+
+\begin{proof}
+Write \(\Omega_m\) for the set of \(m\)-regular graphs on \([n]\), and expand
+\[
+\frac{\EE[Z^2]}{(\EE Z)^2}
+=
+\EE_{F_1,F_2\sim\mu_m\otimes\mu_m}
+\Biggl[
+\frac{\PP(F_1\cup F_2\subseteq G)}{\PP(F_1\subseteq G)\PP(F_2\subseteq G)}
+\Biggr]
+\]
+with \(G\sim\mu_\delta\). The union \(U=F_1\cup F_2\) has maximum degree at most
+\(2m\). Theorem~6 of~\cite{Gao20} therefore supplies the same subgraph
+probabilities used for perfect matchings in the proof of
+Lemma~ratio-error of~\cite{PlusOneV1}, with host maximum degree \(\Delta=2m\)
+in place of \(2\): each containment probability equals its principal term times
+\(1+O(\delta^2/n)\), uniformly over such \(U\). Write
+\(K=|E(F_1)\cap E(F_2)|\). Under \(\mu_m\otimes\mu_m\),
+\[
+\EE K
+=
+\binom{n}{2}\Bigl(\frac{m}{n-1}\Bigr)^2
+=
+\frac{m^2}{2}\cdot\frac{n}{n-1},
+\]
+which is \(O(1)\) for fixed \(m\), and \(K\) has exponential tails of order
+\(O(1)\) (configuration-model comparison of two \(m\)-regular graphs, as in
+\cite[Lemma~17]{Gao21}). The ratio of principal terms, as a function of \(k\),
+satisfies the hypotheses of Lemma~laplace of~\cite{PlusOneV1} after the same
+algebraic expansion as in~\cite[§3.4]{Gao21} with the matching case \(m=1\)
+replaced by fixed \(m\) (the Gaussian window is still of width
+\(O(\sqrt{n/\delta}\,\log n)\), and the odd-sum cancellation is unchanged).
+That lemma returns
+\[
+\frac{\EE[Z^2]}{(\EE Z)^2}
+=
+1+O\Bigl(\frac1\delta+\frac{\delta^2}{n}\Bigr)
+\to 1.
+\]
+\end{proof}
+
 \begin{proposition}[General \(m\): two remaining estimates]
 \label{prop:residual-two-gaps}
 Write \(\delta:=\varepsilon_0 d\) and \(m=\Theta\sqrt{d\log n}\) as in
@@ -6686,19 +6737,29 @@ Theorem~\ref{thm:residual-unconstrained}, which needs \(\delta=\Theta(n)\));
 \item a comparison of the residual law of \(R\) with that unconstrained model
 (blocked routes: Bernoulli residual, free complement flatness, hybrid-to-binomial).
 \end{enumerate}
-At \(m=1\), item~(i) is the sublinear nesting theorem of~\cite{PlusOneV1} and
-item~(ii) is the only gap (Corollary~\ref{cor:residual-matching-proxy}).
-For \(m\to\infty\) both items are open. When
-\(d=o\bigl(n^{3/4}/(\log n)^{1/2}\bigr)\) one has \(\delta=o(n^{1/2})\), so a
-configuration-model attack on item~(i) is not blocked by
+At every fixed \(m\ge 1\), item~(i) is Theorem~\ref{thm:residual-factor-fixed}
+(and at \(m=1\) it is also the sublinear nesting theorem of~\cite{PlusOneV1}).
+Item~(ii) remains the only gap for each fixed \(m\)
+(Corollary~\ref{cor:residual-matching-proxy} at \(m=1\)).
+At the BIM length \(m=\Theta\sqrt{d\log n}\) one has
+\(m/\sqrt\delta=\Theta(d^{1/6}(\log n)^{1/3})\to\infty\), so item~(i) lies past
+the fixed-length regime and needs a sparse-host analogue of
+Theorem~\ref{thm:factor-moment} (multi-colour LLT at density \(\lambda\to0\)).
+When \(d=o\bigl(n^{3/4}/(\log n)^{1/2}\bigr)\) one has \(\delta=o(n^{1/2})\), so a
+configuration-model attack on that sparse LLT is not blocked by
 Proposition~config-loops of~\cite{PlusOneV1}.
 \end{proposition}
 
 \begin{proof}
-The scale claims are Proposition~\ref{prop:residual-sublinear} and the
-computation \(\delta/n^{1/2}=d^{2/3}(\log n)^{1/3}n^{-1/2}\).
+The scale claims are Proposition~\ref{prop:residual-sublinear} and
+\[
+\frac{m}{\sqrt\delta}
+=
+\Theta\Bigl(d^{1/6}(\log n)^{1/3}\Bigr),
+\]
+together with \(\delta/n^{1/2}=d^{2/3}(\log n)^{1/3}n^{-1/2}\).
 Item~(i) at linear degree is Theorem~\ref{thm:residual-unconstrained}; at
-sublinear degree it is new.
+fixed length and sublinear degree it is Theorem~\ref{thm:residual-factor-fixed}.
 The blocked comparisons are
 Propositions~bernoulli-moment, free-not-residual, and hybrid-singular
 of~\cite{PlusOneV1}.
@@ -6899,11 +6960,11 @@ and is a different coupling.
 \paragraph{Conjecture~\ref{conj:residual-moment}.}
 A second moment on the actual BIM residual \(R=G^*_0\setminus G\), in the
 nearly regular degree window of Proposition~\ref{prop:residual-nearly-reg}.
-At \(m=1\) the unconstrained matching moment is settled and the gap is
-contiguity of \(R\) with \(\mu_\delta\)
-(Corollary~\ref{cor:residual-matching-proxy}).
-At general \(m\) both a sublinear unconstrained moment and the residual-law
-comparison remain (Proposition~\ref{prop:residual-two-gaps}).
+Fixed-length unconstrained moments are
+Theorem~\ref{thm:residual-factor-fixed}; at \(m=1\) the gap is contiguity of
+\(R\) with \(\mu_\delta\) (Corollary~\ref{cor:residual-matching-proxy}).
+At BIM length \(m\gg\sqrt\delta\) a sparse-host multi-colour LLT and the
+residual-law comparison remain (Proposition~\ref{prop:residual-two-gaps}).
 Replacing \(R\) by an independent Bernoulli graph is blocked.
 
 \paragraph{Theorem~\ref{thm:factor-moment}.}
@@ -6983,6 +7044,12 @@ Random Structures Algorithms, 2013, doi:10.1002/rsa.20418.
 P.~Gao,
 \emph{Triangles and subgraph probabilities in random regular graphs},
 arXiv:2012.01492, 2020.
+
+\bibitem{Gao21}
+P.~Gao,
+\emph{The number of perfect matchings, and the nesting properties, of random regular graphs},
+arXiv:2104.11850, 2021;
+Random Structures Algorithms \textbf{62} (2023), no.~4.
 
 \bibitem{FJS19}
 A.~Ferber, V.~Jain, and B.~Sudakov,
