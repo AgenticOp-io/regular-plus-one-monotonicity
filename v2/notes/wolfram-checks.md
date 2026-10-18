@@ -2744,3 +2744,12 @@ no result
 Fallback (sympy exact): at d=n^{3/4}/log(n)^{1/2} the ratio delta/sqrt(n) simplifies to 1;
 hence delta=o(n^{1/2}) throughout d=o(n^{3/4}/log(n)^{1/2}).
 Likewise delta/n -> 0 throughout d=o(n^{3/2}/log(n)^{1/2}).
+
+
+Query: Simplify[m^2/2] /. m -> 2
+[error]
+no result
+
+Query: Simplify[Sqrt[d*Log[n]]/Sqrt[d^(2/3)*Log[n]^(1/3)]]
+Fallback (sympy): simplifies to d^(1/6)*Log[n]^(1/3); tends to infinity as d->infinity.
+(Wolfram returned no result on a related substitution earlier.)
