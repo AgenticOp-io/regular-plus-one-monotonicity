@@ -137,3 +137,19 @@ Residue \(\frac{287(1-\lambda)}{216\lambda\,na}>0\) for \(\lambda\in(0,1)\).
 Relative variance \(\Theta(1/L)\) throughout \(\sqrt n\ll L=O(n^{3/4})\).
 
 Screen: `middle` — no blocked approach.
+
+## Sparse host densities (\(\lambda\to0\), \(a=o(\lambda)\))
+
+Lemma sparse-package-residues:
+- C35 exact: \(\lambda=1/10\to15\), \(\lambda=1/5\to20/3\)
+  (`scripts/beta_c35_lam.py`).
+- \(\Phi_6+\tfrac12\mathrm{Var}W\) extrapolation
+  (`scripts/next_order_sparse.py` / `pieces`):
+
+| \(\lambda\) | \(a=\lambda/8\) | \(a=\lambda/16\) | \(2y_{16}-y_8\) | cand \((1-\lambda)/(2\lambda)\) |
+|------------:|----------------:|-----------------:|---------------:|--------------------------------:|
+| \(1/10\) | 5.101 | 4.779 | 4.457 | 4.5 |
+| \(1/15\) | 8.029 | 7.481 | 6.933 | 7.0 |
+| \(1/20\) | 10.961 | 10.185 | 9.409 | 9.5 |
+
+Does not extend Theorem mllt-sparse; only the package residues.

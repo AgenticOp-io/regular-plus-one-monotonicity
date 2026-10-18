@@ -2762,3 +2762,43 @@ simplify | binomial(n, 2) (m/(n - 1))^2 - m^2 × n/(2 (n - 1))
 0
 [Quotient and Remainder]
 0 = (0) × 1 + 0
+
+
+Query: Simplify[5*(1-1/10)/(3*(1/10)) - 15]
+[Input interpretation]
+simplify | 5 × (1 - 1/10)/(3 × 1/10) - 15
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(1-1/10)/(2*(1/10)) - 9/2]
+[Input interpretation]
+simplify | (1 - 1/10)/(2 × 1/10) - 9/2
+[Results]
+9/2 - 9/2
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[5*(1-1/5)/(3*(1/5)) - 20/3]
+[Input interpretation]
+simplify | 5 × (1 - 1/5)/(3 × 1/5) - 20/3
+[Results]
+20/3 - 20/3
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+Query: rational fallback: sparse p64 residues a=o(lam)
+[fallback]
+Exact Fraction pieces() at a in {lam/8, lam/16}:
+lam=1/10: aD in {5.10066964, 4.77890625}; 2*y16-y8=4.457 vs cand 9/2=4.5
+lam=1/15: aD in {8.02916667, 7.48125000}; 2*y16-y8=6.933 vs cand 7
+lam=1/20: aD in {10.96104911, 10.18528646}; 2*y16-y8=9.409 vs cand 19/2=9.5
+Exact C35 lim a->0 a*Delta via beta_c35_lam.c35_delta_symbolic:
+lam=1/10 residue=15 = 5*(1-1/10)/(3/10); lam=1/5 residue=20/3.
