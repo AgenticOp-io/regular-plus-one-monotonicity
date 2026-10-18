@@ -10,6 +10,12 @@ Bar is 2.0. v1.0 is sent.
   complementary, dense-host, linear length, and \(n^{3/4}=o(L)\).
   Proof of the sparse side: Lemma sparse-second-diff kills \(a^{-2}\) in the
   ratio, leaving \(O(1/(na))=o(a^3)\) iff \(a=\omega(n^{-1/4})\).
+- **factor-rate-mid** (Theorem factor-rate-mid-fail / former Conjecture
+  factor-rate-mid): at \(\lambda=1/2\), residue
+  \(\Delta\operatorname{Re}h\sim\frac{287}{216\,na}\) from the five
+  \(a^{-2}\)-class packages, so
+  \(\Var Z/(\EE Z)^2\sim\frac{287}{216\,L}\ne o(L^3/n^3)\) for
+  \(\sqrt n\ll L=O(n^{3/4})\).
 - **long-step** (Theorem long-step / long-step-all): every \(L\ge1\) with two
   linear margins.
 - **unconstrained residual** (Theorem residual-unconstrained): factor-moment
@@ -17,16 +23,12 @@ Bar is 2.0. v1.0 is sent.
 
 ## Open (named)
 
-- **factor-rate-mid**: \(\sqrt n\ll L=O(n^{3/4})\).
-  Lemma a-minus-two-class: only five packages can affect the \(a^{-1}\)
-  residue. At \(\lambda=1/2\) the first three give \(\frac{13}{6na}\); the
-  Exact \(\kappa_3\) residue \(-\frac{131}{108}\) (Lemma k3xxw-delta) leaves
-  \(\frac{103}{108}/(na)>0\) before \(\kappa_4\). Confirm
-  \(\beta_{\kappa_4}>-103/108\) (extrapolated \(+41/108\)) to refute.
 - **Q**, **config-split**, **residual-moment** (BIM-constrained): open.
   Selection (iii) only on single orbits \(D\in\{1,n-2\}\).
   Unconstrained residual is closed; the host restriction is the obstruction.
   Q is conditional on BIM Conjecture 1.3 (Theorem process-to-Q).
+- Mid-window rate at general \(\lambda\ne\tfrac12\): same packages, residues
+  not yet evaluated.
 
 ## Also open (not named)
 
@@ -35,7 +37,7 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-1. Factor-rate-mid: exact \(\kappa_4+\kappa_3\) residue (refute if \(>-13/6\)).
+1. Mid-window residues at general \(\lambda\) (or reduce to half density).
 2. Host-restricted residual-moment → config-split → Q.
 3. Ordered peel \(P_L\) past \(n^{1/3}\).
 

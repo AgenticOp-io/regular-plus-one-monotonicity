@@ -1,7 +1,7 @@
 # Factor-rate-mid: \(a^{-1}\) second difference
 
-Status: obstruction recorded (Lemma phi6-varw-delta, Remark
-factor-rate-mid-obstruction). Mid window still open.
+Status: **closed at \(\lambda=1/2\)** (Theorem factor-rate-mid-fail).
+Residue \(\frac{287}{216\,na}\); relative variance \(\sim\frac{287}{216\,L}\).
 
 ## Exact package
 
