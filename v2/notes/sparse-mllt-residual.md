@@ -42,16 +42,24 @@ first-moment half of residual-to-peel-weight reduces to free complementary
 matching concentration. Bernoulli *second* moment still diverges
 (`bernoulli-residual-moment` BLOCK at every \(d=o(n)\)).
 
+## Nearly regular unconstrained (conditional)
+
+Proposition residual-nearly-regular-matching: if Gao Thm~6 extends to
+degree sequences in an \(\varepsilon_n\)-window about \(\delta=o(n^{1/2})\), then
+matching \(L^2\) holds uniformly there. Proposition residual-not-tv: literal
+TV with \(\mu_\delta\) is blocked (`almost-regular-tv`).
+
 ## Blocked
 
 - Bernoulli residual comparison (second moment)
 - Free-extension flatness as residual flatness (pathwise \(N_m(R)\))
 - Hybrid / sprinkle transfer
 - Config second moment at linear degree
+- Almost-regular TV / support-disjoint
 
 ## Checkpoint
 
 Fixed \(m\): Theorem residual-factor-fixed (Gao/Laplace).
 \(m=1\) first moment: Theorem residual-matching-mean.
-Next: sparse local-limit error at \(\lambda\to0\), or degree-conditioned
-contiguity of \(R\) with \(\mu_\delta\).
+Next: host-restricted residual \(L^2\), or sparse local-limit error at
+\(\lambda\to0\).

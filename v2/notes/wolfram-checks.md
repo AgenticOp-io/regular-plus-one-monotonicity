@@ -2802,3 +2802,16 @@ lam=1/15: aD in {8.02916667, 7.48125000}; 2*y16-y8=6.933 vs cand 7
 lam=1/20: aD in {10.96104911, 10.18528646}; 2*y16-y8=9.409 vs cand 19/2=9.5
 Exact C35 lim a->0 a*Delta via beta_c35_lam.c35_delta_symbolic:
 lam=1/10 residue=15 = 5*(1-1/10)/(3/10); lam=1/5 residue=20/3.
+
+
+Query: Simplify[1/delta + delta^2/n + eps /. {delta -> n^(1/3), n -> n, eps -> n^(-1/10)}]
+[error]
+no result
+
+
+Query: Limit[1/d + d^2/n, n->Infinity, Assumptions -> d==n^(2/5)]
+
+Query: Limit[1/d + d^2/n, n->Infinity, Assumptions -> d==n^(2/5)]
+[fallback]
+sympy Limit(1/d + d**2/n, n, oo) with d=n**(2/5) equals 0.
+Hence O(1/delta + delta**2/n) -> 0 throughout delta = o(n**(1/2)).

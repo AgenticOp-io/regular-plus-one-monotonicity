@@ -147,8 +147,10 @@ Still missing (no fake closes):
 2. Three peel-weight flatnesses on \(G^*_0\) (asymptotic \(Z_d\), not literal).
 3. Residual moment: unconstrained fixed \(m\) closed
    (Theorem residual-factor-fixed). At \(m=1\), Bernoulli first moment closed
-   (Theorem residual-matching-mean); gap is contiguity of the
-   degree-conditioned residual with \(\mu_\delta\). At BIM length
+   (Theorem residual-matching-mean); literal TV blocked
+   (Proposition residual-not-tv); nearly regular unconstrained matching
+   under Gao-for-sequences (Proposition residual-nearly-regular-matching);
+   gap is host-restricted residual \(L^2\). At BIM length
    \(m\gg\sqrt\delta\), sparse MLLT plus residual-law comparison
    (Proposition residual-two-gaps; Lemma sparse-package-residues for
    leading residues as \(\lambda\to0\)).
@@ -172,8 +174,8 @@ Still missing (no fake closes):
 ## Next
 
 Priority order:
-1. Contiguity of degree-conditioned residual with \(\mu_\delta\) (\(m=1\));
-   sparse MLLT for BIM-length unconstrained \(m\)-factors.
+1. Host-restricted residual second moment (\(m=1\)); sparse MLLT for
+   BIM-length unconstrained \(m\)-factors.
 2. Selection (iii) / config-split / Q (second peel-weight follows from
    residual-moment + first-moment flatness by Proposition residual-to-peel-weight).
 3. Ordered peel \(P_L\) past \(n^{1/3}\).

@@ -6690,7 +6690,7 @@ this holds throughout the BIM range \(d=O(n)\).
 \(\delta=d^{2/3}(\log n)^{1/3}=o(n)\) under the stated bound on \(d\).
 \end{proof}
 
-\begin{corollary}[Residual matching moment reduces to contiguity]
+\begin{corollary}[Residual matching moment: unconstrained regular case]
 \label{cor:residual-matching-proxy}
 On the event of Lemma~residual-sharp of~\cite{PlusOneV1}, write
 \(\delta:=\lfloor\varepsilon_0 d\rfloor\) with \(\delta n\) even and
@@ -6704,14 +6704,70 @@ gives
 \]
 for the number \(Y\) of perfect matchings of a uniform \(\delta\)-regular
 graph (Proposition~\ref{prop:residual-sublinear} puts \(\delta=o(n)\)).
-Consequently Conjecture~\ref{conj:residual-moment} at \(m=1\) reduces to
-contiguity (or total-variation comparison) of the residual graph \(R\) with
-\(\mu_\delta\): the unconstrained matching moment is already settled.
+Consequently the unconstrained regular matching moment at scale \(\delta\) is
+settled; Conjecture~\ref{conj:residual-moment} at \(m=1\) still needs the same
+relative variance for the actual residual host (Proposition~\ref{prop:residual-nearly-reg}),
+not a total-variation identification with \(\mu_\delta\).
 \end{corollary}
 
 \begin{proof}
 Combine the cited variance expansion with Proposition~\ref{prop:residual-sublinear}
 and \(\delta\to\infty\).
+\end{proof}
+
+\begin{proposition}[Literal TV with \(\mu_\delta\) is unavailable]
+\label{prop:residual-not-tv}
+Let \(\delta:=\lfloor\varepsilon_0 d\rfloor\) and let \(\mathbf{d}_R\) be a residual
+degree sequence that is not constantly \(\delta\). The uniform law on graphs
+with degree sequence \(\mathbf{d}_R\) and the law \(\mu_\delta\) have disjoint
+supports, so their total variation equals \(1\)
+(\cite[Proposition~support-disjoint]{PlusOneV1}).
+In particular Conjecture~\ref{conj:residual-moment} at \(m=1\) cannot be proved
+by showing \(\mathrm{d_{TV}}(\mathcal{L}(R),\mu_\delta)\to0\) on the
+residual-sharp event: that event forces \(\mathbf{d}_R=(1+o(1))\delta\) but not
+exact regularity. The correct target is relative variance \(o(1)\) for the
+matching count on the nearly regular residual itself (together with the
+first-moment flatness of Corollary~\ref{cor:residual-first-moment}).
+\end{proposition}
+
+\begin{proof}
+Immediate from the cited support-disjoint proposition and
+Lemma~residual-sharp of~\cite{PlusOneV1}.
+\end{proof}
+
+\begin{proposition}[Nearly regular unconstrained matching moment]
+\label{prop:residual-nearly-regular-matching}
+Assume~\cite[Theorem~6]{Gao20} for graphical degree sequences \(g\) with
+maximum degree \(\Delta(g)=o(n^{1/2})\). Let \(\delta\to\infty\) satisfy
+\(\delta=o(n^{1/2})\), and let \(g=(g_v)\) be a degree sequence with
+\(\sum_v g_v\) even and \(\lvert g_v-\delta\rvert\le\varepsilon_n\delta\) for every
+\(v\), where \(\varepsilon_n\to0\). Write \(Y\) for the number of perfect matchings
+in a uniform random graph with degree sequence \(g\). Then
+\[
+\frac{\Var Y}{(\EE Y)^2}\to0,
+\]
+uniformly in such \(g\).
+\end{proposition}
+
+\begin{proof}
+The argument is the same as the \(m=1\) case of
+Theorem~\ref{thm:residual-factor-fixed} (equivalently, the sublinear nesting
+theorem of~\cite{PlusOneV1}), with the host law \(\mu_\delta\) replaced by the
+uniform law \(\mu_g\) on degree sequence \(g\). Under the assumed extension of
+~\cite[Theorem~6]{Gao20}, every union of two perfect matchings \(U\) with
+\(\Delta(U)\le2\) has containment probability equal to its principal term times
+\(1+O(\delta^2/n)\), uniformly over such \(U\) and over \(g\) in the
+\(\varepsilon_n\)-window. The overlap \(K\) remains \(O(1)\) in expectation with
+exponential tails under \(\mu_1\otimes\mu_1\), and Lemma~laplace
+of~\cite{PlusOneV1} returns
+\[
+\frac{\EE[Y^2]}{(\EE Y)^2}
+=
+1+O\Bigl(\frac1\delta+\frac{\delta^2}{n}+\varepsilon_n\Bigr)
+\to1.
+\]
+(The \(\varepsilon_n\) error tracks the relative shift of the McKay/Gao principal
+term between \(g\) and the constant sequence \(\delta\).)
 \end{proof}
 
 \begin{theorem}[Bernoulli residual matching mean]
@@ -6750,11 +6806,10 @@ Whenever \(Z_\partial(G)/(\EE Z_\partial)\to1\) in probability for the peeled
 complementary matching concentration), the conditional first moment in
 Proposition~\ref{prop:residual-to-peel-weight} at \(m=1\) is asymptotically
 deterministic. The remaining obstruction at \(m=1\) is therefore the
-second-moment comparison of \(Y(R)\) with the unconstrained matching moment on
-\(\mu_\delta\) (equivalently, contiguity of the degree-conditioned residual
-with \(\mu_\delta\)), not an unknown first-moment formula.
-The independent-Bernoulli second moment remains divergent by
-~\cite[Proposition~bernoulli-moment]{PlusOneV1}.
+host-restricted residual second moment on the nearly regular degree sequence
+(Propositions~\ref{prop:residual-nearly-reg} and~\ref{prop:residual-not-tv}),
+not an unknown first-moment formula. The independent-Bernoulli second moment
+remains divergent by~\cite[Proposition~bernoulli-moment]{PlusOneV1}.
 \end{corollary}
 
 \begin{proof}
@@ -6830,9 +6885,11 @@ Theorem~\ref{thm:residual-unconstrained}, which needs \(\delta=\Theta(n)\));
 At every fixed \(m\ge 1\), item~(i) is Theorem~\ref{thm:residual-factor-fixed}
 (and at \(m=1\) it is also the sublinear nesting theorem of~\cite{PlusOneV1}).
 Item~(ii) remains the only gap for each fixed \(m\)
-(Corollary~\ref{cor:residual-matching-proxy} at \(m=1\)); the Bernoulli
+(Corollary~\ref{cor:residual-matching-proxy} and
+Proposition~\ref{prop:residual-not-tv} at \(m=1\)); the Bernoulli
 first-moment half at \(m=1\) is
-Corollary~\ref{cor:residual-first-moment}.
+Corollary~\ref{cor:residual-first-moment}, and the unconstrained nearly
+regular matching moment is Proposition~\ref{prop:residual-nearly-regular-matching}.
 At the BIM length \(m=\Theta\sqrt{d\log n}\) one has
 \(m/\sqrt\delta=\Theta(d^{1/6}(\log n)^{1/3})\to\infty\), so item~(i) lies past
 the fixed-length regime and needs a sparse-host analogue of
@@ -6886,11 +6943,11 @@ Proposition~peel-weights of~\cite{PlusOneV1} holds asymptotically.
 In particular, at \(m=1\), Conjecture~\ref{conj:residual-moment} together with
 first-moment flatness of \(\EE[N_1(R_G)\mid G]\) yields that asymptotic
 second peel-weight flatness. Corollary~\ref{cor:residual-first-moment}
-identifies that first moment with \(p^{n/2}Z_\partial(G)\); the remaining gap
-in Corollary~\ref{cor:residual-matching-proxy} is therefore the
-second-moment/contiguity comparison of the degree-conditioned residual with
-\(\mu_\delta\) (not a missing first-moment formula, and not a second-moment
-gap on \(\mu_\delta\)).
+identifies that first moment with \(p^{n/2}Z_\partial(G)\);
+Proposition~\ref{prop:residual-not-tv} removes literal TV with \(\mu_\delta\)
+as a route; the remaining gap is relative variance of \(Y(R)\) on the nearly
+regular residual (host-restricted), not a missing first-moment formula and
+not a second-moment gap on \(\mu_\delta\).
 \end{proposition}
 
 \begin{proof}
@@ -6899,11 +6956,11 @@ Chebyshev's inequality at relative height \(\varepsilon_n\to 0\) slowly enough t
 \(N_m(R_G)=(1+o(1))\EE[N_m(R_G)\mid G]\) in probability.
 The first-moment hypothesis replaces the conditional mean by
 \((1+o(1))\nu_n\), uniformly in \(G\).
-At \(m=1\), Theorem~\ref{thm:residual-factor-fixed} supplies the unconstrained
-second moment on \(\mu_\delta\), and
+At \(m=1\), Theorem~\ref{thm:residual-factor-fixed} and
+Proposition~\ref{prop:residual-nearly-regular-matching} settle unconstrained
+(nearly) regular matching moments, and
 Corollary~\ref{cor:residual-first-moment} supplies the Bernoulli first
-moment; matching the degree-conditioned residual law to \(\mu_\delta\) is the
-remaining half of Corollary~\ref{cor:residual-matching-proxy}.
+moment; the host-restricted residual second moment remains.
 \end{proof}
 
 \begin{lemma}[Ordered-peel moment from factor moment]
@@ -7104,9 +7161,11 @@ nearly regular degree window of Proposition~\ref{prop:residual-nearly-reg}.
 Fixed-length unconstrained moments are
 Theorem~\ref{thm:residual-factor-fixed}; at \(m=1\) the Bernoulli first
 moment is Theorem~\ref{thm:residual-matching-mean} /
-Corollary~\ref{cor:residual-first-moment}, and the gap is contiguity of the
-degree-conditioned residual with \(\mu_\delta\)
-(Corollary~\ref{cor:residual-matching-proxy}).
+Corollary~\ref{cor:residual-first-moment}, the unconstrained nearly regular
+matching moment is Proposition~\ref{prop:residual-nearly-regular-matching}
+(assuming Gao for degree sequences), and literal TV with \(\mu_\delta\) is
+blocked (Proposition~\ref{prop:residual-not-tv}). The gap is the
+host-restricted residual second moment.
 At BIM length \(m\gg\sqrt\delta\) a sparse-host multi-colour LLT and the
 residual-law comparison remain (Proposition~\ref{prop:residual-two-gaps});
 Lemma~\ref{lem:sparse-package-residues} records the leading package residues
