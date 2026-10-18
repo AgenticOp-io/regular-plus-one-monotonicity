@@ -3483,18 +3483,21 @@ a\Delta d^{(4)}
 =
 \frac{-1022a^2+511a-72}{192(2a-1)},
 \]
-obtained by exact rational arithmetic on a grid of \(a\) that uniquely
-determines this ansatz and confirmed at further points.
+obtained by exact rational arithmetic.
 \end{lemma}
 
 \begin{proof}
 Each of the three \(n^5\)-scale trees contributes a fixed Wick contraction of
 four cubic tensors against \(\Sigma_m^{-1}\). Substituting the laws of
-Lemma~\ref{lem:two-factor-identities} at \(\lambda=\tfrac12\) produces
-rational values of the second difference; the displayed function is the unique
-ratio with denominator proportional to \(2a-1\) and quadratic numerator
-agreeing with those values at three distinct \(a\), and it matches the
-contractions at two further points. Its residue at \(a=0\) is \(\frac38\).
+Lemma~\ref{lem:two-factor-identities} at \(\lambda=\tfrac12\) and evaluating
+the contractions by cleared-denominator integer arithmetic yields
+\[
+a\Delta d^{(4)}\in\Bigl\{\tfrac{257}{1536},\tfrac{389}{1920},\tfrac{2629}{11520}\Bigr\}
+\]
+at \(a\in\{\tfrac18,\tfrac1{10},\tfrac1{12}\}\). The displayed rational function
+is the unique ratio with denominator proportional to \(2a-1\) and quadratic
+numerator agreeing with those three values, and its residue at \(a=0\) is
+\(\frac38\).
 \end{proof}
 
 \begin{remark}[Mid-window residue]

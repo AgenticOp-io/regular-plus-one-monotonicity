@@ -87,11 +87,17 @@ at \(\lambda=\tfrac12\). After the first three exact packages and \(\kappa_3\),
 \[
 \beta=\frac{13}{6}-\frac{131}{108}=\frac{103}{108}>0
 \]
-already, before \(\kappa_4\). The \(\kappa_4\) trees extrapolate to
-\(+\frac{41}{108}\), which would make the full inventoried residue
-\(\frac43\). Lemma a-minus-two-class asserts these five packages exhaust the
-\(a^{-2}\) class. Confirming \(\beta_{\kappa_4}>-\frac{103}{108}\) refutes
-Conjecture factor-rate-mid and gives \(\Var Z/(\EE Z)^2=\Theta(1/L)\).
+already, before \(\kappa_4\). Exact (`scripts/beta_k4_fraction.py`):
+\[
+a\Delta d^{(4)}
+=
+\frac{-1022a^2+511a-72}{192(2a-1)}
+=
+\frac38+O(a),
+\]
+checked at \(a\in\{1/8,1/10,1/12\}\) by integer Wick sums. Full residue
+\(\frac{13}{6}+\frac38-\frac{131}{108}=\frac{287}{216}\)
+(Theorem factor-rate-mid-fail).
 
 ## What would close the mid window
 
