@@ -2659,3 +2659,25 @@ simplify | (-1022 (1/20)^2 + 511 × 1/20 - 72)/(192 (2 × 1/20 - 1)) - 363/1280
 0
 [Quotient and Remainder]
 0 = (0) × 1 + 0
+
+
+Query: Simplify[(-1022*(1/8)^2+511*(1/8)-72)/(192*(2*(1/8)-1)) - 257/1536]
+[Input interpretation]
+simplify | (-1022 (1/8)^2 + 511 × 1/8 - 72)/(192 (2 × 1/8 - 1)) - 257/1536
+[Results]
+257/1536 - 257/1536
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[(-1022*(1/12)^2+511*(1/12)-72)/(192*(2*(1/12)-1)) - 2629/11520]
+[Input interpretation]
+simplify | (-1022 (1/12)^2 + 511 × 1/12 - 72)/(192 (2 × 1/12 - 1)) - 2629/11520
+[Results]
+2629/11520 - 2629/11520
+[Results]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
