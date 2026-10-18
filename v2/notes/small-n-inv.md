@@ -56,6 +56,18 @@ c_n = P(N>=1)/(|Omega| p^6). Identity: a_bar = c_n exactly.
 
 Item (iii) fails on this finite instance: types disagree with c_n, average matches.
 
+## Weighted lower-tail vs pointwise (n=6, D=2, p=1/2)
+
+\(M=1/c_n\approx 3.44\). Exact complement enumeration:
+
+| type | \(a\) | \(\PP(N<M)\) | \(\int_1^M\PP(N<u)/u^2\,du\) | int/\(c_n\) |
+|------|------:|-------------:|------------------------------:|-----------:|
+| C₆ | 0.296 | 0.334 | 0.030 | 0.103 |
+| C₃∪C₃ | 0.257 | 0.330 | 0.018 | 0.063 |
+
+Pointwise mass \(\sim c_n\); weighted integral \(\sim 0.1\,c_n\). Remark
+`rem:iii-weighted-n6`. Criterion still fails as \(o(c_n)\) on this instance.
+
 ## Switch connectivity on Omega_2
 
 The 2-switch graph on all 70 simple 2-regular graphs is connected.

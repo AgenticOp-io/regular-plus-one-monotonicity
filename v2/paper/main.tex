@@ -6093,6 +6093,26 @@ with Proposition~\ref{prop:iii-as-tail} is
 so the pointwise criterion implies the weighted one, but not conversely.
 \end{proof}
 
+\begin{remark}[Weighted versus pointwise on \(n=6\), \(D=2\)]
+\label{rem:iii-weighted-n6}
+On the instance of Remark~\ref{rem:small-n-inv} with \(p=\tfrac12\), one has
+\(c_n\approx 0.291\) and \(M=1/c_n\approx 3.44\). Exact enumeration of the nine
+complement edges gives, for a fixed Hamiltonian cycle,
+\[
+\PP(N<M\mid C_6\subset)\approx 0.334,
+\qquad
+\int_1^{M}\frac{\PP(N<u\mid C_6\subset)}{u^2}\,du
+\approx
+0.030,
+\]
+so the pointwise mass is about \(1.15\,c_n\) while the weighted integral is about
+\(0.10\,c_n\). The same comparison for a fixed \(C_3\cup C_3\) yields
+\(\approx 0.330\) versus \(\approx 0.018\). The weighted criterion is an order of
+magnitude sharper on this instance, but still not \(o(c_n)\); the inverse
+counts remain non-flat across the two types
+(\(a(C_6)\approx 0.296\), \(a(C_3\cup C_3)\approx 0.257\)).
+\end{remark}
+
 \begin{proposition}[Edge-disjoint packing misses the bulk]
 \label{prop:packing-miss}
 Given \(G_0\subset G^*_0\), let \(\mathcal P\) be any collection of pairwise
