@@ -145,10 +145,13 @@ Still missing (no fake closes):
 1. Lower-tail of \(N\) at threshold \(1/c_n\) (Proposition iii-as-tail) —
    not a moment about \(\mathbb{E}[N]\), not near-disjoint factors, not switches.
 2. Three peel-weight flatnesses on \(G^*_0\) (asymptotic \(Z_d\), not literal).
-3. Second moment on actual \(R=G^*_0\setminus G\) (nearly regular of scale
-   \(\varepsilon_0 d\)).
+3. Residual moment: at \(m=1\), contiguity of \(R\) with \(\mu_\delta\); at
+   general \(m\), sublinear unconstrained \(m\)-factor moment plus residual-law
+   comparison (Proposition residual-two-gaps / Corollary residual-matching-proxy).
 4. Binomial thinning or BIM Conjecture 1.3 — not hybrid, not sprinkle.
    That is Conjecture Q at Chernoff scale.
+5. Ordered peel past \(n^{1/3}\): IM25 cubic cancellation, or \(D(F)\) with
+   \(M/m\to1\) (Lemma peel-from-factor; FJS insufficient).
 
 ## Named status
 
@@ -165,8 +168,9 @@ Still missing (no fake closes):
 ## Next
 
 Priority order:
-1. Mid-window residues at general \(\lambda\ne\tfrac12\).
-2. Host-restricted residual-moment / config-split / Q (Workstream B).
+1. Residual \(R\leftrightarrow\mu_\delta\) contiguity (\(m=1\)) or config \(m\)-factor
+   moment at \(\delta=o(n^{1/2})\).
+2. Selection (iii) / config-split / Q.
 3. Ordered peel \(P_L\) past \(n^{1/3}\).
 
 Run `python scripts/approach_screen.py` before expanding an attack.

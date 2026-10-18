@@ -26,21 +26,30 @@ Bar is 2.0. v1.0 is sent.
 
 ## Open (named)
 
-- **Q**, **config-split**, **residual-moment** (BIM-constrained): open.
-  Selection (iii) only on single orbits \(D\in\{1,n-2\}\).
-  Unconstrained residual is closed; the host restriction is the obstruction.
-  Q is conditional on BIM Conjecture 1.3 (Theorem process-to-Q).
+- **residual-moment** (BIM-constrained): open.
+  At \(m=1\), unconstrained matching moment is settled (v1 sublinear nesting);
+  gap is contiguity of \(R\) with \(\mu_\delta\)
+  (Corollary residual-matching-proxy). At general \(m\), both sublinear
+  unconstrained \(m\)-factor moment and residual-law comparison are open
+  (Proposition residual-two-gaps). Linear unconstrained is
+  Theorem residual-unconstrained.
+- **config-split**: open. Selection (iii) only on single orbits
+  \(D\in\{1,n-2\}\); needs lower-tail of \(N\) at \(1/c_n\) plus asymptotic
+  peel-weight flatnesses on \(G^*_0\).
+- **Q**: open; conditional on BIM Conjecture 1.3 (Theorem process-to-Q).
 
 ## Also open (not named)
 
 - Peel second moment past \(n^{1/3}\) (ordered peel \(P_L\)).
-- Lower tail of the matching count \(Y\).
+  Lemma peel-from-factor: \(D(F)\)-flatness would transfer factor-moment;
+  FJS precision is not enough for \(M/m\to1\) (Remark fjs-not-flat).
+- Lower tail of the matching count \(Y\) (blocked routes unchanged).
 
 ## Next
 
-1. Host-restricted residual-moment → config-split → Q.
-2. Ordered peel \(P_L\) past \(n^{1/3}\).
-3. Exact closed forms for \(\kappa_3,\kappa_4\) at general \(\lambda\) (optional
-   sharpening; float grid already closes the mid-window theorem).
+1. Contiguity of BIM residual \(R\) with \(\mu_\delta\) (\(m=1\)), or config-model
+   \(m\)-factor moment at \(\delta=o(n^{1/2})\).
+2. Selection (iii) / lower-tail of \(N\) → config-split → Q.
+3. IM25 cancellation for ordered peel past \(n^{1/3}\).
 
 See `PROGRAM.md` for the full closed/blocked ledger.
