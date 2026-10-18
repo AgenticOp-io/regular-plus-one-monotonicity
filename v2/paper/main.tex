@@ -6765,6 +6765,48 @@ Propositions~bernoulli-moment, free-not-residual, and hybrid-singular
 of~\cite{PlusOneV1}.
 \end{proof}
 
+\begin{proposition}[Residual moment implies asymptotic second peel-weight flatness]
+\label{prop:residual-to-peel-weight}
+In the matching-peel setting of~\cite{PlusOneV1}, write
+\(N_m(R_G)\) for the number of \(m\)-factors of the residual
+\(R_G=G^*_0\setminus G\). Suppose that on the residual event there is a
+deterministic sequence \(\nu_n\) such that, uniformly in the peeled
+\(d\)-factor \(G\),
+\[
+\EE\bigl[N_m(R_G)\bigm|G,G^*_0\bigr]
+=
+(1+o(1))\,\nu_n
+\qquad\text{and}\qquad
+\frac{\Var\bigl(N_m(R_G)\bigm|G,G^*_0\bigr)}{\nu_n^2}
+=
+o(1).
+\]
+Then
+\[
+\frac{N_m(R_G)}{\nu_n}\to 1
+\]
+in probability, uniformly in \(G\): the second peel-weight flatness of
+Proposition~peel-weights of~\cite{PlusOneV1} holds asymptotically.
+In particular, at \(m=1\), Conjecture~\ref{conj:residual-moment} together with
+first-moment flatness of \(\EE[N_1(R_G)\mid G,G^*_0]\) yields that asymptotic
+second peel-weight flatness, and the remaining gap in
+Corollary~\ref{cor:residual-matching-proxy} is exactly that first-moment
+comparison of the residual to \(\mu_\delta\) (not a second-moment gap on
+\(\mu_\delta\)).
+\end{proposition}
+
+\begin{proof}
+Chebyshev's inequality at relative height \(\varepsilon_n\to 0\) slowly enough that
+\(\mathrm{Var}/(\varepsilon_n^2\nu_n^2)\to 0\) gives
+\(N_m(R_G)=(1+o(1))\EE[N_m(R_G)\mid G,G^*_0]\) in probability.
+The first-moment hypothesis replaces the conditional mean by
+\((1+o(1))\nu_n\), uniformly in \(G\).
+At \(m=1\), Theorem~\ref{thm:residual-factor-fixed} supplies the unconstrained
+second moment on \(\mu_\delta\); matching the conditional mean to that of
+\(\mu_\delta\) is the contiguity/first-moment half of
+Corollary~\ref{cor:residual-matching-proxy}.
+\end{proof}
+
 \begin{lemma}[Ordered-peel moment from factor moment]
 \label{lem:peel-from-factor}
 Let \(Z_L=\sum_F 1_{F\subseteq G}\) and \(P_L=\sum_F D(F)\,1_{F\subseteq G}\) count

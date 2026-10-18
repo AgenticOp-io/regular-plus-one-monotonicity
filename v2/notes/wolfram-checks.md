@@ -2753,3 +2753,12 @@ no result
 Query: Simplify[Sqrt[d*Log[n]]/Sqrt[d^(2/3)*Log[n]^(1/3)]]
 Fallback (sympy): simplifies to d^(1/6)*Log[n]^(1/3); tends to infinity as d->infinity.
 (Wolfram returned no result on a related substitution earlier.)
+
+
+Query: Simplify[Binomial[n,2]*(m/(n-1))^2 - m^2*n/(2*(n-1))]
+[Input interpretation]
+simplify | binomial(n, 2) (m/(n - 1))^2 - m^2 × n/(2 (n - 1))
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0

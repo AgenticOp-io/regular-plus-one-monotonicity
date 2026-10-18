@@ -169,9 +169,10 @@ Still missing (no fake closes):
 ## Next
 
 Priority order:
-1. Residual \(R\leftrightarrow\mu_\delta\) contiguity (\(m=1\)) or config \(m\)-factor
-   moment at \(\delta=o(n^{1/2})\).
-2. Selection (iii) / config-split / Q.
+1. First-moment flatness / contiguity of residual \(R\) with \(\mu_\delta\)
+   (\(m=1\)); sparse MLLT for BIM-length unconstrained \(m\)-factors.
+2. Selection (iii) / config-split / Q (second peel-weight follows from
+   residual-moment + first-moment flatness by Proposition residual-to-peel-weight).
 3. Ordered peel \(P_L\) past \(n^{1/3}\).
 
 Run `python scripts/approach_screen.py` before expanding an attack.
