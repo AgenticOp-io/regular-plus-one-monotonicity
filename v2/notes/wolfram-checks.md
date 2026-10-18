@@ -2732,3 +2732,15 @@ simplify | (1 - λ)/(2 λ) + 5 × (1 - λ)/(3 λ) + 3 × (1 - λ)/(8 λ) - 131 �
 0
 [Quotient and Remainder]
 0 = (0) × 1 + 0
+
+
+Query: Simplify[(d^(2/3))*(Log[n]^(1/3))/Sqrt[n] /. d -> n^(3/4)/Log[n]^(1/2)]
+[error]
+no result
+
+Query: Simplify[(d^(2/3))*(Log[n]^(1/3))/Sqrt[n] /. d -> n^(3/4)/Log[n]^(1/2)]
+[error]
+no result
+Fallback (sympy exact): at d=n^{3/4}/log(n)^{1/2} the ratio delta/sqrt(n) simplifies to 1;
+hence delta=o(n^{1/2}) throughout d=o(n^{3/4}/log(n)^{1/2}).
+Likewise delta/n -> 0 throughout d=o(n^{3/2}/log(n)^{1/2}).

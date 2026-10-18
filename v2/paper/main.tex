@@ -2563,7 +2563,8 @@ Chebyshev and Theorem~\ref{thm:peel-second-moment-third} give
 \(P_L=(1+o(1))\EE P_L\) in probability for every \(L=o(n^{1/3})\).
 Beyond \(n^{1/3}\) the bound \(e^{CL^3/n}\) is no longer useful. Closing
 that gap is the cancellation discussed after
-Proposition~\ref{prop:im-containment}.
+Proposition~\ref{prop:im-containment}, or a uniform bound
+\(D(F)=(1+o(1))D_0\) strong enough for Lemma~\ref{lem:peel-from-factor}.
 
 \subsection*{The factor second moment as a colouring count}
 
@@ -6626,13 +6627,127 @@ This is Theorem~\ref{thm:factor-moment} with \((D,L)=(\delta,m)\).
 Write \(\delta:=\varepsilon_0 d=\Theta\bigl(d^{2/3}(\log n)^{1/3}\bigr)\) and
 \(m=\Theta\sqrt{d\log n}\) as in Conjecture~\ref{conj:config-split}.
 Then \(\sqrt\delta=o(m)\) and \(m=o(\delta)\), so the degree scale sits in the
-past-\(\sqrt n\) factor-moment window relative to \(\delta\).
+past-\(\sqrt\delta\) factor-moment window relative to \(\delta\).
 Conjecture~\ref{conj:residual-moment} asks for the same second moment inside the
 BIM residual edge set \(E(R)\), not for a uniform \(\delta\)-regular graph.
-Theorem~\ref{thm:residual-unconstrained} settles the unconstrained linear-degree
-analogue; the blocked Bernoulli comparison replaces the constrained host by an
-independent sparse graph and diverges. The remaining target is a host-restricted
-second moment at scale \(\varepsilon_0 d\).
+Theorem~\ref{thm:residual-unconstrained} settles the unconstrained
+\emph{linear}-degree analogue; it does not apply at \(\delta=o(n)\).
+The blocked Bernoulli comparison replaces the constrained host by an
+independent sparse graph and diverges. The remaining targets are an
+unconstrained moment at density \(\lambda\to0\) and a host-restricted moment at
+scale \(\varepsilon_0 d\).
+\end{remark}
+
+\begin{proposition}[Residual scale is sublinear]
+\label{prop:residual-sublinear}
+In the matching-peel setting of~\cite{PlusOneV1}, write
+\(\delta:=\varepsilon_0 d\) with \(\varepsilon_0=C_3(\log n/d)^{1/3}\).
+Whenever \(d=o(n^{3/2}/(\log n)^{1/2})\) one has \(\delta=o(n)\). In particular
+this holds throughout the BIM range \(d=O(n)\).
+\end{proposition}
+
+\begin{proof}
+\(\delta=d^{2/3}(\log n)^{1/3}=o(n)\) under the stated bound on \(d\).
+\end{proof}
+
+\begin{corollary}[Residual matching moment reduces to contiguity]
+\label{cor:residual-matching-proxy}
+On the event of Lemma~residual-sharp of~\cite{PlusOneV1}, write
+\(\delta:=\lfloor\varepsilon_0 d\rfloor\) with \(\delta n\) even and
+\(d/\log n\to\infty\). The sublinear nesting theorem of~\cite{PlusOneV1}
+gives
+\[
+\frac{\Var Y}{(\EE Y)^2}
+=
+\frac1{6\delta^3}+O(\delta^{-4})+O\Bigl(\frac{\delta}{n}\Bigr)+o(1)
+\to0
+\]
+for the number \(Y\) of perfect matchings of a uniform \(\delta\)-regular
+graph (Proposition~\ref{prop:residual-sublinear} puts \(\delta=o(n)\)).
+Consequently Conjecture~\ref{conj:residual-moment} at \(m=1\) reduces to
+contiguity (or total-variation comparison) of the residual graph \(R\) with
+\(\mu_\delta\): the unconstrained matching moment is already settled.
+\end{corollary}
+
+\begin{proof}
+Combine the cited variance expansion with Proposition~\ref{prop:residual-sublinear}
+and \(\delta\to\infty\).
+\end{proof}
+
+\begin{proposition}[General \(m\): two remaining estimates]
+\label{prop:residual-two-gaps}
+Write \(\delta:=\varepsilon_0 d\) and \(m=\Theta\sqrt{d\log n}\) as in
+Conjecture~\ref{conj:config-split}. Closing Conjecture~\ref{conj:residual-moment}
+splits into:
+\begin{enumerate}
+\item an unconstrained \(m\)-factor second moment for nearly regular hosts of
+degree \((1+o(1))\delta\) with \(\delta=o(n)\) (outside
+Theorem~\ref{thm:residual-unconstrained}, which needs \(\delta=\Theta(n)\));
+\item a comparison of the residual law of \(R\) with that unconstrained model
+(blocked routes: Bernoulli residual, free complement flatness, hybrid-to-binomial).
+\end{enumerate}
+At \(m=1\), item~(i) is the sublinear nesting theorem of~\cite{PlusOneV1} and
+item~(ii) is the only gap (Corollary~\ref{cor:residual-matching-proxy}).
+For \(m\to\infty\) both items are open. When
+\(d=o\bigl(n^{3/4}/(\log n)^{1/2}\bigr)\) one has \(\delta=o(n^{1/2})\), so a
+configuration-model attack on item~(i) is not blocked by
+Proposition~config-loops of~\cite{PlusOneV1}.
+\end{proposition}
+
+\begin{proof}
+The scale claims are Proposition~\ref{prop:residual-sublinear} and the
+computation \(\delta/n^{1/2}=d^{2/3}(\log n)^{1/3}n^{-1/2}\).
+Item~(i) at linear degree is Theorem~\ref{thm:residual-unconstrained}; at
+sublinear degree it is new.
+The blocked comparisons are
+Propositions~bernoulli-moment, free-not-residual, and hybrid-singular
+of~\cite{PlusOneV1}.
+\end{proof}
+
+\begin{lemma}[Ordered-peel moment from factor moment]
+\label{lem:peel-from-factor}
+Let \(Z_L=\sum_F 1_{F\subseteq G}\) and \(P_L=\sum_F D(F)\,1_{F\subseteq G}\) count
+\(L\)-factors and ordered matching decompositions in a host \(G\), with
+\(D(F)\) the number of ordered \(1\)-factorizations of \(F\).
+If \(m\le D(F)\le M\) for every \(L\)-regular \(F\) with \(D(F)>0\), then
+\[
+\frac{\EE[P_L^2]}{(\EE P_L)^2}
+\le
+\Bigl(\frac{M}{m}\Bigr)^2
+\frac{\EE[Z_L^2]}{(\EE Z_L)^2}.
+\]
+In particular, if \(M/m\to1\) and \(\Var Z_L/(\EE Z_L)^2\to0\), then
+\(\Var P_L/(\EE P_L)^2\to0\).
+\end{lemma}
+
+\begin{proof}
+Write \(p_F=\PP(F\subseteq G)\) and \(p_{F,F'}=\PP(F\cup F'\subseteq G)\).
+Then \(\EE P_L=\sum_F D(F)p_F\) and
+\(\EE[P_L^2]=\sum_{F,F'}D(F)D(F')p_{F,F'}\), while
+\(\EE Z_L=\sum_F p_F\) and \(\EE[Z_L^2]=\sum_{F,F'}p_{F,F'}\).
+The bounds \(m\le D\le M\) give
+\(m\,\EE Z_L\le\EE P_L\le M\,\EE Z_L\) and
+\(\EE[P_L^2]\le M^2\,\EE[Z_L^2]\), which rearrange to the claim.
+\end{proof}
+
+\begin{remark}[Dense \(1\)-factorization counts do not give \(M/m\to1\)]
+\label{rem:fjs-not-flat}
+\cite[Theorem~1.2]{FJS19} supplies, for every \(L\)-regular graph on even \(n\)
+with \(L\ge\bigl(\tfrac12+n^{-1/C}\bigr)n\),
+\[
+D_{\mathrm{unord}}(F)
+\ge
+\Bigl(\bigl(1-n^{-1/C}\bigr)\frac{L}{e^2}\Bigr)^{Ln/2},
+\]
+while the Alon--Friedland/Kahn--Lov\'asz permanent bound gives the matching
+upper bound with base \((1+o(1))L/e^2\). The ratio of extremes is
+\[
+\exp\Bigl(O\bigl(Ln^{1-1/C}\bigr)\Bigr),
+\]
+so Lemma~\ref{lem:peel-from-factor} does not upgrade
+Theorem~\ref{thm:factor-moment} to a peel moment in the dense band.
+The ordered peel past \(n^{1/3}\) remains the cancellation after
+Proposition~\ref{prop:im-containment}, or a sharper enumeration of \(D(F)\).
 \end{remark}
 
 \section{Program}
@@ -6742,7 +6857,11 @@ The three peel-weight flatnesses of~\cite{PlusOneV1} are a separate
 identification of \(\mathcal{L}_{d,m}\) with \(\nu_D\).
 Together they are Conjecture~\ref{conj:config-split}.
 A second moment on the residual \(R=G^*_0\setminus G\) itself, not on an
-independent Bernoulli graph, is Conjecture~\ref{conj:residual-moment}.
+independent Bernoulli graph, is Conjecture~\ref{conj:residual-moment};
+Corollary~\ref{cor:residual-matching-proxy} and
+Proposition~\ref{prop:residual-two-gaps} split that conjecture by \(m\).
+Lemma~\ref{lem:peel-from-factor} records the \(D(F)\)-transfer for the ordered
+peel past \(n^{1/3}\); Remark~\ref{rem:fjs-not-flat} removes one false shortcut.
 A thinning of that residual whose output is binomial, or a proof of
 ~\cite[Conjecture~1.3]{BIM25}, is Conjecture~\ref{conj:Q}.
 
@@ -6780,6 +6899,11 @@ and is a different coupling.
 \paragraph{Conjecture~\ref{conj:residual-moment}.}
 A second moment on the actual BIM residual \(R=G^*_0\setminus G\), in the
 nearly regular degree window of Proposition~\ref{prop:residual-nearly-reg}.
+At \(m=1\) the unconstrained matching moment is settled and the gap is
+contiguity of \(R\) with \(\mu_\delta\)
+(Corollary~\ref{cor:residual-matching-proxy}).
+At general \(m\) both a sublinear unconstrained moment and the residual-law
+comparison remain (Proposition~\ref{prop:residual-two-gaps}).
 Replacing \(R\) by an independent Bernoulli graph is blocked.
 
 \paragraph{Theorem~\ref{thm:factor-moment}.}
@@ -6859,6 +6983,12 @@ Random Structures Algorithms, 2013, doi:10.1002/rsa.20418.
 P.~Gao,
 \emph{Triangles and subgraph probabilities in random regular graphs},
 arXiv:2012.01492, 2020.
+
+\bibitem{FJS19}
+A.~Ferber, V.~Jain, and B.~Sudakov,
+\emph{Number of \(1\)-factorizations of regular high-degree graphs},
+Combinatorica \textbf{40} (2020), 593--618;
+arXiv:1803.10360.
 
 \bibitem{JLR00}
 S.~Janson, T.~\L uczak, and A.~Ruci\'nski,
