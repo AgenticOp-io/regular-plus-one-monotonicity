@@ -75,18 +75,23 @@ the two exact packages. Full inventoried sum (`beta_inventory_run.py`):
 | 1/20  | 0.901 |
 | 1/40  | 1.111 |
 
-Cubic extrapolation of \(a\Delta(\kappa_4+\kappa_3)\) on \(a\in[1/60,1/30]\)
-gives residue \(\approx-0.838\), matching \(-\frac56\) to three digits
-(`scripts/beta_k4k3_residue.py`). Combined with \(\frac{13}{6}\) from the
-exact packages this yields
+Exact (`scripts/beta_k3_fraction.py`, Lemma k3xxw-delta):
 \[
-\beta_{\mathrm{inv}}=\frac{13}{6}-\frac56=\frac43>0.
+\Delta d^{(3,3,4)}
+=
+\frac{4258a^2-2129a+262}{216\,a\,(2a-1)}
+=
+-\frac{131}{108\,a}+O(1)
 \]
-Lemma a-minus-two-class asserts these five packages exhaust the \(a^{-2}\)
-class. The remaining gap is a rigorous evaluation of
-\(\lim_{a\to0}a\Delta(\kappa_4/24-\kappa_3/6)=-\frac56\) (or any upper bound
-strictly less than \(\frac{13}{6}\) in absolute value); that would refute
-Conjecture factor-rate-mid and give \(\Var Z/(\EE Z)^2=\Theta(1/L)\).
+at \(\lambda=\tfrac12\). After the first three exact packages and \(\kappa_3\),
+\[
+\beta=\frac{13}{6}-\frac{131}{108}=\frac{103}{108}>0
+\]
+already, before \(\kappa_4\). The \(\kappa_4\) trees extrapolate to
+\(+\frac{41}{108}\), which would make the full inventoried residue
+\(\frac43\). Lemma a-minus-two-class asserts these five packages exhaust the
+\(a^{-2}\) class. Confirming \(\beta_{\kappa_4}>-\frac{103}{108}\) refutes
+Conjecture factor-rate-mid and gives \(\Var Z/(\EE Z)^2=\Theta(1/L)\).
 
 ## What would close the mid window
 

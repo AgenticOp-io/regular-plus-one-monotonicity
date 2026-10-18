@@ -20,9 +20,9 @@ Bar is 2.0. v1.0 is sent.
 - **factor-rate-mid**: \(\sqrt n\ll L=O(n^{3/4})\).
   Lemma a-minus-two-class: only five packages can affect the \(a^{-1}\)
   residue. At \(\lambda=1/2\) the first three give \(\frac{13}{6na}\); the
-  \(\kappa_4+\kappa_3\) residue extrapolates to \(-\frac56\), total
-  \(\frac43/(na)>0\) (notes/factor-rate-next-order.md). Confirm
-  \(-\frac56\) exactly to refute the conjecture.
+  Exact \(\kappa_3\) residue \(-\frac{131}{108}\) (Lemma k3xxw-delta) leaves
+  \(\frac{103}{108}/(na)>0\) before \(\kappa_4\). Confirm
+  \(\beta_{\kappa_4}>-103/108\) (extrapolated \(+41/108\)) to refute.
 - **Q**, **config-split**, **residual-moment** (BIM-constrained): open.
   Selection (iii) only on single orbits \(D\in\{1,n-2\}\).
   Unconstrained residual is closed; the host restriction is the obstruction.

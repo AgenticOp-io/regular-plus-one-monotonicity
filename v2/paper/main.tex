@@ -3412,25 +3412,54 @@ displayed packages (higher \(\Phi_{\ell}\) force \(r-\ell/2\le-3\) or reduce to
 these after the mean-zero constraints on \(X\)).
 \end{proof}
 
+\begin{lemma}[Triple package at order \(a^{-1}\)]
+\label{lem:k3xxw-delta}
+Let \(d_m^{(3,3,4)}\) be the coefficient of \(n^{-1}\) in
+\(-\kappa_3(X,X,W)/6\) from the star and path diagrams on three edges, with
+the leading share covariances of Lemma~\ref{lem:edge-cumulants}.
+At \(\lambda=\tfrac12\), as \(a\to0\),
+\[
+d_3^{(3,3,4)}+d_1^{(3,3,4)}-2d_2^{(3,3,4)}
+=
+-\frac{131}{108\,a}+O(1).
+\]
+The closed form of the second difference is
+\[
+\Delta d^{(3,3,4)}
+=
+\frac{4258a^2-2129a+262}{216\,a\,(2a-1)},
+\]
+obtained by exact rational arithmetic.
+\end{lemma}
+
+\begin{proof}
+The same contraction calculus as in Lemma~\ref{lem:c35-delta}, now for the
+connected three-edge Wick moment of two cubics and one quartic, produces the
+displayed rational function of \(a\) at \(\lambda=\tfrac12\). Its residue at
+\(a=0\) is \(-131/108\).
+\end{proof}
+
 \begin{remark}[Obstruction for the mid window]
 \label{rem:factor-rate-mid-obstruction}
-Lemmas~\ref{lem:phi6-varw-delta} and~\ref{lem:c35-delta} give
+Lemmas~\ref{lem:phi6-varw-delta},~\ref{lem:c35-delta},
+and~\ref{lem:k3xxw-delta} give, at \(\lambda=\tfrac12\),
 \[
-\Delta\bigl(\EE\Phi_6+\tfrac12\operatorname{Var}W-\operatorname{Cov}(X,\Im\Phi_5)\bigr)
+\Delta\bigl(\EE\Phi_6+\tfrac12\operatorname{Var}W-\operatorname{Cov}(X,\Im\Phi_5)
+-\tfrac16\kappa_3(X,X,W)\bigr)
 =
-\frac{13}{6na}+O(n^{-1})
+\Bigl(\frac{13}{6}-\frac{131}{108}\Bigr)\frac1{na}+O(n^{-1})
+=
+\frac{103}{108\,na}+O(n^{-1}).
 \]
-at \(\lambda=\tfrac12\). Lemma~\ref{lem:a-minus-two-class} says the only
-remaining residue comes from \(\kappa_4(X)/24\) and \(\kappa_3(X,X,W)/6\).
-All three \(n^5\)-scale trees in \(\kappa_4(X)\) and both \(n^4\)-scale diagrams
-in \(\kappa_3(X,X,W)\) have been evaluated on the sparse grid: their net
-residue extrapolates to \(-\frac56\), so the inventoried total is
-\(\frac{13}{6}-\frac56=\frac43\) times \(1/(na)\). In particular
-Conjecture~\ref{conj:factor-rate-mid} fails if that \(-\frac56\) is confirmed
-exactly, since then \(\Delta\operatorname{Re}h\sim\frac4{3na}\) and
-\(\Var Z/(\EE Z)^2=\Theta(1/L)\ne o(L^3/n^3)\) for \(L=O(n^{3/4})\). Until the
-\(\kappa_4+\kappa_3\) residue is made exact, Theorem~\ref{thm:factor-rate}
-stops at \(n^{3/4}=o(L)\).
+Lemma~\ref{lem:a-minus-two-class} says the only remaining residue comes from
+\(\kappa_4(X)/24\). The three \(n^5\)-scale trees in \(\kappa_4(X)\)
+extrapolate to residue \(\frac{41}{108}\), which would leave a net
+\(\frac43/(na)\). In particular Conjecture~\ref{conj:factor-rate-mid} fails if
+that \(\kappa_4\) residue is confirmed at any value greater than
+\(-\frac{103}{108}\), since then \(\Delta\operatorname{Re}h\sim c/(na)\) with
+\(c>0\) and \(\Var Z/(\EE Z)^2=\Theta(1/L)\ne o(L^3/n^3)\) for
+\(L=O(n^{3/4})\). Until the \(\kappa_4\) residue is exact,
+Theorem~\ref{thm:factor-rate} stops at \(n^{3/4}=o(L)\).
 \end{remark}
 
 \begin{theorem}[Factor second moment past \(\sqrt n\)]
