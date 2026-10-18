@@ -61,5 +61,6 @@ TV with \(\mu_\delta\) is blocked (`almost-regular-tv`).
 
 Fixed \(m\): Theorem residual-factor-fixed (Gao/Laplace).
 \(m=1\) first moment: Theorem residual-matching-mean.
-Next: host-restricted residual \(L^2\), or sparse local-limit error at
+Next: degree-conditioned Bernoulli residual matching \(L^2\)
+(Proposition residual-degree-conditioned), or sparse local-limit error at
 \(\lambda\to0\).
