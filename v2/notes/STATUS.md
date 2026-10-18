@@ -11,11 +11,14 @@ Bar is 2.0. v1.0 is sent.
   Proof of the sparse side: Lemma sparse-second-diff kills \(a^{-2}\) in the
   ratio, leaving \(O(1/(na))=o(a^3)\) iff \(a=\omega(n^{-1/4})\).
 - **factor-rate-mid** (Theorem factor-rate-mid-fail / former Conjecture
-  factor-rate-mid): at \(\lambda=1/2\), residue
-  \(\Delta\operatorname{Re}h\sim\frac{287}{216\,na}\) from the five
-  \(a^{-2}\)-class packages, so
-  \(\Var Z/(\EE Z)^2\sim\frac{287}{216\,L}\ne o(L^3/n^3)\) for
-  \(\sqrt n\ll L=O(n^{3/4})\).
+  factor-rate-mid): residue
+  \(\Delta\operatorname{Re}h\sim\frac{287(1-\lambda)}{216\lambda\,na}\) from the
+  five \(a^{-2}\)-class packages (exact \(\Phi_6+\tfrac12\mathrm{Var}W\) and
+  C35 on a \(\lambda\)-grid; exact \(\kappa_3,\kappa_4\) at \(\lambda=1/2\);
+  float second-difference extrapolation for \(\kappa_3,\kappa_4\) at general
+  \(\lambda\)), so
+  \(\Var Z/(\EE Z)^2\sim\frac{287(1-\lambda)}{216\lambda\,L}\ne o(L^3/n^3)\)
+  for \(\sqrt n\ll L=O(n^{3/4})\).
 - **long-step** (Theorem long-step / long-step-all): every \(L\ge1\) with two
   linear margins.
 - **unconstrained residual** (Theorem residual-unconstrained): factor-moment
@@ -27,8 +30,6 @@ Bar is 2.0. v1.0 is sent.
   Selection (iii) only on single orbits \(D\in\{1,n-2\}\).
   Unconstrained residual is closed; the host restriction is the obstruction.
   Q is conditional on BIM Conjecture 1.3 (Theorem process-to-Q).
-- Mid-window rate at general \(\lambda\ne\tfrac12\): same packages, residues
-  not yet evaluated.
 
 ## Also open (not named)
 
@@ -37,8 +38,9 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-1. Mid-window residues at general \(\lambda\) (or reduce to half density).
-2. Host-restricted residual-moment → config-split → Q.
-3. Ordered peel \(P_L\) past \(n^{1/3}\).
+1. Host-restricted residual-moment → config-split → Q.
+2. Ordered peel \(P_L\) past \(n^{1/3}\).
+3. Exact closed forms for \(\kappa_3,\kappa_4\) at general \(\lambda\) (optional
+   sharpening; float grid already closes the mid-window theorem).
 
 See `PROGRAM.md` for the full closed/blocked ledger.
