@@ -59,8 +59,9 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-1. Sparse-host leading term for \(m\)-factor variance (not the mid-window
-   residue) / config-model → Conjecture residual-moment-bim.
+1. Prove Conjecture residual-factor-sharp (rate \(O(m^2/\delta^3)\), length
+   \(m=o(\delta^{3/2})\)): would settle unconstrained BIM item (i) since
+   \(m^2/\delta^3=\Theta(1/d)\to0\) (Proposition residual-sharp-bim).
 2. Tilt comparison under \(\mu_D\) / orbit-flat inverse counts → config-split.
 3. Cancel the averaged cubic in the two-sided containment ratio → peel
    past \(n^{1/3}\).
