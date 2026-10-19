@@ -2842,3 +2842,26 @@ no result
 Query: Simplify[(M/m)^2 - 1 /. M/m -> 1 + eps]
 [fallback]
 sympy: (1+eps)**2 - 1 = 2*eps + eps**2; tends to 0 as eps->0.
+
+
+Query: Simplify[Binomial[n,2]*(delta/(n-1))^2 - delta^2*n/(2*(n-1))]
+[Input interpretation]
+simplify | binomial(n, 2) (δ/(n - 1))^2 - δ^2 × n/(2 (n - 1))
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Simplify[((delta-1)*(d+1)/2) - (delta*d/2) - (delta-d-1)/2]
+[Input interpretation]
+simplify | (δ - 1) × (d + 1)/2 - δ × d/2 - 1/2 (δ - d - 1)
+[Result]
+0
+
+Query: Simplify[delta*(d+delta)^2/n /. {delta -> d^(2/3)*Log[n]^(1/3), d -> n^(3/8)/Log[n]^(1/3)}]
+[fallback]
+sympy Limit at d=n**(3/8)/log(n)**(1/3) of delta*(d+delta)**2/n with
+delta=d**(2/3)*log(n)**(1/3) equals 0.
+At d=n**(3/8)/log(n)**(1/8) the same limit equals 1 (boundary).
+Hence delta(d+delta)^2/n=o(1) throughout d=o(n**(3/8)/log(n)**(1/3)).

@@ -42,25 +42,28 @@ first-moment half of residual-to-peel-weight reduces to free complementary
 matching concentration. Bernoulli *second* moment still diverges
 (`bernoulli-residual-moment` BLOCK at every \(d=o(n)\)).
 
-## Nearly regular unconstrained (conditional)
+## Nearly regular / constrained (partial close)
 
-Proposition residual-nearly-regular-matching: if Gao Thm~6 extends to
-degree sequences in an \(\varepsilon_n\)-window about \(\delta=o(n^{1/2})\), then
-matching \(L^2\) holds uniformly there. Proposition residual-not-tv: literal
-TV with \(\mu_\delta\) is blocked (`almost-regular-tv`).
+- Theorem bern-degree-uniform: Bern\(|\deg=g=\mathrm{Unif}(\Omega(C,g))\).
+- Remark residual-not-unrestricted: \(\mu_\delta\) is exponentially rare in
+  \(\Omega(C,\delta)\) when \(d\delta\to\infty\); wrong comparison.
+- Theorem residual-matching-constrained: matching \(L^2\) on
+  \(\Omega(C,\delta)\) for \(\delta(d+\delta)^2/n=o(1)\) (McKay; host \(\mu\)
+  cancels in ratios). BIM range \(d=o(n^{3/8}(\log n)^{-1/3})\).
+- Corollary residual-matching-window: mixture over the sharp window needs
+  flat means \(\EE_g Y\).
 
 ## Blocked
 
-- Bernoulli residual comparison (second moment)
+- Bernoulli residual comparison (unconditional second moment)
 - Free-extension flatness as residual flatness (pathwise \(N_m(R)\))
 - Hybrid / sprinkle transfer
 - Config second moment at linear degree
-- Almost-regular TV / support-disjoint
+- Almost-regular TV / support-disjoint / unrestricted contiguity
 
 ## Checkpoint
 
 Fixed \(m\): Theorem residual-factor-fixed (Gao/Laplace).
-\(m=1\) first moment: Theorem residual-matching-mean.
-Next: degree-conditioned Bernoulli residual matching \(L^2\)
-(Proposition residual-degree-conditioned), or sparse local-limit error at
-\(\lambda\to0\).
+\(m=1\) on McKay scale: **closed** (Theorem residual-moment-m1).
+Next: BIM-length sparse MLLT / residual-law, or extend past
+\(\delta(d+\delta)^2/n\not\to0\).

@@ -25,25 +25,21 @@ Bar is 2.0. v1.0 is sent.
   on a uniform \(\delta\)-regular host (no BIM edge restriction).
 - **residual matching first moment** (Theorem residual-matching-mean /
   Corollary residual-first-moment): Bernoulli residual has
-  \(\EE[Y(R)|G]=p^{n/2}Z_\partial(G)\); first-moment flatness reduces to
-  complementary matching concentration.
+  \(\EE[Y(R)|G]=p^{n/2}Z_\partial(G)\).
+- **residual-moment at \(m=1\), McKay scale** (Theorem residual-moment-m1):
+  Bern\(|\deg=\mathrm{Unif}(\Omega(C,g))\); constrained matching \(L^2\) on
+  \(\Omega(C,\delta)\); window means flat; closes Conjecture residual-moment
+  at \(m=1\) whenever \(\delta(d+\delta)^2/n=o(1)\), including
+  \(d=o(n^{3/8}(\log n)^{-1/3})\).
 
 ## Open (named)
 
-- **residual-moment** (BIM-constrained): open.
-  Unconstrained fixed-length \(m\)-factor moment at \(\delta=o(n^{1/2})\) is
-  Theorem residual-factor-fixed. At \(m=1\): first-moment formula closed
-  (Corollary residual-first-moment); literal TV with \(\mu_\delta\) blocked
-  (Proposition residual-not-tv); unconstrained nearly regular matching
-  moment is Proposition residual-nearly-regular-matching (Gao for degree
-  sequences). Gap is the degree-conditioned Bernoulli residual matching
-  moment (Proposition residual-degree-conditioned), then comparison with
-  \(\mu_g\). At BIM length
-  \(m=\Theta\sqrt{d\log n}\) one has \(m\gg\sqrt\delta\), so unconstrained
-  item needs sparse MLLT; package residues as \(\lambda\to0\) with
-  \(a=o(\lambda)\) are Lemma sparse-package-residues. Residual-law
-  comparison still open (Proposition residual-two-gaps). Linear
-  unconstrained is Theorem residual-unconstrained.
+- **residual-moment** (BIM-constrained): open at BIM length
+  \(m=\Theta\sqrt{d\log n}\) (needs sparse MLLT + residual-law comparison;
+  Proposition residual-two-gaps). At \(m=1\), closed on the McKay scale
+  (Theorem residual-moment-m1); open past \(\delta(d+\delta)^2/n\not\to0\).
+  Package residues as \(\lambda\to0\) with \(a=o(\lambda)\): Lemma
+  sparse-package-residues.
 - **config-split**: open. Selection (iii) only on single orbits
   \(D\in\{1,n-2\}\); needs lower-tail of \(N\) at \(1/c_n\) (pointwise
   Proposition iii-as-tail, or the weaker weighted integral
@@ -62,10 +58,9 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-1. Host-restricted residual second moment at \(m=1\) (nearly regular);
-   sparse MLLT at \(\delta=o(n^{1/2})\) for BIM length.
-2. Weighted/pointwise lower-tail of \(N\) at \(1/c_n\) → config-split → Q
-   (Q still needs BIM Conjecture 1.3 or binomial thinning).
+1. Sparse MLLT / residual-law comparison for BIM-length residual-moment;
+   extend constrained matching past McKay scale.
+2. Weighted/pointwise lower-tail of \(N\) at \(1/c_n\) → config-split → Q.
 3. \(D(F)\)-flatness or IM25 cancellation for ordered peel past \(n^{1/3}\).
 
 See `PROGRAM.md` for the full closed/blocked ledger.
