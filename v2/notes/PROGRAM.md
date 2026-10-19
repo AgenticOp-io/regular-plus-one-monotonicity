@@ -148,9 +148,9 @@ Still missing (no fake closes):
    (Proposition iii-as-tail) — not a moment about \(\mathbb{E}[N]\),
    not near-disjoint factors, not switches.
 2. Three peel-weight flatnesses on \(G^*_0\) (asymptotic \(Z_d\), not literal).
-3. Residual moment: **closed** for fixed \(m\) on McKay scale
-   (Theorem residual-moment). BIM-length open as Conjecture
-   residual-moment-bim (sparse MLLT + residual-law;
+3. Residual moment: **closed** for \(m=o(\delta^{1/3})\) on McKay scale
+   (Theorem residual-moment; upgrade from fixed \(m\)). BIM-length open as
+   Conjecture residual-moment-bim (sparse MLLT + residual-law;
    Proposition residual-two-gaps; formal scale in
    Proposition bim-residual-scale).
 4. Binomial thinning or BIM Conjecture 1.3 — not hybrid, not sprinkle.
@@ -165,8 +165,8 @@ Still missing (no fake closes):
 | --- | --- |
 | Q | Open |
 | config-split | Open (iii on single orbits only; two-sided Stieltjes recorded) |
-| residual-moment | **Closed** as Theorem residual-moment (fixed \(m\), McKay scale) |
-| residual-moment-bim | Open (BIM length \(m\gg\sqrt\delta\); formal scale \(\Theta(n/(\delta m))\)) |
+| residual-moment | **Closed** as Theorem residual-moment (\(m=o(\delta^{1/3})\), McKay scale) |
+| residual-moment-bim | Open (BIM length \(m\gg\delta^{1/3}\); formal scale \(\Theta(n/(\delta m))\)) |
 | factor-moment | **Closed** (Theorem factor-moment): complementary + linear-below-sqrt + mllt-sparse for every \(n^{1/2}=o(L)\) |
 | factor-rate | **Closed** as Theorem factor-rate (complementary / dense / linear / \(n^{3/4}=o(L)\)) |
 | factor-rate-mid | **Closed** as Theorem factor-rate-mid-fail: residue \(287(1-\lambda)/(216\lambda\,na)\) |

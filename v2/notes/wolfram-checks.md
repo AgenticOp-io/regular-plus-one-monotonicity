@@ -2962,3 +2962,31 @@ Query: Limit of sparse MLLT state-pair products as a->0
 sympy: ((l-a)^2/l)*(1-l) -> l*(1-l); (a*(l-a)/l)*((l-a)^2/l) -> 0.
 Hence G-coordinate product is Theta(l) and factor-coordinate product is Theta(a*l) for a=o(l).
 
+
+
+Query: simplify Binomial[n,2]*(m/(n-1))^2
+[Input interpretation]
+simplify | binomial(n, 2) (m/(n - 1))^2
+[Result]
+(m^2 n)/(2 (n - 1))
+[Expanded form]
+(m^2 n)/(2 n - 2)
+
+
+Query: Limit[m^2/delta /. m -> delta^(1/2)/Log[delta], delta->Infinity]
+[error]
+no result
+
+Query: Limit[m^2/delta for m=o(sqrt(delta))]
+[fallback]
+sympy: at m=sqrt(delta)/log(delta), m^2/delta -> 0; at m=sqrt(delta)*log(delta), m^2/delta -> Infinity.
+Hence m^2/delta=o(1) throughout m=o(sqrt(delta)).
+
+
+Query: Limit of m**3/delta and m**2/delta for m=o(delta**(1/3))
+[fallback]
+sympy: at m=delta**(1/3 - 1/100) both m**3/delta and m**2/delta -> 0.
+At m=delta**(1/3) one has m**3/delta -> 1.
+Hence Gao product error O(m**3/delta) and overlap leftover O(m**2/delta) are o(1)
+throughout m=o(delta**(1/3)).
+

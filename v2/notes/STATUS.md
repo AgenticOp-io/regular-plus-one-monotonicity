@@ -12,16 +12,18 @@ Bar is 2.0. v1.0 is sent.
   \(287(1-\lambda)/(216\lambda\,na)\).
 - **long-step** (Theorem long-step / long-step-all).
 - **unconstrained residual** (Theorem residual-unconstrained).
-- **residual-moment** (Theorem residual-moment / former Conjecture
-  residual-moment at fixed \(m\)): every fixed \(m\ge 1\) on the McKay
-  scale \(\delta(d+\delta)^2/n=o(1)\), including
+- **residual-moment** (Theorem residual-moment): every
+  \(m=o(\delta^{1/3})\) on the McKay scale
+  \(\delta(d+\delta)^2/n=o(1)\), including
   \(d=o(n^{3/8}(\log n)^{-1/3})\). Bern\(|\deg=\mathrm{Unif}(\Omega(C,g))\);
-  constrained \(m\)-factor \(L^2\); window mixture.
+  constrained \(m\)-factor \(L^2\) with Gao product error \(O(m^3/\delta)\)
+  and overlap leftover \(O(m^2/\delta)\); window mixture.
+  (Previously only fixed \(m\); upgraded.)
 
 ## Open (named)
 
 - **residual-moment-bim** (Conjecture residual-moment-bim): BIM length
-  \(m=\Theta\sqrt{d\log n}\) with \(m\gg\sqrt\delta\). Needs sparse MLLT /
+  \(m=\Theta\sqrt{d\log n}\) with \(m/\delta^{1/3}\to\infty\). Needs sparse MLLT /
   residual-law comparison (Proposition residual-two-gaps).
   Proposition bim-residual-scale: formal package scale
   \(\Theta(n/(\delta m))\), vanishes iff
@@ -46,9 +48,8 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-1. Package persistence of \(\kappa_3,\kappa_4\) at \(\lambda\to0\), or a
-   config-model substitute that avoids MLLT weights
-   (Proposition mllt-vanishing-margin).
+1. Sparse MLLT / package persistence / config-model for
+   Conjecture residual-moment-bim (\(m\gg\delta^{1/3}\)).
 2. Tilt comparison under \(\mu_D\) / orbit-flat inverse counts → config-split.
 3. Cancel the averaged cubic in the two-sided containment ratio → peel
    past \(n^{1/3}\).
