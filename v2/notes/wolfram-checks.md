@@ -2865,3 +2865,59 @@ sympy Limit at d=n**(3/8)/log(n)**(1/3) of delta*(d+delta)**2/n with
 delta=d**(2/3)*log(n)**(1/3) equals 0.
 At d=n**(3/8)/log(n)**(1/8) the same limit equals 1 (boundary).
 Hence delta(d+delta)^2/n=o(1) throughout d=o(n**(3/8)/log(n)**(1/3)).
+
+
+Query: Simplify[n/(d^(2/3)*Log[n]^(1/3)*Sqrt[d*Log[n]])]
+[Input interpretation]
+simplify | n/(d^(2/3) log(n)^(1/3) sqrt(d log(n)))
+[Reduced logarithmic form]
+n/(d^(2/3) log(n)^(1/3) sqrt(log(n^d)))
+[Expanded form]
+(n sqrt(d log(n)))/(d^(5/3) log^(4/3)(n))
+
+
+Query: Simplify[287/216 * n/(delta*m) /. {delta -> d^(2/3)*Log[n]^(1/3), m -> Sqrt[d*Log[n]]}]
+[error]
+no result
+
+
+Query: Assuming n>1 and d>1, simplify n/(d^(7/6)*(log(n))^(5/6)) and state when this tends to 0 as n->infinity for d = n^a (log n)^b with a,b real: require a>6/7 or (a=6/7 and b>-5/7)
+[error]
+no result
+
+
+Query: simplify 287*(1-l)/(216*l*m) /. {l -> d/(n-1), m -> Sqrt[d*Log[n]]} assuming n>2 and d>1
+[error]
+no result
+
+
+Query: simplify 287*(1-l)/(216*l*m)
+[Input interpretation]
+simplify | 287 × (1 - l)/(216 l m)
+[Results]
+(1/216 287)/(l m) - 287/(216 m)
+[Results]
+-(287 (l - 1))/(216 l m)
+[Results]
+(287 - 287 l)/(216 l m)
+
+
+Query: simplify n/(d^(7/6)*(Log[n])^(5/6)) /. d -> n^(6/7)
+[error]
+no result
+
+
+Query: simplify n/(d^(2/3)*Log[n]^(1/3)*Sqrt[d*Log[n]])
+[Input interpretation]
+simplify | n/(d^(2/3) log(n)^(1/3) sqrt(d log(n)))
+[Reduced logarithmic form]
+n/(d^(2/3) log(n)^(1/3) sqrt(log(n^d)))
+[Expanded form]
+(n sqrt(d log(n)))/(d^(5/3) log^(4/3)(n))
+
+Query: Limit of n/(d**(7/6)*(Log[n])**(5/6)) as n->oo for d=n**(6/7)*(Log[n])**b
+[fallback]
+sympy: at b=-5/7 the ratio equals 1; at b>-5/7 the limit is 0; at b<-5/7 the limit is Infinity.
+Hence n/(d**(7/6)(log n)**(5/6))=o(1) iff d=omega(n**(6/7)(log n)**(-5/7)).
+Also series of 287*(1-delta/n)/(216*(delta/n)*m) = 287*n/(216*delta*m) - 287/(216*m) + O(1/n).
+
