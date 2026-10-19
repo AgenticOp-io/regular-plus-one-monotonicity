@@ -25,9 +25,9 @@ Bar is 2.0. v1.0 is sent.
   \(m=\Theta\sqrt{d\log n}\) with \(m/\sqrt\delta\to\infty\). Needs sparse MLLT /
   residual-law comparison (Proposition residual-two-gaps).
   Proposition bim-residual-scale: formal package scale
-  \(\Theta(n/(\delta m))\), vanishes iff
-  \(d=\omega(n^{6/7}(\log n)^{-5/7})\), predicted diverge on
-  \(d=o(n^{3/4}/\mathrm{polylog})\).
+  \(\Theta(n/(\delta m))\) (conditional on residue persistence).
+  Proposition package-not-persist: that residue cannot persist at \(m=1\),
+  since matching variance is \(1/(6\delta^3)\to0\) while \(\Theta(n/\delta)\to\infty\).
   Proposition mllt-vanishing-margin: linear-margin weights degrade to
   \(\Theta(\lambda)\) as \(\lambda\to0\), so Theorem mllt-sparse does not transfer.
 - **config-split**: open. Selection (iii) only on single orbits
@@ -37,7 +37,7 @@ Bar is 2.0. v1.0 is sent.
   \(C_5\cup C_3\) still \(\approx 0.09\,c_n\) below the mean.
 - **Q**: open; conditional on BIM Conjecture 1.3 (Theorem process-to-Q).
 
-## Also closed (strengthening)
+## Also closed (strengthening / obstruction)
 
 - **peel-second-moment-third** (two-sided sandwich): Lemmas avoid-overlap
   (factor case) and decomp-overlap are two-sided; Theorem
@@ -45,6 +45,8 @@ Bar is 2.0. v1.0 is sent.
   \(\exp(\pm C(L^3+1)/n)\) rather than a one-sided upper bound.
   Range still \(L=o(n^{1/3})\) for variance \(\to0\); the gap remains the
   averaged cubic (Proposition peel-cubic-gap).
+- **package-not-persist** (Proposition package-not-persist): mid-window
+  five-package residue cannot persist at matching length on sparse hosts.
 
 ## Also open (not named)
 
@@ -57,8 +59,8 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-1. Sparse MLLT / package persistence / config-model for
-   Conjecture residual-moment-bim (\(m\gg\sqrt\delta\)).
+1. Sparse-host leading term for \(m\)-factor variance (not the mid-window
+   residue) / config-model → Conjecture residual-moment-bim.
 2. Tilt comparison under \(\mu_D\) / orbit-flat inverse counts → config-split.
 3. Cancel the averaged cubic in the two-sided containment ratio → peel
    past \(n^{1/3}\).

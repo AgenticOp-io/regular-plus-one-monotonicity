@@ -83,11 +83,18 @@ force \(\delta m=o(n)\)). Package evidence: Lemma sparse-package-residues
 (p64, C35) plus \(\kappa_3,\kappa_4\) forms \(\propto(1-\lambda)/\lambda\).
 Not a conjecture close: MLLT still needs linear margins; host is constrained.
 
+## Package persistence ruled out at matchings
+
+Proposition package-not-persist: at \(m=1\), unconstrained matching variance
+is \(1/(6\delta^3)\to0\) for \(\delta\to\infty\), \(\delta=o(n)\), while the
+formal scale \(\Theta(n/\delta)\to\infty\). The mid-window residue therefore
+cannot persist at matching length; sparse-host expansions need a different
+leading term (e.g.\ short-cycle / McKay type).
+
 ## Checkpoint
 
 \(m=o(\sqrt\delta)\) on McKay scale: **closed** (Theorem residual-moment).
 Gao relative error \(O(\delta^2 m/n)\) (requires \(\delta=o(n^{2/5})\), automatic
 on McKay) and overlap leftover \(O(m^2/\delta)\).
 BIM length \(m\gg\sqrt\delta\): Conjecture residual-moment-bim (this note's
-target); Proposition bim-residual-scale records the formal
-obstruction/success split.
+target); package-residue divergence prediction is blocked at \(m=1\).

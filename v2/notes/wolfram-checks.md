@@ -3067,3 +3067,30 @@ simplify | (x - 1) × L/2 - (x - 1) × (L × n/2)/n
 0
 [Quotient and Remainder]
 0 = (0) × 1 + 0
+
+
+Query: Assuming[delta>1, simplify Limit[1/(6*delta^3), delta->Infinity]]
+[error]
+no result
+
+
+Query: Assuming[n>1, simplify Limit[n/delta /. delta->n^(2/5), n->Infinity]]
+[error]
+no result
+
+
+Query: Limit[1/(6*delta^3), delta->Infinity]
+[Limit]
+lim_(δ->∞) 1/(6 δ^3) = 0
+
+
+Query: Limit[n/n^(2/5), n->Infinity]
+[Limit]
+lim_(n->∞) n/n^(2/5) = ∞
+
+## Fallback (package-not-persist scales)
+
+Query: compare 1/(6*delta^3)->0 vs n/delta with delta=o(n)
+Result: for delta=n^a, 0<a<1, first is n^{-3a}->0; second is n^{1-a}->infinity.
+Contradiction of mid-window residue persistence at m=1 recorded as Proposition package-not-persist.
+

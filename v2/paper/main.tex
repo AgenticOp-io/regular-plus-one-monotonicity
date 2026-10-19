@@ -3745,13 +3745,44 @@ Whenever moreover \(\delta=o(n^{1/2})\) and \(m\le\delta\) one has
 \(\delta m=o(n)\), so the same prediction forces relative variance \(\to\infty\)
 for every such past-\(\sqrt\delta\) moment---in particular throughout the BIM
 range \(d=o\bigl(n^{3/4}/(\log n)^{1/2}\bigr)\).
-This is not a proof of Conjecture~\ref{conj:residual-moment-bim}: the local-limit
-error of Theorem~\ref{thm:mllt-sparse} fails to transfer at vanishing \(\lambda\)
-by Proposition~\ref{prop:mllt-vanishing-margin}, and the conjecture asks for a
+This is not a proof of divergence, nor of Conjecture~\ref{conj:residual-moment-bim}:
+Proposition~\ref{prop:package-not-persist} rules out persistence of the residue
+already at matching length, the local-limit error of
+Theorem~\ref{thm:mllt-sparse} fails to transfer at vanishing \(\lambda\) by
+Proposition~\ref{prop:mllt-vanishing-margin}, and the conjecture asks for a
 host-restricted moment inside \(E(R)\).
 \end{proposition}
 
+\begin{proposition}[Sparse package residue cannot persist at matchings]
+\label{prop:package-not-persist}
+Let \(n\) be even and let \(\delta\to\infty\) with \(\delta=o(n)\) and \(\delta n\) even.
+The number \(Y\) of perfect matchings of a uniform \(\delta\)-regular graph
+satisfies
+\[
+\frac{\Var Y}{(\EE Y)^2}
+=
+\frac1{6\delta^3}+O(\delta^{-4})+O\Bigl(\frac\delta n\Bigr)
+\to0
+\]
+by the sublinear nesting theorem of~\cite{PlusOneV1}. The formal five-package
+scale of Proposition~\ref{prop:bim-residual-scale} at \(m=1\) is instead
+\(\Theta(n/\delta)\), which tends to infinity throughout \(\delta=o(n)\).
+Consequently the mid-window residue
+\(287(1-\lambda)/(216\lambda\,na)\) of Theorem~\ref{thm:factor-rate-mid-fail}
+cannot persist as \(\lambda\to0\) with \(a=1/(n-1)\): any sparse-host
+expansion of \(\EE[Z^2]/(\EE Z)^2\) must have a different leading term at
+matching length.
+\end{proposition}
+
 \begin{proof}
+The matching expansion is Corollary~\ref{cor:residual-matching-proxy}. Substituting
+\(m=1\) into \(\Theta(n/(\delta m))\) gives \(\Theta(n/\delta)\to\infty\) under
+\(\delta=o(n)\), which contradicts \(\Var Y/(\EE Y)^2\to0\). Persistence of the
+displayed residue would force the latter to diverge, so the residue cannot
+persist at \(a=1/(n-1)\).
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:bim-residual-scale}]
 Under the displayed residue,
 \(\EE[Z^2]/(\EE Z)^2=\exp\bigl(\Delta\operatorname{Re}h+o(1/(\lambda na))\bigr)\)
 gives relative variance \(\sim 287(1-\lambda)/(216\lambda m)\). Substituting
@@ -7014,9 +7045,8 @@ independent sparse graph and diverges. The remaining targets are an
 unconstrained moment at density \(\lambda\to0\) and a host-restricted moment at
 scale \(\varepsilon_0 d\).
 Proposition~\ref{prop:bim-residual-scale} records the formal package-residue
-scale: relative variance \(\Theta(n/(\delta m))\), vanishing only for
-\(d=\omega\bigl(n^{6/7}(\log n)^{-5/7}\bigr)\) and predicted to diverge throughout
-\(d=o\bigl(n^{3/4}/(\log n)^{1/2}\bigr)\).
+scale \(\Theta(n/(\delta m))\) under persistence; Proposition~\ref{prop:package-not-persist}
+rules that persistence out already at \(m=1\).
 \end{remark}
 
 \begin{proposition}[Residual scale is sublinear]
@@ -7461,8 +7491,9 @@ principal terms, the leftover ratio depends on the overlap through a factor
 each used by an \(m\)-factor with density \(m/\delta\), so an intersection of
 size \(K\) leaves a relative second-moment factor of order \(K/\delta\) once the
 leading entropy in \(K\) has cancelled (matching the \(O(K/D)\) leftover on
-linear hosts \(D=\Theta(n)\), and reducing to the \(O(1/\delta)\) matching error
-when \(m=1\)). Averaging therefore contributes
+linear hosts \(D=\Theta(n)\); at \(m=1\) the true matching error is
+\(O(1/\delta^3)\), of which \(O(K/\delta)\) is a convenient upper envelope).
+Averaging therefore contributes
 \[
 O\Bigl(\frac{\EE K}{\delta}\Bigr)
 =
@@ -7827,11 +7858,11 @@ Lemma~\ref{lem:sparse-package-residues} records package residues as
 Proposition~\ref{prop:mllt-vanishing-margin} shows the obstruction is sharp:
 state-pair products degrade to \(\Theta(\lambda)\).
 Proposition~\ref{prop:bim-residual-scale} converts the five-package residue
-into a formal variance scale \(\Theta(n/(\delta m))\), vanishing iff
-\(d=\omega\bigl(n^{6/7}(\log n)^{-5/7}\bigr)\) and predicted to diverge on the
-bulk BIM range \(d=o(n^{3/4}/\mathrm{polylog})\). Past the McKay scale the
-constrained enumeration error is no longer negligible. Unconditional
-Bernoulli second moments remain blocked.
+into a formal variance scale \(\Theta(n/(\delta m))\) under persistence;
+Proposition~\ref{prop:package-not-persist} rules that persistence out at
+matching length, so the sparse leading term must be of a different shape.
+Past the McKay scale the constrained enumeration error is no longer
+negligible. Unconditional Bernoulli second moments remain blocked.
 
 \paragraph{Theorem~\ref{thm:factor-moment}.}
 Settled. The past-\(\sqrt{n}\) half is the multi-colour local limit
