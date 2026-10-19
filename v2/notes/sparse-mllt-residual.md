@@ -63,7 +63,5 @@ matching concentration. Bernoulli *second* moment still diverges
 
 ## Checkpoint
 
-Fixed \(m\): Theorem residual-factor-fixed (Gao/Laplace).
-\(m=1\) on McKay scale: **closed** (Theorem residual-moment-m1).
-Next: BIM-length sparse MLLT / residual-law, or extend past
-\(\delta(d+\delta)^2/n\not\to0\).
+Fixed \(m\) on McKay scale: **closed** (Theorem residual-moment).
+BIM length: Conjecture residual-moment-bim (this note's target).

@@ -39,7 +39,7 @@ chains of length \(o(n^{2/5})\), and vanishing Kim--Vu sandwich rates through
 the process-optimal exponent \(1/3\).
 This manuscript is the sequel: it records those reductions, proves that the
 binomial-host subgraph count is not flattened by a first or second moment,
-and isolates the six named statements.
+and isolates the named statements.
 Inside a \(D\)-regular host the \(L\)-factors are the \((D-L)\)-factors, so the
 factor second moment of~\cite{PlusOneV1} below \(n^{1/3}\) yields the same bound
 for near-complete lengths \(D-L=o(n^{1/3})\) on linear hosts, including past
@@ -62,9 +62,10 @@ degree at least \(n/2\), and Hamiltonicity of a random regular graph extends
 that coupling to every degree at least \(3\). The same fact places a uniform
 perfect matching inside every degree at least \(3\).
 The mid-window rate fails for every linear density
-(Theorem~\ref{thm:factor-rate-mid-fail}); the other three named statements stay
-open. The four-linear-margin deletion of every length \(L=o(n)\) is
-Theorem~\ref{thm:long-step}.
+(Theorem~\ref{thm:factor-rate-mid-fail}). Fixed-length residual moment on the
+McKay scale is Theorem~\ref{thm:residual-moment}; the BIM-length residual,
+config-split, and Chernoff-scale Q remain open. The four-linear-margin
+deletion of every length \(L=o(n)\) is Theorem~\ref{thm:long-step}.
 \end{abstract}
 
 \tableofcontents
@@ -156,8 +157,9 @@ second moment for every \(n^{1/2}=o(L)\)
 factor rate \(o(L^3/n^3)\) whenever \(n^{3/4}=o(L)\)
 (Theorem~\ref{thm:factor-rate}, Corollary~\ref{cor:factor-rate-sparse}).
 The mid-window rate fails for every linear density
-(Theorem~\ref{thm:factor-rate-mid-fail}); the other three named statements stay
-open.
+(Theorem~\ref{thm:factor-rate-mid-fail}). Fixed-length residual moment on the
+McKay scale is Theorem~\ref{thm:residual-moment}; Conjectures~\ref{conj:Q},
+~\ref{conj:config-split}, and~\ref{conj:residual-moment-bim} stay open.
 
 The attacks that stop at a signed \(O(L^3/n)\) or a disjoint-support
 comparison are proved in~\cite{PlusOneV1}.
@@ -219,10 +221,31 @@ the rate-\(1/3\) residual is within total variation \(o(1)\) of \(\mu_{d+m}\),
 for \(m=\Theta\sqrt{d\log n}\).
 \end{conjecture}
 
-\begin{conjecture}[Residual moment]
-\label{conj:residual-moment}
-The number of \(m\)-factors of the BIM residual \(R=G^*_0\setminus G\),
-conditionally on \(G\), has relative variance \(o(1)\).
+\begin{theorem}[Residual moment at fixed length, McKay scale]
+\label{thm:residual-moment}
+Assume~\cite[Theorem~4.6]{McK85}. In the matching-peel setting of
+~\cite{PlusOneV1}, write \(\delta:=\lfloor\varepsilon_0 d\rfloor\) with
+\(\varepsilon_0=C_3(\log n/d)^{1/3}\) and \(d/\log n\to\infty\), and assume
+\[
+\frac{\delta(d+\delta)^2}{n}=o(1)
+\]
+(in particular \(d=o\bigl(n^{3/8}(\log n)^{-1/3}\bigr)\)). Fix an integer
+\(m\ge 1\) with \(mn\) even and \(m\le\delta\). Writing \(\mathcal E_\delta\) for the
+residual-sharp window and \(R\) for the Bernoulli residual on
+\(C=K_n\setminus G\), the number \(Z\) of \(m\)-factors of \(R\) satisfies
+\[
+\frac{\Var\bigl(Z\bigm|G,\,\mathcal E_\delta\bigr)}
+{\bigl(\EE[Z\mid G,\,\mathcal E_\delta]\bigr)^2}
+\to0
+\]
+uniformly in the peeled \(d\)-factor \(G\).
+\end{theorem}
+
+\begin{conjecture}[Residual moment at BIM length]
+\label{conj:residual-moment-bim}
+In the matching-peel setting of~\cite{PlusOneV1}, with
+\(m=\Theta\sqrt{d\log n}\), the number of \(m\)-factors of the residual
+\(R=G^*_0\setminus G\), conditionally on \(G\), has relative variance \(o(1)\).
 \end{conjecture}
 
 \begin{theorem}[Factor second moment past \(\sqrt{n}\)]
@@ -6676,7 +6699,7 @@ The two flatnesses are coupled through the inverse-count problem.
 
 \begin{remark}[Residual moment and Chernoff]
 \label{rem:b3-b4}
-Conjecture~\ref{conj:residual-moment} asks for a second moment of \(m\)-factors
+Conjecture~\ref{conj:residual-moment-bim} asks for a second moment of \(m\)-factors
 of the actual residual \(R=G^*_0\setminus G\).
 The Bernoulli comparison of~\cite{PlusOneV1} diverges and is not that model.
 Conjecture~\ref{conj:Q} asks for a Chernoff-scale sandwich.
@@ -6694,7 +6717,7 @@ of the residual lemmas there, every residual degree satisfies
 \]
 simultaneously in \(v\), with \(\varepsilon_0=\Theta((\log n/d)^{1/3})\) at the
 process-optimal rate.
-Conditionally on that degree sequence \(\mathbf{d}_R\), Conjecture~\ref{conj:residual-moment}
+Conditionally on that degree sequence \(\mathbf{d}_R\), Conjecture~\ref{conj:residual-moment-bim}
 asks for relative variance \(o(1)\) of the number of \(m\)-factors of a random
 graph with degree sequence \(\mathbf{d}_R\) constrained to the residual edge
 set---equivalently, concentration of \(N_m(R)\) inside the class of graphs with
@@ -6710,7 +6733,7 @@ scale \(\varepsilon_0 d\), not an unconstrained binomial host.
 \begin{proof}
 The degree assertion is~\cite[Lemma~residual-sharp]{PlusOneV1} (and the
 companion cut/expansion lemmas).
-The reformulation is the definition of Conjecture~\ref{conj:residual-moment}
+The reformulation is the definition of Conjecture~\ref{conj:residual-moment-bim}
 on that event, together with the blocked Bernoulli comparison.
 \end{proof}
 
@@ -6732,7 +6755,7 @@ Write \(\delta:=\varepsilon_0 d=\Theta\bigl(d^{2/3}(\log n)^{1/3}\bigr)\) and
 \(m=\Theta\sqrt{d\log n}\) as in Conjecture~\ref{conj:config-split}.
 Then \(\sqrt\delta=o(m)\) and \(m=o(\delta)\), so the degree scale sits in the
 past-\(\sqrt\delta\) factor-moment window relative to \(\delta\).
-Conjecture~\ref{conj:residual-moment} asks for the same second moment inside the
+Conjecture~\ref{conj:residual-moment-bim} asks for the same second moment inside the
 BIM residual edge set \(E(R)\), not for a uniform \(\delta\)-regular graph.
 Theorem~\ref{thm:residual-unconstrained} settles the unconstrained
 \emph{linear}-degree analogue; it does not apply at \(\delta=o(n)\).
@@ -6769,7 +6792,7 @@ gives
 for the number \(Y\) of perfect matchings of a uniform \(\delta\)-regular
 graph (Proposition~\ref{prop:residual-sublinear} puts \(\delta=o(n)\)).
 Consequently the unconstrained regular matching moment at scale \(\delta\) is
-settled; Conjecture~\ref{conj:residual-moment} at \(m=1\) still needs the same
+settled; Theorem~\ref{thm:residual-moment} at \(m=1\) closes the matching case, while Conjecture~\ref{conj:residual-moment-bim} still needs the same
 relative variance for the actual residual host (Proposition~\ref{prop:residual-nearly-reg}),
 not a total-variation identification with \(\mu_\delta\).
 \end{corollary}
@@ -6786,8 +6809,8 @@ degree sequence that is not constantly \(\delta\). The uniform law on graphs
 with degree sequence \(\mathbf{d}_R\) and the law \(\mu_\delta\) have disjoint
 supports, so their total variation equals \(1\)
 (\cite[Proposition~support-disjoint]{PlusOneV1}).
-In particular Conjecture~\ref{conj:residual-moment} at \(m=1\) cannot be proved
-by showing \(\mathrm{d_{TV}}(\mathcal{L}(R),\mu_\delta)\to0\) on the
+In particular the matching case of Theorem~\ref{thm:residual-moment} cannot be
+proved by showing \(\mathrm{d_{TV}}(\mathcal{L}(R),\mu_\delta)\to0\) on the
 residual-sharp event: that event forces \(\mathbf{d}_R=(1+o(1))\delta\) but not
 exact regularity. The correct target is relative variance \(o(1)\) for the
 matching count on the nearly regular residual itself (together with the
@@ -7015,9 +7038,9 @@ event that every residual degree lies in
 \([(1-\varepsilon_0/2)\delta,(1+\varepsilon_0/2)\delta]\)
 (Lemma~residual-sharp of~\cite{PlusOneV1}). The unconditional Bernoulli
 matching second moment diverges
-(\cite[Proposition~bernoulli-moment]{PlusOneV1}), but Conjecture~\ref{conj:residual-moment}
-at \(m=1\) asks only for relative variance \(o(1)\) of \(Y(R)\) given
-\(G\) and \(\mathcal E_\delta\).
+(\cite[Proposition~bernoulli-moment]{PlusOneV1}), while
+Theorem~\ref{thm:residual-moment} at \(m=1\) asks only for relative variance
+\(o(1)\) of \(Y(R)\) given \(G\) and \(\mathcal E_\delta\).
 Theorem~\ref{thm:bern-degree-uniform} converts exact degree conditioning into
 constrained uniformity; Theorem~\ref{thm:residual-matching-constrained} closes
 that moment at exact degree \(\delta\) throughout
@@ -7027,8 +7050,7 @@ residual-sharp window. Remark~\ref{rem:residual-not-unrestricted} records that
 unrestricted \(\mu_\delta\) is the wrong comparison.
 When \(d=o\bigl(n^{3/8}(\log n)^{-1/3}\bigr)\) and
 \(\delta=\Theta\bigl(d^{2/3}(\log n)^{1/3}\bigr)\) one has
-\(\delta(d+\delta)^2/n=o(1)\), so Conjecture~\ref{conj:residual-moment} at
-\(m=1\) holds on that BIM range.
+\(\delta(d+\delta)^2/n=o(1)\), so Theorem~\ref{thm:residual-moment} applies.
 \end{proposition}
 
 \begin{proof}
@@ -7041,31 +7063,47 @@ The scale claim is
 to \(0\) under the stated bound on \(d\).
 \end{proof}
 
-\begin{theorem}[Residual matching moment at McKay scale]
+\begin{corollary}[Residual matching moment at McKay scale]
 \label{thm:residual-moment-m1}
-Assume~\cite[Theorem~4.6]{McK85}. In the matching-peel setting of
-~\cite{PlusOneV1}, write \(\delta:=\lfloor\varepsilon_0 d\rfloor\) with
-\(\varepsilon_0=C_3(\log n/d)^{1/3}\) and \(d/\log n\to\infty\). If
-\[
-\frac{\delta(d+\delta)^2}{n}=o(1)
-\]
-(in particular whenever \(d=o\bigl(n^{3/8}(\log n)^{-1/3}\bigr)\)), then
-writing \(\mathcal E_\delta\) for the residual-sharp window and \(R\) for the
-Bernoulli residual on \(C=K_n\setminus G\),
+Theorem~\ref{thm:residual-moment} at \(m=1\) is the matching case: writing \(Y\)
+for the number of perfect matchings of the residual,
 \[
 \frac{\Var\bigl(Y(R)\bigm|G,\,\mathcal E_\delta\bigr)}
 {\bigl(\EE[Y(R)\mid G,\,\mathcal E_\delta]\bigr)^2}
 \to0
 \]
-uniformly in the peeled \(d\)-factor \(G\). Thus
-Conjecture~\ref{conj:residual-moment} holds at \(m=1\) on this range.
-\end{theorem}
+uniformly in the peeled \(d\)-factor \(G\).
+\end{corollary}
 
-\begin{proof}
+\begin{proof}[Proof of Theorem~\ref{thm:residual-moment}]
 Conditionally on \(G\subset G^*_0\), the residual is Bernoulli on \(C\).
 The event \(\mathcal E_\delta\) has probability \(1-o(1)\) uniformly in \(G\) by
-~\cite[Lemma~residual-sharp]{PlusOneV1}. Apply
-Corollary~\ref{cor:residual-matching-window}.
+~\cite[Lemma~residual-sharp]{PlusOneV1}. Theorem~\ref{thm:bern-degree-uniform}
+identifies the law given each exact degree sequence \(g\) in the window with
+\(\mathrm{Unif}(\Omega(C,g))\).
+
+For exact degree \(\delta\), expand the second-moment ratio of the \(m\)-factor
+count \(Z\) over pairs \(F,F'\in\Omega_m(C)\) as in
+Theorem~\ref{thm:residual-factor-fixed}, replacing unrestricted containment
+probabilities by constrained McKay counts \(N(C,\delta;U)/N(C,\delta)\).
+\cite[Theorem~4.6]{McK85} supplies those counts with host-dependent
+exponentials that cancel in every ratio (as in
+Theorem~\ref{thm:residual-matching-constrained}), leaving a principal ratio
+\(\rho(K)\) of the overlap \(K=\lvert E(F)\cap E(F')\rvert\) times
+\(1+O(\delta(d+\delta)^2/n)=1+o(1)\). For fixed \(m\) one has \(\EE K=O(1)\)
+with exponential tails under \(\mu_m\otimes\mu_m\), and Lemma~laplace
+of~\cite{PlusOneV1} returns
+\[
+\frac{\EE[Z^2]}{(\EE Z)^2}
+=
+1+O\Bigl(\frac1\delta+\frac{\delta^2}{n}+\frac{\delta(d+\delta)^2}{n}\Bigr)
+\to1
+\]
+uniformly in \(G\). Lemma~\ref{lem:residual-window-means} and the law of total
+variance extend the conclusion from exact \(\delta\) to the mixture over the
+sharp window, exactly as in Corollary~\ref{cor:residual-matching-window}
+(the same McKay continuity in \(g\) applies to \(m\)-factor means for fixed
+\(m\)).
 \end{proof}
 
 \begin{theorem}[Bernoulli residual matching mean]
@@ -7171,7 +7209,7 @@ That lemma returns
 \begin{proposition}[General \(m\): two remaining estimates]
 \label{prop:residual-two-gaps}
 Write \(\delta:=\varepsilon_0 d\) and \(m=\Theta\sqrt{d\log n}\) as in
-Conjecture~\ref{conj:config-split}. Closing Conjecture~\ref{conj:residual-moment}
+Conjecture~\ref{conj:config-split}. Closing Conjecture~\ref{conj:residual-moment-bim}
 splits into:
 \begin{enumerate}
 \item an unconstrained \(m\)-factor second moment for nearly regular hosts of
@@ -7180,14 +7218,10 @@ Theorem~\ref{thm:residual-unconstrained}, which needs \(\delta=\Theta(n)\));
 \item a comparison of the residual law of \(R\) with that unconstrained model
 (blocked routes: Bernoulli residual, free complement flatness, hybrid-to-binomial).
 \end{enumerate}
-At every fixed \(m\ge 1\), item~(i) is Theorem~\ref{thm:residual-factor-fixed}
-(and at \(m=1\) it is also the sublinear nesting theorem of~\cite{PlusOneV1}).
-Item~(ii) remains the only gap for each fixed \(m\)
-(Corollary~\ref{cor:residual-matching-proxy} and
-Proposition~\ref{prop:residual-not-tv} at \(m=1\)); the Bernoulli
-first-moment half at \(m=1\) is
-Corollary~\ref{cor:residual-first-moment}, and the unconstrained nearly
-regular matching moment is Proposition~\ref{prop:residual-nearly-regular-matching}.
+At every fixed \(m\ge 1\), both items are settled on the McKay scale by
+Theorem~\ref{thm:residual-moment} (constrained Bern residual); the
+unconstrained comparisons are Theorem~\ref{thm:residual-factor-fixed} and
+Corollary~\ref{cor:residual-first-moment}.
 At the BIM length \(m=\Theta\sqrt{d\log n}\) one has
 \(m/\sqrt\delta=\Theta(d^{1/6}(\log n)^{1/3})\to\infty\), so item~(i) lies past
 the fixed-length regime and needs a sparse-host analogue of
@@ -7238,7 +7272,7 @@ Then
 \]
 in probability, uniformly in \(G\): the second peel-weight flatness of
 Proposition~peel-weights of~\cite{PlusOneV1} holds asymptotically.
-In particular, at \(m=1\), Conjecture~\ref{conj:residual-moment} together with
+In particular, at \(m=1\), Theorem~\ref{thm:residual-moment} together with
 first-moment flatness of \(\EE[N_1(R_G)\mid G]\) yields that asymptotic
 second peel-weight flatness. Corollary~\ref{cor:residual-first-moment}
 identifies that first moment with \(p^{n/2}Z_\partial(G)\);
@@ -7439,18 +7473,18 @@ Proposition~\ref{prop:nm-not-flat} shows that the second peel flatness fails
 literally for \((d,m)=(1,1)\) on six vertices.
 Proposition~\ref{prop:free-not-residual} keeps free complement flatness from
 supplying the peel.
-Proposition~\ref{prop:residual-nearly-reg} places Conjecture~\ref{conj:residual-moment}
+Proposition~\ref{prop:residual-nearly-reg} places Conjecture~\ref{conj:residual-moment-bim}
 on the nearly regular residual degree sequence of scale \(\varepsilon_0 d\).
 Proposition~\ref{prop:zd-not-flat} shows that the third peel-weight flatness
 fails as a literal equality already on \(K_6\), so Conjecture~\ref{conj:config-split}
 needs asymptotic flatness of \(Z_d\) on the host.
-Conjectures~\ref{conj:config-split}, \ref{conj:residual-moment}, and
+Conjectures~\ref{conj:config-split}, \ref{conj:residual-moment-bim}, and
 \ref{conj:Q} stay open.
 The three peel-weight flatnesses of~\cite{PlusOneV1} are a separate
 identification of \(\mathcal{L}_{d,m}\) with \(\nu_D\).
 Together they are Conjecture~\ref{conj:config-split}.
 A second moment on the residual \(R=G^*_0\setminus G\) itself, not on an
-independent Bernoulli graph, is Conjecture~\ref{conj:residual-moment};
+independent Bernoulli graph, is Conjecture~\ref{conj:residual-moment-bim};
 Corollary~\ref{cor:residual-matching-proxy} and
 Proposition~\ref{prop:residual-two-gaps} split that conjecture by \(m\).
 Lemma~\ref{lem:peel-from-factor} records the \(D(F)\)-transfer for the ordered
@@ -7492,20 +7526,23 @@ criterion of Proposition~\ref{prop:iii-as-tail}).
 Free splitting already gives the increment throughout \(d+m=o(n^{1/3})\),
 and is a different coupling.
 
-\paragraph{Conjecture~\ref{conj:residual-moment}.}
-At \(m=1\), Theorem~\ref{thm:residual-moment-m1} closes the conjecture
-throughout \(\delta(d+\delta)^2/n=o(1)\) (McKay scale; includes
-\(d=o(n^{3/8}(\log n)^{-1/3})\)). The ingredients are
-Theorems~\ref{thm:bern-degree-uniform},~\ref{thm:residual-matching-constrained},
-Lemma~\ref{lem:residual-window-means}, and
-Corollary~\ref{cor:residual-matching-window}.
-At BIM length \(m\gg\sqrt\delta\) a sparse-host multi-colour LLT and the
-residual-law comparison remain (Proposition~\ref{prop:residual-two-gaps});
-Lemma~\ref{lem:sparse-package-residues} records the leading package residues
-as \(\lambda\to0\), but does not extend Theorem~\ref{thm:mllt-sparse}.
-Past the McKay scale \(\delta(d+\delta)^2/n\not=o(1)\) the constrained
-enumeration error is no longer negligible. Replacing \(R\) by an
-unconditional Bernoulli graph for the second moment remains blocked.
+\paragraph{Theorem~\ref{thm:residual-moment}.}
+Settled for every fixed \(m\ge 1\) on the McKay scale
+\(\delta(d+\delta)^2/n=o(1)\). The proof is Bern-to-constrained-uniform
+(Theorem~\ref{thm:bern-degree-uniform}), McKay ratios with host cancellation
+(Theorem~\ref{thm:residual-matching-constrained} and its \(m\)-factor
+extension), and the window mixture
+(Lemma~\ref{lem:residual-window-means}).
+
+\paragraph{Conjecture~\ref{conj:residual-moment-bim}.}
+BIM length \(m=\Theta\sqrt{d\log n}\) with \(m\gg\sqrt\delta\): needs a
+sparse-host multi-colour LLT (or equivalent) for constrained \(m\)-factor
+moments past \(\sqrt\delta\), together with the residual-law comparison
+(Proposition~\ref{prop:residual-two-gaps}).
+Lemma~\ref{lem:sparse-package-residues} records package residues as
+\(\lambda\to0\), but does not extend Theorem~\ref{thm:mllt-sparse}.
+Past the McKay scale the constrained enumeration error is no longer
+negligible. Unconditional Bernoulli second moments remain blocked.
 
 \paragraph{Theorem~\ref{thm:factor-moment}.}
 Settled. The past-\(\sqrt{n}\) half is the multi-colour local limit
