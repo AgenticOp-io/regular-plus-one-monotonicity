@@ -8,8 +8,8 @@ alwaysApply: true
 1. `v1/paper/main.tex` is the frozen +1 paper. Edit it only for errata or
    the Gao / arXiv front matter. Do not add sequel theorems there.
 2. New results, attacks, and conjecture work go in `v2/paper/main.tex` and
-   `v2/notes/`. Open named conjectures are Q, config-split, and
-   residual-moment-bim. Closed as theorems: factor-moment, factor-rate,
+   `v2/notes/`.    Open named conjectures are Q, config-split, residual-moment-bim, and
+   residual-factor-sharp. Closed as theorems: factor-moment, factor-rate,
    factor-rate-mid (fail), long-step, residual-moment
    (\(m=o(\sqrt\delta)\), McKay scale). Do not reopen a closed theorem as a
    conjecture.

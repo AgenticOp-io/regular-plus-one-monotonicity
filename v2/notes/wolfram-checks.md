@@ -3094,3 +3094,24 @@ Query: compare 1/(6*delta^3)->0 vs n/delta with delta=o(n)
 Result: for delta=n^a, 0<a<1, first is n^{-3a}->0; second is n^{1-a}->infinity.
 Contradiction of mid-window residue persistence at m=1 recorded as Proposition package-not-persist.
 
+
+
+Query: simplify (Theta(sqrt(d*log(n))))^2 / (Theta(d^(2/3)*(log(n))^(1/3)))^3
+[Input interpretation]
+simplify | θ(sqrt(d log(n)))^2/θ(d^(2/3) log(n)^(1/3))^3
+[Reduced logarithmic form]
+θ(sqrt(log(n^d)))^2/θ(d^(2/3) log(n)^(1/3))^3
+
+
+Query: simplify (d*log(n)) / (d^2 * log(n)) 
+[Input interpretation]
+simplify | (d log(n))/(d^2 log(n))
+[Expanded logarithmic form]
+1/d
+
+## Fallback (BIM scale under m^2/delta^3)
+
+With m=Theta(sqrt(d log n)), delta=Theta(d^{2/3}(log n)^{1/3}):
+m^2/delta^3 = Theta(d log n) / Theta(d^2 log n) = Theta(1/d) -> 0 as d/log n -> infinity.
+Recorded for Proposition residual-sharp-bim.
+

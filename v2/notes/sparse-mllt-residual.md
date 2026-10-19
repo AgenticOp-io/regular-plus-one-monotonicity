@@ -91,10 +91,19 @@ formal scale \(\Theta(n/\delta)\to\infty\). The mid-window residue therefore
 cannot persist at matching length; sparse-host expansions need a different
 leading term (e.g.\ short-cycle / McKay type).
 
+## Sharp rate (Conjecture residual-factor-sharp)
+
+Target: \(\Var Z/(\EE Z)^2=O(m^2/\delta^3+\delta^2 m/n)\) for
+\(m=o(\delta^{3/2})\), \(\delta=o(n^{2/5})\). Recovers matching \(1/(6\delta^3)\);
+numerics at \(n=8,\delta=5\) give relvar\((m=2)/\)relvar\((m=1)\approx4\).
+Proposition residual-sharp-bim: at BIM scales \(m^2/\delta^3=\Theta(1/d)\to0\),
+so the sharp conjecture would close unconstrained item (i).
+
 ## Checkpoint
 
 \(m=o(\sqrt\delta)\) on McKay scale: **closed** (Theorem residual-moment).
 Gao relative error \(O(\delta^2 m/n)\) (requires \(\delta=o(n^{2/5})\), automatic
 on McKay) and overlap leftover \(O(m^2/\delta)\).
-BIM length \(m\gg\sqrt\delta\): Conjecture residual-moment-bim (this note's
-target); package-residue divergence prediction is blocked at \(m=1\).
+BIM length \(m\gg\sqrt\delta\): Conjecture residual-moment-bim; unconstrained
+half is Conjecture residual-factor-sharp; package-residue divergence is
+blocked at \(m=1\).

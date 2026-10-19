@@ -7510,6 +7510,49 @@ and the Gao error \(O(\delta^2 m/n)\) is likewise \(o(1)\). Hence
 \]
 \end{proof}
 
+\begin{conjecture}[Sharp unconstrained \(m\)-factor rate]
+\label{conj:residual-factor-sharp}
+Assume~\cite[Theorem~6]{Gao20}. Let \(n\) be even with \(mn\) even, and let
+\(\delta\to\infty\) and \(m\) satisfy \(\delta n\) even, \(1\le m\le\delta\),
+\(m=o(\delta^{3/2})\), and \(\delta=o(n^{2/5})\). The number \(Z\) of \(m\)-factors of
+a uniform \(\delta\)-regular graph satisfies
+\[
+\frac{\Var Z}{(\EE Z)^2}
+=
+O\Bigl(\frac{m^2}{\delta^3}+\frac{\delta^2 m}{n}\Bigr)\to0.
+\]
+At \(m=1\) this is the matching expansion of~\cite{PlusOneV1}. The length
+\(m=o(\delta^{3/2})\) is the natural envelope of that \(m^2/\delta^3\) rate; the
+crude leftover \(O(m^2/\delta)\) of Theorem~\ref{thm:residual-factor-fixed} stops
+at \(\sqrt\delta\). On \(n=8\), \(\delta=5\), a sample of simple configurations
+gives relative variances in the ratio \(\approx4\) between \(m=2\) and \(m=1\),
+matching \(m^2\).
+\end{conjecture}
+
+\begin{proposition}[BIM unconstrained under sharp leftover]
+\label{prop:residual-sharp-bim}
+Write \(\delta=\Theta\bigl(d^{2/3}(\log n)^{1/3}\bigr)\) and
+\(m=\Theta\sqrt{d\log n}\) as in Conjecture~\ref{conj:residual-moment-bim}.
+Then
+\[
+\frac{m^2}{\delta^3}
+=
+\Theta\Bigl(\frac1d\Bigr)\to0
+\]
+whenever \(d/\log n\to\infty\). Thus Conjecture~\ref{conj:residual-factor-sharp}
+would settle item~(i) of Proposition~\ref{prop:residual-two-gaps} throughout the
+BIM range with \(\delta=o(n^{2/5})\) (in particular
+\(d=o\bigl(n^{3/8}(\log n)^{-1/3}\bigr)\)).
+\end{proposition}
+
+\begin{proof}
+Substitute the displayed scales:
+\(m^2=\Theta(d\log n)\) and
+\(\delta^3=\Theta\bigl(d^2\log n\bigr)\), so
+\(m^2/\delta^3=\Theta(1/d)\), as checked. The constraint
+\(\delta=o(n^{2/5})\) is the Gao window of Theorem~\ref{thm:residual-factor-fixed}.
+\end{proof}
+
 \begin{proposition}[General \(m\): two remaining estimates]
 \label{prop:residual-two-gaps}
 Write \(\delta:=\varepsilon_0 d\) and \(m=\Theta\sqrt{d\log n}\) as in
@@ -7528,7 +7571,9 @@ unconstrained comparison is Theorem~\ref{thm:residual-factor-fixed}, and the
 first-moment side is Corollary~\ref{cor:residual-first-moment}.
 At the BIM length \(m=\Theta\sqrt{d\log n}\) one has
 \(m/\sqrt\delta=\Theta\bigl(d^{1/6}(\log n)^{1/3}\bigr)\to\infty\), so item~(i)
-lies past Theorem~\ref{thm:residual-factor-fixed} and needs a sparse-host
+lies past Theorem~\ref{thm:residual-factor-fixed}. Conjecture~\ref{conj:residual-factor-sharp}
+asks for the sharp rate \(O(m^2/\delta^3)\), which would cover the BIM length by
+Proposition~\ref{prop:residual-sharp-bim}; the fallback is a sparse-host
 analogue of Theorem~\ref{thm:factor-moment} (multi-colour LLT at density
 \(\lambda\to0\)).
 Lemma~\ref{lem:sparse-package-residues} records the leading
@@ -7853,16 +7898,18 @@ BIM length \(m=\Theta\sqrt{d\log n}\) with \(m\gg\sqrt\delta\): needs a
 sparse-host multi-colour LLT (or equivalent) for constrained \(m\)-factor
 moments past \(\sqrt\delta\), together with the residual-law comparison
 (Proposition~\ref{prop:residual-two-gaps}).
-Lemma~\ref{lem:sparse-package-residues} records package residues as
-\(\lambda\to0\), but does not extend Theorem~\ref{thm:mllt-sparse}.
-Proposition~\ref{prop:mllt-vanishing-margin} shows the obstruction is sharp:
-state-pair products degrade to \(\Theta(\lambda)\).
-Proposition~\ref{prop:bim-residual-scale} converts the five-package residue
-into a formal variance scale \(\Theta(n/(\delta m))\) under persistence;
-Proposition~\ref{prop:package-not-persist} rules that persistence out at
-matching length, so the sparse leading term must be of a different shape.
-Past the McKay scale the constrained enumeration error is no longer
-negligible. Unconditional Bernoulli second moments remain blocked.
+Conjecture~\ref{conj:residual-factor-sharp} is the unconstrained half at rate
+\(O(m^2/\delta^3)\); Proposition~\ref{prop:residual-sharp-bim} records that
+this rate vanishes on the BIM scale. Lemma~\ref{lem:sparse-package-residues}
+records package residues as \(\lambda\to0\), but does not extend
+Theorem~\ref{thm:mllt-sparse}. Proposition~\ref{prop:mllt-vanishing-margin}
+shows the obstruction is sharp: state-pair products degrade to
+\(\Theta(\lambda)\). Proposition~\ref{prop:bim-residual-scale} converts the
+five-package residue into a formal variance scale \(\Theta(n/(\delta m))\)
+under persistence; Proposition~\ref{prop:package-not-persist} rules that
+persistence out at matching length. Past the McKay scale the constrained
+enumeration error is no longer negligible. Unconditional Bernoulli second
+moments remain blocked.
 
 \paragraph{Theorem~\ref{thm:factor-moment}.}
 Settled. The past-\(\sqrt{n}\) half is the multi-colour local limit
