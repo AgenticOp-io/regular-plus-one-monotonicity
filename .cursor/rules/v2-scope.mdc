@@ -10,8 +10,9 @@ alwaysApply: true
 2. New results, attacks, and conjecture work go in `v2/paper/main.tex` and
    `v2/notes/`. Open named conjectures are Q, config-split, and
    residual-moment-bim. Closed as theorems: factor-moment, factor-rate,
-   factor-rate-mid (fail), long-step, residual-moment (fixed \(m\), McKay
-   scale). Do not reopen a closed theorem as a conjecture.
+   factor-rate-mid (fail), long-step, residual-moment
+   (\(m=o(\delta^{1/3})\), McKay scale). Do not reopen a closed theorem as a
+   conjecture.
 3. Do not retry attacks blocked in v1.0: hybrid-to-Q, binomial PGF without
    pairwise, leftover-free quadratic PGF, Bernoulli residual as BIM residual,
    config-model second moment at half degree, unsigned Gao main term as a
