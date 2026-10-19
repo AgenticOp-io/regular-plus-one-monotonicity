@@ -8,9 +8,10 @@ alwaysApply: true
 1. `v1/paper/main.tex` is the frozen +1 paper. Edit it only for errata or
    the Gao / arXiv front matter. Do not add sequel theorems there.
 2. New results, attacks, and conjecture work go in `v2/paper/main.tex` and
-   `v2/notes/`. The six named conjectures (Q, config-split, residual-moment,
-   factor-moment, factor-rate, long-step) stay conjectures until a proof in
-   that v2 file supports a theorem.
+   `v2/notes/`. Open named conjectures are Q, config-split, and
+   residual-moment-bim. Closed as theorems: factor-moment, factor-rate,
+   factor-rate-mid (fail), long-step, residual-moment (fixed \(m\), McKay
+   scale). Do not reopen a closed theorem as a conjecture.
 3. Do not retry attacks blocked in v1.0: hybrid-to-Q, binomial PGF without
    pairwise, leftover-free quadratic PGF, Bernoulli residual as BIM residual,
    config-model second moment at half degree, unsigned Gao main term as a
