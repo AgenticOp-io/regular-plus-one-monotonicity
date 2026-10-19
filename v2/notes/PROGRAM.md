@@ -175,12 +175,13 @@ Still missing (no fake closes):
 ## Next
 
 Priority order:
-1. Sparse MLLT error at vanishing \(\lambda\) (or refute package persistence)
-   for Conjecture residual-moment-bim.
-2. Selection (iii) / config-split / Q (two-sided Stieltjes + tilt;
-   second peel-weight follows from residual-moment + first-moment flatness
-   by Proposition residual-to-peel-weight).
-3. Ordered peel \(P_L\) past \(n^{1/3}\) (averaged cubic).
+1. Package persistence of \(\kappa_3,\kappa_4\) at \(\lambda\to0\), or a
+   config-model substitute avoiding MLLT weights
+   (Proposition mllt-vanishing-margin blocks the direct transfer).
+2. Selection (iii) / config-split / Q (tilt under \(\mu_D\);
+   two-sided Stieltjes recorded on \(n=6,8\)).
+3. Ordered peel \(P_L\) past \(n^{1/3}\) (averaged cubic after two-sided
+   containment ratio).
 
 Run `python scripts/approach_screen.py` before expanding an attack.
 Append Wolfram checks to `v2/notes/wolfram-checks.md`.

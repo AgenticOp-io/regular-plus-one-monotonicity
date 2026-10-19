@@ -2921,3 +2921,44 @@ sympy: at b=-5/7 the ratio equals 1; at b>-5/7 the limit is 0; at b<-5/7 the lim
 Hence n/(d**(7/6)(log n)**(5/6))=o(1) iff d=omega(n**(6/7)(log n)**(-5/7)).
 Also series of 287*(1-delta/n)/(216*(delta/n)*m) = 287*n/(216*delta*m) - 287/(216*m) + O(1/n).
 
+
+
+Query: simplify (1-l)/(2*l) + 5*(1-l)/(3*l) + 3*(1-l)/(8*l) - 131*(1-l)/(108*l) - 287*(1-l)/(216*l)
+[Input interpretation]
+simplify | (1 - l)/(2 l) + 5 × (1 - l)/(3 l) + 3 × (1 - l)/(8 l) - 131 × (1 - l)/(108 l) - 287 × (1 - l)/(216 l)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify ((l-a)^2/l)*(1-l) /. a->0
+[error]
+no result
+
+
+Query: simplify (a*(l-a)/l)*((l-a)^2/l) /. a->0
+[error]
+no result
+
+
+Query: Limit[((l-a)^2/l)*(1-l), a->0]
+[Limit]
+lim_(a->0) ((l - a)^2 (1 - l))/l = (1 - l) l
+[Series expansion at a = 0]
+-(l - 1) l + 2 a (l - 1) + a^2 (1/l - 1) + O(a^6)
+(Taylor series)
+
+
+Query: Limit[(a*(l-a)/l)*((l-a)^2/l), a->0]
+[Limit]
+lim_(a->0) ((a (l - a)) (l - a)^2)/(l l) = 0
+[Series expansion at a = 0]
+a l - 3 a^2 + (3 a^3)/l - a^4/l^2 + O(a^6)
+(Taylor series)
+
+Query: Limit of sparse MLLT state-pair products as a->0
+[fallback]
+sympy: ((l-a)^2/l)*(1-l) -> l*(1-l); (a*(l-a)/l)*((l-a)^2/l) -> 0.
+Hence G-coordinate product is Theta(l) and factor-coordinate product is Theta(a*l) for a=o(l).
+

@@ -9,6 +9,10 @@ with \(m/\sqrt\delta\to\infty\) and \(m=o(\delta)\), \(\delta=o(n)\) (in fact
 
 Linear MLLT (Theorem mllt / mllt-sparse) needs \(\lambda-a\ge c\) and
 \(1-\lambda\ge c\). Here \(\lambda=\delta/(n-1)\to 0\).
+Proposition mllt-vanishing-margin: at \(a=o(\lambda)\to0\) the state-pair
+products that feed \(\Sigma\succeq c^3 D_a\) degrade to \(\Theta(\lambda)\)
+(G-coordinate) and \(\Theta(a\lambda)\) (factor), so the sparse MLLT error
+control does not transfer.
 
 ## Live route
 
