@@ -2376,10 +2376,10 @@ Let \(n\) be large and even, let \(\min(D,n-1-D)\ge cn\), and write
 \(|\log\PP(F\subseteq G)-\ell_L|\le CL^2/n\) for every \(L\)-regular \(F\).
 \item[(b)] For \(L\)-regular \(F_1,F_2\) with \(T=|F_1\cap F_2|\),
 \[
-\log\frac{\PP(F_1\cup F_2\subseteq G)}{\PP(F_1\subseteq G)\PP(F_2\subseteq G)}
+\Biggl|\log\frac{\PP(F_1\cup F_2\subseteq G)}{\PP(F_1\subseteq G)\PP(F_2\subseteq G)}
+-T\log\frac1\lambda+\frac{L^2(\lambda^{-1}-1)}2\Biggr|
 \le
-T\log\frac1\lambda-\frac{L^2(\lambda^{-1}-1)}2
-+C\Bigl(\frac{L^3+1}{n}+\frac{LT}{n}\Bigr).
+C\Bigl(\frac{L^3+1}{n}+\frac{LT}{n}\Bigr).
 \]
 \end{enumerate}
 \end{lemma}
@@ -2447,7 +2447,12 @@ Since \(|U|=2s-T\) and \(T\le s\),
 Here \(s^2/N_0=L^2n/(2(n-1))\), as checked, so
 \(s^2\psi''(0)=-L^2(\lambda^{-1}-1)/2+O(L^2/n)\).
 Also \(-\log\lambda(2s)=\log(1/\lambda)+O(L/n)\) and \(T^2/n^2\le LT/n\).
-So \(\Delta[\log M]\) is at most the two main terms of (b) plus
+The quadratic \(-\tfrac12\varLambda^{-1}\boldsymbol v^{\mathsf T}Q^{-1}\boldsymbol v\)
+vanishes on regular hosts and, at \(U\), satisfies
+\(0\ge-\tfrac12\varLambda^{-1}\boldsymbol v^{\mathsf T}Q^{-1}\boldsymbol v
+\ge -C\,LT/n\) because \(\|\boldsymbol v\|_2^2\le\|\boldsymbol v\|_\infty\|\boldsymbol v\|_1
+=O(LT)\). The cubic remainder is \(O(L^3/n)\) in absolute value.
+Hence \(\Delta[\log M]\) equals the two main terms of (b) up to
 \(O(L^3/n+LT/n)\).
 
 \emph{Determinant.}
@@ -2513,15 +2518,18 @@ At \(U\) there are also the \(\boldsymbol\delta\) terms.
 \item Since \(\EE\boldsymbol Y=0\), the term \(i\boldsymbol\delta^{\mathsf T}\boldsymbol Y\) adds nothing to \(\kappa_1\).
 \item It contributes
 \(\frac12\operatorname{Var}(i\boldsymbol\delta^{\mathsf T}\boldsymbol Y)
-=-\frac12\boldsymbol\delta^{\mathsf T}W_U^{-1}\boldsymbol\delta\le0\) to \(\frac12\kappa_2\).
+=-\frac12\boldsymbol\delta^{\mathsf T}W_U^{-1}\boldsymbol\delta\) to \(\frac12\kappa_2\),
+and \(0\ge-\tfrac12\boldsymbol\delta^{\mathsf T}W_U^{-1}\boldsymbol\delta
+\ge -C(\|\boldsymbol\delta\|_1)^2/n=-C(LT)^2/n^3\) since
+\(\|W_U^{-1}\|=O(1/n)\).
 \item Its covariance with the cubic part is \(O(\|\boldsymbol\delta\|_1/n)=O(LT/n^2)\),
 because \(\sum_{jk}|\EE[Y_u(Y_j+Y_k)^3]|=O(1/n)\) for every \(u\).
 \item Its covariance with the quartic part vanishes by parity.
 \end{itemize}
-Hence \(\Delta[\kappa_1+\frac12\kappa_2]\le O(L^2/n+LT/n^2)\).
+Hence \(\bigl|\Delta[\kappa_1+\frac12\kappa_2]\bigr|=O(L^2/n+LT/n^2)\).
 
 Adding the three parts, and using \(L^2/n\le L^3/n\) and \(T/n\le LT/n\),
-proves (b).
+proves the absolute-value form of (b).
 For (a), take \(X=F\) regular. Then \(\log M\) is \(\psi(Ln/2)\). The
 determinant depends on \(F\) only through \(|F|\) up to \(O(L^2/n)\). The
 cumulants are within \(O(L^2/n)\) of their values at \(\emptyset\).
@@ -2551,12 +2559,13 @@ As in the proof of Theorem~\ref{thm:peel-second-moment},
 Every \(F\) in the support of \(\nu_L\) is \(L\)-regular.
 By Lemma~\ref{lem:containment-ratio}(a), the denominator is at least
 \(e^{2\ell_L-2CL^2/n}\), and \(\PP(F_1\subseteq G)\PP(F_2\subseteq G)\le e^{2\ell_L+2CL^2/n}\).
-By Lemma~\ref{lem:containment-ratio}(b), the ratio is therefore at most
+By the two-sided bound of Lemma~\ref{lem:containment-ratio}(b), the ratio is
 \[
-\exp\Bigl(-\frac{L^2(\lambda^{-1}-1)}2+C'\frac{L^3+1}{n}\Bigr)
+\exp\Bigl(-\frac{L^2(\lambda^{-1}-1)}2+O\Bigl(\frac{L^3+1}{n}\Bigr)\Bigr)
 \EE_{\nu_L\otimes\nu_L}\bigl[x^T\bigr],
-\qquad x=\lambda^{-1}e^{CL/n}\le x_0=4/c.
+\qquad x=\lambda^{-1}e^{O(L/n)}\le x_0=4/c,
 \]
+up to a multiplicative factor \(e^{O((L^3+1)/n)}\) from the absolute error.
 Take \(c_1=\min(1/2,c_0(2x_0))\).
 Lemma~\ref{lem:decomp-overlap} gives
 \(\EE[x^T]\le\exp(L^2(x-1)n/(2(n-1))+CL^3/n)\), and
@@ -2592,8 +2601,8 @@ Proposition~\ref{prop:im-containment}, or a uniform bound
 \begin{proposition}[Peel gap is an averaged cubic]
 \label{prop:peel-cubic-gap}
 Fix \(c\in(0,1/2]\) and adopt the notation of
-Theorem~\ref{thm:peel-second-moment-third}. The proof of that theorem reduces
-the second-moment ratio to
+Theorem~\ref{thm:peel-second-moment-third}. Lemma~\ref{lem:containment-ratio}
+is two-sided, so the proof of that theorem reduces the second-moment ratio to
 \[
 \exp\Bigl(O\Bigl(\frac{L^3+1}{n}\Bigr)\Bigr)
 \]
@@ -3611,6 +3620,47 @@ leading \(\Delta\operatorname{Re}h\) package residues for a sparse-host
 multi-colour expansion at density \(\lambda\to0\); they do not by themselves
 extend Theorem~\ref{thm:mllt-sparse}, which still needs
 \(\lambda-a\ge c\) and \(1-\lambda\ge c\).
+Algebraically,
+\[
+\beta_{\mathrm{p64}}+\beta_{\mathrm{C35}}+\beta_{\kappa_4}+\beta_{\kappa_3}
+=
+\frac{287(1-\lambda)}{216\lambda}
+\]
+with \(\beta_{\kappa_4}=3(1-\lambda)/(8\lambda)\) and
+\(\beta_{\kappa_3}=-131(1-\lambda)/(108\lambda)\) as in
+Lemmas~\ref{lem:k4-delta} and~\ref{lem:k3xxw-delta}, so persistence of the four
+package forms is equivalent to the mid-window residue at vanishing \(\lambda\).
+\end{proof}
+
+\begin{proposition}[Linear margins are sharp for the sparse MLLT weights]
+\label{prop:mllt-vanishing-margin}
+In the proof of Theorem~\ref{thm:mllt-sparse}, the hypothesis
+\(\lambda-a\ge c\) and \(1-\lambda\ge c\) is used to obtain state-pair products
+\(\pi_m(s)\pi_m(s')\ge c^3w_i\) for every coordinate \(i\), and thence
+\(c^3D_a\preceq\Sigma_m\preceq mD_a\) and the Gaussian decay
+\(|\chi(u)|\le\exp(-c_1\sum_iw_i\|u_i\|^2)\) with \(c_1=2c^3/\pi^2\).
+If instead \(\lambda\to0\) with \(a=o(\lambda)\), the best \(G\)-coordinate product
+is
+\[
+\frac{(\lambda-a)^2}{\lambda}\cdot(1-\lambda)=\Theta(\lambda),
+\]
+and the best factor-coordinate product is
+\[
+\frac{a(\lambda-a)}{\lambda}\cdot\frac{(\lambda-a)^2}{\lambda}=\Theta(a\lambda).
+\]
+Hence the same argument yields only
+\(\Theta(\lambda)\,D_a\preceq\Sigma_m\) (up to the factor weights) and a decay
+constant \(c_1=\Theta(\lambda)\), so the local-limit error control of
+Theorem~\ref{thm:mllt-sparse} does not transfer to the BIM residual scale
+\(\lambda=\delta/(n-1)\to0\).
+\end{proposition}
+
+\begin{proof}
+The state-pair lower bounds are read from Lemma~\ref{lem:two-factor-identities}
+exactly as in the Weights paragraph of Theorem~\ref{thm:mllt-sparse}. Substituting
+\(a=o(\lambda)\) and \(\lambda\to0\) gives the displayed products. The remainder of
+that paragraph then replaces every occurrence of the constant \(c^3\) by
+\(\Theta(\lambda)\).
 \end{proof}
 
 \begin{proposition}[Formal BIM residual variance scale]
@@ -3646,8 +3696,9 @@ Whenever moreover \(\delta=o(n^{1/2})\) and \(m\le\delta\) one has
 for every such past-\(\sqrt\delta\) moment---in particular throughout the BIM
 range \(d=o\bigl(n^{3/4}/(\log n)^{1/2}\bigr)\).
 This is not a proof of Conjecture~\ref{conj:residual-moment-bim}: the local-limit
-error of Theorem~\ref{thm:mllt-sparse} still needs linear margins, and the
-conjecture asks for a host-restricted moment inside \(E(R)\).
+error of Theorem~\ref{thm:mllt-sparse} fails to transfer at vanishing \(\lambda\)
+by Proposition~\ref{prop:mllt-vanishing-margin}, and the conjecture asks for a
+host-restricted moment inside \(E(R)\).
 \end{proposition}
 
 \begin{proof}
@@ -6263,6 +6314,28 @@ inverse counts remain non-flat across the two types
 (\(a(C_6)\approx 0.296\), \(a(C_3\cup C_3)\approx 0.257\)).
 \end{remark}
 
+\begin{remark}[Two-sided Stieltjes on \(n=8\), \(D=2\)]
+\label{rem:iii-weighted-n8}
+A Monte Carlo sample of \(2500\) complement configurations per type at
+\(n=8\), \(p=\tfrac12\) (seed \(0\)), with all \(3507\) labelled \(2\)-factors,
+gives \(c_n\approx 0.043\) and \(M=1/c_n\approx 23.3\). For representatives of the
+three isomorphism types one obtains approximately
+\begin{center}
+\begin{tabular}{lcccc}
+type & \(a\) & \(\PP(N<M)\) & \(I_{\mathrm{low}}\) & \((a-c_n)/c_n\) \\
+\(C_8\) & \(0.0439\) & \(0.236\) & \(0.0227\) & \(0.024\) \\
+\(C_5\cup C_3\) & \(0.0390\) & \(0.232\) & \(0.0176\) & \(-0.089\) \\
+\(C_4\cup C_4\) & \(0.0429\) & \(0.234\) & \(0.0215\) & \(0.001\) \\
+\end{tabular}
+\end{center}
+The identity \(a-c_n=I_{\mathrm{low}}-I_{\mathrm{surv}}\) of
+Proposition~\ref{prop:iii-two-sided} holds to sampling error on each row.
+Pointwise masses remain \(\Theta(1)\) while the two-sided defects are an order
+of magnitude smaller, yet the \(C_5\cup C_3\) type is still
+\(\approx 0.09\,c_n\) below the mean---so item (iii) fails on this finite
+instance for the same orbit reason as Remark~\ref{rem:iii-weighted-n6}.
+\end{remark}
+
 \begin{proposition}[Edge-disjoint packing misses the bulk]
 \label{prop:packing-miss}
 Given \(G_0\subset G^*_0\), let \(\mathcal P\) be any collection of pairwise
@@ -7657,6 +7730,9 @@ Proposition~\ref{prop:iii-two-sided} identifies the exact defect
 \(a-c_n=I_{\mathrm{low}}-I_{\mathrm{surv}}\); the one-sided bound of
 Proposition~\ref{prop:iii-weighted-tail} is the coarser sufficient condition
 \(I_{\mathrm{low}}=o(c_n)\).
+Remarks~\ref{rem:iii-weighted-n6} and~\ref{rem:iii-weighted-n8} record the
+defect on \(n=6\) (exact) and \(n=8\) (Monte Carlo): two-sided cancellation
+beats the pointwise mass, but orbit gaps remain.
 Free splitting already gives the increment throughout \(d+m=o(n^{1/3})\),
 and is a different coupling.
 
@@ -7675,6 +7751,8 @@ moments past \(\sqrt\delta\), together with the residual-law comparison
 (Proposition~\ref{prop:residual-two-gaps}).
 Lemma~\ref{lem:sparse-package-residues} records package residues as
 \(\lambda\to0\), but does not extend Theorem~\ref{thm:mllt-sparse}.
+Proposition~\ref{prop:mllt-vanishing-margin} shows the obstruction is sharp:
+state-pair products degrade to \(\Theta(\lambda)\).
 Proposition~\ref{prop:bim-residual-scale} converts the five-package residue
 into a formal variance scale \(\Theta(n/(\delta m))\), vanishing iff
 \(d=\omega\bigl(n^{6/7}(\log n)^{-5/7}\bigr)\) and predicted to diverge on the

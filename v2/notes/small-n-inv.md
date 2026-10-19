@@ -70,6 +70,20 @@ Pointwise mass \(\sim c_n\); one-sided \(I_{\mathrm{low}}\sim 0.39\,c_n\) (C₆)
 two-sided difference \(\sim 0.019\,c_n\) on C₆. Remark `rem:iii-weighted-n6`.
 Criterion still fails as \(o(c_n)\) across types.
 
+## Two-sided Stieltjes n=8, D=2, p=1/2 (MC)
+
+2500 trials/type, seed 0, all 3507 factors. \(c_n\approx0.043\),
+\(M\approx23.3\). Remark `rem:iii-weighted-n8`.
+
+| type | \(a\) | \(\PP(N<M)\) | \(I_{\mathrm{low}}\) | \((a-c_n)/c_n\) |
+|------|------:|-------------:|---------------------:|----------------:|
+| C₈ | 0.0439 | 0.236 | 0.0227 | 0.024 |
+| C₅∪C₃ | 0.0390 | 0.232 | 0.0176 | −0.089 |
+| C₄∪C₄ | 0.0429 | 0.234 | 0.0215 | 0.001 |
+
+Identity \(a-c_n=I_{\mathrm{low}}-I_{\mathrm{surv}}\) holds to sampling error.
+\(C_5\cup C_3\) remains the outlier.
+
 ## Switch connectivity on Omega_2
 
 The 2-switch graph on all 70 simple 2-regular graphs is connected.
