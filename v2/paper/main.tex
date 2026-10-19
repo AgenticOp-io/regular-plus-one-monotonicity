@@ -139,8 +139,9 @@ independent matchings conditioned on disjointness, gives relative variance
 (Theorem~\ref{thm:peel-second-moment}), hence peel flatness \(O(L/n)\) at that
 polynomial length (Corollary~\ref{cor:poly-peel-flat}).
 Replacing McKay's formula with the Isaev--McKay \(\beta\)-model
-asymptotics~\cite{IM25} gives
-\(\EE[P_L^2]/(\EE P_L)^2\le\exp(C(L^3+1)/n)\) for \(L\le c_1\sqrt n\)
+asymptotics~\cite{IM25}, and using the two-sided overlap of matching
+decompositions, sandwiches
+\(\EE[P_L^2]/(\EE P_L)^2=\exp(O(L^3+1)/n)\) for \(L\le c_1\sqrt n\)
 (Theorem~\ref{thm:peel-second-moment-third}), and so peel flatness
 \(O(L/n)\) for every \(L\le n^{1/3}\) (Corollary~\ref{cor:peel-flat-third}).
 Writing \(\EE[Z_L^2]/(\EE Z_L)^2\) as a ratio of colouring counts, every term of
@@ -2049,6 +2050,13 @@ Let \(M\) be a uniform perfect matching and \(1\le x\le x_0\). Then
 \le
 \exp\Bigl(-\frac{|U_1|}{n}+\frac{(x-1)|U_2|}{n-1}+C_{x_0}\frac{L^2}{n}\Bigr).
 \]
+If moreover \(U_2\) is a union of at most \(L\) pairwise disjoint perfect
+matchings, the second display is two-sided:
+\[
+\EE\bigl[x^{|M\cap U_2|}1_{M\cap U_1=\emptyset}\bigr]
+=
+\exp\Bigl(-\frac{|U_1|}{n}+\frac{(x-1)|U_2|}{n-1}+O_{x_0}\Bigl(\frac{L^2}{n}\Bigr)\Bigr).
+\]
 \end{lemma}
 
 \begin{proof}
@@ -2076,6 +2084,35 @@ For \(k>n/4\), drop the avoidance event.
 The same proof bounds those terms by \(e^{-\sqrt n}\), which is
 \(e^{-\sqrt n/2}\) times the lower bound \(e^{-L/2}\le e^{-|U_1|/n}\), so it is
 absorbed.
+
+Now assume \(U_2\) is a union of \(\ell\le L\) pairwise disjoint perfect
+matchings. The number of \(k\)-edge matchings in \(U_2\) is then exact:
+\[
+m_k(U_2)=\frac{\ell^k}{k!}\prod_{i=0}^{k-1}\frac{n-2i}{2},
+\]
+so with \(\mu=(x-1)\ell/2\),
+\[
+(x-1)^km_k(U_2)p_k
+=
+\frac{\mu^k}{k!}
+\prod_{i=0}^{k-1}\frac{n-2i}{n-1-2i}.
+\]
+For \(k\le n/4\) the product equals \(\exp(O(k/n))\), since
+\(\log\bigl(1+1/(n-1-2i)\bigr)=1/(n-1-2i)+O(n^{-2})\) and
+\(\sum_{i<k}1/(n-1-2i)=O(k/n)\). Combined with the two-sided McKay
+avoidance bound
+\(\PP(S\subseteq M,\,M\cap U_1=\emptyset)=\exp(-|U_1'|/n'+O(L^2/n))\)
+and the update
+\(|U_1|/n-2kL/n\le|U_1'|/n'\le|U_1|/n+2kL/n\)
+(using \(n/(n-2k)\le1+4k/n\) for \(k\le n/4\)), the \(k\le n/4\) sum is
+\[
+\exp\Bigl(-\frac{|U_1|}{n}+O\Bigl(\frac{L^2}{n}\Bigr)\Bigr)
+\sum_{k\le n/4}\frac{(\mu e^{O(L/n)})^k}{k!}.
+\]
+The Poisson sum equals \(e^\mu\exp(O((\mu^2+\mu)/n))\), and the tail
+\(k>n/4\) is absorbed as before. Finally
+\((x-1)|U_2|/(n-1)=\mu\,n/(n-1)=\mu+O(\mu/n)\) rearranges to the displayed
+main term, as checked.
 \end{proof}
 
 Write \(\nu_L\) for the law of \(M_1\cup\cdots\cup M_L\), where
@@ -2093,11 +2130,11 @@ Fix \(x_0>1\). Let \(n\) be large and even, and let
 Let \(F_1,F_2\) be independent with law \(\nu_L\), and let \(1\le x\le x_0\).
 Then
 \[
-\PP(\mathcal D)\ge\exp\Bigl(-\frac12\binom L2-C\frac{L^3}{n}\Bigr)
+\PP(\mathcal D)=\exp\Bigl(-\frac12\binom L2+O\Bigl(\frac{L^3}{n}\Bigr)\Bigr)
 \quad\text{and}\quad
 \EE\bigl[x^{|F_1\cap F_2|}\bigr]
-\le
-\exp\Bigl(\frac{L^2(x-1)n}{2(n-1)}+C_{x_0}\frac{L^3}{n}\Bigr).
+=
+\exp\Bigl(\frac{L^2(x-1)n}{2(n-1)}+O_{x_0}\Bigl(\frac{L^3}{n}\Bigr)\Bigr).
 \]
 \end{lemma}
 
@@ -2106,7 +2143,7 @@ Expose independent uniform perfect matchings \(M_1,\ldots,M_L\) one at a time.
 On the event that the first \(i-1\) are disjoint, their union has
 \((i-1)n/2\) edges and maximum degree \(i-1\le L\).
 The first part of Lemma~\ref{lem:avoid-overlap} gives conditional
-probability at least \(\exp(-(i-1)/2-CL^2/n)\) that \(M_i\) avoids it.
+probability \(\exp(-(i-1)/2+O(L^2/n))\) that \(M_i\) avoids it.
 Multiplying over \(i\le L\) gives the first claim, since
 \(\sum_{i\le L}(i-1)/2=\binom L2/2\), as checked.
 
@@ -2118,15 +2155,16 @@ where \(K=\sum_i|M_i'\cap F_1|\) and \(F_1=\bigcup_iM_i\).
 Expose the first group, then the second.
 \begin{itemize}
 \item In the first group, \(M_i\) avoids the previous union with conditional
-probability at most \(\exp(-(i-1)/2+CL^2/n)\).
-\item In the second group, apply the second part of
+probability \(\exp(-(i-1)/2+O(L^2/n))\).
+\item In the second group, apply the two-sided factor case of
 Lemma~\ref{lem:avoid-overlap} to \(M_i'\) with \(U_1=M_1'\cup\cdots\cup M_{i-1}'\)
-and \(U_2=F_1\). Here \(|U_1|=(i-1)n/2\) and \(|U_2|=Ln/2\) on the event
-exposed so far. The conditional factor is at most
-\(\exp\bigl(-(i-1)/2+(x-1)Ln/(2(n-1))+CL^2/n\bigr)\).
+and \(U_2=F_1\). Here \(U_2\) is a union of \(L\) pairwise disjoint perfect
+matchings, \(|U_1|=(i-1)n/2\), and \(|U_2|=Ln/2\) on the event exposed so
+far. The conditional factor is
+\(\exp\bigl(-(i-1)/2+(x-1)Ln/(2(n-1))+O(L^2/n)\bigr)\).
 \end{itemize}
-Multiplying the \(2L\) factors and dividing by the lower bound for
-\(\PP(\mathcal D)^2\), the terms \(\pm\binom L2\) cancel. What remains is
+Multiplying the \(2L\) factors and dividing by \(\PP(\mathcal D)^2\), the terms
+\(\pm\binom L2\) cancel. What remains is
 \(L^2(x-1)n/(2(n-1))\) plus \(O(L^3/n)\).
 \end{proof}
 
@@ -2174,10 +2212,10 @@ With \(x=\lambda^{-1}e^{C_1L/n}\le4/c\),
 \exp\Bigl(-\frac{L^2(\lambda^{-1}-1)}2+C\frac{L^3}n+Cn^{-b}\Bigr)\,
 \EE_{\nu_L\otimes\nu_L}\bigl[x^{T}\bigr].
 \]
-Lemma~\ref{lem:decomp-overlap} bounds the expectation by
-\(\exp(L^2(x-1)n/(2(n-1))+CL^3/n)\), and
+Lemma~\ref{lem:decomp-overlap} gives
+\(\EE[x^{T}]=\exp(L^2(x-1)n/(2(n-1))+O(L^3/n))\), and
 \((x-1)n/(2(n-1))-(\lambda^{-1}-1)/2=O(L/n)\).
-The quadratic terms cancel up to \(O(L^3/n)\), and the bound is
+The quadratic terms cancel up to \(O(L^3/n)\), and the ratio is
 \(\exp(O(L^3/n+n^{-b}))=1+O(L^3/n+n^{-b})\), because \(L^3/n\le n^{-1/2}\).
 \end{proof}
 
@@ -2548,7 +2586,11 @@ following holds for \(n\) large and even, \(\min(e,n-1-e)\ge cn\), and
 Let \(P_L\) be the number of ordered \(L\)-tuples of pairwise disjoint perfect
 matchings of the uniform \(e\)-regular graph. Then
 \[
-\frac{\EE[P_L^2]}{(\EE P_L)^2}\le\exp\Bigl(C\,\frac{L^3+1}{n}\Bigr).
+\exp\Bigl(-C\,\frac{L^3+1}{n}\Bigr)
+\le
+\frac{\EE[P_L^2]}{(\EE P_L)^2}
+\le
+\exp\Bigl(C\,\frac{L^3+1}{n}\Bigr).
 \]
 In particular \(\Var P_L/(\EE P_L)^2=O_c(L^3/n)\) for \(L\le n^{1/3}\).
 \end{theorem}
@@ -2562,8 +2604,9 @@ As in the proof of Theorem~\ref{thm:peel-second-moment},
 {\bigl(\EE_{\nu_L}[\PP(F\subseteq G)]\bigr)^2}.
 \]
 Every \(F\) in the support of \(\nu_L\) is \(L\)-regular.
-By Lemma~\ref{lem:containment-ratio}(a), the denominator is at least
-\(e^{2\ell_L-2CL^2/n}\), and \(\PP(F_1\subseteq G)\PP(F_2\subseteq G)\le e^{2\ell_L+2CL^2/n}\).
+By the two-sided bound of Lemma~\ref{lem:containment-ratio}(a), the
+denominator is \(e^{2\ell_L+O(L^2/n)}\), and
+\(\PP(F_1\subseteq G)\PP(F_2\subseteq G)=e^{2\ell_L+O(L^2/n)}\).
 By the two-sided bound of Lemma~\ref{lem:containment-ratio}(b), the ratio is
 \[
 \exp\Bigl(-\frac{L^2(\lambda^{-1}-1)}2+O\Bigl(\frac{L^3+1}{n}\Bigr)\Bigr)
@@ -2573,9 +2616,10 @@ By the two-sided bound of Lemma~\ref{lem:containment-ratio}(b), the ratio is
 up to a multiplicative factor \(e^{O((L^3+1)/n)}\) from the absolute error.
 Take \(c_1=\min(1/2,c_0(2x_0))\).
 Lemma~\ref{lem:decomp-overlap} gives
-\(\EE[x^T]\le\exp(L^2(x-1)n/(2(n-1))+CL^3/n)\), and
+\(\EE[x^T]=\exp(L^2(x-1)n/(2(n-1))+O(L^3/n))\), and
 \((x-1)n/(2(n-1))-(\lambda^{-1}-1)/2=O(L/n)\).
-The quadratic terms cancel up to \(O(L^3/n)\).
+The quadratic terms cancel up to \(O(L^3/n)\), so the ratio is
+\(\exp(O((L^3+1)/n))\).
 \end{proof}
 
 \begin{corollary}[Peel flatness up to \(n^{1/3}\)]
@@ -2606,16 +2650,17 @@ Proposition~\ref{prop:im-containment}, or a uniform bound
 \begin{proposition}[Peel gap is an averaged cubic]
 \label{prop:peel-cubic-gap}
 Fix \(c\in(0,1/2]\) and adopt the notation of
-Theorem~\ref{thm:peel-second-moment-third}. Lemma~\ref{lem:containment-ratio}
-is two-sided, so the proof of that theorem reduces the second-moment ratio to
+Theorem~\ref{thm:peel-second-moment-third}. Lemmas~\ref{lem:containment-ratio}
+and~\ref{lem:decomp-overlap} are both two-sided, so the proof of that theorem
+sandwiches the second-moment ratio as
 \[
 \exp\Bigl(O\Bigl(\frac{L^3+1}{n}\Bigr)\Bigr)
 \]
-after the quadratic overlap terms cancel via Lemmas~\ref{lem:containment-ratio}
-and~\ref{lem:decomp-overlap}. Consequently any improvement of the averaged
-containment ratio that replaces the \(O(L^3/n)\) remainder by \(o(L^3/n)\),
-uniformly for \(L=o(n^{1/2})\) with two linear host margins, upgrades the
-theorem to \(\Var P_L/(\EE P_L)^2\to0\) throughout \(L=o(n^{1/2})\).
+after the quadratic overlap terms cancel. Consequently any improvement of the
+averaged containment ratio that replaces the \(O(L^3/n)\) remainder by
+\(o(L^3/n)\), uniformly for \(L=o(n^{1/2})\) with two linear host margins,
+upgrades the theorem to \(\Var P_L/(\EE P_L)^2\to0\) throughout
+\(L=o(n^{1/2})\).
 The same cubic is the expansion target recorded after
 Proposition~\ref{prop:im-containment}; the dense \(D(F)\)-transfer of
 Proposition~\ref{prop:peel-transfer-threshold} is an independent route.
@@ -2624,9 +2669,9 @@ Proposition~\ref{prop:peel-transfer-threshold} is an independent route.
 \begin{proof}
 Trace the proof of Theorem~\ref{thm:peel-second-moment-third}: after
 Lemma~\ref{lem:containment-ratio}(a)--(b) and Lemma~\ref{lem:decomp-overlap},
-every quadratic contribution cancels up to \(O(L/n)\), leaving an error
-\(O((L^3+1)/n)\) in the exponent. Replacing that error by \(o(L^3/n)\) forces
-the exponent to \(o(1)\) whenever \(L=o(n^{1/2})\).
+every quadratic contribution cancels up to \(O(L/n)\), leaving a two-sided
+error \(O((L^3+1)/n)\) in the exponent. Replacing that error by \(o(L^3/n)\)
+forces the exponent to \(o(1)\) whenever \(L=o(n^{1/2})\).
 \end{proof}
 
 \subsection*{The factor second moment as a colouring count}

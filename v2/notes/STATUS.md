@@ -37,11 +37,21 @@ Bar is 2.0. v1.0 is sent.
   \(C_5\cup C_3\) still \(\approx 0.09\,c_n\) below the mean.
 - **Q**: open; conditional on BIM Conjecture 1.3 (Theorem process-to-Q).
 
+## Also closed (strengthening)
+
+- **peel-second-moment-third** (two-sided sandwich): Lemmas avoid-overlap
+  (factor case) and decomp-overlap are two-sided; Theorem
+  peel-second-moment-third is now
+  \(\exp(\pm C(L^3+1)/n)\) rather than a one-sided upper bound.
+  Range still \(L=o(n^{1/3})\) for variance \(\to0\); the gap remains the
+  averaged cubic (Proposition peel-cubic-gap).
+
 ## Also open (not named)
 
 - Peel second moment past \(n^{1/3}\) (Proposition peel-cubic-gap /
-  peel-transfer-threshold). Lemma containment-ratio is now two-sided; the
-  gap remains the averaged \(O(L^3/n)\) after quadratic cancellation.
+  peel-transfer-threshold). Containment and decomposition overlap are both
+  two-sided; the gap remains the averaged \(O(L^3/n)\) after quadratic
+  cancellation.
 - Lower tail of the matching count \(Y\) (blocked routes unchanged).
 - Residual-moment past McKay scale \(\delta(d+\delta)^2/n\not\to0\).
 
