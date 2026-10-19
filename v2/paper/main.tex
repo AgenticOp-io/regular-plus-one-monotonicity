@@ -2589,6 +2589,32 @@ that gap is the cancellation discussed after
 Proposition~\ref{prop:im-containment}, or a uniform bound
 \(D(F)=(1+o(1))D_0\) strong enough for Lemma~\ref{lem:peel-from-factor}.
 
+\begin{proposition}[Peel gap is an averaged cubic]
+\label{prop:peel-cubic-gap}
+Fix \(c\in(0,1/2]\) and adopt the notation of
+Theorem~\ref{thm:peel-second-moment-third}. The proof of that theorem reduces
+the second-moment ratio to
+\[
+\exp\Bigl(O\Bigl(\frac{L^3+1}{n}\Bigr)\Bigr)
+\]
+after the quadratic overlap terms cancel via Lemmas~\ref{lem:containment-ratio}
+and~\ref{lem:decomp-overlap}. Consequently any improvement of the averaged
+containment ratio that replaces the \(O(L^3/n)\) remainder by \(o(L^3/n)\),
+uniformly for \(L=o(n^{1/2})\) with two linear host margins, upgrades the
+theorem to \(\Var P_L/(\EE P_L)^2\to0\) throughout \(L=o(n^{1/2})\).
+The same cubic is the expansion target recorded after
+Proposition~\ref{prop:im-containment}; the dense \(D(F)\)-transfer of
+Proposition~\ref{prop:peel-transfer-threshold} is an independent route.
+\end{proposition}
+
+\begin{proof}
+Trace the proof of Theorem~\ref{thm:peel-second-moment-third}: after
+Lemma~\ref{lem:containment-ratio}(a)--(b) and Lemma~\ref{lem:decomp-overlap},
+every quadratic contribution cancels up to \(O(L/n)\), leaving an error
+\(O((L^3+1)/n)\) in the exponent. Replacing that error by \(o(L^3/n)\) forces
+the exponent to \(o(1)\) whenever \(L=o(n^{1/2})\).
+\end{proof}
+
 \subsection*{The factor second moment as a colouring count}
 
 The overlap average can be avoided altogether.
@@ -3585,6 +3611,62 @@ leading \(\Delta\operatorname{Re}h\) package residues for a sparse-host
 multi-colour expansion at density \(\lambda\to0\); they do not by themselves
 extend Theorem~\ref{thm:mllt-sparse}, which still needs
 \(\lambda-a\ge c\) and \(1-\lambda\ge c\).
+\end{proof}
+
+\begin{proposition}[Formal BIM residual variance scale]
+\label{prop:bim-residual-scale}
+Write \(\delta=\Theta\bigl(d^{2/3}(\log n)^{1/3}\bigr)\) and
+\(m=\Theta\sqrt{d\log n}\) as in Conjecture~\ref{conj:residual-moment-bim},
+and set \(\lambda=\delta/(n-1)\), \(a=m/(n-1)\). Suppose the five-package
+residue identity of Theorem~\ref{thm:factor-rate-mid-fail} continues to give
+\[
+\Delta\operatorname{Re}h
+\sim
+\frac{287(1-\lambda)}{216\lambda\,na}
+\]
+as \(\lambda\to0\) with \(a=o(\lambda)\)---as Lemma~\ref{lem:sparse-package-residues}
+and the \(\kappa_3,\kappa_4\) forms \(\beta\propto(1-\lambda)/\lambda\) of
+Lemmas~\ref{lem:k3xxw-delta} and~\ref{lem:k4-delta} suggest.
+Then the unconstrained \(m\)-factor relative variance at host degree \(\delta\)
+satisfies
+\[
+\frac{\Var Z}{(\EE Z)^2}
+\sim
+\frac{287(1-\lambda)}{216\lambda\,m}
+=
+\Theta\Bigl(\frac{n}{\delta m}\Bigr)
+=
+\Theta\Bigl(\frac{n}{d^{7/6}(\log n)^{5/6}}\Bigr).
+\]
+In particular this tends to \(0\) if and only if
+\(d=\omega\bigl(n^{6/7}(\log n)^{-5/7}\bigr)\), and tends to infinity throughout
+\(d=o\bigl(n^{6/7}(\log n)^{-5/7}\bigr)\).
+Whenever moreover \(\delta=o(n^{1/2})\) and \(m\le\delta\) one has
+\(\delta m=o(n)\), so the same prediction forces relative variance \(\to\infty\)
+for every such past-\(\sqrt\delta\) moment---in particular throughout the BIM
+range \(d=o\bigl(n^{3/4}/(\log n)^{1/2}\bigr)\).
+This is not a proof of Conjecture~\ref{conj:residual-moment-bim}: the local-limit
+error of Theorem~\ref{thm:mllt-sparse} still needs linear margins, and the
+conjecture asks for a host-restricted moment inside \(E(R)\).
+\end{proposition}
+
+\begin{proof}
+Under the displayed residue,
+\(\EE[Z^2]/(\EE Z)^2=\exp\bigl(\Delta\operatorname{Re}h+o(1/(\lambda na))\bigr)\)
+gives relative variance \(\sim 287(1-\lambda)/(216\lambda m)\). Substituting
+\(\lambda\sim\delta/n\) yields \(\Theta(n/(\delta m))\). With the BIM scales of
+\(\delta\) and \(m\),
+\[
+\delta m
+=
+\Theta\bigl(d^{7/6}(\log n)^{5/6}\bigr),
+\]
+so \(n/(\delta m)=\Theta\bigl(n/(d^{7/6}(\log n)^{5/6})\bigr)\). Writing
+\(d=n^\alpha(\log n)^\beta\), the power of \(n\) is \(1-7\alpha/6\), which is
+negative precisely when \(\alpha>6/7\); on the critical line \(\alpha=6/7\) the
+ratio tends to \(0\) iff \(\beta>-5/7\). Equivalently
+\(d=\omega\bigl(n^{6/7}(\log n)^{-5/7}\bigr)\). If \(\delta=o(n^{1/2})\) and
+\(m\le\delta\) then \(\delta m=o(n)\), whence \(n/(\delta m)\to\infty\).
 \end{proof}
 
 \begin{theorem}[Factor second moment past \(\sqrt n\)]
@@ -6116,6 +6198,48 @@ with Proposition~\ref{prop:iii-as-tail} is
 so the pointwise criterion implies the weighted one, but not conversely.
 \end{proof}
 
+\begin{proposition}[Two-sided Stieltjes criterion for item (iii)]
+\label{prop:iii-two-sided}
+In the setting of Proposition~\ref{prop:iii-weighted-tail}, write
+\(M=1/c_n\) and
+\[
+I_{\mathrm{low}}(G_0)
+:=
+\int_1^{M}\frac{\PP(N<u\mid G_0\subset G^*_0)}{u^2}\,du,
+\qquad
+I_{\mathrm{surv}}(G_0)
+:=
+\int_M^{\infty}\frac{\PP(N\ge u\mid G_0\subset G^*_0)}{u^2}\,du.
+\]
+Then
+\[
+a(G_0)-c_n
+=
+I_{\mathrm{low}}(G_0)-I_{\mathrm{surv}}(G_0).
+\]
+Consequently item (iii) at scale \(c_n\) is equivalent to
+\(I_{\mathrm{low}}-I_{\mathrm{surv}}=o(c_n)\) uniformly in \(G_0\).
+The one-sided bound of Proposition~\ref{prop:iii-weighted-tail} is the coarser
+sufficient condition \(I_{\mathrm{low}}=o(c_n)\), which forces
+\(a\le(1+o(1))c_n\) but ignores cancellation against the upper-survival mass.
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{prop:integral-a} gives
+\(a=\int_1^\infty\PP(N<u)/u^2\,du\). Split at \(M\) and use
+\(\int_M^\infty u^{-2}\,du=c_n\) together with
+\(\PP(N<u)=1-\PP(N\ge u)\) on \([M,\infty)\):
+\[
+a
+=
+I_{\mathrm{low}}
++
+\int_M^\infty\frac{1-\PP(N\ge u)}{u^2}\,du
+=
+I_{\mathrm{low}}+c_n-I_{\mathrm{surv}}.
+\]
+\end{proof}
+
 \begin{remark}[Weighted versus pointwise on \(n=6\), \(D=2\)]
 \label{rem:iii-weighted-n6}
 On the instance of Remark~\ref{rem:small-n-inv} with \(p=\tfrac12\), one has
@@ -6124,15 +6248,18 @@ complement edges gives, for a fixed Hamiltonian cycle,
 \[
 \PP(N<M\mid C_6\subset)\approx 0.334,
 \qquad
-\int_1^{M}\frac{\PP(N<u\mid C_6\subset)}{u^2}\,du
-\approx
-0.030,
+I_{\mathrm{low}}(C_6)\approx 0.114,
+\qquad
+I_{\mathrm{surv}}(C_6)\approx 0.108,
 \]
-so the pointwise mass is about \(1.15\,c_n\) while the weighted integral is about
-\(0.10\,c_n\). The same comparison for a fixed \(C_3\cup C_3\) yields
-\(\approx 0.330\) versus \(\approx 0.018\). The weighted criterion is an order of
-magnitude sharper on this instance, but still not \(o(c_n)\); the inverse
-counts remain non-flat across the two types
+so the pointwise mass is about \(1.15\,c_n\), the one-sided weighted integral is
+about \(0.39\,c_n\), and the two-sided difference is
+\(a(C_6)-c_n\approx 0.0056\approx 0.019\,c_n\). The same comparison for a fixed
+\(C_3\cup C_3\) yields pointwise \(\approx 0.330\),
+\(I_{\mathrm{low}}\approx 0.076\), \(I_{\mathrm{surv}}\approx 0.109\), and
+\(a-c_n\approx -0.033\approx -0.115\,c_n\). Two-sided cancellation is an order of
+magnitude sharper than the pointwise demand on the Hamiltonian type, but the
+inverse counts remain non-flat across the two types
 (\(a(C_6)\approx 0.296\), \(a(C_3\cup C_3)\approx 0.257\)).
 \end{remark}
 
@@ -6763,6 +6890,10 @@ The blocked Bernoulli comparison replaces the constrained host by an
 independent sparse graph and diverges. The remaining targets are an
 unconstrained moment at density \(\lambda\to0\) and a host-restricted moment at
 scale \(\varepsilon_0 d\).
+Proposition~\ref{prop:bim-residual-scale} records the formal package-residue
+scale: relative variance \(\Theta(n/(\delta m))\), vanishing only for
+\(d=\omega\bigl(n^{6/7}(\log n)^{-5/7}\bigr)\) and predicted to diverge throughout
+\(d=o\bigl(n^{3/4}/(\log n)^{1/2}\bigr)\).
 \end{remark}
 
 \begin{proposition}[Residual scale is sublinear]
@@ -7430,7 +7561,9 @@ Chebyshev about the mean of \(N\) is the wrong scale.
 Proposition~\ref{prop:iii-as-tail} rewrites item (iii) as a lower-tail bound
 on \(N\) at the threshold \(1/c_n\).
 Proposition~\ref{prop:integral-a} is the Laplace/Stieltjes form of that
-comparison, and Proposition~\ref{prop:iii-weighted-tail} weakens the
+comparison, and Proposition~\ref{prop:iii-two-sided} identifies the exact
+defect \(a-c_n=I_{\mathrm{low}}-I_{\mathrm{surv}}\); the one-sided bound of
+Proposition~\ref{prop:iii-weighted-tail} weakens the
 pointwise demand to
 \(\int_1^{1/c_n}\PP(N<u\mid\text{containment})/u^2\,du=o(c_n)\).
 Proposition~\ref{prop:indep-rv-closed} evaluates the relative second moment
@@ -7520,9 +7653,10 @@ Hybrid-to-binomial and freeze-and-sprinkle are blocked.
 \paragraph{Conjecture~\ref{conj:config-split}.}
 Item (iii) of Theorem~\ref{thm:selection-reduces} together with the three
 peel-weight flatnesses of~\cite{PlusOneV1}.
-A sufficient criterion for (iii) is the weighted lower-tail bound of
-Proposition~\ref{prop:iii-weighted-tail} (weaker than the pointwise
-criterion of Proposition~\ref{prop:iii-as-tail}).
+Proposition~\ref{prop:iii-two-sided} identifies the exact defect
+\(a-c_n=I_{\mathrm{low}}-I_{\mathrm{surv}}\); the one-sided bound of
+Proposition~\ref{prop:iii-weighted-tail} is the coarser sufficient condition
+\(I_{\mathrm{low}}=o(c_n)\).
 Free splitting already gives the increment throughout \(d+m=o(n^{1/3})\),
 and is a different coupling.
 
@@ -7541,8 +7675,12 @@ moments past \(\sqrt\delta\), together with the residual-law comparison
 (Proposition~\ref{prop:residual-two-gaps}).
 Lemma~\ref{lem:sparse-package-residues} records package residues as
 \(\lambda\to0\), but does not extend Theorem~\ref{thm:mllt-sparse}.
-Past the McKay scale the constrained enumeration error is no longer
-negligible. Unconditional Bernoulli second moments remain blocked.
+Proposition~\ref{prop:bim-residual-scale} converts the five-package residue
+into a formal variance scale \(\Theta(n/(\delta m))\), vanishing iff
+\(d=\omega\bigl(n^{6/7}(\log n)^{-5/7}\bigr)\) and predicted to diverge on the
+bulk BIM range \(d=o(n^{3/4}/\mathrm{polylog})\). Past the McKay scale the
+constrained enumeration error is no longer negligible. Unconditional
+Bernoulli second moments remain blocked.
 
 \paragraph{Theorem~\ref{thm:factor-moment}.}
 Settled. The past-\(\sqrt{n}\) half is the multi-colour local limit

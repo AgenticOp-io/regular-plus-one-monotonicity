@@ -61,7 +61,26 @@ matching concentration. Bernoulli *second* moment still diverges
 - Config second moment at linear degree
 - Almost-regular TV / support-disjoint / unrestricted contiguity
 
+## Formal BIM variance scale (Proposition bim-residual-scale)
+
+If the five-package residue
+\(\Delta\operatorname{Re}h\sim 287(1-\lambda)/(216\lambda\,na)\) persists as
+\(\lambda\to0\) with \(a=o(\lambda)\), then
+\[
+\frac{\Var Z}{(\EE Z)^2}
+\sim
+\Theta\Bigl(\frac{n}{\delta m}\Bigr)
+=
+\Theta\Bigl(\frac{n}{d^{7/6}(\log n)^{5/6}}\Bigr),
+\]
+vanishing iff \(d=\omega(n^{6/7}(\log n)^{-5/7})\), and \(\to\infty\) throughout
+\(d=o(n^{3/4}/\mathrm{polylog})\) (where \(\delta=o(\sqrt n)\) and \(m\le\delta\)
+force \(\delta m=o(n)\)). Package evidence: Lemma sparse-package-residues
+(p64, C35) plus \(\kappa_3,\kappa_4\) forms \(\propto(1-\lambda)/\lambda\).
+Not a conjecture close: MLLT still needs linear margins; host is constrained.
+
 ## Checkpoint
 
 Fixed \(m\) on McKay scale: **closed** (Theorem residual-moment).
-BIM length: Conjecture residual-moment-bim (this note's target).
+BIM length: Conjecture residual-moment-bim (this note's target);
+Proposition bim-residual-scale records the formal obstruction/success split.

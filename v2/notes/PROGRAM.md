@@ -142,30 +142,31 @@ Blocked / identified (do not retry):
   triangle \(\nu/\mu\in[0.885,0.942]\); literal \(Z_1\) not flat on \(K_6\).
 
 Still missing (no fake closes):
-1. Lower-tail of \(N\) at threshold \(1/c_n\) (Proposition iii-as-tail),
-   or the weaker weighted integral
-   \(\int_1^{1/c_n}\PP(N<u)/u^2\,du=o(c_n)\)
-   (Proposition iii-weighted-tail) — not a moment about \(\mathbb{E}[N]\),
+1. Lower-tail of \(N\): exact defect \(a-c_n=I_{\mathrm{low}}-I_{\mathrm{surv}}\)
+   (Proposition iii-two-sided); one-sided \(I_{\mathrm{low}}=o(c_n)\)
+   (Proposition iii-weighted-tail); pointwise at \(1/c_n\)
+   (Proposition iii-as-tail) — not a moment about \(\mathbb{E}[N]\),
    not near-disjoint factors, not switches.
 2. Three peel-weight flatnesses on \(G^*_0\) (asymptotic \(Z_d\), not literal).
 3. Residual moment: **closed** for fixed \(m\) on McKay scale
    (Theorem residual-moment). BIM-length open as Conjecture
    residual-moment-bim (sparse MLLT + residual-law;
-   Proposition residual-two-gaps).
+   Proposition residual-two-gaps; formal scale in
+   Proposition bim-residual-scale).
 4. Binomial thinning or BIM Conjecture 1.3 — not hybrid, not sprinkle.
    That is Conjecture Q at Chernoff scale.
-5. Ordered peel past \(n^{1/3}\): IM25 cubic cancellation, or \(D(F)\)
-   multiplicatively flat on the \(\mu_L\)-bulk
-   (Proposition peel-transfer-threshold; FJS insufficient).
+5. Ordered peel past \(n^{1/3}\): averaged cubic after quadratic cancellation
+   (Proposition peel-cubic-gap), or \(D(F)\) multiplicatively flat on the
+   \(\mu_L\)-bulk (Proposition peel-transfer-threshold; FJS insufficient).
 
 ## Named status
 
 | Conjecture | Status |
 | --- | --- |
 | Q | Open |
-| config-split | Open (iii on single orbits only) |
+| config-split | Open (iii on single orbits only; two-sided Stieltjes recorded) |
 | residual-moment | **Closed** as Theorem residual-moment (fixed \(m\), McKay scale) |
-| residual-moment-bim | Open (BIM length \(m\gg\sqrt\delta\)) |
+| residual-moment-bim | Open (BIM length \(m\gg\sqrt\delta\); formal scale \(\Theta(n/(\delta m))\)) |
 | factor-moment | **Closed** (Theorem factor-moment): complementary + linear-below-sqrt + mllt-sparse for every \(n^{1/2}=o(L)\) |
 | factor-rate | **Closed** as Theorem factor-rate (complementary / dense / linear / \(n^{3/4}=o(L)\)) |
 | factor-rate-mid | **Closed** as Theorem factor-rate-mid-fail: residue \(287(1-\lambda)/(216\lambda\,na)\) |
@@ -174,10 +175,12 @@ Still missing (no fake closes):
 ## Next
 
 Priority order:
-1. Sparse MLLT / residual-law for Conjecture residual-moment-bim.
-2. Selection (iii) / config-split / Q (second peel-weight follows from
-   residual-moment + first-moment flatness by Proposition residual-to-peel-weight).
-3. Ordered peel \(P_L\) past \(n^{1/3}\).
+1. Sparse MLLT error at vanishing \(\lambda\) (or refute package persistence)
+   for Conjecture residual-moment-bim.
+2. Selection (iii) / config-split / Q (two-sided Stieltjes + tilt;
+   second peel-weight follows from residual-moment + first-moment flatness
+   by Proposition residual-to-peel-weight).
+3. Ordered peel \(P_L\) past \(n^{1/3}\) (averaged cubic).
 
 Run `python scripts/approach_screen.py` before expanding an attack.
 Append Wolfram checks to `v2/notes/wolfram-checks.md`.
