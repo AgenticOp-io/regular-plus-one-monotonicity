@@ -3005,3 +3005,65 @@ At delta=n**(2/5) and m=sqrt(delta), delta**2*m/n -> 1 (boundary).
 Hence delta**2*m/n=o(1) throughout delta=o(n**(2/5)) with m=o(sqrt(delta)),
 and m**2/delta=o(1) throughout m=o(sqrt(delta)).
 
+
+
+Query: simplify Sum[(i-1)/2, {i,1,L}] - Binomial[L,2]/2
+[Input interpretation]
+simplify | sum_(i=1)^L (i - 1)/2 - binomial(L, 2)/2
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: simplify Product[(n-2i)/(n-1-2i), {i,0,k-1}] - Exp[Sum[Log[(n-2i)/(n-1-2i)], {i,0,k-1}]]
+[error]
+no result
+
+
+Query: Assuming[n>1 && 0<=k<=n/4, simplify Series[Sum[Log[(n-2i)/(n-1-2i)], {i,0,k-1}], {n, Infinity, 1}]]
+[error]
+no result
+
+
+Query: simplify Log[(n-2i)/(n-1-2i)] - (1/(n-1-2i) + O((n)^(-2)))
+[Input interpretation]
+simplify | log((n - 2 i)/(n - 1 - 2 i)) - (1/(n - 1 - 2 i) + O(1/n^2))
+[Results]
+-O(1/n^2) + 1/(-n + (1 + 2 i)) + log(1 + 1/(n - (1 + 2 i)))
+[Results]
+-O(1/n^2) - 1/(n - (1 + 2 i)) + log(-n + 2 i) - log(-n + (1 + 2 i))
+[Results]
+-O(1/n^2) + (n log((n - 2 i)/(n - (1 + 2 i))) - (1 + 2 i) log((n - 2 i)/(n - (1 + 2 i))) - 1)/(n - (1 + 2 i))
+
+
+Query: simplify (x-1)*L/2 * n/(n-1) - (x-1)*(L*n/2)/(n-1)
+[Input interpretation]
+simplify | (x - 1) × L/2 × n/(n - 1) - (x - 1) × (L × n/2)/(n - 1)
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0
+
+
+Query: Assuming[n>4 && 0<=k<=n/4, simplify Series[Sum[Log[1+1/(n-1-2*i)],{i,0,k-1}], {n, Infinity, 0}]]
+[error]
+no result
+
+## Fallback (exact / asymptotic, no Wolfram pod)
+
+Query: sum_{i=0}^{k-1} log(1+1/(n-1-2i)) for 0<=k<=n/4, n even >4
+Result: equals (1/2)(H_{(n-1)/2} - H_{(n-1-2k)/2}) up to the even-denominator
+identification of the telescoping 1/(n-1-2i) main term; bounds
+0 < sum <= log 2, and for k = o(n) one has sum = k/(n-1) + O(k^2/n^2).
+Checked numerically at n in {100,1000,10000}, k in {1,n/8,n/4}.
+
+
+
+Query: simplify (x-1)*L/2 - (x-1)*(L*n/2)/n
+[Input interpretation]
+simplify | (x - 1) × L/2 - (x - 1) × (L × n/2)/n
+[Result]
+0
+[Quotient and Remainder]
+0 = (0) × 1 + 0

@@ -103,9 +103,11 @@ Still missing:
    Proposition im-containment (Isaev--McKay 2025) supplies containment
    probabilities to any precision for subgraphs of degree \(\le n^{1/2}\),
    so the enumeration range is no longer the obstruction.
-   Lemma containment-ratio, Theorem peel-second-moment-third and Corollary
-   peel-flat-third use it for an upper bound with error \(O((L^3+1)/n)\):
-   peel flatness \(O(L/n)\) for every \(L\le n^{1/3}\).
+   Lemma containment-ratio (two-sided), Lemma avoid-overlap (two-sided on
+   matching factors), Lemma decomp-overlap (two-sided), Theorem
+   peel-second-moment-third and Corollary peel-flat-third sandwich the
+   second-moment ratio as \(\exp(O((L^3+1)/n))\): peel flatness \(O(L/n)\)
+   for every \(L\le n^{1/3}\).
    Route past \(n^{1/3}\): notes/multicolour-llt-skeleton.md (unproved)
    reduces factor-moment at linear \(L\) to a cumulant constant
    \(C(\alpha,\lambda)\) plus a vector outside-region estimate. \(C\equiv0\) is now
