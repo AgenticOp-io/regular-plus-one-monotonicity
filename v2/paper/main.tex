@@ -63,9 +63,9 @@ that coupling to every degree at least \(3\). The same fact places a uniform
 perfect matching inside every degree at least \(3\).
 The mid-window rate fails for every linear density
 (Theorem~\ref{thm:factor-rate-mid-fail}). Residual moment on the McKay scale
-holds for every factor length \(m=o(\delta^{1/3})\)
+holds for every factor length \(m=o(\sqrt\delta)\)
 (Theorem~\ref{thm:residual-moment}); the BIM-length residual
-\(m=\Theta\sqrt{d\log n}\gg\delta^{1/3}\), config-split, and Chernoff-scale Q
+\(m=\Theta\sqrt{d\log n}\gg\sqrt\delta\), config-split, and Chernoff-scale Q
 remain open. The four-linear-margin deletion of every length \(L=o(n)\) is
 Theorem~\ref{thm:long-step}.
 \end{abstract}
@@ -160,7 +160,7 @@ factor rate \(o(L^3/n^3)\) whenever \(n^{3/4}=o(L)\)
 (Theorem~\ref{thm:factor-rate}, Corollary~\ref{cor:factor-rate-sparse}).
 The mid-window rate fails for every linear density
 (Theorem~\ref{thm:factor-rate-mid-fail}). Residual moment for every
-\(m=o(\delta^{1/3})\) on the McKay scale is Theorem~\ref{thm:residual-moment};
+\(m=o(\sqrt\delta)\) on the McKay scale is Theorem~\ref{thm:residual-moment};
 Conjectures~\ref{conj:Q},~\ref{conj:config-split}, and
 ~\ref{conj:residual-moment-bim} stay open.
 
@@ -224,19 +224,20 @@ the rate-\(1/3\) residual is within total variation \(o(1)\) of \(\mu_{d+m}\),
 for \(m=\Theta\sqrt{d\log n}\).
 \end{conjecture}
 
-\begin{theorem}[Residual moment below \(\delta^{1/3}\), McKay scale]
+\begin{theorem}[Residual moment below \(\sqrt\delta\), McKay scale]
 \label{thm:residual-moment}
-Assume~\cite[Theorem~4.6]{McK85}. In the matching-peel setting of
-~\cite{PlusOneV1}, write \(\delta:=\lfloor\varepsilon_0 d\rfloor\) with
-\(\varepsilon_0=C_3(\log n/d)^{1/3}\) and \(d/\log n\to\infty\), and assume
+Assume~\cite[Theorem~4.6]{McK85} and~\cite[Theorem~6]{Gao20}. In the
+matching-peel setting of~\cite{PlusOneV1}, write
+\(\delta:=\lfloor\varepsilon_0 d\rfloor\) with \(\varepsilon_0=C_3(\log n/d)^{1/3}\) and
+\(d/\log n\to\infty\), and assume
 \[
 \frac{\delta(d+\delta)^2}{n}=o(1)
 \]
-(in particular \(d=o\bigl(n^{3/8}(\log n)^{-1/3}\bigr)\)). Let \(m\) satisfy
-\(mn\) even, \(1\le m\le\delta\), and \(m=o(\delta^{1/3})\). Writing
-\(\mathcal E_\delta\) for the residual-sharp window and \(R\) for the Bernoulli
-residual on \(C=K_n\setminus G\), the number \(Z\) of \(m\)-factors of \(R\)
-satisfies
+(in particular \(d=o\bigl(n^{3/8}(\log n)^{-1/3}\bigr)\), which forces
+\(\delta=o(n^{2/5})\)). Let \(m\) satisfy \(mn\) even, \(1\le m\le\delta\), and
+\(m=o(\sqrt\delta)\). Writing \(\mathcal E_\delta\) for the residual-sharp window and
+\(R\) for the Bernoulli residual on \(C=K_n\setminus G\), the number \(Z\) of
+\(m\)-factors of \(R\) satisfies
 \[
 \frac{\Var\bigl(Z\bigm|G,\,\mathcal E_\delta\bigr)}
 {\bigl(\EE[Z\mid G,\,\mathcal E_\delta]\bigr)^2}
@@ -7299,20 +7300,22 @@ exponentials that cancel in every ratio (as in
 Theorem~\ref{thm:residual-matching-constrained}), leaving a principal ratio
 \(\rho(K)\) of the overlap \(K=\lvert E(F)\cap E(F')\rvert\) times
 \(1+O(\delta(d+\delta)^2/n)=1+o(1)\). Under \(\mu_m\otimes\mu_m\) one has
-\(\EE K=\Theta(m^2)=o(\delta^{2/3})\) with subgaussian tails of width \(O(m)\),
+\(\EE K=\Theta(m^2)=o(\delta)\) with subgaussian tails of width \(O(m)\),
 and after entropy cancellation \(\rho(K)=1+O(K/\delta)\) on that window
-(Theorem~\ref{thm:residual-factor-fixed}). Averaging yields
+(Theorem~\ref{thm:residual-factor-fixed}). The McKay scale forces
+\(\delta=o(n^{2/5})\), so the Gao relative error \(O(\delta^2 m/n)\) of that
+theorem is \(o(1)\). Averaging yields
 \[
 \frac{\EE[Z^2]}{(\EE Z)^2}
 =
-1+O\Bigl(\frac{m^3}{\delta}+\frac{m^2}{\delta}+\frac{\delta^2}{n}+\frac{\delta(d+\delta)^2}{n}\Bigr)
+1+O\Bigl(\frac{m^2}{\delta}+\frac{\delta^2 m}{n}+\frac{\delta(d+\delta)^2}{n}\Bigr)
 \to1
 \]
 uniformly in \(G\). Lemma~\ref{lem:residual-window-means} and the law of total
 variance extend the conclusion from exact \(\delta\) to the mixture over the
 sharp window, exactly as in Corollary~\ref{cor:residual-matching-window}
 (the same McKay continuity in \(g\) applies to \(m\)-factor means throughout
-\(m=o(\delta^{1/3})\)).
+\(m=o(\sqrt\delta)\)).
 \end{proof}
 
 \begin{theorem}[Bernoulli residual matching mean]
@@ -7364,11 +7367,11 @@ immediate from \(Z_\partial/(\EE Z_\partial)\to1\). The second-moment obstructio
 is~\cite[Proposition~bernoulli-moment]{PlusOneV1}.
 \end{proof}
 
-\begin{theorem}[Unconstrained factor moment below \(\delta^{1/3}\) at sublinear degree]
+\begin{theorem}[Unconstrained factor moment below \(\sqrt\delta\) at sublinear degree]
 \label{thm:residual-factor-fixed}
 Assume~\cite[Theorem~6]{Gao20}. Let \(n\) be even with \(mn\) even, and let
 \(\delta\to\infty\) and \(m\) satisfy \(\delta n\) even, \(1\le m\le\delta\),
-\(m=o(\delta^{1/3})\), and \(\delta=o(n^{1/2})\). The number \(Z\) of \(m\)-factors of
+\(m=o(\sqrt\delta)\), and \(\delta=o(n^{2/5})\). The number \(Z\) of \(m\)-factors of
 a uniform \(\delta\)-regular graph satisfies
 \[
 \frac{\Var Z}{(\EE Z)^2}\to 0.
@@ -7386,13 +7389,17 @@ Write \(\Omega_m\) for the set of \(m\)-regular graphs on \([n]\), and expand
 \Biggr]
 \]
 with \(G\sim\mu_\delta\). The union \(U=F_1\cup F_2\) has maximum degree at most
-\(2m\) and \(O(mn)\) edges. Theorem~6 of~\cite{Gao20} supplies the subgraph
-probabilities used for perfect matchings in the proof of
-Lemma~ratio-error of~\cite{PlusOneV1}, with host maximum degree \(\Delta=2m\)
-in place of \(2\): each successive edge estimate has relative error
-\(O(\Delta^2/(\delta n))=O(m^2/(\delta n))\), so the product over the
-\(O(mn)\) edges of \(U\) is \(1+O(m^3/\delta)\), uniformly over such \(U\).
-The hypothesis \(m=o(\delta^{1/3})\) forces that product error to \(o(1)\).
+\(2m\) and \(O(mn)\) edges. By~\cite[Theorem~6]{Gao20} (cf.\ the overall relative
+error \(O(\delta^2|H|/n^2)\) recorded after that theorem and in the matching
+case of~\cite[Lemma~ratio-error]{PlusOneV1}), each containment probability
+equals its principal term times
+\[
+1+O\Bigl(\frac{\delta^2\,|U|}{n^2}\Bigr)
+=
+1+O\Bigl(\frac{\delta^2 m}{n}\Bigr),
+\]
+uniformly over such \(U\). The hypothesis \(\delta=o(n^{2/5})\) with
+\(m=o(\sqrt\delta)\) forces \(\delta^2 m/n=o(1)\).
 Write \(K=|E(F_1)\cap E(F_2)|\). Under \(\mu_m\otimes\mu_m\),
 \[
 \EE K
@@ -7401,31 +7408,28 @@ Write \(K=|E(F_1)\cap E(F_2)|\). Under \(\mu_m\otimes\mu_m\),
 =
 \frac{m^2n}{2(n-1)},
 \]
-so \(\EE K=\Theta(m^2)=o(\delta^{2/3})\). Configuration-model comparison of two
+so \(\EE K=\Theta(m^2)=o(\delta)\). Configuration-model comparison of two
 \(m\)-regular graphs (as in~\cite[Lemma~17]{Gao21}) gives subgaussian tails for
 \(K\) of width \(O(m)\) about that mean. After the entropy cancellation in the
-principal terms of~\cite[Theorem~6]{Gao20}, the leftover ratio depends on the
-overlap through a factor \(1+O(K/\delta)\) uniformly on that window: the
-host has \(\delta n/2\) edges, each used by an \(m\)-factor with density
-\(m/\delta\), so an intersection of size \(K\) leaves a relative second-moment
-factor of order \(K/\delta\) once the leading entropy in \(K\) has cancelled
-(matching the \(O(K/D)\) leftover on linear hosts \(D=\Theta(n)\), and reducing
-to the \(O(1/\delta)\) matching error when \(m=1\)). Averaging therefore
-contributes
+principal terms, the leftover ratio depends on the overlap through a factor
+\(1+O(K/\delta)\) uniformly on that window: the host has \(\delta n/2\) edges,
+each used by an \(m\)-factor with density \(m/\delta\), so an intersection of
+size \(K\) leaves a relative second-moment factor of order \(K/\delta\) once the
+leading entropy in \(K\) has cancelled (matching the \(O(K/D)\) leftover on
+linear hosts \(D=\Theta(n)\), and reducing to the \(O(1/\delta)\) matching error
+when \(m=1\)). Averaging therefore contributes
 \[
 O\Bigl(\frac{\EE K}{\delta}\Bigr)
 =
 O\Bigl(\frac{m^2}{\delta}\Bigr)
 =
-o\bigl(\delta^{-1/3}\bigr)
-=
 o(1),
 \]
-and the Gao product error \(O(m^3/\delta)\) is likewise \(o(1)\). Hence
+and the Gao error \(O(\delta^2 m/n)\) is likewise \(o(1)\). Hence
 \[
 \frac{\EE[Z^2]}{(\EE Z)^2}
 =
-1+O\Bigl(\frac{m^3}{\delta}+\frac{m^2}{\delta}+\frac{\delta^2}{n}\Bigr)
+1+O\Bigl(\frac{m^2}{\delta}+\frac{\delta^2 m}{n}\Bigr)
 \to 1.
 \]
 \end{proof}
@@ -7442,12 +7446,12 @@ Theorem~\ref{thm:residual-unconstrained}, which needs \(\delta=\Theta(n)\));
 \item a comparison of the residual law of \(R\) with that unconstrained model
 (blocked routes: Bernoulli residual, free complement flatness, hybrid-to-binomial).
 \end{enumerate}
-Throughout \(m=o(\delta^{1/3})\), both items are settled on the McKay scale by
+Throughout \(m=o(\sqrt\delta)\), both items are settled on the McKay scale by
 Theorem~\ref{thm:residual-moment} (constrained Bern residual); the
 unconstrained comparison is Theorem~\ref{thm:residual-factor-fixed}, and the
 first-moment side is Corollary~\ref{cor:residual-first-moment}.
 At the BIM length \(m=\Theta\sqrt{d\log n}\) one has
-\(m/\delta^{1/3}=\Theta\bigl(d^{5/18}(\log n)^{7/18}\bigr)\to\infty\), so item~(i)
+\(m/\sqrt\delta=\Theta\bigl(d^{1/6}(\log n)^{1/3}\bigr)\to\infty\), so item~(i)
 lies past Theorem~\ref{thm:residual-factor-fixed} and needs a sparse-host
 analogue of Theorem~\ref{thm:factor-moment} (multi-colour LLT at density
 \(\lambda\to0\)).
@@ -7464,13 +7468,13 @@ Proposition~config-loops of~\cite{PlusOneV1}.
 \begin{proof}
 The scale claims are Proposition~\ref{prop:residual-sublinear} and
 \[
-\frac{m}{\delta^{1/3}}
+\frac{m}{\sqrt\delta}
 =
-\Theta\Bigl(d^{5/18}(\log n)^{7/18}\Bigr),
+\Theta\Bigl(d^{1/6}(\log n)^{1/3}\Bigr),
 \]
 together with \(\delta/n^{1/2}=d^{2/3}(\log n)^{1/3}n^{-1/2}\).
 Item~(i) at linear degree is Theorem~\ref{thm:residual-unconstrained}; at
-sublinear degree with \(m=o(\delta^{1/3})\) it is
+sublinear degree with \(m=o(\sqrt\delta)\) and \(\delta=o(n^{2/5})\) it is
 Theorem~\ref{thm:residual-factor-fixed}.
 The blocked comparisons are
 Propositions~bernoulli-moment, free-not-residual, and hybrid-singular
@@ -7760,13 +7764,13 @@ Free splitting already gives the increment throughout \(d+m=o(n^{1/3})\),
 and is a different coupling.
 
 \paragraph{Theorem~\ref{thm:residual-moment}.}
-Settled for every \(m=o(\delta^{1/3})\) on the McKay scale
+Settled for every \(m=o(\sqrt\delta)\) on the McKay scale
 \(\delta(d+\delta)^2/n=o(1)\). The proof is Bern-to-constrained-uniform
-(Theorem~\ref{thm:bern-degree-uniform}), McKay ratios with host cancellation
-and overlap leftover \(O(m^2/\delta)\)
+(Theorem~\ref{thm:bern-degree-uniform}), Gao relative error
+\(O(\delta^2 m/n)\) together with overlap leftover \(O(m^2/\delta)\)
 (Theorem~\ref{thm:residual-factor-fixed} and the constrained expansion), and
 the window mixture (Lemma~\ref{lem:residual-window-means}).
-The BIM length \(m=\Theta\sqrt{d\log n}\) still exceeds \(\delta^{1/3}\).
+The BIM length \(m=\Theta\sqrt{d\log n}\) still exceeds \(\sqrt\delta\).
 
 \paragraph{Conjecture~\ref{conj:residual-moment-bim}.}
 BIM length \(m=\Theta\sqrt{d\log n}\) with \(m\gg\sqrt\delta\): needs a

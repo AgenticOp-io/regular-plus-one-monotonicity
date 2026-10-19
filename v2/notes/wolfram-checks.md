@@ -2990,3 +2990,18 @@ At m=delta**(1/3) one has m**3/delta -> 1.
 Hence Gao product error O(m**3/delta) and overlap leftover O(m**2/delta) are o(1)
 throughout m=o(delta**(1/3)).
 
+
+Query: Gao relative error delta**2*m/n and overlap m**2/delta for m=o(sqrt(delta))
+[fallback]
+sympy: on McKay-edge scales delta**(5/2)/n -> 0; at delta=n**(2/5) and m=sqrt(delta),
+delta**2*m/n -> 1 (boundary). Hence delta**2*m/n=o(1) throughout
+delta=o(n**(2/5)) with m=o(sqrt(delta)), and m**2/delta=o(1) throughout m=o(sqrt(delta)).
+
+
+Query: Gao relative error delta**2*m/n and overlap m**2/delta for m=o(sqrt(delta))
+[fallback]
+sympy: on McKay-edge scale delta ~ n**(1/4), delta**(5/2)/n -> 0.
+At delta=n**(2/5) and m=sqrt(delta), delta**2*m/n -> 1 (boundary).
+Hence delta**2*m/n=o(1) throughout delta=o(n**(2/5)) with m=o(sqrt(delta)),
+and m**2/delta=o(1) throughout m=o(sqrt(delta)).
+

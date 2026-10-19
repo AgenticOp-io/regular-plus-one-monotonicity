@@ -85,9 +85,9 @@ Not a conjecture close: MLLT still needs linear margins; host is constrained.
 
 ## Checkpoint
 
-\(m=o(\delta^{1/3})\) on McKay scale: **closed** (Theorem residual-moment;
-upgrade from fixed \(m\)). Gao product error \(O(m^3/\delta)\) and overlap
-leftover \(O(m^2/\delta)\).
-BIM length \(m\gg\delta^{1/3}\): Conjecture residual-moment-bim (this note's
+\(m=o(\sqrt\delta)\) on McKay scale: **closed** (Theorem residual-moment).
+Gao relative error \(O(\delta^2 m/n)\) (requires \(\delta=o(n^{2/5})\), automatic
+on McKay) and overlap leftover \(O(m^2/\delta)\).
+BIM length \(m\gg\sqrt\delta\): Conjecture residual-moment-bim (this note's
 target); Proposition bim-residual-scale records the formal
 obstruction/success split.
