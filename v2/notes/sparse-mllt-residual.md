@@ -101,9 +101,9 @@ so the sharp conjecture would close unconstrained item (i).
 
 ## Checkpoint
 
-\(m=o(\sqrt\delta)\) on McKay scale: **closed** (Theorem residual-moment).
-Gao relative error \(O(\delta^2 m/n)\) (requires \(\delta=o(n^{2/5})\), automatic
-on McKay) and overlap leftover \(O(m^2/\delta)\).
-BIM length \(m\gg\sqrt\delta\): Conjecture residual-moment-bim; unconstrained
-half is Conjecture residual-factor-sharp; package-residue divergence is
-blocked at \(m=1\).
+Matchings on the McKay scale: **closed** (Theorem residual-moment).
+The extension \(1<m=o(\sqrt\delta)\) is withdrawn (Proposition overlap-mass):
+the second-moment sum is not carried by the uniform window \(K=\Theta(m^2)\).
+That range, and the longer length \(m=o(\delta^{3/2})\), are Conjecture
+residual-factor-sharp. BIM host-restricted moment remains
+Conjecture residual-moment-bim. Package-residue divergence is blocked at \(m=1\).

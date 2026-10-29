@@ -3115,3 +3115,21 @@ With m=Theta(sqrt(d log n)), delta=Theta(d^{2/3}(log n)^{1/3}):
 m^2/delta^3 = Theta(d log n) / Theta(d^2 log n) = Theta(1/d) -> 0 as d/log n -> infinity.
 Recorded for Proposition residual-sharp-bim.
 
+
+
+Query: Series[-(1/(2*d)) + (2*d/n)*(n*(d-2)*Log[(d-2)/d]/2 - n*(d-1)*Log[(d-1)/d] + n*Log[d-1] - n*Log[d] + 1/2), {d, Infinity, 1}]
+[Input interpretation]
+series | -1/(2 d) + (2 × d/n) (n (d - 2) (1/2 log((d - 2)/d)) - n (d - 1) log((d - 1)/d) + n log(d - 1) - n log(d) + 1/2) | point | d = ∞
+order | d^1
+[Series expansion at d = ∞]
+d/n - 1 + O((1/d)^1)
+(Taylor series)
+
+
+Query: Series[(d-2)*Log[(d-2)/d]/2 - (d-1)*Log[(d-1)/d] + Log[d-1] - Log[d], {d, Infinity, 2}]
+[Input interpretation]
+series | (d - 2) (1/2 log((d - 2)/d)) - (d - 1) log((d - 1)/d) + log(d - 1) - log(d) | point | d = ∞
+order | d^2
+[Series expansion at d = ∞]
+-1/(2 d) + O((1/d)^3)
+(Laurent series)
