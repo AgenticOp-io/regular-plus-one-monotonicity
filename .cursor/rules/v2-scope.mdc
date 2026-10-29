@@ -9,9 +9,10 @@ alwaysApply: true
    the Gao / arXiv front matter. Do not add sequel theorems there.
 2. New results, attacks, and conjecture work go in `v2/paper/main.tex` and
    `v2/notes/`.    Open named conjectures are Q, config-split, residual-moment-bim, and
-   residual-factor-sharp. Closed as theorems: factor-moment, factor-rate,
+   residual-factor-sharp (includes \(1<m=o(\sqrt\delta)\), withdrawn from
+   residual-moment). Closed as theorems: factor-moment, factor-rate,
    factor-rate-mid (fail), long-step, residual-moment
-   (\(m=o(\sqrt\delta)\), McKay scale). Do not reopen a closed theorem as a
+   (matchings, McKay scale). Do not reopen a closed theorem as a
    conjecture.
 3. Do not retry attacks blocked in v1.0: hybrid-to-Q, binomial PGF without
    pairwise, leftover-free quadratic PGF, Bernoulli residual as BIM residual,

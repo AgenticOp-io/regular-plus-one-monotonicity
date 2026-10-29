@@ -150,11 +150,11 @@ Still missing (no fake closes):
    (Proposition iii-as-tail) — not a moment about \(\mathbb{E}[N]\),
    not near-disjoint factors, not switches.
 2. Three peel-weight flatnesses on \(G^*_0\) (asymptotic \(Z_d\), not literal).
-3. Residual moment: **closed** for \(m=o(\sqrt\delta)\) on McKay scale
-   (Theorem residual-moment; Gao error \(O(\delta^2 m/n)\)). BIM-length open
-   as Conjecture residual-moment-bim (sparse MLLT + residual-law;
-   Proposition residual-two-gaps; formal scale in
-   Proposition bim-residual-scale).
+3. Residual moment: **closed** for matchings on the McKay scale
+   (Theorem residual-moment). Lengths \(m>1\) are Conjecture
+   residual-factor-sharp (Proposition overlap-mass withdraws the
+   uniform-window leftover). BIM-length host-restricted moment is
+   Conjecture residual-moment-bim.
 4. Binomial thinning or BIM Conjecture 1.3 — not hybrid, not sprinkle.
    That is Conjecture Q at Chernoff scale.
 5. Ordered peel past \(n^{1/3}\): averaged cubic after quadratic cancellation
@@ -167,7 +167,7 @@ Still missing (no fake closes):
 | --- | --- |
 | Q | Open |
 | config-split | Open (iii on single orbits only; two-sided Stieltjes recorded) |
-| residual-moment | **Closed** as Theorem residual-moment (\(m=o(\sqrt\delta)\), McKay scale) |
+| residual-moment | **Closed** for matchings (Theorem residual-moment). \(m>1\) open as residual-factor-sharp |
 | residual-moment-bim | Open (BIM length \(m\gg\sqrt\delta\); formal scale \(\Theta(n/(\delta m))\)) |
 | factor-moment | **Closed** (Theorem factor-moment): complementary + linear-below-sqrt + mllt-sparse for every \(n^{1/2}=o(L)\) |
 | factor-rate | **Closed** as Theorem factor-rate (complementary / dense / linear / \(n^{3/4}=o(L)\)) |

@@ -63,11 +63,13 @@ that coupling to every degree at least \(3\). The same fact places a uniform
 perfect matching inside every degree at least \(3\).
 The mid-window rate fails for every linear density
 (Theorem~\ref{thm:factor-rate-mid-fail}). Residual moment on the McKay scale
-holds for every factor length \(m=o(\sqrt\delta)\)
-(Theorem~\ref{thm:residual-moment}); the BIM-length residual
-\(m=\Theta\sqrt{d\log n}\gg\sqrt\delta\), config-split, and Chernoff-scale Q
-remain open. The four-linear-margin deletion of every length \(L=o(n)\) is
-Theorem~\ref{thm:long-step}.
+holds for matchings
+(Theorem~\ref{thm:residual-moment}); lengths \(1<m=o(\sqrt\delta)\) are not
+reached by a uniform-overlap estimate
+(Proposition~\ref{prop:overlap-mass}) and stay in
+Conjecture~\ref{conj:residual-factor-sharp}. The BIM-length residual,
+config-split, and Chernoff-scale Q remain open. The four-linear-margin
+deletion of every length \(L=o(n)\) is Theorem~\ref{thm:long-step}.
 \end{abstract}
 
 \tableofcontents
@@ -160,10 +162,11 @@ second moment for every \(n^{1/2}=o(L)\)
 factor rate \(o(L^3/n^3)\) whenever \(n^{3/4}=o(L)\)
 (Theorem~\ref{thm:factor-rate}, Corollary~\ref{cor:factor-rate-sparse}).
 The mid-window rate fails for every linear density
-(Theorem~\ref{thm:factor-rate-mid-fail}). Residual moment for every
-\(m=o(\sqrt\delta)\) on the McKay scale is Theorem~\ref{thm:residual-moment};
-Conjectures~\ref{conj:Q},~\ref{conj:config-split}, and
-~\ref{conj:residual-moment-bim} stay open.
+(Theorem~\ref{thm:factor-rate-mid-fail}). Residual moment on the McKay scale
+is settled for matchings (Theorem~\ref{thm:residual-moment}).
+Conjectures~\ref{conj:Q},~\ref{conj:config-split},
+~\ref{conj:residual-moment-bim}, and~\ref{conj:residual-factor-sharp}
+stay open.
 
 The attacks that stop at a signed \(O(L^3/n)\) or a disjoint-support
 comparison are proved in~\cite{PlusOneV1}.
@@ -225,26 +228,28 @@ the rate-\(1/3\) residual is within total variation \(o(1)\) of \(\mu_{d+m}\),
 for \(m=\Theta\sqrt{d\log n}\).
 \end{conjecture}
 
-\begin{theorem}[Residual moment below \(\sqrt\delta\), McKay scale]
+\begin{theorem}[Residual matching moment, McKay scale]
 \label{thm:residual-moment}
-Assume~\cite[Theorem~4.6]{McK85} and~\cite[Theorem~6]{Gao20}. In the
-matching-peel setting of~\cite{PlusOneV1}, write
-\(\delta:=\lfloor\varepsilon_0 d\rfloor\) with \(\varepsilon_0=C_3(\log n/d)^{1/3}\) and
-\(d/\log n\to\infty\), and assume
+Assume~\cite[Theorem~4.6]{McK85}. In the matching-peel setting
+of~\cite{PlusOneV1}, write \(\delta:=\lfloor\varepsilon_0 d\rfloor\) with
+\(\varepsilon_0=C_3(\log n/d)^{1/3}\) and \(d/\log n\to\infty\), and assume
 \[
 \frac{\delta(d+\delta)^2}{n}=o(1)
 \]
-(in particular \(d=o\bigl(n^{3/8}(\log n)^{-1/3}\bigr)\), which forces
-\(\delta=o(n^{2/5})\)). Let \(m\) satisfy \(mn\) even, \(1\le m\le\delta\), and
-\(m=o(\sqrt\delta)\). Writing \(\mathcal E_\delta\) for the residual-sharp window and
-\(R\) for the Bernoulli residual on \(C=K_n\setminus G\), the number \(Z\) of
-\(m\)-factors of \(R\) satisfies
+(in particular \(d=o\bigl(n^{3/8}(\log n)^{-1/3}\bigr)\)).
+Writing \(\mathcal E_\delta\) for the residual-sharp window and \(R\) for the
+Bernoulli residual on \(C=K_n\setminus G\), the number \(Y\) of perfect
+matchings of \(R\) satisfies
 \[
-\frac{\Var\bigl(Z\bigm|G,\,\mathcal E_\delta\bigr)}
-{\bigl(\EE[Z\mid G,\,\mathcal E_\delta]\bigr)^2}
+\frac{\Var\bigl(Y\bigm|G,\,\mathcal E_\delta\bigr)}
+{\bigl(\EE[Y\mid G,\,\mathcal E_\delta]\bigr)^2}
 \to0
 \]
 uniformly in the peeled \(d\)-factor \(G\).
+The extension to \(m\)-factors with \(1<m=o(\sqrt\delta)\) is
+Conjecture~\ref{conj:residual-factor-sharp}: the overlap bound used in an
+earlier draft does not control the second moment
+(Proposition~\ref{prop:overlap-mass}).
 \end{theorem}
 
 \begin{conjecture}[Residual moment at BIM length]
@@ -7360,37 +7365,14 @@ uniformly in the peeled \(d\)-factor \(G\).
 \end{corollary}
 
 \begin{proof}[Proof of Theorem~\ref{thm:residual-moment}]
-Conditionally on \(G\subset G^*_0\), the residual is Bernoulli on \(C\).
-The event \(\mathcal E_\delta\) has probability \(1-o(1)\) uniformly in \(G\) by
-~\cite[Lemma~residual-sharp]{PlusOneV1}. Theorem~\ref{thm:bern-degree-uniform}
-identifies the law given each exact degree sequence \(g\) in the window with
+This is Theorem~\ref{thm:residual-matching-constrained} on each exact degree
+in the sharp window, extended to the mixture by
+Lemma~\ref{lem:residual-window-means} and
+Corollary~\ref{cor:residual-matching-window}. The event \(\mathcal E_\delta\)
+has probability \(1-o(1)\) uniformly in \(G\) by
+~\cite[Lemma~residual-sharp]{PlusOneV1}, and
+Theorem~\ref{thm:bern-degree-uniform} identifies the conditional law with
 \(\mathrm{Unif}(\Omega(C,g))\).
-
-For exact degree \(\delta\), expand the second-moment ratio of the \(m\)-factor
-count \(Z\) over pairs \(F,F'\in\Omega_m(C)\) as in
-Theorem~\ref{thm:residual-factor-fixed}, replacing unrestricted containment
-probabilities by constrained McKay counts \(N(C,\delta;U)/N(C,\delta)\).
-\cite[Theorem~4.6]{McK85} supplies those counts with host-dependent
-exponentials that cancel in every ratio (as in
-Theorem~\ref{thm:residual-matching-constrained}), leaving a principal ratio
-\(\rho(K)\) of the overlap \(K=\lvert E(F)\cap E(F')\rvert\) times
-\(1+O(\delta(d+\delta)^2/n)=1+o(1)\). Under \(\mu_m\otimes\mu_m\) one has
-\(\EE K=\Theta(m^2)=o(\delta)\) with subgaussian tails of width \(O(m)\),
-and after entropy cancellation \(\rho(K)=1+O(K/\delta)\) on that window
-(Theorem~\ref{thm:residual-factor-fixed}). The McKay scale forces
-\(\delta=o(n^{2/5})\), so the Gao relative error \(O(\delta^2 m/n)\) of that
-theorem is \(o(1)\). Averaging yields
-\[
-\frac{\EE[Z^2]}{(\EE Z)^2}
-=
-1+O\Bigl(\frac{m^2}{\delta}+\frac{\delta^2 m}{n}+\frac{\delta(d+\delta)^2}{n}\Bigr)
-\to1
-\]
-uniformly in \(G\). Lemma~\ref{lem:residual-window-means} and the law of total
-variance extend the conclusion from exact \(\delta\) to the mixture over the
-sharp window, exactly as in Corollary~\ref{cor:residual-matching-window}
-(the same McKay continuity in \(g\) applies to \(m\)-factor means throughout
-\(m=o(\sqrt\delta)\)).
 \end{proof}
 
 \begin{theorem}[Bernoulli residual matching mean]
@@ -7442,72 +7424,53 @@ immediate from \(Z_\partial/(\EE Z_\partial)\to1\). The second-moment obstructio
 is~\cite[Proposition~bernoulli-moment]{PlusOneV1}.
 \end{proof}
 
-\begin{theorem}[Unconstrained factor moment below \(\sqrt\delta\) at sublinear degree]
-\label{thm:residual-factor-fixed}
-Assume~\cite[Theorem~6]{Gao20}. Let \(n\) be even with \(mn\) even, and let
-\(\delta\to\infty\) and \(m\) satisfy \(\delta n\) even, \(1\le m\le\delta\),
-\(m=o(\sqrt\delta)\), and \(\delta=o(n^{2/5})\). The number \(Z\) of \(m\)-factors of
-a uniform \(\delta\)-regular graph satisfies
+\begin{proposition}[Uniform overlap does not carry the second moment]
+\label{prop:overlap-mass}
+Let \(\delta\to\infty\) with \(\delta=o(n)\), and let \(\rho(k)\) be the ratio of
+containment probabilities, in the uniform \(\delta\)-regular graph, for two
+perfect matchings of \(K_n\) with overlap \(k\). The principal term of
+\cite[Corollary~15]{Gao21} at overlap \(0\) gives
 \[
-\frac{\Var Z}{(\EE Z)^2}\to 0.
+\log\rho(0)=-\frac{n}{2\delta}+O\Bigl(\frac{n}{\delta^3}\Bigr).
+\]
+In particular \(\rho(k)\) is not \(1+O(k/\delta)\) on the window \(k=O(1)\) that
+carries the uniform overlap (\(\EE K=\Theta(1)\)).
+\cite[Lemma~18]{Gao21} places the sum computing \(\EE[Y^2]\) at overlap
+\(k\sim n/(2\delta)\). An \(m\)-factor second moment is therefore not evaluated
+by restricting to the uniform window \(K=\Theta(m^2)\) and inserting
+\(1+O(K/\delta)\).
+\end{proposition}
+
+\begin{proof}
+At overlap \(0\) the principal-term logarithm, divided by \(n\), is
+\[
+\frac{d-2}{2}\log\frac{d-2}{d}-(d-1)\log\frac{d-1}{d}+\log(d-1)-\log d
+\]
+with \(d=\delta\). Its expansion at infinity is \(-1/(2d)+O(d^{-3})\), as
+checked, so the logarithm itself is \(-n/(2\delta)+O(n/\delta^3)\) up to the
+\(O(1)\) contribution of \(\phi(d,0)\) and the constant factors in
+\(\rho_1\). The location of the second-moment sum is
+\cite[Lemma~18]{Gao21}.
+\end{proof}
+
+\begin{theorem}[Unconstrained matching moment at sublinear degree]
+\label{thm:residual-factor-fixed}
+Assume~\cite[Theorem~6]{Gao20}. Let \(n\) be even and let \(\delta\to\infty\)
+satisfy \(\delta n\) even and \(\delta=o(n^{1/2})\). The number \(Y\) of perfect
+matchings of a uniform \(\delta\)-regular graph satisfies
+\[
+\frac{\Var Y}{(\EE Y)^2}
+=
+\frac1{6\delta^3}+O\Bigl(\delta^{-4}+\frac{\delta}{n}\Bigr).
 \]
 \end{theorem}
 
 \begin{proof}
-Write \(\Omega_m\) for the set of \(m\)-regular graphs on \([n]\), and expand
-\[
-\frac{\EE[Z^2]}{(\EE Z)^2}
-=
-\EE_{F_1,F_2\sim\mu_m\otimes\mu_m}
-\Biggl[
-\frac{\PP(F_1\cup F_2\subseteq G)}{\PP(F_1\subseteq G)\PP(F_2\subseteq G)}
-\Biggr]
-\]
-with \(G\sim\mu_\delta\). The union \(U=F_1\cup F_2\) has maximum degree at most
-\(2m\) and \(O(mn)\) edges. By~\cite[Theorem~6]{Gao20} (cf.\ the overall relative
-error \(O(\delta^2|H|/n^2)\) recorded after that theorem and in the matching
-case of~\cite[Lemma~ratio-error]{PlusOneV1}), each containment probability
-equals its principal term times
-\[
-1+O\Bigl(\frac{\delta^2\,|U|}{n^2}\Bigr)
-=
-1+O\Bigl(\frac{\delta^2 m}{n}\Bigr),
-\]
-uniformly over such \(U\). The hypothesis \(\delta=o(n^{2/5})\) with
-\(m=o(\sqrt\delta)\) forces \(\delta^2 m/n=o(1)\).
-Write \(K=|E(F_1)\cap E(F_2)|\). Under \(\mu_m\otimes\mu_m\),
-\[
-\EE K
-=
-\binom{n}{2}\Bigl(\frac{m}{n-1}\Bigr)^2
-=
-\frac{m^2n}{2(n-1)},
-\]
-so \(\EE K=\Theta(m^2)=o(\delta)\). Configuration-model comparison of two
-\(m\)-regular graphs (as in~\cite[Lemma~17]{Gao21}) gives subgaussian tails for
-\(K\) of width \(O(m)\) about that mean. After the entropy cancellation in the
-principal terms, the leftover ratio depends on the overlap through a factor
-\(1+O(K/\delta)\) uniformly on that window: the host has \(\delta n/2\) edges,
-each used by an \(m\)-factor with density \(m/\delta\), so an intersection of
-size \(K\) leaves a relative second-moment factor of order \(K/\delta\) once the
-leading entropy in \(K\) has cancelled (matching the \(O(K/D)\) leftover on
-linear hosts \(D=\Theta(n)\); at \(m=1\) the true matching error is
-\(O(1/\delta^3)\), of which \(O(K/\delta)\) is a convenient upper envelope).
-Averaging therefore contributes
-\[
-O\Bigl(\frac{\EE K}{\delta}\Bigr)
-=
-O\Bigl(\frac{m^2}{\delta}\Bigr)
-=
-o(1),
-\]
-and the Gao error \(O(\delta^2 m/n)\) is likewise \(o(1)\). Hence
-\[
-\frac{\EE[Z^2]}{(\EE Z)^2}
-=
-1+O\Bigl(\frac{m^2}{\delta}+\frac{\delta^2 m}{n}\Bigr)
-\to 1.
-\]
+This is Lemma~ratio-error of~\cite{PlusOneV1}. The extension from matchings to
+\(m\)-factors with \(m=o(\sqrt\delta)\) does not follow by averaging a factor
+\(1+O(K/\delta)\) on the uniform overlap window
+(Proposition~\ref{prop:overlap-mass}); that extension is
+Conjecture~\ref{conj:residual-factor-sharp}.
 \end{proof}
 
 \begin{conjecture}[Sharp unconstrained \(m\)-factor rate]
@@ -7521,11 +7484,12 @@ a uniform \(\delta\)-regular graph satisfies
 =
 O\Bigl(\frac{m^2}{\delta^3}+\frac{\delta^2 m}{n}\Bigr)\to0.
 \]
-At \(m=1\) this is the matching expansion of~\cite{PlusOneV1}. The live
-attack is to extend the Laplace / algebraic expansion of~\cite[§3.4]{Gao21}
-from matchings to \(m\)-factors, replacing the crude leftover
-\(O(m^2/\delta)\) of Theorem~\ref{thm:residual-factor-fixed}. The length
-\(m=o(\delta^{3/2})\) is the natural envelope of that \(m^2/\delta^3\) rate.
+At \(m=1\) this is Theorem~\ref{thm:residual-factor-fixed}. The same
+statement for \(1<m=o(\sqrt\delta)\) was the range previously written as a
+theorem; Proposition~\ref{prop:overlap-mass} withdraws that argument.
+The live attack is to extend the Laplace expansion of~\cite[§3.4]{Gao21}
+from matchings to \(m\)-factors. The length \(m=o(\delta^{3/2})\) is the
+natural envelope of the \(m^2/\delta^3\) rate.
 On \(n=8\), \(\delta=5\), a sample of simple configurations gives relative
 variances in the ratio \(\approx4\) between \(m=2\) and \(m=1\), matching
 \(m^2\).
@@ -7551,8 +7515,10 @@ BIM range with \(\delta=o(n^{2/5})\) (in particular
 Substitute the displayed scales:
 \(m^2=\Theta(d\log n)\) and
 \(\delta^3=\Theta\bigl(d^2\log n\bigr)\), so
-\(m^2/\delta^3=\Theta(1/d)\), as checked. The constraint
-\(\delta=o(n^{2/5})\) is the Gao window of Theorem~\ref{thm:residual-factor-fixed}.
+\(m^2/\delta^3=\Theta(1/d)\), as checked. The constraint \(\delta=o(n^{2/5})\) is the range in which the Gao relative
+error \(O(\delta^2 m/n)\) of~\cite[Theorem~6]{Gao20} tends to \(0\) for
+\(m=o(\sqrt\delta)\). Under the longer length \(m=o(\delta^{3/2})\) one needs
+the separate requirement \(\delta^2 m/n\to0\).
 \end{proof}
 
 \begin{proposition}[General \(m\): two remaining estimates]
@@ -7567,17 +7533,19 @@ Theorem~\ref{thm:residual-unconstrained}, which needs \(\delta=\Theta(n)\));
 \item a comparison of the residual law of \(R\) with that unconstrained model
 (blocked routes: Bernoulli residual, free complement flatness, hybrid-to-binomial).
 \end{enumerate}
-Throughout \(m=o(\sqrt\delta)\), both items are settled on the McKay scale by
-Theorem~\ref{thm:residual-moment} (constrained Bern residual); the
-unconstrained comparison is Theorem~\ref{thm:residual-factor-fixed}, and the
-first-moment side is Corollary~\ref{cor:residual-first-moment}.
+At \(m=1\), both items are settled on the McKay scale by
+Theorem~\ref{thm:residual-moment}; the unconstrained comparison is
+Theorem~\ref{thm:residual-factor-fixed}, and the first-moment side is
+Corollary~\ref{cor:residual-first-moment}.
+For \(1<m=o(\sqrt\delta)\) the uniform-overlap estimate does not close
+item~(i) (Proposition~\ref{prop:overlap-mass}).
 At the BIM length \(m=\Theta\sqrt{d\log n}\) one has
-\(m/\sqrt\delta=\Theta\bigl(d^{1/6}(\log n)^{1/3}\bigr)\to\infty\), so item~(i)
-lies past Theorem~\ref{thm:residual-factor-fixed}. Conjecture~\ref{conj:residual-factor-sharp}
-asks for the sharp rate \(O(m^2/\delta^3)\), which would cover the BIM length by
-Proposition~\ref{prop:residual-sharp-bim}; the fallback is a sparse-host
-analogue of Theorem~\ref{thm:factor-moment} (multi-colour LLT at density
-\(\lambda\to0\)).
+\(m/\sqrt\delta=\Theta\bigl(d^{1/6}(\log n)^{1/3}\bigr)\to\infty\).
+Conjecture~\ref{conj:residual-factor-sharp} asks for the rate
+\(O(m^2/\delta^3)\) on \(m=o(\delta^{3/2})\), which covers both the withdrawn
+range and the BIM length by Proposition~\ref{prop:residual-sharp-bim}.
+The fallback is a sparse-host analogue of Theorem~\ref{thm:factor-moment}
+(multi-colour LLT at density \(\lambda\to0\)).
 Lemma~\ref{lem:sparse-package-residues} records the leading
 \(\Phi_6+\tfrac12\operatorname{Var}W\) and C35 residues as \(\lambda\to0\) with
 \(a=o(\lambda)\); the local-limit hypotheses of
@@ -7597,8 +7565,8 @@ The scale claims are Proposition~\ref{prop:residual-sublinear} and
 \]
 together with \(\delta/n^{1/2}=d^{2/3}(\log n)^{1/3}n^{-1/2}\).
 Item~(i) at linear degree is Theorem~\ref{thm:residual-unconstrained}; at
-sublinear degree with \(m=o(\sqrt\delta)\) and \(\delta=o(n^{2/5})\) it is
-Theorem~\ref{thm:residual-factor-fixed}.
+sublinear degree it is Theorem~\ref{thm:residual-factor-fixed} for \(m=1\),
+and Conjecture~\ref{conj:residual-factor-sharp} for \(m>1\).
 The blocked comparisons are
 Propositions~bernoulli-moment, free-not-residual, and hybrid-singular
 of~\cite{PlusOneV1}.
@@ -7887,13 +7855,13 @@ Free splitting already gives the increment throughout \(d+m=o(n^{1/3})\),
 and is a different coupling.
 
 \paragraph{Theorem~\ref{thm:residual-moment}.}
-Settled for every \(m=o(\sqrt\delta)\) on the McKay scale
-\(\delta(d+\delta)^2/n=o(1)\). The proof is Bern-to-constrained-uniform
-(Theorem~\ref{thm:bern-degree-uniform}), Gao relative error
-\(O(\delta^2 m/n)\) together with overlap leftover \(O(m^2/\delta)\)
-(Theorem~\ref{thm:residual-factor-fixed} and the constrained expansion), and
-the window mixture (Lemma~\ref{lem:residual-window-means}).
-The BIM length \(m=\Theta\sqrt{d\log n}\) still exceeds \(\sqrt\delta\).
+Settled for matchings on the McKay scale
+\(\delta(d+\delta)^2/n=o(1)\), by the constrained expansion
+(Theorem~\ref{thm:residual-matching-constrained}) and the window mixture
+(Lemma~\ref{lem:residual-window-means}).
+Proposition~\ref{prop:overlap-mass} withdraws the overlap leftover
+\(O(m^2/\delta)\) for \(m>1\). Lengths \(1<m=o(\delta^{3/2})\) are
+Conjecture~\ref{conj:residual-factor-sharp}.
 
 \paragraph{Conjecture~\ref{conj:residual-moment-bim}.}
 BIM length \(m=\Theta\sqrt{d\log n}\) with \(m\gg\sqrt\delta\): needs a

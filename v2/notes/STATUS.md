@@ -12,12 +12,12 @@ Bar is 2.0. v1.0 is sent.
   \(287(1-\lambda)/(216\lambda\,na)\).
 - **long-step** (Theorem long-step / long-step-all).
 - **unconstrained residual** (Theorem residual-unconstrained).
-- **residual-moment** (Theorem residual-moment): every
-  \(m=o(\sqrt\delta)\) on the McKay scale
-  \(\delta(d+\delta)^2/n=o(1)\), including
-  \(d=o(n^{3/8}(\log n)^{-1/3})\). Bern\(|\deg=\mathrm{Unif}(\Omega(C,g))\);
-  Gao relative error \(O(\delta^2 m/n)\); overlap leftover \(O(m^2/\delta)\);
-  window mixture. (Upgraded from fixed \(m\), then from \(m=o(\delta^{1/3})\).)
+- **residual-moment** (Theorem residual-moment): matchings \(m=1\) on the
+  McKay scale \(\delta(d+\delta)^2/n=o(1)\). The extension to
+  \(1<m=o(\sqrt\delta)\) was withdrawn: the uniform-overlap factor
+  \(1+O(K/\delta)\) does not control the second moment
+  (Proposition overlap-mass). That range is part of
+  Conjecture residual-factor-sharp.
 
 ## Open (named)
 
@@ -60,8 +60,10 @@ Bar is 2.0. v1.0 is sent.
 ## Next
 
 1. Prove Conjecture residual-factor-sharp (rate \(O(m^2/\delta^3)\), length
-   \(m=o(\delta^{3/2})\)): would settle unconstrained BIM item (i) since
-   \(m^2/\delta^3=\Theta(1/d)\to0\) (Proposition residual-sharp-bim).
+   \(m=o(\delta^{3/2})\), including the withdrawn range \(m=o(\sqrt\delta)\)):
+   Laplace at overlap \(K\sim nm^2/(2\delta)\), not at the uniform mean
+   \(\Theta(m^2)\). At BIM scales \(m^2/\delta^3=\Theta(1/d)\to0\)
+   (Proposition residual-sharp-bim).
 2. Tilt comparison under \(\mu_D\) / orbit-flat inverse counts → config-split.
 3. Cancel the averaged cubic in the two-sided containment ratio → peel
    past \(n^{1/3}\).
