@@ -5414,6 +5414,53 @@ The product is therefore \(\exp(O_{C,\kappa}(L^3/n))\).
 The identity \((L^4/n^2)/(L^3/n)=L/n\) was checked.
 \end{proof}
 
+\begin{proposition}[Sparse overlap mode exceeds the switching budget]
+\label{prop:switching-sparse-mode}
+Let \(m\ge 1\) and \(\delta\to\infty\) satisfy \(\delta=o(n)\) and \(m=o(\delta)\).
+Set \(K=\lfloor nm^2/(2\delta)\rfloor\). Suppose that for every \(1\le\ell\le K\),
+\[
+\frac{f(\ell)}{f(\ell-1)}
+=
+\frac{m^2}{2\ell}\,(1+\theta_\ell),
+\qquad
+|\theta_\ell|
+\le
+C\Bigl(\frac{\ell}{mn}+\frac{m}{n}\Bigr).
+\]
+Then
+\[
+\prod_{\ell=1}^{K}(1+\theta_\ell)
+=
+\exp\Bigl(O_C\Bigl(\frac{nm^3}{\delta^2}+\frac{m^3}{\delta}\Bigr)\Bigr).
+\]
+For every fixed \(m\ge 2\) and \(\delta=o(n^{1/2})\) the exponent bound tends to
+infinity. At \(\delta=n^{2/5}\) it is \(\Theta(m^3 n^{1/5})\), which tends to
+infinity. The ratio bound recorded in Remark~\ref{rem:binomial-edge} is
+therefore too coarse, on the overlap \(K\sim nm^2/(2\delta)\) that carries an
+\(m\)-factor second moment, to prove
+Conjecture~\ref{conj:residual-factor-sharp}.
+\end{proposition}
+
+\begin{proof}
+The hypotheses \(m=o(\delta)\) and \(\delta=o(n)\) force
+\(\ell/(mn)\le m/(2\delta)\to 0\) and \(m/n\to 0\), so \(|\theta_\ell|\le 1/2\)
+for large \(n\). Hence \(\log(1+\theta_\ell)=\theta_\ell+O(\theta_\ell^2)\).
+The sum of the absolute values is at most
+\[
+C\sum_{\ell=1}^{K}\Bigl(\frac{\ell}{mn}+\frac{m}{n}\Bigr)
+\le
+C\Bigl(\frac{K(K+1)}{2mn}+\frac{Km}{n}\Bigr).
+\]
+Substituting \(K=nm^2/(2\delta)\) makes the two summands
+\(nm^3/(8\delta^2)\) and \(m^3/(2\delta)\), as checked.
+The quadratic error is absorbed in the same order because
+\(\max|\theta_\ell|=O(m/\delta+m/n)\).
+The resulting bound tends to infinity for fixed \(m\ge 2\) and
+\(\delta=o(n^{1/2})\), since \(n/\delta^2\to\infty\).
+At \(\delta=n^{2/5}\) one has \(nm^3/\delta^2=\Theta(m^3 n^{1/5})\), and
+\(n^{1/5}\to\infty\), as checked.
+\end{proof}
+
 \begin{theorem}[One deletion below the square root]
 \label{thm:deletion-below-sqrt}
 Let \(n\) be even and let \(d,L\) satisfy
@@ -7487,8 +7534,13 @@ O\Bigl(\frac{m^2}{\delta^3}+\frac{\delta^2 m}{n}\Bigr)\to0.
 At \(m=1\) this is Theorem~\ref{thm:residual-factor-fixed}. The same
 statement for \(1<m=o(\sqrt\delta)\) was the range previously written as a
 theorem; Proposition~\ref{prop:overlap-mass} withdraws that argument.
-The live attack is to extend the Laplace expansion of~\cite[§3.4]{Gao21}
-from matchings to \(m\)-factors. The length \(m=o(\delta^{3/2})\) is the
+The live attack is a ratio for pairs of \(m\)-factors sharp enough to run
+the Laplace expansion of~\cite[§3.4]{Gao21} at overlap
+\(K\sim nm^2/(2\delta)\). The pair-count bound of
+Remark~\ref{rem:binomial-edge}, summed out to that overlap, is too coarse
+to close the estimate
+(Proposition~\ref{prop:switching-sparse-mode}).
+The length \(m=o(\delta^{3/2})\) is the
 natural envelope of the \(m^2/\delta^3\) rate.
 On \(n=8\), \(\delta=5\), a sample of simple configurations gives relative
 variances in the ratio \(\approx4\) between \(m=2\) and \(m=1\), matching

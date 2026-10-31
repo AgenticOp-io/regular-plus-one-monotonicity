@@ -3133,3 +3133,22 @@ order | d^2
 [Series expansion at d = ∞]
 -1/(2 d) + O((1/d)^3)
 (Laurent series)
+
+
+Query: (n*m^2/(2*d))^2/(2*m*n) - n*m^3/(8*d^2)
+[Input]
+(n × m^2/(2 d))^2/(2 m n) - n × m^3/(8 d^2)
+[Result]
+0
+
+
+Query: (n*m^2/(2*d))*m/n - m^3/(2*d)
+[Input]
+(n × m^2/(2 d)) × m/n - m^3/(2 d)
+[Result]
+0
+
+
+Query: Limit[n^(1/5), n->Infinity]
+[Limit]
+lim_(n->∞) n^(1/5) = ∞

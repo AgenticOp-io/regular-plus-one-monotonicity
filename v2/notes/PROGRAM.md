@@ -153,7 +153,9 @@ Still missing (no fake closes):
 3. Residual moment: **closed** for matchings on the McKay scale
    (Theorem residual-moment). Lengths \(m>1\) are Conjecture
    residual-factor-sharp (Proposition overlap-mass withdraws the
-   uniform-window leftover). BIM-length host-restricted moment is
+   uniform-window leftover). The switching bound \(O(\ell/(mn)+m/n)\)
+   does not reach overlap \(K\sim nm^2/(2\delta)\)
+   (Proposition switching-sparse-mode). BIM-length host-restricted moment is
    Conjecture residual-moment-bim.
 4. Binomial thinning or BIM Conjecture 1.3 — not hybrid, not sprinkle.
    That is Conjecture Q at Chernoff scale.

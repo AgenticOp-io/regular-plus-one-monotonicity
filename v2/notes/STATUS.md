@@ -62,8 +62,10 @@ Bar is 2.0. v1.0 is sent.
 1. Prove Conjecture residual-factor-sharp (rate \(O(m^2/\delta^3)\), length
    \(m=o(\delta^{3/2})\), including the withdrawn range \(m=o(\sqrt\delta)\)):
    Laplace at overlap \(K\sim nm^2/(2\delta)\), not at the uniform mean
-   \(\Theta(m^2)\). At BIM scales \(m^2/\delta^3=\Theta(1/d)\to0\)
-   (Proposition residual-sharp-bim).
+   \(\Theta(m^2)\). The switching bound \(O(\ell/(mn)+m/n)\) accumulates to
+   \(\exp(O(nm^3/\delta^2))\) on that overlap and does not tend to \(1\) for
+   \(m\ge 2\) (Proposition switching-sparse-mode). At BIM scales
+   \(m^2/\delta^3=\Theta(1/d)\to0\) (Proposition residual-sharp-bim).
 2. Tilt comparison under \(\mu_D\) / orbit-flat inverse counts → config-split.
 3. Cancel the averaged cubic in the two-sided containment ratio → peel
    past \(n^{1/3}\).
