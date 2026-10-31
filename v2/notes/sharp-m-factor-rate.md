@@ -10,7 +10,29 @@ m=o(\delta^{3/2}),\ \delta=o(n^{2/5}).
 \]
 Proposition residual-sharp-bim: at BIM scales this is \(\Theta(1/d)\to0\).
 
-## Attack
+## Fixed degree: closed (Theorem fixed-degree-factor)
+
+In the pairing model the second moment is exactly
+\(\sum_A \PP(S=A)\,M(A)M(mn-A)^2M((\delta-2m)n+A)M(\delta n)/[M(mn)M((\delta-m)n)]^2\),
+where \(S\) is a sum of \(n\) iid Hypergeometric\((\delta,m,m)\)
+(Lemma factor-one-dim; checked against exhaustive pairings).
+Global max: Hoeffding \(I_{hyp}\ge I_{bin}\), and \(I_{bin}\ge\psi\) by
+\(G'\propto x(1-2p)\) after \(m\le\delta/2\) (Lemma factor-rate).
+Laplace: \(\psi''\sigma^2=\delta/(2(\delta-1))\), giving
+\(\sqrt{(\delta-1)/(\delta-2)}\) for every \(m\) (Lemma factor-config).
+Cycle effects \((-1/(\delta-1))^k\) for every \(m\), so small subgraph
+conditioning gives relvar \(\to\exp(\sum_{k\ge3}x^k/2k)-1\approx1/(6\delta^3)\).
+**The \(m^2\) in the conjecture is not sharp**; the true shape is \(m\)-free
+and symmetric under \(m\leftrightarrow\delta-m\).
+Scripts: `v2/scripts/fixed_degree_factor/`.
+
+Open for \(\delta\to\infty\): \(\PP(\text{simple}\mid F)\) and
+\(\PP(\text{simple}\mid F_1,F_2)\) relative to \(\PP(\text{simple})\), to
+relative error \(o(\delta^{-3})\). These are McKay enumerations for the
+four-class degree sequences \((a_v),(m-a_v),(m-a_v),(\delta-2m+a_v)\).
+That is the Gao21 step, at a general \(m\).
+
+## Attack (superseded route)
 
 Apply McKay enumeration ([McK85, Thm 4.6] = Gao21 Thm 14) to
 \[

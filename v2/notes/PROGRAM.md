@@ -155,7 +155,10 @@ Still missing (no fake closes):
    residual-factor-sharp (Proposition overlap-mass withdraws the
    uniform-window leftover). The switching bound \(O(\ell/(mn)+m/n)\)
    does not reach overlap \(K\sim nm^2/(2\delta)\)
-   (Proposition switching-sparse-mode). BIM-length host-restricted moment is
+   (Proposition switching-sparse-mode). At fixed \(\delta\) every \(m\) is
+   proved, with the \(m\)-free matching limit (Theorem fixed-degree-factor).
+   For \(\delta\to\infty\) what is open is the simple-graph transfer of the
+   exact 1-D pairing sum. BIM-length host-restricted moment is
    Conjecture residual-moment-bim.
 4. Binomial thinning or BIM Conjecture 1.3 — not hybrid, not sprinkle.
    That is Conjecture Q at Chernoff scale.
