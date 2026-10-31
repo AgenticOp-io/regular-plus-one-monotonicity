@@ -66,6 +66,13 @@ Bar is 2.0. v1.0 is sent.
    \(\exp(O(nm^3/\delta^2))\) on that overlap and does not tend to \(1\) for
    \(m\ge 2\) (Proposition switching-sparse-mode). At BIM scales
    \(m^2/\delta^3=\Theta(1/d)\to0\) (Proposition residual-sharp-bim).
+   **Fixed degree closed** (Theorem fixed-degree-factor): for fixed
+   \(\delta\ge3\) and every \(1\le m\le\delta-1\), relvar \(\to
+   \exp(\sum_{k\ge3}x^k/(2k))-1\), \(x=1/(\delta-1)\), the matching limit,
+   \(m\)-free. The pairing second moment is an exact 1-D hypergeometric sum
+   (Lemma factor-one-dim), so there is no overlap-window problem. The gap
+   left for \(\delta\to\infty\) is the passage from the pairing to the simple
+   graph at relative error \(o(\delta^{-3})\) (Remark fixed-degree-sharp).
 2. Tilt comparison under \(\mu_D\) / orbit-flat inverse counts → config-split.
 3. Cancel the averaged cubic in the two-sided containment ratio → peel
    past \(n^{1/3}\).

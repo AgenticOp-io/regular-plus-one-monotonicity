@@ -5361,12 +5361,242 @@ At \(D=4,5,6\) the formula gives about \(0.0083\), \(0.0032\), and
 \(D=5\), and about \(5\cdot 10^{-4}\) at \(D=6\).
 The counts are of the predicted order, nearly the same for the two lengths
 at \(D=4\), and far below \(L(L-1)/(2n)\).
-This is a prediction, not a proof.
+At fixed \(D\) the prediction is a theorem
+(Theorem~\ref{thm:fixed-degree-factor} below).
 The method rests on a configuration-model second moment, and at linear degree
 that model has a loop with probability \(1-o(1)\), so the second-moment input
 is the open statement itself.
-A proof along these lines needs the cycle-count identification on the simple
-graph, with every \(k\le n\) controlled, not only fixed \(k\).
+A proof along these lines at linear degree needs the cycle-count
+identification on the simple graph, with every \(k\le n\) controlled, not only
+fixed \(k\).
+\end{remark}
+
+In the pairing model on \(n\) cells of \(D\) points, an \(L\)-factor is a set of
+pairs covering exactly \(L\) points of each cell. Write \(M(N)=(N-1)!!\) for
+even \(N\ge0\) and \(M(N)=0\) for odd \(N\). Let
+\[
+h_a=\binom{L}{a}\binom{D-L}{L-a}\Big/\binom{D}{L},
+\qquad
+\max(0,2L-D)\le a\le L,
+\]
+be the hypergeometric law of the overlap of two uniform \(L\)-subsets of a
+\(D\)-set, let \(S\) be a sum of \(n\) independent copies, and put
+\(\alpha_0=L^2/D=\EE S/n\).
+
+\begin{lemma}[Exact one-dimensional second moment]
+\label{lem:factor-one-dim}
+Let \(Z\) be the number of \(L\)-factors of a uniform pairing on \(n\) cells of
+\(D\) points, with \(Dn\) and \(Ln\) even. Then
+\[
+\frac{\EE[Z^2]}{(\EE Z)^2}
+=
+\sum_{A}\PP(S=A)\,g(A),
+\qquad
+g(A)=\frac{M(A)\,M(Ln-A)^2\,M\bigl((D-2L)n+A\bigr)\,M(Dn)}
+{M(Ln)^2\,M\bigl((D-L)n\bigr)^2}.
+\]
+\end{lemma}
+
+\begin{proof}
+A pair \((F_1,F_2)\) of \(L\)-factors in a pairing splits each cell into the
+points covered by both, by \(F_1\) only, by \(F_2\) only, and by neither, of
+sizes \(a_v\), \(L-a_v\), \(L-a_v\), \(D-2L+a_v\). A pair of the pairing
+covering a point of one class covers a point of the same class, since a pair
+in \(F_1\) has both ends covered by \(F_1\), and likewise for \(F_2\).
+Conversely every choice of the four classes at each cell, together with a
+perfect matching inside each class, determines a pairing and the two factors.
+The number of choices of classes at a cell with overlap \(a\) is
+\(\binom{D}{L}^2h_a\). Hence
+\[
+\EE[Z^2]
+=
+\frac{\binom{D}{L}^{2n}}{M(Dn)}
+\sum_{A}\PP(S=A)\,M(A)\,M(Ln-A)^2\,M\bigl((D-2L)n+A\bigr),
+\]
+and the same argument with one factor gives
+\(\EE Z=\binom{D}{L}^nM(Ln)M((D-L)n)/M(Dn)\).
+The identity was checked against an exhaustive count of all pairings for
+\((n,D,L)\in\{(4,3,1),(4,3,2),(6,2,1),(2,4,1),(2,4,2),(4,2,1)\}\).
+\end{proof}
+
+Let \(I\) be the Cram\'er rate function of \(h\), and put
+\[
+\psi(\alpha)
+=
+\tfrac12\Bigl[\alpha\log\alpha+2(L-\alpha)\log(L-\alpha)
++(D-2L+\alpha)\log(D-2L+\alpha)
+-2L\log L-2(D-L)\log(D-L)+D\log D\Bigr].
+\]
+Stirling's formula in the form
+\(\log M(N)=\tfrac N2\log N-\tfrac N2+\tfrac12\log2+O(1/(N+1))\) gives
+\(\log g(A)=n\psi(A/n)+O(1)\) uniformly in \(A\), because the coefficients of
+\(n\log n\) and of \(n\) cancel identically in \(A\); on
+\(\lvert A-n\alpha_0\rvert=o(n)\) the \(O(1)\) is \(\tfrac12\log2+o(1)\).
+
+\begin{lemma}[The overlap rate dominates the pairing gain]
+\label{lem:factor-rate}
+Let \(D\ge3\) and \(1\le L\le D-1\). For every
+\(\alpha\in[\max(0,2L-D),L]\) with \(\alpha\ne\alpha_0\),
+\(I(\alpha)>\psi(\alpha)\). Moreover
+\(\psi''(\alpha_0)\,\Var h=D/(2(D-1))<1=I''(\alpha_0)\Var h\).
+\end{lemma}
+
+\begin{proof}
+The substitution \(L\mapsto D-L\), \(\alpha\mapsto D-2L+\alpha\) preserves both
+\(I\) and \(\psi\) (it relabels the four classes), so assume \(L\le D/2\) and
+put \(p=L/D\le\tfrac12\). The function \(2\psi\) is \(D\) times the mutual
+information of the \(2\times2\) table with cells
+\(\alpha,L-\alpha,L-\alpha,D-2L+\alpha\), normalized by \(D\), whose margins are
+\((L,D-L)\) both ways. Conditioning on the row,
+\[
+2\psi(\alpha)
+=
+L\,\mathrm{KL}\Bigl(\frac{\alpha}{L}\Bigm\Vert p\Bigr)
++(D-L)\,\mathrm{KL}\Bigl(\frac{L-\alpha}{D-L}\Bigm\Vert p\Bigr),
+\]
+where \(\mathrm{KL}(q\Vert p)\) is the Bernoulli divergence. Write
+\(\alpha/L=p+x\) and \(r=p/(1-p)\le1\); then
+\((L-\alpha)/(D-L)=p-rx\). By Hoeffding's comparison of sampling without and
+with replacement~\cite{Hoeffding63}, the cumulant generating function of \(h\)
+is at most that of \(\mathrm{Bin}(L,p)\), so
+\(I(\alpha)\ge L\,\mathrm{KL}(p+x\Vert p)\). It remains to show
+\[
+G(x)=\mathrm{KL}(p+x\Vert p)-r^{-1}\mathrm{KL}(p-rx\Vert p)\ge0 .
+\]
+Here \(G(0)=0\), and
+\[
+G'(x)=\log\frac{(p+x)(1-p)}{p(1-p-x)}+\log\frac{(p-rx)(1-p)}{p(1-p+rx)}.
+\]
+Substituting \(r=p/(1-p)\), the product of the two arguments exceeds \(1\)
+exactly when \(x(1-2p)>0\), because
+\((p+x)(p-rx)(1-p)^2-p^2(1-p-x)(1-p+rx)
+=\frac{p(1-p-x)}{1-p}\,x(1-2p)\).
+So \(G\) decreases then increases, and \(G\ge0\), strictly for \(x\ne0\) when
+\(p<\tfrac12\). When \(p=\tfrac12\) one has \(L=D/2\ge2\), and Hoeffding's
+inequality is strict for \(t\ne0\), so \(I(\alpha)\) exceeds the binomial rate
+for \(\alpha\ne\alpha_0\). In both cases \(I>\psi\) off \(\alpha_0\).
+
+For the second derivatives, \(\Var h=L^2(D-L)^2/(D^2(D-1))\) and
+\(\psi''(\alpha_0)=\frac1{2\alpha_0}+\frac1{L-\alpha_0}+\frac1{2(D-2L+\alpha_0)}
+=D^3/(2L^2(D-L)^2)\), whose product is \(D/(2(D-1))\).
+The minimum of \((I-\psi)(\alpha)/(\alpha-\alpha_0)^2\) was also computed for
+every \(3\le D\le80\) and \(1\le L<D\); it is positive, with smallest value
+about \(0.049\) at \(D=80\), \(L=40\).
+\end{proof}
+
+\begin{lemma}[Configuration second moment is \(L\)-free]
+\label{lem:factor-config}
+Fix \(D\ge3\) and \(1\le L\le D-1\). Along \(Dn,Ln\) even, the number \(Z\) of
+\(L\)-factors of a uniform pairing satisfies
+\[
+\frac{\EE[Z^2]}{(\EE Z)^2}\to\sqrt{\frac{D-1}{D-2}} .
+\]
+\end{lemma}
+
+\begin{proof}
+Use Lemma~\ref{lem:factor-one-dim}. Only even \(A\) contribute. By
+Lemma~\ref{lem:factor-rate}, continuity, and compactness, there is \(c>0\) with
+\(I(\alpha)-\psi(\alpha)\ge c(\alpha-\alpha_0)^2\) on the whole support. With
+the Chernoff bound \(\PP(S=A)\le e^{-nI(A/n)}\) and
+\(g(A)\le Ce^{n\psi(A/n)}\), the terms with
+\(\lvert A-n\alpha_0\rvert>n^{3/5}\) contribute
+\(O(n\,e^{-cn^{1/5}})\). The law \(h\) has consecutive integer support with at
+least two points, so the local limit theorem with Cram\'er correction gives
+\(\PP(S=A)=(2\pi n\sigma^2)^{-1/2}e^{-(A-n\alpha_0)^2/(2n\sigma^2)}(1+o(1))\)
+uniformly on \(\lvert A-n\alpha_0\rvert\le n^{3/5}\), with
+\(\sigma^2=\Var h\). There
+\(\log g(A)=\tfrac12\log2+\psi''(\alpha_0)(A-n\alpha_0)^2/(2n)+o(1)\), the first
+derivative vanishing at \(\alpha_0\). Summing over even \(A\) halves the
+Gaussian integral, so the ratio tends to
+\[
+\frac{\sqrt2}{2}\Bigl(1-\psi''(\alpha_0)\sigma^2\Bigr)^{-1/2}
+=
+\frac1{\sqrt2}\Bigl(\frac{D-2}{2(D-1)}\Bigr)^{-1/2}
+=
+\sqrt{\frac{D-1}{D-2}} .
+\]
+The exact sum at \(n=4000\) agrees with the limit to within \(1.2/n\) for
+\(D\in\{3,4,6,10\}\) and every \(L\).
+\end{proof}
+
+\begin{theorem}[Fixed-degree \(L\)-factors have the matching excess]
+\label{thm:fixed-degree-factor}
+Fix \(D\ge3\) and \(1\le L\le D-1\), and let \(n\to\infty\) along \(Dn,Ln\) even.
+Let \(Z\) be the number of \(L\)-factors of a uniform \(D\)-regular graph on
+\(n\) vertices, and let \(x=1/(D-1)\). Then
+\[
+\frac{\Var Z}{(\EE Z)^2}
+\to
+\exp\Bigl(\sum_{k\ge3}\frac{x^k}{2k}\Bigr)-1
+=
+\frac{1}{6(D-1)^3}+\frac1{8(D-1)^4}+O(D^{-5}),
+\]
+and \(Z/\EE Z\to\prod_{k\ge3}(1+\delta_k)^{X_k}e^{-\lambda_k\delta_k}\) in
+distribution, with \(X_k\) independent \(\mathrm{Po}(\lambda_k)\),
+\(\lambda_k=(D-1)^k/(2k)\) and \(\delta_k=(-x)^k\). The limit does not depend
+on \(L\) and equals the perfect-matching limit \(L=1\).
+\end{theorem}
+
+\begin{proof}
+Let \(X_k\) count \(k\)-cycles of the pairing (\(k=1\) loops, \(k=2\) double
+pairs); jointly \(X_k\to\mathrm{Po}(\lambda_k)\) independently
+\cite[§2]{Wormald99}. For a fixed \(k\)-cycle, sum over which of its pairs lie
+in the factor. A cell of the cycle meeting \(j\) factor pairs carries
+\(\binom{D-2}{L-j}/\binom{D}{L}\), and each factor or non-factor pair costs the
+pairing ratio \(1/(Ln)\) or \(1/((D-L)n)\) up to \(1+O(1/n)\). Against the
+\((D(D-1)n)^k/(2k)\) placements of the cycle, the expected number of
+\(k\)-cycles in the planted model is \(\operatorname{tr}(Q^k)/(2k)+O(1/n)\) with
+\[
+Q=\begin{pmatrix}L-1&\sqrt{L(D-L)}\\ \sqrt{L(D-L)}&D-L-1\end{pmatrix},
+\]
+whose eigenvalues are \(D-1\) and \(-1\). Hence
+\(\EE[Z X_k]/\EE Z\to\lambda_k(1+\delta_k)\). Tuples of cycles sharing a cell
+lose a factor \(n\), so the joint factorial moments factor, which was also
+checked numerically for \(k=3,4,5\). Since
+\(\sum_{k\ge1}\lambda_k\delta_k^2=-\tfrac12\log(1-x)\) and
+\(e^{-\frac12\log(1-x)}=\sqrt{(D-1)/(D-2)}\), Lemma~\ref{lem:factor-config} is
+the second-moment hypothesis of small subgraph conditioning
+\cite{Janson95}, \cite[Theorem~4.1]{Wormald99}, which gives the law of
+\(Z/\EE Z\) on the pairing and, on the event \(X_1=X_2=0\), on the uniform
+simple graph.
+
+For the variance on the simple graph, plant a pair \((F_1,F_2)\) at the
+Laplace mode of Lemma~\ref{lem:factor-config}. The four classes then have the
+product law of two independent uniform \(L\)-subsets, up to \(O(n^{-1/2})\), so
+the cycle transfer matrix is \(Q\otimes Q/(D-1)\), with eigenvalues
+\(D-1,-1,-1,x\). Hence \(\EE[Z^2X_k]/\EE[Z^2]\to\lambda_k(1+\delta_k)^2\), with
+factorial moments factoring as before, and
+\[
+\frac{\EE[Z^2\mid X_1=X_2=0]}{\EE[Z\mid X_1=X_2=0]^2}
+\to
+\sqrt{\frac{D-1}{D-2}}\,
+\exp\Bigl(-\sum_{k=1,2}\lambda_k\delta_k^2\Bigr)
+=
+\exp\Bigl(\sum_{k\ge3}\lambda_k\delta_k^2\Bigr).
+\]
+The series is \(x^3/6+x^4/8+O(x^5)\).
+\end{proof}
+
+\begin{remark}[What the fixed-degree theorem says about the sharp rate]
+\label{rem:fixed-degree-sharp}
+Theorem~\ref{thm:fixed-degree-factor} is symmetric under \(L\mapsto D-L\),
+as it must be: complements of \(L\)-factors are \((D-L)\)-factors, and
+\(L=D-1\) counts perfect matchings. The rate
+\(m^2/\delta^3\) of Conjecture~\ref{conj:residual-factor-sharp} is therefore not
+the sharp shape. At fixed degree the excess is \(1/(6\delta^3)\) for every
+\(m\), and the factor \(m^2\) is an overestimate.
+Lemma~\ref{lem:factor-one-dim} is exact for every \(n,D,L\), and the Laplace step
+of Lemma~\ref{lem:factor-config} has no overlap-window problem of the kind in
+Propositions~\ref{prop:overlap-mass} and~\ref{prop:switching-sparse-mode},
+because the overlap is a single sum of independent hypergeometric variables.
+For \(\delta\to\infty\) the remaining gap is the passage from the pairing to
+the simple graph. That needs the ratios
+\(\PP(\text{simple}\mid F)/\PP(\text{simple})\) and
+\(\PP(\text{simple}\mid F_1,F_2)/\PP(\text{simple})\) to relative error
+\(o(\delta^{-3})\), since \(\PP(\text{simple})=e^{-(\delta^2-1)/4+o(1)}\).
+These are McKay enumerations for unions of pairings with degree sequences
+\((a_v),(L-a_v),(L-a_v),(D-2L+a_v)\), the step that~\cite{Gao21} carries out
+for \(L=1\).
 \end{remark}
 
 \begin{proposition}[Switching errors accumulate as \(L^3/n\)]
@@ -7542,9 +7772,13 @@ to close the estimate
 (Proposition~\ref{prop:switching-sparse-mode}).
 The length \(m=o(\delta^{3/2})\) is the
 natural envelope of the \(m^2/\delta^3\) rate.
-On \(n=8\), \(\delta=5\), a sample of simple configurations gives relative
-variances in the ratio \(\approx4\) between \(m=2\) and \(m=1\), matching
-\(m^2\).
+At fixed \(\delta\), Theorem~\ref{thm:fixed-degree-factor} gives the
+\(m\)-free limit \(1/(6(\delta-1)^3)+O(\delta^{-4})\), so the bound is not sharp
+in \(m\). The sharper form expected is
+\(\frac1{6\delta^3}(1+o(1))+O(\delta^2\min(m,\delta-m)/n)\)
+(Remark~\ref{rem:fixed-degree-sharp}).
+The ratio \(\approx4\) between \(m=2\) and \(m=1\) that a sample on \(n=8\),
+\(\delta=5\) shows is a finite-\(n\) effect; it is not the asymptotic shape.
 \end{conjecture}
 
 \begin{proposition}[BIM unconstrained under sharp leftover]
@@ -8027,6 +8261,16 @@ arXiv:1803.10360.
 S.~Janson, T.~\L uczak, and A.~Ruci\'nski,
 \emph{Random Graphs},
 Wiley, New York, 2000.
+
+\bibitem{Hoeffding63}
+W.~Hoeffding,
+\emph{Probability inequalities for sums of bounded random variables},
+J.\ Amer.\ Statist.\ Assoc.\ \textbf{58} (1963), 13--30.
+
+\bibitem{Janson95}
+S.~Janson,
+\emph{Random regular graphs: asymptotic distributions and contiguity},
+Combin.\ Probab.\ Comput.\ \textbf{4} (1995), 369--405.
 
 \bibitem{Wormald99}
 N.~C.~Wormald,
