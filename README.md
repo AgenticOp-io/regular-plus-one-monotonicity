@@ -40,3 +40,9 @@ The Wolfram app id stays in `.wolfram-appid` and is not committed.
 
 The standalone directory `../regular-plus-one-sequel` was the first sequel
 copy. Active 2.0 work is `v2/` in this repo.
+
+## Checks
+
+Run `python scripts/check_all.py` before pushing (`--full` adds the slow rate sweep). It runs the exact and
+numeric scripts, the Wolfram Alpha identities in `v2/scripts/wolfram_identities.txt`, and the LaTeX build.
+Wolfram needs `WOLFRAM_APPID` or a gitignored `.wolfram-appid` in the repo root; without it the gate fails.
