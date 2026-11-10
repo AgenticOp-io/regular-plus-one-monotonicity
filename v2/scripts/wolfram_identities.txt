@@ -1,0 +1,7 @@
+Simplify[1/(2 (L^2/D)) + 1/(L - L^2/D) + 1/(2 (D - 2 L + L^2/D))]
+Simplify[(D^3/(2 L^2 (D-L)^2)) (L^2 (D-L)^2/(D^2 (D-1)))]
+Simplify[(p+x)(p - p x/(1-p))(1-p)^2 - p^2 (1-p-x)(1-p+p x/(1-p)) - p (1-p-x)/(1-p) x (1-2p)]
+Series[Exp[-Log[1-x]/2 - x/2 - x^2/4] - 1, {x, 0, 5}]
+Simplify[(1/Sqrt[2]) (1 - D/(2 (D-1)))^(-1/2) - Sqrt[(D-1)/(D-2)], D > 2]
+Eigenvalues[{{L-1, Sqrt[L (D-L)]}, {Sqrt[L (D-L)], D-L-1}}]
+Sum[x^k/(2 k), {k, 1, Infinity}]
