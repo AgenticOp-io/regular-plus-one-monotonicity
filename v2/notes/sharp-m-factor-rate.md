@@ -91,3 +91,33 @@ exact small graphs (relative variance about \(0.004\) on \(30\) simple
 Remark eight-factors already has relative variance about \(5\cdot 10^{-4}\)
 for \(2\)-factors of \(6\)-regular graphs on \(12\) vertices). Do not quote
 that average as an asymptotic.
+
+## Simple-graph transfer: what Gao21 Thm 14 does and does not give (2026-11-10)
+
+McKay Thm 14 (= [McK85, Thm 4.6], quoted in Gao21 §3) counts simple graphs
+with degrees g avoiding a fixed simple graph X, with relative error
+O(hatDelta^2/m(g)), hatDelta = Delta(g)^2 + Delta(g)Delta(x), under
+hatDelta = o(m(g)). It is stated for arbitrary X, not only matchings.
+
+Applied to X = F1 u F2, g_v = delta - 2m + a_v: Delta(g) <= delta,
+Delta(x) <= 2m <= 2 delta, so hatDelta <= 3 delta^2 and m(g) = Theta(delta n).
+Hypothesis holds iff delta = o(n); error is O(delta^3/n), the same as Gao's
+O(d^3/n) in Cor 15. So the probability P(F1 u F2 in G) is available for every
+m <= delta with no loss relative to m = 1. (Gao Cor 15 is the special case where
+the union is isolated edges + cycles, which gives a closed form; for m >= 2 the
+exponent -lambda(g) - lambda(g)^2 - mu(g,X) must be kept as a function of (a_v)
+and the edge sums sum_{ij in X} g_i g_j.)
+
+**The real obstacle is not this probability.** E[Z^2] = sum over pairs of
+m-regular graphs (F1,F2) of P(F1 u F2 in G). For m = 1, Gao Lemma 17 counts
+pairs of perfect matchings by overlap k exactly (alternating cycles, EGF
+exp(F)). For m >= 2 one needs the number of pairs of m-regular graphs with a
+given overlap, and the exponent above depends on the joint law of (a_v) and
+sum_{ij in X} g_i g_j, not only on k. At fixed m this is a pairing-model
+computation; for growing m it is an enumeration of pairs of m-regular graphs
+at the same level of difficulty as the original problem.
+
+Still unproved: the delta -> infinity m-factor variance. Not attempted: whether
+the 1-D pairing sum (Lemma factor-one-dim) can be coupled to the exponent
+averaged over the pair measure; that coupling would replace the missing pair
+count.
