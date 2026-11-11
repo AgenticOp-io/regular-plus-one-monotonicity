@@ -47,6 +47,9 @@ if "--full" in sys.argv:
         ok=lambda o: "VIOLATION" not in o and float(re.search(r"\(([-\d.e]+),", o).group(1)) > 0)
 
 for q in (ROOT / "v2" / "scripts" / "wolfram_identities.txt").read_text().splitlines():
+    if "--no-wolfram" in sys.argv:
+        print("SKIP wolfram (explicit --no-wolfram; record a sympy fallback in the ledger)")
+        break
     if q.strip():
         run("wolfram: " + q[:60],
             [sys.executable, str(ROOT / "scripts" / "wolfram_check.py"),
