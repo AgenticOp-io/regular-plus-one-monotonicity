@@ -3152,3 +3152,56 @@ Query: (n*m^2/(2*d))*m/n - m^3/(2*d)
 Query: Limit[n^(1/5), n->Infinity]
 [Limit]
 lim_(n->∞) n^(1/5) = ∞
+
+
+Query: Simplify[1/(2 (L^2/D)) + 1/(L - L^2/D) + 1/(2 (D - 2 L + L^2/D))]
+[Input interpretation]
+simplify | 1/(2 × L^2/D) + 1/(L - L^2/D) + 1/(2 (D - 2 L + L^2/D))
+[Results]
+D^3/(2 L^2 (D - L)^2)
+[Results]
+D^3/(2 L^2 (D - L)^2)
+[Results]
+D/(2 L^2) + (3 D - 2 L)/(2 (D - L)^2) + 1/L
+
+
+Query: Simplify[(D^3/(2 L^2 (D-L)^2)) (L^2 (D-L)^2/(D^2 (D-1)))]
+[Input interpretation]
+simplify | D^3/(2 L^2 (D - L)^2) (L^2 × (D - L)^2/(D^2 (D - 1)))
+[Results]
+D/(2 (D - 1))
+[Results]
+D/(2 D - 2)
+[Results]
+1/(2 (D - 1)) + 1/2
+[Quotient and Remainder]
+D = 1/2(2 (D - 1)) + 1
+
+
+Query: Simplify[(p+x)(p - p x/(1-p))(1-p)^2 - p^2 (1-p-x)(1-p+p x/(1-p)) - p (1-p-x)/(1-p) x (1-2p)]
+[Input interpretation]
+simplify | (p + x) (p - p × x/(1 - p)) (1 - p)^2 - p^2 ((1 - p - x) (1 - p + p × x/(1 - p))) - p × (1 - p - x)/(1 - p) x (1 - 2 p)
+
+
+Query: Simplify[(1/Sqrt[2]) (1 - D/(2 (D-1)))^(-1/2) - Sqrt[(D-1)/(D-2)], D > 2]
+[Input interpretation]
+simplify | 1/sqrt(2) (1 - D/(2 (D - 1)))^(-1/2) - sqrt((D - 1)/(D - 2)) | assuming | D>2
+[Result]
+0
+
+
+## Fallback record (2026-11-10): Wolfram app id unavailable; exact symbolic recomputation (sympy 1.14.0), verify-math rule 7
+
+Queries are those in v2/scripts/wolfram_identities.txt (Theorem fixed-degree-factor and its lemmas).
+    Fallback (exact symbolic, sympy 1.14.0): Wolfram app id unavailable 2026-11-10
+    Q1 psi''(alpha0) = D**3/(2*L**2*(D - L)**2)
+    Q2 psi''(alpha0)*Var h = D/(2*(D - 1))
+    Q3 sign identity residual = 0
+    Q4 series = x**3/6 + x**4/8 + x**5/10 + O(x**6)
+    Q5 Laplace constant residual = -sqrt(D/(D - 2) - 1/(D - 2)) + 1/sqrt(D/(D - 1) - 2/(D - 1))
+    Q6 eigenvalues = [-1, D - 1]
+    Q7 sum x^k/(2k) = Piecewise((-log(1 - x)/2, x < 1), (Sum(x**k/k, (k, 1, oo))/2, True))
+    Q5 at D=7: 0 (both sides are sqrt((D-1)/(D-2)); sympy returns an unsimplified but identical pair of radicals)
+    Q7 branch x<1 applies since x=1/(D-1)<=1/2.
+
+Re-run through Wolfram when the app id is restored: python scripts/check_all.py
