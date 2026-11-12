@@ -246,8 +246,10 @@ matchings of \(R\) satisfies
 \to0
 \]
 uniformly in the peeled \(d\)-factor \(G\).
-The extension to \(m\)-factors with \(1<m=o(\sqrt\delta)\) is
-Conjecture~\ref{conj:residual-factor-sharp}: the overlap bound used in an
+The unconstrained \(m\)-factor moment on exactly regular hosts is
+Theorem~\ref{thm:growing-degree-factor} for every \(m\) in the BIM range;
+the degree-conditioned residual version for \(m>1\) remains
+Conjecture~\ref{conj:residual-factor-sharp}. The overlap bound used in an
 earlier draft does not control the second moment
 (Proposition~\ref{prop:overlap-mass}).
 \end{theorem}
@@ -5597,6 +5599,407 @@ the simple graph. That needs the ratios
 These are McKay enumerations for unions of pairings with degree sequences
 \((a_v),(L-a_v),(L-a_v),(D-2L+a_v)\), the step that~\cite{Gao21} carries out
 for \(L=1\).
+The overlap total alone does not fix the McKay weight for \(L\ge 2\): the
+weight also depends on \(\sum_v(a_v-\bar a)^2\)
+(Proposition~\ref{prop:overlap-not-weight}). At \(L=1\) the exponent of
+\cite[Corollary~15]{Gao21}, evaluated at overlap \(1/\delta\), is exactly the
+loop and double-edge correction
+(Proposition~\ref{prop:mode-phi}).
+Theorem~\ref{thm:growing-degree-factor} below carries the step out for every
+\(L\): the dependence on \(\sum_v(a_v-\bar a)^2\) is kept, through
+\(\EE[a^2]\), and the full exponent collapses to the same loop and
+double-edge correction, for every \(L\).
+\end{remark}
+
+\begin{proposition}[Matching exponent at overlap \(1/\delta\)]
+\label{prop:mode-phi}
+Let \(\delta>2\) and let
+\[
+\phi(\delta,\alpha)
+=
+\frac{4(\delta-2)^2-(\delta^2-5)\alpha^2-(2\delta^2-14\delta+20)\alpha}
+{4(\delta-2+\alpha)^2}
+\]
+be the exponent in~\cite[Corollary~15]{Gao21}. Then \(\phi(\delta,0)=1\) and
+\[
+\phi\Bigl(\delta,\frac1\delta\Bigr)
+=
+1-\frac1{2(\delta-1)}-\frac1{4(\delta-1)^2}.
+\]
+Equivalently, with \(x=1/(\delta-1)\),
+\[
+\phi\Bigl(\delta,\frac1\delta\Bigr)-\phi(\delta,0)
+=
+-\sum_{k=1}^{2}\frac{x^k}{2k}
+=
+-\lambda_1\delta_1^2-\lambda_2\delta_2^2,
+\]
+where \(\lambda_1=(\delta-1)/2\), \(\delta_1=-x\), \(\lambda_2=(\delta-1)^2/4\) and
+\(\delta_2=x^2\).
+\end{proposition}
+
+\begin{proof}
+Substituting \(\alpha=0\) gives
+\(\phi(\delta,0)=4(\delta-2)^2/(4(\delta-2)^2)=1\).
+For \(\alpha=1/\delta\), the difference
+\[
+\phi\Bigl(\delta,\tfrac1\delta\Bigr)
+-1+\frac1{2(\delta-1)}+\frac1{4(\delta-1)^2}
+\]
+has numerator identically zero after clearing the positive denominator
+\(4(\delta-2+1/\delta)^2\); the cancellation was checked.
+The two summands are the loop and double-edge contributions:
+\[
+\lambda_1\delta_1^2=\frac{\delta-1}{2}\cdot\frac1{(\delta-1)^2}=\frac1{2(\delta-1)},
+\qquad
+\lambda_2\delta_2^2=\frac{(\delta-1)^2}{4}\cdot\frac1{(\delta-1)^4}
+=\frac1{4(\delta-1)^2}.
+\]
+\end{proof}
+
+\begin{proposition}[The overlap sum does not fix the McKay weight]
+\label{prop:overlap-not-weight}
+Let \(\delta\ge 3\), \(1\le L\le\delta-1\), and let \(a_1,\ldots,a_n\) be real numbers
+with average \(\bar a=n^{-1}\sum a_v\) and
+\(Q=\sum_v(a_v-\bar a)^2\). Set \(g_v=\delta-2L+a_v\) and
+\(\gamma=\delta-2L+\bar a\), and assume \(\gamma>0\). Write
+\(\lambda(\boldsymbol g)=\sum_v g_v(g_v-1)/(2\sum_v g_v)\) for the McKay
+loop parameter of~\cite[Theorem~14]{Gao21}. Then
+\[
+\lambda(\boldsymbol g)=\frac{\gamma-1}{2}+\frac{Q}{2n\gamma},
+\]
+so \(\lambda(\boldsymbol g)^2\) shifts from \(\bigl((\gamma-1)/2\bigr)^2\) by
+\((\gamma-1)Q/(2n\gamma)+Q^2/(4n^2\gamma^2)\).
+If each \(a_v\in\{0,1\}\), then \(Q=A(1-A/n)\) with \(A=\sum a_v\), and
+\(\lambda\) is a function of \(A\).
+If \(L\ge 2\), \(\lambda\) is not a function of \(A\): the sequences
+\((2,0)\) and \((1,1)\), for \(\delta=5\), \(L=2\) and \(n=2\), both sum to
+\(2\), but the corresponding degree sequences \((3,1)\) and \((2,2)\) have
+\(\lambda=3/4\) and \(\lambda=1/2\).
+Under the product hypergeometric law the coordinates are independent, so
+\(\EE[Q]=(n-1)L^2(\delta-L)^2/(\delta^2(\delta-1))\).
+The linear term \((\gamma-1)Q/(2n\gamma)\) still depends on the profile when
+\(L\ge 2\), since the two sequences above share \(\gamma\) and not \(Q\).
+At the mean profile \(\bar a=L^2/\delta\) and at \(Q=n\,\Var h\), that term equals
+\[
+\frac{L^2\bigl((\delta-L)^2-\delta\bigr)}{2\delta^2(\delta-1)}
+=
+\frac{L^2}{2\delta}+\frac{L^3(L/2-\delta)}{\delta^2(\delta-1)}.
+\]
+For each fixed \(L\ge 1\) this is \(L^2/(2\delta)+O(\delta^{-2})\), which is
+not \(o(\delta^{-3})\). At \(Q=\EE[Q]\) the term is \((n-1)/n\) times the
+same value.
+\end{proposition}
+
+\begin{proof}
+Write \(a_v=\bar a+\varepsilon_v\), so \(\sum\varepsilon_v=0\) and
+\(\sum\varepsilon_v^2=Q\), and \(g_v=\gamma+\varepsilon_v\). Then
+\(\sum g_v=n\gamma\) and
+\[
+\sum_v g_v(g_v-1)
+=
+\sum_v(\gamma+\varepsilon_v)^2-n\gamma
+=
+n\gamma^2+Q-n\gamma.
+\]
+Dividing by \(2n\gamma\) gives the displayed formula for \(\lambda\).
+The square is then
+\(\bigl((\gamma-1)/2+Q/(2n\gamma)\bigr)^2\).
+
+If \(a_v\in\{0,1\}\), then \(a_v^2=a_v\), so
+\(Q=\sum a_v-2\bar a\sum a_v+n\bar a^2=A(1-\bar a)\).
+For the two sequences with \(\delta=5\) and \(L=2\), one has
+\(\gamma=5-4+1=2\) and \(g_v=1+a_v\). Thus
+\(\sum g(g-1)\) equals \(3\cdot 2+1\cdot 0=6\) on \((3,1)\) and
+\(2\cdot 1+2\cdot 1=4\) on \((2,2)\), while \(\sum g=4\) in both cases, and
+\(\lambda=6/8=3/4\) against \(\lambda=4/8=1/2\).
+
+Lemma~\ref{lem:factor-rate} records
+\(\Var h=L^2(\delta-L)^2/(\delta^2(\delta-1))\). For \(n\) independent copies,
+\(\sum_v(a_v-\EE a_v)^2\) has mean \(n\Var h\) and
+\(\sum_v(a_v-\bar a)^2\) has mean \((n-1)\Var h\).
+The displayed value is the linear term at the deterministic profile
+\(\bar a=L^2/\delta\), \(\gamma=\delta-2L+L^2/\delta\), and \(Q=n\Var h\),
+namely \((\gamma-1)\Var h/(2\gamma)\). Substituting \(\gamma\) and simplifying
+produces \(L^2((\delta-L)^2-\delta)/(2\delta^2(\delta-1))\).
+The rearrangement as \(L^2/(2\delta)+L^3(L/2-\delta)/(\delta^2(\delta-1))\) was
+checked, and the expansion at infinity for fixed \(L\) is
+\(L^2/(2\delta)+O(\delta^{-2})\). Replacing \(Q\) by \(\EE[Q]\) multiplies the
+term by \((n-1)/n\).
+\end{proof}
+
+\subsubsection*{Growing degree: the McKay exponent is \(L\)-free}
+
+Throughout this subsection \(G\) is a uniform pairing on \(n\) cells of \(D\)
+points, \(\mathcal S\) is the event that \(G\) is simple, and \(Z\) counts the
+\(L\)-factors of \(G\) (sets of pairs covering \(L\) points of every cell). On
+\(\mathcal S\) these are the \(L\)-factors of the uniform simple \(D\)-regular
+graph, so
+\[
+\frac{\EE[Z^2\mid\mathcal S]}{\EE[Z\mid\mathcal S]^2}
+=
+\frac{\EE[Z^2\mathbf 1_{\mathcal S}]\;\PP(\mathcal S)}{\EE[Z\mathbf 1_{\mathcal S}]^2}.
+\tag{\(\ast\)}
+\]
+We use~\cite[Theorem~14]{Gao21}, which is~\cite[Theorem~4.6]{McK85}: for a
+degree sequence \(g\) with \(2M=\sum_v g_v\) and a simple graph \(X\), the
+probability that a uniform pairing with cell sizes \(g\) is simple and shares
+no edge with \(X\) equals
+\[
+\exp\Bigl(-\lambda(g)-\lambda(g)^2-\mu(g,X)+O\bigl(\hat\Delta^2/M\bigr)\Bigr),
+\quad
+\lambda(g)=\frac{\sum_v g_v(g_v-1)}{4M},
+\quad
+\mu(g,X)=\frac{\sum_{ij\in X}g_ig_j}{2M},
+\]
+with \(\hat\Delta=\Delta(g)^2+\Delta(g)\Delta(X)\), provided
+\(\hat\Delta=o(M)\). We call this the McKay estimate; it is the ratio
+\(N(g,X)\prod_v g_v!/(2M-1)!!\).
+
+\begin{lemma}[Second moment through four pairings]
+\label{lem:four-pairings}
+Fix classes at every cell: \(a_v\) points shared, \(L-a_v\) used by \(F_1\)
+only, \(L-a_v\) by \(F_2\) only, \(D-2L+a_v\) by neither. Write
+\(K=\tfrac12\sum_v a_v\), \(\bar a=2K/n\), \(2M_1=(L-\bar a)n\),
+\(2M=(D-2L+\bar a)n\) and \(g_v=D-2L+a_v\). Let
+\(B,F_1^\circ,F_2^\circ,R\) be independent uniform pairings on the four
+classes and \(X=B\cup F_1^\circ\cup F_2^\circ\). The map
+\((G,F_1,F_2)\mapsto(\text{classes},B,F_1^\circ,F_2^\circ,R)\) is a bijection
+from triples with \(F_1,F_2\subseteq G\) \(L\)-factors, and
+\[
+\frac{\EE[Z^2\mathbf 1_{\mathcal S}]}{\EE[Z^2]}
+=
+\EE_Q\Bigl[\PP(B\text{ simple})\,
+\PP(F_1^\circ\text{ simple, avoids }B\mid B)\,
+\PP(F_2^\circ\text{ simple, avoids }B\cup F_1^\circ\mid B,F_1^\circ)\,
+\PP(R\text{ simple, avoids }X\mid X)\Bigr],
+\]
+where \(Q\) is the law of the classes under the \(Z^2\)-weighted pairing:
+the product law \(h^{\otimes n}\) of Lemma~\ref{lem:factor-one-dim}
+reweighted by \(g(\sum_v a_v)\). Likewise
+\(\EE[Z\mathbf 1_{\mathcal S}]/\EE[Z]=\PP(F\text{ simple})\,
+\PP(R'\text{ simple, avoids }F\mid F)\) for a uniform pairing \(F\) on \(L\)
+points per cell and \(R'\) on the remaining \(D-L\).
+\end{lemma}
+
+\begin{proof}
+The bijection is that of Lemma~\ref{lem:factor-one-dim}. \(G\) is simple
+exactly when each of the four pairings is simple and the four edge sets are
+pairwise disjoint, which is the displayed chain of events. The weight of a
+class vector under the \(Z^2\)-weighted pairing is the summand of
+Lemma~\ref{lem:factor-one-dim}, which is \(Q\). The single-factor identity
+is the same with two classes.
+\end{proof}
+
+\begin{lemma}[The McKay exponent at the typical overlap]
+\label{lem:mckay-exponent}
+Let \(1\le L\le D/2\). Evaluate the four McKay exponents
+\(E_1,E_2,E_3,E_4\) (each \(-\lambda-\lambda^2-\mu\)) of
+Lemma~\ref{lem:four-pairings} with every class sum \(\sum_v f(a_v)\)
+replaced by \(n\,\EE_h f(a)\) and every pairing sum
+\(\sum_{ij\in P}w_iw_j\), \(P\) uniform on classes of sizes \(c_v\), replaced
+by \((\sum_v c_vw_v)^2/(2\sum_v c_v)\). Let
+\(E_0=-\lambda(L\mathbf 1)-\lambda(L\mathbf 1)^2-\lambda(g')-\lambda(g')^2-\mu(g',F)\)
+with \(g'=(D-L)\mathbf 1\) be the single-factor exponent. Then, with
+\(x=1/(D-1)\),
+\[
+E_0=-\frac{D^2-2}{4},
+\qquad
+E_1+E_2+E_3+E_4-\frac{D^2-1}{4}-2E_0
+=
+-\frac x2-\frac{x^2}{4},
+\]
+both exactly, as rational functions of \(D\) and \(L\). At \(L=1\),
+\(E_4+(D^2-1)/4\) is \(\phi(D,\beta)\) of~\cite[eq.~(8)]{Gao21} with
+\(\beta=\bar a\), and \(E_3=-\tfrac12\) is the constant of
+\cite[Lemma~17]{Gao21}.
+\end{lemma}
+
+\begin{proof}
+Write \(q=\EE a=L^2/D\), \(\EE a^2=q+L^2(L-1)^2/(D(D-1))\). The replaced
+quantities are
+\(\lambda_B=\EE[a(a-1)]/(2q)\),
+\(\lambda_1=\EE[(L-a)(L-a-1)]/(2(L-q))\),
+\(\mu(L-a,B)=\EE[a(L-a)]^2/(2q(L-q))\),
+\(\mu(L-a,B\cup F_1^\circ)=\mu(L-a,B)+\EE[(L-a)^2]^2/(2(L-q)^2)\),
+\(\lambda(g)=\EE[(D-2L+a)(D-2L+a-1)]/(2(D-2L+q))\), and
+\[
+\mu(g,X)=\frac{1}{D-2L+q}\Bigl(\frac{\EE[a(D-2L+a)]^2}{2q}
++\frac{\EE[(L-a)(D-2L+a)]^2}{L-q}\Bigr).
+\]
+Note that \(\lambda(g)\) carries \(\EE a^2\), not \((\EE a)^2\): this is the
+term of Proposition~\ref{prop:overlap-not-weight}, kept.
+For the single factor, \(\lambda(L\mathbf 1)+\lambda(L\mathbf 1)^2=(L^2-1)/4\),
+\(\lambda(g')=(D-L-1)/2\), \(\mu(g',F)=L(D-L)/2\), and the sum is
+\((D^2-2)/4\). Substituting the moments and clearing denominators gives the
+second identity. The algebra was carried out symbolically
+(\texttt{v2/scripts/fixed\_degree\_factor/mckay\_exponent.py}), which also
+checks the \(L=1\) specialisation against~\cite[eq.~(8)]{Gao21} and
+\(\phi(D,1)=1/4\).
+\end{proof}
+
+\begin{theorem}[Growing degree: \(L\)-factors concentrate, \(L\)-free]
+\label{thm:growing-degree-factor}
+Let \(D\to\infty\) with \(D^3=o(n)\), and let \(1\le L\le D-1\) satisfy, with
+\(L^*=\min(L,D-L)\), \(L^*\le(\tfrac12-c)D\) for a fixed \(c>0\) and
+\((L^*)^7=o(D^2n)\). Along \(Dn,Ln\) even, the number \(Z\) of \(L\)-factors of
+a uniform \(D\)-regular graph satisfies
+\[
+\frac{\EE[Z^2]}{(\EE Z)^2}
+=
+\exp\Bigl(\sum_{k\ge3}\frac{x^k}{2k}\Bigr)(1+o(1))
+=
+1+o(1),
+\qquad x=\frac1{D-1},
+\]
+so \(\Var Z/(\EE Z)^2\to0\) and \(Z/\EE Z\to1\) in probability. The
+hypotheses hold throughout the BIM range of
+Conjecture~\ref{conj:residual-moment-bim} on the McKay scale of
+Theorem~\ref{thm:residual-moment}.
+\end{theorem}
+
+\begin{proof}
+Complements of \(L\)-factors in \(G\) are \((D-L)\)-factors, so \(Z\) is the
+same for \(L\) and \(D-L\); take \(L=L^*\le D/2\), so \(D-2L\ge0\) and
+\(p=L/D\le\tfrac12-c\). We evaluate \((\ast)\) through
+Lemma~\ref{lem:four-pairings}.
+
+\emph{Constants.} The McKay estimate with \(X=\emptyset\) gives
+\(\PP(\mathcal S)=e^{-(D^2-1)/4+O(D^3/n)}\). Applied to \(F\) and then to
+\(R'\) with \(X=F\) (\(\hat\Delta\le L^2\) and \(\le D^2\), \(M\ge Ln/4\) and
+\(\ge Dn/4\)) it gives \(\EE[Z\mathbf 1_{\mathcal S}]=\EE[Z]\,e^{E_0+O(D^3/n)}\),
+since for a single factor every class sum and pairing sum is deterministic.
+
+\emph{The window.} Let \(\sigma^2=\Var h\) and let \(W\) be the event
+\(\lvert K-nq/2\rvert\le C_0D\sqrt{n\sigma^2}\), \(C_0\) a large constant.
+Inside \(W\) the four McKay estimates apply:
+\(\hat\Delta\le L^2,\,2L^2,\,3L^2,\,3D^2\) against
+\(M\ge nq/4,\,Ln/4,\,Ln/4,\,Dn/8\), so all relative errors are
+\(O(D^3/n)\). Write the product of the four probabilities as \(e^{\Phi}\).
+Each \(\lambda\) depends on the classes only; each \(\mu\) is a
+class-determined part plus pairing sums \(T_P=\sum_{ij\in P}b_ib_j\),
+\(b_v=a_v-q\), divided by \(2M_1\) or \(2M\), because for \(w=\gamma+b\)
+\[
+\sum_{ij\in P}w_iw_j=\lvert P\rvert\gamma^2+\gamma\sum_v c_vb_v+T_P .
+\]
+Let \(\Phi_0(K)\) be \(\Phi\) with every class sum replaced by its mean
+under \(Q\) given \(K\) and every \(T_P\) by its mean under the uniform
+pairing. The exact pairing mean is
+\(\bigl((\sum_vc_vw_v)^2-\sum_vc_vw_v^2\bigr)/(2(\sum_vc_v-1))\), which
+differs from the value used in Lemma~\ref{lem:mckay-exponent} by
+\(O(D/n)\) after division by \(2M_1\) or \(2M\). Hence, by that lemma,
+\(\Phi_0(nq/2)-(D^2-1)/4-2E_0=-x/2-x^2/4+o(1)\).
+
+\emph{Pairing sums.} Given the classes, \(F_2^\circ\) is a uniform pairing
+on its class; a switch of two pairs changes \(T_{F_2^\circ}\) by at most
+\(4L^2\), since \(\lvert b_v\rvert\le L\). The proof
+of~\cite[Theorem~2.19]{Wormald99} applies verbatim to a uniform pairing of
+any point set, so \(Y=T_{F_2^\circ}/(2M)\) satisfies
+\(\PP(\lvert Y-\EE Y\rvert\ge t)\le2e^{-t^2/(2s^2)}\) with
+\(s^2\le(Ln/2)\bigl(4L^2/(2M)\bigr)^2=O(L^5/(D^2n))\). The retention event
+for \(F_2^\circ\) has probability \(e^{E_3}\ge e^{-C_1L^2}\). Put
+\(\eta=sL\omega\) with \(\omega\to\infty\) and \(\eta\to0\), possible
+because \(L^7=o(D^2n)\). Then
+\[
+\EE\bigl[e^{-(Y-\EE Y)}\bigm|\text{retained}\bigr]
+\le e^{\eta}+\sum_{k\ge1}e^{(k+1)\eta}\,
+\frac{2e^{-k^2\eta^2/(2s^2)}}{e^{-C_1L^2}}
+\le e^{\eta}+2e^{2\eta}\sum_{k\ge1}e^{-k^2L^2(\omega^2/2-C_1)}
+=1+o(1),
+\]
+and the same bound with \(Y\) replaced by \(-Y\) gives the lower bound. The
+mean of \(T_{F_2^\circ}\) under the retained law is \(1+O(L^3/n)\) times
+its mean under the uniform pairing, by the McKay estimate applied to the
+degree sequence with one more edge removed; as \(\EE Y=O(L^3/D^3)\), this
+changes the exponent by \(o(1)\). The sums carried by \(F_1^\circ\) have
+parameters \(O(L^3/n)\) and \(O(L^5/(D^2n))\) against retention probability
+\(e^{-C_1L^2}\); those carried by \(B\) have parameters \(O(L^4/(Dn))\) and
+\(O(L^6/(D^3n))\) against retention probability \(e^{-C_1q^2}\); each
+satisfies the same condition. Integrating the four pairings in the order
+\(R,F_2^\circ,F_1^\circ,B\) therefore gives
+\(\EE[e^{\Phi}\mid\text{classes}]=e^{\Phi_{\mathrm{cl}}}(1+o(1))\), where
+\(\Phi_{\mathrm{cl}}\) has the pairing sums at their means.
+
+\emph{Class sums.} \(\Phi_{\mathrm{cl}}-\Phi_0(K)\) is a sum over cells of
+centred functions \(f(a_v)\), \(f\) of degree at most two, with coefficients
+\(O(1/n)\): the largest is the term \(-\lambda(g)^2\), in which
+\(\sum_va_v^2\) enters \(\lambda(g)\) with coefficient \(1/(4M)\) and
+\(2\lambda(g)=D-2L+\bar a-1+O(L^2/D)\). Given \(\sum_va_v=2K\), the class
+law is exchangeable, and we bound its exponential moment by the tilted
+product measure \(P_t\) with mean \(\bar a\): for a product tilt
+\(e^{\theta\sum_v f(a_v)/n}\), \(\theta=O(1)\), the log moment generating
+function is \(O(\Var f(a)/n)=O(L^4/n)\to0\), and the tilted measure moves the
+mean of \(\sum_va_v\) by \(O(\theta\,\mathrm{Cov}(a,f(a)))=O(L^4/D^2)\),
+which is \(o(\sqrt{n\sigma^2})\) because \(L^6=o(D^3n)\). The local limit
+theorem for both product measures (Lyapunov ratio \(O((nq)^{-1/2})\)) then
+gives \(\EE_Q[e^{\Phi_{\mathrm{cl}}-\Phi_0(K)}\mid K]=1+o(1)\) uniformly on
+\(W\).
+
+\emph{Dependence on \(K\).} On \(W\),
+\(\Phi_0(K)=\Phi_0(nq/2)+\ell(K-nq/2)+O(n^{-2})(K-nq/2)^2\) with
+\(\ell=O(D/n)\): the first derivative comes from \(\lambda(g)^2\) through
+\(\bar a=2K/n\), and \(\partial_K^2\lambda^2=2/n^2\). Under \(Q\), \(K\) is
+on \(W\) asymptotically Gaussian with variance
+\(\sigma_K^2=n\sigma^2/(4(1-\psi''\sigma^2))=O(nL^2/D)\): the local limit
+theorem for the triangular array of hypergeometric summands holds out to
+\(C_0D\) standard deviations because \(D^3(nq)^{-1/2}\to0\), the even-\(A\)
+restriction contributes the factor \(\tfrac12\) as in
+Lemma~\ref{lem:factor-config}, and \(1-\psi''\sigma^2=(D-2)/(2(D-1))\) for
+every \(L\) by Lemma~\ref{lem:factor-rate}. Hence
+\[
+\EE_Q\bigl[e^{\Phi_0(K)}\mathbf 1_W\bigr]
+=
+e^{\Phi_0(nq/2)}\,e^{\ell^2\sigma_K^2/2}(1+o(1))
+=
+e^{\Phi_0(nq/2)}(1+o(1)),
+\]
+since \(\ell^2\sigma_K^2=O(L^2D/n)\) and \(n^{-2}\sigma_K^2=O(L^2/(Dn))\).
+
+\emph{Outside the window.} There \(e^{\Phi}\le1\), to be compared with
+\(e^{\Phi_0(nq/2)}\ge e^{-D^2/4-1}\). By the proof of
+Lemma~\ref{lem:factor-rate}, \(I-\psi\ge\tfrac L2G(x)\) with
+\(x=(\alpha-\alpha_0)/L\), \(G\) decreasing then increasing,
+\(G(0)=G'(0)=0\) and \(G''(0)=(1-2p)/(p(1-p)^2)\). At the window edge
+\(x_{\mathrm e}=C_0D\sigma/(L\sqrt n)\) one has \(x_{\mathrm e}/p=O(D^{3/2}/(L\sqrt n))\to0\),
+so \(G(x_{\mathrm e})=\tfrac12G''(0)x_{\mathrm e}^2(1+o(1))\) and
+\[
+n\,(I-\psi)\ \ge\ n\,\frac L4\,G''(0)\,x_{\mathrm e}^2(1+o(1))
+=\frac{C_0^2D^3(1-2p)}{4(D-1)}(1+o(1))\ \ge\ \frac{C_0^2c\,D^2}{2}(1+o(1))
+\]
+beyond the edge, using \(\sigma^2=L^2(1-p)^2/(D-1)\) and \(1-2p\ge2c\).
+With \(C_0^2c>1\), the pairing sum outside \(W\) is
+\(O(ne^{-C_0^2cD^2/2})=o(e^{-D^2/4})\) relative to the sum inside, which is
+\(\sqrt{(D-1)/(D-2)}\,(1+o(1))\) times \((\EE Z)^2\) by the same local limit
+theorem.
+
+\emph{Assembly.} Inserting into \((\ast)\),
+\[
+\frac{\EE[Z^2\mid\mathcal S]}{\EE[Z\mid\mathcal S]^2}
+=
+\sqrt{\frac{D-1}{D-2}}\;
+\exp\Bigl(\Phi_0\bigl(\tfrac{nq}2\bigr)-\frac{D^2-1}{4}-2E_0\Bigr)(1+o(1))
+=
+\sqrt{\frac{D-1}{D-2}}\,e^{-x/2-x^2/4}(1+o(1)),
+\]
+and \(\sqrt{(D-1)/(D-2)}=e^{-\frac12\log(1-x)}\) gives the series.
+In the BIM range, \(D=\Theta(d^{2/3}(\log n)^{1/3})\) and
+\(L=\Theta\sqrt{d\log n}\), so \(L/D\to0\), \(D^3=O(d^2\log n)\) and
+\(L^7/(D^2n)=O(d^{13/6}(\log n)^{17/6}/n)\); both are \(o(1)\) when
+\(d=o(n^{3/8}(\log n)^{-1/3})\).
+\end{proof}
+
+\begin{remark}[What the growing-degree theorem does and does not close]
+\label{rem:growing-degree-scope}
+Theorem~\ref{thm:growing-degree-factor} proves the conclusion of
+Conjecture~\ref{conj:residual-factor-sharp} in the stated range, with the
+\(L\)-free shape of Theorem~\ref{thm:fixed-degree-factor} in place of
+\(m^2/\delta^3\); the rate \(1/(6\delta^3)\) itself is not tracked, since the
+window and concentration errors are only shown to be \(o(1)\).
+It settles item~(i) of Proposition~\ref{prop:residual-two-gaps} for exactly
+regular hosts. The nearly regular hosts named there, and the residual-law
+comparison of item~(ii), are not addressed: for a non-regular degree
+sequence the four McKay exponents acquire host terms in
+\(\sum_vg_v(g_v-1)\) whose cancellation in the ratio has not been checked.
 \end{remark}
 
 \begin{proposition}[Switching errors accumulate as \(L^3/n\)]
@@ -7770,6 +8173,16 @@ the Laplace expansion of~\cite[§3.4]{Gao21} at overlap
 Remark~\ref{rem:binomial-edge}, summed out to that overlap, is too coarse
 to close the estimate
 (Proposition~\ref{prop:switching-sparse-mode}).
+The McKay weight is not a function of the overlap total alone for \(m\ge 2\)
+(Proposition~\ref{prop:overlap-not-weight}); at \(m=1\) it is, and at overlap
+\(1/\delta\) it is exactly the loop and double-edge correction
+(Proposition~\ref{prop:mode-phi}).
+\emph{Status.} The conclusion \(\Var Z/(\EE Z)^2\to0\) is now
+Theorem~\ref{thm:growing-degree-factor}, for \(\delta^3=o(n)\),
+\(\min(m,\delta-m)^7=o(\delta^2n)\) and \(\min(m,\delta-m)\le(\tfrac12-c)\delta\),
+with the \(m\)-free limit shape \(\exp(\sum_{k\ge3}x^k/2k)\) in place of the
+rate \(m^2/\delta^3\). What remains conjectural is the rate itself, the
+band \(m\approx\delta/2\), and \(n^{1/3}\lesssim\delta=o(n^{2/5})\).
 The length \(m=o(\delta^{3/2})\) is the
 natural envelope of the \(m^2/\delta^3\) rate.
 At fixed \(\delta\), Theorem~\ref{thm:fixed-degree-factor} gives the
@@ -7852,7 +8265,10 @@ The scale claims are Proposition~\ref{prop:residual-sublinear} and
 together with \(\delta/n^{1/2}=d^{2/3}(\log n)^{1/3}n^{-1/2}\).
 Item~(i) at linear degree is Theorem~\ref{thm:residual-unconstrained}; at
 sublinear degree it is Theorem~\ref{thm:residual-factor-fixed} for \(m=1\),
-and Conjecture~\ref{conj:residual-factor-sharp} for \(m>1\).
+and, for exactly regular hosts with \(\delta^3=o(n)\),
+Theorem~\ref{thm:growing-degree-factor} for every \(m\) in the BIM range
+(Remark~\ref{rem:growing-degree-scope}); nearly regular hosts remain
+Conjecture~\ref{conj:residual-factor-sharp}.
 The blocked comparisons are
 Propositions~bernoulli-moment, free-not-residual, and hybrid-singular
 of~\cite{PlusOneV1}.
