@@ -59,7 +59,12 @@ Bar is 2.0. v1.0 is sent.
 
 ## Next
 
-1. Prove Conjecture residual-factor-sharp (rate \(O(m^2/\delta^3)\), length
+1. **Mostly closed 2026-11-11**: Theorem growing-degree-factor gives
+   relvar -> 0 for every m with delta^3=o(n), min(m,delta-m)^7=o(delta^2 n),
+   min(m,delta-m) <= (1/2-c) delta (covers the BIM range on the McKay
+   scale). Still open there: the rate itself, the band m ~ delta/2, nearly
+   regular hosts, and the residual-law comparison.
+   Original item: prove Conjecture residual-factor-sharp (rate \(O(m^2/\delta^3)\), length
    \(m=o(\delta^{3/2})\), including the withdrawn range \(m=o(\sqrt\delta)\)):
    Laplace at overlap \(K\sim nm^2/(2\delta)\), not at the uniform mean
    \(\Theta(m^2)\). The switching bound \(O(\ell/(mn)+m/n)\) accumulates to
@@ -73,6 +78,12 @@ Bar is 2.0. v1.0 is sent.
    (Lemma factor-one-dim), so there is no overlap-window problem. The gap
    left for \(\delta\to\infty\) is the passage from the pairing to the simple
    graph at relative error \(o(\delta^{-3})\) (Remark fixed-degree-sharp).
+   The one-dimensional overlap sum does not determine the McKay weight for
+   \(m\ge 2\): \(\lambda\) depends on \(\sum(a_v-\bar a)^2\), and at the mean
+   profile the linear shift of \(\lambda^2\) is \(m^2/(2\delta)+O(\delta^{-2})\)
+   (Proposition overlap-not-weight). That is not yet a conditional-on-\(A\)
+   estimate. At \(m=1\) the exponent at overlap \(1/\delta\) is exactly the
+   loop and double-edge correction (Proposition mode-phi).
 2. Tilt comparison under \(\mu_D\) / orbit-flat inverse counts → config-split.
 3. Cancel the averaged cubic in the two-sided containment ratio → peel
    past \(n^{1/3}\).

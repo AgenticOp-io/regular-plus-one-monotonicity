@@ -3203,5 +3203,48 @@ Queries are those in v2/scripts/wolfram_identities.txt (Theorem fixed-degree-fac
     Q7 sum x^k/(2k) = Piecewise((-log(1 - x)/2, x < 1), (Sum(x**k/k, (k, 1, oo))/2, True))
     Q5 at D=7: 0 (both sides are sqrt((D-1)/(D-2)); sympy returns an unsimplified but identical pair of radicals)
     Q7 branch x<1 applies since x=1/(D-1)<=1/2.
+    Q5 completed: for D>2 both sides are positive and their squares are equal,
+    a^2 - b^2 = 0, with a^2 = b^2 = (D-1)/(D-2). Hence a - b = 0.
 
 Re-run through Wolfram when the app id is restored: python scripts/check_all.py
+
+## Fallback record (2026-11-10): mode exponent and overlap weight
+
+Wolfram app id still unavailable. Exact symbolic recomputation, sympy 1.14.0.
+
+Query: phi(d,1/d) - 1 + 1/(2(d-1)) + 1/(4(d-1)^2) = 0 for d>2,
+phi(d,alpha) = (4(d-2)^2 - (d^2-5)alpha^2 - (2d^2-14d+20)alpha)/(4(d-2+alpha)^2)
+[sympy] together(numer(phi(d,1/d) - (1 - 1/(2(d-1)) - 1/(4(d-1)^2)))) = 0
+
+Query: (d-1)/2 * 1/(d-1)^2 = 1/(2(d-1)) and (d-1)^2/4 * 1/(d-1)^4 = 1/(4(d-1)^2)
+[sympy] both differences simplify to 0
+
+Query: with gamma = d - 2L + L^2/d and v = L^2 (d-L)^2 / (d^2 (d-1)),
+(gamma-1)*v/(2*gamma) = L^2*((d-L)^2 - d)/(2*d^2*(d-1))
+[sympy] difference simplifies to 0
+This is the linear term at Q = n*v, not E[(gamma-1)Q/(2*n*gamma)].
+For n i.i.d. coordinates, E[sum (a_v - bar a)^2] = (n-1)*v.
+
+Query: Series[((n-1)/n) * L^2*((d-L)^2 - d)/(2*d^2*(d-1)), {d, Infinity, 1}]
+[sympy] (L**2/2 - L**2/(2*n))/d + O(d**(-2))
+For n i.i.d. coordinates, E[sum (a_v - bar a)^2] = (n-1)*Var, so this is the
+linear term at gamma = d - 2L + L^2/d and Q = E[Q].
+
+Query: L^2*((d-L)^2 - d)/(2*d^2*(d-1)) - L^2/(2*d) - L^3*(L/2 - d)/(d^2*(d-1)) = 0
+[sympy] difference simplifies to 0
+
+Query: Series[L^2*((d-L)^2 - d)/(2*d^2*(d-1)), {d, Infinity, 1}] with L fixed
+[sympy] L**2/(2*d) + O(d**(-2))
+
+
+## Fallback record (2026-11-11): Theorem growing-degree-factor identities, sympy 1.14.0 (Wolfram app id still unavailable)
+
+Query: (L^2-1)/4 + ((D-L)^2-1)/4 + L(D-L)/2 - (D^2-2)/4   [single-factor exponent E0]
+[sympy] 0
+Query: phi(d,1/d) - (1 - 1/(2(d-1)) - 1/(4(d-1)^2)), phi from Gao21 eq. (8)
+[sympy] 0
+Query: Sqrt[(D-1)/(D-2)] Exp[-x/2-x^2/4] - Exp[-Log[1-x]/2 - x/2 - x^2/4], x=1/(D-1)
+[sympy] at D=7: 0 ; general: sqrt(y)sqrt(1/y)=1 for y=(D-1)/(D-2)>0, so 0
+Query: four-step McKay exponent minus (D^2-1)/4 minus 2 E0 at the typical overlap, every L
+[sympy] -1/(2(D-1)) - 1/(4(D-1)^2) exactly; L=1 fourth step = Gao21 phi(D,beta), third step = -1/2
+        (v2/scripts/fixed_degree_factor/mckay_exponent.py, asserts pass)

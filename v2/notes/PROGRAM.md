@@ -158,7 +158,15 @@ Still missing (no fake closes):
    (Proposition switching-sparse-mode). At fixed \(\delta\) every \(m\) is
    proved, with the \(m\)-free matching limit (Theorem fixed-degree-factor).
    For \(\delta\to\infty\) what is open is the simple-graph transfer of the
-   exact 1-D pairing sum. BIM-length host-restricted moment is
+   exact 1-D pairing sum. The pointwise McKay weight is not a function of
+   the overlap total: for \(m\ge 2\), \(\lambda\) depends on
+   \(\sum(a_v-\bar a)^2\), and the mean-profile linear shift of \(\lambda^2\)
+   is \(m^2/(2\delta)+O(\delta^{-2})\) (Proposition overlap-not-weight).
+   The conditional fluctuation given the total has O(1/n) coefficients and
+   is handled in Theorem growing-degree-factor, which closes relvar -> 0 for
+   every m on regular hosts with delta^3=o(n) (2026-11-11). At \(m=1\) the
+   exponent at overlap \(1/\delta\) equals the loop and double-edge correction
+   (Proposition mode-phi). BIM-length host-restricted moment is
    Conjecture residual-moment-bim.
 4. Binomial thinning or BIM Conjecture 1.3 — not hybrid, not sprinkle.
    That is Conjecture Q at Chernoff scale.

@@ -41,6 +41,9 @@ run("cycle effects (-1/(D-1))^k",
     [sys.executable, str(FD / "cycle_effects.py")],
     ok=lambda o: all(abs(float(a) - float(b)) < 1e-5
                      for a, b in re.findall(r"\((-?[\d.]+), (-?[\d.]+)\)", o)))
+run("McKay exponent identity (Lemma mckay-exponent)",
+    [sys.executable, str(FD / "mckay_exponent.py")],
+    ok=lambda o: o.strip().endswith("OK"))
 if "--full" in sys.argv:
     run("rate inequality I > psi, D <= 80",
         [sys.executable, str(FD / "rate_inequality.py")],

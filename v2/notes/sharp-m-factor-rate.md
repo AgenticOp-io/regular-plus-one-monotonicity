@@ -117,7 +117,65 @@ sum_{ij in X} g_i g_j, not only on k. At fixed m this is a pairing-model
 computation; for growing m it is an enumeration of pairs of m-regular graphs
 at the same level of difficulty as the original problem.
 
-Still unproved: the delta -> infinity m-factor variance. Not attempted: whether
-the 1-D pairing sum (Lemma factor-one-dim) can be coupled to the exponent
-averaged over the pair measure; that coupling would replace the missing pair
-count.
+Still unproved: the delta -> infinity m-factor variance.
+
+## Coupling to the 1-D sum (2026-11-10, attempted)
+
+Screen `config-second-moment` and `gao-iteration` at `o(sqrt(n))` are clear.
+That does not prove the rate.
+
+The pairing second moment is the sum over the overlap total A only
+(Lemma factor-one-dim). The McKay weight is not. With
+g_v = delta - 2L + a_v, gamma = delta - 2L + A/n and
+Q = sum (a_v - A/n)^2,
+lambda(g) = (gamma-1)/2 + Q/(2 n gamma)
+(Proposition overlap-not-weight). For L>=2, Q is not a function of A:
+the profiles (2,0) and (1,1) at delta=5, L=2 both sum to 2, and lambda is
+3/4 against 1/2. Under the product law the coordinates are independent, so
+E[Q] = (n-1) Var h, not n Var h. At the mean profile
+a-bar = L^2/delta and at Q = n Var h, the linear term of lambda^2 equals
+L^2 (((delta-L)^2 - delta)/(2 delta^2 (delta-1))) = L^2/(2 delta) + O(delta^{-2})
+for fixed L, which is not o(delta^{-3}). At Q = E[Q] the term is (n-1)/n
+times that value.
+
+At m=1 the profile is 0-1, so Q = A(1-A/n) and lambda is a function of A.
+Gao's phi at the Laplace point is then an exact identity
+(Proposition mode-phi): phi(delta, 0) = 1 and
+phi(delta, 1/delta) = 1 - 1/(2(delta-1)) - 1/(4(delta-1)^2),
+which is phi(delta,0) minus the loop and double-edge sum
+lambda_1 delta_1^2 + lambda_2 delta_2^2. That is why the matching case
+can be evaluated on the overlap coordinate. For m>=2 the weight is kept as a
+function of E[a^2], not (E a)^2, and the identity still closes: see below.
+
+A conditional expectation E[phi | A] is still a function of A. The
+fluctuation of Q given A enters the exponent with coefficient O(1/n) per
+vertex, so its exponential moment is 1 + O(L^4/n) (Theorem
+growing-degree-factor, step "class sums").
+
+## Closed for growing delta (2026-11-11): Theorem growing-degree-factor
+
+Apply McKay (Gao21 Thm 14) four times inside the pairing model, in the order
+B (shared), F1-only, F2-only, rest, each simple and avoiding the union of the
+earlier ones (Lemma four-pairings). Every exponent -lambda - lambda^2 - mu is
+a class sum plus pairing sums sum_{ij in P} b_i b_j, b = a - q. At the typical
+overlap (a iid Hypergeom(delta; m, m), pairing sums at their means) the four
+exponents minus P(simple) minus twice the single-factor exponent equal
+-x/2 - x^2/4, x = 1/(delta-1), EXACTLY and for every m
+(Lemma mckay-exponent; script fixed_degree_factor/mckay_exponent.py).
+At m=1 the fourth exponent is Gao's phi(d,beta) and the third is -1/2.
+
+Times the pairing ratio sqrt((delta-1)/(delta-2)) this is
+exp(sum_{k>=3} x^k/2k) -> 1. Errors: McKay O(delta^3/n); pairing-sum
+fluctuations by Wormald99 Thm 2.19 (switch changes sum b_i b_j by <= 4m^2)
+against retention e^{-O(m^2)}, needing m^7 = o(delta^2 n); class-sum
+fluctuations have O(1/n) coefficients; K-dependence is linear with
+l^2 sigma_K^2 = O(m^2 delta/n); tail outside C_0 delta sd's by the G-monotonicity
+of Lemma factor-rate, needing m <= (1/2-c) delta (use m <-> delta-m).
+
+Hypotheses: delta^3 = o(n), min(m,delta-m)^7 = o(delta^2 n),
+min(m,delta-m) <= (1/2-c) delta. BIM range: all hold for
+d = o(n^{3/8} (log n)^{-1/3}).
+
+NOT closed: the rate 1/(6 delta^3) (only o(1) shown); m near delta/2;
+nearly regular hosts (item (i) of residual-two-gaps as literally stated) and
+the residual-law comparison (item (ii)).
