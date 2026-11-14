@@ -56,6 +56,9 @@ run("residual loop curvature is flat (avoid_g_host2.py)",
 run("residual window-mean prefactor rate (residual_window_means.py)",
     [sys.executable, str(ROOT / "v2" / "scripts" / "residual" / "residual_window_means.py")],
     ok=lambda o: o.strip().endswith("OK"))
+run("sharp m-factor rate error budget (sharp_rate.py)",
+    [sys.executable, str(ROOT / "v2" / "scripts" / "residual" / "sharp_rate.py")],
+    ok=lambda o: "BINDING" in o)
 if "--full" in sys.argv:
     run("rate inequality I > psi, D <= 80",
         [sys.executable, str(FD / "rate_inequality.py")],

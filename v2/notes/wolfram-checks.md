@@ -3261,3 +3261,8 @@ Query: log[N(delta+2)/N(delta)] for constant delta-regular sequences (McKay pref
 Query: lambda(g) - (delta-1)/2 for near-regular g_v = delta(1+e_v)
 [sympy] delta(E+R2)/(2(E+n)) exactly; first-moment dPhi1/de = -m/(2n), dPhi1/ds2 = 0
         (v2/scripts/residual/avoid_g_host.py, asserts pass)
+
+Query: sharp-rate error budget for 1/(6 delta^3) (each error o(delta^-3))
+[sympy] delta^6/n (McKay), m^4 delta^3/n (class-sum), m^5 delta/n (pairing-sum), m^2 delta^4/n (K-dep)
+        binding: delta=o(n^{1/6}) for m=o(sqrt delta); delta=o(n^{1/9}) at m=delta^{3/2}
+        (v2/scripts/residual/sharp_rate.py; thm:sharp-rate-short)
