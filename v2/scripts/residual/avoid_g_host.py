@@ -24,25 +24,25 @@ Result (exact, sympy):
     dPhi1/de  = (r - delta)/(2n) = -m/(2n),
     dPhi1/ds2 = 0.
 
-That is, the degree-spread direction s2 = sum_y y_v^2 cancels exactly, and the
-edge-count direction e = sum_v y_v enters only with the small coefficient -m/(2n).
-This is the correct magnitude of the near-regular host dependence, replacing the
-earlier (wrongly normalised) Theta(delta*beta).
+That is, relative to the loop parameter lambda(g), the degree-spread direction
+s2 = sum_y y_v^2 cancels exactly, and the edge-count direction e = sum_v y_v enters
+only with the small coefficient -m/(2n).  This is the correct magnitude of the
+*loop-parameter* host dependence.  The actual non-flatness of the first moment is
+driven by the configuration prefactor (see residual-bim-host-obstruction.md), which is
+not part of the loop parameter; this file isolates the loop contribution to confirm it
+is not the obstruction.
 
 For the DEGREE-CONDITIONED residual, g is fixed, so e and s2 are fixed numbers, and
-the relevant question is how E[Z|g] varies as g ranges over the window.  With the
-relative window |y_v| <= eps_n delta one has |e| <= eps_n delta n, giving an exponent
-shift |m e/(2n)| <= m eps_n delta / 2.  At BIM scale m = sqrt(d log n),
-eps_n = (1/2)(log n/d)^{1/3}, delta = d^{2/3}(log n)^{1/3}, this is
-
-    m eps_n delta / 2 = (1/4) d^{5/6} (log n)^{7/6} -> infinity,
-
-so a *relative* window is too coarse for pointwise o(1) flatness.  A window of
-absolute width with eps_n delta^2 = o(1) is needed, or one normalises by the random
-mean E[Z | G, deg R].
+the relevant question is how E[Z|g] varies as g ranges over the window.  The loop
+parameter lambda(g) contributes only -m e/(2n) to the first-moment exponent (this file's
+assertion), which is o(1) pointwise.  The DOMINANT dependence is the configuration
+prefactor (2M-1)!!/prod_v g_v!, whose leading effect for two constant sequences
+delta and delta+2 is n log(n/delta) -> infinity (see residual-bim-host-obstruction.md and
+residual_window_means.py for the exact verified rate).  The loop parameter is NOT the
+obstruction; the prefactor n log(n/delta) is.
 
 The fixed exact-degree statements (thm:residual-matching-constrained, m=1) are
-unaffected: there e = s2 = 0.
+unaffected: there e = s2 = 0 and the prefactor is deterministic.
 """
 
 from sympy import symbols, Rational, simplify
@@ -71,6 +71,11 @@ print("dPhi1/ds2 =", simplify(Phi1.diff(s2).subs({e: 0, s2: 0})))
 
 assert simplify(Phi1.diff(e).subs({e: 0, s2: 0})) == (r - delta)/(2*n) == -m/(2*n)
 assert simplify(Phi1.diff(s2).subs({e: 0, s2: 0})) == 0
+
+print("NOTE: the loop parameter lambda(g) contributes only -m/(2n) per unit e (o(1)).")
+print("The DOMINANT non-flatness is the configuration prefactor (2M-1)!!/prod_v g_v!;")
+print("see residual-bim-host-obstruction.md and residual_window_means.py: its leading")
+print("effect for constant sequences delta -> delta+2 is n log(n/delta) -> infinity.")
 
 # BIM scale check of the (relative-window) exponent shift
 logn = symbols('logn', positive=True)

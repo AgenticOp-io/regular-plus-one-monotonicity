@@ -50,6 +50,12 @@ run("residual host-term normalisation (host_term_cancel.py)",
 run("residual first-moment host dependence (avoid_g_host.py)",
     [sys.executable, str(ROOT / "v2" / "scripts" / "residual" / "avoid_g_host.py")],
     ok=lambda o: o.strip().endswith("OK"))
+run("residual loop curvature is flat (avoid_g_host2.py)",
+    [sys.executable, str(ROOT / "v2" / "scripts" / "residual" / "avoid_g_host2.py")],
+    ok=lambda o: "curvature-in-e contribution" in o and "= 0" in o)
+run("residual window-mean prefactor rate (residual_window_means.py)",
+    [sys.executable, str(ROOT / "v2" / "scripts" / "residual" / "residual_window_means.py")],
+    ok=lambda o: o.strip().endswith("OK"))
 if "--full" in sys.argv:
     run("rate inequality I > psi, D <= 80",
         [sys.executable, str(FD / "rate_inequality.py")],
