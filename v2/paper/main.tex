@@ -6005,6 +6005,66 @@ sequence the four McKay exponents acquire host terms in
 \(\sum_vg_v(g_v-1)\) whose cancellation in the ratio has not been checked.
 \end{remark}
 
+\begin{theorem}[Sharp unconstrained \(m\)-factor rate on \(\delta=o(n^{1/6})\)]
+\label{thm:sharp-rate-short}
+Assume~\cite[Theorem~14]{Gao21}. Let \(\delta\to\infty\), \(\delta n\) even,
+\(1\le m\le\delta\), \(mn\) even, and suppose \(\delta^6=o(n)\). Write \(Z\) for
+the number of \(m\)-factors of a uniform \(\delta\)-regular graph. Then
+\[
+\frac{\Var Z}{(\EE Z)^2}
+=
+\frac1{6\delta^3}\bigl(1+o(1)\bigr)
++
+O\Bigl(\frac{\delta^2 m}{n}\Bigr),
+\]
+provided the error budget
+\[
+\frac{\delta^6}{n},\quad \frac{m^4\delta^3}{n},\quad \frac{m^5\delta}{n},\quad \frac{m^2\delta^4}{n}
+\]
+all tend to \(0\). In particular the leading term \(1/(6\delta^3)\) is the
+matching excess, independent of \(m\), throughout
+\(m=o(\delta^{3/2})\), \(\delta=o(n^{1/6})\), together with the class-sum
+condition \(m^4\delta^3=o(n)\).
+\end{theorem}
+
+\begin{proof}
+The exact identity of Lemma~\ref{lem:mckay-exponent} already gives, at the
+typical overlap,
+\[
+\frac{\EE[Z^2]}{(\EE Z)^2}
+=
+\exp\Bigl(\sum_{k\ge3}\frac{x^k}{2k}\Bigr)(1+o(1)),
+\qquad
+x=\frac1{\delta-1},
+\]
+and \(\exp(\sum_{k\ge3}x^k/2k)-1=x^3/6+O(x^4)=1/(6\delta^3)+O(\delta^{-4})\), so the
+coefficient \(1/(6\delta^3)\) is present; the sole question is that each error
+term in the proof of Theorem~\ref{thm:growing-degree-factor} is \(o(\delta^{-3})\)
+rather than merely \(o(1)\). Those four errors are (i) the McKay enumeration
+error \(O(\delta^3/n)\); (ii) the class-sum fluctuation \(O(m^4/n)\) (the
+\(-\lambda(g)^2\) term carrying \(\sum_v a_v^2\)); (iii) the pairing-sum
+fluctuation \(O(m^5/(\delta^2 n))\); and (iv) the \(K\)-dependence
+\(O(m^2\delta/n)\). Each is \(o(\delta^{-3})\) exactly under the displayed four
+budgets: multiplying by \(\delta^3\) gives \(\delta^6/n\), \(m^4\delta^3/n\),
+\(m^5\delta/n\), \(m^2\delta^4/n\). The arithmetic is
+\texttt{v2/scripts/residual/sharp\_rate.py}. At \(m=o(\delta^{3/2})\) the binding
+term is (ii) at the top of the range and (i) below \(m=o(\sqrt\delta)\), hence the
+stated \(m=o(\delta^{3/2})\), \(\delta=o(n^{1/6})\), \(m^4\delta^3=o(n)\).
+\end{proof}
+
+\begin{remark}[The \(n^{1/6}\) barrier is the McKay error]
+\label{rem:n16-barrier}
+The restriction \(\delta=o(n^{1/6})\) in Theorem~\ref{thm:sharp-rate-short} is
+not an artifact: the McKay enumeration error is \(O(\delta^3/n)\), and extracting
+the \(o(\delta^{-3})\) rate forces \(\delta^6/n=o(1)\), i.e.\ \(\delta=o(n^{1/6})\).
+Beyond \(\delta=n^{1/6}\) the McKay error is \(\gg\delta^{-3}\), so no expansion
+with that error can resolve the coefficient \(1/(6\delta^3)\). This explains why
+Conjecture~\ref{conj:residual-factor-sharp}, which asks for the rate throughout
+\(\delta=o(n^{2/5})\), is cleanly provable only up to \(\delta=o(n^{1/6})\) by the
+present McKay route; the range \(n^{1/6}\lesssim\delta=o(n^{2/5})\) requires a
+sharper enumeration than~\cite[Theorem~14]{Gao21}.
+\end{remark}
+
 \begin{proposition}[Switching errors accumulate as \(L^3/n\)]
 \label{prop:switching-accumulation}
 Let \(\kappa\ge 1\) and \(C>0\), and let \(L=o(n)\).
@@ -8205,8 +8265,12 @@ The McKay weight is not a function of the overlap total alone for \(m\ge 2\)
 Theorem~\ref{thm:growing-degree-factor}, for \(\delta^3=o(n)\),
 \(\min(m,\delta-m)^7=o(\delta^2n)\) and \(\min(m,\delta-m)\le(\tfrac12-c)\delta\),
 with the \(m\)-free limit shape \(\exp(\sum_{k\ge3}x^k/2k)\) in place of the
-rate \(m^2/\delta^3\). What remains conjectural is the rate itself, the
-band \(m\approx\delta/2\), and \(n^{1/3}\lesssim\delta=o(n^{2/5})\).
+rate \(m^2/\delta^3\). The \emph{rate} \(1/(6\delta^3)\) itself is
+Theorem~\ref{thm:sharp-rate-short} for \(\delta=o(n^{1/6})\) (where the McKay
+error \(O(\delta^3/n)\) is sub-\(\delta^{-3}\)); the range
+\(n^{1/6}\lesssim\delta=o(n^{2/5})\) remains conjectural and needs a sharper
+enumeration (Remark~\ref{rem:n16-barrier}). What also remains conjectural is
+the band \(m\approx\delta/2\) and nearly regular hosts.
 The length \(m=o(\delta^{3/2})\) is the
 natural envelope of the \(m^2/\delta^3\) rate.
 At fixed \(\delta\), Theorem~\ref{thm:fixed-degree-factor} gives the
