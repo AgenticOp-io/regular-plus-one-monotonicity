@@ -44,6 +44,12 @@ run("cycle effects (-1/(D-1))^k",
 run("McKay exponent identity (Lemma mckay-exponent)",
     [sys.executable, str(FD / "mckay_exponent.py")],
     ok=lambda o: o.strip().endswith("OK"))
+run("residual host-term normalisation (host_term_cancel.py)",
+    [sys.executable, str(ROOT / "v2" / "scripts" / "residual" / "host_term_cancel.py")],
+    ok=lambda o: o.strip().endswith("all done") and "True" in o)
+run("residual first-moment host dependence (avoid_g_host.py)",
+    [sys.executable, str(ROOT / "v2" / "scripts" / "residual" / "avoid_g_host.py")],
+    ok=lambda o: o.strip().endswith("OK"))
 if "--full" in sys.argv:
     run("rate inequality I > psi, D <= 80",
         [sys.executable, str(FD / "rate_inequality.py")],

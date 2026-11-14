@@ -3248,3 +3248,9 @@ Query: Sqrt[(D-1)/(D-2)] Exp[-x/2-x^2/4] - Exp[-Log[1-x]/2 - x/2 - x^2/4], x=1/(
 Query: four-step McKay exponent minus (D^2-1)/4 minus 2 E0 at the typical overlap, every L
 [sympy] -1/(2(D-1)) - 1/(4(D-1)^2) exactly; L=1 fourth step = Gao21 phi(D,beta), third step = -1/2
         (v2/scripts/fixed_degree_factor/mckay_exponent.py, asserts pass)
+
+Query: lambda(g) - (delta-1)/2 for near-regular g_v = delta(1+e_v), E=sum e_v, R2=sum e_v^2
+[sympy] delta(E+R2)/(2(E+n)) exactly; sensitivity O(eps_n * delta), exponent O(eps_n * delta^2)
+        (v2/scripts/residual/host_term_cancel.py, asserts pass)
+Query: fixed-degree excess short series coefficient of (D-1)^-4
+[sympy] 1/8 (not 5/8); 1/D expansion gives 5/(8D^4) via the (1-1/D)^-3 correction from x^3

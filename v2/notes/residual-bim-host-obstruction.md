@@ -1,85 +1,83 @@
-# residual-moment-bim: what is actually needed and the host-term obstruction
-
-Status after step 3 (window mixture) and the decisive host-term check.
+# residual-moment-bim: the host-term obstruction (corrected scale)
 
 ## Summary
 
 `conj:residual-moment-bim` (relative variance `o(1)` of the number of `m`-factors of
-`R = G*_0 \ G`, conditionally on `G`) is **open**, and the literal statement is
-**false**; see the step-3 fragment. After step 3 the only surviving true form is the
-*degree-conditioned* form, whose single unproved ingredient is worker 2's
-`lem:avoid-G-host`:
+`R = G*_0 \ G`, conditionally on `G`) is **open**.  Its single unproved ingredient for
+the degree-conditioned form is `lem:avoid-G-host`: for every `d`-regular `G` and every
+`g` in the residual degree window, under `H ~ Unif(Omega(C,g))` with `C = K_n \ G`, the
+`m`-factor count has `Var/E^2 -> 0` uniformly in `G,g`.  Equivalently this is the
+"non-regular degree sequence" case of `rem:growing-degree-scope`.
 
-> for every `d`-regular `G` and every `g` in the residual degree window, under
-> `H ~ Unif(Omega(C, g))` with `C = K_n \ G`, the `m`-factor count has
-> `Var/E^2 -> 0` uniformly in `G, g`.
+## The obstruction, with the correct normalisation
 
-Equivalently (rem:growing-degree-scope) this is the "non-regular degree sequence"
-case of `thm:growing-degree-factor`.
+The regular proof (`thm:growing-degree-factor`) collapses the McKay exponents because for
+`g_v == D` the host term is deterministic and cancels in every ratio.
 
-## The obstruction (this is the honest conclusion)
+For a near-regular sequence the correct McKay object is the **loop parameter**
 
-The regular proof (`thm:growing-degree-factor`) collapses the four McKay exponents
-because for `g_v == D` the host term
+    lambda(g) = sum_v g_v(g_v-1) / (2 sum_v g_v),
 
-    H(g) = sum_v g_v (g_v - 1)
+not the raw `sum_v g_v(g_v-1)`.  Writing `g_v = delta(1+e_v)` with relative deviations
+`e_v`, `E = sum_v e_v`, `R2 = sum_v e_v^2`,
 
-is deterministic and equal to `D(D-1) n`, so it cancels in every first-moment and
-second-moment ratio. For a near-regular sequence `g_v = delta + y_v`,
+    lambda(g) - (delta-1)/2 = delta (E + R2) / (2 (E+n)).      (exact, sympy)
 
-    H(g) = delta(delta-1) n + (2 delta - 1) sum_v y_v + sum_v y_v^2 .
+Dividing by `2 sum_v g_v = 2 n delta (1+o(1))` is the step the earlier worker-2 note
+dropped: it quoted `sum_v g_v(g_v-1) = delta(delta-1)n + (2 delta - 1) sum y_v + sum y_v^2`
+and carried the raw `(2 delta - 1)` coefficient, which is the normalisation error.
 
-The linear piece does **not** vanish on the window `{|y_v| <= eps·delta}`:
+For a *relative* window `|e_v| <= eps_n` one has `|E| <= eps_n n` and `R2 <= eps_n^2 n`,
+so
 
-* the edge-count fluctuation `sum_v y_v = 2(e(R) - k0)` has standard deviation of
-  order `beta = m sqrt(n(1-q)/(2 delta))`;
-* the resulting McKay-exponent movement is `Theta(delta·beta)`;
-* at BIM scale `delta = Theta(d^{2/3}(log n)^{1/3})`, `m = Theta(sqrt(d log n))`,
+    |lambda(g) - (delta-1)/2| <= eps_n delta (1+eps_n)/2 = O(eps_n delta),
 
-        delta·beta = Theta( sqrt(n) · d^{5/6} (log n)^{2/3} ) -> infinity.
+and the exponent carries `lambda^2`, whose movement is
 
-So the host term moves the mean by `exp(Theta(delta·beta))` across the window, and
-the regular-host cancellation step does **not** extend to near-regular hosts. This is
-the same first-moment non-flatness already proved in step 3 (`thm:s3-window-diverges`,
-`prop:s3-means-not-flat`), seen now at the level of the McKay host term.
+    2 lambda_0 dlambda = O(delta · eps_n delta) = O(eps_n delta^2).
 
-**Consequence.** `lem:avoid-G-host` is not a missing line of algebra; it is a genuine
-obstruction in the `o(1)`-flatness of the first moment, exactly as step 3 concluded. The
-overlap/`K` second-moment machinery of `thm:growing-degree-factor` is *downstream* of a
-first-moment flatness that fails at BIM scale for a non-regular residual.
+At BIM scale `delta = d^{2/3}(log n)^{1/3}` and `eps_n = (1/2)(log n/d)^{1/3}` (the
+residual-sharp relative window), one gets
+
+    eps_n delta^2 = (1/2) d log n -> infinity,
+
+so a *relative* window is too coarse for a pointwise `o(1)` host term.  This is the honest
+obstruction, and its correct magnitude is `O(eps_n delta^2)`, not the `Theta(delta·beta)`
+(with `beta = m sqrt(n/(2 delta))`) quoted earlier.  The two scales are unrelated; the
+earlier one had a dimensionally wrong `m` in the numerator and a missing `1/(2 n delta)`
+normalisation.
 
 ## What therefore closes it (or refutes it)
 
 For the degree-conditioned form to hold at BIM scale one needs either
 
-1. a first-moment formula for the count of `m`-factors of `Unif(Omega(C,g))` that is
-   flat in `g` to `1+o(1)` across the window (denied by `Theta(delta·beta) -> inf`
-   under the Bernoulli/`Unif` residual law); or
-2. a normalisation by the random mean `E[Z | G, deg R]` (the step-3 item (ii) form),
-   which is what a weak law of large numbers actually gives, and which does not by
-   itself feed `prop:residual-to-peel-weight` (which wants a deterministic `nu_n`).
+1. a first-moment formula flat in `g` to `1+o(1)` across a window of *absolute* width
+   `eps_n delta` with `eps_n delta^2 = o(1)` (i.e. `eps_n = o(delta^{-2})`), which is far
+   tighter than the residual-sharp relative window; or
+2. a normalisation by the random mean `E[Z | G, deg R]`, which a weak law of large numbers
+   gives but which does not by itself feed `prop:residual-to-peel-weight` (it wants a
+   deterministic `nu_n`); or
+3. a direct estimate of the residual-law second moment that does not route through
+   near-regular host flatness.
 
-Neither is settled. The first is obstructed as above; the second leaves the
-peel-weight / total-variation transfer open (gap 3 of the step-3 fragment).
+## Verified (sympy, `v2/scripts/residual/host_term_cancel.py`)
 
-## Verified
-
-`v2/scripts/residual/host_term_cancel.py` (sympy):
-
-* `[R1]` the fixed-degree excess is `exp(S)-1 = x^3/6 + x^4/8 + x^5/10 + O(x^6)`
-  with `x = 1/(D-1)`, i.e. `1/(6(D-1)^3) + 1/(8(D-1)^4) + O((D-1)^-5)`.  Rewritten
-  in powers of `1/D` this is `1/(6D^3) + 5/(8D^4) + O(D^-5)`, because the `x^3`
-  term carries a `(1 - 1/D)^{-3} = 1 + 3/D + ...` correction (3/6 + 1/8 = 5/8).
-  The `(D-1)`-coefficient is **1/8**, not 5/8; the earlier note wrongly carried the
-  `5/8` from the `1/D` expansion into the `(D-1)` form.  `thm:fixed-degree-factor`
-  (main.tex line 5534) is correct as committed (`1/8(D-1)^4`).
-* `[H1]` the host-term movement `delta·beta` -> infinity at BIM scale, explicitly.
-* `[B1]`,`[B2]` the switching bookkeeping identities in the regular proof.
+* `[R1]` fixed-degree excess is `x^3/6 + x^4/8 + x^5/10 + O(x^6)`, `x = 1/(D-1)`, so the
+  `(D-1)^-4` coefficient is **1/8**; the `1/D` expansion is `1/(6D^3) + 5/(8D^4) + O(D^-5)`.
+* `[H]`  `lambda(g) - (delta-1)/2 = delta(E+R2)/(2(E+n))` exactly.
+* `[F]`  (`avoid_g_host.py`) first-moment host exponent `Phi1(e,s2)` has
+  `dPhi1/de = -m/(2n)` and `dPhi1/ds2 = 0` exactly: the degree-spread direction
+  `s2 = sum y_v^2` cancels, and the edge-count direction `e = sum y_v` enters with
+  the small coefficient `-m/(2n)`.
+* `[B]`  `eps_n delta^2 = d log n / 2 -> infinity` at BIM scale; the first-moment
+  exponent shift is `m eps_n delta / 2 = d^{5/6}(log n)^{7/6}/4 -> infinity`.
+* `[B1],[B2]` switching bookkeeping identities (unaffected).
 
 ## Note on the matching case
 
-At `m=1` the host-term movement is `Theta(n^{1/2} d^{1/2}/delta^{... })` -> still
-divergent for `delta = o(n^{1/2})`; this is exactly why `lem:residual-window-means`
-(the `m=1` window flatness) is false, as step 3 proved. The `m=1` *exact-degree*
-statement (`thm:residual-matching-constrained`, degree exactly `delta`) is unaffected,
-because there `g` is constant and `H` is deterministic.
+`thm:residual-matching-constrained` conditions on **exact** degree `delta`, where `g` is
+constant and `lambda(g) = (delta-1)/2` is deterministic, so it is unaffected.  The
+window-mixture step `lem:residual-window-means` claims a `1+O(eps_n)` shift across the
+relative window; by `[H]` the correct shift of the loop parameter is `O(eps_n delta)`,
+so that lemma's stated error is too optimistic unless the host `mu`-term supplies an
+additional cancellation.  This is a separate item to verify for `m=1`.

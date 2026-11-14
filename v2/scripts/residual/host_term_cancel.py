@@ -1,118 +1,114 @@
 """
-host_term_cancel.py -- decisive check for conj:residual-moment-bim.
+host_term_cancel.py -- host-term analysis for conj:residual-moment-bim.
 
-The one unproved estimate for the degree-conditioned m-factor moment (worker 2's
-lem:avoid-G-host, equivalently the "non-regular degree sequence" case named in
-rem:growing-degree-scope of main.tex) is whether the McKay-4.6 host term
+Corrected.  The original (worker-2) version claimed the McKay host term
+sum_v g_v(g_v-1) moves by exp(Theta(delta*beta)) for a near-regular sequence
+g_v = delta + y_v, with beta = m sqrt(n/(2 delta)).  That claim has a
+NORMALIZATION ERROR: the McKay loop parameter is
 
-    sum_v g_v (g_v - 1)
+    lambda(g) = sum_v g_v(g_v-1) / (2 sum_v g_v),
 
-cancels in the second-moment ratio of the m-factor count, for a *near-regular*
-sequence g_v = delta*(1+o(1)) over a hole (the d-regular G removed from K_n).
+not the raw sum.  Dividing by 2 sum_v g_v = 2 n delta (1+o(1)) turns the
+(2 delta - 1) sum_v y_v piece into sum_v y_v / (2n) + ..., whose coefficient
+is 1/(2n), not 2 delta.
 
-For the EXACTLY regular case, g_v == delta, the growing-degree theorem already
-proves the ratio collapses to a host-free exp(sum_{k>=3} x^k/2k) = 1+o(1).
+Consequently the exponent movement is O(eps_n * delta) [and O(eps_n * delta^2)
+after the lambda^2], with eps_n the *relative* window half-width, rather than
+exp(Theta(delta * beta)).
 
-Claim checked here: for g_v = delta + y_v, the variation of the host term
-sum_v g_v(g_v-1) is 2*delta*sum_v y_v + sum_v y_v(y_v-1), and the LINEAR piece
-2*delta*sum_v y_v does NOT vanish on the window {|y_v| <= delta*eps}: both the
-edge-count fluctuation (sum_v y_v = 2(e(R)-k0), scale ~ beta = m sqrt(n/(2 delta)))
-and the degree-spread piece keep the host term moving by exp(Theta(beta)), which
-diverges for m = Theta(sqrt(d log n)) at BIM scale.
+The honest conclusion is unchanged in KIND (a relative window |g_v - delta|
+<= eps_n delta is too coarse for a pointwise o(1) host term at BIM scale,
+because eps_n * delta^2 -> infinity), but the magnitude is O(eps_n delta^2),
+not O(delta * beta), and the two scales agree only by accident neither is o(1).
+This note records the correct scale so a later attack normalizes by the correct
+window or by the random mean rather than by a wrong beta.
 
-So the host term does NOT cancel for a near-regular sequence, and the
-degree-conditioned moment for m-factors that avoids G is NOT obtained by the
-regular-host argument plus o(1) window flatness. This is the honest obstruction.
-
-We also verify the exact identity used in the paper's regular proof to make sure
-we are cancelling the same term that the paper cancels, and the m=1 version.
+All checks are exact sympy; no Wolfram app id on this machine, so these are
+rule-7 sympy fallbacks pending the key.
 """
 
-from sympy import symbols, Rational, simplify, exp, log, binomial, factorial, oo
+from sympy import symbols, Rational, simplify, exp, log, oo, series
 
 
 def check_regular_host_term_cancellation():
     """
-    In the exactly-regular case the host term is deterministic:
-    sum_v g_v(g_v-1) = delta(delta-1) n.  The second-moment ratio of the
-    growing-degree theorem only retains the loop/double-edge correction
-    exp(sum_{k>=3} x^k/(2k)); the delta(delta-1)n contribution cancels between
-    numerator and denominator because every class sum is then deterministic.
-
-    We verify the finite-degree limit shape asserted in thm:fixed-degree-factor:
-        Var Z / (E Z)^2 -> exp(sum_{k>=3} x^k/(2k)) - 1,  x = 1/(D-1),
-    equals 1/(6(D-1)^3) + 1/(8(D-1)^4) + O(D^-5).
+    Exactly-regular case: g_v == D.  The host term is deterministic and cancels,
+    leaving the loop/double-edge correction exp(sum_{k>=3} x^k/(2k)), x=1/(D-1).
+    Verify the fixed-degree short series is x^3/6 + x^4/8 + x^5/10 + ..., i.e.
+    1/(6(D-1)^3) + 1/(8(D-1)^4) + O((D-1)^-5).  The (D-1)^-4 coefficient is 1/8,
+    NOT 5/8; 5/8 is only the 1/D expansion coefficient.
     """
     D = symbols('D', positive=True)
     x = 1/(D-1)
-    # sum_{k>=3} x^k/(2k) = (1/2)*( -log(1-x) - x - x^2/2 )
     S = Rational(1,2) * (-log(1-x) - x - x**2/2)
     excess = exp(S) - 1
-    # series in x = 1/(D-1): x^3/6 + x^4/8 + x^5/10 + O(x^6)
-    print("[R1] finite-degree excess series in x:", excess.series(x, 0, 6).removeO())
-    # series in 1/D: 1/(6D^3) + 5/(8D^4) + O(D^-5)
-    print("[R1] finite-degree excess series in D:", excess.series(D, oo, 5).removeO())
-    # The theorem statement (thm:fixed-degree-factor) is written in x = 1/(D-1):
-    #   1/(6(D-1)^3) + 1/(8(D-1)^4) + O((D-1)^-5)
-    # The (D-1)-coefficient is 1/8, NOT 5/8.  The 5/8 arises only when this is
-    # re-expanded in powers of 1/D (the (1 - 1/D)^{-3} correction from the x^3 term).
+    print("[R1] excess in x:", excess.series(x, 0, 6).removeO())
+    print("[R1] excess in D:", excess.series(D, oo, 5).removeO())
     lead_Dminus1 = Rational(1,6)/(D-1)**3 + Rational(1,8)/(D-1)**4
-    print("[R1] asserted 1/(6(D-1)^3)+1/(8(D-1)^4) diff (x^5 leftover only):",
-          simplify((excess - lead_Dminus1).series(D, oo, 6).removeO()))
-    assert simplify((excess - lead_Dminus1).series(x, 0, 5).removeO()) == 0, (
-        "theorem statement x^4 coefficient must be 1/8, not 5/8")
+    diff = simplify((excess - lead_Dminus1).series(x, 0, 5).removeO())
+    print("[R1] assert 1/(6(D-1)^3)+1/(8(D-1)^4) matches to x^4:", diff == 0)
+    assert diff == 0, "fixed-degree (D-1)^-4 coefficient must be 1/8, not 5/8"
 
 
-def check_host_term_variation():
+def check_normalized_host_term():
     """
-    Host term H(g) = sum_v g_v (g_v - 1), with g_v = delta + y_v.
-    H = sum_v [delta(delta-1) + (2 delta - 1) y_v + y_v^2]
-      = delta(delta-1) n + (2 delta - 1) sum_v y_v + sum_v y_v^2.
+    The correct object is the McKay loop parameter
+        lambda(g) = sum_v g_v(g_v-1) / (2 sum_v g_v),
+    not sum_v g_v(g_v-1).  For g_v = delta + y_v with relative deviations
+    e_v = y_v/delta, E = sum_v e_v, R2 = sum_v e_v^2:
 
-    On the near-regular window with sum_v y_v = 2(e(R)-k0), the edge-count
-    fluctuation has SD ~ sigma_e = sqrt(e_C q (1-q)) and 2 sigma_e ~ beta in the
-    paper's notation.  The linear coefficient (2 delta - 1) makes the host term
-    move by exp(Theta((2 delta) * sigma_e)) = exp(Theta(delta * beta)).
+        lambda(g) - (delta-1)/2 = delta(E + R2)/(2(E+n)).
 
-    At BIM scale: delta = Theta(d^{2/3} (log n)^{1/3}), m = Theta(sqrt(d log n)),
-    beta = m sqrt(n(1-q)/(2 delta)) = Theta(sqrt(n) d^{1/6} (log n)^{1/3}),
-    so delta * beta = Theta(n^{1/2} d^{5/6} (log n)^{2/3}) -> infinity.
-
-    That divergence is exactly the first-moment non-flatness my step-3 note
-    already proved; here we record the host-term version to show the
-    regular-host proof's cancellation step does not extend to near-regular g.
+    So the sensitivity to the profile is O(eps_n * delta), and after squaring
+    lambda^2 the exponent moves by O(eps_n * delta^2).
     """
-    delta, nvar = symbols('delta nvar', positive=True)
-    m = symbols('m', positive=True)
-    q = symbols('q', positive=True)
-    # beta from the paper: beta^2 = m^2 n (1-q)/(2 delta)
-    beta = m * (nvar * (1-q) / (2*delta))**Rational(1,2)
-    # host-term linear movement scale: (2 delta - 1) * delta_g where delta_g ~ beta
-    # exponent moving the McKay weight: ~ 2 delta * beta / (something O(delta)) ;
-    # independent of the O(delta) normalization in the weight, 2 delta * beta -> inf.
-    # Substitute BIM scales symbolically:
-    d = symbols('d', positive=True)
-    logn = symbols('logn', positive=True)
-    delta_bim = d**Rational(2,3) * logn**Rational(1,3)
-    m_bim = (d*logn)**Rational(1,2)
-    beta_bim = m_bim * (nvar/(2*delta_bim))**Rational(1,2)  # 1-q ~ 1
-    host_movement = delta_bim * beta_bim
-    print("[H1] host-term movement scale delta*beta =", host_movement,
-          " -> infinity at BIM scale (d,logn->inf)")
+    n, delta = symbols('n delta', positive=True)
+    E = symbols('E', nonzero=True)
+    R2 = symbols('R2', nonzero=True)
+    lam_num = n*delta**2 + 2*delta**2*E + delta**2*R2 - n*delta - delta*E
+    lam_den = 2*(n*delta + delta*E)
+    lam = lam_num/lam_den
+    dlam = simplify(lam - (delta-1)/2)
+    print("[H] lambda(g) - (delta-1)/2 =", dlam)
+    # Exact: dlam = delta (E + R2) / (2 (E+n)).
+    expected = delta*(E + R2)/(2*(E+n))
+    print("[H] matches delta(E+R2)/(2(E+n)):", simplify(dlam - expected) == 0)
+    assert simplify(dlam - expected) == 0
+
+    # Scalar bounds with |e_v| <= eps_n:
+    #   |E| <= eps_n n,  R2 <= eps_n^2 n,  so dlam = O(eps_n delta).
+    # In the exponent lambda^2 - lam0^2 = 2 lam0 dlam + dlam^2 = O(delta * eps_n delta)
+    # = O(eps_n delta^2).
+    eps = symbols('eps', positive=True)
+    dlam_bound = delta*(eps*n + eps**2*n)/(2*n)
+    print("[H] |dlam| <= eps*delta*(1+eps)/2 =", simplify(dlam_bound / eps))
+    lam0 = (delta-1)/2
+    # exponent movement from lambda^2:
+    move = simplify((lam0*Rational(2))*dlam)  # 2 lam0 dlam, leading
+    # bound 2*(delta/2)*(eps delta) = eps delta^2
+    print("[H] lambda^2 movement ~ 2*lam0*dlam = O(eps_n * delta^2)")
 
 
-def check_constant_sequence_host_term_matches_paper():
+def check_bim_scales():
     """
-    Reconcile with the paper's regular proof: In thm:growing-degree-factor the
-    host term lambda(g) = sum_v g_v(g_v-1)/(2S) enters through -lambda-lambda^2.
-    For g_v == D constant, lambda = (D-1)/2 and the ratio is m-free.  We only
-    confirm the arithmetical identity line used there:
+    At BIM scale delta = d^{2/3}(log n)^{1/3}, eps_n = (1/2)(log n/d)^{1/3}
+    (the residual-sharp relative window).  Then
+        eps_n * delta^2 = (1/2) d log n -> infinity,
+    so a *relative* window is too coarse for a pointwise o(1) host term.
+    This is the correct magnitude of the obstruction (previously misstated as
+    delta*beta with beta = m sqrt(n/(2 delta))).
+    """
+    d, logn = symbols('d logn', positive=True)
+    eps_n = Rational(1,2) * (logn/d)**Rational(1,3)
+    delta = d**Rational(2,3) * logn**Rational(1,3)
+    print("[B] eps_n * delta^2 =", simplify(eps_n * delta**2), "-> infinity")
+    print("[B] eps_n * delta   =", simplify(eps_n * delta), "-> infinity")
 
-        (L^2(L^2+1))/(2 L n) = L(L^2+1)/(2n) = L^3/(2n) + L/(2n)
 
-    and the switching accumulation claim.  (These are bookkeeping identities
-    that must be right for the regular proof; they are, but they do not touch
-    the near-regular host term.)
+def check_switching_bookkeeping():
+    """
+    Bookkeeping identities used in the regular proof (unaffected by the host
+    issue, kept for completeness).
     """
     L, nvar = symbols('L nvar', positive=True)
     lhs = L**2*(L**2+1)/(2*L*nvar)
@@ -120,10 +116,12 @@ def check_constant_sequence_host_term_matches_paper():
     rhs2 = L**3/(2*nvar) + L/(2*nvar)
     print("[B1] switching identity 1:", simplify(lhs - rhs1) == 0)
     print("[B2] switching identity 2:", simplify(rhs1 - rhs2) == 0)
+    assert simplify(lhs - rhs1) == 0 and simplify(rhs1 - rhs2) == 0
 
 
 if __name__ == "__main__":
     check_regular_host_term_cancellation()
-    check_host_term_variation()
-    check_constant_sequence_host_term_matches_paper()
+    check_normalized_host_term()
+    check_bim_scales()
+    check_switching_bookkeeping()
     print("all done")
