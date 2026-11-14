@@ -2666,11 +2666,12 @@ sandwiches the second-moment ratio as
 \[
 \exp\Bigl(O\Bigl(\frac{L^3+1}{n}\Bigr)\Bigr)
 \]
-after the quadratic overlap terms cancel. Consequently any improvement of the
-averaged containment ratio that replaces the \(O(L^3/n)\) remainder by
-\(o(L^3/n)\), uniformly for \(L=o(n^{1/2})\) with two linear host margins,
-upgrades the theorem to \(\Var P_L/(\EE P_L)^2\to0\) throughout
-\(L=o(n^{1/2})\).
+after the quadratic overlap terms cancel. Consequently, for any range \(L\le L_n\le n^{1/2}/2\), the theorem upgrades
+to \(\Var P_L/(\EE P_L)^2\to0\) on that range as soon as the averaged exponent
+is \(o(1)\) there. An improvement of the remainder from \(O(L^3/n)\) to
+\(o(L^3/n)\) alone does not suffice past \(L\asymp n^{1/3}\); the explicit
+\(L^3/n\) coefficient must be computed and shown to vanish, which is
+Proposition~\ref{prop:peel-cubic-cancels}.
 The same cubic is the expansion target recorded after
 Proposition~\ref{prop:im-containment}; the dense \(D(F)\)-transfer of
 Proposition~\ref{prop:peel-transfer-threshold} is an independent route.
@@ -2680,9 +2681,67 @@ Proposition~\ref{prop:peel-transfer-threshold} is an independent route.
 Trace the proof of Theorem~\ref{thm:peel-second-moment-third}: after
 Lemma~\ref{lem:containment-ratio}(a)--(b) and Lemma~\ref{lem:decomp-overlap},
 every quadratic contribution cancels up to \(O(L/n)\), leaving a two-sided
-error \(O((L^3+1)/n)\) in the exponent. Replacing that error by \(o(L^3/n)\)
-forces the exponent to \(o(1)\) whenever \(L=o(n^{1/2})\).
+error \(O((L^3+1)/n)\) in the exponent. The ratio tends to \(1\) exactly when
+that exponent is \(o(1)\).
 \end{proof}
+
+\begin{proposition}[The cubic order cancels]
+\label{prop:peel-cubic-cancels}
+In the setting of Theorem~\ref{thm:peel-second-moment-third}, write
+\(\psi(e)=(N_0-e)H(\lambda(e))\) with \(H\) the binary entropy, \(N_0=\binom n2\),
+\(\lambda(e)\) as in the proof of Lemma~\ref{lem:containment-ratio}, and
+\(s=Ln/2\). The second difference of \(\psi\) in
+Lemma~\ref{lem:containment-ratio}(b) expands as
+\[
+T\log\frac1\lambda-\frac{L^2(\lambda^{-1}-1)}2
++A\,\frac{L^3}{n}+B\,\frac{LT}{n}+\dots,
+\qquad
+A=-\frac{1-\lambda^2}{2\lambda^2},\quad B=\frac{2(1-\lambda)}{\lambda},
+\]
+and, under \(\nu_L\otimes\nu_L\), the second factorial cumulant of
+\(T=|F_1\cap F_2|\) is \(\kappa_2=-L^3/n+L^2/n+O(L^4/n^2)\), so that
+\[
+\log\EE[x^T]=\frac{(x-1)L^2n}{2(n-1)}+C(x)\frac{L^3}{n}+\dots,
+\qquad C(x)=-\frac{(x-1)^2}2 .
+\]
+The \(LT/n\) term tilts \(x\) to \(\lambda^{-1}(1+BL/n)\), adding
+\(B/(2\lambda)=(1-\lambda)/\lambda^2\) to the cubic coefficient. The total
+\(L^3/n\) coefficient of \(\log\EE[P_L^2]/(\EE P_L)^2\) is
+\[
+-\frac{1-\lambda^2}{2\lambda^2}+\frac{1-\lambda}{\lambda^2}-\frac{(1-\lambda)^2}{2\lambda^2}=0
+\]
+identically in \(\lambda\). Hence, if in addition
+\begin{enumerate}
+\item[(R1)] the \(\gamma^3\) remainder and the \(\boldsymbol v^{\mathsf T}Q^{-1}\boldsymbol v\)
+term in the proof of Lemma~\ref{lem:containment-ratio}(b) have overlap average
+\(O(L^2/n+L^4/n^2)\), and
+\item[(R2)] the factorial cumulants of \(T\) of order \(k\ge3\) are
+\(O(L^{2k-1}/n^{k-1})\),
+\end{enumerate}
+then \(\Var P_L/(\EE P_L)^2=O(L^2/n+L^5/n^2)\to0\) throughout \(L=o(n^{2/5})\).
+\end{proposition}
+
+\begin{proof}
+The derivatives \(\psi'(e)=\log\lambda(e)\) and
+\(\psi'''(0)=-(1-\lambda^2)/(\lambda^2N_0^2)\) are exact; \(A\) is
+\(s^3\psi'''(0)\) at \(s=Ln/2\), and \(B\) is the first-order change of
+\(-\log\lambda(2s)\). The factorial cumulant \(\kappa_2\) has an exact closed form
+that uses only \(L\)-regularity and vertex-relabelling symmetry of \(\nu_L\):
+adjacent pairs of edges contribute \(-2\), disjoint pairs \(+1\). It agrees with
+exact enumeration of \(\nu_L\) for \((n,L)\in\{(6,2),(6,3),(8,2),(8,3)\}\) as
+rationals. With \(\log\EE[x^T]=\sum_k\kappa_k(x-1)^k/k!\), the cubic coefficient
+\(C(x)\) is \(\kappa_2\)'s \(-L^3/n\) times \((x-1)^2/2\). The three coefficients
+and their zero sum are sympy identities; \(A\) and \(B\) also match \(\psi\) evaluated
+to \(60\) digits at \(n\in\{10^6,10^7\}\)
+(\texttt{v2/scripts/residual/worker2\_peel\_cubic.py}). Under (R1)--(R2) the
+remaining terms are \(O(L^2/n)\), \(O(L^4/n^2)\) and the \(k=3\) cluster
+\(O(L^5/n^2)\).
+\end{proof}
+
+\begin{remark}
+(R1) and (R2) are not proved, and the \(L^5/n^2\) coefficient is not computed;
+if it also cancels, the method's next barrier lies beyond \(n^{2/5}\).
+\end{remark}
 
 \subsection*{The factor second moment as a colouring count}
 
@@ -7414,6 +7473,57 @@ Constancy of the conditional expectation is then equivalent to
 is exactly the value that makes the derivative identically \(1\).
 \end{proof}
 
+\begin{proposition}[Averaged item (iii) is equivalent to total variation]
+\label{prop:iii-averaged}
+In the setting of Theorem~\ref{thm:selection-reduces}, write
+\(a(G_0)=\EE[1/N\mid G_0\subset G^*_0]\) and
+\(\bar a:=\EE_{\mu_D}a=\PP(N\ge1)/(\lvert\Omega_D\rvert p^{Dn/2})\), the constant
+\(c_n\) of Proposition~\ref{prop:target-cn}. The following are equivalent:
+\begin{enumerate}
+\item[(iii\('\))] \(a(G_0)=(1+o(1))\,\bar a\) for all \(G_0\) outside a set of
+\(\mu_D\)-mass \(o(1)\);
+\item[(TV)] \(\dTV(\nu_D,\mu_D)\to0\).
+\end{enumerate}
+In particular (iii\('\)) may replace item (iii) of
+Theorem~\ref{thm:selection-reduces}, and item (iv) then holds as stated. Neither
+direction uses \(\PP(N\ge1)\to1\).
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:nu-rn}, \(Y:=d\nu_D/d\mu_D=a/\bar a\), with \(Y\ge0\) and
+\(\EE_{\mu_D}Y=1\). Hence \(\dTV(\nu_D,\mu_D)=\tfrac12\EE_{\mu_D}\lvert Y-1\rvert
+=\EE_{\mu_D}(1-Y)^+\). If (iii\('\)) holds, then for every \(\eta>0\),
+\(\EE(1-Y)^+\le\eta+\mu_D(Y<1-\eta)\to\eta\). Conversely Markov gives
+\(\mu_D(\lvert Y-1\rvert>\eta)\le 2\dTV/\eta\). Item (iv) of
+Theorem~\ref{thm:selection-reduces} uses item (iii) only through
+\(\dTV(\nu_D,\mu_D)\to0\). Exact enumeration of all \(2^{15}\) hosts at
+\(n=6\), \(D=2\), \(p\in\{1/2,1/3\}\) confirms \(\nu_D=\mu_D\cdot a/\bar a\) and the
+total-variation identity type by type
+(\texttt{v2/scripts/residual/worker1\_config\_split.py selfcheck}).
+\end{proof}
+
+\begin{remark}[The uniform item (iii) does not wash out; the averaged one may]
+\label{rem:iii-uniform-vs-averaged}
+Exact enumeration for \(D=2\), \(6\le n\le10\), and \(D=3\), \(n\in\{8,10\}\)
+(all labelled \(D\)-regular types, rational arithmetic) shows \(a\) is nearly
+multiplicative in the triangle count, \(a(G_0)\approx a(C_n)\,\theta_n^{t_3(G_0)}\).
+For instance at \(n=9\), \(p=\tfrac12\), \(a(3C_3)/a(C_9)=0.88051\) against
+\(\theta^3=0.88078\). The extremal type has \(\lfloor n/3\rfloor\) triangles, so
+uniform flatness needs \(n(1-\theta_n)\to0\). With the host mean degree fixed
+(\(p=D/(\rho(n-1))\), \(\rho=3/4\), the local structure of
+\(p=(1+\varepsilon_0)d/n\)), \(n(1-\theta_n)\) rises from \(0.41\) to \(0.56\) over
+\(6\le n\le10\), and the max/min ratio of \(a\) stays near \(1.3\) at \(D=3\).
+The uniform item (iii) is therefore expected to fail in the paper's regime
+(heuristic: the per-triangle effect is local, while the extremal \(D\)-regular
+host has \(\asymp nD^2\) triangles). The averaged form
+(iii\('\)) is weaker: at fixed \(D\) the total variation stalls near \(0.009\)
+(\(D=2\)) and \(0.02\) (\(D=3\)), consistent with a Poisson triangle model, so
+(iii\('\)) can only hold with \(D\to\infty\). If
+\(a/\bar a\approx\prod_k(1+\eta_k)^{X_k-\EE X_k}\) with \(X_k\) the \(k\)-cycle
+counts, small subgraph conditioning reduces (iii\('\)) to
+\(\sum_k(D-1)^k\eta_k^2/(2k)\to0\); proving that is open.
+\end{remark}
+
 \begin{corollary}[Subgraph densities track inverse-count oscillation]
 \label{cor:subgraph-bias}
 Write
@@ -8643,6 +8753,11 @@ Proposition~\ref{prop:iii-weighted-tail} is the coarser sufficient condition
 Remarks~\ref{rem:iii-weighted-n6} and~\ref{rem:iii-weighted-n8} record the
 defect on \(n=6\) (exact) and \(n=8\) (Monte Carlo): two-sided cancellation
 beats the pointwise mass, but orbit gaps remain.
+Proposition~\ref{prop:iii-averaged} replaces the uniform item (iii), which
+Remark~\ref{rem:iii-uniform-vs-averaged} expects to be false, by its
+\(\mu_D\)-averaged form, which is exactly \(\dTV(\nu_D,\mu_D)\to0\); what remains is
+the small-subgraph-conditioning bound on the cycle effects \(\eta_k\) as
+\(D\to\infty\).
 Free splitting already gives the increment throughout \(d+m=o(n^{1/3})\),
 and is a different coupling.
 

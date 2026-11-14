@@ -59,6 +59,12 @@ run("residual window-mean prefactor rate (residual_window_means.py)",
 run("sharp m-factor rate error budget (sharp_rate.py)",
     [sys.executable, str(ROOT / "v2" / "scripts" / "residual" / "sharp_rate.py")],
     ok=lambda o: "BINDING" in o)
+run("averaged item (iii) <=> TV, exact n=6 (worker1_config_split.py selfcheck)",
+    [sys.executable, "worker1_config_split.py", "selfcheck"], cwd=ROOT / "v2" / "scripts" / "residual",
+    ok=lambda o: "selfcheck OK" in o)
+run("peel cubic L^3/n coefficient cancels (worker2_peel_cubic.py)",
+    [sys.executable, str(ROOT / "v2" / "scripts" / "residual" / "worker2_peel_cubic.py")],
+    ok=lambda o: "CANCELS identically" in o and "total                      = 0" in o)
 if "--full" in sys.argv:
     run("rate inequality I > psi, D <= 80",
         [sys.executable, str(FD / "rate_inequality.py")],

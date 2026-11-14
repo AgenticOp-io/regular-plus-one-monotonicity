@@ -1,0 +1,118 @@
+worker1 -- config-split track: is a(G0) = E[1/N | G0 subset G*_0] flat across D-regular types?
+(item (iii) of thm:selection-reduces; feeds conj:config-split via item (iv))
+Script: v2/scripts/residual/worker1_config_split.py   (rewritten notes, 2026-11-14)
+
+0. THE OLD NUMBERS IN THIS FILE WERE WRONG
+   The previous version (spreads 3.91 / 5.72 / 2.21 at n=8) came from a broken 2-factor
+   enumerator: 715 "2-regular graphs" at n=8 including 2-cycles (multigraphs).  The correct
+   count is 3507 simple 2-regular labelled graphs, 3 types (C8, C5+C3, C4+C4).  Discard them.
+
+1. DEFINITION CHECK (matches the paper)
+   main.tex thm:selection-reduces (iii): a(G0) = E[1/N(G*_0) | G0 subset G*_0], G*_0 ~ G(n,p),
+   N = # D-regular spanning subgraphs.  Script: conditioned on G0, the C(n,2)-Dn/2 complement
+   edges are iid Bernoulli(p), so a(G0) = sum_k A_k p^k (1-p)^(c-k), A_k = sum_{|S|=k} 1/N(G0 u S),
+   computed by an exact subset-sum (zeta) transform over all 2^c complement subsets; Fractions.
+   Types = spectral classes, guarded by known class counts.  Selfcheck (all exact, Fractions):
+     - n=6 values a(C6)=0.29623897, a(C3+C3)=0.25733183 at p=1/2 (as in rem:small-n-inv);
+     - P(N>=1) = |Omega| p^{Dn/2} abar  by brute force over all 2^15 hosts  (abar = c_n);
+     - NEW: nu_D computed straight from its definition (uniform D-factor of each of the 2^15
+       hosts) equals mu_D * a/abar type by type, and d_TV(nu_D,mu_D) = (1/2) E_mu|a/abar - 1|,
+       exactly, at p=1/2 and p=1/3.
+   Parameters: fixed p in {1/4,1/2,3/4} (dense), and p = D/(rho (n-1)) with rho = D/(mean host
+   degree) fixed (sparse-like: host mean degree stays D/rho as n grows; this is the regime
+   that mimics the paper's p=(1+eps0)d/n, D=d+m, where rho = D/((1+eps0)d) < 1).
+
+2. EXACT RESULTS, D=2 (all 2-regular cycle types; exact rational, printed to 6-9 digits)
+   spread = max_t a(t) / min_t a(t)
+                 n=6     n=7     n=8     n=9     n=10
+   p=1/4       1.0829  1.0504  1.0454  1.1514  1.1072
+   p=1/2       1.1512  1.0634  1.0797  1.1445  1.0756
+   p=3/4       1.0725  1.0131  1.0117  1.0080  1.0019
+   rho=3/4     1.1502  1.0682  1.0715  1.1900  1.1219
+   rho=9/10    1.1462  1.0675  1.0583  1.1671  1.1059
+
+   d_TV(nu_2, mu_2) = (1/2) E_mu|a/abar-1|
+   p=1/2       0.01639 0.01056 0.00930 0.00690 0.00621
+   p=3/4       0.00836 0.00227 0.00121 0.00041 0.00015
+   rho=3/4     0.01630 0.01132 0.00975 0.00899 0.00907
+
+   n=10 per type (p=1/2): a(C10)=2.90915363e-3, a(C5+C5)=2.87343038e-3, a(C6+C4)=2.95870337e-3,
+   a(C7+C3)=2.80435401e-3, a(C4+C3+C3)=2.75075008e-3, abar=2.89416336e-3.
+   (n=6..9 per-type rows: run the command in section 6.)
+
+   STRUCTURE.  a is very nearly multiplicative in the triangle count:
+     a(t) ~ a(C_n) * theta^{t3(t)}  (4-cycles give a smaller second-order effect).
+   E.g. n=9 p=1/2: a(C3+C3+C3)/a(C9)=0.88051 vs theta^3 = 0.95857^3 = 0.88078;
+        n=10 rho=3/4: a(C4+C3+C3)/a(C6+C4)=0.8913 vs theta^2 = 0.8902.
+   Per-triangle factor theta = a(C_{n-3}+C3)/a(C_n)  (n=6: sqrt(a(C3+C3)/a(C6))):
+                 n=6     n=7     n=8     n=9     n=10
+   p=1/4       0.9609  0.9520  0.9566  0.9544  0.9500
+   p=1/2       0.9320  0.9404  0.9425  0.9586  0.9640
+   p=3/4       0.9656  0.9871  0.9927  0.9976  0.9991
+   rho=3/4     0.9324  0.9362  0.9384  0.9449  0.9435
+   rho=9/10    0.9341  0.9368  0.9449  0.9502  0.9505
+   The spread is non-monotone in n only because the extremal type has max t3 = floor(n/3)
+   triangles (jumps at n = 0 mod 3).  Spread ~ theta_n^{-floor(n/3)}, so the literal
+   (uniform) item (iii) holds iff n(1-theta_n) -> 0:
+     n(1-theta):  p=3/4   : 0.21 0.090 0.058 0.022 0.009   -> 0   (dense: flattening, fast)
+                  p=1/2   : 0.41 0.42  0.46  0.37  0.36    flat at n<=10
+                  rho=3/4 : 0.41 0.45  0.49  0.50  0.56    GROWING (theta ~ 0.94 frozen)
+
+3. VERDICT ON THE LITERAL CONJECTURE (item (iii), uniform over all G0)
+   - Dense fixed p (D fixed): consistent with literal flatness; per-triangle effect dies faster
+     than 1/n (p=3/4).  Not the paper's regime.
+   - Fixed host mean degree (rho fixed), which is the local structure of the paper's regime:
+     the per-triangle penalty 1-theta ~ 0.055 does NOT shrink with n (n=7..10).  Then the
+     type with ~n/3 triangles has a/a(C_n) ~ theta^{n/3} -> 0, so max/min a -> infinity.
+     LITERAL (iii) EXPECTED FALSE.  Heuristic for D -> infinity (paper regime): a planted
+     k-cycle in G0 changes N(G0 u R) by a factor 1+eta_k that is local (n-independent) once
+     np = O(D); the extremal D-regular G0 (disjoint K_{D+1}'s) has ~nD^2/6 triangles, so
+     uniform flatness would need |eta_3| = o(1/(n D^2)), which a local quantity cannot satisfy.
+     STATUS: numerical + heuristic, NOT proven.  The finite-n failure is already exact
+     (rem:small-n-inv, prop:zd-not-flat); this adds that it does not wash out with n in the
+     rho-fixed regime.
+   - Also note: at FIXED D the rho-fixed TV itself stalls (~0.009 at n=8..10), as predicted by
+     a Poisson triangle model: t3 ~ Poi((D-1)^3/6)=Poi(1/6), Y = theta^{t3}/E theta^{t3},
+     theta=0.94 gives (1/2)E|Y-1| ~ 0.008.  So for fixed D even the normalized statement
+     fails; it can only hold with D -> infinity (as in the paper).  (Fixed D, rho fixed is
+     degenerate anyway: P(N>=1) -> 0, isolated vertices.)
+
+4. NORMALIZED REFORMULATION (proposed replacement for item (iii))
+   (iii')  a(G0) = (1+o(1)) abar   for all G0 outside a set of mu_D-mass o(1),
+           where abar := E_{mu_D} a = P(N>=1) / (|Omega_D| p^{Dn/2})   (= c_n of prop:target-cn).
+   CLAIM (proven, elementary): (iii') <=> d_TV(nu_D, mu_D) -> 0.
+     Proof.  prop:nu-rn gives d nu_D/d mu_D = Y := a/abar exactly (checked exactly in the
+     selfcheck at n=6, two p).  Y >= 0, E_mu Y = 1, so d_TV = (1/2)E|Y-1| = E(1-Y)^+ .
+     (=>) E(1-Y)^+ <= eta + mu(Y < 1-eta) -> eta for every eta>0.  (<=) Markov:
+     mu(|Y-1|>eta) <= 2 d_TV / eta.  No assumption P(N>=1) -> 1 is needed.
+   SUFFICES FOR THE DOWNSTREAM USE: item (iv) / conj:config-split only use d_TV(nu_D,mu_D) -> 0
+     (triangle inequality with d_TV(L_{d,m}, nu_D) -> 0), and conj:Q is a coupling with o(1)
+     failure, which only consumes total-variation statements.  So (iii') can replace (iii)
+     with no loss anywhere in the chain; the uniform version was never needed, and is
+     (per section 3) likely false.
+   WHAT (iii') NEEDS in the paper regime (heuristic, from the multiplicative structure):
+     with a/abar ~ prod_k (1+eta_k)^{X_k(G0) - E X_k}, X_k ~ Poi((D-1)^k/2k) under mu_D,
+     TV -> 0 iff sum_k (D-1)^k eta_k^2 / 2k -> 0, i.e. |eta_k| = o(D^{-k/2}).  This is a
+     small-subgraph-conditioning condition, far weaker than the uniform |eta_3| = o(1/(nD^2)).
+   Exact-arithmetic evidence at small n: section 1 (identity), section 2 (TV row) -- the
+   identity is exact; whether TV -> 0 in the paper regime is NOT decided by n <= 10.
+
+5. D=3 (21 types at n=10; n=8 from the earlier run of the same script)
+                 spread n=8 -> n=10      TV n=8 -> n=10
+   p=1/2         1.3663 -> 1.2704        0.01780 -> 0.01848
+   p=3/4         1.1259 -> 1.0245        0.00747 -> 0.00188
+   rho=3/4       1.3327 -> 1.2989        0.01722 -> 0.02020
+   rho=9/10      1.3695 -> 1.2926        0.01759 -> 0.01972
+   n=10 extremes (rho=3/4): Petersen-type (t3=0,c4=0) a=3.91900578e-3, K4-rich (6,4)-component
+   type (t3=6,c4=6, mu=0.0011) a=3.33103821e-3, abar=3.84960009e-3.
+   Same picture as D=2: dense p flattens; rho-fixed TV does not decrease (n=8..10) and the
+   spread stays ~1.3, driven by mu-rare triangle-rich types.  Rough per-triangle factor at
+   rho=3/4: (0.850)^(1/6) ~ 0.973 at D=3 vs ~0.944 at D=2 -- the penalty shrinks with D,
+   consistent with the D -> infinity heuristic in section 4 (4-cycles confound this; rough).
+
+6. REPRODUCE
+   cd v2/scripts/residual
+   python worker1_config_split.py selfcheck          # ~1 s; asserts all identities above
+   python worker1_config_split.py 6 2 7 2 8 2 9 2    # seconds
+   python worker1_config_split.py 10 2               # ~30 min (5 types in parallel, 2^35 each)
+   python worker1_config_split.py 8 3 10 3           # n=10: ~10 min (21 types, 2^30 each)

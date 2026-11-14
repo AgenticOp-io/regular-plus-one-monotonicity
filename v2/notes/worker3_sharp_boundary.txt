@@ -1,0 +1,160 @@
+worker3 -- can the sharp 1/(6 delta^3) m-factor rate pass delta = o(n^{1/6})?
+Reproduce: python v2/scripts/residual/worker3_sharp_boundary.py   (about 1 min; ends "DONE worker3")
+Overwrites the earlier note.  Its "O(1/(delta n)), IM25" claim was WRONG: no such bound
+exists in IM25 or anywhere else I found.
+
+VERDICT
+  No published sparse enumeration with forbidden edges has error O(1/(delta n)).  A barrier
+  at n^{1/2} (or n^{2/5}) for resolving the coefficient 1/(6 delta^3) has no support in the
+  literature.  The best usable sharper tool is already in the paper's bibliography,
+  Gao20 Thm 6.  It moves the coefficient barrier from n^{1/6} to n^{1/5} (m = O(1)).
+  Round 2 below does the main-term computation that this needs.
+
+REFERENCES CHECKED (each statement read from the source)
+ 1. Isaev & McKay, "Asymptotic enumeration of graph factors by cumulant expansion",
+    arXiv:2508.18731 (26 Aug 2025) = bib key IM25.
+    Thm 1.2: counts d-factors of a host G with min degree Omega(n), good expansion
+    (Cheeger h(G) >= Lambda^{-1} log^2 n) and far from bipartite.  Factor degrees satisfy
+    min(d, n-d-1) = Omega(n^sigma) with |beta_j - beta_k| <= C.  Relative error O(n^{-p}) for
+    any p.  The output is a beta-model Gaussian/cumulant formula, not the McKay exponent.
+    Thm 1.5: an expansion for the regular count when min(d, n-d-1) >= n^sigma.
+    Applicability here: it counts simple graphs.  For the R step it plausibly fits the host
+    K_n - X when delta >= n^sigma, but those hypotheses are NOT verified.  It does not reach
+    B, F1o, F2o at small m (degrees q = m^2/delta and m are not >= n^sigma).  No one has
+    expanded its cumulant terms in the four-class ratio.  It is not usable as it stands.
+ 2. McKay & Wormald, Combinatorica 11 (1991) 369-382, doi:10.1007/BF01275671.
+    Statement taken from Liebenau's IAS lecture notes, Thm 3.6, not the original.
+    For Delta = o(M1^{1/3}):
+      |G(d)| = M1!/((M1/2)! 2^{M1/2} prod d_i!) * exp(-M2/(2M1) - M2^2/(4M1^2)
+               - M2^2 M3/(2M1^4) + M2^4/(4M1^5) + M3^2/(6M1^3) + O(Delta^3/M1)).
+    For regular graphs the error is O(d^2/n) and the explicit term is -d^3/(12n)
+    (checked, section A).  There are NO forbidden edges, so it cannot replace Gao21 Thm 14 in
+    the steps "F simple, avoids B", "R simple, avoids X" of Lemma four-pairings.
+ 3. Larkin, McKay & Tian, "Subgraphs in random graphs with specified degrees and forbidden
+    edges", arXiv:2510.24276 (28 Oct 2025).  Thm 4.5 / Cor 4.6 handle forbidden sets Y, but
+    give 1+o(1) only when m(Y) * Delta^2/M = o(1), i.e. |Y| = o(n/d).  Our forbidden sets
+    X have size Theta(mn).  Not applicable.
+ 4. Gao, "Triangles and subgraph probabilities in random regular graphs", arXiv:2012.01492
+    v3 (1 Feb 2023) = bib key Gao20; the paper already assumes its Thm 6.
+    Thm 6: Delta^2 = o(M); H1, H2 disjoint; d^{H1} <= d; Delta_{H2} = O(Delta); M~ = Omega(M);
+    uv not in H1 u H2.  Then
+      P(uv in G(n,d) | H1 in, H2 out) = (1 + O(Delta^5 n/M^3)) (d~u d~v/M~)
+          (1 - M~2^2/M~^3 - M~2/M~^2 - sum_{W} d~x d~y/M~^2)(1 - phibar/M~).
+    Remark 8 (verbatim sense): McKay's Thm 4.6 gives P(H in G(n,d)) with relative error
+    d^3/n; Thm 6 gives relative error d^2|H|/n^2.
+    Section C checks the W term and the neighbour term in phibar against exact d=1 counts:
+    the residual is O(1/n^2), and dropping either term breaks it.
+
+WHAT THE SHARPER TOOL BUYS (section D, exact exponents; delta = n^s, m = delta^t)
+  Rewrite E[Z^2] = sum_{F1,F2} P(F1 u F2 in G(n,delta)) and E[Z] the same way; G is simple,
+  so no pairing step is needed.  Sequential Gao20 Thm 6 over |F1 u F2| ~ mn edges gives
+  relative error O(delta^2 m/n).  That is exactly the additive slack O(delta^2 m/n) already
+  written in Thm sharp-rate-short and Conj residual-factor-sharp.
+    error                      E*delta^3->0 at m=O(1)   at m=delta^{1/2}
+    Gao21 Thm 14 (now used)        n^{1/6}                n^{1/6}
+    Gao20 Thm 6 (Remark 8)         n^{1/5}                n^{2/11}
+    (ii) class-sum                 n^{1/3}                n^{1/5}
+    (iii) pairing-sum              n^1                    n^{2/7}
+    (iv) K-dependence              n^{1/4}                n^{1/5}
+  So the TRUE barrier for resolving the coefficient 1/(6 delta^3) by any available tool is
+  delta^5 m = o(n): n^{1/5} at bounded m.  Past that, the slack O(delta^2 m/n) is larger than
+  1/(6 delta^3).  The n^{2/5} in the conjecture is a different threshold: it is where the
+  slack itself -> 0 at m ~ delta^{1/2} (checked).  It is not a coefficient barrier.
+  The old note's n^{1/2} ignored budgets (ii)-(iv) and assumed an error bound that exists
+  nowhere.
+
+DO THE EXPLICIT NEXT-ORDER TERMS CANCEL IN THE FOUR-CLASS RATIO?  (section A, sympy, exact)
+  Proxy: the MW91 cubic terms T_reg(d) = -(d-1)^2(d^2-4d+1)/(12dn), combined as for the ratio:
+    n[T(D-2L+abar) + T(D) - 2T(D-L)]: the D^3 coefficient is 0 exactly;
+    at abar = L^2/D it equals -3DL^2/4 + O(L^3)  => O(delta m^2/n).
+  The second-order log(1-p) terms of the sequential Thm-6 product:
+    the L D^2/n terms cancel exactly, leaving -(-5DL^2/4 + 7L^3/2)/n = O(delta m^2/n).
+  So the delta^3/n-size explicit terms cancel at leading order, and what remains is
+  O(m^2 delta/n), which is <= O(delta^2 m/n) for m <= delta.
+  CAVEAT: this is a proxy.  MW91 has no forbidden-edge terms, and the full Thm-6 main-term
+  product over F1 u F2 (to reproduce Lemma mckay-exponent and the leftover) has not been
+  computed.  It is evidence, not proof.
+  Section B: exact regular counts (d <= 6, small n) give n*(log P_simple + (d^2-1)/4 - T_reg)
+  -> about -0.33 d^2.  This is consistent with MW91's O(d^2/n); small d only.
+
+ROUND 2 -- THE SEQUENTIAL THM-6 PRODUCT IS THE McKAY EXPONENT  (section E, sympy, exact)
+
+ Proposition (draft; assumes Gao20 Thm 6, which the paper already assumes).  Let D = o(n),
+ and let H be a graph on [n] with degrees h_v <= (1-c)D.  Put g = D - h and e = |H|.  Then
+   P(H in G(n,D)) = prod_v (D)_{h_v} / prod_{k<e} (Dn-1-2k)
+                    * exp( -lambda(g) - lambda(g)^2 - mu(g,H) + (D^2-1)/4
+                           + O( D^2 e/n^2 + Delta_H^2 D e/n^2 + 1/n ) ),
+ with lambda, mu as in Gao21 Thm 14 / Lemma mckay-exponent.  The prefactor and the exponent
+ are exactly the pairing main term times the McKay exponent; only the error changes,
+ from O(D^3/n) to O(D^2 e/n^2).
+
+ Proof.
+  1. Order the edges of H as e_1..e_e and write P(H in G) = prod_k P(e_k in G | e_1..e_{k-1} in G).
+     Apply Thm 6 with H1 = {e_1..e_{k-1}} and H2 = empty.  The hypotheses hold:
+     d^{H1} <= d, Mtilde >= cDn, Delta^2 = o(M).  Each factor has relative error
+     O(Delta^5 n/M^3) = O(D^2/n^2), so the total is O(D^2 e/n^2).
+  2. The identity holds for every order, so average over a uniformly random order.
+  3. prod (dtilde_u dtilde_v) = prod_v (D)_{h_v} and prod Mtilde = prod_k (Dn-2k).  Both are
+     exact and do not depend on the order.
+  4. log(1-x) = -x + O(x^2) with x = O(D/n) per edge, which adds O(D^2 e/n^2) in total.  So
+     what remains is the expectation of A_k + phibar_k/Mtilde_k, a linear functional of the
+     state.  At time tau = k/e, each other edge is in H1 with probability k/(e-1), so
+     h1_w ~ Hypergeometric -> Bin(h_w, tau), and:
+       E Mtilde2 = n[D(D-1) - tau hbar(2D-1) + tau^2 v2 + tau(1-tau) hbar]
+       W-sum = 2 tau sum_{xy in H}(D-1-(h_x-1)tau)(D-1-(h_y-1)tau)   (ordered pairs; C1)
+       neighbour sums summed over steps = sum over 2-paths of H, i.e. edge sums of H
+     Everything reduces to hbar = 2e/n, v2 = sum h^2/n, s11 = sum_{xy in H} h_x h_y/n.
+     The sums over steps become integrals in tau (Euler-Maclaurin endpoint error O(D/n)).
+  5. Dropped terms, each a relative error in a per-edge quantity of size D/n:
+       k/(e-1) vs k/e, hypergeometric vs binomial:         O(1/e)
+       W pairs excluded at u, v; u, v inside Mtilde2:       O(Delta_H/n)
+       Cov(dtilde_u, Mtilde2) and Cov(h1_x, h1_y):         O(Delta_H/n)
+       Var(Mtilde2)/Mtilde2^2:                             O(Delta_H/(n D^2))
+     Summed over e edges these give O(Delta_H D e/n^2 + D/n).
+  6. The n^0 part of the result minus [-lambda-lambda^2-mu+(D^2-1)/4] equals
+     (1/2) log(D/(D-hbar)).  That is the n^0 limit of sum_k log((Dn-2k)/(Dn-1-2k)), the
+     difference between the Thm-6 product prod(Dn-2k) and the pairing count prod(Dn-1-2k).
+     Section E checks this symbolically for general (D, hbar, v2, s11).  The identity FAILS
+     if the W factor 2 is replaced by 1, if the neighbour sums in phibar are dropped, or if
+     the Bin variance in Mtilde2 is dropped.  At a perfect matching the exponent is 1/4
+     (Bollobas-McKay).
+  7. lambda, mu and lambda^2 are homogeneous in n (ratios of sums over vertices and edges),
+     so they carry no hidden 1/n terms; the log shift has error O(1/n).  QED (modulo writing
+     out step 5).
+
+ Consequence for the paper.  In (*) of Thm growing-degree-factor the R step enters only as
+     P(R simple, avoids X | X)/P(S) = P(H_X in G(n,D)) / [prod(D)_h / prod(Dn-1-2k)],
+ and likewise R' against F.  So the Proposition replaces the enumeration error O(D^3/n) of
+ those steps by O(D^2 m/n).  The steps B, F1o, F2o keep McKay85 with
+ Dhat^2/M = O(m^2 D/n), O(m^3/n), O(m^3/n).  These lie inside budgets (iv) and (ii).
+ Hence Thm sharp-rate-short holds with the budget delta^6/n replaced by delta^5 m/n:
+
+   Var Z/(E Z)^2 = 1/(6 delta^3) (1+o(1)) + O(delta^2 m/n)
+   whenever delta^5 m = o(n) and m^4 delta^3 = o(n),
+   (since m <= delta, these imply m^5 delta/n -> 0 and m^2 delta^4/n -> 0).
+
+ Ranges (section E):  m = O(1): delta = o(n^{1/5});  m = delta^{1/2}: o(n^{2/11});
+ m = delta^{2/3}: o(n^{3/17}).  This is up from o(n^{1/6}) throughout.  The extra hypotheses
+ are Gao20 Thm 6 and 2m <= (1-c)delta (Mtilde = Omega(M) for H = F1 u F2), which is the
+ existing L* <= (1/2-c)D.
+ Beyond delta^5 m ~ n the slack O(delta^2 m/n) exceeds 1/(6 delta^3).  Nothing available
+ resolves the coefficient there.
+
+STATUS
+  NEW (round 2, conditional on Gao20 Thm 6): the Proposition above.  Its n^0 identity is
+    verified exactly; the error bookkeeping (step 5) is written above but not yet in paper
+    form.  With it, the sharp rate extends from delta = o(n^{1/6}) to delta^5 m = o(n).
+  PROVEN (in paper): the 1/(6 delta^3) coefficient on delta = o(n^{1/6}), assuming Gao21 Thm 14.
+  VERIFIED HERE: the four references above, and which of them apply.  The barrier exponents
+    (section D) are exact.  The leading-order cancellation of the delta^3/n terms holds in the
+    proxy (section A).
+  CONJECTURAL / OPEN:
+    (a) [round 2: main-term computation DONE, section E]  What remains is writing step 5
+        out in full and inserting the Proposition into the proof of Thm sharp-rate-short.
+    (b) The weaker form "1/(6 delta^3)(1+o(1)) + O(delta^2 m/n)" for delta = o(n^{2/5}),
+        m <= delta^{2/3} (the (ii)-(iv) errors fall inside the slack there).  It needs the
+        same computation.
+    (c) Resolving 1/(6 delta^3) beyond n^{1/5} needs subgraph probabilities with relative
+        error o(delta^{-3}) over Theta(mn) edges, i.e. per-edge o(1/(delta^3 mn)).  No such
+        result is known.  IM25 is the only candidate (O(n^{-p})), and it needs the
+        hypothesis checks and the cumulant expansion in item 1.

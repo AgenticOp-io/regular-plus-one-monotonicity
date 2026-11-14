@@ -1,0 +1,38 @@
+(1) lem:containment-ratio(b), entropy part:
+    L^2 coefficient  = (lambda - 1)/(2*lambda)   (paper: -(1/lam-1)/2)
+    A  (L^3/n)       = (lambda**2 - 1)/(2*lambda**2)   = -(1-lam^2)/(2 lam^2)
+    B  (L T/n)       = -2*(lambda - 1)/lambda   i.e. effective log x = log(1/lam) + B L/n
+    numeric n=1000000 L=40 lam=0.3: (Delta_psi - pred)/(L^3/n) = -0.000851125  (-> 0 as L/n -> 0)
+      per-T slope minus log(1/lam), times n/L = 4.66748  vs B = 4.6666667
+    numeric n=10000000 L=200 lam=0.55: (Delta_psi - pred)/(L^3/n) = -5.86896e-5  (-> 0 as L/n -> 0)
+      per-T slope minus log(1/lam), times n/L = 1.636456  vs B = 1.6363636
+
+(2) lem:decomp-overlap, second factorial cumulant of T (exact for any S_n-invariant L-regular law):
+    kappa2 = (adjacent pairs) + (disjoint pairs) - N0 p1^4
+    kappa2 to O(1/n): L**4/(2*n**2) - L**3/n - 4*L**3/n**2 + L**2/n + 4*L**2/n**2
+    L^3/n coefficient of kappa2: adjacent -2 + disjoint 1 = -1  (the +L^2/n piece is below cubic order)
+    => log E[x^T] = (x-1) L^2 n/(2(n-1)) + C(x) L^3/n + ...,  C(x) = -(x - 1)**2/2
+
+    brute force over nu_L (exact rationals):
+      n=6 L=2 (60 unions): E T = 12/5 (formula 12/5),  kappa2 = -24/25 (formula -24/25)  OK
+      n=6 L=3 (70 unions): E T = 27/5 (formula 27/5),  kappa2 = -99/25 (formula -99/25)  OK
+      n=8 L=2 (2835 unions): E T = 16/7 (formula 16/7),  kappa2 = -32/49 (formula -32/49)  OK
+      n=8 L=3 (19355 unions): E T = 36/7 (formula 36/7),  kappa2 = -684/245 (formula -684/245)  OK
+
+(3) cubic (L^3/n) coefficient of log E[P_L^2]/(E P_L)^2:
+    A (containment)            = (lambda**2 - 1)/(2*lambda**2)
+    tilt of x by B             = (1 - lambda)/lambda**2
+    C(1/lam) (decomp-overlap)  = -(lambda - 1)**2/(2*lambda**2)
+    total                      = 0
+    => CANCELS identically in lambda.
+
+STATUS
+ exact (sympy, plus checks): A, B from psi; kappa2 closed form (brute-force-equal on nu_L, n<=8, L<=3);
+   C(x) = -(x-1)^2/2; total cubic = 0.  The old D2 = (7-6/lam-1/lam^2)L^3/n was a toy model
+   (degree-homogeneous McKay exponent), not either lemma; discard it.
+ NOT proven (needed to turn cancellation into a theorem past n^{1/3}):
+  - lem:containment-ratio bounds the gamma^3 remainder and v^T Q^-1 v only by LT/n, L^3/n;
+    their true size is O(sum_j t_j^2/n) whose overlap average is O(L^2/n + L^4/n^2) -- estimate, not proved.
+  - decomp-overlap: factorial cumulants k>=3 assumed O(L^{2k-1}/n^{k-1}) (k=3: L^5/n^2); heuristic.
+  - det/cumulant parts taken from the lemma (O((L^2+T)/n + LT/n^2)), no cubic term.
+ Next barrier if the above holds: L^5/n^2 (k=3 cluster) -> L = o(n^{2/5}); L^4/n^2 terms fine to n^{1/2}.
