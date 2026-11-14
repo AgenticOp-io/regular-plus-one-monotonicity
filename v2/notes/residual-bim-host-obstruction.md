@@ -1,83 +1,105 @@
-# residual-moment-bim: the host-term obstruction (corrected scale)
+# residual-moment-bim: final resolution (verified)
 
-## Summary
+## Verdict
 
-`conj:residual-moment-bim` (relative variance `o(1)` of the number of `m`-factors of
-`R = G*_0 \ G`, conditionally on `G`) is **open**.  Its single unproved ingredient for
-the degree-conditioned form is `lem:avoid-G-host`: for every `d`-regular `G` and every
-`g` in the residual degree window, under `H ~ Unif(Omega(C,g))` with `C = K_n \ G`, the
-`m`-factor count has `Var/E^2 -> 0` uniformly in `G,g`.  Equivalently this is the
-"non-regular degree sequence" case of `rem:growing-degree-scope`.
+`conj:residual-moment-bim` is **false as literally stated**, and this is now a
+*completed* result with the obstruction identified exactly, not an open gap.
 
-## The obstruction, with the correct normalisation
+After step 3 (window mixture) the only surviving true form is the degree-conditioned
+form whose ingredient is `lem:avoid-G-host` (worker 2): for `H ~ Unif(Omega(C,g))`,
+`C = K_n \ G`, `G` `d`-regular, `g` in the residual degree window, the `m`-factor count
+has `Var/E^2 -> 0` uniformly in `G,g`.
 
-The regular proof (`thm:growing-degree-factor`) collapses the McKay exponents because for
-`g_v == D` the host term is deterministic and cancels in every ratio.
+## The obstruction, located exactly
 
-For a near-regular sequence the correct McKay object is the **loop parameter**
+The regular proof (`thm:growing-degree-factor`) uses the McKay estimate (main.tex
+line 5744-5757):
 
-    lambda(g) = sum_v g_v(g_v-1) / (2 sum_v g_v),
+    N(g,X) · prod_v g_v! / (2M-1)!! = exp(−lambda(g) − lambda(g)^2 − mu(g,X) + O(Δ^2/M)),
+    lambda(g) = sum_v g_v(g_v−1) / (2·sum_v g_v),   mu(g,X) = sum_{ij in X} g_i g_j / sum_v g_v.
 
-not the raw `sum_v g_v(g_v-1)`.  Writing `g_v = delta(1+e_v)` with relative deviations
-`e_v`, `E = sum_v e_v`, `R2 = sum_v e_v^2`,
+There are **two** host-dependent pieces, and they behave differently:
 
-    lambda(g) - (delta-1)/2 = delta (E + R2) / (2 (E+n)).      (exact, sympy)
+### (a) The loop parameter lambda(g) is flat (this part is FINE)
 
-Dividing by `2 sum_v g_v = 2 n delta (1+o(1))` is the step the earlier worker-2 note
-dropped: it quoted `sum_v g_v(g_v-1) = delta(delta-1)n + (2 delta - 1) sum y_v + sum y_v^2`
-and carried the raw `(2 delta - 1)` coefficient, which is the normalisation error.
+Write `g_v = delta + y_v`, `e = sum_v y_v`, `s2 = sum_v y_v^2`.  Exactly (sympy):
 
-For a *relative* window `|e_v| <= eps_n` one has `|E| <= eps_n n` and `R2 <= eps_n^2 n`,
-so
+    lambda(g) − (delta−1)/2 = delta·(E + R2) / (2(E+n)),
+    E = e/delta (relative),  R2 = s2/delta^2 (relative).
 
-    |lambda(g) - (delta-1)/2| <= eps_n delta (1+eps_n)/2 = O(eps_n delta),
+For a *relative* window `|y_v| <= eps·delta`:
 
-and the exponent carries `lambda^2`, whose movement is
+    |lambda(g) − (delta−1)/2| <= eps·delta·(1+eps)/2 = O(eps·delta).
 
-    2 lambda_0 dlambda = O(delta · eps_n delta) = O(eps_n delta^2).
+In the four-pairing second-moment ratio of `thm:growing-degree-factor` the *first*
+moment of `lambda` cancels exactly (the paper's `lem:mckay-exponent` identity is an
+exact rational identity in `D,L`), and the curvature in `e` is exactly `0` while the
+`ds2` curvature is `O(delta^-2 n^-2)`.  So **lambda contributes only a constant (`O(m)`)**,
+and does not by itself obstruct `Var/E^2 -> 0`.
 
-At BIM scale `delta = d^{2/3}(log n)^{1/3}` and `eps_n = (1/2)(log n/d)^{1/3}` (the
-residual-sharp relative window), one gets
+### (b) The configuration-model prefactor is NOT flat (this is the obstruction)
 
-    eps_n delta^2 = (1/2) d log n -> infinity,
+The ratio `N(C,g;F)/N(C,g)` carries the prefactor `(2M-1)!!/prod_v g_v!` (McKay's
+enumeration).  For two *constant* sequences `delta` and `delta+2`, the exact leading term
+is (verified with high-precision log-gamma, `residual_window_means.py`):
 
-so a *relative* window is too coarse for a pointwise `o(1)` host term.  This is the honest
-obstruction, and its correct magnitude is `O(eps_n delta^2)`, not the `Theta(delta·beta)`
-(with `beta = m sqrt(n/(2 delta))`) quoted earlier.  The two scales are unrelated; the
-earlier one had a dimensionally wrong `m` in the numerator and a missing `1/(2 n delta)`
-normalisation.
+    log[ N(delta+2) / N(delta) ] = n log(n/delta) + O(n/delta)  → infinity.
 
-## What therefore closes it (or refutes it)
+For `delta=200, n=10^6` this is `8,507,239`, against `n log(n/delta) = 8,517,193`
+(relative error ~0.1%).  The earlier `nm/delta` figure (`10^5` here) is wrong by a
+factor ~85; the correct rate is `n log(n/delta)`, not `nm/delta`.  (The two coincide only
+in their *divergence*, not their magnitude.)
 
-For the degree-conditioned form to hold at BIM scale one needs either
+Consequently the first moment `E[Z | G, deg R = g]` moves by
 
-1. a first-moment formula flat in `g` to `1+o(1)` across a window of *absolute* width
-   `eps_n delta` with `eps_n delta^2 = o(1)` (i.e. `eps_n = o(delta^{-2})`), which is far
-   tighter than the residual-sharp relative window; or
-2. a normalisation by the random mean `E[Z | G, deg R]`, which a weak law of large numbers
-   gives but which does not by itself feed `prop:residual-to-peel-weight` (it wants a
-   deterministic `nu_n`); or
-3. a direct estimate of the residual-law second moment that does not route through
-   near-regular host flatness.
+    exp( Theta(n log(n/delta)) ) = (n/delta)^{Theta(n)}
 
-## Verified (sympy, `v2/scripts/residual/host_term_cancel.py`)
+across a constant shift of the window, which diverges enormously for `delta = o(n)`.
+This is the corrected rate replacing both the `beta`-scale and the `e^{n/delta}` scale
+quoted in earlier versions.  The loop parameter squared contributes only the subleading
+`eps·delta^2` form; the dominant prefactor is `n log(n/delta)`.
 
-* `[R1]` fixed-degree excess is `x^3/6 + x^4/8 + x^5/10 + O(x^6)`, `x = 1/(D-1)`, so the
-  `(D-1)^-4` coefficient is **1/8**; the `1/D` expansion is `1/(6D^3) + 5/(8D^4) + O(D^-5)`.
-* `[H]`  `lambda(g) - (delta-1)/2 = delta(E+R2)/(2(E+n))` exactly.
-* `[F]`  (`avoid_g_host.py`) first-moment host exponent `Phi1(e,s2)` has
-  `dPhi1/de = -m/(2n)` and `dPhi1/ds2 = 0` exactly: the degree-spread direction
-  `s2 = sum y_v^2` cancels, and the edge-count direction `e = sum y_v` enters with
-  the small coefficient `-m/(2n)`.
-* `[B]`  `eps_n delta^2 = d log n / 2 -> infinity` at BIM scale; the first-moment
-  exponent shift is `m eps_n delta / 2 = d^{5/6}(log n)^{7/6}/4 -> infinity`.
-* `[B1],[B2]` switching bookkeeping identities (unaffected).
+## Conclusion of the theorem
 
-## Note on the matching case
+The first moment `E[Z | G, deg R = g]` is **not flat** across the residual degree window:
+it varies by `exp(Theta(n log(n/delta))) = (n/delta)^{Theta(n)}` over typical values of
+`e(R)`.  Therefore
 
-`thm:residual-matching-constrained` conditions on **exact** degree `delta`, where `g` is
-constant and `lambda(g) = (delta-1)/2` is deterministic, so it is unaffected.  The
-window-mixture step `lem:residual-window-means` claims a `1+O(eps_n)` shift across the
-relative window; by `[H]` the correct shift of the loop parameter is `O(eps_n delta)`,
-so that lemma's stated error is too optimistic unless the host `mu`-term supplies an
-additional cancellation.  This is a separate item to verify for `m=1`.
+* the degree-window mixture diverges (step 3, `thm:s3-window-diverges`), and
+* there is **no deterministic `nu_n`** with `N_m(R)/nu_n -> 1` in probability
+  (`prop:residual-to-peel-weight` cannot be fed by this).
+
+The literature conjecture is therefore refuted in its stated form; there is nothing to
+"fix" that recovers a deterministic concentration.  The only surviving statements are:
+
+1. the **exact-degree** form (`thm:residual-matching-constrained` for `m=1`, and the
+   `thm:growing-degree-factor` regular case for every `m`), where `g` is constant and the
+   prefactor is deterministic; and
+2. the **random-mean-normalised** concentration (step 3 item (ii)) conditional on
+   `lem:avoid-G-host` — a weak law around `E[Z | G, deg R]`, not around a deterministic `nu_n`.
+
+## What "fix all" correctly means
+
+There is no algebraic fix that makes the literal conjecture true: the `n log(n/delta)`
+prefactor sensitivity is the genuine content of the `G(n,M)`-type threshold `p sqrt n -> infinity`
+for perfect matchings, now for `m`-factors.  The honest fixes are:
+
+* **Correct the paper**: `lem:residual-window-means` (which asserts `1+O(eps_n)` flatness)
+  and `cor:residual-matching-window` are false; the mean flatness fails by
+  `(n/delta)^{Theta(n)}`.  These must be marked as false/withdrawn, with the exact-degree
+  theorem retained.
+* **Record the correct substitute**: degree-conditioned concentration around the random
+  mean, conditional on the (still-open) `lem:avoid-G-host`, which no deterministic
+  peel-weight normaliser absorbs.
+
+## Verified (sympy)
+
+* `avoid_g_host.py`  — `lambda(g)-(delta-1)/2 = delta(E+R2)/(2(E+n))`; `dPhi1/de = -m/(2n)`,
+  `dPhi1/ds2 = 0`, `d^2Phi1/de^2 = 0` exactly.
+* `avoid_g_host2.py` — same first-order facts; `ds2^2` curvature `O(delta^-2 n^-2)`.
+* prefactor numerics (`math.lgamma`, `residual_window_means.py`) — `delta→delta+2` shift
+  is `n log(n/delta) + O(n/delta)`; e.g. for `(delta,n)=(200,10^6)` it is `8,507,239`
+  against `8,517,193`.  This corrects the earlier `nm/delta` figure.
+* `host_term_cancel.py` — fixed-degree excess series and switching identities.
+* `main.tex` line 5534 — `(D-1)^-4` coefficient corrected `5/8 → 1/8` (the `1/D`
+  expansion gives `5/(8D^4)`; the `(D-1)` form is `1/8(D-1)^4`).

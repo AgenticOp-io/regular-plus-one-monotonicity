@@ -3254,3 +3254,10 @@ Query: lambda(g) - (delta-1)/2 for near-regular g_v = delta(1+e_v), E=sum e_v, R
         (v2/scripts/residual/host_term_cancel.py, asserts pass)
 Query: fixed-degree excess short series coefficient of (D-1)^-4
 [sympy] 1/8 (not 5/8); 1/D expansion gives 5/(8D^4) via the (1-1/D)^-3 correction from x^3
+
+Query: log[N(delta+2)/N(delta)] for constant delta-regular sequences (McKay prefactor)
+[sympy/numerics] n*log(n/delta) + O(n/delta); e.g. delta=200,n=1e6 -> 8507239 vs n log(n/delta)=8517193 (rel err 0.1%)
+        (v2/scripts/residual/residual_window_means.py, asserts pass; corrects earlier nm/delta)
+Query: lambda(g) - (delta-1)/2 for near-regular g_v = delta(1+e_v)
+[sympy] delta(E+R2)/(2(E+n)) exactly; first-moment dPhi1/de = -m/(2n), dPhi1/ds2 = 0
+        (v2/scripts/residual/avoid_g_host.py, asserts pass)

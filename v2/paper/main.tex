@@ -228,7 +228,7 @@ the rate-\(1/3\) residual is within total variation \(o(1)\) of \(\mu_{d+m}\),
 for \(m=\Theta\sqrt{d\log n}\).
 \end{conjecture}
 
-\begin{theorem}[Residual matching moment, McKay scale]
+\begin{theorem}[Residual matching moment at exact degree, McKay scale]
 \label{thm:residual-moment}
 Assume~\cite[Theorem~4.6]{McK85}. In the matching-peel setting
 of~\cite{PlusOneV1}, write \(\delta:=\lfloor\varepsilon_0 d\rfloor\) with
@@ -237,15 +237,18 @@ of~\cite{PlusOneV1}, write \(\delta:=\lfloor\varepsilon_0 d\rfloor\) with
 \frac{\delta(d+\delta)^2}{n}=o(1)
 \]
 (in particular \(d=o\bigl(n^{3/8}(\log n)^{-1/3}\bigr)\)).
-Writing \(\mathcal E_\delta\) for the residual-sharp window and \(R\) for the
-Bernoulli residual on \(C=K_n\setminus G\), the number \(Y\) of perfect
-matchings of \(R\) satisfies
+Let \(R\) be the Bernoulli residual on \(C=K_n\setminus G\) and \(g\) an exact
+residual degree sequence with \(\lvert g_v-\delta\rvert\le\varepsilon_n\delta\) for every \(v\)
+(\(\varepsilon_n\to0\)). The number \(Y\) of perfect matchings of \(R\), \emph{conditioned on}
+\(\deg R=g\), satisfies
 \[
-\frac{\Var\bigl(Y\bigm|G,\,\mathcal E_\delta\bigr)}
-{\bigl(\EE[Y\mid G,\,\mathcal E_\delta]\bigr)^2}
+\frac{\Var\bigl(Y\bigm|G,\,\deg R=g\bigr)}
+{\bigl(\EE[Y\mid G,\,\deg R=g\bigr]\bigr)^2}
 \to0
 \]
-uniformly in the peeled \(d\)-factor \(G\).
+uniformly in \(g\) and in the peeled \(d\)-factor \(G\). Conditioning only on the residual-sharp
+window \(\mathcal E_\delta\) (rather than the exact \(g\)) gives a \emph{divergent} ratio, by
+Lemma~\ref{lem:residual-window-means} and Corollary~\ref{cor:residual-matching-window}.
 The unconstrained \(m\)-factor moment on exactly regular hosts is
 Theorem~\ref{thm:growing-degree-factor} for every \(m\) in the BIM range;
 the degree-conditioned residual version for \(m>1\) remains
@@ -7763,9 +7766,11 @@ gives
 for the number \(Y\) of perfect matchings of a uniform \(\delta\)-regular
 graph (Proposition~\ref{prop:residual-sublinear} puts \(\delta=o(n)\)).
 Consequently the unconstrained regular matching moment at scale \(\delta\) is
-settled; Theorem~\ref{thm:residual-moment} at \(m=1\) closes the matching case, while Conjecture~\ref{conj:residual-moment-bim} still needs the same
+settled; Theorem~\ref{thm:residual-moment} at \(m=1\) closes the matching case
+\emph{at exact degree}, while Conjecture~\ref{conj:residual-moment-bim} still needs the
 relative variance for the actual residual host (Proposition~\ref{prop:residual-nearly-reg}),
-not a total-variation identification with \(\mu_\delta\).
+a nearly regular degree sequence, which the window mixture does not supply
+(Corollary~\ref{cor:residual-matching-window}).
 \end{corollary}
 
 \begin{proof}
@@ -7783,9 +7788,10 @@ supports, so their total variation equals \(1\)
 In particular the matching case of Theorem~\ref{thm:residual-moment} cannot be
 proved by showing \(\mathrm{d_{TV}}(\mathcal{L}(R),\mu_\delta)\to0\) on the
 residual-sharp event: that event forces \(\mathbf{d}_R=(1+o(1))\delta\) but not
-exact regularity. The correct target is relative variance \(o(1)\) for the
-matching count on the nearly regular residual itself (together with the
-first-moment flatness of Corollary~\ref{cor:residual-first-moment}).
+exact regularity. And conditioning only on that near-regular event (not the exact
+degree sequence) gives a \emph{divergent} matching variance, since the means are not
+flat (Lemma~\ref{lem:residual-window-means}); the surviving concentration is only at
+exact degree, around the random mean \(\EE[Y\mid G,\deg R]\).
 \end{proposition}
 
 \begin{proof}
@@ -7932,71 +7938,79 @@ Lemma~laplace of~\cite{PlusOneV1} returns
 \]
 \end{proof}
 
-\begin{lemma}[Constrained matching means are flat across the sharp window]
+\begin{lemma}[Constrained matching means are \emph{not} flat across the window]
 \label{lem:residual-window-means}
 Assume~\cite[Theorem~4.6]{McK85}. Under the hypotheses of
-Theorem~\ref{thm:residual-matching-constrained}, let \(\varepsilon_n\to0\) and let
-\(g\) range over graphical degree sequences with
-\(\lvert g_v-\delta\rvert\le\varepsilon_n\delta\) for every \(v\). Writing
-\(\EE_g Y\) for the expected matching count under
-\(H\sim\mathrm{Unif}(\Omega(C,g))\),
+Theorem~\ref{thm:residual-matching-constrained}, the matching mean \(\EE_g Y\) is not
+constant across the residual-sharp window. For the two constant sequences \(\delta\mathbf 1\)
+and \((\delta+2)\mathbf 1\) (both in the window whenever \(\varepsilon_n\delta\ge2\)),
 \[
-\EE_g Y
+\frac{\EE_{(\delta+2)\mathbf 1}Y}{\EE_{\delta\mathbf 1}Y}
 =
-(1+o(1))\,\nu_n(G)
+\exp\Bigl((1+o(1))\,n\log\frac n\delta\Bigr)
+\to
+\infty
+\qquad(\delta=o(n^{1/2})),
 \]
-uniformly in such \(g\) and in the \(d\)-regular host \(G\), where
+uniformly in the \(d\)-regular host \(G\). The dominant factor is the
+configuration prefactor \((\bar g n-1)!!/\prod_v\bar g!\): with \(\bar g=\delta\) and
+\(\delta+2\) it is
 \[
-\nu_n(G)
-:=
-Y(C)\cdot\frac{N(C,\delta;M_0)}{N(C,\delta)}
+\log\frac{((\delta+2)n-1)!!}{(\delta n-1)!!}-n\log\frac{(\delta+2)!}{\delta!}
+=
+n\log\frac n\delta+O\Bigl(n\frac{\delta+1}{\delta}\Bigr)
+=
+(1+o(1))\,n\log\frac n\delta .
 \]
-for an arbitrary perfect matching \(M_0\subseteq C\) (the ratio is independent of
-the choice of \(M_0\) by the cancellation in the proof of
-Theorem~\ref{thm:residual-matching-constrained}).
+Hence the means are \emph{not} flat, and the previously asserted uniform flatness
+\(\EE_gY=(1+o(1))\nu_n(G)\) fails.
 \end{lemma}
 
 \begin{proof}
-For each perfect matching \(M\subseteq C\),
+For each perfect matching \(M\subseteq C\), \(\EE_gY=\sum_{M\subseteq C}N(C,g;M)/N(C,g)\).
+The count \(N(C,g)\) is \(N_g\)-regular subgraphs of \(C\) with forbidden host \(G\);
+its prefactor in~\cite[Theorem~4.6]{McK85} is \((g n-1)!!/g!^n\) for constant \(g\).
+For \(g=\delta\) versus \(\delta+2\),
 \[
-\EE_g Y
+\log\frac{N(C,(\delta+2)\mathbf 1)}{N(C,\delta\mathbf 1)}
 =
-\sum_{M\subseteq C}\frac{N(C,g;M)}{N(C,g)}.
+\log\frac{((\delta+2)n-1)!!}{(\delta n-1)!!}
+-n\log\frac{(\delta+2)!}{\delta!}
++O(1),
 \]
-\cite[Theorem~4.6]{McK85} expands each count with McKay parameters continuous
-in the degree sequence: replacing \(\delta\) by \(g_v=\delta(1+O(\varepsilon_n))\)
-multiplies every principal ratio \(N(C,g;M)/N(C,g)\) by \(1+O(\varepsilon_n)\),
-uniformly in \(M\subseteq C\) and in \(G\). Summing over the \(Y(C)\) matchings
-of \(C\) yields the claim.
+the \(O(1)\) collecting the loop and forbidden \(G\) terms, which are subexponential
+in \(n\log(n/\delta)\). The double-factorial ratio has \(n\) factors each
+\(\delta n+O(n)\), contributing \(n\log(\delta n)+O(1)\); the factorial ratio
+contributes \(2\,n\log\delta+O(n/\delta)\). Their difference is
+\(n\log(n/\delta)+O(n\log(1+1/\delta))= (1+o(1))\,n\log(n/\delta)\). The matching
+count ratio \(\EE_g Y\) carries the same prefactor to leading order, since the
+sum over \(M\subseteq C\) is a common factor \(Y(C)\) times a ratio bounded away from
+\(0\) and \(\infty\). The formal identity \(\log(N(\delta+2)/N(\delta)) = n\log(n/\delta)+O(\cdot)\)
+is verified numerically to relative error \(O(1/\delta + \delta/n)\) in
+\texttt{v2/scripts/residual/residual\_window\_means.py}.
 \end{proof}
 
-\begin{corollary}[Degree-window mixture]
+\begin{corollary}[Degree-window mixture \emph{fails}]
 \label{cor:residual-matching-window}
-Assume~\cite[Theorem~4.6]{McK85} for graphical degree sequences in an
-\(\varepsilon_n\)-window about \(\delta\), with \(\varepsilon_n\to0\), and assume the
-conclusion of Theorem~\ref{thm:residual-matching-constrained} extends to every
-such degree sequence \(g\) (the same Laplace argument with
-\(1+O(\varepsilon_n)\) errors). Under the hypotheses of
-Theorem~\ref{thm:residual-matching-constrained}, the mixture of
-\(\mathrm{Unif}(\Omega(C,g))\) over all \(g\) in the window satisfies
-\(\Var Y/(\EE Y)^2\to0\). Consequently, writing \(\mathcal E_\delta\) for the
-residual-sharp window of~\cite{PlusOneV1} (so \(\varepsilon_n=\Theta(\varepsilon_0)\to0\))
-and \(R\) for the Bernoulli residual on \(C\),
-\[
-\frac{\Var\bigl(Y(R)\bigm|G,\,\mathcal E_\delta\bigr)}
-{\bigl(\EE[Y(R)\mid G,\,\mathcal E_\delta]\bigr)^2}
-\to0
-\]
-uniformly in the peeled \(d\)-factor \(G\).
+Lemma~\ref{lem:residual-window-means} shows the matching means are not flat across
+the residual-sharp window: they move by \((n/\delta)^{\Theta(n)}\to\infty\). Hence the
+degree-window mixture of \(\mathrm{Unif}(\Omega(C,g))\) over \(g\) in the window does
+\emph{not} have relative variance \(o(1)\): the law of total variance receives a
+variance-of-means term of order at least \((n/\delta)^{\Theta(n)}\). Consequently the
+windowed Bernoulli residual, conditioned on \(\mathcal E_\delta\), does \emph{not}
+satisfy \(\Var Y/(\EE Y)^2\to0\). The exact-degree statement
+Theorem~\ref{thm:residual-matching-constrained} (and hence
+Theorem~\ref{thm:residual-moment} at exact degree) is unaffected; only the lift to the
+window is withdrawn. This corrects the earlier ``flat means'' step
+(Lemma~\ref{lem:residual-window-means} as previously stated), whose error was to treat
+\(n/2\) factors \(1+O(\varepsilon_n)\) as a single \(1+o(1)\) factor.
 \end{corollary}
 
 \begin{proof}
-Lemma~\ref{lem:residual-window-means} flattens the conditional means.
-Law of total variance: the mixture variance is the mean of the conditional
-variances plus the variance of the conditional means. Both summands are
-\(o(\nu_n(G)^2)\). Theorem~\ref{thm:bern-degree-uniform} identifies the
-Bernoulli law given each exact \(g\) with \(\mathrm{Unif}(\Omega(C,g))\), hence
-the Bernoulli law given \(\mathcal E_\delta\) with the mixture.
+By Lemma~\ref{lem:residual-window-means} the two constant sequences \(\delta\mathbf 1\) and
+\((\delta+2)\mathbf 1\) have means differing by \(e^{(1+o(1))n\log(n/\delta)}\), so the
+variance of the conditional mean over the window is at least a positive fraction of the
+square of that factor, which diverges. The law of total variance then diverges.
 \end{proof}
 
 \begin{proposition}[Degree-conditioned Bernoulli residual is the \(m=1\) target]
@@ -8015,13 +8029,15 @@ Theorem~\ref{thm:residual-moment} at \(m=1\) asks only for relative variance
 Theorem~\ref{thm:bern-degree-uniform} converts exact degree conditioning into
 constrained uniformity; Theorem~\ref{thm:residual-matching-constrained} closes
 that moment at exact degree \(\delta\) throughout
-\(\delta(d+\delta)^2/n=o(1)\); Lemma~\ref{lem:residual-window-means} and
-Corollary~\ref{cor:residual-matching-window} lift the conclusion to the
-residual-sharp window. Remark~\ref{rem:residual-not-unrestricted} records that
+\(\delta(d+\delta)^2/n=o(1)\). Lemma~\ref{lem:residual-window-means} and
+Corollary~\ref{cor:residual-matching-window} show this does \emph{not} lift to
+the residual-sharp window: the matching means move by \((n/\delta)^{\Theta(n)}\).
+Remark~\ref{rem:residual-not-unrestricted} records that
 unrestricted \(\mu_\delta\) is the wrong comparison.
 When \(d=o\bigl(n^{3/8}(\log n)^{-1/3}\bigr)\) and
 \(\delta=\Theta\bigl(d^{2/3}(\log n)^{1/3}\bigr)\) one has
-\(\delta(d+\delta)^2/n=o(1)\), so Theorem~\ref{thm:residual-moment} applies.
+\(\delta(d+\delta)^2/n=o(1)\), so Theorem~\ref{thm:residual-matching-constrained} applies at
+exact degree, but not on the window.
 \end{proposition}
 
 \begin{proof}
@@ -8034,27 +8050,33 @@ The scale claim is
 to \(0\) under the stated bound on \(d\).
 \end{proof}
 
-\begin{corollary}[Residual matching moment at McKay scale]
+\begin{corollary}[Residual matching moment: exact degree only]
 \label{thm:residual-moment-m1}
-Theorem~\ref{thm:residual-moment} at \(m=1\) is the matching case: writing \(Y\)
-for the number of perfect matchings of the residual,
+At \(m=1\), the exact-degree form of Theorem~\ref{thm:residual-moment} survives:
+writing \(Y\) for the number of perfect matchings of the residual and conditioning on
+the exact residual degree sequence \(\deg R=g\) (not merely the window \(\mathcal E_\delta\)),
 \[
-\frac{\Var\bigl(Y(R)\bigm|G,\,\mathcal E_\delta\bigr)}
-{\bigl(\EE[Y(R)\mid G,\,\mathcal E_\delta]\bigr)^2}
+\frac{\Var\bigl(Y(R)\bigm|G,\,\deg R=g\bigr)}
+{\bigl(\EE[Y(R)\mid G,\,\deg R=g\bigr]\bigr)^2}
 \to0
 \]
-uniformly in the peeled \(d\)-factor \(G\).
+uniformly in \(g\) with \(\lvert g_v-\delta\rvert\le\varepsilon_n\delta\) and in the peeled
+\(d\)-factor \(G\), by Theorem~\ref{thm:residual-matching-constrained} (extended to exact \(g\)).
+The window-conditioned form, i.e.\ the same ratio conditioned only on \(\mathcal E_\delta\),
+\emph{fails}: it diverges by Corollary~\ref{cor:residual-matching-window}.
 \end{corollary}
 
 \begin{proof}[Proof of Theorem~\ref{thm:residual-moment}]
-This is Theorem~\ref{thm:residual-matching-constrained} on each exact degree
-in the sharp window, extended to the mixture by
-Lemma~\ref{lem:residual-window-means} and
-Corollary~\ref{cor:residual-matching-window}. The event \(\mathcal E_\delta\)
-has probability \(1-o(1)\) uniformly in \(G\) by
-~\cite[Lemma~residual-sharp]{PlusOneV1}, and
+At exact degree \(g\) this is Theorem~\ref{thm:residual-matching-constrained} (or its
+extension to exact \(g\)), which holds throughout \(\delta(d+\delta)^2/n=o(1)\).
 Theorem~\ref{thm:bern-degree-uniform} identifies the conditional law with
-\(\mathrm{Unif}(\Omega(C,g))\).
+\(\mathrm{Unif}(\Omega(C,g))\) for each exact \(g\). The window mixture is \emph{not} the
+correct object: Lemma~\ref{lem:residual-window-means} and
+Corollary~\ref{cor:residual-matching-window} show the means are not flat, so the
+window-conditioned ratio diverges. The event \(\mathcal E_\delta\)
+has probability \(1-o(1)\) uniformly in \(G\) by
+~\cite[Lemma~residual-sharp]{PlusOneV1}, but this does not rescue the second moment:
+concentration holds only around the random mean \(\EE[Y\mid G,\deg R]\).
 \end{proof}
 
 \begin{theorem}[Bernoulli residual matching mean]
@@ -8298,14 +8320,16 @@ Then
 \]
 in probability, uniformly in \(G\): the second peel-weight flatness of
 Proposition~peel-weights of~\cite{PlusOneV1} holds asymptotically.
-In particular, at \(m=1\), Theorem~\ref{thm:residual-moment} together with
-first-moment flatness of \(\EE[N_1(R_G)\mid G]\) yields that asymptotic
-second peel-weight flatness. Corollary~\ref{cor:residual-first-moment}
-identifies that first moment with \(p^{n/2}Z_\partial(G)\);
-Proposition~\ref{prop:residual-not-tv} removes literal TV with \(\mu_\delta\)
-as a route; the remaining gap is relative variance of \(Y(R)\) on the nearly
-regular residual (host-restricted), not a missing first-moment formula and
-not a second-moment gap on \(\mu_\delta\).
+At \(m=1\), Theorem~\ref{thm:residual-moment} supplies only the \emph{exact-degree}
+variance; the deterministic-normaliser premise above (with a deterministic \(\nu_n\))
+\emph{fails} because the first moment is not flat
+(Lemma~\ref{lem:residual-window-means}, Corollary~\ref{cor:residual-matching-window}).
+Corollary~\ref{cor:residual-first-moment}
+identifies the first moment with \(p^{n/2}Z_\partial(G)\), but that mean varies by
+\((n/\delta)^{\Theta(n)}\) over the near-regular residual degree sequences, so no
+deterministic \(\nu_n\) matches it to \(1+o(1)\). The remaining obstruction is not a
+second-moment gap on \(\mu_\delta\) (that is closed); it is the non-existence of a
+deterministic normaliser once the residual degree sequence is only nearly regular.
 \end{proposition}
 
 \begin{proof}
@@ -8559,13 +8583,17 @@ Free splitting already gives the increment throughout \(d+m=o(n^{1/3})\),
 and is a different coupling.
 
 \paragraph{Theorem~\ref{thm:residual-moment}.}
-Settled for matchings on the McKay scale
+Settled for matchings \emph{at exact degree} on the McKay scale
 \(\delta(d+\delta)^2/n=o(1)\), by the constrained expansion
-(Theorem~\ref{thm:residual-matching-constrained}) and the window mixture
-(Lemma~\ref{lem:residual-window-means}).
+(Theorem~\ref{thm:residual-matching-constrained}).
+The window-mixture lift (formerly Lemma~\ref{lem:residual-window-means}) does \emph{not}
+hold: the matching means move by \((n/\delta)^{\Theta(n)}\) across the window
+(now Lemma~\ref{lem:residual-window-means} records this failure), so the window-conditioned
+relative variance diverges (Corollary~\ref{cor:residual-matching-window}).
 Proposition~\ref{prop:overlap-mass} withdraws the overlap leftover
 \(O(m^2/\delta)\) for \(m>1\). Lengths \(1<m=o(\delta^{3/2})\) are
-Conjecture~\ref{conj:residual-factor-sharp}.
+Conjecture~\ref{conj:residual-factor-sharp}; the exact-degree \(m\)-factor case is
+Theorem~\ref{thm:growing-degree-factor}.
 
 \paragraph{Conjecture~\ref{conj:residual-moment-bim}.}
 BIM length \(m=\Theta\sqrt{d\log n}\) with \(m\gg\sqrt\delta\): needs a
