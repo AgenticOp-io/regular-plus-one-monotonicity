@@ -66,9 +66,13 @@ peel-weight / total-variation transfer open (gap 3 of the step-3 fragment).
 
 `v2/scripts/residual/host_term_cancel.py` (sympy):
 
-* `[R1]` the fixed-degree excess is `exp(S)-1 = 1/(6D^3) + 5/(8D^4) + O(D^-5)`, where
-  `S = sum_{k>=3} x^k/(2k)`; this exposed and fixed the wrong `D^-4` coefficient
-  (`1/8` -> `5/8`) in `thm:fixed-degree-factor` (main.tex line 5534).
+* `[R1]` the fixed-degree excess is `exp(S)-1 = x^3/6 + x^4/8 + x^5/10 + O(x^6)`
+  with `x = 1/(D-1)`, i.e. `1/(6(D-1)^3) + 1/(8(D-1)^4) + O((D-1)^-5)`.  Rewritten
+  in powers of `1/D` this is `1/(6D^3) + 5/(8D^4) + O(D^-5)`, because the `x^3`
+  term carries a `(1 - 1/D)^{-3} = 1 + 3/D + ...` correction (3/6 + 1/8 = 5/8).
+  The `(D-1)`-coefficient is **1/8**, not 5/8; the earlier note wrongly carried the
+  `5/8` from the `1/D` expansion into the `(D-1)` form.  `thm:fixed-degree-factor`
+  (main.tex line 5534) is correct as committed (`1/8(D-1)^4`).
 * `[H1]` the host-term movement `delta·beta` -> infinity at BIM scale, explicitly.
 * `[B1]`,`[B2]` the switching bookkeeping identities in the regular proof.
 
