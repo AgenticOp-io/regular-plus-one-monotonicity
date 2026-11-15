@@ -2710,15 +2710,19 @@ The \(LT/n\) term tilts \(x\) to \(\lambda^{-1}(1+BL/n)\), adding
 \[
 -\frac{1-\lambda^2}{2\lambda^2}+\frac{1-\lambda}{\lambda^2}-\frac{(1-\lambda)^2}{2\lambda^2}=0
 \]
-identically in \(\lambda\). Hence, if in addition
+identically in \(\lambda\). Moreover, uniformly over \(L\)-regular \(F_1,F_2\) with
+\(L\le n^{1/2}/2\),
+\begin{equation}\label{eq:peel-upper}
+\log\frac{\PP(F_1\cup F_2\subseteq G)}{\PP(F_1\subseteq G)\PP(F_2\subseteq G)}
+\le f(L)+\beta_nT+O\Bigl(\frac{1+L^2}n+\frac{L^6}{n^4}\Bigr),
+\end{equation}
+with \(f(L)=\psi(Ln)-2\psi(Ln/2)+\psi(0)\) and
+\(\beta_n=-\log\lambda(Ln)+O(1/n+L^2/n^2)\). Consequently, if
 \begin{enumerate}
-\item[(R1)] the \(\gamma^3\) remainder and the \(\boldsymbol v^{\mathsf T}Q^{-1}\boldsymbol v\)
-term in the proof of Lemma~\ref{lem:containment-ratio}(b) have overlap average
-\(O(L^2/n+L^4/n^2)\), and
-\item[(R2)] the factorial cumulants of \(T\) of order \(k\ge3\) are
-\(O(L^{2k-1}/n^{k-1})\),
+\item[(R2\(^*\))] \(\log\EE[y^T]-(y-1)\kappa_1-(y-1)^2\kappa_2/2=o(1)\) under
+\(\nu_L\otimes\nu_L\), uniformly for \(y=\lambda^{-1}(1+O(L/n))\),
 \end{enumerate}
-then \(\Var P_L/(\EE P_L)^2=O(L^2/n+L^5/n^2)\to0\) throughout \(L=o(n^{2/5})\).
+then \(\Var P_L/(\EE P_L)^2\to0\) throughout \(L=o(n^{1/2})\).
 \end{proposition}
 
 \begin{proof}
@@ -2733,14 +2737,55 @@ rationals. With \(\log\EE[x^T]=\sum_k\kappa_k(x-1)^k/k!\), the cubic coefficient
 \(C(x)\) is \(\kappa_2\)'s \(-L^3/n\) times \((x-1)^2/2\). The three coefficients
 and their zero sum are sympy identities; \(A\) and \(B\) also match \(\psi\) evaluated
 to \(60\) digits at \(n\in\{10^6,10^7\}\)
-(\texttt{v2/scripts/residual/worker2\_peel\_cubic.py}). Under (R1)--(R2) the
-remaining terms are \(O(L^2/n)\), \(O(L^4/n^2)\) and the \(k=3\) cluster
-\(O(L^5/n^2)\).
+(\texttt{v2/scripts/residual/worker2\_peel\_cubic.py}).
+
+For~\eqref{eq:peel-upper}: since \(\EE[P_L^2]\ge(\EE P_L)^2\), only an upper bound
+is needed, and every nonpositive term may be dropped. Taylor's theorem at \(Ln\)
+gives \(\psi(Ln-T)-2\psi(Ln/2)+\psi(0)=f(L)-T\psi'(Ln)+\tfrac{T^2}2\psi''(\xi)\) with
+\(\psi''<0\); the quadratic form \(-\tfrac12\Lambda^{-1}\boldsymbol v^{\mathsf T}Q^{-1}\boldsymbol v\)
+(\(Q\) positive definite) and the \(\delta\)-variance term of the cumulant part
+are also \(\le0\). For the \(\gamma^3\) remainder write \(Q=Q_0-R\),
+\(Q_0=(n-2)I+J\), \(R=Q(U)\), \(\|R\|_\infty\le4L\), \(\|Q_0^{-1}\|_\infty\le3/(2(n-2))\).
+When \(n-2\ge12L\) this gives \(\|Q^{-1}\|_\infty\le3/(n-2)\), and since
+\(\sum_jv_j=0\), \(Q^{-1}\boldsymbol v=\boldsymbol v/(n-2)+Q_0^{-1}RQ^{-1}\boldsymbol v\). Hence
+\(\Lambda|\gamma_j|\le|t_j-\bar t|/(n-2)+18L^2/(n-2)^2\). Using \(t_j\le L\) and
+\(\sum_jt_j=2T\), \(\sum_j|t_j-\bar t|^3\le16L^2T\), so the remainder, at most
+\((36\sqrt3)^{-1}\sum_{jk\notin U}|\gamma_j+\gamma_k|^3\), is
+\(O(L^2T/n^2+L^6/n^4)\). The determinant and cumulant parts are at most
+\(C(L^2+T)/n\) and \(C(L^2/n+LT/n^2)\) by the proof of
+Lemma~\ref{lem:containment-ratio}. Collecting the \(T\)-linear terms into
+\(\beta_n\) gives~\eqref{eq:peel-upper}; the only \(LT/n\) term is the exact
+\(BLT/n\) inside \(-\log\lambda(Ln)\). Averaging \(e^{\beta_nT}\) and using the
+cubic cancellation above, the \(L^2\) and \(L^3/n\) orders cancel and
+\(\Var P_L/(\EE P_L)^2\le\exp(O(L^2/n+L^4/n^2+L^6/n^4)+R_{\mathrm{tail}})-1\), with
+\(R_{\mathrm{tail}}\) the left side of (R2\(^*\)). The constants are sympy checks,
+and the bound on the remainder is also checked in floating point at \(n=400\),
+including overlaps up to \(T=1810\)
+(\texttt{v2/scripts/residual/r2\_worker2\_peel.py}).
 \end{proof}
 
-\begin{remark}
-(R1) and (R2) are not proved, and the \(L^5/n^2\) coefficient is not computed;
-if it also cancels, the method's next barrier lies beyond \(n^{2/5}\).
+\begin{remark}[The third cumulant, and no \(L^5/n^2\) term]
+\label{rem:peel-kappa3}
+For every \(S_n\)-invariant law of \(L\)-regular graphs, each three-edge shape
+probability is fixed by \(n\), \(L\) and the triangle density \(t_3\), so
+\(\kappa_3\) is an explicit rational function, equal to the brute-force value on
+\(\nu_L\) at \((n,L)\in\{(6,2),(6,3),(8,2),(8,3)\}\). Its leading terms are
+\(\kappa_3=5L^4/n^2+n^3(t_3-L^3/n^3)^2+\dots\), so the \(k=3\) term of (R2\(^*\)) is
+\(o(1)\) on \(L=o(n^{1/2})\) once \(t_3=O(L^3/n^3)\). An earlier version of this
+proposition assumed \(\kappa_k=O(L^{2k-1}/n^{k-1})\), which overstates \(\kappa_3\)
+and produced a spurious barrier at \(n^{2/5}\). No piece of the expansion has an
+\(L^5/n^2\) monomial. The computable \(L^4/n^2\) pieces cancel identically in
+\(\lambda\), as Remark~\ref{rem:no-l2n} predicts:
+\[
+\tfrac7{12}(\lambda-1)(\lambda^2+\lambda+1)+\tfrac14(\lambda-1)-2(\lambda-1)
++\tfrac14(\lambda-8)(\lambda-1)^2-\tfrac56(\lambda-1)^3=0 .
+\]
+They are the \(s^4\) term of \(\psi\), \(T^2\psi''\), the second-order tilt, and
+the \(L^4\) parts of \(\kappa_2\) and \(\kappa_3\).
+This cancellation is not needed on \(L=o(n^{1/2})\). It assumes the cumulant part
+of Lemma~\ref{lem:containment-ratio} has no \(L^4/n^2\) piece. Still open are
+\(t_3=O(L^3/n^3)\) for \(\nu_L\), bounds on \(\kappa_k\) for \(k\ge4\), and summing
+the tail. Past \(n^{1/2}\) the containment lemma itself no longer applies.
 \end{remark}
 
 \subsection*{The factor second moment as a colouring count}
@@ -7522,6 +7567,78 @@ host has \(\asymp nD^2\) triangles). The averaged form
 \(a/\bar a\approx\prod_k(1+\eta_k)^{X_k-\EE X_k}\) with \(X_k\) the \(k\)-cycle
 counts, small subgraph conditioning reduces (iii\('\)) to
 \(\sum_k(D-1)^k\eta_k^2/(2k)\to0\); proving that is open.
+\end{remark}
+
+\begin{theorem}[Degree-conditioned planting bound for (iii\('\))]
+\label{thm:tv-planting}
+In the setting of Proposition~\ref{prop:iii-averaged}, let \(d^*\) be the host
+degree sequence, \(P_{d^*}\) the uniform law on graphs with degree sequence
+\(d^*\), \(w(d^*)=\PP(\deg=d^*\mid N\ge1)\), and
+\(\mu'_{d^*}(G_0)\propto W(G_0;d^*-D)\), the number of graphs with degree sequence
+\(d^*-D\) edge-disjoint from \(G_0\). Then, for every \(n\),
+\[
+\dTV(\nu_D,\mu_D)\le\sum_{d^*}w(d^*)\Bigl[\underbrace{\EE_{d^*}\Bigl\lvert
+\frac{N}{\EE_{d^*}N}-1\Bigr\rvert}_{(A)}+\underbrace{\dTV(\mu'_{d^*},\mu_D)}_{(B)}\Bigr],
+\]
+and \(\sum_{d^*}\PP_{\mathrm{planted}}(\deg=d^*)\,\mu'_{d^*}=\mu_D\) exactly. Without
+the conditioning on \(d^*\) the analogous bound \(\EE\lvert N/\EE N-1\rvert\) tends
+to \(2\) whenever \(Dn\to\infty\) and \(p\le1/2\).
+\end{theorem}
+
+\begin{proof}
+Let \(P\) be any host law, \(K(H,\cdot)\) the uniform law on the \(D\)-factors of
+\(H\), \(Z=N/\EE_PN\) and \(Q=Z\cdot P\). Then \(QK(G_0)=P(G_0\subseteq H)/\EE_PN\),
+and since a common kernel does not increase total variation,
+\(\dTV(P(\cdot\mid N\ge1)K,QK)\le\dTV(P(\cdot\mid N\ge1),Q)\le\EE_P\lvert Z-1\rvert\).
+The last step uses \(Z=0\) on \(\{N=0\}\) and \(P(N=0)\le\EE\lvert Z-1\rvert\).
+Given \(\deg=d^*\), \(G(n,p)\) is \(P_{d^*}\), and \(QK=\mu'_{d^*}\) for
+\(P=P_{d^*}\). Mixing over \(w\) and applying the triangle inequality gives the
+bound. The identity is Bayes' rule in the planted model. For the last claim, with
+\(P=G(n,p)\), \(Q\) is the planted law, whose edge count exceeds that of \(P\) by
+\((1-p)Dn/2\gg\sqrt{\Var}\), so \(\dTV(Q,P)\to1\) and
+\(\EE\lvert Z-1\rvert=2\dTV(Q,P)\to2\). The bound and the identity are checked
+exactly over all hosts at \(n\in\{6,7\}\)
+(\texttt{v2/scripts/residual/r2\_worker1\_tv.py}). At this size the bound is loose
+(true total variation \(0.003\)--\(0.016\), bound \(0.66\)--\(0.77\), mostly from (B)).
+\end{proof}
+
+\begin{theorem}[Regular hosts satisfy (iii\('\))]
+\label{thm:tv-regular-host}
+Assume~\cite[Theorem~4.6]{McK85}. Replace the host by a uniform \(h\)-regular graph,
+and let \(\nu^{\mathrm{reg}}\) be the law of a uniform \(D\)-factor of it. Under
+the hypotheses of Theorem~\ref{thm:growing-degree-factor} with degree \(h\) and
+factor degree \(D\), so \(h\to\infty\), \(h^3=o(n)\), \(\min(D,h-D)\le(\tfrac12-c)h\),
+\[
+\dTV(\nu^{\mathrm{reg}},\mu_D)\le\Bigl(\exp\Bigl(\sum_{k\ge3}\frac{x^k}{2k}\Bigr)(1+o(1))-1\Bigr)^{1/2}
++O\Bigl(\frac{h^3}n\Bigr)\to0,\qquad x=\frac1{h-1}.
+\]
+\end{theorem}
+
+\begin{proof}
+The kernel bound in the proof of Theorem~\ref{thm:tv-planting}, with \(P\) the
+uniform \(h\)-regular law and Cauchy--Schwarz, gives
+\(\dTV(\nu^{\mathrm{reg}},\mu')\le(\Var N/(\EE N)^2)^{1/2}\), and
+Theorem~\ref{thm:growing-degree-factor} supplies the second moment. Here
+\(\mu'(G_0)\propto W(G_0)\), the number of \((h-D)\)-regular graphs edge-disjoint from
+\(G_0\). The McKay estimate with excluded graph \(G_0\) is the single-factor case of
+that proof, where every class sum and pairing sum is deterministic. It gives
+\(W(G_0)=W_0e^{E_0+O(h^3/n)}\) uniformly over \(D\)-regular \(G_0\), so
+\(\dTV(\mu',\mu_D)=O(h^3/n)\). Exact enumeration at \(n=8\), \(2\le D<h\le5\),
+agrees (\texttt{r2\_worker1\_tv.py}).
+\end{proof}
+
+\begin{remark}[What remains for the \(G(n,p)\) host]
+\label{rem:tv-open}
+Theorem~\ref{thm:tv-planting} reduces (iii\('\)) to two estimates for the typical
+near-regular \(d^*\): (A) the second moment of
+Theorem~\ref{thm:growing-degree-factor} for a non-regular degree sequence, and (B)
+an avoidance estimate uniform in \(D\)-regular \(G_0\) with unequal residual
+degrees. Small subgraph conditioning suggests
+\(\dTV(\nu_D,\mu_D)\sim(D-1)^{3/2}/(\sqrt{12\pi}(h-1)^3)\), with \(h\) the host mean
+degree. Here the cycle part favours triangles, factor \(1/(1-(h-1)^{-3})\) each.
+Exact enumeration at \(n=8\), \(h=3\), \(D=2\) fits \(1.134\) against \(1.143\).
+This is a heuristic, not a proof. The opposite sign at fixed \(D\) in
+Remark~\ref{rem:iii-uniform-vs-averaged} is plausibly the avoidance term (B).
 \end{remark}
 
 \begin{corollary}[Subgraph densities track inverse-count oscillation]

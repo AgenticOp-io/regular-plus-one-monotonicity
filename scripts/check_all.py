@@ -65,6 +65,11 @@ run("averaged item (iii) <=> TV, exact n=6 (worker1_config_split.py selfcheck)",
 run("peel cubic L^3/n coefficient cancels (worker2_peel_cubic.py)",
     [sys.executable, str(ROOT / "v2" / "scripts" / "residual" / "worker2_peel_cubic.py")],
     ok=lambda o: "CANCELS identically" in o and "total                      = 0" in o)
+# the r2_* scripts assert every identity they print; exit code is the check
+for s, cwd in (("r2_worker1_tv.py", ROOT / "v2" / "scripts" / "residual"),
+               ("r2_worker2_peel.py", ROOT),
+               ("r2_worker3_sharp.py", ROOT / "v2" / "scripts" / "residual")):
+    run(f"round-2 asserts ({s})", [sys.executable, str(ROOT / "v2" / "scripts" / "residual" / s)], cwd=cwd)
 if "--full" in sys.argv:
     run("rate inequality I > psi, D <= 80",
         [sys.executable, str(FD / "rate_inequality.py")],

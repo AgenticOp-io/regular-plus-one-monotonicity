@@ -1,0 +1,137 @@
+r2 worker1 -- does d_TV(nu_D, mu_D) -> 0 as D -> infinity, and at what rate?
+(follow-up to v2/notes/worker1_config_split.txt and prop:iii-averaged / rem:iii-uniform-vs-averaged)
+Script: v2/scripts/residual/r2_worker1_tv.py   (~30 s; every identity/inequality below is asserted)
+Date: 2026-11-14.  main.tex NOT edited.
+
+SHORT ANSWER
+  * Proven (Lemma 1, Thm 2, Prop 3, elementary): an exact planting reduction.  d_TV(nu_D,mu_D) is
+    bounded by two "flatness" inputs, both conditioned on the HOST DEGREE SEQUENCE.  Without that
+    conditioning the planting bound is provably useless (it tends to 2).
+  * Proven modulo McKay [McK85, Thm 4.6], which the paper already assumes (Thm 4): for the
+    REGULAR-HOST analogue (host uniform h-regular instead of G(n,p)), TV -> 0 in the paper's range.
+    This uses thm:growing-degree-factor unchanged.
+  * Not proven: the G(n,p) host itself.  Two inputs are open: (A) concentration of the D-factor
+    count of a uniform graph with a near-regular, non-regular degree sequence; (B) flatness in G0
+    of the count of residual graphs that avoid G0.  Both are expected to hold.
+  * Rate (heuristic, small subgraph conditioning):
+        d_TV(nu_D, mu_D) ~ (D-1)^{3/2} / (sqrt(12 pi) (h-1)^3) ~ 0.163 (1+eps)^{-3} D^{-3/2},
+    with h = np = (1+eps) D the host mean degree, plus finite-n terms O(sqrt(D)/(eps sqrt n)) and
+    O(h^3/n).  The D^{-3/2} triangle term dominates for D = o(n^{3/14}), which covers D = o(n^{1/6}).
+  * Sign: the cycle part of nu/mu FAVOURS triangles, factor 1/(1-(h-1)^{-3}) > 1 per triangle.
+
+------------------------------------------------------------------------------------------------
+1. LEMMA 1 (planting / common kernel; exact, any n)
+   Let P be any law on host graphs, N(H) = # D-factors of H, and K(H,.) = uniform over the
+   D-factors of H.  Put Z = N/E_P N and Q := Z.P (size-biased host).  Then
+     (a) QK(G0) = P(G0 subset H) / E_P N;
+     (b) d_TV( P(.|N>=1) K , QK ) <= d_TV( P(.|N>=1), Q ) <= E_P|Z-1|.
+   Proof. (a): sum_H P(H) Z(H) 1{G0 subset H}/N(H).  (b): first inequality: a common Markov kernel
+   does not increase TV.  Second: with pi0 = P(N>=1), 2 d_TV = E|1{N>=1}/pi0 - Z|
+   <= E[1{N>=1}](1/pi0 - 1) + E|1{N>=1} - Z| = (1-pi0) + E|1{N>=1}-Z|.  On {N=0}, Z=0, so
+   E|1{N>=1}-Z| = E|1-Z| - P(N=0), and 1-pi0 = P(N=0) <= E|Z-1|.  So 2 d_TV <= 2E|Z-1|.  []
+   With P = G(n,p): Q is exactly the planted law (G0 ~ mu_D, plus Bernoulli(p) on the
+   complement), QK = mu_D, and P(.|N>=1)K = nu_D.
+
+2. PROPOSITION 3 (the unconditioned planting bound fails; rigorous)
+   For P = G(n,p), E_P|N/E_P N - 1| = 2 d_TV(Q, P) -> 2 whenever Dn -> infinity and p <= 1/2.
+   Proof.  Under Q, e(H) = Dn/2 + Bin(C(n,2)-Dn/2, p).  Under P, e(H) = Bin(C(n,2), p).  The means
+   differ by (1-p)Dn/2.  Both standard deviations are <= sqrt(n^2 p) = O(sqrt(Dn)) in the paper's
+   regime.  Chebyshev separates the two laws, so d_TV(Q,P) -> 1.  []
+   So the planted host has about twice the edges of the null host.  N/EN is dominated by rare
+   dense hosts, which is the same obstruction as prop:host-count-second.  Exact values at small n
+   (script, part G): E|N/EN-1| = 1.38, 1.89 (n=6, D=2, p=1/2, 1/3); 1.90, 1.20 (n=6, D=3,
+   p=1/2, 3/4); 1.32, 1.48 (n=7, D=2).
+
+3. THEOREM 2 (degree-conditioned reduction; exact, any n)
+   d* = host degree sequence.  G(n,p) given deg = d* is uniform on G_{d*}, the graphs with
+   degree sequence d*; write P_{d*} for that law.  Put
+     w(d*) = P(deg=d*, N>=1)/P(N>=1),
+     Z_{d*} = N/E_{d*}N,
+     mu'_{d*}(G0) = W(G0; d*-D) / sum_{G0'} W(G0'; d*-D),
+   where W(G0; r) = # graphs with degree sequence r that are edge-disjoint from G0.
+   Then nu_D = sum_{d*} w(d*) P_{d*}(.|N>=1)K, and Lemma 1 for each P_{d*} gives
+     d_TV(nu_D, mu_D) <= sum_{d*} w(d*) [ E_{d*}|Z_{d*} - 1|  +  d_TV(mu'_{d*}, mu_D) ].   (*)
+                                          \____ (A) ______/     \_______ (B) _______/
+   Exact identity (Bayes in the planted model): sum_{d*} P_planted(deg = d*) mu'_{d*} = mu_D.
+   So mu'_{d*} averages back to mu_D under the PLANTED degree law.  But w is the NULL degree law,
+   and it lives on hosts with half the edges (Prop 3).  So (B) really needs flatness for each
+   typical d*, not just on average.
+   Checked exactly by brute force over all 2^15 / 2^21 hosts (part G): (*) and the identity hold.
+   At n <= 7, however, (*) is very loose:
+                               TV(nu,mu)  bound(*)   (A)      (B)
+     n=6 D=2 p=1/2             0.01639    0.720      0.210    0.510
+     n=6 D=2 p=1/3             0.01295    0.771      0.304    0.467
+     n=6 D=3 p=1/2             0.00531    0.735      0.078    0.657
+     n=6 D=3 p=3/4             0.00285    0.701      0.023    0.679
+     n=7 D=2 p=1/2             0.01056    0.663      0.256    0.407
+     n=7 D=2 rho=3/4           0.01132    0.713      0.305    0.407
+   The slack is almost all in (B).  At this n each d* class holds only a few hosts, so mu'_{d*}
+   is far from uniform; mixing over d* repairs that, but (*) cannot see the repair.  So small n
+   says nothing about whether (A) and (B) vanish asymptotically.
+
+4. THEOREM 4 (regular host; rigorous modulo [McK85, Thm 4.6], as the paper already assumes)
+   Model: host H uniform h-regular; nu^reg = law of a uniform D-factor of H.  Assume the
+   hypotheses of thm:growing-degree-factor with (its D, L) = (h, D): h -> infinity, h^3 = o(n),
+   L* = min(D, h-D) <= (1/2 - c)h, (L*)^7 = o(h^2 n).  These hold in the paper's regime, where
+   L* = h - D ~ eps D.  Then
+     d_TV(nu^reg, mu_D) <= ( exp(sum_{k>=3} x^k/(2k)) (1+o(1)) - 1 )^{1/2} + O(h^3/n) -> 0,
+     with x = 1/(h-1).
+   Proof.  Lemma 1 with P = uniform h-regular gives d_TV(nu^reg, mu') <= E|Z/EZ-1| <= (Var Z/(EZ)^2)^{1/2},
+   and thm:growing-degree-factor supplies the second moment.  Here mu'(G0) ∝ W(G0), the number of
+   (h-D)-regular graphs edge-disjoint from G0.  The McKay estimate with X = G0, exactly as in the
+   proof of thm:growing-degree-factor ("for a single factor every class sum and pairing sum is
+   deterministic"), gives W(G0) = W_0 exp(E_0 + O(h^3/n)) uniformly over D-regular G0, with W_0
+   and E_0 independent of G0.  Hence d_TV(mu', mu_D) = O(h^3/n).  Triangle inequality.  []
+   Proven rate: only "-> 0", because the (1+o(1)) in thm:growing-degree-factor is not quantified.
+   Without it the first term would be ~ (x^3/6)^{1/2} = O(h^{-3/2}).
+   Exact check at n=8 (part R, all labelled hosts and factors):
+     h D   TV(nu,mu)  TV(nu,mu') <= E|Z-1|   TV(mu',mu)
+     3 2   0.01670    0.02281       0.14257  0.00611
+     4 2   0.00486    0.00048       0.04933  0.00438
+     5 2   0.00435    0.00016       0.00876  0.00438
+     4 3   0.01628    0.00836       0.04194  0.02097
+     5 3   0.02458    0.00028       0.00876  0.02466
+     5 4   0.06673    0.00600       0.01222  0.07128
+   (h=6 at n=8: all hosts are isomorphic, N is constant, so nu = mu' exactly.)
+   Pattern: the cycle part TV(nu,mu') is far below its bound once h >= D+2.  At n=8 the total is
+   dominated by the avoidance term TV(mu',mu), which is the finite-n O(h^3/n) piece.
+
+5. RATE HEURISTIC (small subgraph conditioning; NOT proven)
+   For the D-factor model in a near-regular host of degree h, the edge-type transfer matrix
+   [[D-1, h-D],[D, h-D-1]] has eigenvalues h-1 and -1.  So planted/null cycle-count ratios are
+   1 + delta_k with delta_k = (-1/(h-1))^k.  This is the classical perfect-matching value at D=1,
+   and sum_k lambda_k delta_k^2 = sum x^k/2k is exactly the exponent of thm:growing-degree-factor.
+   Given G0, the host cycles contain the cycles of G0.  Hence
+       nu/mu'(G0) ~ prod_k (1+eta_k)^{X_k(G0) - E X_k},   1+eta_k = 1/(1+delta_k),
+   with X_k ~ Poi((D-1)^k/2k) under mu_D.  Then
+       Var_mu(nu/mu) ~ sum_{k>=3} (D-1)^k x^{2k}/(2k) ~ (D-1)^3/(6 (h-1)^6)    (k=3 dominates)
+       d_TV ~ sigma/sqrt(2 pi) = (D-1)^{3/2}/(sqrt(12 pi)(h-1)^3) ~ 0.163 (1+eps)^{-3} D^{-3/2}.
+   Exact test of the per-cycle factors at n=8 (fit nu/mu' ~ th3^t3 th4^c4 over classes):
+     h=3 D=2:  th3 = 1.134 (SSC 1.143),  th4 = 0.916 (SSC 0.941)   <- agrees, including the sign
+     h>=4:     the fitted tilt is <= 1%, and of mixed sign against SSC (1.016-1.039).  n=8 is too
+               small: the residual (h-D)-regular graph is tiny and finite-n terms dominate.
+   For the G(n,p) host, (B) adds the McKay pairing-sum fluctuation
+   T(G0) = sum_{ij in G0} x_i x_j, with x = r - rbar.  The linear term vanishes exactly because
+   G0 is D-regular.  Var_mu T ~ Dn sigma_x^4/2 with sigma_x^2 ~ (1+eps)D, against 2M ~ eps D n.
+   So (B) = O(sqrt(D)/(eps sqrt n)).  At eps = C(log n/d)^{1/3} that is O(D^{5/6}/sqrt n).  It is
+   below the D^{-3/2} triangle term iff D = o(n^{3/14}).
+
+6. RELATION TO ROUND 1
+   Round 1 found theta < 1 (triangles disfavoured) in G(n,p) at fixed D = 2, 3 and n <= 10.  The
+   SSC cycle part predicts theta > 1, and does so at h=3 in the clean regular-host model.  The
+   round-1 tilt therefore mixes in the avoidance/degree term (B) and the fixed-D degeneracy
+   (isolated vertices, P(N>=1) -> 0).  It is not evidence against the D -> infinity statement.
+   The fixed-D stall of TV is consistent with both pictures.
+   Condition stated in rem:iii-uniform-vs-averaged, sum_k (D-1)^k eta_k^2/(2k) -> 0: with
+   eta_k ~ (h-1)^{-k} it holds, value ~ 1/(6 D^3).
+
+7. OPEN
+   (A) A version of thm:growing-degree-factor for a uniform graph with the exact degree sequence d*
+       of a G(n,p) host: degrees h_v = (1+eps)D + O(sqrt(D log n)), D-factors.  The relative
+       variance should be exp(sum_k x^k/2k) - 1 + o(1).  Without exact degree conditioning it
+       diverges (Prop 3; compare lem:residual-window-means).
+   (B) A McKay avoidance estimate W(G0; r) = W_0(r) exp(-T(G0)/(2M) + o(1)), uniform over
+       D-regular G0, for the non-regular residual r = d* - D, plus the variance bound on T above.
+       In the paper's range this is plausibly the same [McK85, Thm 4.6] input.
+   (A) and (B) together prove TV -> 0 via (*).  A matching LOWER bound of order D^{-3/2}, which
+   would show the rate is sharp, is also open.

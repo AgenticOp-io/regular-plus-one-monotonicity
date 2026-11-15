@@ -1,0 +1,136 @@
+(1) (R1) CLOSED: containment-ratio(b) upper bound with no LT/n or L^3/n error
+    sympy: Q0^-1 formula and ||Q0^-1||_inf <= 3/(2(n-2)) (n=6,8,11); sup|sigma''| = 1/(6 sqrt3).
+    float check at n=400, D=160 (lambda=0.4010); F1, F2 = L random rounds of a relabelled
+    circle 1-factorization (any L-regular pair is allowed: the bound is deterministic).
+      L    T   R3=gamma^3 rem.  G3=sum|g_j+g_k|^3  G3/(L^2T/n^2)  (1/2)L^-1 vQ^-1v  ratio to sum t_j^2/n
+      4    10    1.661e-05       1.934e-03         1.934e+00       3.827e-02        0.765
+      7    29    5.251e-05       6.480e-03         7.297e-01       1.141e-01        0.736
+     10    55    1.028e-04       1.544e-02         4.492e-01       2.206e-01        0.689
+     10  1810   -1.626e-02       1.846e+00         1.632e+00       3.898e+00        0.045
+     10  1151   -1.632e-02       3.882e+00         5.396e+00       9.561e+00        0.216
+    all asserts pass: |R3| <= G3/(36 sqrt3), G3 <= explicit bound, vQ^-1v >= 0.
+
+(2) (R2) at k=3: exact kappa3 for every S_n-invariant law of L-regular graphs
+    pi(shape) fixed by n, L, t3 = P(triangle in F); relation (iii) is implied (sympy).
+    kappa3 = L**2*(L - 1)*(5*L - 7) / n^2
+           + L**2*(L**4*theta**2 - 2*L**4*theta + L**4 - 6*L**3*theta**2 + 12*L**3*theta - 12*L**3 + 13*L**2*theta**2 - 28*L**2*theta + 66*L**2 - 12*L*theta**2 + 30*L*theta - 120*L + 4*theta**2 - 12*theta + 66) / n^3 + ...   [t3 = theta (L)_3/(n-1)_3]
+    => kappa3 = 5 L^4/n^2 + O(L^3/n^2 + L^6/n^3): Theta(L^4/n^2), not L^5/n^2.
+    kappa3 is quadratic in t3: d/dt3 at 0 -> -2*L*(L**2 - 3*L + 3),  (1/2) d^2/dt3^2 = n^3 (1 + O(1/n)).
+    Leading t3-dependence n^3 t3^2 - 2 L^3 t3 = n^3 (t3 - L^3/n^3)^2 - L^6/n^3, and the t3-free
+    part has +L^6/n^3: so kappa3 = 5L^4/n^2 + n^3 (t3 - L^3/n^3)^2 + lower order.
+    The k=3 term is o(1) for L = o(n^{1/2}) as soon as t3 = O(L^3/n^3).
+
+    brute force over nu_L (exact rationals): every 3-edge shape has one probability (S_n),
+    equal to the formula at the observed t3; kappa2, kappa3 equal the closed forms.
+      n=6 L=2 (60 unions): t3 = 0 (L=2: no triangles), kappa3 = 86/125 = formula  OK
+      n=6 L=3 (70 unions): t3 = 3/40 (theta = 3/4), kappa3 = 6813/1000 = formula  OK
+      n=8 L=2 (2835 unions): t3 = 0 (L=2: no triangles), kappa3 = 528/1715 = formula  OK
+      n=8 L=3 (19355 unions): t3 = 29/1099 (theta = 145/157), kappa3 = 141319016/42273035 = formula  OK
+
+(3) series of log E[P_L^2]/(E P_L)^2 from the computable pieces (psi, T^2 psi'', exact tilt,
+    kappa1..kappa3), n = 1/t, L symbolic:
+    t^0 : 0
+    t^1 : L^3 coeff = 0   (cubic cancellation, reproduced)
+          L^2 coeff = (lambda - 1)**2/(2*lambda**2)   [incomplete: det/cumulant parts also O(L^2/n)]
+    t^2 : L^5..L^8 coeffs = 0 (no L^5/n^2 term)
+          L^4 coeff  D4 = 0
+          D4 at lambda=1/2: 0,  lambda=1/3: 0
+            psi 2nd diff    : 7*(lambda - 1)*(lambda**2 + lambda + 1)/(12*lambda**3)
+            T^2 psi''       : (lambda - 1)/(4*lambda**3)
+            kappa1 w (tilt) : -2*(lambda - 1)/lambda**3
+            kappa2 w^2/2    : (lambda - 8)*(lambda - 1)**2/(4*lambda**3)
+            kappa3 w^3/6    : -5*(lambda - 1)**3/(6*lambda**3)
+    D4 = 0 identically: the L^4/n^2 order cancels too.
+
+    n<=8 brute force, y=2: tail log E[y^T] - w k1 - w^2 k2/2  vs  w^3 kappa3/6 (w=1):
+      n=6 L=2: tail = +0.10595,  kappa3/6 = +0.11467
+      n=6 L=3: tail = +0.69128,  kappa3/6 = +1.13550
+      n=8 L=2: tail = +0.05092,  kappa3/6 = +0.05131
+      n=8 L=3: tail = +0.38801,  kappa3/6 = +0.55717
+
+=====================================================================================
+PROOFS AND STATUS
+=====================================================================================
+Notation as in lem:containment-ratio: s = Ln/2, N0 = C(n,2), lambda(e) = (lam N0 - e)/(N0 - e),
+psi(e) = (N0-e) H(lambda(e)), U = F1 u F2, x_j = deg_U(j) = 2L - t_j, sum_j t_j = 2T, 0 <= t_j <= L,
+Lam = lambda_U(1-lambda_U), Q = Q(K_n - U) (unweighted signless Laplacian), v_j = -(1-lambda_U)(x_j - xbar).
+
+(P0) Only the upper bound is needed.  E[P_L^2] >= (E P_L)^2 (Cauchy-Schwarz), so
+     Var P_L/(E P_L)^2 -> 0 iff limsup E[P_L^2]/(E P_L)^2 <= 1.  Every nonpositive term in
+     Delta(F1,F2) = log P(U c G) - log P(F1 c G) - log P(F2 c G) can be dropped.
+
+(P1) Entropy, main part, exact.  Taylor at 2s with Lagrange remainder:
+       psi(2s-T) - 2psi(s) + psi(0) = f(L) - T psi'(2s) + (T^2/2) psi''(xi),
+     f(L) := psi(2s) - 2psi(s) + psi(0) deterministic, psi'(2s) = log lambda(2s) = log lambda(Ln),
+     psi'' = -(1-lambda(e))/(lambda(e)(N0-e)) < 0.  So the T^2 term is <= 0: drop it.
+     psi^(k) = O(n^{-2(k-1)}) on [0, Ln] (lambda(e) stays in [c/2, 1-c/2]), hence
+       f(L) = -(1/lam - 1) L^2 n/(2(n-1)) + A L^3/n + O(L^4/n^2)          (A as in round 1)
+     and -log lambda(Ln) = log(1/lam) + B L/n + O(L^2/n^2).
+
+(P2) The quadratic -1/2 Lam^-1 v^T Q^-1 v is <= 0 (Q is positive definite): drop it.
+     The delta-variance term -1/2 delta^T W_U^-1 delta of the cumulant part is <= 0: drop it.
+
+(P3) The gamma^3 remainder, deterministic.  g(beta) = sum_{jk not in U} log(1+e^{b_j+b_k}) - beta.d
+     has g(b1+gamma) = psi(|U|) - 1/2 Lam^-1 v^T Q^-1 v + R3 EXACTLY, with
+       |R3| <= (1/6) sup|sigma''| sum_{jk not in U} |gamma_j+gamma_k|^3 = G3/(36 sqrt3).
+     Bound on gamma = Lam^-1 Q^-1 v.  Q = Q0 - R, Q0 = (n-2)I + J, R = Q(U), ||R||_inf = 2 max x_j <= 4L.
+     ||Q0^-1||_inf <= 3/(2(n-2)).  For n-2 >= 12L (true for L <= n^{1/2}/2, n >= 600):
+     ||R Q0^-1||_inf <= 1/2, so ||Q^-1||_inf <= 3/(n-2).  Since sum v = 0, Q0^-1 v = v/(n-2), and
+       Q^-1 v - v/(n-2) = Q0^-1 R Q^-1 v,   |.|_inf <= (3/(2(n-2))) 4L (3/(n-2)) ||v||_inf <= 18 L^2/(n-2)^2,
+     using |v_j| <= |t_j - tbar| <= L.  So Lam|gamma_j| <= |t_j - tbar|/(n-2) + 18L^2/(n-2)^2 and
+       G3 <= 4(n-1) sum_j |gamma_j|^3,   sum_j |t_j - tbar|^3 <= 4(sum t_j^3 + n tbar^3)
+          <= 4(L^2 * 2T + 8T^3/n^2) <= 16 L^2 T            (t_j <= L, T <= Ln/2),
+       G3 <= 16(n-1) Lam^-3 [16 L^2 T/(n-2)^3 + 18^3 n L^6/(n-2)^6] = O(L^2 T/n^2 + L^6/n^4).
+     (Checked numerically above; the true G3 is far smaller, ~L^2/n^2, but the bound suffices.)
+
+(P4) Conclusion of (R1).  With the determinant part <= C(L^2+T)/n and the cumulant part
+     <= C(L^2/n + LT/n^2) (both from the lemma's own proof) and the O(1/n) IM25 errors:
+       Delta(F1,F2) <= f(L) + beta_n T + eps_n,
+       beta_n = -log lambda(Ln) + C(1/n + L^2/n^2),   eps_n = C(1 + L^2)/n + C L^6/n^4,
+     uniformly over L-regular F1, F2, L <= n^{1/2}/2.  No LT/n or L^3/n error is left: the only
+     LT/n piece is B L T/n inside -log lambda(Ln), which is exact.
+
+(P5) Reduction (proved).  With y_n = e^{beta_n} = lam^-1 (1 + B L/n + O(1/n + L^2/n^2)),
+       E[P_L^2]/(E P_L)^2 <= exp(f(L) + eps_n + O(L^2/n)) E_{nu_L x nu_L}[y_n^T].
+     Write log E[y^T] = (y-1) k1 + (y-1)^2 k2/2 + Rtail(y), k1 = L^2 n/(2(n-1)) and k2 the exact
+     second factorial cumulant (k2 = -L^3/n + L^2/n + O(L^4/n^2 + L^3/n^2)).  Then
+       (y_n-1) k1 + (y_n-1)^2 k2/2 + f(L)
+         = [A + B/(2 lam) - (1/lam-1)^2/2] L^3/n + O(L^2/n + L^4/n^2) = O(L^2/n + L^4/n^2),
+     the L^2 terms cancelling exactly (both carry n/(n-1)).  Hence
+       Var P_L/(E P_L)^2 <= exp(O(1/n + L^2/n + L^4/n^2 + L^6/n^4) + Rtail(y_n)) - 1.
+     THEOREM (conditional only on (R2*)): if Rtail(y_n) <= o(1) on a range L = L_n <= n^{1/2}/2,
+     L = o(n^{1/2}), then Var P_L/(E P_L)^2 -> 0 there.  (R1) is no longer an assumption.
+
+(R2*)  [OPEN]  Rtail(y) = log E_{nu_L x nu_L}[y^T] - (y-1)k1 - (y-1)^2 k2/2 = o(1), uniformly
+     for y within O(L/n) of 1/lam, L = o(n^{1/2}).  Equivalently: the factorial cumulants of
+     T = |F1 n F2| beyond k = 2, summed with weights (y-1)^k/k!, are o(1).
+     Evidence:
+       k = 3 exactly: kappa3 is an explicit rational function of (n, L, t3), t3 = P(abc c F),
+       for EVERY S_n-invariant L-regular law; brute-force equal on nu_L at n <= 8.  Leading order
+         kappa3 = 5L^4/n^2 + n^3 (t3 - L^3/n^3)^2 + O(L^3/n^2 + L^5/n^3 + n^2 t3^2 + L^2 t3).
+       So the k = 3 term is o(1) for L = o(n^{1/2}) PROVIDED t3 = O(L^3/n^3) (brute force:
+       t3/((L)_3/(n-1)_3) = 3/4 at (6,3), 145/157 at (8,3)).  A clustered law with
+       t3 ~ L^2/n^2 would give kappa3 ~ L^4/n, so this input is genuinely needed.
+       Heuristic for all k: kappa_k = O_k(L^{k+1}/n^{k-1}) (binomial(Ln/2, L/n) has exactly this
+       scale, and each extra linked edge costs n/L), which gives Rtail = O(L^4/n^2) -> 0.
+     Not proved: the triangle density of nu_L at the L^3/n^3 scale, any bound on kappa_k, k >= 4,
+     and summability of the tail.  Brute force at n <= 8 cannot test L-scaling.
+
+(R2) as stated in prop:peel-cubic-cancels (O(L^{2k-1}/n^{k-1})) is weaker than the true k=3
+     scale; with the corrected scale the method reaches L = o(n^{1/2}), not only o(n^{2/5}).
+
+NEXT ORDER.  There is no L^5/n^2 term: none of psi, -log lambda(Ln), k2, k3 has an L^5/n^2
+     monomial (sympy, part (3), with t3 = theta (L)_3/(n-1)_3 for any bounded theta).
+     The next order is L^4/n^2.  Its coefficient from the computable pieces (psi s^4 term,
+     T^2 psi'' at E_y[T^2], second-order tilt, k2's L^4/(2n^2), k3's 5L^4/n^2) is
+       D4 = [7(l-1)(l^2+l+1)/12 + (l-1)/4 - 2(l-1) + (l-8)(l-1)^2/4 - 5(l-1)^3/6] / l^3 = 0
+     identically in lambda: the L^4/n^2 order cancels as well, as the colouring heuristic
+     (rem:no-l2n) predicts.  This is exact algebra given its inputs, not a theorem about R.
+     Pieces not in D4: v^T Q^-1 v (~ L^2/n + L^3/n^2 heuristically: E sum (t_j - tbar)^2 ~ L^2),
+     gamma^3 (~ L^2/n^2), determinant (L^2/n + L^3/n^2: tr M^k ~ L^k/n^{k-1}), cumulants
+     (bounded only by L^2/n + LT/n^2 in the lemma; whether they carry an L^4/n^2 piece is
+     NOT checked), kappa_k for k >= 4 (heuristically L^5/n^3).
+     For L = o(n^{1/2}) every one of these orders is o(1) anyway; no cancellation at L^4/n^2 is
+     needed for the theorem.  It would matter only past n^{1/2}, where the containment lemma
+     itself (IM25 hypothesis ||d - lam g||_inf = O(n^{1/2})) no longer applies.
+

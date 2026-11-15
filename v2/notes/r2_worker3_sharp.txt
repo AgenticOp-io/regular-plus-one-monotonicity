@@ -1,0 +1,330 @@
+r2_worker3 -- rigorous step 5 of the sequential Gao20-Thm-6 product; what lies past delta^5 m = o(n)
+Reproduce: python v2/scripts/residual/r2_worker3_sharp.py   (about 6 s; ends "DONE r2_worker3")
+Builds on v2/notes/worker3_sharp_boundary.txt (round 1).  main.tex not edited; nothing committed.
+
+SOURCE CHECK.  Gao20 Thm 6 was re-read from the arXiv PDF (2012.01492 v3, p.4-5).  Exact form, with
+H2 = empty and d = D*1:  M = sum_i d_i (the degree SUM, not half of it); M_j = sum_i (d_i)_j (falling
+factorial); dt = d - d^{H1}; Mt = M(dt), Mt2 = M_2(dt); W = ordered pairs (x,y) with xy in H1 u H2,
+xu, yv notin H1 u H2, {x,y} n {u,v} = empty;
+  phibar = -2(dtu+dtv) + 2 - sum_{x in N_{H1uH2}(u)} dtx - sum_{y in N(v)} dty - (dtu+dtv-2)Mt2/Mt + dtu dtv;
+relative error O(Delta^5 n/M^3) = O(D^2/n^2) here.  Hypotheses: Delta^2 = o(M), d^{H1} <= d,
+Delta_{H2} = O(Delta), Mt = Omega(M), uv notin H1 u H2.  The round-1 transcription was correct.
+
+==================================================================================================
+VERDICT
+ (1) PROVEN (conditional only on Gao20 Thm 6, which the paper already assumes), with explicit constants:
+     Proposition A below.  For every graph H on [n] with max degree <= (1-c)D,
+       log P(H in G(n,D)) = sum_v log (D)_{h_v} - sum_{k<e} log(Dn-1-2k) - lambda - lambda^2 - mu
+                            + (D^2-1)/4 + rho,
+       |rho| <= (2 C_G + 90 c^-6) e D^2/n^2 + (90 c^-5 + 24 c^-3 + 6 c^-2 Delta_H^2) e/n^2 + 1/(c^2 D n).
+     This is round 1's step 5, done.  It is sharper than round 1 claimed: there is no Delta_H D e/n^2
+     term, and the constant is 1/(Dn), not 1/n.  The main-term identity (round 1's step 6) is now an
+     exact symbolic identity rather than a 3-point numerical one (section 1).
+     Consequence: Thm sharp-rate-short holds with delta^6/n replaced by delta^5 m/n.  At m = O(1)
+     that is delta = o(n^{1/5}), up from n^{1/6} (text T3 below).
+ (2) PAST n^{1/5}: there is an obstruction, and it is the black-box error of Thm 6 itself, not the
+     bookkeeping.  The per-edge error D^2/n^2 is attained (section 3).  Exact star computations
+     (section 4b) locate it: it is the cross term AB in Gao's product (1-A)(1-B).  The form
+     exp(-A-B) has per-edge error O((1+j^2)/n^2) along the star, uniformly in D.
+     CONJECTURE B (exp-form Thm 6) would give R-step error O(m^3/n + delta^3 m/n^2) and the sharp rate
+     on delta = o(n^{1/4}) at m = O(1).  There the next barrier is budget (iv) m^2 delta^4/n, which
+     contains a genuine K-dependence term of the second moment (not just a lost constant).  Whether
+     the sharp rate 1/(6 delta^3) is even TRUE past n^{1/4} is open.
+
+==================================================================================================
+WHAT IS CHECKED, AND HOW (script sections)
+ 1  sympy, exact.  Put t = (D-s)/hbar.  The main-term integrand is then a Laurent polynomial in s,
+    because the only denominators are powers of Mt.  Its integral is R + kappa log(D/(D-hbar)).
+    Checked: kappa = 1/2 exactly, and R - [-lambda-lambda^2-mu+(D^2-1)/4] cancels to 0 identically
+    in (D, hbar, v2, s11).  This is a proof of round 1's step 6, not a numerical check.
+ 2  Fraction, exact.  E_lin = sum_k E[A_k+B_k] uses Gao's A, B literally (W with its exclusions,
+    N_{H1}, Mt2), enumerated over every (S, next edge) for 11 graphs: perfect matchings n=12..24,
+    cycles n=8..12, a fixed 11-edge graph padded to n=10,20,40, and a random graph.  Compared with the
+    main-term integral I.  Results: n^2 (E_lin - I)/e = -0.62..-0.65 (PM, Delta=1),
+    -2.85..-2.91 (cycle, Delta=2), -3.9 -> -2.4 (Delta=3).  Bounded, as Lemma S/A predict
+    (O((1+Delta^2) e/n^2)).  The explicit bound holds with a margin of about 500-1400x.  With e fixed
+    and n doubling, n^2 (E_lin - I) converges, so there is no hidden 1/n piece.  The graph-level main
+    term equals the closed form C(D, hbar, v2, s11) to 1e-20, which confirms the reduction to three
+    statistics.
+ 3  sympy, exact.  Empty host: q/p - 1 = -(D^2-D+1)/n^2 + O(D^3/n^3), where p = D/(n-1).  So Gao's
+    O(D^2/n^2) per edge is attained.
+ 4  Exact star family.  P(K_{1,r} in G(n,D)) = (D)_r/(n-1)_r holds exactly (N(v) is a uniform D-set).
+    The Proposition's rho expands as:
+      n^0 coefficient = 0, n^-1 coefficient = 0 (exactly),
+      n^-2 coefficient = r(2D^2r^2+15D^2r+D^2-24Dr^2-24Dr+3r^3+22r^2+3r+2)/(12D^2)
+                       = r^3/6 + 5r^2/4 + r/12 + O(r^3/D)      (no r D^2 term).
+    Matched numerically at (D,r,n) = (8,4,1e4), (20,10,1e5), (40,20,1e6).  So along the star the
+    actual rho is O(e Delta^2/n^2), smaller than the proven O(e D^2/n^2).
+ 4b The same, edge by edge: exact p_j = (D-j)/(n-1-j) after j star edges.
+      log(p_j/q_j), Gao's product form: n^-2 coefficient = D^2 + Dj - D + j^2 + O(j^2/D)   (D^2-size)
+      log(p_j/q_j), exp(-A-B) form:     n^-2 coefficient = (j+1)^2/2 + O(j^3/D^2)        (D-free)
+    At j = 0 both reduce to section 3.  The D^2 is AB (A ~ D/n, B ~ -D/n, AB ~ -D^2/n^2).
+ 5  sympy.  Model for the ratio: suppose the second-order per-edge error is a smooth function
+    D^2 psi(hbar t/D)/n^2 + alpha D (s_u+s_v)/n^2.  In X = F1 u F2 minus 2F the D^2 m/n terms cancel
+    and O(D m^2/n + m^3/n) remains.  Budget tables (below).
+
+==================================================================================================
+LATEX-READY TEXT
+
+--- T1. The hypothesis, stated once -----------------------------------------------------------------
+
+\begin{hypothesis}[Uniform form of {\cite[Theorem~6]{Gao20}}]
+\label{hyp:gao6}
+For every \(c\in(0,\tfrac12]\) there are \(C_G=C_G(c)\) and \(\varepsilon_0=\varepsilon_0(c)>0\)
+such that the following holds whenever \(D\le\varepsilon_0 n\).  Let \(H_1\subseteq K_n\) have all
+degrees at most \(D\) and \(|H_1|\le(1-c)Dn/2\), and let \(uv\notin H_1\).  Put
+\(\tilde d=D\mathbf 1-d^{H_1}\), \(\widetilde M=\sum_i\tilde d_i\),
+\(\widetilde M_2=\sum_i\tilde d_i(\tilde d_i-1)\), let \(\mathcal W\) be the set of ordered
+pairs \((x,y)\) with \(xy\in H_1\), \(xu,yv\notin H_1\), \(\{x,y\}\cap\{u,v\}=\emptyset\), and
+\[
+\bar\phi=-2(\tilde d_u+\tilde d_v)+2-\sum_{x\in N_{H_1}(u)}\tilde d_x-\sum_{y\in N_{H_1}(v)}\tilde d_y
+-(\tilde d_u+\tilde d_v-2)\frac{\widetilde M_2}{\widetilde M}+\tilde d_u\tilde d_v .
+\]
+Then
+\[
+\PP\bigl(uv\in G(n,D)\mid H_1\subseteq G(n,D)\bigr)
+=\frac{\tilde d_u\tilde d_v}{\widetilde M}\,(1-A)(1-B)\,(1+\eta),
+\qquad |\eta|\le C_G\frac{D^2}{n^2},
+\]
+with \(A=\widetilde M_2^2/\widetilde M^3+\widetilde M_2/\widetilde M^2
++\sum_{(x,y)\in\mathcal W}\tilde d_x\tilde d_y/\widetilde M^2\) and \(B=\bar\phi/\widetilde M\).
+\end{hypothesis}
+This is~\cite[Theorem~6]{Gao20} with \(d=D\mathbf 1\), \(H_2=\emptyset\), \(M=Dn\),
+\(\Delta^5n/M^3=D^2/n^2\), and \(\widetilde M=Dn-2|H_1|\ge cM\); the only addition is that the
+constant in \(O(\cdot)\) depends on \(c\) alone, which is how the theorem is stated.
+
+--- T2. Proposition A and its proof -----------------------------------------------------------------
+
+\begin{proposition}[Subgraph probabilities to relative error \(D^2|H|/n^2\)]
+\label{prop:seq-gao}
+Assume Hypothesis~\ref{hyp:gao6}.  Let \(c\in(0,\tfrac12]\), \(D\ge2\), \(Dn\) even, and let \(H\)
+be a graph on \([n]\) with \(e\ge1\) edges, degrees \(h_v\le(1-c)D\) and maximum degree \(\Delta\).
+Put \(g=D\mathbf 1-h\), \(\bar h=2e/n\), and let \(\lambda=\lambda(g)\), \(\mu=\mu(g,H)\) be as
+in the McKay estimate.  If \(D\le\varepsilon_0n\), \(C_GD^2\le n^2/2\) and \(18D\le c^3n\), then
+\[
+\log\PP\bigl(H\subseteq G(n,D)\bigr)
+=\sum_v\log(D)_{h_v}-\sum_{k=0}^{e-1}\log(Dn-1-2k)-\lambda-\lambda^2-\mu+\frac{D^2-1}{4}+\rho,
+\]
+\[
+|\rho|\le\Bigl(2C_G+\frac{90}{c^6}\Bigr)\frac{eD^2}{n^2}
++\Bigl(\frac{90}{c^5}+\frac{24}{c^3}+\frac{6\Delta^2}{c^2}\Bigr)\frac{e}{n^2}+\frac{1}{c^2Dn}
+\;\le\;\Bigl(2C_G+\frac{210}{c^6}\Bigr)\frac{eD^2}{n^2}+\frac1{c^2Dn}.
+\]
+\end{proposition}
+
+\begin{lemma}[Covariances of edge-indicator functions]
+\label{lem:seq-smooth}
+Let \(E'\) be a finite set with \(|E'|\le e\), let \(S\subseteq E'\) contain each element
+independently with probability \(t\), and let \(Y=Y(S)\) satisfy \(|Y|\le a\).  Put
+\(b_\epsilon=\sup_S|Y(S\cup\{\epsilon\})-Y(S\setminus\{\epsilon\})|\).  Then
+\(|\mathrm{Cov}(\mathbf 1_{\epsilon\in S},Y)|\le b_\epsilon/4\), so
+\(|\mathrm{Cov}(Y,\sum_{\epsilon\in F}\mathbf 1_{\epsilon\in S})|\le\frac14\sum_{\epsilon\in F}b_\epsilon\)
+for every \(F\subseteq E'\), and \(\Var Y\le\frac14\sum_\epsilon b_\epsilon^2\).  If moreover
+\(X=Dn-2|S|\) and \(nT\) are in \([cDn,Dn]\) with \(|\EE X-nT|\le2\), then for \(p\in\{1,2,3\}\)
+\[
+\Bigl|\EE\bigl[YX^{-p}\bigr]-\frac{\EE Y}{(nT)^p}\Bigr|
+\le\frac{p\,|\mathrm{Cov}(Y,X)|}{(cDn)^{p+1}}+\frac{p(p+1)\,a\,e}{2(cDn)^{p+2}}+\frac{2p\,a}{(cDn)^{p+1}} .
+\]
+\end{lemma}
+
+\begin{proof}
+Conditioning on the other coordinates,
+\(\mathrm{Cov}(\mathbf 1_{\epsilon\in S},Y)=t(1-t)\,\EE[Y(S\cup\{\epsilon\})-Y(S\setminus\{\epsilon\})]\),
+of modulus at most \(b_\epsilon/4\); summing over \(\epsilon\in F\) gives the second claim, and the
+variance bound is the Efron--Stein inequality with \(\Var_\epsilon Y\le t(1-t)b_\epsilon^2\).  For the
+last display write \(m=\EE X\); since \(X,m\in[cDn,Dn]\),
+\(X^{-p}=m^{-p}-p(X-m)m^{-p-1}+r\) with \(|r|\le\frac{p(p+1)}2(X-m)^2(cDn)^{-p-2}\).  Take
+expectations against \(Y\), use \(\Var X=4|E'|t(1-t)\le e\), and replace \(m^{-p}\) by
+\((nT)^{-p}\) at cost \(|\EE Y|\,p|m-nT|(cDn)^{-p-1}\).
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:seq-gao}]
+\emph{Step 1 (exact chain).}  For any ordering \(f_1,\dots,f_e\) of \(E(H)\),
+\(\PP(H\subseteq G)=\prod_k\PP(f_k\in G\mid f_1,\dots,f_{k-1}\in G)\).  Each factor is
+Hypothesis~\ref{hyp:gao6} with \(H_1=\{f_1,\dots,f_{k-1}\}\): its degrees are at most \(h_v\le D\),
+and \(|H_1|<e\le(1-c)Dn/2\).  Since \(|\eta_k|\le\frac12\), \(|\log(1+\eta_k)|\le2C_GD^2/n^2\).
+
+\emph{Step 2 (random order).}  Give each edge an independent uniform arrival time in \([0,1]\) and
+order by arrival.  This order is uniform.  Given that \(f\) arrives at time \(t\), the set
+\(S\) of earlier edges contains each edge of \(H\setminus\{f\}\) independently with probability
+\(t\).  Averaging the identity of Step~1,
+\[
+\log\PP(H\subseteq G)=\sum_k\log\frac{\tilde d_u\tilde d_v}{\widetilde M}
++\sum_{f\in H}\int_0^1\EE\bigl[\log(1-A)+\log(1-B)\bigr]\,dt+\varepsilon_1,
+\qquad|\varepsilon_1|\le\frac{2C_GeD^2}{n^2},
+\]
+where \(A,B\) are evaluated at the state \((S,f)\).  The first sum does not depend on the order: the
+\(j\)-th edge at \(v\) meets \(\tilde d_v=D-j+1\), so \(\prod_k\tilde d_u\tilde d_v=\prod_v(D)_{h_v}\),
+and \(\widetilde M_k=Dn-2(k-1)\).
+
+\emph{Step 3 (linearisation).}  Write \(s_w=\deg_S(w)\) and \(X=\widetilde M=Dn-2|S|\in[cDn,Dn]\).
+From \(\widetilde M_2\le D^2n\), \(|\mathcal W|\le2e\le Dn\) and \(\Delta\le D\):
+\(0\le A\le3D/(c^3n)\) and \(|\bar\phi|\le7D^2+2D^2/c\le9D^2/c\), so \(|B|\le9D/(c^2n)\).  Both are
+at most \(\tfrac12\), and \(|\log(1-x)+x|\le x^2\) there, so replacing \(\log(1-A)+\log(1-B)\) by
+\(-(A+B)\) costs \(\varepsilon_2\), \(|\varepsilon_2|\le90eD^2/(c^6n^2)\).
+
+\emph{Step 4 (main term).}  Put \(nT=Dn-2et=n(D-\bar ht)\).  Define the main term
+\(\mathcal A(f,t)+\mathcal B(f,t)\) by substituting into \(A+B\)
+\(X\mapsto nT\);
+\(\widetilde M_2\mapsto m_2:=\sum_w\EE_{\mathrm{Bin}(h_w,t)}[(D-s)(D-s-1)]\);
+\(\widetilde M_2^2\mapsto m_2^2\);
+\(\sum_{\mathcal W}\tilde d_x\tilde d_y\mapsto2t\sum_{xy\in H}(D-1-(h_x-1)t)(D-1-(h_y-1)t)\);
+\(\tilde d_u\mapsto D-(h_u-1)t\) (likewise \(v\));
+\(\sum_{x\in N_S(u)}\tilde d_x\mapsto t\sum_{x\in N_H(u)\setminus v}(D-1-(h_x-1)t)\);
+\((\tilde d_u+\tilde d_v-2)\widetilde M_2\mapsto(\EE\tilde d_u+\EE\tilde d_v-2)\,m_2\);
+\(\tilde d_u\tilde d_v\mapsto\EE\tilde d_u\,\EE\tilde d_v\).
+Under the law of Step~2 the last four replacements are exact in expectation: given \(ux\in S\),
+\(s_x-1\sim\mathrm{Bin}(h_x-1,t)\); and \(s_u,s_v\) depend on disjoint edge sets.  The others cost
+the following, per state and before summing over \(f\):
+(i) \(\Var\widetilde M_2\le4eD^2\), by Lemma~\ref{lem:seq-smooth} with \(b\le4D\);
+(ii) \(|\mathrm{Cov}(s_u+s_v,\widetilde M_2)|\le2\Delta D\);
+(iii) \(|\EE\widetilde M_2-m_2|\le4D\): only \(s_u,s_v\) are \(\mathrm{Bin}(h-1,t)\), and
+\((D-s)(D-s-1)\) has increments at most \(2D\);
+(iv) the \(\mathcal W\) sum differs from its replacement by at most \((4\Delta+2\Delta^2)D^2\)
+pointwise in expectation.  The pairs touching \(u\) or \(v\) number at most \(4\Delta\), the pairs
+excluded by \(xu\in S\) or \(yv\in S\) number at most \(2\Delta^2\), and for the remaining pairs
+\(\EE[\mathbf 1_{xy\in S}\tilde d_x\tilde d_y]\) is exactly the replaced product.
+Dividing by the powers of \(cDn\) and summing over the \(e\) edges, (i)--(iv) contribute at most
+\((24c^{-3}+6\Delta^2c^{-2})e/n^2\).  Finally apply Lemma~\ref{lem:seq-smooth} to the five terms
+\(\widetilde M_2^2X^{-3}\), \(\widetilde M_2X^{-2}\), \(\sum_{\mathcal W}X^{-2}\),
+\(\phi_1X^{-1}\) and \((\tilde d_u+\tilde d_v-2)\widetilde M_2X^{-2}\), where
+\(\phi_1=\bar\phi+(\tilde d_u+\tilde d_v-2)\widetilde M_2/\widetilde M\).  Their
+\((a,\sum_\epsilon b_\epsilon)\) are at most \((D^4n^2,\,8eD^3n)\), \((D^2n,\,4eD)\),
+\((D^3n,\,6eD^2+2\Delta^2D^2)\), \((7D^2,\,16\Delta D)\) and
+\((2D^3n,\,8eD^2+4\Delta D^2n)\).  For \(\phi_1\), only the at most \(2\Delta+2\Delta^2\) edges
+meeting \(\{u,v\}\cup N_H(u)\cup N_H(v)\) move it.  With \(e\le Dn/2\) the five contributions sum
+to at most \(90c^{-5}e/n^2\).  Altogether
+\[
+\sum_{f}\int_0^1\EE[A+B]\,dt=\int_0^1\sum_f(\mathcal A+\mathcal B)(f,t)\,dt+\varepsilon_3,
+\qquad|\varepsilon_3|\le\Bigl(\frac{90}{c^5}+\frac{24}{c^3}+\frac{6\Delta^2}{c^2}\Bigr)\frac{e}{n^2}.
+\]
+
+\emph{Step 5 (evaluation).}  \(\sum_f(\mathcal A+\mathcal B)(f,t)\) depends on \(H\) only through
+\(\bar h\), \(v_2=n^{-1}\sum_vh_v^2\) and \(s_{11}=n^{-1}\sum_{xy\in H}h_xh_y\).  Each sum over
+\(f\) and over neighbours is a sum over vertices, edges or 2-paths of \(H\), and has no further
+dependence on \(n\).  Substituting \(t=(D-\sigma)/\bar h\) turns the integrand into a Laurent
+polynomial in \(\sigma\), and integrating gives exactly
+\[
+-\int_0^1\sum_f(\mathcal A+\mathcal B)\,dt=-\lambda-\lambda^2-\mu+\frac{D^2-1}4+\frac12\log\frac{D}{D-\bar h}.
+\]
+The coefficient of the logarithm is \(\tfrac12\), and the rational parts agree identically
+(\texttt{v2/scripts/residual/r2\_worker3\_sharp.py}, section~1).
+
+\emph{Step 6 (pairing normalisation).}  With \(a_k=Dn-2k\ge cDn+2\),
+\(\log\frac{a_k}{a_k-1}=\frac12\log\frac{a_k}{a_k-2}+\frac12\log\bigl(1-(a_k-1)^{-2}\bigr)\).  The first
+terms telescope to \(\frac12\log\frac{Dn}{Dn-2e}=\frac12\log\frac D{D-\bar h}\), and the second sum
+has modulus at most \(1/(c^2Dn)\).  Hence
+\(-\sum_k\log(Dn-2k)=-\sum_k\log(Dn-1-2k)-\frac12\log\frac D{D-\bar h}+\varepsilon_4\), and the two
+logarithms cancel.  Collect \(\rho=\varepsilon_1+\varepsilon_2-\varepsilon_3+\varepsilon_4\).
+\end{proof}
+
+Notes for the paper.  (a) Every replacement in Step~4 is checked against exact enumeration: Gao's
+\(A,B\) literally, over all states, for 11 graphs (script section 2).  The discrepancy is
+\(0.6\)--\(3.9\,e/n^2\), inside the bound.  (b) For the star \(K_{1,r}\), where
+\(\PP=(D)_r/(n-1)_r\) exactly, \(\rho=(r^3/6+5r^2/4+r/12+O(r^3/D))/n^2+O(D^4/n^3)\).  So the
+proposition is confirmed against an exact probability.
+
+--- T3. Consequence for Theorem sharp-rate-short (replacement text) ---------------------------------
+
+In \((\ast)\), Lemma~\ref{lem:four-pairings} gives, for the simple graph \(X=B\cup F_1^\circ\cup F_2^\circ\)
+with degrees \(h=2L-a\) and \(g=D\mathbf 1-h\),
+\[
+\PP(R\text{ simple, avoids }X\mid X)
+=\PP(\mathcal S)\,\PP\bigl(X\subseteq G(n,D)\bigr)\,\frac{\prod_{k<|X|}(Dn-1-2k)}{\prod_v(D)_{h_v}},
+\]
+because both sides equal \(N(g,X)\prod_vg_v!/(Dn-2|X|-1)!!\).  The same holds for \(R'\) and \(F\).  The
+factor \(\PP(\mathcal S)\) appears once in the numerator and once in the denominator of \((\ast)\)
+on each side, so it cancels exactly.  Proposition~\ref{prop:seq-gao} applies with \(c\) replaced by
+\(2c\), since \(h_v\le2L\le(1-2c)D\), and with \(|X|\le Ln\), \(|F|=Ln/2\).  So the McKay errors
+\(O(D^3/n)\) of the \(R\) and \(R'\) steps become \(O(D^2L/n+1/(Dn))\), uniformly in \(X\).  The
+steps \(B,F_1^\circ,F_2^\circ,F\) keep~\cite[Theorem~14]{Gao21} with errors \(O(L^2D/n)\),
+\(O(L^3/n)\), \(O(L^3/n)\), \(O(L^3/n)\), inside budgets (iv) and (ii).
+
+\begin{theorem}[Sharp unconstrained \(m\)-factor rate, \(\delta^5m=o(n)\)]
+Assume~\cite[Theorem~6]{Gao20} (Hypothesis~\ref{hyp:gao6}) and~\cite[Theorem~14]{Gao21}.  Let
+\(\delta\to\infty\), \(\delta n\) and \(mn\) even, \(1\le m\le(\frac12-c)\delta\), and suppose
+\[
+\frac{\delta^5m}{n},\quad\frac{m^4\delta^3}{n},\quad\frac{m^5\delta}{n},\quad\frac{m^2\delta^4}{n}\ \to0 .
+\]
+Then \(\Var Z/(\EE Z)^2=\frac1{6\delta^3}(1+o(1))\).  At \(m=O(1)\) this is \(\delta=o(n^{1/5})\);
+at \(m=\delta^{1/2}\), \(\delta=o(n^{2/11})\); at \(m=\delta^{2/3}\), \(\delta=o(n^{3/17})\).
+\end{theorem}
+Proof: that of Theorem~\ref{thm:sharp-rate-short}, with error (i) now \(O(\delta^2m/n)\).  The
+hypotheses \(D^3=o(n)\) and \(L^7=o(D^2n)\) of Theorem~\ref{thm:growing-degree-factor} follow:
+\(m^7\le m^5\delta^2=o(\delta n)\).  The additive slack \(O(\delta^2m/n)\) is now \(o(\delta^{-3})\),
+so it can be dropped from the statement.
+
+--- T4. Remark: the barrier at delta^5 m = n, and how far a better Thm 6 would go ------------------
+
+\begin{remark}[Where the \(n^{1/5}\) barrier sits]
+The error of Proposition~\ref{prop:seq-gao} is \(e\cdot O(D^2/n^2)\), summed over edges.  The
+per-edge term is attained: for \(H_1=\emptyset\) the principal term of~\cite[Theorem~6]{Gao20}
+differs from \(D/(n-1)\) by the relative amount \(-(D^2-D+1)/n^2+O(D^3/n^3)\).  Along a star the
+exact conditional probability \((D-j)/(n-1-j)\) shows that this \(D^2/n^2\) is the cross term \(AB\)
+of the product \((1-A)(1-B)\), with \(A\approx D/n\) and \(B\approx-D/n\).  If the principal term is
+written as \(\frac{\tilde d_u\tilde d_v}{\widetilde M}e^{-A-B}\) instead, the relative error along the
+star is \(\bigl((j+1)^2/2+O(j^3/D^2)\bigr)/n^2\), with no growth in \(D\).
+\end{remark}
+
+\begin{conjecture}[Exponential form of~{\cite[Theorem~6]{Gao20}}]
+Under Hypothesis~\ref{hyp:gao6},
+\(\PP(uv\in G\mid H_1\subseteq G)=\frac{\tilde d_u\tilde d_v}{\widetilde M}e^{-A-B}
+\bigl(1+O((1+\Delta_{H_1}^2)/n^2+D^3/n^3)\bigr)\).
+\end{conjecture}
+Under the conjecture, Steps 1--6 run with \(\varepsilon_2=0\) and give
+\(\rho=O((1+\Delta^2)e/n^2+D^3e/n^3+1/(Dn))\).  The \(R\)-step error is then
+\(O(m^3/n+\delta^3m/n^2)\), the first term inside budget (ii), and the theorem above holds with
+\(\delta^5m/n\) replaced by \(\delta^6m/n^2\).  At \(m=O(1)\) the binding budget becomes (iv),
+\(m^2\delta^4/n\), so \(\delta=o(n^{1/4})\); at \(m=\delta^{1/2}\) it is (ii)/(iv),
+\(\delta=o(n^{1/5})\); for \(m\ge\delta^{2/3}\) nothing changes.
+
+==================================================================================================
+BUDGET TABLE (section 5; sup s with delta = o(n^s), every budget times delta^3 -> 0)
+   m            proved (Prop A)     conditional (Conj B)     old (Gao21 Thm 14)
+   O(1)         1/5                 1/4                      1/6
+   delta^1/2    2/11                1/5                      1/6
+   delta^2/3    3/17                3/17                     1/6
+   delta        1/7                 1/7                      1/7
+ For m >= delta^{2/3} the budgets (ii) m^4 delta^3/n and (iii) bind, and a better Thm 6 does not
+ help there.
+
+==================================================================================================
+OBSTRUCTIONS PAST n^{1/4} (m = O(1)), NOT RESOLVED
+ * Budget (iv) m^2 delta/n has two sources.  One is the McKay error of step B, which is
+   O(L^2 D/n) and unstructured.  The other is the K-dependence factor e^{l^2 sigma_K^2/2} of
+   Thm growing-degree-factor, which is an explicit term of E[Z^2]/(EZ)^2 of size O(m^2 delta/n),
+   not just a lost constant.  If l = dPhi_0/dK is genuinely Theta(delta/n) at the typical overlap
+   (not computed here), then Var Z/(EZ)^2 contains a true m^2 delta/n term.  In that case
+   1/(6 delta^3) is NOT the variance for delta^4 m^2 >> n, and the slack form
+   "1/(6 delta^3)(1+o(1)) + O(delta^2 m/n)" is the right kind of statement there.
+   NEXT COMPUTATION: l at K = nq/2, exactly, from the four McKay exponents with abar free.
+ * Section 5 gives some reassurance for the ratio.  ANY second-order Thm-6 error that is a smooth
+   function of the degree statistics cancels in X - 2F down to O(D m^2/n + m^3/n).  So even without
+   Conjecture B the true R-step contribution is probably budget-(iv) size.  This is a model, not a
+   proof.
+
+SIDE OBSERVATION (pre-existing, in Thm growing-degree-factor, "Dependence on K"; not checked in depth)
+ The proof says the moderate-deviation LLT holds out to C_0 D standard deviations "because
+ D^3 (nq)^{-1/2} -> 0".  With nq = nL^2/D this is D^{7/2}/(L sqrt n) -> 0, which D^3 = o(n) does
+ not imply at L = O(1): it needs D = o(n^{1/7}).  Theorem sharp-rate-short uses this step at
+ delta up to n^{1/6}, and the new theorem at n^{1/5}.  The step probably needs less.  On W,
+ l |K - nq/2| <= l C_0 D sigma_K = O(D^{3/2} L/sqrt n), so e^{l(K-nq/2)} is nearly constant and
+ only Q(W) -> 1 plus a cumulant expansion of E_Q e^{l xi} is needed.  That should be rewritten
+ before the range is extended.
+
+==================================================================================================
+STATUS
+ PROVEN (assuming Gao20 Thm 6 in the uniform form of Hypothesis T1, which the paper already uses):
+   Proposition A with the explicit error above.  The step-6 identity is exact symbolically.  The
+   consequence is the sharp rate 1/(6 delta^3) on delta^5 m = o(n) with budgets (ii)-(iv), i.e.
+   delta = o(n^{1/5}) at m = O(1).  This relies on the rest of the proof of Thm sharp-rate-short
+   as written; budgets (ii)-(iv) were not re-derived here, and see the side observation above.
+ EXACT CHECKS (not proofs of general statements): enumeration of step 5 on 11 graphs; the star
+   family (rho has no 1/n term and is O(e Delta^2/n^2)); the per-edge AB diagnosis; Gao's per-edge
+   error attained at the empty host.
+ CONJECTURAL: Conjecture B (exp-form Thm 6).  Its evidence is the exact star family and the empty
+   host only.  Its consequence is n^{1/4} at m = O(1).  The section-5 ratio cancellation is a
+   model computation.
+ OPEN: (1) a proof of Conjecture B, i.e. a second-order Gao switching estimate; (2) l = dPhi_0/dK
+   at the typical overlap, which decides whether 1/(6 delta^3) is the variance past
+   delta^4 m^2 ~ n; (3) the LLT wording in the K-dependence step.
