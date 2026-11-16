@@ -1,0 +1,78 @@
+r5_worker3 -- exp-form of Gao20 Thm 6 for general H1 (Conjecture B).   VERDICT: NOT PROVED; NOT FALSE (strong exact evidence).
+Script: python v2/scripts/r5w3_exact.py D family n1 n2 ...   (exact; raw output below).  main.tex untouched, nothing committed.
+
+METHOD.  Exact P(uv in G | H1 in G) for uniform D-regular G on n vertices.  N(d) = #labelled graphs of degree sequence d via a
+DP on the class counts (c_1..c_D) (checked: N(3^6)=70, N(3^8)=19355, N(3^10)=11180820, and vs brute force on irregular
+sequences).  #regular graphs containing S = f(D-deg_S, S), f(d,S) = #graphs of degree d avoiding S, and the recursion
+f(d,S) = sum_{T<=S} (-1)^|T| f(d-deg_T, T) (graphs of degree d containing T = graphs of degree d-deg_T avoiding T;
+the T=S term has strictly smaller d, so it terminates).  Check: P(edge)=D/(n-1) exactly for n=6,10,14.
+Gao's principal term is transcribed exactly as in r2_worker3 Hypothesis T1 (A with the W-sum, B=phibar/Mt, H2 empty).
+
+ALGEBRA (rigorous, trivial).  e^{-A-B} - (1-A)(1-B) = (A^2+B^2)/2 + O(|A|^3+|B|^3).  Hence, given Thm 6 with its
+unspecified eta, the exp form is EQUIVALENT to  eta = -(A^2+B^2)/2 + O((1+Delta_H1^2)/n^2 + D^3/n^3), i.e. to knowing the
+second-order switching term of Gao to that precision.  Since A^2, B^2 ~ D^2/n^2 = size(eta), nothing below the second-order
+term of Gao's expansion can decide it; an 'order-independence' argument alone does not either: it only forces the curl of
+eta (as a function of the state H1 along two orders of adding edges) to vanish, a linear constraint on eta that the product
+form and the exp form both satisfy to the order tested (they differ by a gradient-like term in the exact star/empty cases),
+so it cannot select the exp form.  A proof therefore needs a new second-order computation (McKay-type switching with
+forbidden edges to relative error O(1/n^2)); I did not do it.
+
+EXACT RESULTS (n^2 * relative error of the principal term; the n-dependence is slow, +-O(1/n) corrections):
+  family (H1; u,v)          Delta_H1   D=3 (n=28)   D=4 (n=26)      D=5 (n=26)     [product form, then exp form]
+  empty                       0        6.85 | 0.51    (r4: D^2-D+1 | 1/2 exactly)
+  3 disjoint edges            1        6.74 | 0.39    12.2 | 0.14    20.0 | -0.01
+  path u-a-b-v                2        3.26 | -2.47   12.1 | -1.21   22.8 | -0.15
+  triangle far from u,v       2        --             13.1 | 0.52    20.7 | 0.34
+  4-cycle far from u,v        2        --             13.1 | 0.51    20.6 | 0.24
+  u,v each degree 2 (stars)   2        --             14.6 | -2.43   28.5 | -0.16
+  star of 3 edges at u        3        (d_u=0)        19.9 | 0.50     31.6 | 1.61
+ (D=3 star/tri/K22 skipped: d~_u=0 or too slow.  Raw output for D=4,5 appended below; D=3 lines from direct runs.)
+READING.  Product form: n^2*err grows like D^2 (6.8, 12.2, 20.0 for D=3,4,5 at the matching; 6.8-ish = D^2-D+1) and
+  increases with the host's degrees (star at u: ~D^2+ stuff) -- this is Gao's eta ~ D^2/n^2, now seen on 7 hosts.
+  Exp form: n^2*err is O(1) for EVERY host tried, with no visible D growth (D=3,4,5) and a mild dependence on the host
+  degree (|values| <= 2.5 for Delta_H1<=3, consistent with ((j+1)^2/2)/n^2 of the star family).  So the data match
+  Conjecture B as stated: error O((1+Delta_H1^2)/n^2 + D^3/n^3).  I found NO counterexample family.
+CAVEAT.  n<=28 and D<=5 means D^2/n is not small (up to 0.9), so the fits are consistent-with, not a proof, and cannot
+  separate a possible small-D^3/n^3 term; hosts with Delta_H1 >> 1 and large |H1| (the regime that matters, |H1|~m) were not tested.
+STATUS: Conjecture B stays a conjecture with exact support on 8 host families (empty, star [r2], and the six above).
+  Budget table unchanged: n^{1/5} proven, n^{1/4} conditional on B.
+NEXT (if someone continues): (i) larger n via a faster N(d) (only (c_1..c_D) states; D=6,7 up to n~40 feasible in C/numba) and
+  hosts with |H1|~10-20; (ii) the real proof: second-order McKay switching count with a forbidden graph, to relative error
+  O(1/n^2); cheaper alternative: Isaev-McKay complex-martingale expansion gives N(d) to O(1/n^2)?  (not checked; would give
+  the exp form directly because it is an exp-form formula, ratio of two such counts with d~ and d~-e_u-e_v).
+D=4 match3 n=14 n2*prod=11.3740 n2*exp=-0.5433
+D=4 match3 n=20 n2*prod=11.9633 n2*exp=-0.0459
+D=4 match3 n=26 n2*prod=12.2225 n2*exp=0.1419
+D=4 path_uv_ends n=14 n2*prod=12.2314 n2*exp=-1.0556
+D=4 path_uv_ends n=20 n2*prod=12.1324 n2*exp=-1.1642
+D=4 path_uv_ends n=26 n2*prod=12.1162 n2*exp=-1.2050
+D=4 tri_far n=14 n2*prod=13.3274 n2*exp=0.4891
+D=4 tri_far n=20 n2*prod=13.1270 n2*exp=0.5209
+D=4 tri_far n=26 n2*prod=13.0518 n2*exp=0.5245
+D=4 K22_far n=14 n2*prod=13.2071 n2*exp=0.3315
+D=4 K22_far n=20 n2*prod=13.1520 n2*exp=0.4763
+D=4 K22_far n=26 n2*prod=13.1014 n2*exp=0.5065
+D=4 star_both n=14 n2*prod=15.4815 n2*exp=-1.6984
+D=4 star_both n=20 n2*prod=14.8002 n2*exp=-2.2362
+D=4 star_both n=26 n2*prod=14.5681 n2*exp=-2.4252
+D=4 star_u3 n=14 n2*prod=20.8691 n2*exp=1.0013
+D=4 star_u3 n=20 n2*prod=20.1653 n2*exp=0.6552
+D=4 star_u3 n=26 n2*prod=19.9242 n2*exp=0.5038
+D=5 match3 n=14 n2*prod=19.5064 n2*exp=-0.7907
+D=5 match3 n=20 n2*prod=19.7639 n2*exp=-0.2392
+D=5 match3 n=26 n2*prod=19.9560 n2*exp=-0.0077
+D=5 path_uv_ends n=14 n2*prod=23.3355 n2*exp=0.2041
+D=5 path_uv_ends n=20 n2*prod=22.8798 n2*exp=-0.0428
+D=5 path_uv_ends n=26 n2*prod=22.7920 n2*exp=-0.1460
+D=5 tri_far n=14 n2*prod=21.2235 n2*exp=0.0134
+D=5 tri_far n=20 n2*prod=20.8404 n2*exp=0.2493
+D=5 tri_far n=26 n2*prod=20.7403 n2*exp=0.3359
+D=5 K22_far n=14 n2*prod=20.6720 n2*exp=-0.3854
+D=5 K22_far n=20 n2*prod=20.6341 n2*exp=0.0828
+D=5 K22_far n=26 n2*prod=20.6324 n2*exp=0.2388
+D=5 star_both n=14 n2*prod=29.8813 n2*exp=1.0025
+D=5 star_both n=20 n2*prod=28.8210 n2*exp=0.1802
+D=5 star_both n=26 n2*prod=28.5310 n2*exp=-0.1587
+D=5 star_u3 n=14 n2*prod=33.0188 n2*exp=2.3201
+D=5 star_u3 n=20 n2*prod=31.9014 n2*exp=1.8336
+D=5 star_u3 n=26 n2*prod=31.6093 n2*exp=1.6144

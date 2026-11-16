@@ -1,0 +1,29 @@
+r5 worker1 -- k>=4 factorial cumulants of T=|F1 cap F2| and the tail of (R2*)
+main.tex NOT edited, nothing committed, no scripts written (nothing numerical to add).
+
+VERDICT: NOT PROVED.  No step found false; but the route "generalize Theorem A to k-edge subgraphs" provably cannot give it.
+
+1. CONDITIONAL REDUCTION (elementary, proved).  Write log E[y^T] = sum_k w^k kappa_k/k! (w=y-1).
+   If |kappa_k| <= C^k k! L^{k+1}/n^{k-1} for all k>=4 (the heuristic scale, cf. kappa2~L^3/n, kappa3~L^4/n^2), then for
+   C w L/n <= 1/2:  |sum_{k>=4} w^k kappa_k/k!| <= sum_{k>=4} L^2 (CwL/n)^{k-1} C <= 2C L^2 (CwL/n)^3 = O(L^5/n^3) = o(1)
+   for L = o(n^{3/5}).  So given that cumulant bound, the tail sum is NOT the obstruction (geometric, ratio ~ wL/n);
+   with t3 (Theorem A) R2* on L=o(n^{1/2}) would follow.  Everything rests on the kappa_k bound, k>=4 (and uniform in k).
+
+2. WHY THEOREM A'S SWITCHING CANNOT GIVE kappa_k.
+   E(T)_k = k! sum_{|S|=k} p_S^2 ~ (L^2/2)^k, but kappa_k ~ L^{k+1}/n^{k-1}: relative size (L n)^{-(k-1)}/... i.e. a cumulant is
+   a cancellation of ~ n^{k-1} orders in relative terms.  A bound p_S <= prod(...)(1+O(L/n))^{|S|} has relative error
+   O(k L/n), which exceeds kappa_k/E(T)_k already at k=2 (kappa2/E(T)_2 ~ L^{-1}n^{-1}... << L/n).  Cumulants need the
+   *connected* part of log p_S, i.e. two-sided asymptotics of p_S as exp(sum over clusters) with cluster terms of size n^{-(m-1)}
+   for clusters of m edges.  Switching gives one-sided bounds with an error that is a product over edges, not a cluster
+   expansion.  (Same reason kappa3 needed the exact formula of r2_worker2 and only t3 from switching.)
+   Note R2* itself only needs an UPPER bound for E[y^T] = sum w^|S| p_S^2 (monotone in p_S for w>0), but the needed
+   precision is eps = o(L^-2) per edge (r4 Sec.1), vs switching's O(L/n) per edge -> exp(O(L^3/n)): the n^{1/3} barrier again.
+
+3. WHAT WOULD ACTUALLY WORK (not carried out).  A cluster/Mayer expansion for p_S: p_S = prod_e p * exp(sum_{clusters C in S} phi_C),
+   |phi_C| <= (c/n)^{|C|-1} * (L-dependent factor), obtained e.g. from the exact McKay-type formula for matching-avoidance counts with
+   an explicit second-order term (r4 Sec.4(ii)), plus Theorem-A-type inputs for the short-cycle clusters (C4, 3-paths with colour
+   correlation).  Then kappa_k = sum over connected clusters of size k, giving the bound in Sec.1.  This is a research project
+   in itself (needs two-sided control of disjoint-matching tuple counts at relative accuracy n^{-(k-1)}), not a switching corollary.
+
+4. Heuristic only (unchecked): kappa_k ~ L^{k+1}/n^{k-1} comes from counting connected clusters of k edge-pairs sharing matching indices
+   (k-1 shared colours, each shared index costs 1/n).  No counterexample found; the r4 note's n^{1/2} barrier (kappa3) is unchanged.

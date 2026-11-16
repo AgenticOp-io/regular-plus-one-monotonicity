@@ -1,0 +1,27 @@
+r5 worker2 -- conditioned second moment for G(n,p) hosts.   main.tex NOT edited, nothing committed.
+Script: v2/scripts/r5w2_mc.py  (usage: nA nB hA hB rA T; pairing-level MC, exact Z by DP)
+
+VERDICT: NOT PROVED.  No theorem obtained.  Only a small numerical probe + a sharpened diagnosis.
+
+1. Diagnosis (heuristic, consistent with r4 Sec 8).  K = beta^2 Var(Lambda), Lambda = sum_{ij in H} y_i y_j,
+   beta = D/(rho hbar^2): the second-moment blow-up is the log-normal spread of N driven by Lambda.
+   Lemma 7 (concentration) cannot kill it because its hypothesis s*Delta_P -> 0 is exactly K -> 0 failing.
+   So the right conditioning is on Lambda (or the pairing-level cross-type count), not on sum y^2.
+   Conditioning on sum y_v^2 alone does NOT help: it is a degree-sequence statistic, and the
+   non-conditioned shift Delta = D^2 sum y^2/hbar^3 is already a function of it (Prop 3) -- it merely
+   fixes K at a typical value, it cannot reduce it (K is increasing in s2^4). Only s2^2 -> 0 helps (Thm 6),
+   which is the e^{-Theta(n)} event for G(n,p).  So: no conditioning on a DEGREE statistic can work.
+2. Numerical probe (2-type hosts: A cells h=5,r=2; B cells h=3,r=0; D=3, hbar=4; pairing level, exact Z).
+   n=16, 3000 samples: Var log Z = 0.70; unconditional ratio E Z^2/(EZ)^2 = 2.13.
+   After regressing log Z on cross-pair count c (= Lambda here): resid var 0.41, ratio 1.42;
+   adding sum d^2 of the A-A degrees: resid 0.36, ratio 1.38.
+   So conditioning on Lambda removes ~40% of var(log Z) at n=16, but a remainder is left, from the
+   A-A sub-multigraph degree profile (a second host statistic: which A points go cross). n=24 run
+   (12+12) was too slow to finish; finite n too small to read off a K-scaling. Inconclusive.
+3. Conjectured target theorem (unproved): N/E[N | Lambda-window, degree-profile statistics] -> 1 in
+   probability, i.e. planting must be done relative to the host's (Lambda, A-A degree) statistics, and
+   (iii') for G(n,p) should be stated as TV between the planted model and G(n,p) *after tilting by
+   exp(-beta Lambda)*, not by plain Z. Needs: exact tilted pairing second moment (E[Z^2 e^{t Lambda}]),
+   which does not factor in cells because e^{t y_i y_j} is a pair weight. Not done.
+4. Not checked: any scaling in n; the claim that conditioning on Lambda alone suffices (probe suggests
+   NOT, a residual statistic remains); no impossibility proof either.
