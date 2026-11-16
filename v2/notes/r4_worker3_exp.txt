@@ -1,0 +1,34 @@
+r4_worker3 -- exp-form Gao20 Thm 6 (Conjecture B) and the n^{1/7} 'Dependence on K' gap
+Script: python v2/scripts/r4w3_empty.py (sympy, <5 s).  main.tex not edited; nothing committed.
+
+RESULT 1: 'Dependence on K' gap -- ALREADY CLOSED by 549c768.  Checked the diff: the LLT-to-C0*D-sigma
+  claim (which needed D=o(n^{1/7})) is gone.  It now uses ell=d_K Phi_0 = O(1/n) exactly (r3 script) and
+  d_K^2 Phi_0 = O(n^-2), so sup_W |Phi_0(K)-Phi_0(nq/2)| = O(sqrt(D/n)+L^2 D/n); only Q(W)->1 (Chernoff,
+  D^3=o(n)) and an ordinary LLT at the centre are used.  No n^{1/7} restriction remains.
+  Consequence for r2_worker3 'OPEN (2)': ell=O(1/n), not Theta(D/n), so ell^2 sigma_K^2 = O(L^2/(Dn)).
+  The K-dependence is NOT a true m^2 delta/n term in Var Z/(EZ)^2.  Budget (iv) m^2 delta^4/n now has
+  one source only: the unstructured McKay error O(L^2 D/n) of step B.  (Deduced from the commit's
+  stated bounds; I did not re-run the r3 script.)
+
+RESULT 2: Conjecture B (exp-form Thm 6) -- NOT PROVED.  What I can say rigorously:
+  (a) Empty host, exact (script): with p=D/(n-1) the true value,
+        p / [D^2/M * (1-A)(1-B)] - 1 = (D^2-D+1)/n^2 + O(D^2/n^3)    (product form, Gao)
+        p / [D^2/M * exp(-A-B)]  - 1 = 1/(2n^2) + 1/(3n^3)            (exp form, EXACTLY, no D at all)
+      So at H1 = empty the exp form has error 1/(2n^2), D-free to all orders; Gao's form has D^2/n^2.
+      This is a strictly stronger confirmation than r2's (which stopped at n^-2): no D^3/n^3 term either.
+      Together with r2 section 4b (star, edge j: (j+1)^2/(2n^2)) the exp form is exact-checked on two
+      families.  The product-form defect is exactly the cross term A*B (A~D/n, B~-D/n).
+  (b) Why it cannot be derived from Gao's statement as a black box: Thm 6 gives only |eta|<=C D^2/n^2
+      for an unspecified eta, and A*B is the same size as that error.  Order-independence of P(H) and
+      the exact star/empty values pin eta only on those families; extending to general H1 needs the
+      second-order term of Gao's switching expansion (a new paper-length computation).  The one
+      unconditional anchor available, sum_H P(H subset G) = E[#copies], is exact only for stars.
+  (c) Intrinsic barrier of the black-box route: delta^5 m = o(n), i.e. n^{1/5} at m=O(1).  Past it a
+      second-order switching theorem is required; nothing weaker (e.g. McKay-Wormald, error D^3/n)
+      helps, since Prop A's chain error is e*D^2/n^2 per edge only at second order.
+
+STATUS: n^{1/5} stays the proven limit; n^{1/4} remains conditional on Conjecture B (now with ell
+  resolved, the only other obstruction to the sharp rate there is the unstructured step-B McKay
+  error, a lost constant not a genuine variance term).  No new theorem.
+SKIPPED: general-H1 exact test of Conjecture B (needs exact degree-sequence counts at large n;
+  infeasible for fitting 1/n^2 terms); re-running the r3 ell script.

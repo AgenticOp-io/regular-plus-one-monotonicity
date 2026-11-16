@@ -1,0 +1,204 @@
+r4 worker2 -- near-regular host terms: (B) concentration, (A) second moment for non-constant host
+degrees, and averaging over host degree sequences.   main.tex NOT edited; nothing committed.
+Scripts (all re-run, assertions pass):  v2/scripts/r4w2_pairing_shift.py, r4w2_mf_compensation.py,
+r4w2_formula_check.py.  Existing checks re-run: residual/host_term_cancel.py (all True),
+residual/r2_worker1_tv.py (n=8 tables reproduce).
+Date: 2026-11-15.
+
+=====================================================================================================
+0. VERDICT (read this first)
+=====================================================================================================
+ (B)  CLOSED.  Complete proof (Lemma 7): concentration of every host pairing sum under the retained
+      (simple + avoiding) pairing law.  Condition  D^3 log^2 n = o(eps^2 n)  (host degrees within
+      Y = C sqrt(h log n) of the mean).  Cleaner than the paper's sketch: no McKay estimate is needed
+      for the conditional mean.
+ (A)  FALSE AS STATED, for typical G(n,p) degree sequences.  The plain second-moment statement
+      "E_h N^2/(E_h N)^2 = exp(sum_{k>=3} x^k/2k)(1+o(1)), x = 1/(hbar-1)" fails for every host
+      degree sequence with K := n D^2 s2^2 /(2 rho^2 hbar^3) not o(1), s2^2 = (1/n) sum y_v^2.
+      For G(n,p) (s2^2 ~ hbar) K ~ n/(2 eps^2 D) -> infinity, and the ratio is >= exp(K - O(D^2)) -> inf.
+      This is an exact PAIRING-LEVEL effect (Prop 1-3, proven); the McKay exponent cannot cancel it
+      (Thm 5: Phi >= -C D^2 while K >> D^2).  The host-term cancellation "at mean-field level" is real
+      but only removes the O(D)-size y-terms; it does not touch this O(n/(eps^2 D))-size term.
+      Exact point of failure: the typical overlap of two INDEPENDENT r-subsets, sum_v r_v^2/h_v, sits
+      at distance Delta ~ D^2 sum y^2/hbar^3 ~ n above the point S* = n rho^2/hbar where the pair-closure
+      weight f is minimal; f is exp(convex) with curvature c ~ hbar^3/(2 n rho^2 D^2).
+ (A') What survives: (i) A holds (pairing level, exactly, and at the simple-graph level modulo the
+      paper's four-pairing proof) when K = o(1), i.e. only in a sub-sqrt window sum y^2 = o(...)
+      (Thm 6) -- not G(n,p).  (ii) The planting reduction (Lemma 1, E|Z-1| bound) is therefore
+      NOT the right tool for G(n,p) hosts; (iii') for G(n,p) needs a host-statistic-conditioned
+      planting (Sec 8, conjectural).  (iii) regular hosts: unchanged (Thm tv-regular-host).
+ (C)  Averaging: reduces to  sup over typical d* of (A)+(B)  plus  2 w(atypical).  With (A) false the
+      sup is not o(1) by this route; independently, w(atypical) <= P(atypical)/P(N>=1) needs
+      P(N>=1) >= n^{-O(1)}, and the second-moment (Paley-Zygmund) lower bound is only exp(-K).
+      So (C) is fully reduced but cannot be closed through (A).  Everything else in (C) (typical
+      sets, Chernoff, bookkeeping) is proven in Sec 7.
+
+=====================================================================================================
+1. SETUP AND EXACT PAIRING IDENTITY
+=====================================================================================================
+ Host degrees h_v = hbar + y_v, sum y = 0, n hbar even.  D = factor degree (constant), r_v = h_v - D
+ = rho + y_v the residual degrees, rho = hbar - D = eps D > 0.  N(H) = #D-factors of H = #r-subgraphs
+ of H (complement).  E_h = uniform simple graph with degree sequence h = pairing model on cells h_v
+ conditioned on simplicity.  Z = number of "closed" r-subsets of the pairing: choose r_v of the h_v
+ points in each cell so that the chosen point set is closed under the pairing.
+
+ PROPOSITION 1 (exact).  Put tr = sum r = n rho, tD = nD, th = sum h.  Let b_v be independent with
+ b_v ~ overlap of two independent uniform r_v-subsets of h_v points (hypergeometric,
+ mean r_v^2/h_v, var r_v^2 D^2/(h_v^2 (h_v-1))), pi = law of S = sum b_v.  Then
+       E_pair Z^2 / (E_pair Z)^2 = E_pi[ f(S) 1_{S even} ],
+       log f(S) = L(th/2) + L(S/2) + 2 L((tr-S)/2) + L((tD-tr+S)/2) - 2L(tr/2) - 2L(tD/2),
+ with L(m) = log (2m-1)!!.  f depends on h ONLY through the totals th, tr, tD; all y-dependence is in pi.
+ Proof.  (Z^2 = sum over pairs (S1,S2) of closed sets.)  Both closed forces: overlap points pair among
+ themselves, S1\S2 points pair among themselves, S2\S1 likewise, rest likewise (a pair joining two
+ different classes would put exactly one endpoint of it outside S1 or S2).  Count: product over cells of
+ the multinomial h_v!/(b!(r-b)!^2 (h-2r+b)!) times (S-1)!!((tr-S)-1)!!^2 ((tD-tr+S)-1)!!, divided by
+ (th-1)!!; first moment likewise; divide.  Sum of multinomials at fixed S = [prod C(h_v,r_v)]^2 pi(S).  []
+ (checked against the regular value 0.5 log((hbar-1)/(hbar-2)) = paper's sqrt((D-1)/(D-2)): 0.0473 vs
+ 0.0477 at n=60, hbar=12, rho=3.)
+
+=====================================================================================================
+2. CONVEXITY, CENTRE, CURVATURE OF f   (rigorous)
+=====================================================================================================
+ PROPOSITION 2.  d/dS log f = (1/2)[log S - 2 log(tr-S) + log(tD-tr+S)] + O(1/S) (Stirling), vanishing at
+ S* = n rho^2/hbar (the equation k(D-rho+k) = (rho-k)^2, k=S/n, i.e. k = rho^2/hbar).  S* depends on the
+ totals only.  Second difference (exact from the Stirling form)
+       c(S) = 1/(2S) + 1/(tr-S) + 1/(2(tD-tr+S))  > 0,    c(S*) = hbar^3/(2 n rho^2 D^2).
+ Hence log f is convex with minimum at S*, f(S*) = sqrt2 (1+O(1/n)) (numerics: log f(S*) = 0.346 at
+ n=480).  Together with variance sigma_S^2 = n rho^2 D^2/(hbar^2 (hbar-1)) one has
+ c sigma_S^2 = hbar/(2(hbar-1)), so 1 - c sigma_S^2 = (hbar-2)/(2(hbar-1)).
+ Regular host: Gaussian pi centred at S*, parity factor 1/2:
+       (1/2) f(S*) (1-c sigma^2)^{-1/2} = (1/sqrt2) sqrt(2(hbar-1)/(hbar-2)) = sqrt((hbar-1)/(hbar-2)).
+ Reproduces the paper's inside sum exactly (log 0.0477).  (Verified numerically; proof is Stirling.)
+
+=====================================================================================================
+3. THE SHIFT  (the new fact)                                                         (rigorous)
+=====================================================================================================
+ PROPOSITION 3.  E pi[S] = sum_v r_v^2/h_v = S* + Delta,
+       Delta = D^2 sum y^2 / hbar^3 (1 + O(Y/hbar)),     (phi(y) = (rho+y)^2/(hbar+y), phi''(0) = 2D^2/hbar^3, sum y = 0)
+ so Delta = n D^2 s2^2/hbar^3.  Shift per cell is O(1) when s2^2 ~ hbar, total ~ n.
+ Gaussian evaluation (confirmed against exact convolution, r4w2_formula_check.py, agreement within 10%):
+       log( E_pair Z^2/(E_pair Z)^2 )  =  (1/2) log((hbar-1)/(hbar-2)) + c Delta^2 (hbar-1)/(hbar-2) (1+o(1)).
+ With c Delta^2 = n D^2 s2^4 /(2 rho^2 hbar^3) =: K:
+       typical G(n,p) host: s2^2 = hbar(1-p)(1+o(1))  =>  K = n D^2/(2 rho^2 hbar) (1+o(1)) ~ n/(2 eps^2 D).
+ Exact tests (n=100..400, hbar=12..20, y in {-2..2}): exact log ratio 0.16..1.55 versus formula 0.18..1.63.
+ Rigorous lower bound (no Gaussian approximation): restrict to the window |S - Epi S| <= 2 sigma_S
+ (Chebyshev, mass >= 3/4; log-concavity of pi (hypergeometric convolution) controls the parity loss, and
+ max pi = O(1/sigma_S) -> 0), where log f >= log f(S*) + (1/2) c_min (|Delta| - 2 sigma_S)_+^2, c_min = min over
+ the window of c(S) >= 1/(2 nrho).  So E_pi f >= exp( (|Delta|-2 sigma_S)^2 /(4 n rho) - O(1) ).
+
+=====================================================================================================
+4. TRANSFER TO SIMPLE GRAPHS (assumes the McKay estimate exactly as quoted in main.tex)
+=====================================================================================================
+ THEOREM 5.  Assume the McKay estimate of main.tex (Thm 4.6, error O(hatDelta^2/M)).  Let h have
+ |y_v| <= Y with Y << hbar, D^3 = o(n), K as above >> D^2.  Then
+       E_h N^2/(E_h N)^2  >=  exp( K (1-o(1)) - C D^2 ).
+ Proof.  R_h = P(S) E[Z^2 1_S]/(E[Z 1_S])^2 >= P(S) E[Z^2 1_S]/(E Z)^2.  P(S) = exp(-lambda(h)-lambda(h)^2+o(1))
+ >= e^{-C D^2}.  E[Z^2 1_S] = sum over class vectors of (pairing weight) x prod of the four McKay probabilities
+ (Lemma four-pairings); each factor is exp(-lambda-lambda^2-mu+O(D^3/n)) with lambda <= Delta_g/2,
+ mu(g,X) <= |X| Delta_g^2/sum g <= 2 rho D (R-class) and <= rho^3/D + rho (others) by the degree counts, so
+ Phi >= -C D^2 deterministically on the window (hatDelta <= 3D^2 = o(M) for every class).  Combine with
+ Prop 3's window lower bound; K >> D^2 iff n >> eps^2 D^4 (BIM: eps^2 D^4 = d^2 log^2 n << n.)  []
+ REMARK.  The McKay window of the paper's proof, |K_overlap - nq/2| <= C0 D sqrt(n sigma^2) ~ eps D^{3/2}... sqrt n,
+ is much narrower than Delta ~ n.  The dominant overlap for a non-regular host lies OUTSIDE that window; the paper's
+ "outside the window e^Phi <= 1 and negligible" step is used there only for regular hosts, where it is correct.
+
+ NUMERICAL CONFIRMATION that Phi does not compensate (r4w2_mf_compensation.py): full mean-field exponent
+ Phi(S) (class sums at tilted cell means, pairing sums at means, plus -lambda(h)-lambda(h)^2 and the
+ first-moment exponent) added to log pi + log f, maximised over S:
+       n:                60     120    240    480        (hbar=12, D=9, y in {-1,0,1}, var y ~ 0.65)
+       regular  total:  0.297  0.297  0.298  0.298
+       non-reg  total:  0.357  0.402  0.571  0.830     (pairing-only: 0.122 0.163 0.333 0.591)
+ It grows with n exactly as the pairing term does; the Phi contribution is O(1) there, not O(n).
+
+ THEOREM 6 (positive range, pairing-exact).  If K = o(1), i.e. s2^4 = o(rho^2 hbar^3/(n D^2)) ~ o(eps^2 hbar^3/n),
+ equivalently s2^2 = o(eps hbar^{3/2}/sqrt n), then E_pair Z^2/(E_pair Z)^2 = sqrt((hbar-1)/(hbar-2))(1+o(1)),
+ the same as the regular host, uniformly in the profile (Props 1-3).  In that window the y-dependence of Phi is the
+ O(1)-size mean-field piece already shown to cancel; the remaining fluctuations are exactly Lemma 7.  Window is
+ 'almost exactly regular': for hbar ~ BIM it forces s2^2 << 1 (all but o(...) vertices at the mean).  Not G(n,p).
+
+=====================================================================================================
+5. (B)  CONCENTRATION OF HOST PAIRING SUMS   (complete proof)
+=====================================================================================================
+ LEMMA 7.  Let P be a uniform pairing of a point set of m points in cells of size <= Delta_P (>=1), weights
+ w_v with |w_v| <= W, T = sum_{ij in P} w_i w_j, and Y = T/den with a deterministic den > 0.  Let A be an event
+ (simple, avoiding fixed X) with P(A) >= exp(-C1 Delta_P^2).  Put s^2 = (m/2)(4W^2/den)^2.  If s Delta_P -> 0 then
+       E[ e^{-(Y - EY)} | A ] = 1 + o(1)  and  E[ e^{+(Y - EY)} | A ] = 1 + o(1),
+ EY the uniform-pairing mean, uniformly in all data.  In particular |E[Y|A] - EY| = o(1).
+ Proof.  A switch {a,b},{c,d} -> {a,c},{b,d} changes T by <= 4W^2, so Wormald Thm 2.19 (valid verbatim for
+ uniform pairings of any point set; same use in the paper) gives P(|Y-EY| >= t) <= 2 e^{-t^2/(2 s^2)}.  Put
+ eta = s Delta_P omega, omega -> infinity slowly with eta -> 0 (possible as s Delta_P -> 0), omega^2 > 8 C1.
+ Then P(|Y-EY| >= k eta | A) <= 2 e^{-k^2 Delta_P^2 omega^2/2 + C1 Delta_P^2} <= 2 e^{-k^2 Delta_P^2 omega^2/4} and
+       E[e^{-(Y-EY)}|A] <= e^{eta} + sum_{k>=1} e^{(k+1) eta} 2 e^{-k^2 omega^2/4} = 1 + o(1)
+ (use Delta_P >= 1, eta <= omega^2/16).  Same for +Y; E|Y-EY| given A <= eta + o(1).  []
+ Note: this makes the McKay-based statement "mean of T under the retained law is (1+O(L^3/n)) times the
+ uniform-pairing mean" unnecessary; the conditional mean shift is already o(1) in the exponent.
+
+ The host-dependent pairing sums are the bilinear parts sum_{ij in P} y_i y_j (and y_i * centred class weights);
+ the constant/linear parts are class-determined.  With |y_v| <= Y_h := C sqrt(hbar log n):
+   pairing                m (points)    den      W        Delta_P   (m/2)(4W^2/den)^2 Delta_P^2 ~
+   F in first moment      n D           n rho    Y_h      D         D^3 Y_h^4/(n rho^2)   = D^3 hbar^2 log^2n/(eps^2 D^2 n)
+   R (rest class)         ~ n D         ~ n D    Y_h+rho  D         D Y_h^4/n             (smaller by eps^2)
+   F1o, F2o               n rho         n rho    Y_h      rho       rho Y_h^4/n           (smaller)
+   B                      <= n rho^2/h+n  n rho   Y_h      rho       rho^2 Y_h^4/(n hbar)  (smaller)
+ Binding condition (first moment, F pairing):   D^3 log^2 n = o(eps^2 n).
+ BIM:  D^3 = d^2 L, eps^2 = (L/d)^{2/3}:  d^{8/3} polylog = o(n), i.e. d = o(n^{3/8}) up to polylog -- the
+ paper's existing range.   [Note: the exact variance of T (Var T ~ Dn s2^4/2 vs mean 2M ~ eps D n) predicts the
+ sharper condition D = o(eps^2 n); Lemma 7 loses log^2 n and a factor from Lipschitz-vs-variance.]
+ With (B) closed, the only open host inputs are the (A)-type ones below.
+
+=====================================================================================================
+6. WHAT IS TRUE FOR THE FIRST MOMENT / HOST-TERM CANCELLATION  (consistency with predecessors)
+=====================================================================================================
+ mu(r,F) = D rho/2 + T(F)/(n rho), T(F) = sum_{ij in F} y_i y_j (linear terms vanish since sum y = 0 and F is
+ D-regular).  So first moment exponent = const - lambda(r) - lambda(r)^2 with lambda(r) = (rho-1)/2 + sum y^2/(2 n rho),
+ and e^{-T(F)/(n rho)} concentrates by Lemma 7.  In the second moment the F1, F2 host sums cancel against
+ (E N)^2 exactly in mean (done earlier) and in fluctuation by Lemma 7.  None of this sees Prop 3: the
+ y-dependence there is through pi (overlap law of the cells), a pairing-level, O(n) effect.
+
+=====================================================================================================
+7. AVERAGING OVER HOST DEGREE SEQUENCES (C)
+=====================================================================================================
+ THEOREM 8 (reduction, rigorous).  Let T_n = {d*: max_v |d*_v - hbar| <= Y_h, |sum d* - n^2 p| <= C n sqrt(p) ...}.
+ Chernoff + union bound: P(deg not in T_n) <= n^{-10}.  Then
+       d_TV(nu_D, mu_D) <= sum_{d* in T_n} w(d*) [ (A)(d*) + (B)(d*) ] + 2 w(T_n^c),
+       w(T_n^c) <= n^{-10} / P(N>=1).
+ (A) here is E_{d*}|Z-1| <= (R_{d*}-1)^{1/2}.  Two obstructions:
+   (a) R_{d*} - 1 >= e^{K(1-o(1))-O(D^2)} for d* in T_n typical (Thm 5): sup_{T_n} (A) = infinity.
+   (b) P(N>=1) >= (E N)^2/E N^2 (Paley-Zygmund) over T_n gives only e^{-K}, which does not beat n^{-10}.
+       An external lower bound P(N>=1) >= 1/2 (existence of a D-factor in G(n,p), np = (1+eps)D) is needed,
+       and is not available from this paper's moments.
+ Point of failure for (C): (a).  With (b) supplied independently and (a) repaired as in Sec 8, the
+ bookkeeping of Thm 8 is complete (uniformity in d* in T_n is automatic from Lemma 7 and the explicit
+ y-dependence; error terms depend on d* only through Y_h, K).
+
+=====================================================================================================
+8. WHAT TO DO ABOUT (A)   (conjectural; consistent with the scale of K)
+=====================================================================================================
+ K is the log-variance of a single host statistic of size ~ the host's assortativity
+ Lambda(H) = sum_{ij in H} y_i y_j: Var Lambda ~ (n hbar/2) s2^4; a coupling N ~ exp(-beta Lambda) with
+ beta = D/(rho hbar^2) gives beta^2 Var Lambda = n D^2 s2^4 /(2 rho^2 hbar^3) = K exactly.  Suggested repair:
+ condition the host on Lambda (or on the pairing-level analogue sum_v y_v b-profile) in Lemma 1: replace P by
+ P(.|Lambda = lambda) and show K(H,.) depends on lambda only through T(F)/(n rho) = O(sqrt(D)/(eps sqrt n)).
+ Then d_TV need not be controlled by E|Z-1| at all.  NOT PROVEN, NOT TESTED (the pairing-level test would be the
+ conditional second moment given Lambda; the exact computation above suggests it removes K).
+ Cheap alternative (also unproven): restrict to a sub-window of host sequences with K = o(1) (Thm 6) -- but
+ G(n,p) conditioned to that has probability e^{-Theta(n)}, so it is no help for the planted host.
+
+=====================================================================================================
+9. REPRODUCE
+=====================================================================================================
+   cd v2
+   python scripts/r4w2_pairing_shift.py       # exact pairing ratio, regular vs non-regular, shift = D^2 sum y^2 n / hbar^3
+   python scripts/r4w2_mf_compensation.py     # mean-field Phi does not compensate (table of Sec 4 via inline run)
+   python scripts/r4w2_formula_check.py       # closed-form vs exact; regime table
+   python scripts/residual/host_term_cancel.py ; python scripts/residual/r2_worker1_tv.py   # predecessors, re-run OK
+
+ NOT CHECKED / RISKS:
+  * The simple-graph transfer (Thm 5) rests on the McKay estimate as quoted in main.tex and on class vectors in the
+    shifted window staying inside its hypotheses (hatDelta <= 3D^2 = o(M)); I verified the degree counts by hand, not
+    by a script.  The mean-field table (Sec 4) uses my own implementation of the four exponents; its regular value
+    (0.298 vs ~0 expected) differs from the paper's by an O(1) constant I did not chase (finite-n pairing-mean terms),
+    but the n-growth, which is the point, is clearly separate.
+  * Prop 3's Gaussian formula is accurate to ~10% in the tests; the rigorous statement is the window lower bound.
+  * Sec 8 is a hypothesis.  The claim "second moment diverges" does NOT by itself imply N/EN does not -> 1;
+    it does show the planting reduction (Lemma 1/Thm 2) cannot close (iii') for G(n,p) hosts.
