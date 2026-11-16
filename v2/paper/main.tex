@@ -6042,25 +6042,20 @@ theorem for both product measures (Lyapunov ratio \(O((nq)^{-1/2})\)) then
 gives \(\EE_Q[e^{\Phi_{\mathrm{cl}}-\Phi_0(K)}\mid K]=1+o(1)\) uniformly on
 \(W\).
 
-\emph{Dependence on \(K\).} On \(W\),
-\(\Phi_0(K)=\Phi_0(nq/2)+\ell(K-nq/2)+O(n^{-2})(K-nq/2)^2\) with
-\(\ell=O(D/n)\): the first derivative comes from \(\lambda(g)^2\) through
-\(\bar a=2K/n\), and \(\partial_K^2\lambda^2=2/n^2\). Under \(Q\), \(K\) is
-on \(W\) asymptotically Gaussian with variance
-\(\sigma_K^2=n\sigma^2/(4(1-\psi''\sigma^2))=O(nL^2/D)\): the local limit
-theorem for the triangular array of hypergeometric summands holds out to
-\(C_0D\) standard deviations because \(D^3(nq)^{-1/2}\to0\), the even-\(A\)
-restriction contributes the factor \(\tfrac12\) as in
-Lemma~\ref{lem:factor-config}, and \(1-\psi''\sigma^2=(D-2)/(2(D-1))\) for
-every \(L\) by Lemma~\ref{lem:factor-rate}. Hence
+\emph{Dependence on \(K\).}  Put \(\xi=K-nq/2\).  Treating \(\Phi_0\) as a function of \(\bar a=2K/n\), with the class
+sums at their means under the exchangeable law given \(K\) (the exponential tilt of \(h\) with mean \(\bar a\)), one computes
+exactly (\texttt{v2/scripts/r3\_worker3\_ell.py}) at \(K=nq/2\)
 \[
-\EE_Q\bigl[e^{\Phi_0(K)}\mathbf 1_W\bigr]
-=
-e^{\Phi_0(nq/2)}\,e^{\ell^2\sigma_K^2/2}(1+o(1))
-=
-e^{\Phi_0(nq/2)}(1+o(1)),
+n\,\partial_K\Phi_0=-\frac{D^3(D-2L)^2}{L^2(D-1)^2(D-2)(D-L)^2},\qquad |n^2\partial_K^2\Phi_0|=O(1),
 \]
-since \(\ell^2\sigma_K^2=O(L^2D/n)\) and \(n^{-2}\sigma_K^2=O(L^2/(Dn))\).
+the \(-\lambda(g)^2\) slope \(\approx-(D-2L)/n\) being cancelled by the other three exponents.  So
+\(\ell:=\partial_K\Phi_0=O(1/n)\) and \(\partial_K^2\Phi_0=O(n^{-2})\) uniformly on \(W\), whence
+\(\sup_W\lvert\Phi_0(K)-\Phi_0(nq/2)\rvert=O\bigl(C_0D\sigma_K/n+C_0^2D^2\sigma_K^2/n^2\bigr)
+=O\bigl(\sqrt{D/n}+L^2D/n\bigr)\to0\), using \(\sigma_K^2=O(nL^2/D)\) and \(D^3=o(n)\).  Therefore
+\(\EE_Q[e^{\Phi_0(K)}\mathbf 1_W]=e^{\Phi_0(nq/2)}\,Q(W)\,(1+o(1))\).  No local limit theorem beyond the centre is used:
+\(Q(W)\to1\) is the statement that the terms outside \(W\) are negligible, which is the Chernoff bound of the next paragraph
+(there \(x_{\mathrm e}/p=O(D^{3/2}/(L\sqrt n))\to0\) is exactly \(D^3=o(L^2n)\), implied by \(D^3=o(n)\)); the inside sum is
+\(\sqrt{(D-1)/(D-2)}(1+o(1))(\EE Z)^2\) by the ordinary local limit theorem at \(O(\omega\sigma_K)\) from the centre.
 
 \emph{Outside the window.} There \(e^{\Phi}\le1\), to be compared with
 \(e^{\Phi_0(nq/2)}\ge e^{-D^2/4-1}\). By the proof of
