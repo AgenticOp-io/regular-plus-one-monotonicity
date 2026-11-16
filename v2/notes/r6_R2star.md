@@ -16,7 +16,7 @@ Given (B*) and r := C w L/n <= 1/2:
 So the tail is o(1) iff L^5/n^3 -> 0, i.e. L = o(n^{3/5}); in particular on all of L = o(n^{1/2}).
 With Theorem A (r4: t3 <= (L)_3/(n-2L-12)^3, kappa3 = O(L^4/n^2+L^6/n^3)) the k<=3 terms are
 o(1) exactly for L=o(n^{1/2}). Hence **R2* on L=o(n^{1/2}) <=> (B*) up to the constants** [P, conditional on B*].
-(B*) is needed for all k>=4; no cheaper crude bound for large k is available, see 3.
+Whether (B*) is needed for all k>=4 or only for k=4..K0 (K0=O(1)) with a crude bound beyond is OPEN here; see 3.
 
 ## 2. What cannot work [P/argument, from r4 Sec.2, r5 Sec.2]
 Switching bounds p_S<= (n-4|S_i|-4L)^{-|S|}: relative error O(|S|L/n) = O(L^3/n) at |S|~L^2.
