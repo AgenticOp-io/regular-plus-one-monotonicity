@@ -1,0 +1,34 @@
+r11w3: c0 for TWO-SIDED star hosts (w=0), exact in 1/D.   Scripts: v2/scripts/r11w3_twosided_exact.py (sympy, ~2 min), r11w3_datacheck.py.
+
+RESULT: for w=0 the conjecture c0 -> (j+k+1)^2/2 as D->inf HOLDS in every case computed (j,k <= 3), with explicit finite-D formulas.
+The earlier "4-12% below" free fits were extrapolation bias (n<=24..44), not a real gap: the exact c0(D) is well below its limit at D=5..10.
+
+METHOD (symbolic, no fit). P(uv|H)=E[N2]/E[N1] by exchangeability; N2 = embedded double-star tree, N1 = host stars.
+ N2 = sum over directed edges F(t_uv), t = #common nbrs of u,v; F(t) exact by inclusion-exclusion on leaf collisions.
+ N1 = sum_{u,L} sum_v (D-s_v)_k, s_v = #nbrs of v in {u}+L; Newton-expanded in s_v.
+ Inputs: E[#triangles]=(D-1)^3/6 (1+r1/n), r1=3(D-1)/D (ASSUMPTION, as in r9w3), plus LEADING-order stub-model values for
+ E(t)_2 (diamonds), e(L) (triangles at u), and common-neighbour pairs of S={u}+L (C4 / triangles). These enter only at relative n^-2,
+ so leading order suffices; r2 (triangle 2nd order) does NOT enter when w=0. Then err=P/(base e^{-A-B})-1, same A,B as r7_run.gao.
+CHECKS: n^0 and n^-1 coefficients vanish identically for all hosts below (this independently re-confirms r1=3(D-1)/D).
+ k=0 reproduces r8w3 one-sided exactly (j=1: 2(D-1)(D-3)/D^2; j=2: (9D^2-48D+52)/(2D^2)); (1,1) reproduces r9w3 (9D^2-50D+45)/(2D^2).
+
+c0(D) (n^-2 coefficient), limit D->inf vs (j+k+1)^2/2:
+ (1,1): (9D^2-50D+45)/(2D^2)                              -> 9/2   = 9/2
+ (2,1): 4(D-5)(2D-3)/D^2                                   -> 8     = 8
+ (2,2): (25D^4-276D^3+1056D^2-1696D+980)/(2D^2(D-2)^2)     -> 25/2  = 25/2
+ (3,1): (25D^2-178D+249)/(2D^2)                            -> 25/2  = 25/2
+ (3,2): 2(9D^4-102D^3+415D^2-712D+439)/(D^2(D-2)^2)        -> 18    = 18
+ (3,3): (49D^4-550D^3+2389D^2-4380D+2856)/(2D^2(D-2)^2)    -> 49/2  = 49/2
+In every case c0(D) = L - O(1/D) from below at large D, and c0 is bounded uniformly in D (no growth). Some are negative at small D (e.g. (3,1), D=5: -0.32).
+
+NUMERIC cross-check (r7 exact DP data, fitted c0, D=5..9): (3,1) exact/fit = -.32/-.28, 1.12/1.16, 2.33/2.38, 3.32/3.34, 4.15/4.13 (agree .05).
+ (2,2),(3,2): fit is biased low by 0.5-3 (e.g. (2,2) D=9: exact 4.29 vs fit 3.72) -- these have the smallest n/D^2 windows; the formula, not the fit, is trusted.
+ This explains the old "free a below L": fitting a+b/D+c/D^2 to D<=10 of curves like L - 6.7L'/D... underestimates the limit.
+
+STATUS
+ PROVED (symbolic; modulo r1=3(D-1)/D and the leading-order stub-model values for the n^-2 corrections, which is a heuristic input, not a theorem):
+   c0(D;j,k,w=0) = (j+k+1)^2/2 + O(1/D) for (j,k) in {(1,1),(2,1),(2,2),(3,1),(3,2),(3,3)} (+ one-sided j<=4 earlier).
+ Honest caveat: "proved" here = exact algebra given those inputs; the diamond/C4 leading terms use the configuration model, and
+   r1 is forced (n^-1 cancellation) not independently proved. Rigorous version needs E[diamond], E[C4] to leading order for G(n,D) with D=O(small) -- standard (McKay-Wormald-Wysocka) but not checked here.
+ NOT DONE: w>=1 (needs r2(D), see r10w3; the L=(j+k+w+1)^2/2 claim for w>=1 remains numeric/open); j or k >= 4; general script handles any (j,k) by editing the list (cost grows).
+ Pattern (extrapolating, unproved): c0 = (j+k+1)^2/2 for all w=0 hosts: sum of 1/D-order terms is the only j,k dependence beyond L.
