@@ -8,3 +8,4 @@ __pycache__/
 *.toc
 *.pdf
 .DS_Store
+*.exe
