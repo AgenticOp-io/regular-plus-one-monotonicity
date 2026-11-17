@@ -1,0 +1,21 @@
+r12w3: cause of (2,2),(3,2) mismatch in r11w3 found and fixed. Scripts: v2/scripts/r12w3_exact.py (fixed formula, ~1 min), r12w3_datacheck.py, r12w3_finite.py (finite-n probe, uninformative: n^-3 terms not modelled). Output: notes/r12w3_exact_formulas.txt.
+
+CAUSE: formula bug (not fit error, not a missing term). r11w3 used E(t)_2 = (E t)^2 = ((D-1)^3/(nD))^2 for ordered common-neighbour pairs
+ of a directed edge (diamonds). Correct stub-model value: (D-1)(D-2) pairs x [(D-1)^2/(nD)] x [(D-1)(D-2)/(nD)] = (D-1)^4 (D-2)^2/(nD)^2
+ (second common nbr sees one fewer stub at v, and ordered pairs a!=b). One-line fix. The error only shows when the t-second-difference F2 interacts with
+ k>=2 (it cancels for (2,1),(3,1) -- which is why those agreed). (I briefly tried changing the C4 'pairs' term; that was wrong, original (D-1)^3/(nD) is right and is kept.)
+RESULT after fix, exact vs fitted c0 (r7 data, D=5..9):
+ (2,1) unchanged, agree .05;  (3,1) unchanged, agree .05
+ (2,2): -.94/-.90  .61/.64  1.89/1.91  2.94/2.92  3.81/3.72     (was off by up to 0.9)
+ (3,2): -1.84/-1.75  .22/.31  2.00/2.12  3.50/3.55  4.77/4.70   (was off by up to 3)
+ Now all within ~0.1 (fit noise). r11w3 claim "fit biased low, trust formula" was wrong: the formula was the one biased high.
+CORRECTED c0(D) (corrects r11w3 for k>=2):
+ (2,2): (25D^2-184D+248)/(2D^2)   -> 25/2
+ (3,2): 2(9D^2-72D+112)/D^2      -> 18
+ (3,3): (49D^2-426D+741)/(2D^2)  -> 49/2
+ (4,1): 2(9D^2-68D+111)/D^2      -> 18
+ (4,2): (D-6)(49D-122)/(2D^2)    -> 49/2
+ (4,3): 2(16D^2-148D+285)/D^2    -> 32
+ (4,4): (81D^2-800D+1680)/(2D^2) -> 81/2
+ (1,0),(2,0),(1,1),(2,1),(3,1) unchanged. All limits = (j+k+1)^2/2; so the conjecture c0 -> (j+k+1)^2/2 holds for all w=0 hosts with j,k<=4, and every c0 is a polynomial in 1/D of degree 2 (nicer than r11w3's (D-2)^2 denominators, which were the artifact of the bug).
+CAVEATS: (3,3),(4,k) have no r7 data (r7 hosts stop at j,k<=3 with data only for some), so those are formula-only, same heuristic inputs as r11w3 (r1=3(D-1)/D, leading stub-model diamond/C4/triangle terms). Residual ~0.1 data-vs-formula at D=9 is unexplained but consistent with fit bias.
