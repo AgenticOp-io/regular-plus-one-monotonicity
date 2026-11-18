@@ -1,0 +1,9 @@
+D=4 nmax=160 nmin=30 free-fit deg=4: r1=2.25000 (pred 2.25000) r2=5.2509
+D=4 nmax=160 nmin=30 free-fit deg=5: r1=2.25000 (pred 2.25000) r2=5.2502
+D=4 nmax=160 nmin=30 free-fit deg=6: r1=2.25000 (pred 2.25000) r2=5.2499
+D=4 nmax=160 nmin=50 free-fit deg=4: r1=2.25000 (pred 2.25000) r2=5.2504
+D=4 nmax=160 nmin=50 free-fit deg=5: r1=2.25000 (pred 2.25000) r2=5.2500
+D=4 nmax=160 nmin=50 free-fit deg=6: r1=2.25000 (pred 2.25000) r2=5.2500
+D=4 nmax=160 nmin=80 free-fit deg=4: r1=2.25000 (pred 2.25000) r2=5.2501
+D=4 nmax=160 nmin=80 free-fit deg=5: r1=2.25000 (pred 2.25000) r2=5.2500
+D=4 nmax=160 nmin=80 free-fit deg=6: r1=2.25000 (pred 2.25000) r2=5.2500

@@ -1,0 +1,26 @@
+r13w3: gap between r12w3 exact c0(D;j,k) and r7-data fits at D=7-9 is FIT ERROR, not formula error. No formula change.
+
+Correction to r12w3: its claim "(3,3),(4,k) have no data" is wrong. r7_data has S3_3_0, S4_k_0 for D>=5 (D=4 is impossible: host needs j,k<D). Only the fit was poor: r7 data stop at n<=28 for D=9 (n<=36 D=7), with a 3-parameter (1/n^0..2) fit, while the expansion parameter is ~D^2/n ~ 3.
+
+WHAT I DID
+ - Compiled r7_star.cpp (exact DP) to r13w3_star (g++ -O2 -o r13w3_star r7_star.cpp), ran r13w3_run.py (= r7_run.py, binary renamed) at much larger n:
+   D=5 n to 108, D=6 to 74, D=7 to 52, D=8 n=36, D=9 n=32. Data in notes/r13w3_data/dD.txt (same format as r7_data).
+   (D=8 n=40,44 and D=9 n=36 were killed unfinished: ~4+ min per n at D=9, cost grows fast.)
+ - r13w3_fit.py: fit n^2*err = c0 + c1/n + ... (deg 2,3,4; various nmin) on r7+r13 data, compare with r12w3_exact.c0. Full output: notes/r13w3_fit_out.txt.
+
+RESULT (exact formula vs best high-n fit, deg 3-4)
+ (4,4): D=5 -5.90 vs -5.90 | D=6 -2.83 vs -2.83 | D=7 0.50 vs 0.51-0.54 | D=8 3.62 vs 3.46 | D=9 6.43 vs 6.75
+ (3,3): D=5 -3.28 vs -3.28 | D=6 -0.71 vs -0.71 | D=7 1.63 vs 1.62-1.64 | D=8 3.66 vs 3.67 | D=9 5.41 vs 5.67
+ (4,2): D=5 -2.46 vs -2.46 | D=6 0.00 vs 0.00 | D=7 2.26 vs 2.25-2.26 | D=8 4.22 vs 4.21 | D=9 5.91 vs 6.09
+ With r7 data only, the (4,4) fit at D=5 was -5.29 (exact -5.90); adding n up to 108 gives -5.90 to 2 decimals. D=6: -2.17 -> -2.83. D=7: 2.04 -> 0.5.
+ So the earlier "drift grows with D" is the fit window shrinking relative to D^2: the fit moves monotonically toward the formula as n-range grows, and where the data are good (D=5,6,7) the agreement is <=0.03 (deg 4) for (3,3),(4,2),(4,4).
+ The deg-2 fit overshoots by +0.3..+1.5 at D=7-9 exactly as seen in r12w3; deg 3/4 fits cut that sharply.
+
+NOT RESOLVED: D=8,9 are still not converged (nmax 36/32, deg-3 fits only, which wobble by +-0.3 between nmin choices); they neither confirm nor refute the formula at the 0.2 level. The formula has now been confirmed to ~0.03 at D=5,6,7 for (3,3),(4,2),(4,4) (all with high-n data); (4,1),(4,3),(2,2),(3,2) not re-fitted beyond the existing r12w3 check (4,2 shown above).
+ Caveat on what is tested: c0 at the formula level still uses heuristic inputs (r1=3(D-1)/D and leading stub-model diamond/C4/triangle terms); the data agreement supports them to the displayed digits for D<=7.
+
+r1 CHECK AT D=4 (r12w1's empty file): r11w1_et.cpp D=4, n<=160 (33 s, so the r11w1_d4.txt was just never finished/saved; run time is not a problem). Free fit of R-1 = E[T]/((D-1)^3/6)-1 = r1/n + r2/n^2+..., deg 4-6, nmin 30-80:
+ r1 = 2.25000 for every window (predicted 3(D-1)/D = 2.25 exactly), r2 = 5.2500 (=21/4 apparently; a by-product, not derived). Output notes/r13w3_data/r1fit_out.txt, data et_d4.txt.
+ D=5 not run: r11w1_et.cpp uses array<int,5>, segfaults for D>=5 (needs bigger arrays). Easy fix, not done (not my file).
+
+FILES: v2/scripts/r13w3_run.py, r13w3_fit.py, r13w3_r1fit.py; v2/notes/r13w3_report.txt, r13w3_fit_out.txt, r13w3_data/*. Binaries deleted; rebuild r13w3_star from r7_star.cpp and r13w3_et from r11w1_et.cpp to rerun.
