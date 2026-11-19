@@ -1,5 +1,5 @@
 # r24b: first-order constant f1 = 2 for E[q] (4-cycles), pairing-model computation
-Status: DERIVED to O(1/n) under one unproved lemma (L1 below); matches numerics (r23a). Not a full proof. No literature search done (MWW statement not checked).
+Status (updated r25): L1 is PROVED in r25_lemma_L1.md (estimate (E3) at sketch level); f1=2 follows. Original status: DERIVED to O(1/n) under one unproved lemma (L1 below); matches numerics (r23a). Not a full proof. No literature search done (MWW statement not checked).
 
 ## Setup
 Pairing model, N=nD points, G = simple pairing. #4-cycles in K_n = n^(4)/8; placements of a fixed labelled 4-cycle: (D(D-1))^4; P(4 given pairs) = 1/((N-1)(N-3)(N-5)(N-7)). So
