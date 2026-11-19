@@ -1,0 +1,53 @@
+r3_worker3 -- the n^{1/7} gap in "Dependence on K" is CLOSED; the barrier is the old D^3 = o(n) and nothing more.
+Reproduce: python v2/scripts/r3_worker3_ell.py ; python v2/scripts/r3_worker3_curv.py   (each ~seconds; end "DONE r3_worker3_*")
+main.tex not edited.
+
+FINDINGS
+(1) ell = dPhi0/dK at K = nq/2 is NOT O(D/n).  Exact (sympy, from the four McKay exponents of lem:mckay-exponent with abar free,
+    E[a^2] following the conditioned law, slope Cov(a^2,a)/Var a):
+        n*ell = - D^3 (D-2L)^2 / ( L^2 (D-1)^2 (D-2) (D-L)^2 )   = -(1/L^2)(1 + 2/D + O(D^-2))   [L<<D],
+    so ell = O(1/(L^2 n)).  The -lambda^2 slope ~ -(D-2L)/n (what the paper used) is cancelled by lambda_B, lambda_1, the mu terms.
+    Script 1 also re-verifies lem:mckay-exponent's identity (difference == 0 symbolically).
+    Script 2 redoes it with the EXACT exponential tilt of the hypergeometric (mpmath, 60 digits): n*ell agrees (e.g. D=20,L=1: -1.10496
+    vs symbolic -1.1050) and gives the curvature n^2 Phi_KK = 4 Phi''(abar) = -1.81 (D=10), -1.96 (20), -1.99 (40) at L=1; O(1) always.
+    Hence on {|K-nq/2| <= t} :  |Phi0(K)-Phi0(nq/2)| <= (1/(L^2 n)) t + C t^2/n^2.
+(2) Consequently the "genuine K-dependence term of size m^2 delta/n" feared in r2_worker3_sharp.txt (OPEN item 2) is absent:
+    ell^2 sigma_K^2/2 = O(1/(D n)) [script 1: n*ell^2 sigma_K^2/2 = 2.6e-3 (D=100,L=1), 2.5e-4 (D=1000), ~ 1/(4D)],
+    and the curvature term is Phi_KK sigma_K^2/2 = O(L^2/(D n)).  Both are o(D^-3) iff L^2 D^2 = o(n), far inside budget (iv) m^2 delta^4/n.
+(3) The n^{1/7} requirement came from asking for a moderate-deviation LOCAL limit theorem out to C0 D standard deviations
+    (Lyapunov ratio D^{7/2}/(L sqrt n)).  It is not needed.  Only Q(W) -> 1 is, plus the pointwise bound of (1).
+
+REPLACEMENT TEXT for the "Dependence on K" paragraph of Thm growing-degree-factor (LaTeX-ready)
+----------------------------------------------------------------------------------------------------------------
+\emph{Dependence on \(K\).}  Put \(\xi=K-nq/2\).  Treating \(\Phi_0\) as a function of \(\bar a=2K/n\), with the class
+sums at their means under the exchangeable law given \(K\) (the exponential tilt of \(h\) with mean \(\bar a\)), one computes
+exactly (\texttt{v2/scripts/r3\_worker3\_ell.py}) at \(K=nq/2\)
+\[
+n\,\partial_K\Phi_0=-\frac{D^3(D-2L)^2}{L^2(D-1)^2(D-2)(D-L)^2},\qquad |n^2\partial_K^2\Phi_0|=O(1),
+\]
+the \(-\lambda(g)^2\) slope \(\approx-(D-2L)/n\) being cancelled by the other three exponents.  So
+\(\ell:=\partial_K\Phi_0=O(1/n)\) and \(\partial_K^2\Phi_0=O(n^{-2})\) uniformly on \(W\), whence
+\(\sup_W\lvert\Phi_0(K)-\Phi_0(nq/2)\rvert=O\bigl(C_0D\sigma_K/n+C_0^2D^2\sigma_K^2/n^2\bigr)
+=O\bigl(\sqrt{D/n}+L^2D/n\bigr)\to0\), using \(\sigma_K^2=O(nL^2/D)\) and \(D^3=o(n)\).  Therefore
+\(\EE_Q[e^{\Phi_0(K)}\mathbf 1_W]=e^{\Phi_0(nq/2)}\,Q(W)\,(1+o(1))\).  No local limit theorem beyond the centre is used:
+\(Q(W)\to1\) is the statement that the terms outside \(W\) are negligible, which is the Chernoff bound of the next paragraph
+(there \(x_{\mathrm e}/p=O(D^{3/2}/(L\sqrt n))\to0\) is exactly \(D^3=o(L^2n)\), implied by \(D^3=o(n)\)); the inside sum is
+\(\sqrt{(D-1)/(D-2)}(1+o(1))(\EE Z)^2\) by the ordinary local limit theorem at \(O(\omega\sigma_K)\) from the centre.
+----------------------------------------------------------------------------------------------------------------
+Also note for the paper: the remark "ell = O(D/n)" and the factor e^{ell^2 sigma_K^2/2} should be deleted; Remark
+growing-degree-scope's "L-free shape" is unaffected.  The class-sum step (L^6 = o(D^3 n)) was not touched.
+
+CONSEQUENCE FOR RANGES
+ * Thm sharp-rate-short (delta^6 = o(n)) and the r2 theorem (delta^5 m = o(n)) used this step; the side observation's D = o(n^{1/7})
+   restriction is gone, so r2's n^{1/5} (m = O(1)) stands with D^3 = o(n) as the only K-step input.  (r2 itself is conditional on
+   Gao20 Thm 6 in the uniform form Hypothesis T1.)
+ * Budget (iv) m^2 delta^4/n: its K-dependence part is now O(m^2/(delta n)) + O(m^2/(delta^... )) -- negligible; what remains in (iv)
+   is the unstructured McKay error O(L^2 D/n) of step B (Gao21 Thm 14), a lost constant, not a true variance term.
+ * So the sharp rate 1/(6 delta^3) is not contradicted past delta^4 m^2 ~ n by anything found here; but proving it there needs a
+   better step-B estimate, not a K-computation.
+
+STATUS
+ PROVED here (algebra exact, sympy+mpmath-verified): the closed form of n*ell; O(1) curvature; the K-step needs only Q(W)->1 and
+   D^3 = o(n).  The proof text above relies on the same exchangeable-tilt model for "class sums at their means given K" as the paper.
+ NOT PROVED: n^{1/4} (needs Conjecture B, exp-form Gao20 Thm 6 -- untouched, no new evidence); the step-B McKay error O(L^2 D/n).
+ NOT CHECKED: that Q(W)->1 uniformly for growing D beyond what the paper's Chernoff paragraph gives; curvature checked at 6 (D,L) points only.

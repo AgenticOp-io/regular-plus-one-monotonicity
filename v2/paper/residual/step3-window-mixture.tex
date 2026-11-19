@@ -1,0 +1,388 @@
+% step3-window-mixture.tex -- residual moment at BIM length, step 3 (window mixture).
+% Fragment for v2/paper/main.tex (uses its macros \EE, \PP, \Var and its theorem environments).
+% Algebra and exact identities: v2/scripts/residual/step3_window_mixture.py (sympy fallback;
+% check tags [E1]-[E4], [A1]-[A5] below refer to that script).
+
+\subsection*{Step 3: the window mixture for \(m\)-factors}
+
+Summary. The plan was to put together the two host lemmas over the residual
+degree window by the law of total variance. That plan fails at every \(m\ge1\), and
+the failure is in the first moment. The conditional mean
+\(\EE[Z\mid G,\deg R=g]\) is not flat across the window. The edge count
+\(e(R)\) alone moves it by a factor \(e^{\Theta(\beta)}\) with
+\(\beta^2=\Theta(m^2n/\delta)\to\infty\), and so the relative variance of
+\(Z\) given \(G\) and the window \emph{diverges}
+(Theorem~\ref{thm:s3-window-diverges}). This holds unconditionally and needs no
+local limit theorem. What survives, given the host lemma of worker~2, is the
+degree-conditioned statement, and for it no mixture and no LLT are needed.
+
+\paragraph{Setting (S).}
+\(n\) is even, \(G\) is a \(d\)-regular graph on \([n]\) with \(d\le n/2\),
+\(C:=K_n\setminus G\) is \((n-1-d)\)-regular, and \(e_C:=e(C)=n(n-1-d)/2\).
+Given \(G\), the residual \(R\) is the Bernoulli\((q)\) subgraph of \(C\)
+(Proposition~\ref{prop:residual-degree-conditioned}), with mean degree
+\(\delta:=(n-1-d)q\). The integer \(m\ge1\) has \(mn\) even, \(Z(H)\) is the number of
+\(m\)-factors of \(H\), \(Z(C)>0\), and \(N:=mn/2\) is the number of edges of an
+\(m\)-factor. Put
+\[
+k_0:=e_Cq=\frac{n\delta}{2},\qquad
+\sigma^2:=e_Cq(1-q),\qquad
+h(k):=\frac{(k)_N}{(e_C)_N},\qquad
+\beta:=\frac{N\sigma}{k_0}=m\sqrt{\frac{n(1-q)}{2\delta}},
+\]
+\[
+\eta_n:=\sqrt{\frac{6\log n}{\delta}},\qquad
+\mathcal E_\eta:=\bigl\{\lvert\deg_R(v)-\delta\rvert\le\eta\delta\ \text{for all }v\bigr\},\qquad
+W_\eta:=\bigl\{g:\lvert g_v-\delta\rvert\le\eta\delta\ \text{for all }v\bigr\}.
+\]
+\emph{BIM regime (B):} \(d/\log n\to\infty\), \(d=o\bigl(n^{3/8}(\log n)^{-1/3}\bigr)\),
+\(\delta=\Theta\bigl(d^{2/3}(\log n)^{1/3}\bigr)\), \(m=\Theta\sqrt{d\log n}\).
+In (B), \(m/\delta\to0\), \(\delta=o(n)\), \(\delta^3/n=\Theta(d^2\log n/n)\to0\), and
+\[
+\beta^2=\Theta\bigl(n\,d^{1/3}(\log n)^{2/3}\bigr),\qquad
+\eta_n=\sqrt{6/C_3^3}\;\varepsilon_0\quad\bigl(\varepsilon_0=C_3(\log n/d)^{1/3}\bigr),\qquad
+\frac{m}{\eta_n\delta}=\Theta\bigl(d^{1/6}(\log n)^{-1/6}\bigr)\to\infty
+\]
+(script [A5]). Note the last relation: an \(m\)-factor moves every degree by
+\(m\), which is far outside the degree window.
+
+\paragraph{Hypotheses taken from the parallel workers.}
+Only (H2) is used. (H1) is its \(d=0\) case and is listed to fix the form.
+
+\begin{hypothesis}[Form of lem:near-regular-host required]
+\label{hyp:s3-near-regular}
+In regime (B), with \(G=\emptyset\) (so \(C=K_n\)), the conclusion of
+Hypothesis~\ref{hyp:s3-avoid-G} holds.
+\end{hypothesis}
+
+\begin{hypothesis}[Form of lem:avoid-G-host required]
+\label{hyp:s3-avoid-G}
+In regime (B) there is \(\varepsilon_n\to0\) such that the following holds for every \(d\)-regular \(G\) on \([n]\)
+and every degree sequence \(g\in W_{\eta_n}\) with \(\sum_vg_v\) even and
+\(\Omega(C,g)\neq\emptyset\). With \(H\sim\mathrm{Unif}(\Omega(C,g))\),
+\(\EE_gZ:=\EE Z(H)>0\) and
+\[
+\Var_g Z\le\varepsilon_n\,(\EE_gZ)^2 .
+\]
+\end{hypothesis}
+
+The window width needed is \(\eta_n=\sqrt{6\log n/\delta}\). In (B) this is a constant
+multiple of \(\varepsilon_0\), so a host lemma proved on the residual-sharp window
+\(\lvert g_v-\delta\rvert\le\varepsilon_0\delta/2\) suffices whenever
+\(\sqrt{6/C_3^3}\le\tfrac12\). Otherwise the lemma is needed at width \(\eta_n\)
+itself. Nothing about the dependence of \(\EE_gZ\) on \(g\) is assumed.
+
+\begin{theorem}[Residual moment at BIM length: what holds and what fails]
+\label{thm:residual-moment-bim-proof}
+Assume setting (S) and regime (B).
+\begin{enumerate}
+\item[\textup{(i)}] \emph{(Window, proved.)} \(\PP(\deg R\in W_{\eta_n}\mid G)\ge1-2/n\).
+\item[\textup{(ii)}] \emph{(Degree-conditioned moment, conditional on
+Hypothesis~\ref{hyp:s3-avoid-G}.)} For every \(g\in W_{\eta_n}\) with
+\(\PP(\deg R=g\mid G)>0\),
+\[
+\frac{\Var\bigl(Z(R)\bigm|G,\ \deg R=g\bigr)}{\EE\bigl[Z(R)\bigm|G,\ \deg R=g\bigr]^2}\le\varepsilon_n\to0 ,
+\]
+uniformly in \(G\) and \(g\). Consequently, for every \(t>0\),
+\(\PP\bigl(\lvert Z(R)/\EE[Z(R)\mid G,\deg R]-1\rvert>t\bigm|G\bigr)\le\varepsilon_n/t^2+2/n\).
+\item[\textup{(iii)}] \emph{(The window mixture fails, proved, no hypothesis.)} For every
+\(\eta\in[\eta_n,\tfrac12]\),
+\[
+\frac{\Var\bigl(Z(R)\bigm|G,\ \mathcal E_\eta\bigr)}{\EE\bigl[Z(R)\bigm|G,\ \mathcal E_\eta\bigr]^2}\to\infty
+\]
+uniformly in \(G\), and the same holds with no window, conditioning on \(G\) alone.
+\item[\textup{(iv)}] \emph{(The window means are not flat, conditional on~\cite[Theorem~4.6]{McK85}
+as used in Theorem~\ref{thm:residual-matching-constrained}.)} The constant
+sequences \(\delta\mathbf 1\) and \((\delta+2)\mathbf 1\) both lie in \(W_{\eta_n}\) when
+\(\delta\in\mathbb Z\), and
+\[
+\frac{\EE_{(\delta+2)\mathbf 1}Z}{\EE_{\delta\mathbf 1}Z}
+=\exp\Bigl(\frac{nm}{\delta}\bigl(1+O\bigl(\tfrac{m+1}{\delta}\bigr)\bigr)\Bigr)\to\infty .
+\]
+\end{enumerate}
+In particular, Conjecture~\ref{conj:residual-moment-bim} is false as literally stated
+(conditioning on \(G\) only) under the Bernoulli residual of
+Proposition~\ref{prop:residual-degree-conditioned}. It is also false with the
+residual-sharp window added. Its degree-conditioned form (ii) holds, conditional
+on Hypothesis~\ref{hyp:s3-avoid-G}. All of this already applies at \(m=1\);
+see Remark~\ref{rem:s3-m1}.
+\end{theorem}
+
+\begin{lemma}[Degree window, item (a)]
+\label{lem:s3-window}
+In setting (S), assume \(\delta\ge3\) and \(\eta_n\le\eta\le\frac12\).
+\begin{enumerate}
+\item[\textup{(a)}] \(\PP(\mathcal E_\eta^c\mid G)\le2/n\).
+\item[\textup{(b)}] \emph{(Planted version.)} Let \(\lvert k-k_0\rvert\le n/2\) and \(k\ge N\). Let
+\(F\) be a uniform \(m\)-factor of \(C\) and \(U\) a uniform \((k-N)\)-subset of
+\(E(C)\setminus F\), and put \(\pi_k:=\PP(F\cup U\in\mathcal E_\eta)\). Then
+\(\pi_k\ge1-3/n\).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) \(\deg_R(v)\sim\mathrm{Bin}(n-1-d,q)\) has mean \(\delta\).
+By~\cite[Corollary~2.3]{JLR00},
+\(\PP(\lvert\deg_R(v)-\delta\rvert>\eta\delta)\le2e^{-\eta^2\delta/3}\le2e^{-\eta_n^2\delta/3}=2n^{-2}\).
+Take a union over the \(n\) vertices.
+
+(b) Fix \(F\). Then \(\deg_{F\cup U}(v)=m+X_v\), where \(X_v\) is hypergeometric:
+\((k-N)\) draws from the \(n(n-1-d-m)/2\) edges of \(C\setminus F\), of which
+\(n-1-d-m\) meet \(v\). So \(\mu:=\EE X_v=2(k-N)/n=2k/n-m\), and
+\(\EE\deg_{F\cup U}(v)=2k/n\in[\delta-1,\delta+1]\) (script [E3] checks the mean
+exactly on a small case). The window fails at \(v\) only if
+\(\lvert X_v-\mu\rvert\ge t:=\eta\delta-1\). By~\cite[Theorem~2.10]{JLR00}
+(Hoeffding~\cite{Hoeffding63}), \(X_v\) satisfies the binomial bounds
+\(\PP(X_v\ge\mu+t)\le\exp(-t^2/(2(\mu+t/3)))\) and
+\(\PP(X_v\le\mu-t)\le\exp(-t^2/(2\mu))\). Since \(\mu\le\delta+1\),
+\(t\le\delta/2\) and \(\delta\ge3\), both bounds are at most \(\exp(-t^2/(3\delta))\). With
+\(\eta\ge\eta_n\) we have \(t\ge\eta_n\delta-1\), and
+\[
+\frac{(\eta_n\delta-1)^2}{3\delta}=2\log n-\frac{2\eta_n}{3}+\frac1{3\delta}
+\quad\text{(script [A3])},
+\]
+so each tail is at most \(e^{1/3}n^{-2}\). A union over \(v\) and both tails gives
+\(1-\pi_k\le2e^{1/3}/n\le3/n\), uniformly in \(F\).
+\end{proof}
+
+\begin{lemma}[Exact edge-count identities]
+\label{lem:s3-edge-count}
+In setting (S), let \(\nu_k:=\PP(e(R)=k\mid G)\), so \(e(R)\sim\mathrm{Bin}(e_C,q)\).
+Let \(\mathcal E\) be any set of subgraphs of \(C\) (for example \(\mathcal E_\eta\), or everything).
+Let \(\pi_k\) be the planted probability of Lemma~\ref{lem:s3-window}(b) with
+\(\mathcal E\) in place of \(\mathcal E_\eta\); set \(\pi_k\equiv1\) when \(\mathcal E\) is everything. Then
+\[
+\EE\bigl[Z(R)\mathbf 1_{\mathcal E}\bigm|G,\ e(R)=k\bigr]=Z(C)\,h(k)\,\pi_k ,
+\qquad
+\EE\bigl[Z(R)\bigm|G,\ e(R)=k\bigr]=Z(C)\,h(k).
+\]
+\end{lemma}
+
+\begin{proof}
+Given \(e(R)=k\), \(R\) is a uniform \(k\)-subset of \(E(C)\). Count pairs \((F,R)\)
+with \(F\subseteq R\), \(\lvert R\rvert=k\), \(R\in\mathcal E\). Each of the \(Z(C)\)
+factors \(F\) extends to \(\binom{e_C-N}{k-N}\) sets \(R=F\cup U\), and a fraction
+\(\pi_k\) of those lie in \(\mathcal E\). Dividing by \(\binom{e_C}{k}\) and using
+\(\binom{e_C-N}{k-N}/\binom{e_C}{k}=(k)_N/(e_C)_N\) gives the claim. Script [E1], [E2] verifies both identities by
+exhaustive enumeration on \(C=K_6\setminus\)(perfect matching), \(m=1,2\), and several
+windows. Script [E4] verifies the identity
+\(\EE[Z\mathbf 1_{\mathcal E}\mid G]=Z(C)\sum_k\nu_kh(k)\pi_k\) as a polynomial in \(q\).
+\end{proof}
+
+\begin{theorem}[The window mixture diverges]
+\label{thm:s3-window-diverges}
+In setting (S), assume \(\delta\to\infty\), \(\delta=o(n)\), \(1\le m\le\delta/3\), and either
+\(\mathcal E=\mathcal E_\eta\) with \(\eta_n\le\eta\le\tfrac12\), or \(\mathcal E\)
+is everything. Let \(L=L_n\ge1\) satisfy
+\[
+L\le\frac{\beta}{10},\qquad 9L^2\le\log\sigma,\qquad L\le\frac16\sqrt{\frac n\delta}.
+\]
+Then, for all large \(n\) and uniformly in \(G\),
+\[
+\frac{\EE[Z^2\mid G,\mathcal E]}{\EE[Z\mid G,\mathcal E]^2}
+\ \ge\ \Bigl(1-\frac2n\Bigr)\bigl(1-6e^{-L^2/2}\bigr)^2L^2 .
+\]
+All three upper bounds on \(L\) tend to infinity: \(\beta^2\ge n/(4\delta)\),
+\(\sigma^2\ge n\delta/4\), and \(n/\delta\to\infty\). So the left side tends to \(\infty\).
+\end{theorem}
+
+\begin{proof}
+Write \(f_k:=h(k)\pi_k\) and \(P:=\PP(\mathcal E\mid G)\). Then
+\(\PP(e(R)=k\mid G,\mathcal E)=\nu_k\PP(\mathcal E\mid k)/P\). By
+Lemma~\ref{lem:s3-edge-count}, \(\EE[Z\mid G,\mathcal E]=Z(C)\sum_k\nu_kf_k/P\) and
+\(\EE[Z\mid G,e(R)=k,\mathcal E]=Z(C)f_k/\PP(\mathcal E\mid k)\) whenever
+\(\PP(\mathcal E\mid k)>0\). If \(\PP(\mathcal E\mid k)=0\) then \(\pi_k=0\).
+Conditional Jensen in \(k\) and \(\PP(\mathcal E\mid k)\le1\) give
+\[
+\EE[Z^2\mid G,\mathcal E]\ \ge\ \sum_k\frac{\nu_k\PP(\mathcal E\mid k)}{P}
+\Bigl(\frac{Z(C)f_k}{\PP(\mathcal E\mid k)}\Bigr)^2
+\ \ge\ \frac{Z(C)^2}{P}\sum_k\nu_kf_k^2
+\quad\text{(script [E4] spot-checks this)}.
+\]
+Hence, with the tilted law \(w_k:=\nu_kf_k/\sum_j\nu_jf_j\) (script [A2]),
+\[
+\rho:=\frac{\EE[Z^2\mid G,\mathcal E]}{\EE[Z\mid G,\mathcal E]^2}
+\ \ge\ P\,\frac{\sum_k\nu_kf_k^2}{(\sum_k\nu_kf_k)^2}
+=P\sum_k\frac{w_k^2}{\nu_k}
+\ \ge\ P\,\frac{w(A)^2}{\nu(A)}
+\]
+for every set \(A\), by Cauchy--Schwarz. Take \(A:=\{k\ge k_0+L\sigma\}\). Chebyshev gives
+\(\nu(A)\le L^{-2}\), and \(P\ge1-2/n\) by Lemma~\ref{lem:s3-window}(a).
+It remains to show \(w(A^c)\le6e^{-L^2/2}\).
+
+Let \(J:=[k_0+2L\sigma,\,k_0+(2L+1)\sigma]\). Since \(3L\sigma\le n/2\) by the third
+condition on \(L\) and \(\sigma^2\le n\delta/2\), every \(k\in J\) satisfies
+\(\lvert k-k_0\rvert\le n/2\), and \(k\ge k_0\ge N\) because \(m\le\delta\). So \(\pi_k\ge1-3/n\) on \(J\)
+(Lemma~\ref{lem:s3-window}(b)). For integers \(N\le k<k'\) one has
+\(h(k)/h(k')=\prod_{i<N}(k-i)/(k'-i)\le(k/k')^N\), because
+\((k-i)/(k'-i)-k/k'=-i(k'-k)/(k'(k'-i))\le0\) (script [A1]). Hence, for \(k<k_0+L\sigma\) and
+\(k'\in J\), using \(\log(1+x)\ge x/(1+x)\) and \(2L\sigma\le k_0\),
+\[
+\frac{h(k)}{h(k')}\le\Bigl(\frac{k_0+L\sigma}{k_0+2L\sigma}\Bigr)^{N}
+\le\exp\Bigl(-\frac{NL\sigma}{k_0+2L\sigma}\Bigr)\le e^{-\beta L/2}.
+\]
+The binomial Berry--Esseen bound
+\(\sup_x\lvert\PP(e(R)\le x)-\Phi((x-k_0)/\sigma)\rvert\le0.56/\sigma\) and
+\(9L^2\le\log\sigma\) give
+\(\nu(J)\ge\phi(2L+1)-1.12/\sigma\ge e^{-9L^2/2}/(2\sqrt{2\pi})\) for large \(n\). Since \(h\) is increasing,
+\[
+w(A^c)\le\frac{\sum_{k<k_0+L\sigma}\nu_kh(k)}{\sum_{k\in J}\nu_kh(k)\pi_k}
+\le\frac{e^{-\beta L/2}}{\nu(J)(1-3/n)}
+\le\frac{2\sqrt{2\pi}}{1-3/n}\,e^{9L^2/2-\beta L/2}\le6e^{-L^2/2},
+\]
+because \(\beta L/2\ge5L^2\). Finally \(\beta^2=m^2n(1-q)/(2\delta)\) and
+\(1-q\ge\tfrac12\), since \(q=\delta/(n-1-d)\le4\delta/n\to0\) when \(d\le n/2\). Also
+\(\sigma^2=k_0(1-q)\ge n\delta/4\).
+\end{proof}
+
+\begin{proposition}[Window means are not flat, item (b)]
+\label{prop:s3-means-not-flat}
+Assume~\cite[Theorem~4.6]{McK85} in the form used in the proof of
+Theorem~\ref{thm:residual-matching-constrained}. That form is: for degree sequences \(\mathbf h\)
+with entries \(\le\delta+2\) avoiding a graph \(X\) of maximum degree \(\le d+m\),
+\[
+N(\mathbf h;X)=\frac{(S-1)!!}{\prod_vh_v!}
+\exp\Bigl(-\lambda-\lambda^2-\sum_{uv\in X}\frac{h_uh_v}{S}+o(1)\Bigr),
+\qquad S=\sum_vh_v,\quad \lambda=\sum_v\frac{h_v(h_v-1)}{2S},
+\]
+with \(o(1)\) uniform when \(\delta(d+\delta)^2/n\to0\), which holds in (B). In setting (S) with
+\(\delta\in\mathbb Z\), \(n\delta\) even, and \(m\le\delta/3\),
+\[
+\frac{nm(\delta-2m-2)}{(\delta+2)(\delta-m)}-o(1)
+\ \le\ \log\frac{\EE_{(\delta+2)\mathbf 1}Z}{\EE_{\delta\mathbf 1}Z}
+\ \le\ nm\Bigl(\frac2{\delta-m}-\frac1\delta+\frac1{\delta^2}\Bigr)+o(1).
+\]
+\end{proposition}
+
+\begin{proof}
+For a constant sequence \(D\mathbf 1\) and any \(m\)-factor \(F\subseteq C\), deleting \(F\)
+gives \(N(C,D\mathbf 1;F)=N((D-m)\mathbf 1;G\cup F)\). So
+\(\EE_{D\mathbf 1}Z=Z(C)\exp(B(D)+\Delta(D)+o(1))\), independently of \(F\), where
+\[
+B(D)=n\log(D)_m+\log\frac{(n(D-m)-1)!!}{(nD-1)!!},\qquad
+\Delta(D)=-f(D-m)+f(D)-\frac{(d+m)(D-m)}2+\frac{dD}2,
+\]
+with \(f(x)=\frac{x-1}2+\frac{(x-1)^2}4\). (The \(\lambda\) of a constant sequence \(x\) is
+\((x-1)/2\), and \(\sum_{uv\in X}x^2/(nx)=rx/2\) for \(r\)-regular \(X\).) Then
+\(\Delta(\delta+2)-\Delta(\delta)=0\) identically (script [A4]). For \(B\),
+\(n\log\frac{(\delta+2)_m}{(\delta)_m}=n\sum_{j<m}\log\frac{\delta+2-j}{\delta-j}\) lies between
+\(2nm/(\delta+2)\) and \(2nm/(\delta-m)\). The double-factorial part
+\(-\sum_{i<N}\log\frac{n\delta+2n-1-2i}{n\delta-1-2i}\) lies between \(-nm/(\delta-m)\) and
+\(-nm(1/\delta-1/\delta^2)\). Adding the bounds gives the display; script [A4] checks the
+algebra and a numerical evaluation of \(B\) against both bounds. Both bounds are
+\((nm/\delta)(1+O((m+1)/\delta))\). Finally \(2\le\eta_n\delta=\sqrt{6\delta\log n}\), so both
+sequences lie in \(W_{\eta_n}\).
+\end{proof}
+
+\begin{remark}[Typical size of the non-flatness; heuristic]
+\label{rem:s3-typical}
+Expand \(\log\EE_gZ\) in \(y_v:=g_v-\delta\). The \(F\)-independent part \(B(g)\) has
+linear coefficient
+\(\kappa_1=\sum_{j<m}\frac1{\delta-j}-\sum_{i<N}\frac1{n\delta-1-2i}\approx\frac12\log\frac\delta{\delta-m}\approx\frac m{2\delta}\)
+on \(S-n\delta=2(e(R)-k_0)\). It has quadratic coefficient
+\(\kappa_2\approx m/(2\delta^2)\) on \(\sum_v(y_v-\bar y)^2\). Under the Bernoulli
+law the two pieces have standard deviations \(\approx\beta\) and
+\(\approx m\sqrt n/(\sqrt2\,\delta)\). In (B) these are
+\(\Theta\bigl(\sqrt n\,d^{1/6}(\log n)^{1/3}\bigr)\) and
+\(\Theta\bigl(\sqrt n\,d^{-1/6}(\log n)^{1/6}\bigr)\) (script [A5]). The heuristic value of
+the relative variance in Theorem~\ref{thm:s3-window-diverges} is therefore
+\(e^{\Theta(\beta^2)}=e^{\Theta(nd^{1/3}(\log n)^{2/3})}\), not just \(\omega(1)\). The second
+piece shows that conditioning additionally on \(e(R)\), the \(G(n,M)\)-type residual,
+would not rescue a mixture either: the degree spread alone moves the mean by
+\(e^{\Theta(m\sqrt n/\delta)}\) whenever \(\delta=o(\sqrt n)\). This is the \(m\)-factor version of
+the known \(G(n,M)\) threshold \(p\sqrt n\to\infty\) for perfect matchings.
+\emph{Gap:} this remark is not proved. The Taylor remainder and the
+\(F\)-dependent pairing sum \(\sum_{uv\in F}y_uy_v/S\) are uncontrolled at this
+precision. Theorem~\ref{thm:s3-window-diverges} is the rigorous replacement.
+\end{remark}
+
+\begin{remark}[Consequences at \(m=1\)]
+\label{rem:s3-m1}
+Proposition~\ref{prop:s3-means-not-flat} and Theorem~\ref{thm:s3-window-diverges} hold for
+\(m=1\). Proposition~\ref{prop:s3-means-not-flat} at \(m=1\) gives
+\(\EE_{(\delta+2)\mathbf 1}Y/\EE_{\delta\mathbf 1}Y=e^{(1+O(1/\delta))n/\delta}\to\infty\). That
+contradicts the uniform flatness asserted in Lemma~\ref{lem:residual-window-means}.
+Its proof multiplies \(n/2\) per-edge factors \(1+O(\varepsilon_n)\), whose product is
+not \(1+o(1)\). Theorem~\ref{thm:s3-window-diverges} at \(m=1\) gives
+\(\Var(Y\mid G,\mathcal E_\eta)/\EE[Y\mid G,\mathcal E_\eta]^2\to\infty\). So
+Corollary~\ref{cor:residual-matching-window}, the window form of
+Theorem~\ref{thm:residual-moment}, and Corollary~\ref{thm:residual-moment-m1} fail whenever
+the residual given \(G\) is Bernoulli on \(C\) with the window centred at its mean
+degree. Theorem~\ref{thm:residual-matching-constrained} (exact degree \(\delta\)) is
+unaffected, and so is the degree-conditioned form (ii) at \(m=1\) once that theorem
+extends to \(g\in W_{\eta_n}\) (the extension already assumed in
+Corollary~\ref{cor:residual-matching-window}). These statements in \texttt{main.tex}
+were not edited here.
+\end{remark}
+
+\begin{remark}[Is a sparse multi-colour LLT needed?]
+\label{rem:s3-llt}
+No. A local limit theorem would control how the law of \(\deg R\) is spread
+over the window. The obstruction is different: the conditional mean
+\(\EE[Z\mid G,\deg R=g]\) varies by \(e^{\Theta(\beta)}\) across typical \(g\), and
+no regularity of the degree law can flatten that. The only role of the window
+is to put \(g\) where the host lemma applies (Lemma~\ref{lem:s3-window}(a),
+Chernoff). The correct statement normalises by the random mean
+\(\EE[Z\mid G,\deg R]\) (item (ii)), and it needs neither a mixture nor an LLT.
+Proposition~\ref{prop:mllt-vanishing-margin} is therefore not on the critical path
+of Conjecture~\ref{conj:residual-moment-bim}.
+\end{remark}
+
+\begin{proof}[Proof of Theorem~\ref{thm:residual-moment-bim-proof}]
+(i) is Lemma~\ref{lem:s3-window}(a) with \(\eta=\eta_n\le\frac12\); in (B),
+\(\eta_n\to0\) and \(\delta\to\infty\). (ii) By Theorem~\ref{thm:bern-degree-uniform},
+\(\mathcal L(R\mid G,\deg R=g)=\mathrm{Unif}(\Omega(C,g))\), and
+\(\Omega(C,g)\ne\emptyset\) because \(g\) is attained. So the ratio is
+\(\Var_gZ/(\EE_gZ)^2\le\varepsilon_n\) by Hypothesis~\ref{hyp:s3-avoid-G}. The tail
+bound is Chebyshev given \(\deg R\) on \(\{\deg R\in W_{\eta_n}\}\), plus (i). (iii) is
+Theorem~\ref{thm:s3-window-diverges}: in (B), \(m\le\delta/3\), \(\delta=o(n)\) and
+\(\beta,\sigma,n/\delta\to\infty\) (script [A5]). (iv) is
+Proposition~\ref{prop:s3-means-not-flat}: in (B), \((m+1)/\delta\to0\), and
+\(nm/\delta\ge n/\delta\to\infty\). The ``in particular'' follows: a relative
+variance \(o(1)\) given \(G\) contradicts (iii) with no window. Given \(G\) and
+the residual-sharp window \(\mathcal E_{\varepsilon_0/2}\), it contradicts (iii) with
+\(\eta=\varepsilon_0/2\), which lies in \([\eta_n,\frac12]\) when \(\sqrt{6/C_3^3}\le\frac12\).
+\end{proof}
+
+\paragraph{Gaps and caveats.}
+\begin{enumerate}
+\item \emph{Hypothesis~\ref{hyp:s3-avoid-G}} (worker~2) is assumed, at window width
+\(\eta_n=\sqrt{6\log n/\delta}\), uniformly in \(G\) and \(g\). Item (ii) is exactly as strong
+as it is. Hypothesis~\ref{hyp:s3-near-regular} (worker~1) enters only through it.
+\item \emph{Model mismatch in the existing text.}
+Proposition~\ref{prop:residual-degree-conditioned} gives the residual density
+\(p=(1+\varepsilon_0)d/n\) on \(C\). That has mean residual degree
+\(\approx(1+\varepsilon_0)d\), not \(\delta=\varepsilon_0d\), so \(\mathcal E_\delta\) would then be a
+large-deviation event. Setting (S) uses the density \(q\) whose mean degree is
+\(\delta\). Item (ii) holds for every \(g\in W_{\eta_n}\) whatever the density, by
+Theorem~\ref{thm:bern-degree-uniform}. Items (i) and (iii) use the centring. For an
+off-centre window, (iii) is \emph{not proved}: the law of \(e(R)\) given the window is then
+an exponential tilt piled at the window edge, and Lemma~\ref{lem:s3-window}(b) does not
+apply as stated.
+\item \emph{Downstream.} Proposition~\ref{prop:residual-to-peel-weight} asks for a
+deterministic \(\nu_n\) with \(\EE[N_m\mid G]=(1+o(1))\nu_n\) and
+\(\Var(N_m\mid G)=o(\nu_n^2)\). By (iii) this is impossible under the Bernoulli residual,
+with or without the window, for every \(m\ge1\). Item (ii) supplies concentration only
+around the random normaliser \(\EE[Z\mid G,\deg R]\). Whether the peel-weight and
+total-variation argument of Conjecture~\ref{conj:config-split} can absorb a
+\(g\)-dependent normaliser is \emph{open and not addressed here}. Item (iii) also does
+not by itself show that \(N_m/\nu_n\not\to1\) in probability for every deterministic \(\nu_n\);
+that would need a lower-tail bound on \(Z\) given \(e(R)\), and it is not proved.
+\item Remark~\ref{rem:s3-typical} is heuristic. Item (iv) relies on~\cite[Theorem~4.6]{McK85}
+exactly as the existing chain does. Items (i)--(iii) do not use McKay.
+\end{enumerate}
+
+\paragraph{Verification.}
+\texttt{python v2/scripts/residual/step3\_window\_mixture.py} (sympy~1.14, the logged
+fallback; no Wolfram app id). It runs:
+[E1]--[E4], exhaustive enumeration of all \(2^{12}\) subgraphs of the octahedron
+\(K_6\setminus\)(perfect matching) for \(m=1,2\) and four windows, checking
+Lemma~\ref{lem:s3-edge-count}, the planted mean \(2k/n\), and the mixture identity and
+inequality used in Theorem~\ref{thm:s3-window-diverges};
+[A1] the two ratio inequalities;
+[A2] the \(\chi^2\) identity;
+[A3] the Chernoff exponent at \(\eta_n\);
+[A4] \(\Delta(\delta+2)=\Delta(\delta)\), the bound algebra, and numerical values of
+\(B(\delta+2)-B(\delta)\) inside the bounds (for example \(n=10^6,\delta=200,m=20\):
+\(86909\le104260\le122722\), against \(nm/\delta=10^5\));
+[A5] the regime-(B) exponents.

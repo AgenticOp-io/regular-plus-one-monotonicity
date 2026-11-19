@@ -1,0 +1,382 @@
+% Step 1 of Conjecture~\ref{conj:residual-moment-bim}: nearly regular hosts.
+% Fragment for \input into main.tex (no preamble). Scripts:
+%   v2/scripts/residual/near_regular_host_terms.py   (H0)-(H3)
+%   v2/scripts/residual/near_regular_exact.py        (P1)-(P5)
+%   v2/scripts/residual/near_regular_pairing_shift.py (exact pairing sums, brute force)
+% Wolfram app id absent; all identities checked with sympy (the logged fallback).
+
+\subsubsection*{Step 1: \(m\)-factors of a nearly regular host}
+
+Throughout, \(\mathbf d=(d_1,\dots,d_n)\) is a degree sequence with
+\(\sum_vd_v\) even, \(G_{\mathbf d}\) is a uniform simple graph with degree
+sequence \(\mathbf d\), and \(Z\) is the number of \(m\)-factors
+(\(m\)-regular spanning subgraphs) of \(G_{\mathbf d}\). Write
+\[
+\bar D=\frac1n\sum_vd_v,\qquad
+\tau^2=\frac1n\sum_v(d_v-\bar D)^2,\qquad
+\Delta q=\frac1n\sum_v\frac{m^2}{d_v}-\frac{m^2}{\bar D}\ \ (\ge0),
+\]
+\(\alpha_0=m^2/\bar D\), \(\sigma^2(d)=m^2(d-m)^2/(d^2(d-1))\) (the variance of
+the hypergeometric law \(h^{(d)}\) of the overlap of two uniform \(m\)-subsets of
+a \(d\)-set), \(\bar\sigma^2=n^{-1}\sum_v\sigma^2(d_v)\), and
+\[
+\psi''_0=\frac1{2\alpha_0}+\frac1{m-\alpha_0}+\frac1{2(\bar D-2m+\alpha_0)}
+=\frac{\bar D^3}{2m^2(\bar D-m)^2},
+\qquad
+\Xi_n=\frac{n\,\psi''_0\,(\Delta q)^2}{2\bigl(1-\psi''_0\bar\sigma^2\bigr)} .
+\]
+\(\Xi_n\) is an explicit function of \((\mathbf d,m)\). By (P1)--(P3) below,
+\[
+\Xi_n=\bigl(1+O(\eta)+O(\bar D^{-1})\bigr)\,
+\frac{n\,m^2\,\tau^4}{2\bar D^3(\bar D-m)^2}
+\qquad\text{under (A2), (A3).}
+\tag{S1.1}
+\]
+
+\begin{lemma}[Near-regular host]
+\label{lem:near-regular-host}
+Let \(n\to\infty\) and let \(\mathbf d=\mathbf d(n)\), \(m=m(n)\) satisfy, for a fixed
+\(c\in(0,\tfrac12)\) and some \(\eta=\eta(n)\to0\):
+\begin{enumerate}
+\item[(A1)] \(\bar D\to\infty\), \(\bar D^3=o(n)\), and \(\log n=o(\bar D^2)\);
+\item[(A2)] \(\max_v\lvert d_v-\bar D\rvert\le\eta\bar D\) and \(\bar D^2\eta^5\to0\);
+\item[(A3)] \(1\le m\le(\tfrac12-c)\bar D\), and \(\sum_vd_v\) and \(mn\) are even;
+\item[(A4)] \(m^3(m+\eta\bar D)^4=o(\bar D^2n)\);
+\item[(A5)] \(\Xi_n=O(1)\).
+\end{enumerate}
+Then
+\[
+\frac{\EE[Z^2]}{(\EE Z)^2}=\exp\bigl(\Xi_n+o(1)\bigr),
+\]
+uniformly over all \((\mathbf d,m)\) satisfying (A1)--(A5) with the same rates.
+In particular, under (A1)--(A4),
+\[
+\frac{\Var Z}{(\EE Z)^2}\to0
+\iff
+\Xi_n\to0
+\iff
+\tau^2=o\Bigl(\frac{\bar D^{5/2}}{m\sqrt n}\Bigr),
+\]
+and if \(\Xi_n\to\xi\in(0,\infty)\) then \(\Var Z/(\EE Z)^2\to e^{\xi}-1>0\).
+\end{lemma}
+
+\begin{corollary}[Rate in \(\eta\) alone]
+\label{cor:near-regular-eta}
+Assume (A1), (A3), \(\max_v\lvert d_v-\bar D\rvert\le\eta\bar D\), and
+\[
+\eta=o\Bigl(\Bigl(\frac{\bar D}{n\,m^2}\Bigr)^{1/4}\Bigr),
+\qquad
+m^3\bigl(m+\sqrt{\bar D}\bigr)^4=o(\bar D^2n).
+\]
+Then \(\Var Z/(\EE Z)^2\to0\). For a target \(\delta\) with
+\(\lvert d_v-\delta\rvert\le\eta'\delta\) one may take \(\eta=3\eta'\), since then
+\(\lvert\bar D-\delta\rvert\le\eta'\delta\).
+\end{corollary}
+
+\begin{proof}[Proof of the corollary]
+\(\tau^2\le\eta^2\bar D^2\), so by (S1.1)
+\(\Xi_n=O(nm^2\eta^4/\bar D)\to0\), which gives (A5) and the last condition of the lemma.
+For (A2), \(\bar D^2\eta^5\le\bar D^2(\bar D/n)^{5/4}=\bar D^{13/4}n^{-5/4}\to0\) by
+\(\bar D^3=o(n)\). For (A4),
+\(\eta\bar D\le\bar D^{5/4}n^{-1/4}m^{-1/2}\le\bar D^{5/4}\bar D^{-3/4}=\sqrt{\bar D}\).
+\end{proof}
+
+\begin{remark}[What (A5) means]
+\label{rem:near-regular-xi}
+\(\Xi_n\) does not come from the McKay corrections. It is already present in the pairing model, for every fixed
+\(\bar D\) and \(m\). Its source is a mismatch between two overlaps. Two independent uniform \(m\)-subsets of the cells have mean overlap
+\(n^{-1}\sum_vm^2/d_v\), while the pairing weight \(g\) below is centred at
+\(m^2/\bar D\). By Jensen the two differ by \(\Delta q\approx m^2\tau^2/\bar D^3\).
+The pairing weight converts this shift into the factor \(e^{\Xi_n}\), which is linear in \(n\).
+\texttt{near\_regular\_pairing\_shift.py} evaluates the exact pairing sum
+(S1.2) for degree sequences \(\{\bar D\pm b\}\) at \(n=1000,\dots,8000\). It
+matches \(-\tfrac12\log(2(1-\psi''_0\bar\sigma^2))+\Xi_n\) within \(3\%\), with
+\(\log\EE[Z^2]/(\EE Z)^2\) growing linearly in \(n\)
+(\(\bar D=8,b=2,m=2\): \(2.28,4.50,8.94,17.82\)).
+\end{remark}
+
+\begin{proof}[Proof of Lemma~\ref{lem:near-regular-host}]
+We follow the proof of Theorem~\ref{thm:growing-degree-factor} step by
+step. We record only what changes when cell sizes are unequal, and write
+\(D=\bar D\). The pairing model has cell \(v\) of size \(d_v\). A
+uniform pairing conditioned on being simple is \(G_{\mathbf d}\), since each simple
+graph has \(\prod_vd_v!\) preimages, so \((\ast)\) holds verbatim. Constants
+\(K,C,C_i\) depend on \(c\) only.
+
+\emph{1. Exact pairing second moment.} The proof of
+Lemma~\ref{lem:factor-one-dim} is cell by cell. At cell \(v\) the
+number of class choices with overlap \(a\) is \(\binom{d_v}{m}^2h^{(d_v)}_a\). Hence, with
+\(2E=\sum_vd_v=nD\) and \(S=\sum_va_v\), \(a_v\sim h^{(d_v)}\) independent,
+\[
+\frac{\EE_{\mathrm{pair}}[Z^2]}{(\EE_{\mathrm{pair}}Z)^2}
+=\sum_A\PP(S=A)\,g_E(A),
+\qquad
+g_E(A)=\frac{M(A)M(mn-A)^2M(2E-2mn+A)M(2E)}{M(mn)^2M(2E-mn)^2}.
+\tag{S1.2}
+\]
+This is \(g\) of Lemma~\ref{lem:factor-one-dim} with \(Dn\) replaced by \(2E\), so
+\(\log g_E(A)=n\psi(A/n)+O(1)\) with \(\psi\) as there at the real parameter
+\(D=\bar D\). The constant is \(\tfrac12\log2+o(1)\) for
+\(\lvert A-n\alpha_0\rvert=o(n)\). Formula (S1.2) was checked against exhaustive
+enumeration of all pairings for \(\mathbf d\in\{(1,3,2,2),(3,3,1,1),(2,4,2,2),(3,1,2,2,3,1)\}\),
+\(m=1\) (\texttt{near\_regular\_pairing\_shift.py}).
+Lemma~\ref{lem:four-pairings} likewise holds verbatim with class sizes
+\(a_v,m-a_v,m-a_v,g_v=d_v-2m+a_v\), and \(Q\) is the product law
+\(\bigotimes_vh^{(d_v)}\) reweighted by \(g_E(\sum_va_v)\).
+
+\emph{2. McKay estimates.} All degrees are at most \((1+\eta)D\), so the four
+estimates of Theorem~\ref{thm:growing-degree-factor}, together with \(\PP(\mathcal S)\), apply
+with \(\hat\Delta\le4D^2\) and relative errors \(O(D^3/n)\). The same holds for
+the two single-factor estimates.
+
+\emph{3. The replaced exponent and the host terms.} Define \(E_1,\dots,E_4,E_0\)
+and \(\lambda(\mathbf d)=\sum_vd_v(d_v-1)/(2\sum_vd_v)\) as in
+Lemma~\ref{lem:mckay-exponent}, with every class sum
+\(\sum_vf(a_v)\) replaced by \(\sum_v\EE_{h^{(d_v)}}f(a)\) and every pairing sum
+replaced as there. Because
+\(\EE_{h^{(d)}}a=m^2/d\), one has \(\sum_vd_v\EE a_v=nm^2\) exactly. Put
+\[
+\mathcal H(\mathbf d)=E_1+E_2+E_3+E_4-\lambda(\mathbf d)-\lambda(\mathbf d)^2-2E_0 .
+\]
+The host terms \(\sum_vd_v(d_v-1)\) enter \(\lambda(\mathbf d)\), \(\lambda(g)\) and
+the single-factor \(\lambda(\mathbf d-m)\). Each is of size \(\tau^2\): for instance
+\(\lambda(\mathbf d)^2\) carries \(\tfrac12\tau^2\) (H2). They cancel in
+\(\mathcal H\), as follows. Write \(d_v=D(1+\varepsilon\beta_v)\) with
+\(\sum_v\beta_v=0\) and \(\kappa_k=n^{-1}\sum_v(d_v-D)^k\), and expand in
+\(\varepsilon\). Then (\texttt{near\_regular\_host\_terms.py})
+\begin{align*}
+\text{(H0)}\quad&[\varepsilon^0]\,\mathcal H=-\tfrac x2-\tfrac{x^2}4,\quad x=\tfrac1{D-1}
+\quad\text{(Lemma~\ref{lem:mckay-exponent} at real \(D\))};\\
+\text{(H1)}\quad&[\varepsilon^1]\,\mathcal H=0;\\
+\text{(H2)}\quad&[\varepsilon^2]\,\mathcal H=h_2\tau^2,\quad
+h_2=\frac{2D^2(m-1)+D-m}{2(D-m)(D-1)^4};\\
+\text{(H3)}\quad&[\varepsilon^3]\,\mathcal H=h_3\kappa_3,\quad
+[\varepsilon^4]\,\mathcal H=h_4\kappa_4+h_{22}\tau^4,
+\end{align*}
+with \(h_3,h_4,h_{22}\) explicit rational functions printed by the script and
+\[
+\lvert h_2\rvert\le\frac{Km}{D^3},\quad
+\lvert h_3\rvert\le\frac{Km(1+m/D)}{D^4},\quad
+\lvert h_4\rvert\le\frac{K(m^2+4)}{D^5},\quad
+\lvert h_{22}\rvert\le\frac{K(m^2+1)}{D^4}
+\]
+for \(D\ge8\), \(1\le m\le0.45D\). The first is immediate from the formula.
+The others hold with \(K=3\) on a grid of \(D\) up to \(2^{16}\) and \(m\in\{1,2,3,D/8,D/4,0.45D\}\).
+Their leading terms are \(-(4m-6m^2/D)/(2D^4)\), \(-m^2/(2D^5)\) and
+\(m^2/(2D^4)\), which give the bounds for all large \(D\).
+
+\emph{Remainder.} Take \(\beta_v=(d_v-D)/(\eta D)\), so \(\lvert\beta_v\rvert\le1\)
+and the actual sequence is \(\varepsilon=\eta\). Along this family
+\(\mathcal H\) is a rational function of the vertex averages of
+\(1/d\), \(1/(d(d-1))\) and \(d^2\), so it is analytic in complex \(\varepsilon\)
+with \(\lvert\varepsilon\rvert\le\tfrac14\). There \(\lvert d_v\rvert\ge\tfrac34D\),
+\(\lvert q\rvert\ge\tfrac45m^2/D\), \(\lvert m-q\rvert\ge m/3\) and
+\(\lvert D-2m+q\rvert\ge cD\), and every \(\lambda,\mu\) is \(O(D^2)\), so
+\(\lvert\mathcal H\rvert\le KD^2\). By Cauchy's estimate the terms of order
+\(\ge5\) sum to \(O(D^2\eta^5)\). Now \(\lvert\kappa_3\rvert\le\eta D\tau^2\),
+\(\kappa_4\le\eta^2D^2\tau^2\), \(\tau^2\le\eta^2D^2\), and by (S1.1) and (A5)
+\(m^2\tau^4=O(D^5/n)\). Hence
+\[
+\mathcal H(\mathbf d)=-\frac x2-\frac{x^2}4
++O\Bigl(\eta^2m/D+\eta^3m+\eta^4(m^2+4)/D+D/n+D^2\eta^5\Bigr)
+=-\frac x2-\frac{x^2}4+o(1),
+\tag{S1.3}
+\]
+using \(m\le D\), (A1) and (A2). \textbf{So the host terms cancel in the ratio
+for every \(m\), up to \(O(m\tau^2/D^3)=O(\eta^2m/D)\).} This answers the point
+left open in Remark~\ref{rem:growing-degree-scope}.
+
+\emph{4. Single factor.} For one factor \(F\) (an \(m\)-regular pairing), the
+exponent \(E_0\) is deterministic except for
+\(\mu(\mathbf d-m,F)\ni T_F/(2M')\), \(T_F=\sum_{ij\in F}b_ib_j\),
+\(b_v=d_v-D\). A switch changes \(T_F\) by at most \(4\eta^2D^2\). The bounded-differences argument of
+Theorem~\ref{thm:growing-degree-factor} (\cite[Theorem~2.19]{Wormald99}, retention
+probability \(e^{-C_1m^2}\)) then needs \(s^2m^2\to0\) with
+\(s^2=O(m\eta^4D^2/n)\), which (A4) gives. The pairing mean of \(T_F\) is
+\(-\tfrac12\tau^2(1+O(1/(mn)))\), which contributes \(O(\tau^2/(Dn))\). So
+\(\EE[Z\mathbf 1_{\mathcal S}]=\EE Z\,e^{E_0+o(1)}\).
+
+\emph{5. Pairing sums of the pair.} The weights entering \(\mu(g,X)\) are
+\(g_v=\gamma+b_v\) with \(b_v=(d_v-D)+(a_v-q)\), so \(\lvert b_v\rvert\le\eta D+m\)
+in place of \(L\). The three variance parameters of
+Theorem~\ref{thm:growing-degree-factor} become
+\(O(m(m+\eta D)^4/(D^2n))\) for \(F_1^\circ,F_2^\circ\) and
+\(O(m^2(m+\eta D)^4/(D^3n))\) for \(B\). Against retention probabilities
+\(e^{-C_1m^2}\) and \(e^{-C_1(1+q^2)}\), each condition is implied by (A4)
+(for \(B\): \(m^2(m+\eta D)^4(1+m^4/D^2)/(D^3n)\le2m^3(m+\eta D)^4/(D^2n)\)).
+The cross term \((\sum_vc_vb_v)^2\) of the pairing mean is class-determined. It is
+part of the replaced exponent of step~3, through \(\sum_vd_v\EE a_v=nm^2\). Hence
+\(\EE[e^\Phi\mid\text{classes}]=e^{\Phi_{\mathrm{cl}}}(1+o(1))\) as before.
+
+\emph{6. Class sums.} \(\Phi_{\mathrm{cl}}-\Phi_0(K)\) is again a sum over cells of
+centred functions with coefficients \(O(1/n)\). The new ones are
+\(\sum_v(d_v-D)a_v\), from \(\lambda(g)^2\) and from the class part of
+\(\mu(g,X)\), and they are not fixed by \(K\). Given \(K\), \(Q\) is the product
+\(\bigotimes_vh^{(d_v)}\) tilted by a common parameter \(\theta\). The
+argument of Theorem~\ref{thm:growing-degree-factor} applies cell by cell. The
+log moment generating function is
+\(O\bigl(n^{-1}\max_v\Var_v f\bigr)=O\bigl((m^6/D^3+\eta^2Dm^2)/n\bigr)\to0\)
+by (A1). The local limit theorem used there is replaced by the one in step~7.
+
+\emph{7. The overlap sum and \(\Xi_n\).} Under the product law, \(S\) has mean
+\(nq\), \(q=\alpha_0+\Delta q\), and variance \(n\bar\sigma^2\). Each \(h^{(d)}\) is
+the law of a sum of independent Bernoulli variables, since its generating
+polynomial has real roots. So \(S\) is a Poisson-binomial sum, which
+gives:
+(i) the local limit theorem
+\(\PP(S=A)=(2\pi n\bar\sigma^2)^{-1/2}e^{-(A-nq)^2/(2n\bar\sigma^2)}(1+o(1))\)
+uniformly for \(\lvert A-nq\rvert\le\omega\sqrt{n\bar\sigma^2}\), for some
+\(\omega\to\infty\);
+(ii) the uniform local bound
+\(\PP(S=A)\le C(n\bar\sigma^2)^{-1/2}e^{-nI_S(A/n)}\) on the window
+\(W=\{\lvert A-n\alpha_0\rvert\le C_0D\sqrt{n\bar\sigma^2}\}\). This follows from
+exponential tilting and the bound \(\max_k\PP(Y=k)\le C/\sqrt{\Var Y}\) for
+log-concave \(Y\), since tilting inside \(W\) changes \(\bar\sigma^2\) by a factor
+\(1+o(1)\).
+This one-dimensional statement does not use the multicolour local limit
+theorem, so Proposition~\ref{prop:mllt-vanishing-margin} does not bear on it.
+On \(W\), \((A/n-\alpha_0)/\alpha_0=O(D^{3/2}/(m\sqrt n))\to0\), so
+\(n\psi(A/n)=\tfrac12\psi''_0(A-n\alpha_0)^2/n\) and
+\(nI_S(A/n)=(A-nq)^2/(2n\bar\sigma^2)\), each up to a factor \(1+o(1)\).
+Moreover \(\psi''_0\sigma^2(D)=D/(2(D-1))\) (P2), and
+\(\bar\sigma^2=\sigma^2(D)(1+O(\eta^2))\), because the first-order term vanishes
+when \(\sum_v(d_v-D)=0\). Hence \(1-\psi''_0\bar\sigma^2\ge\tfrac13\) and
+\[
+nI_S-n\psi\ \ge\ \tfrac16(1-o(1))\,\frac{(A-nq^*)^2}{n\bar\sigma^2}-\Xi_n
+\quad\text{on }W,
+\qquad q^*=\alpha_0+\frac{\Delta q}{1-\psi''_0\bar\sigma^2},
+\]
+by completing the square. By (ii), the terms of
+(S1.2) with \(\omega\sqrt{n\bar\sigma^2}\le\lvert A-nq^*\rvert\), \(A\in W\),
+contribute \(O(e^{\Xi_n}e^{-\omega^2/7})=o(1)\). They do so also after
+multiplication by the McKay factor \(e^{\Phi_0(K)-\Phi_0(nq/2)}\le
+e^{\ell\lvert K-nq/2\rvert+o(1)}\), because \(\ell\sqrt{n\bar\sigma^2}=O(\sqrt{m^2D/n})\to0\).
+On the remaining zone, which contains the mode since
+\(\lvert q^*-q\rvert/\sqrt{\bar\sigma^2/n}=O(\sqrt{\Xi_n})=O(1)\), (i) and the
+Gaussian identity (P4) give
+\[
+\sum_{A\text{ even}}\PP(S=A)g_E(A)
+=\tfrac{\sqrt2}2\bigl(1-\psi''_0\bar\sigma^2\bigr)^{-1/2}e^{\Xi_n}(1+o(1))
+=\sqrt{\tfrac{D-1}{D-2}}\,e^{\Xi_n}(1+O(\eta^2)+o(1)).
+\]
+The cubic remainder of \(\psi\) at the mode is
+\(O(n\Delta q^3D^2/m^4)=O(\Xi_n\tau^2/D^2)=O(\eta^2)\).
+Under \(Q\) the mean of \(K\) moves from \(nq/2\) by \(O(n\Delta q)\). The resulting change of
+the McKay exponent is \(O(\ell n\Delta q)=O(m^2\tau^2/D^2)\), and by (S1.1)
+\[
+\frac{m^2\tau^2}{D^2}=O\Bigl(m\sqrt{\Xi_nD/n}\Bigr)=O\bigl(\sqrt{D^3/n}\bigr)\to0 .
+\]
+The tilt \(\theta=O(\tau^2/D^2)\) of the class law moves the class means by
+the same order. The variance term \(\ell^2\sigma_K^2=O(m^2D/n)\) is as before.
+
+\emph{8. Outside the window.} By Hoeffding's comparison~\cite{Hoeffding63},
+\(h^{(d_v)}\) is dominated in convex order by \(\mathrm{Bin}(m,m/d_v)\). By
+Hoeffding (1956), a sum of independent binomials with mean \(nq\) is dominated
+in convex order by \(\mathrm{Bin}(mn,\bar p)\), \(\bar p=q/m\). So the Chernoff
+bound gives \(\PP(S=A)\le e^{-nm\,\mathrm{KL}(A/(nm)\Vert\bar p)}\). With \(p=m/D\),
+\(\bar p-p=\Delta q/m\le p\eta^2(1+o(1))\). The proof of
+Lemma~\ref{lem:factor-rate} gives
+\(m\,\mathrm{KL}(\alpha/m\Vert p)-\psi(\alpha)\ge\tfrac m2G(x)\), and
+\(G(x)\ge c_1\mathrm{KL}(p+x\Vert p)\) on the whole support with \(c_1=c_1(c)>0\)
+(P5: the ratio is \((1-2p)/(1-p)\) at \(x=0\) and at least \(0.085\) on a grid
+for \(p\le0.45\)). Moreover
+\(\lvert\mathrm{KL}(y\Vert\bar p)-\mathrm{KL}(y\Vert p)\rvert
+\le C\eta^2\,\mathrm{KL}(y\Vert p)+C\lvert\bar p-p\rvert\lvert y-p\rvert/p\).
+Beyond the window edge \(x_{\mathrm e}\), \(\lvert\bar p-p\rvert/x_{\mathrm e}=O(\sqrt{\Xi_n}/D)\to0\),
+so \(n(I_S-\psi)\ge\tfrac m2c_1'\,n\,\mathrm{KL}\) there. The edge computation of
+Theorem~\ref{thm:growing-degree-factor} then gives
+\(n(I_S-\psi)\ge C_0^2cD^2/2\,(1+o(1))\) beyond the edge.
+The inside sum is at least \(e^{\Phi_0}\ge e^{-D^2/4-K\eta^2D^2-1}\), and there are
+at most \(mn\) outside terms. So the outside contribution is
+\(O(mn\,e^{-C_0^2cD^2/2})=o(e^{-D^2/3})\) once \(C_0^2c>1\), using
+\(\log n=o(D^2)\) from (A1).
+
+\emph{9. Assembly.} Steps 2--8 combine as in
+Theorem~\ref{thm:growing-degree-factor}:
+\[
+\frac{\EE[Z^2]}{(\EE Z)^2}
+=\sqrt{\tfrac{D-1}{D-2}}\;e^{\Xi_n}\;e^{\mathcal H(\mathbf d)+o(1)}
+\overset{\text{(S1.3)}}{=}
+\sqrt{\tfrac{D-1}{D-2}}\,e^{-x/2-x^2/4}\,e^{\Xi_n+o(1)}
+=e^{\Xi_n+o(1)},
+\]
+as \(D\to\infty\). The equivalences follow from \(\Var Z/(\EE Z)^2=e^{\Xi_n+o(1)}-1\) and (S1.1).
+\end{proof}
+
+\paragraph{Identities and the scripts that check them.}
+(H0)--(H3) and the bounds on \(h_3,h_4,h_{22}\):
+\texttt{v2/scripts/residual/near\_regular\_host\_terms.py}.
+(P1) \(1/d-1/D=-(d-D)/D^2+(d-D)^2/(dD^2)\), so \(\Delta q=m^2\langle(d-D)^2/(dD^2)\rangle\);
+(P2) \(\psi''_0\sigma^2(D)=D/(2(D-1))\) at real \(D\);
+(P3) (S1.1) at \(\Delta q=m^2\tau^2/D^3\);
+(P4) \(\EE e^{aU^2}=(1-2aV)^{-1/2}e^{a\mu^2/(1-2aV)}\) for \(U\sim N(\mu,V)\);
+(P5) \(G\ge c_1\mathrm{KL}\) and \(G''(0)/\mathrm{KL}''(0)=(1-2p)/(1-p)\):
+\texttt{v2/scripts/residual/near\_regular\_exact.py}.
+Formula (S1.2) is checked against brute force, and \(e^{\Xi_n}\) against exact pairing sums, in
+\texttt{v2/scripts/residual/near\_regular\_pairing\_shift.py}.
+
+\paragraph{Gap 1 (the BIM application: \(\Xi_n\) is not small).}
+In the matching-peel setting, the residual degrees are Bernoulli sums with
+mean \(\approx\delta\) and variance \(\approx\delta\), so their empirical variance
+is \(\tau^2=(1+o(1))\delta\) with high probability. Conditioning on the window of
+\cite{PlusOneV1} does not change this, since that window has width
+\(\varepsilon_0\delta/2=\Theta(\sqrt{\delta\log n})\). Then (S1.1) gives
+\[
+\Xi_n\asymp\frac{n\,m^2}{2\delta^3}
+=\Theta\Bigl(\frac{n\cdot d\log n}{d^2\log n}\Bigr)=\Theta\Bigl(\frac nd\Bigr)\to\infty
+\qquad(d=o(n)).
+\]
+At \(d=\Theta(n)\) one has \(\Xi_n=\Theta(1)\), but there \(\delta^3=o(n)\) fails.
+\emph{So Lemma~\ref{lem:near-regular-host} does not apply to the typical exact
+residual degree sequence anywhere in the BIM range.} The obstruction is real,
+not a defect of the proof:
+\begin{itemize}
+\item at bounded \(\Xi_n\) the lemma is two-sided, so \(\Var Z/(\EE Z)^2\to e^\xi-1>0\);
+\item at the pairing level the exact sums grow like \(e^{\Xi_n}\) (Remark~\ref{rem:near-regular-xi}).
+\end{itemize}
+Not proved here: for \(\Xi_n\to\infty\) on simple graphs, a lower bound
+\(\EE Z^2/(\EE Z)^2\ge e^{(1-o(1))\Xi_n}\). The window argument of step~7,
+recentred at \(q^*\), should give it while \(\Xi_n=o(\min(n/\delta^3,\eta^{-2}))\), but
+we have not written that out.
+\emph{Consequence for Conjecture~\ref{conj:residual-moment-bim} (conditional).}
+Suppose, for the residual host \(C=K_n\setminus G\) of Step~2, that
+\(\Var(Z\mid G,\deg R=g)/\EE[Z\mid G,g]^2\ge1\) whenever \(\Xi_n(g)\ge1\).
+The shift is pairing entropy, so the forbidden graph should not remove it;
+Step~2 must check this. Then the law of total variance and
+\(\EE[(\EE_gZ)^2]\ge(\EE Z)^2\) give
+\(\Var(Z\mid G)/\EE[Z\mid G]^2\ge1\), and the conjecture would fail as stated
+for \(m=\Theta(\sqrt{d\log n})\), \(d=o(n)\). At \(m=1\),
+\(\Xi_n\asymp n/(2\delta^3)\to0\) iff \(d\gg\sqrt{n/\log n}\), so the
+matching case is unaffected in that range.
+
+\paragraph{Gap 2 (inherited points in Theorem~\ref{thm:growing-degree-factor}).}
+\begin{itemize}
+\item Its outside-window step bounds \(n\) terms by \(e^{-C_0^2cD^2/2}\), which
+needs \(\log n=o(D^2)\). That is not implied by \(D^3=o(n)\), so it is
+listed here as part of (A1).
+\item Its claim that the local limit theorem holds to \(C_0D\) standard
+deviations ``because \(D^3(nq)^{-1/2}\to0\)'' is not implied by \(D^3=o(n)\) when
+\(L\) is small: at \(L=1\) it needs \(D^7=o(n)\). Step~7 above avoids this by
+using (i) only on \(\omega\) standard deviations and the local bound (ii) on the
+rest of \(W\). The same repair applies there.
+\end{itemize}
+Facts used without proof:
+\begin{itemize}
+\item McKay's estimate~\cite[Theorem~4.6]{McK85} (as in main.tex);
+\item the bounded-differences inequality for pairings~\cite[Theorem~2.19]{Wormald99};
+\item real-rootedness of the hypergeometric generating polynomial (so \(h^{(d)}\) is Poisson-binomial);
+\item Hoeffding's 1956 convex-order comparison of Poisson-binomial and binomial laws (not in the bibliography yet);
+\item the bound \(\max_k\PP(Y=k)=O(\Var(Y)^{-1/2})\) for log-concave integer \(Y\).
+\end{itemize}
+
+\paragraph{Observation for Step~3 (outside this step).}
+\(\EE_gZ\) contains \(\prod_v\binom{g_v}{m}\). At fixed \(\sum_vg_v\), its logarithm is
+\(n\log\binom{\bar D}{m}-\frac{mn\tau_g^2}{2\bar D^2}(1+o(1))\). Under the Bernoulli
+residual, \(\tau_g^2\) fluctuates by \(\Theta(\delta/\sqrt n)\), so
+\(\log\EE_gZ\) fluctuates by \(\Theta(m\sqrt n/\delta)\), and \(\sum_vg_v\) adds
+more. The flatness claimed in Lemma~\ref{lem:residual-window-means} (factor
+\(1+O(\varepsilon_n)\) uniformly over the window) does not hold at \(m=1\): across the
+window, \(\prod_vg_v\) varies by \(e^{\Theta(n\varepsilon_n^2)}\). Likewise the error
+term \(O(\varepsilon_n)\) in Proposition~\ref{prop:residual-nearly-regular-matching}
+should be \(O(\Xi_n)=O(n\varepsilon_n^4/\delta)\) by the \(m=1\) case of the lemma.
+These are heuristic sizes, recorded for the coordinator. They have not been proved here.

@@ -1,0 +1,44 @@
+R3 worker2: triangle density of nu_L (input to R2*, k=3 term)
+
+LEMMA (proved, switching).  nu_L = law of M_1 u ... u M_L, (M_i) uniform ordered L-tuple of pairwise
+disjoint perfect matchings of K_n.  For a triangle abc and L <= n/16 (n >= 32):
+    t3 := P(ab, bc, ca all in F) <= L(L-1)(L-2) * (1/(n-1)) * (n/2 - 1 - 2L)^-2  <= 8 L^3/n^3 * (1+O(L/n)).
+In particular t3 = O(L^3/n^3), so by the exact k=3 formula of r2 (kappa3 = 5L^4/n^2 + n^3(t3-L^3/n^3)^2 + ...)
+the k=3 term is O(L^4/n^2 + L^6/n^3 ...) -> 0 for L = o(n^{1/2}).  (n^3 t3^2 = O(L^6/n^3) = o(1) iff L = o(n^{1/2}).)
+
+PROOF.
+(a) Two edges of a triangle share a vertex, so they lie in different matchings; hence {ab,bc,ca} in F forces
+    ab in M_i, bc in M_j, ca in M_k with i,j,k distinct (disjointness => each edge in exactly one M).
+    Union bound over L(L-1)(L-2) ordered (i,j,k); by symmetry of the tuple law it suffices to bound
+    p3 = P(ab in M_1, bc in M_2, ca in M_3).
+(b) P(ab in M_1) = 1/(n-1) exactly (M_1 is a uniform perfect matching marginally, by symmetry of tuples).
+(c) Switching step.  Let S = tuples with e_1 in M_1,...,e_r in M_r (r=1,2), e = new edge uv, to be forced in M_{r+1}
+    (u,v distinct from endpoints of nothing special).  Let S' = tuples with e_1..e_r placed as before and uv NOT in F.
+    From a tuple in S: uv in M_{r+1}; choose xy in M_{r+1}, xy != uv, oriented, and replace {uv, xy} by {ux, vy}.
+    The result is a tuple in S' provided ux, vy are not in F (disjointness of the matchings); M_1..M_r are untouched,
+    so e_1..e_r stay.  The edge xy must avoid {ux in F}: x in N_F(u), |N_F(u)| = L, giving <= L matching edges
+    xy of M_{r+1} to discard; likewise y in N_F(v): <= L; plus uv itself.  So >= n/2 - 1 - 2L valid switches.
+    Reverse: given the image, M_{r+1} contains ux and vy, so x = M_{r+1}(u), y = M_{r+1}(v) are determined:
+    each image has <= 1 preimage for the fixed type.  Hence
+        |S| (n/2 - 1 - 2L) <= |S'| <= #{tuples with e_1..e_r}   =>   P(S) <= P(e_1..e_r) / (n/2 - 1 - 2L).
+    (In S the edge uv must be new w.r.t. e_1..e_r placement; the tuple count of S' is bounded by that of the
+    conditioning event, which is all that is used.)
+(d) Apply (c) with r=1 (e_1=ab, uv=bc) then r=2 (e_1=ab,e_2=bc, uv=ca):
+        p3 <= (1/(n-1)) (n/2-1-2L)^-2.   Multiply by L^3.  QED.
+
+CHECK.  Plausible vs truth: true t3 ~ L^3/n^3 (brute force r2: t3/((L)_3/(n-1)_3) = 3/4, 145/157 at n=6,8, L=3);
+the bound is a factor ~4 above the truth, as expected from using one switch type only.  NOT re-run numerically here
+(bound is vacuous for n <= 8, L=3: n/2-1-2L < 0, so brute force cannot test it).
+
+WHAT REMAINS OF R2* (not proved):
+ 1. kappa_k for k >= 4 and summability of sum_k (y-1)^k kappa_k/k!.  The same switching gives factorial moments
+    E[(T)_k] of T=|F1 n F2| only via counting k-tuples of edges in the intersection; the cumulant (not moment)
+    scale L^{k+1}/n^{k-1} needs the cancellation among linked configurations (clusters), which is the
+    cluster-expansion step; switching bounds moments, and moment bounds alone give only kappa_k <= E(T)_k ~ (L^2 n)^k/n^k...
+    i.e. no cancellation => useless for the tail beyond Poisson.
+ 2. Hence the peel is now conditional on the single input "kappa_k, k>=4, summable to o(1)".  Intrinsic blocker seen:
+    log E[y^T] needs cumulant cancellation, which switching (a positive-ratio tool) does not deliver.
+ 3. Possible route: Janson/Suen-type dependency-graph bound on log E[y^T] for T = sum of indicators over
+    edges, using that nu_L restricted to <= n^{o(1)} edges is within 1+O(L k/n) of independent
+    (the ratio bound in (c) generalises).  Would give Rtail = O(L^4/n^2) if the linked-cluster weights are controlled.
+No edits to paper/main.tex.

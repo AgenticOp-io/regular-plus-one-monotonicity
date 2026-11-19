@@ -1,0 +1,63 @@
+r3 worker1 -- conditions (A), (B) for near-regular hosts (follow-up to r2_worker1_tv.txt)
+Scripts (all asserts pass):  v2/scripts/r3_worker1_host_exponent.py, r3_worker1_host_expand.py,
+  r3_worker1_pairing_ratio.py, r3_worker1_varT.py.   main.tex NOT edited.   Notation: host degrees
+h_v = h + y_v (sum y = 0, m2 = mean y^2, m3 = mean y^3), factor degree L (the "D" of nu_D), eps = (h-L)/L.
+
+SHORT ANSWER
+  (B) PROVED modulo [McK85,Thm 4.6] + one concentration step (sketched, Sec 3): TV(mu'_{d*},mu_D) is
+      controlled by sd(T)/(2M') with Var T an EXACT closed form (Sec 2).  Rate sqrt(L)(1+eps)/(sqrt2 eps sqrt n).
+  (A) NOT proved.  Proved/verified only the MEAN-FIELD part: the host-degree-variance term in the
+      four-pairing McKay exponent is exactly (L-1) m2/h^3 (1+O(1/h)) (Sec 1), i.e. the sum_v g_v(g_v-1)
+      host terms DO cancel to that order (this was the unchecked item of rem:growing-degree-scope).
+      The full second moment (pairing sums T_P with non-constant b_v, class-law window) is not redone.
+
+1. HOST-EXPONENT CANCELLATION (exact, sympy; r3_worker1_host_expand.py)
+   Take Lemma mckay-exponent with cells of h_v points, a_v ~ per-cell hypergeometric (E a = L^2/h_v,
+   E a(a-1) = (L(L-1))^2/(h_v(h_v-1))), class sums -> per-cell means, pairing sums -> (sum c w)^2/(2 sum c).
+   Psi := E1+E2+E3+E4 - lam(h) - lam(h)^2 - 2 E0.
+   * Regular host: Psi = -x/2 - x^2/4 exactly (asserted for 3 (h,L), rational arithmetic).
+   * Expanding in y (to 3rd order, n cancels):
+        Psi = -(2h-1)/(4(h-1)^2) + A m2 + B m3 + ...
+        A = (2L h^2 - L - 2h^2 + h) / (2 (h-L)(h-1)^4)  =  (L-1)/h^3 (1+O(1/h)),   A = 0 at L=1 (matchings)
+        B = -(4L-3)/(2h^4) (1+O(1/h)).
+     The naive host term is O(m2/h) (each of E_i individually), so A is a cancellation of two orders.
+     For Poisson-like spread m2 ~ h:  A m2 = O(L/h^2) -> 0.  Condition: (L-1) m2 = o(h^3).
+2. EXACT Var T (rigorous; r3_worker1_varT.py, brute force at n<=8 over ALL labelled regular graphs)
+   Lemma.  mu_D uniform D-regular, b in R^n, sum b = 0, T(G0) = sum_{ij in G0} b_i b_j, p = D/(n-1), s_k = sum b^k.
+   S_n-invariance + regularity force Cov(1_e,1_f) = -p(1-p)/(n-2) (edges sharing a vertex),
+   +p(1-p)/C(n-2,2) (disjoint edges) [from sum_k 1_{ik} = D and sum_f 1_f = Dn/2], so
+        Var T = p(1-p) P + c1 A + c2 Dis,  P=(s2^2-s4)/2, A=(2 s4 - s2^2) (ordered adjacent pairs),
+        Dis = s2^2/4 - P - A,  c1 = -p(1-p)/(n-2), c2 = p(1-p)/C(n-2,2).
+   Leading: Var T = p(1-p) s2^2/2 (1+o(1)) = D n m2^2/2 (1+o(1)) for L=D fixed-degree, m2 << n.   (E T is constant, harmless.)
+3. (B): TV(mu',mu_D)  (mu'(G0) ~ W(G0; r), r = d*-L residual degrees, any near-regular d*)
+   [McK85,Thm 4.6] with X=G0: W(G0;r) = W0(r) exp(-mu(r,G0) + O(Dhat^2/M)), mu = sum_{ij in G0} r_i r_j/(2M'),
+   Dhat = Delta(r)^2 + Delta(r) L, 2M' = sum r ~ n eps L.  Error O(h^3/(eps n)).  Writing r = rbar + b':
+   mu = const + T(G0)/(2M') because sum_{ij in G0} (rbar b'_i + rbar b'_j) = rbar L sum b' = 0 for L-regular G0.
+   So mu'/mu_D = e^{-u}/E e^{-u},  u = T/(2M'),  sd(u)^2 = Var T/(2M')^2 (Sec 2) ~ m2^2/(2 n L eps^2 ... ) :
+        sd(u) = (1+eps) sqrt(L) / (sqrt2 eps sqrt n) for m2 = h.
+   TV <= (1/2)E|e^{-u}/E e^{-u} - 1| <= sd(u)(1+o(1)) + O(h^3/(eps n)) PROVIDED u has sub-Gaussian
+   fluctuation at scale sd(u)*L.  Sketch (not written out): uniform pairing + switching changes T by <= 4 b_max^2,
+   Wormald Thm 2.19 as in thm:growing-degree-factor gives s^2 <= (Ln/2)(4 b_max^2/(2M'))^2, retention e^{-L^2/4};
+   needs L^3 log^2 n = o(eps^2 n), b_max^2 = O(L log n).   STATUS: Chebyshev part exact; exponential step sketched.
+   Numbers (script): L=50,n=1e5,eps=.5: sd(u)=4.7e-2;  L=200,n=1e6: 3.0e-2 (eps .5), 1.1e-1 (eps .1).
+   sd(u) < L^{-3/2} (triangle term) iff L^4 << eps^2 n, i.e. L = o((eps^2 n)^{1/4}).  So for larger spread (B) DOMINATES the
+   rate; "TV -> 0" persists as long as L^2 = o(eps sqrt n).
+4. NUMERICAL TEST OF (A) (mean-field; r3_worker1_pairing_ratio.py)
+   Exact pairing-level E Z^2/(E Z)^2 for cells h_v (sum over class vectors by polynomial product); regular host reproduces
+   sqrt((h-1)/(h-2)) (h=30: 1.01764 vs 1.01770).  Total log-ratio = log(pairing ratio) + Psi(y); deterministic Gaussian-quantile
+   profiles with m2 = h/4 and m2 = h, n = 200:
+      h  L   d(m2=h/4)    d(m2=h)     d := total(non-regular) - total(regular, same h)
+      30 3   2.6e-03      4.6e-02
+      60 3   2.5e-04      3.9e-03
+     120 3   2.2e-05      2.9e-04
+     120 6   6.7e-05      1.1e-03
+   The pairing term (+~2/h) and Psi (-~2/h) cancel to O(h^-4)-ish; d falls ~h^-3.7 at fixed m2/h and grows ~L^2.
+   Caveats: (i) mean-field only, class-law reweighting by g(sum a) and pairing-sum fluctuations ignored; (ii) at h>=240, n=200
+   the finite-n baseline (-4e-6) is the same size as d, so no conclusion there; (iii) not a proof of (A).
+
+5. WHAT REMAINS
+   (A1) Redo thm:growing-degree-factor with non-constant cell sizes: T_P fluctuation bound with b_v = a_v - q_v (now heterogeneous),
+        local limit for K with unequal per-cell variances, window.  Mean-field says the answer is exp(sum x^k/2k)(1+O(L m2/h^3 + ...)).
+   (A2) Closed form of the pairing-level ratio for non-regular cells (only numerics above).
+   (B2) Write out the exponential-moment step in Sec 3 (needs L^3 log^2 n = o(eps^2 n)).
+   (C)  Averaging over d* (w(d*)) and typical spread m2 ~ h(1-h/n) + fluctuation: not done.
