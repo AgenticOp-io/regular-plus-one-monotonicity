@@ -2786,6 +2786,55 @@ This cancellation is not needed on \(L=o(n^{1/2})\). It assumes the cumulant par
 of Lemma~\ref{lem:containment-ratio} has no \(L^4/n^2\) piece. Still open are
 \(t_3=O(L^3/n^3)\) for \(\nu_L\), bounds on \(\kappa_k\) for \(k\ge4\), and summing
 the tail. Past \(n^{1/2}\) the containment lemma itself no longer applies.
+For fixed \(L\) the \(k=4\) term is settled by
+Proposition~\ref{prop:cycle-first-order}.
+\end{remark}
+
+\begin{proposition}[First-order cycle counts, fixed degree]
+\label{prop:cycle-first-order}
+Fix \(D\ge3\) and \(k\ge3\), and let \(C_k\) be the number of \(k\)-cycles in a
+uniform simple \(D\)-regular graph on \([n]\). Then
+\[
+\EE C_k=\frac{(D-1)^k}{2k}\Bigl(1+\frac{f_1(k)}n+O(n^{-2})\Bigr),\qquad
+f_1(k)=\frac{k\,(D(5-k)+2k-8)}{2D}.
+\]
+In particular \(f_1(4)=2\) for every \(D\), and \(f_1(3)=3-3/D\). The fourth
+Ursell function \(u_{C_4}\) of the edge indicators is \((f_1(4)-2)/n+O(n^{-2})\), so
+\(u_T=O(n^{-2})\) for every connected non-star four-edge \(T\). This is the
+\(k=4\) part of (R\(2^*\)) at fixed degree.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Let \(d\) be a degree sequence with \(\max d\le\Delta\), and let
+\(s_r=n^{-1}\sum_v(d_v)_r\). The pairing model gives
+\(P_d(\text{simple})=e^{-\lambda_1-\lambda_2}+H_1(s)/n+O(n^{-2})\) uniformly in
+\(d\), with \(H_1\in C^1\). This follows from Bonferroni in the loop and
+double-edge counts, truncated at \(\lceil\log n\rceil\) terms, together with a
+site-by-site count in which every non-fresh site costs a factor \(O(\log^2n/n)\),
+and the free sites, those whose two pairs are both already present, number at
+most \(\Delta^2\) per defect site. So a change of \(O(1)\) degrees changes
+\(\log P_d(\text{simple})\) by the first-order change of
+\(-\lambda_1-\lambda_2\), up to \(O(n^{-2})\). Condition on a fixed \(k\)-cycle.
+The rest is a pairing with \(k\) vertices of degree \(D-2\) and \(k(D-2)^2\)
+forbidden parallel sites, which gives
+\(P(\mathrm{simple}\mid C)/P(\mathrm{simple})=1+2k(D-2)/(Dn)+O(n^{-2})\). The
+prefactor \(n^{(k)}(D(D-1))^k/(2k\prod_{i<k}(nD-2i-1))\) contributes
+\(-k(k-1)/2+k^2/D\). The identity for \(u_{C_4}\) is the exact reduction of
+every \(\le4\)-edge host probability to \((n,D,\EE C_3,\EE C_4)\). The full
+argument is in \texttt{v2/notes/r25\_lemma\_L1.md} and
+\texttt{v2/notes/r23a\_exact\_hosts.md}. The constants are checked symbolically,
+and against exact enumeration at \(D=3,4,5\), by
+\texttt{v2/scripts/r25\_cycle\_f1.py}. The leading term and an \(O(1/n)\) error
+are in~\cite{MWW04}, eq.~(2.2). We did not find the coefficient \(f_1(k)\)
+stated anywhere.
+\end{proof}
+
+\begin{remark}[Growing degree]
+The constants in Proposition~\ref{prop:cycle-first-order} depend on \(D\)
+through \(l^{3+3D^2}/n\) (free sites) and through the truncation
+\(\lceil\log n\rceil\gtrsim D^4\). The argument therefore does not reach the
+regime \(L\to\infty\) that (R\(2^*\)) needs for the peel. That regime stays
+open.
 \end{remark}
 
 \subsection*{The factor second moment as a colouring count}
@@ -8998,6 +9047,11 @@ arXiv:1803.10360.
 S.~Janson, T.~\L uczak, and A.~Ruci\'nski,
 \emph{Random Graphs},
 Wiley, New York, 2000.
+
+\bibitem{MWW04}
+B.~D.~McKay, N.~C.~Wormald, and B.~Wysocka,
+\emph{Short cycles in random regular graphs},
+Electron.\ J.\ Combin.\ \textbf{11} (2004), R66.
 
 \bibitem{Hoeffding63}
 W.~Hoeffding,

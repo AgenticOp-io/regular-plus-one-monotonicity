@@ -39,6 +39,12 @@ Bar is 2.0. v1.0 is sent.
 
 ## Also closed (strengthening / obstruction)
 
+- **cycle-first-order** (Proposition cycle-first-order, 2026-11-19): for fixed D,
+  \(\EE C_k=(D-1)^k/(2k)(1+f_1(k)/n+O(n^{-2}))\),
+  \(f_1(k)=k(D(5-k)+2k-8)/(2D)\), with \(f_1(4)=2\). This settles the k=4 part of
+  (R2\*) at fixed degree. The growing-D case is still open
+  (`v2/notes/r25_lemma_L1.md`).
+
 - **peel-second-moment-third** (two-sided sandwich): Lemmas avoid-overlap
   (factor case) and decomp-overlap are two-sided; Theorem
   peel-second-moment-third is now

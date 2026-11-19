@@ -1,7 +1,7 @@
 # r25: proof of Lemma L1 (local perturbation of P(simple)), hence f1=2 and R2*(k=4) for fixed D
-Status: PROVED, except that the combinatorial estimate (E3) is written at sketch level (standard shape counting, no new idea needed).
+Status: PROVED for fixed D. (E3) is written out in full (r26 update). The growing-D case is open: see the last section.
 Constants are checked symbolically by v2/scripts/r25_cycle_f1.py (sympy), and against the r24a exact-DP Richardson values for D=3,4,5.
-No literature search was done. The general k-cycle formula below may already be known; we do not claim it is new.
+Literature (searched 2026-11-19): McKay-Wormald-Wysocka, EJC 11 (2004) R66, eq. (2.2), give E X_r = (d-1)^r/(2r) (1+O(r(r+d)/n)). Johnson, arXiv:1112.0704 Thm 11, gives a total-variation Poisson bound. Neither gives the explicit 1/n coefficient, and none was found elsewhere. f1(k) is not claimed new, but no source for it was found.
 
 ## Theorem
 Fix D>=3 and k>=3. Let C_k be the number of k-cycles in a uniform simple D-regular graph on [n]. Then
@@ -36,7 +36,23 @@ So a shape with defect t = m - |V_sigma| contributes at order n^-t, and sigma0 c
   mu0_jk = (s2/2)^j (s2^2/4)^k / s1^{j+2k} = lam1^j lam2^k.
 (Per ordered vertex pair, a double site has (d_u)_2 (d_w)_2 / 4 placements.)
 
-**(E3) Uniform bound (sketch).** The total weight sum c_sigma over shapes of defect t is at most c_sigma0 * (C m^2)^t. Each unit of defect identifies one vertex or one pair of a site with one in an earlier site, and there are <= m^2 choices.
+**(E3) Uniform bound (proved).** Let l = j+k <= L+1 with L = ceil(log n), so m <= 2l = O(log n) and F_m(N) >= N^m/2 for large n.
+Write l! E binom(X+Y, l) = sum over ordered l-tuples (sigma_1..sigma_l) of distinct sites of P(all present) <= 2 sum N^{-m}, where m is the number of distinct pairs in the union (tuples with clashing points have probability 0 and are dropped).
+Read the tuple left to right. Site i adds p_i new pairs and q_i new vertices, so sum p_i = m and sum q_i = |V|. Classify site i:
+- *fresh*: all its vertices are new (loop: q=p=1; double: q=p=2). Defect p_i - q_i = 0.
+- *free*: a double site whose two pairs are both already present (q=p=0). Defect 0.
+- *defect*: anything else. Then p_i - q_i >= 1. Check: a loop pair is never inside a double site and distinct loop sites are distinct pairs, so a loop at an old vertex has p=1, q=0. A double site with exactly one old vertex has q=1, and both pairs go to the new vertex, so p=2. A double site on two old vertices that is not free has p >= 1, q = 0.
+So the total defect m - |V| = sum (p_i - q_i) >= t, the number of defect sites.
+*Free sites are controlled by defect sites.* If site i is free, its two pairs come from two different earlier sites (one earlier site containing both would equal sigma_i). So the bundle u-w has >= 3 pairs, and some earlier site on that bundle had both vertices old with p >= 1, i.e. a defect site. A bundle has <= Delta pairs, so <= binom(Delta,2) free sites, giving f <= Delta^2 t.
+*Weights.* Count choices site by site, each new pair weighted by 1/N and each new vertex by n <= N. A fresh loop weighs <= n Delta^2/N <= Delta^2. A fresh double weighs <= n^2 Delta^4/N^2 <= Delta^4. A defect site weighs <= (2l)^2 Delta^4 n^q N^{-p} <= 4 l^2 Delta^4/n, since old vertices give <= 2l choices. A free site weighs <= (2l)^2 Delta^2: two old vertices, then two of the <= Delta existing pairs between them, with no new pair or vertex. (The factor 2 for the site type, loop or double, is absorbed into the constants. 2Delta^4 >= 1, so replacing a fresh weight by 1 only loosens the bound.) Choosing which positions are defect or free gives <= binom(l,t) binom(l,f) <= l^{t+f} patterns. Hence
+  l! E binom(X+Y,l) <= 2 (2Delta^4)^l sum_{t>=0} (8 l^3/n)^t sum_{f <= Delta^2 t} (8 l^3)^f
+                    <= 2 (2Delta^4)^l (1 + R_l),   R_l <= sum_{t>=1} ((Delta^2+1) 2 (8l^3)^{1+Delta^2}/n)^t <= C_Delta l^{c_Delta}/n,
+for l <= L+1 and n large (so the ratio is <= 1/2), with c_Delta = 3 + 3 Delta^2.
+**Consequences.**
+- (Truncation) E binom(X+Y, L+1) <= 4 (2Delta^4)^{L+1}/(L+1)! <= 4 (2e Delta^4/(L+1))^{L+1} = O(n^-3).
+- (Defect >= 2 is O(n^-2)) Restricted to tuples with total defect >= 2 (t >= 2, or t = 1 with a site of defect 2), the same count gives <= 2 (2Delta^4)^l C l^{2c_Delta}/n^2. The extra n^{-1} in the t = 1, p-q = 2 case comes from the second new pair.
+- (Defect 0 and 1 are explicit) Tuples of defect 0 are the vertex-disjoint shape sigma0 (fresh sites only, since a free site forces t >= 1). Tuples of defect 1 have t = 1 and f <= Delta^2, so they form a finite list of shapes sigma for each (j,k). Each contributes c_sigma Pi_sigma(d)/F_m(N). By the collision expansion in (E2) (two-term Bonferroni over the events phi(x) = phi(y), remainder <= binom(|V|,2)^2 Delta^{2m} n^{|V|-2}), this is n^{|V|-m} * (polynomial in s)/s1^m * (1 + O(m^4/n)).
+Summing with weights 1/(j!k!): sum_l (2Delta^4)^l l^{2c_Delta}/l! < infinity. So all the polylog factors are absorbed into constants depending only on Delta.
 With (E2) this gives, for m <= c sqrt(n):
   M_jk = mu0_jk + mu1_jk(s)/n + rho_jk,   |mu1|, |grad mu1| <= C^m m^2,   |rho| <= C^m m^4 / n^2,   M_jk <= 2 C^m.
 Here mu1 is a rational function of s, smooth on K because s1 >= 1.
@@ -59,6 +75,6 @@ Here d' is D everywhere except D-2 at the k cycle vertices, A = {X=Y=0 in the re
 Adding the two first-order terms gives f1(k) = -k(k-1)/2 + k^2/D + 2k - 4k/D = k(D(5-k)+2k-8)/(2D).
 
 ## Remaining gaps
-- (E3) is a sketch. A full write-up needs the shape-count bound c_sigma <= c_sigma0 (C m^2)^t written out: an injection that builds shapes by successive identifications. This is routine.
-- D is fixed throughout. The constants grow with Delta, so the D-growing regime (L up to n^{1/2}) is NOT covered.
-- The paper (v2/paper/main.tex) is not updated yet.
+- (E3) is closed (above).
+- D is fixed throughout, and the D-growing regime (L up to n^{1/2}) is NOT covered. The obstruction is concrete: the free-site bound f <= Delta^2 t gives R_l ~ l^{3+3Delta^2}/n, and the Bonferroni truncation needs L >~ e^2 * 2Delta^4. Both fail already for Delta ~ log n. Growing D would need a different route, such as switchings in the McKay-Wormald-Wysocka style carried to second order, with the free-site bookkeeping replaced by bundle-level inclusion-exclusion. The exact bundle weight is (-1)^mu (1-mu) for a bundle of mu parallel pairs, since sum over covering edge sets B of K_mu of (-1)^|B| equals (-1)^mu (1-mu).
+- Paper: Proposition cycle-first-order was added after Remark peel-kappa3 in v2/paper/main.tex.
