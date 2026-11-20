@@ -77,4 +77,5 @@ Adding the two first-order terms gives f1(k) = -k(k-1)/2 + k^2/D + 2k - 4k/D = k
 ## Remaining gaps
 - (E3) is closed (above).
 - D is fixed throughout, and the D-growing regime (L up to n^{1/2}) is NOT covered. The obstruction is concrete: the free-site bound f <= Delta^2 t gives R_l ~ l^{3+3Delta^2}/n, and the Bonferroni truncation needs L >~ e^2 * 2Delta^4. Both fail already for Delta ~ log n. Growing D would need a different route, such as switchings in the McKay-Wormald-Wysocka style carried to second order, with the free-site bookkeeping replaced by bundle-level inclusion-exclusion. The exact bundle weight is (-1)^mu (1-mu) for a bundle of mu parallel pairs, since sum over covering edge sets B of K_mu of (-1)^|B| equals (-1)^mu (1-mu).
+- r27 (v2/notes/r27_growing_D.md) gives heuristic evidence that the D^2/n^2 terms cancel, so the same f1 is conjectured to hold for D = o(n).
 - Paper: Proposition cycle-first-order was added after Remark peel-kappa3 in v2/paper/main.tex.
