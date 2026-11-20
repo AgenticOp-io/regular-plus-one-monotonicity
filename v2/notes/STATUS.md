@@ -48,6 +48,8 @@ Bar is 2.0. v1.0 is sent.
   exact edge and P3 probabilities. Conjecture: the same f1 holds with error
   O((D+k^2)/n^2) for D = o(n). A proof needs a log/cluster expansion or second-order
   switchings; the Bonferroni route only reaches D <= c sqrt(log n).
+  r28 (`v2/notes/r28_growing_D_exact.md`) is exact numerical evidence for k=4, D=3..8:
+  f1=2.000(2), and the 1/n^2 coefficient is c(D)~4, flat in D. That is stronger than O(D).
 
 - **peel-second-moment-third** (two-sided sandwich): Lemmas avoid-overlap
   (factor case) and decomp-overlap are two-sided; Theorem
