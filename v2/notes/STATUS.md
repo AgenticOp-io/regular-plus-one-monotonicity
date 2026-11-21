@@ -130,3 +130,6 @@ Bar is 2.0. v1.0 is sent.
    past \(n^{1/3}\).
 
 See `PROGRAM.md` for the full closed/blocked ledger.
+
+- r55 (sketch): k>=3 cluster remainder at fixed t<=2/n has explicit constants (Penrose tree bound, |R3|<=71.4 w^3 L^3/(n^2(1-rho0))), exact numerics on disjoint K_{L+1} hosts. Tail t>2/n and Gamma-cumulant step still unproved; gap 2 OPEN.
+- r56: lemma (M) NOT proved; exact DP to n=40 shows err ~ n^-2, ~linear in D (consistent with O(D/n^2)). Finite check only; L1' OPEN.
