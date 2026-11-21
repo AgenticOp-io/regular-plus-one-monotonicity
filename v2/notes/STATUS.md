@@ -60,6 +60,24 @@ Bar is 2.0. v1.0 is sent.
 - **package-not-persist** (Proposition package-not-persist): mid-window
   five-package residue cannot persist at matching length on sparse hosts.
 
+## Rounds r32-r38 (2026-11-21; see main.tex Remarks rounds-r32-r38, weak-law-false)
+
+- **PROVED** r32: S1 collision/Bonferroni bound uniform in D (`notes/r32_S1_proof.md`).
+  Range D <= c(ln n)^{1/4} not shrunk; binding e^{O(D^4)} is E3's site weight, untouched.
+  r37: weak law <=> TV(P,P*)->0 (bounded convergence).
+- **SKETCH** r38: L1 for D-regular / D-2-on-k classes via termwise Lipschitz from S1; r30 now
+  rests on E3 only (E3 not re-proved; only defect-0 part numerically checked). Range unchanged.
+  r35: t3 = O(L^3/n^3) under nu_L (switching) and unconditioned (R2*) on L=o(n^{1/2}).
+  r36: exact one-factor identity (proved); 2nd-order cluster expansion, L^3/n is a deterministic
+  coefficient matching kappa_2, residual O(L^4/n^2) (numerics, x=2 only).
+- **FALSE (sketch, pairing level)** r37: weak law Z/E[Z|G,deg R=g]->1 fails; Lambda shift = sqrt K,
+  TV->1. Lemma avoid-G-host / residual-moment-bim in degree-conditioned form cannot be proved as
+  stated; repaired target Z/E[Z|G,g,Q(H)] untouched. r33 K formula had m role-swapped; corrected
+  (conclusion K/delta^2->inf stands). Simple-graph transfer not done.
+- **OPEN** (R2*) past n^{1/3}: r36 gaps (overlap tail for linearisation, signed KP constants,
+  recursion error propagation, kappa_k k>=3). r34: L1' (arbitrary d, D<=n^c) open; routes:
+  differentiable Isaev-McKay, KP cluster expansion on D<=c n^{1/4}.
+
 ## Also open (not named)
 
 - Peel second moment past \(n^{1/3}\) (Proposition peel-cubic-gap /

@@ -2848,6 +2848,87 @@ values \(\PP(uv\in G)=D/(n-1)\) and
 \texttt{v2/notes/r27\_growing\_D.md}).
 \end{remark}
 
+\begin{remark}[Rounds r32--r38 on growing degree and the peel: what is and is not proved]
+\label{rem:rounds-r32-r38}
+\emph{Proved.}
+(r32) The collision/Bonferroni bound S1 is proved, elementary and uniform in
+\(D\), with absolute constants. For a shape with degrees \(r_x\le D\) and a degree
+sequence \(d\le D\) with deficit \(B'=\sum_u(D-d_u)\), write
+\(\Pi(d)=\sum_{\varphi\text{ injective}}\prod_x(d_{\varphi(x)})_{r_x}\) and
+\(\mathrm{lead}=\prod_x(D)_{r_x}\). Then \(\Pi\le n^v\,\mathrm{lead}\) and
+\(\Pi\ge(n-B')^v\mathrm{lead}-\binom v2n^{v-1}\mathrm{lead}\). The collision
+term is \((d_u)_a(d_u)_b\le(D)_a(D)_b\), not \((d_u)_{a+b}\) as first written.
+This does not shrink the range \(D\le c(\log n)^{1/4}\) of the growing-\(D\) argument;
+the binding factor \(e^{O(D^4)}\) comes from the crude site weight \(2D^4\) in
+the factorial-moment weight bound E3, which S1 does not touch.
+(r37) For a nonnegative \(X\) with \(\EE X=1\), \(X\to1\) in probability if and
+only if \(\dTV(P,P^*)\to0\), where \(\mathrm dP^*=X\,\mathrm dP\).
+
+\emph{Sketch only.}
+(r38) The smoothness step of the growing-\(D\) cycle lemma (\(C^1\) smoothness of
+the first-order term \(H_1\)) is replaced by a termwise Lipschitz comparison of
+the Bonferroni sum using S1. For the degree classes used (\(D\)-regular, or
+\(D-2\) on \(k\) vertices) this gives
+\(\ln P_{d'}-\ln P_d=G_0(s')-G_0(s)+O(B'\mathrm{poly}(D)\,e^{-G_0}E(n,D)/n^2)\),
+for \(D\le c(\log n)^{1/4}\). The growing-\(D\) cycle lemma then rests on E3
+alone (together with the side conditions G1, G3). E3 for growing \(D\) was
+re-read, not re-proved, and the termwise argument was only checked numerically on
+the defect-zero part. This is not an unconditional theorem and does not extend the
+range.
+(r35) The triangle input \(t_3=O(L^3/n^3)\) under the disjoint-matchings law
+\(\nu_L\) follows from a switching bound
+\(\PP(uv\in M)\le1/(n-2-4L)\), which discharges the \(k=3\) term of (R\(2^*\))
+for \(L=o(n^{1/2})\) (constants not written). Likewise the \emph{unconditioned}
+independent-matchings version of (R\(2^*\)) follows from a monomer--dimer cluster
+expansion on \(L=o(n^{1/2})\), with the cluster constants not written.
+(r36) An exact one-factor identity (proved, elementary)
+\(\EE[x^{|M\cap F|}\mathbf 1\{M\cap U=\emptyset\}]=\sum_S\prod_{e\in S}w_e\,q_{|S|}\)
+leads to a second-order cluster expansion, checked numerically, in which the
+\(L^3/n\) term is an explicit deterministic coefficient. It matches the known
+\(\kappa_2\) exactly, with residual \(O(L^4/n^2)\), so no uncancelled \(L^3/n\)
+term remains. This is a sketch.
+
+\emph{Not closed.}
+(R\(2^*\)) itself, for \(L\) past \(n^{1/3}\), remains open. The r36 chain has four
+listed gaps: a tail bound for the overlap \(m_j=|F\cap U_j|\) needed to linearise
+in \(m_j\) (circular with the \(O(L^3/n)\)-accurate Lemma~\ref{lem:avoid-overlap}
+unless bootstrapped); a rigorous Kotecky--Preiss bound with signed weights; error
+propagation through the backward recursion; and verification of \(\kappa_k\), \(k\ge3\),
+and of tail summability (only \(x=2\) was tested). The conditioning on
+disjointness is thus not discharged.
+(r34) The uniform-in-\(D\) local-variation lemma L1\('\) for arbitrary degree
+sequences and \(D\le n^c\) is open. Asymptotic-enumeration formulas control
+\(\ln P_d\) only to an absolute error \(D^3/n\), too coarse for a difference at
+distance \(1/n\); a differentiable-in-\(d\) version of the Isaev--McKay theorem and a
+Kotecky--Preiss cluster expansion on \(D\le cn^{1/4}\) (with weaker error
+\(O(D^2/n^2)\)) are the routes named, neither carried out.
+\end{remark}
+
+\begin{remark}[{The weak law \(Z/\EE[Z\mid G,\deg R=g]\to1\) is false (sketch)}]
+\label{rem:weak-law-false}
+Residual step~2 (the avoidance lemma on host degrees \(g\)) cannot be proved in
+the stated form. Its variance hypothesis is false in regime~(B) at the pairing
+level (r15w1, r33). The weak-law form was left open in r33 because a second moment
+can be dominated by a rare overlap. Round r37 answers this: with \(X=Z/\EE Z\), the
+statistic \(\Lambda(H)=\sum_{uv\in H}y_uy_v\) (with \(y_v\) the host-degree
+deviations) has a planted mean shift of
+\(\sqrt K\) null standard deviations, with unchanged variance, so the planted law is a
+Gaussian shift experiment and \(\dTV\to1\) when \(K\to\infty\); hence
+\(X\to0\) in probability. Pairing-model Monte Carlo agrees (\(z\) versus
+\(\sqrt K\): \(0.76/0.79\), \(1.84/1.79\), \(2.59/2.53\), all \(K\le6.4\)). The divergence
+\(K\to\infty\) is extrapolation of an exact formula, not simulated. This is a sketch
+at the pairing level only; the transfer to simple graphs and the conditional second
+moment given \(\Lambda\) are not done (the \(\Lambda\)-conditioned ratio in r16w2 still grows). A
+repaired target would be \(Z/\EE[Z\mid G,g,Q(H)]\to1\) with \(Q\) the joint-degree
+edge-count matrix; nothing is proved for it.
+Correction: earlier notes used \(K=n(\delta-m)^2s_2^4/(2m^2\delta^3)\) with
+\(m\) the factor degree. That formula holds with \(m\) the \emph{residual} degree.
+With \(m\) the factor degree the right constant is
+\(K=nm^2s_2^4/(2(\delta-m)^2\delta^3)\), and the regime-(B) line
+\(K=n\delta^2/(2m^2)\) was the swapped, wrong expression. The conclusion
+\(K/\delta^2\to\infty\) is unchanged.
+\end{remark}
+
 \subsection*{The factor second moment as a colouring count}
 
 The overlap average can be avoided altogether.
