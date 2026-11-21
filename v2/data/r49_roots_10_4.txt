@@ -1,0 +1,18 @@
+n 10 D 4 total 66462606
+cyc3    deg3 zeroMult0 maxRe(nonzero roots) -0.319092 maxIm 0.0 dist_to_1 1.3191 maxRe_over_|root| -1.0
+cyc4    deg4 zeroMult0 maxRe(nonzero roots) -0.341312 maxIm 0.0 dist_to_1 1.3413 maxRe_over_|root| -1.0
+cyc5    deg5 zeroMult0 maxRe(nonzero roots) -0.4582 maxIm 0.08076 dist_to_1 1.4604 maxRe_over_|root| -0.9848
+cyc6    deg6 zeroMult0 maxRe(nonzero roots) -0.434165 maxIm 1.349 dist_to_1 1.4464 maxRe_over_|root| -0.9176
+cyc7    deg7 zeroMult0 maxRe(nonzero roots) -0.427253 maxIm 1.863 dist_to_1 1.452 maxRe_over_|root| -0.833
+cyc8    deg8 zeroMult0 maxRe(nonzero roots) -0.416927 maxIm 2.12 dist_to_1 1.4592 maxRe_over_|root| -0.7316
+cyc9    deg9 zeroMult0 maxRe(nonzero roots) -0.399639 maxIm 2.214 dist_to_1 1.4641 maxRe_over_|root| -0.6243
+cyc10   deg10 zeroMult0 maxRe(nonzero roots) -0.375444 maxIm 2.206 dist_to_1 1.4676 maxRe_over_|root| -0.515
+path2   deg2 zeroMult0 maxRe(nonzero roots) -0.612574 maxIm 0.0 dist_to_1 1.6126 maxRe_over_|root| -1.0
+path3   deg3 zeroMult0 maxRe(nonzero roots) -0.477943 maxIm 0.0 dist_to_1 1.4779 maxRe_over_|root| -1.0
+path4   deg4 zeroMult0 maxRe(nonzero roots) -0.475955 maxIm 0.0 dist_to_1 1.476 maxRe_over_|root| -1.0
+path5   deg5 zeroMult0 maxRe(nonzero roots) -0.55762 maxIm 0.4139 dist_to_1 1.5626 maxRe_over_|root| -0.9757
+path6   deg6 zeroMult0 maxRe(nonzero roots) -0.525118 maxIm 1.126 dist_to_1 1.5416 maxRe_over_|root| -0.9191
+path7   deg7 zeroMult0 maxRe(nonzero roots) -0.508401 maxIm 1.528 dist_to_1 1.5403 maxRe_over_|root| -0.8377
+path8   deg8 zeroMult0 maxRe(nonzero roots) -0.487359 maxIm 1.766 dist_to_1 1.5404 maxRe_over_|root| -0.7414
+path9   deg9 zeroMult0 maxRe(nonzero roots) -0.460155 maxIm 1.889 dist_to_1 1.5397 maxRe_over_|root| -0.6351
+WORST maxRe -0.31909188 cyc3 | NEAREST to 1 1.3190919 cyc3
