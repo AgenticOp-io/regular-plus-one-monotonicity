@@ -39,6 +39,18 @@ Bar is 2.0. v1.0 is sent.
 
 ## Also closed (strengthening / obstruction)
 
+- **cycle-first-order** (Proposition cycle-first-order, 2026-11-19): for fixed D,
+  \(\EE C_k=(D-1)^k/(2k)(1+f_1(k)/n+O(n^{-2}))\),
+  \(f_1(k)=k(D(5-k)+2k-8)/(2D)\), with \(f_1(4)=2\). This settles the k=4 part of
+  (R2\*) at fixed degree. The growing-D case is still open
+  (`v2/notes/r25_lemma_L1.md`). r29 (`v2/notes/r29_growing_D_proof.md`): attempt, no new range proved; missing lemma L1' (uniform-in-D local variation of ln P(simple) to O(D/n^2)). r27 (`v2/notes/r27_growing_D.md`) is heuristic:
+  the D^2/n^2 terms of ln R cancel for every host, and the same bookkeeping matches the
+  exact edge and P3 probabilities. Conjecture: the same f1 holds with error
+  O((D+k^2)/n^2) for D = o(n). A proof needs a log/cluster expansion or second-order
+  switchings; the Bonferroni route only reaches D <= c sqrt(log n).
+  r28 (`v2/notes/r28_growing_D_exact.md`) is exact numerical evidence for k=4, D=3..8:
+  f1=2.000(2), and the 1/n^2 coefficient is c(D)~4, flat in D. That is stronger than O(D).
+
 - **peel-second-moment-third** (two-sided sandwich): Lemmas avoid-overlap
   (factor case) and decomp-overlap are two-sided; Theorem
   peel-second-moment-third is now

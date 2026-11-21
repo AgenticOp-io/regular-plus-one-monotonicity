@@ -26,6 +26,7 @@ AgenticOps\\
 \newcommand{\PP}{\mathbb{P}}
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\dTV}{d_{\mathrm{TV}}}
+\setlength{\emergencystretch}{3em}
 
 \begin{document}
 \maketitle
@@ -2786,6 +2787,65 @@ This cancellation is not needed on \(L=o(n^{1/2})\). It assumes the cumulant par
 of Lemma~\ref{lem:containment-ratio} has no \(L^4/n^2\) piece. Still open are
 \(t_3=O(L^3/n^3)\) for \(\nu_L\), bounds on \(\kappa_k\) for \(k\ge4\), and summing
 the tail. Past \(n^{1/2}\) the containment lemma itself no longer applies.
+For fixed \(L\) the \(k=4\) term is settled by
+Proposition~\ref{prop:cycle-first-order}.
+\end{remark}
+
+\begin{proposition}[First-order cycle counts, fixed degree]
+\label{prop:cycle-first-order}
+Fix \(D\ge3\) and \(k\ge3\), and let \(C_k\) be the number of \(k\)-cycles in a
+uniform simple \(D\)-regular graph on \([n]\). Then
+\[
+\EE C_k=\frac{(D-1)^k}{2k}\Bigl(1+\frac{f_1(k)}n+O(n^{-2})\Bigr),\qquad
+f_1(k)=\frac{k\,(D(5-k)+2k-8)}{2D}.
+\]
+In particular \(f_1(4)=2\) for every \(D\), and \(f_1(3)=3-3/D\). The fourth
+Ursell function \(u_{C_4}\) of the edge indicators is \((f_1(4)-2)/n+O(n^{-2})\), so
+\(u_T=O(n^{-2})\) for every connected non-star four-edge \(T\). This is the
+\(k=4\) part of (R\(2^*\)) at fixed degree.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Let \(d\) be a degree sequence with \(\max d\le\Delta\), and let
+\(s_r=n^{-1}\sum_v(d_v)_r\). The pairing model gives
+\(P_d(\text{simple})=e^{-\lambda_1-\lambda_2}+H_1(s)/n+O(n^{-2})\) uniformly in
+\(d\), with \(H_1\in C^1\). This follows from Bonferroni in the loop and
+double-edge counts, truncated at \(\lceil\log n\rceil\) terms, together with a
+site-by-site count in which every non-fresh site costs a factor \(O(\log^2n/n)\),
+and the free sites, those whose two pairs are both already present, number at
+most \(\Delta^2\) per defect site. So a change of \(O(1)\) degrees changes
+\(\log P_d(\text{simple})\) by the first-order change of
+\(-\lambda_1-\lambda_2\), up to \(O(n^{-2})\). Condition on a fixed \(k\)-cycle.
+The rest is a pairing with \(k\) vertices of degree \(D-2\) and \(k(D-2)^2\)
+forbidden parallel sites, which gives
+\(P(\mathrm{simple}\mid C)/P(\mathrm{simple})=1+2k(D-2)/(Dn)+O(n^{-2})\). The
+prefactor \(n^{(k)}(D(D-1))^k/(2k\prod_{i<k}(nD-2i-1))\) contributes
+\(-k(k-1)/2+k^2/D\). The identity for \(u_{C_4}\) is the exact reduction of
+every \(\le4\)-edge host probability to \((n,D,\EE C_3,\EE C_4)\). The full
+argument is in \texttt{v2/notes/r25\_lemma\_L1.md} and
+\texttt{v2/notes/r23a\_exact\_hosts.md}. The constants are checked symbolically,
+and against exact enumeration at \(D=3,4,5\), by
+\texttt{v2/scripts/r25\_cycle\_f1.py}. The leading term and an \(O(1/n)\) error
+are in~\cite{MWW04}, eq.~(2.2). We did not find the coefficient \(f_1(k)\)
+stated anywhere.
+\end{proof}
+
+\begin{remark}[Growing degree]
+The constants in Proposition~\ref{prop:cycle-first-order} depend on \(D\)
+through \(l^{3+3D^2}/n\) (free sites) and through the truncation
+\(\lceil\log n\rceil\gtrsim D^4\). The argument therefore does not reach the
+regime \(L\to\infty\) that (R\(2^*\)) needs for the peel. That regime stays
+open.
+A second-order heuristic, using the \(D^3/n\) term of the McKay--Wormald
+exponent, indicates that the expansion survives growing \(D\). The only
+\(D^2/n^2\) contributions to \(\log R\) are \(+e(H)D^2/(2n^2)\) from the local
+change of that term and \(-e(H)D^2/(2n^2)\) from pairs of rest edges parallel to
+one host edge, and these cancel. The same bookkeeping reproduces the exact
+values \(\PP(uv\in G)=D/(n-1)\) and
+\(\PP(P_3\subseteq G)=D(D-1)/((n-1)(n-2))\). This suggests
+\(\EE C_k=\frac{(D-1)^k}{2k}\bigl(1+f_1(k)/n+O((D+k^2)/n^2)\bigr)\) for
+\(D=o(n)\). That is a conjecture, not a theorem (see
+\texttt{v2/notes/r27\_growing\_D.md}).
 \end{remark}
 
 \subsection*{The factor second moment as a colouring count}
@@ -2831,11 +2891,11 @@ where \(H\) is the Shannon entropy.
 \label{lem:cumulant-constant}
 For \(0<a<\lambda<1\), write \(\varLambda=\lambda(1-\lambda)\). Then
 \(c_1=-\frac16-\frac1{12\varLambda}\),
-\[
+\begin{gather*}
 c_2=-\frac{5a^2\lambda-6a^2-5a\lambda^2+6a\lambda-\lambda^2+\lambda}{12a(a-\lambda)(\lambda-1)},
-\qquad
+\\
 c_3=-\frac{8a^2\lambda^2-10a^2\lambda+a^2-8a\lambda^3+10a\lambda^2-a\lambda-2\lambda^3+2\lambda^2}{12a\lambda(a-\lambda)(\lambda-1)},
-\]
+\end{gather*}
 and \(c_3+c_1-2c_2=0\) identically.
 The cancellation is not termwise: the same second difference is
 \(2(1-\lambda)/\lambda\) for \(K_4\) and for \(T_1\), and \(0\) for \(T_3\).
@@ -2978,8 +3038,10 @@ each \(i\), all \(\theta^{(i)}_j\) equal \(0\) or all equal \(\pi\); and \(F=1\)
 \(K\ge(m+2)\pi^2/(4p_0^2)\), then
 \(\int_{\Omega_K}|F|\le(2\pi)^{mn}n^{-(m/2+1)n}\), which is at most
 \(e^{-n}I_m\) for large \(n\), where
-\(I_m=2^m(2\pi)^{mn/2}\det(\Sigma_m)^{-n/2}\det(Q_n)^{-m/2}e^{c_m}\) is the
-value of \(\int F\) predicted by Hypothesis~\ref{hyp:mllt}.
+\[
+I_m=2^m(2\pi)^{mn/2}\det(\Sigma_m)^{-n/2}\det(Q_n)^{-m/2}e^{c_m}
+\]
+is the value of \(\int F\) predicted by Hypothesis~\ref{hyp:mllt}.
 \end{enumerate}
 \end{lemma}
 
@@ -4692,9 +4754,13 @@ arithmetic gives
 \[
 n\bigl(n^2(q_3-p)-4\bigr)-(-L^3+L^2-5L+20+8/L)
 \]
-equal to \(-6445528431584584717/30799677832475266995\) at \((L,n)=(5,400)\) and
-to \(-26692586805897374537317/510146877521279604067995\) at \((5,1600)\), both
-\(O(1/n)\). The summand \(-L^3/n^3\), multiplied by
+equal to
+\[
+-\tfrac{6445528431584584717}{30799677832475266995}\ \text{at }(L,n)=(5,400),
+\qquad
+-\tfrac{26692586805897374537317}{510146877521279604067995}\ \text{at }(5,1600),
+\]
+both \(O(1/n)\). The summand \(-L^3/n^3\), multiplied by
 \(p q_{\mathrm{disj}}=L^2/n^2+O(L^2/n^3)\) and by \((Ln/2)^3/6\), produces the
 mass \(-L^8/(48n^2)\). The identities
 \(n^2 p q_{\mathrm{disj}}-L^2\to 0\),
@@ -5529,13 +5595,14 @@ The identity was checked against an exhaustive count of all pairings for
 \end{proof}
 
 Let \(I\) be the Cram\'er rate function of \(h\), and put
-\[
+\begin{multline*}
 \psi(\alpha)
 =
 \tfrac12\Bigl[\alpha\log\alpha+2(L-\alpha)\log(L-\alpha)
 +(D-2L+\alpha)\log(D-2L+\alpha)
+\\
 -2L\log L-2(D-L)\log(D-L)+D\log D\Bigr].
-\]
+\end{multline*}
 Stirling's formula in the form
 \(\log M(N)=\tfrac N2\log N-\tfrac N2+\tfrac12\log2+O(1/(N+1))\) gives
 \(\log g(A)=n\psi(A/n)+O(1)\) uniformly in \(A\), because the coefficients of
@@ -5873,14 +5940,15 @@ only, \(L-a_v\) by \(F_2\) only, \(D-2L+a_v\) by neither. Write
 classes and \(X=B\cup F_1^\circ\cup F_2^\circ\). The map
 \((G,F_1,F_2)\mapsto(\text{classes},B,F_1^\circ,F_2^\circ,R)\) is a bijection
 from triples with \(F_1,F_2\subseteq G\) \(L\)-factors, and
-\[
+\begin{multline*}
 \frac{\EE[Z^2\mathbf 1_{\mathcal S}]}{\EE[Z^2]}
 =
 \EE_Q\Bigl[\PP(B\text{ simple})\,
-\PP(F_1^\circ\text{ simple, avoids }B\mid B)\,
-\PP(F_2^\circ\text{ simple, avoids }B\cup F_1^\circ\mid B,F_1^\circ)\,
+\PP(F_1^\circ\text{ simple, avoids }B\mid B)
+\\
+\times\PP(F_2^\circ\text{ simple, avoids }B\cup F_1^\circ\mid B,F_1^\circ)\,
 \PP(R\text{ simple, avoids }X\mid X)\Bigr],
-\]
+\end{multline*}
 where \(Q\) is the law of the classes under the \(Z^2\)-weighted pairing:
 the product law \(h^{\otimes n}\) of Lemma~\ref{lem:factor-one-dim}
 reweighted by \(g(\sum_v a_v)\). Likewise
@@ -8998,6 +9066,11 @@ arXiv:1803.10360.
 S.~Janson, T.~\L uczak, and A.~Ruci\'nski,
 \emph{Random Graphs},
 Wiley, New York, 2000.
+
+\bibitem{MWW04}
+B.~D.~McKay, N.~C.~Wormald, and B.~Wysocka,
+\emph{Short cycles in random regular graphs},
+Electron.\ J.\ Combin.\ \textbf{11} (2004), R66.
 
 \bibitem{Hoeffding63}
 W.~Hoeffding,
