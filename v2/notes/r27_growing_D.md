@@ -29,7 +29,7 @@ Total coefficient of D^2/n^2 in ln R: e(H)/2 - e(H)/2 = **0**, for every host.
 ## Anchors and consistency
 - **Exact edge:** P(uv in G) = D/(n-1) gives R = (nD-1)/(D(n-1)) and ln R = (1-1/D)/n + O(1/n^2), with no D^2/n^2 term. The heuristic gives 1/2 - 1/2 = 0. ✓
 - **Exact path P3:** P = D(D-1)/((n-1)(n-2)), again with no D^2/n^2 term. The heuristic gives 1 - 1 = 0. ✓
-- **Dense consistency:** for D = lambda n, a fixed subgraph appears with probability lambda^{e}(1+O(1/n)), so every pure term k (D/n)^j must vanish. f1 has no D/n term (it is bounded in D), and the k D^2/n^2 term vanishes. ✓ The D-independent part k(5-k)/2 of f1 also agrees with the dense correction exp(-(1-lambda)k/(lambda n)) after (n)_k p^k is rewritten in terms of D. (That dense formula is quoted from memory and was not re-checked against McKay's paper.)
+- **Dense consistency:** for D = lambda n, a fixed subgraph appears with probability lambda^{e}(1+O(1/n)), so every pure term k (D/n)^j must vanish. f1 has no D/n term (it is bounded in D), and the k D^2/n^2 term vanishes. ✓ The D-independent part k(5-k)/2 of f1 also agrees with the dense correction exp(-(1-lambda)k/(lambda n)) after (n)_k p^k is rewritten in terms of D. (Checked against McKay, arXiv:1002.3018, Thm 11(b)/Cor 5, with lambda = d/(n-1): P(fixed q-cycle) = lambda^q exp(-(1-lambda)q(n-q)/(lambda n^2) + O(n^-b)), first-order term -(1-lambda)q/(lambda n). Matches at first order. The 1/n^2 terms of Cor 5 applied to C_q were not reconciled with Thm 11(b); not needed here.)
 
 ## Conjecture (growing D)
 For 3 <= D = o(n) and fixed k,
