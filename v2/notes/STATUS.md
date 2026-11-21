@@ -66,7 +66,7 @@ Bar is 2.0. v1.0 is sent.
   sqrt(ln n) is intrinsic to absolute-value Bonferroni. Numerics reproduce (`scripts/r40_E3_check.py`).
 - **SKETCH** r41: a-priori tail P(m_j>=CL^2)<=e^{-cL^2} via one-step switching + mgf; only the
   one-step bound is proof-grade. Closes r36 gap 1 at sketch level; gaps 2-4 OPEN.
-  r45 (numerics): gap 3 backward map contractive (Lipschitz ~xL/n) but total shift ~L^6/n^2 with r41 delta=L^3/n^2 => only L=o(n^{1/3}), not o(n^{1/2}) (assumes coherent delta_k; random signs untested; `notes/r45.md`).
+  r45 (numerics): gap 3 backward map contractive; r45's L^6/n^2 total shift (=> n^{1/3}) double-counted the m-factor. r46 recount: slope error ~0.37/n^2 per step, total ~0.083 L^4/n^2 = o(1) for L=o(n^{1/2}), k<=2 clusters only; k=3 clusters (gap 2) open, may cap range near n^{2/5} (`notes/r45.md`, `notes/r46.md`). r47: Stein/Janson/Bethe reduce to L1'; all-edge zero-free interpolation fails numerically (`notes/r47.md`).
   Numerics reproduce (`scripts/r41_tail_and_x.py`; MC values vary by seed).
 
 ## Rounds r32-r38 (2026-11-21; see main.tex Remarks rounds-r32-r38, weak-law-false)
