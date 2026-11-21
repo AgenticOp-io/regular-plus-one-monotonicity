@@ -2904,6 +2904,42 @@ Kotecky--Preiss cluster expansion on \(D\le cn^{1/4}\) (with weaker error
 \(O(D^2/n^2)\)) are the routes named, neither carried out.
 \end{remark}
 
+\begin{remark}[{Rounds r40--r41: growing-\(D\) E3 and the overlap tail (sketches)}]
+\label{rem:rounds-r40-r41}
+Both items are \emph{sketch level}; nothing here is upgraded to a theorem.
+
+(r40, sketch) The weight in the r30 factorial-moment bound E3 is recomputed with
+explicit \(D\). A fresh position is a loop, of mean \(\lambda_1=(D-1)/2\), or a double
+edge, of mean \(\lambda_2=(D-1)^2/4\); the fresh weight is exactly
+\(w=\lambda_1+\lambda_2=(D^2-1)/4\) (elementary, checked against exact means).
+Defect sites weigh at most \(2l^2D^2n^{-(p-q)}\) and free sites are counted by bundles,
+giving \(f\le D\delta\) for total defect \(\delta\). Then
+\(l!\,\EE\binom{X+Y}{l}\le 2w^l(1+R_l)\) with \(R_l\le 2\rho_l/n\),
+\(\rho_l=2l^3D^2(Dl^2)^D\). The previous range \(D\le c(\ln n)^{1/4}\) improves to
+\(D\le\sqrt{\ln n}-4\ln\ln n-O(1)\), conditional on the unrechecked r30/r38
+dependencies (relative Lipschitz step, application section, ordering constants of
+defect types). The barrier \(\sqrt{\ln n}\) is intrinsic to absolute-value
+Bonferroni (error \(e^{2w}\)); beyond it a cumulant route is needed. The r30 remark on
+the true weights is corrected: they are \((D-1)/2\) and \((D-1)^2/4\).
+Numerics (\texttt{v2/scripts/r40\_E3\_check.py}) reproduce: exact fresh means, moment
+ratios \(0.94\)--\(1.00\), and the range table (e.g.\ \(\ln n=2303\): \(D\le20\)).
+Notes: \texttt{v2/notes/r40\_E3.md}.
+
+(r41, sketch) The circularity in gap~1 of r36 is avoided by bounding each conditional
+one-step overlap \(X_i=|M_i'\cap F|\) by iterated switching,
+\(\PP(S\subseteq M)\le(n-2s-2-4L)^{-s}\) (elementary modulo constants), which makes
+\(X_i\) sub-Poisson\((L/2)\) in mgf given any history. A tower-property mgf argument
+then gives \(\PP(m_j\ge CL^2)\le e^{-cL^2}\); tilts \(y\in[1/2,2e]\) cost a
+deterministic \(e^{O(L)}\) per step. Only the one-step bound is proof-grade; the tilt,
+the tail, and the integration of \(m\) (needed because \(e^{-cL^2}\) alone is not enough when
+\(L^2\lesssim\log n\)) are sketched. Gaps 2--4 of r36 (signed KP constants, error
+propagation, \(\kappa_k\) for \(k\ge3\)) remain open. Numerics
+(\texttt{v2/scripts/r41\_tail\_and\_x.py}): small-\(n\) Monte Carlo is sub-Poisson
+(not a test of tail constants); the \(x\)-scan residual \(\cdot n^2/L^4\) stays bounded
+(\(0.12,1,6.9,50\) for \(x=1.5,2,3,5\)), second-order formula only.
+Notes: \texttt{v2/notes/r41\_overlap\_tail.md}.
+\end{remark}
+
 \begin{remark}[{The weak law \(Z/\EE[Z\mid G,\deg R=g]\to1\) is false (sketch)}]
 \label{rem:weak-law-false}
 Residual step~2 (the avoidance lemma on host degrees \(g\)) cannot be proved in

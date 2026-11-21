@@ -60,6 +60,14 @@ Bar is 2.0. v1.0 is sent.
 - **package-not-persist** (Proposition package-not-persist): mid-window
   five-package residue cannot persist at matching length on sparse hosts.
 
+## Rounds r40-r41 (2026-11-21; main.tex Remark rounds-r40-r41; all SKETCH)
+- **SKETCH** r40: E3 with fresh weight (D^2-1)/4 and bundle-level free sites; r30 range
+  D<=c(ln n)^{1/4} -> D<=sqrt(ln n)-4 ln ln n-O(1). Conditional on unrechecked r30/r38 items.
+  sqrt(ln n) is intrinsic to absolute-value Bonferroni. Numerics reproduce (`scripts/r40_E3_check.py`).
+- **SKETCH** r41: a-priori tail P(m_j>=CL^2)<=e^{-cL^2} via one-step switching + mgf; only the
+  one-step bound is proof-grade. Closes r36 gap 1 at sketch level; gaps 2-4 OPEN.
+  Numerics reproduce (`scripts/r41_tail_and_x.py`; MC values vary by seed).
+
 ## Rounds r32-r38 (2026-11-21; see main.tex Remarks rounds-r32-r38, weak-law-false)
 
 - **PROVED** r32: S1 collision/Bonferroni bound uniform in D (`notes/r32_S1_proof.md`).
