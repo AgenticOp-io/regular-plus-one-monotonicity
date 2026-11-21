@@ -78,6 +78,8 @@ Bar is 2.0. v1.0 is sent.
   r35: t3 = O(L^3/n^3) under nu_L (switching) and unconditioned (R2*) on L=o(n^{1/2}).
   r36: exact one-factor identity (proved); 2nd-order cluster expansion, L^3/n is a deterministic
   coefficient matching kappa_2, residual O(L^4/n^2) (numerics, x=2 only).
+  r44 correction: q_k=n^{-k}e^{phi(k)}, phi=k^2/n+psi(k), NOT product-form; plain Kotecky-Preiss does not apply
+  (sketch). Gaussian-decoupling attempt on gap 2 did not close it (`notes/r44.md`); gaps 2-4 OPEN.
 - **FALSE (sketch, pairing level)** r37: weak law Z/E[Z|G,deg R=g]->1 fails; Lambda shift = sqrt K,
   TV->1. Lemma avoid-G-host / residual-moment-bim in degree-conditioned form cannot be proved as
   stated; repaired target Z/E[Z|G,g,Q(H)] untouched. r33 K formula had m role-swapped; corrected
