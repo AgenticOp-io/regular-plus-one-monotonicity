@@ -133,3 +133,4 @@ See `PROGRAM.md` for the full closed/blocked ledger.
 
 - r55 (sketch): k>=3 cluster remainder at fixed t<=2/n has explicit constants (Penrose tree bound, |R3|<=71.4 w^3 L^3/(n^2(1-rho0))), exact numerics on disjoint K_{L+1} hosts. Tail t>2/n and Gamma-cumulant step still unproved; gap 2 OPEN.
 - r56: lemma (M) NOT proved; exact DP to n=40 shows err ~ n^-2, ~linear in D (consistent with O(D/n^2)). Finite check only; L1' OPEN.
+- r57: gap 2 tail t>2/n PROVED with explicit constants (T<=e^{omega L-0.027n}+n e^{-0.2n}, checked); Gamma-cumulant step reduced to kappa_j(1/chi2) bounds + one mgf estimate (kappa2,3,4 exact, verified), only L=o(n^{5/12}) plausible via 4th order; gap 2 still OPEN. notes/r57.md
