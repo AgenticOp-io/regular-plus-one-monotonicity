@@ -8902,6 +8902,47 @@ The lemma then gives
 \]
 \end{proof}
 
+\begin{remark}[Rounds r52--r60 on the gap-2 Chernoff and the Gamma-cumulant step]
+\label{rem:rounds-r52-r60}
+These rounds advance the reduction from binomial second moment M2 to the pure-case
+Gamma-cumulant bound. Gap~2 (which three items remain open) is part of Lemma~\ref{lem:avoid-overlap}
+and Conjecture~\ref{conj:residual-moment-bim}.
+
+\emph{Partial progress.}
+(r52, r55) The \(k\ge3\) cluster remainder in the KP expansion for \(t\le2/n\)
+(where \(G\ge n/4\) and the Gamma MGF is entire) is bounded with explicit constants,
+\(|R_3|\le71.4\omega^3L^3/(n^2(1-\rho_0))\), from Penrose's tree bound on
+\(\Phi'\) and \(\Phi''\). The \(t>2/n\) tail and Gamma-cumulant linearisation are open.
+
+(r53, r56) Lemma~\ref{lem:avoid-overlap} (the \(D\)-uniform L1$'$ bound on degree-sequence
+enumeration) is not proved. Both attack routes---differentiable Isaev--McKay and cluster
+expansion at short scale---reduce to the same 4th-cumulant gap: an error of order
+\(O(D^2/n^2)\) versus the needed \(O(D^3/n^2)\). Exact DP to \(n=40\) is consistent with
+both; that is not a proof.
+
+(r57) The tail \(t>2/n\) is now proved. Write $T:=\sum_{k\le(n-1)/2}M_k(|w|)q_kP_k$
+with $P_k=\Pr(\Gamma(a-k)<n/4)$ and $a=(n+1)/2$. Then $T\le e^{\omega L-0.027n}+n e^{-0.2n}$.
+The relative tail $T/Z$ shrinks to $e^{-0.02n}$ for $\omega L\le n/1000$. Numerics
+from exact sums match for $n=100\text{--}800$. The Gamma-cumulant linearisation
+$\Phi(q_1+\tau)=\Phi(q_1)+a\tau+R$ with $|R|\le(c_0nL^2/2)\tau^2$ is reduced
+but not closed: a 4th-order Taylor covers only $L=o(n^{5/12})$, and bounding
+all higher cumulants remains open.
+
+(r59b, r60) The window MGF $I(s)=\EE[e^{st};t\le2/n]$ is analytic (no divergence),
+and r59b proves it has no zeros on $|s|\le R=0.01(n+1)^2$ via a Borel--Carathéodory
+contour bound. r60 chains all steps: (A) $0\le\ln Z-\ln Z_W\le 2e^{-0.02n}$ from the r57
+tail, (B) Taylor linearisation from the Penrose bounds on $\Phi'',\Phi'''$, (C) cumulant
+extraction from r59b's zero-free disc with Cauchy, and (D) the pure-case cumulant bound.
+The chain rests on three inputs quoted and not reproved: Penrose's $\Phi'$ and $\Phi''$
+bounds (c0, c1 absolute but unspecified), the r59b zero-free disc, and the r57 tail.
+Explicit c0, c1, and verification of Penrose's constants against the r60 requirements
+(roughly $c_0, c_1<1/50$) are open.
+
+\emph{Conclusion:} gap~2 remains open, blocked by reproof of Penrose and verification
+of the c0, c1 numerics. The core reduction (window-to-pure-case with error tracking)
+is now complete.
+\end{remark}
+
 \section{Program}
 \label{sec:program}
 
